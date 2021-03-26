@@ -6,10 +6,11 @@ The teams consists of students identified in the following table.
 
 | Student Number	| Name |
 |--------------|----------------------------|
-| **1190001**  | Name of student 1          |
-| **1190002**  | Name of student 2          |
-| **1190003**  | Name of student 3          |
-| **1190004**  | Name of student 4          |
+| **1191507**  | Bárbara Pinto         |
+| **1200966**  | Diogo Gaspar          |
+| **1200973**  | Luís Moreira          |
+| **1200996**  | João Pacheco          |
+| **1200985**  | Tomás Cancela         |
 
 
 
