@@ -1,0 +1,46 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+left to right direction
+skinparam packageStyle rectangle
+'Actors
+:Receptionist:
+:Medical Lab\n Technician: as MLT
+:Clinical Chemistry\n Technologist: as CCT
+:Specialist Doctor: as Doctor
+:Laboratory Coordinator: as LC
+:User:
+:Client:
+:NHS:
+
+package Application {
+    (Register test) as UC1
+    (Register client) as UC2
+    (Register sample) as UC3
+    (Register analysis results) as UC4
+    (Generate diagnosis) as UC5
+    (Choose client sorting method) as UC6
+    (Validate the clinical analysis) as UC7
+    (View results) as UC8
+    (View statistics for number of tests waiting for result) as UC9
+    (Access all client data) as UC10
+    (Get feedback from the Covid-19 tests made) as UC11
+}
+
+'Use Cases
+Receptionist -- UC1
+Receptionist -- UC2
+UC3 -- MLT
+CCT -- UC4
+Doctor -- UC5
+User -- UC6
+UC7 -- LC
+UC8 -- Client
+UC8 -- MLT
+CCT -- UC8
+UC8 -- LC
+Doctor -- UC8
+User -- UC9
+Doctor -- UC10
+UC11 -- NHS
+@enduml

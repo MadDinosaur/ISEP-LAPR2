@@ -9,7 +9,7 @@
 | **Client** | **Cliente** | Person with a lab order prescribed by a doctor |
 | **Hemogram** | **Hemograma** | Exam that evaluates the blood cells |
 | **HQ** | **Sede** | Acronym for headquarters |
-| **Lab Order** | ** ** | Contains the type of test and parameters to be measured |
+| **Lab Order** | **Prescrição** | Contains the type of test and parameters to be measured |
 | **NHS** | **---** | National Healthcare Service |
 | **PLT** | **Plaquetas** | Platelets |
 | **RBC** | **Glóbulos Vermelhos** | Red Blood Cells |
