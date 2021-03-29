@@ -21,3 +21,6 @@
 | US9 | [View statistics for number of tests waiting for result](US9.md) | User (undefined) | Compute the time interval, in a week, when the company was less effective in responding. |
 | US10 | [Access all client data](US10.md) | Specialist Doctor | Only the specialist doctor is allowed to access all client data. |
 | US11 | [Get feedback from the Covid-19 tests made](US11.md) | NHS | NHS requires the number of COVID-19 tests performed, and to report the number of positive cases per day, week, month and year, generate forecasts and generate daily reports. |
+| US12 | [Specify new test](US12.md) | Administrator | Specify a new type of test and its collecting methods. |
+| US13 | [Specify new test parameter](US13.md) | Administrator | Specify a new test parameter and categorize it. |
+| US14 | [Specify a new parameter category](US14.md) | Administrator | Specify a new test parameter category. | 
