@@ -16,7 +16,7 @@
 | US4 | [Register analysis results](US4.md)| Clinical Chemistry Technologist | Record the results of the chemical analysis on the samples. |
 | US5 | [Generate diagnosis](US5.md) | Specialist Doctor | The results of all chemical analysis are automatically validated using test reference values. The doctor makes a diagnosis with that information and writes a report to deliver to the client. |
 | US6 | [Choose sorting method](US6.md)| User (undefined) | Display the list of clients sorted by name or by TIF. |
-| US7 | [Valdate the clinical analysis](US7.md) | Laboratory Coordinator | Display the chemical test/result and associated diagnosis for validation. |
+| US7 | [Validate the clinical analysis](US7.md) | Laboratory Coordinator | Display the chemical test/result and associated diagnosis for validation. |
 | US8 | [View results](US8.md) | Client, Medical Lab Technician, Clinical Chemistry Technologist, Specialist Doctor, Laboratory Coordinator | Notify the client by SMS and e-mail when results are available. Display the result information to all actors. |
 | US9 | [View statistics for number of tests waiting for result](US9.md) | User (undefined) | Compute the time interval, in a week, when the company was less effective in responding. |
 | US10 | [Access all client data](US10.md) | Specialist Doctor | Only the specialist doctor is allowed to access all client data. |
