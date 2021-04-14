@@ -67,7 +67,6 @@ Test -down- Parameter : requests analysis of >
 Test -up- "Lab Order" : requires >
 Test -up- Company : performs <
 Test -down- TestResult : has a >
-Test -up- NHS: requests report of <
 Administrator -- Category : created by <
 Parameter -- Category : presented under >
 SampleType -up- Sample  : is of <
@@ -82,6 +81,8 @@ TestResult -up- LabCoordinator : validated by >
 Diagnosis -up- SpecialistDoctor : generates <
 Diagnosis -up- LabCoordinator : validated by >
 Diagnosis -right- TestResult : associated to >
+NHS -down- Company : requests report to >
+Company -down- Category : has >
 
 'Note:
 'Consider the following generalizations: Employee and Laboratory
