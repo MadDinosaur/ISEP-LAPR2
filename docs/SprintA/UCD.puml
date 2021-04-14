@@ -11,8 +11,8 @@ skinparam packageStyle rectangle
 :Laboratory Coordinator: as LC
 :User:
 :Client:
-:NHS:
 :Administrator:
+:System\n Clock: as Clock
 
 package Application {
     (Register test) as UC1
@@ -23,12 +23,13 @@ package Application {
     (Choose client sorting method) as UC6
     (Validate the clinical analysis) as UC7
     (View results) as UC8
-    (View statistics for number of tests waiting for result) as UC9
-    (Access all client data) as UC10
-    (Get feedback from the Covid-19 tests made) as UC11
-    (Specify new test) as UC12
-    (Specify new test parameter) as UC13
-    (Specify a new parameter category) as UC14
+    (Check results) as UC9
+    (View statistics for number of tests waiting for result) as UC10
+    (Access all client data) as UC11
+    (Generate NHS report) as UC12
+    (Specify new test) as UC13
+    (Specify new test parameter) as UC14
+    (Specify a new parameter category) as UC15
 }
 
 'Use Cases
@@ -37,17 +38,17 @@ Receptionist -- UC2
 UC3 -- MLT
 CCT -- UC4
 Doctor -- UC5
-User -- UC6
+Administrator -- UC6
 UC7 -- LC
 UC8 -- Client
-UC8 -- MLT
-CCT -- UC8
-UC8 -- LC
-Doctor -- UC8
+UC9 -- MLT
+CCT -- UC9
+UC9 -- LC
+Doctor -- UC9
 User -- UC9
-Doctor -- UC10
-UC11 -- NHS
-Administrator -- UC12
-Administrator -- UC13
+LC -- UC10
+Doctor -- UC11
+Clock -- UC12
 Administrator -- UC14
+Administrator -- UC15
 @enduml
