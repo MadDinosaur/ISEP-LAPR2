@@ -2,15 +2,12 @@
 
 The construction process of the domain model is based on the client specifications, especially the nouns (for _concepts_) and verbs (for _relations_) used. 
 
-## Rationale to identify domain conceptual classes ##
-To identify domain conceptual classes, start by making a list of candidate conceptual classes inspired by the list of categories suggested in the book "Applying UML and Patterns: An Introduction to Object-Oriented Analysis and Design and Iterative Development". 
-
 
 ### _Conceptual Class Category List_ ###
 
 **Business Transactions**
 
-*
+* Test
 
 ---
 
@@ -106,6 +103,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Organizations**
 
+* Company
 * NHS
 
 ---
@@ -139,20 +137,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 
 
-###**Rationale to identify associations between conceptual classes**###
-
-An association is a relationship between instances of objects that indicates a relevant connection and that is worth of remembering, or it is derivable from the List of Common Associations: 
-
-+ **_A_** is physically or logically part of **_B_**
-+ **_A_** is physically or logically contained in/on **_B_**
-+ **_A_** is a description for **_B_**
-+ **_A_** known/logged/recorded/reported/captured in **_B_**
-+ **_A_** uses or manages or owns **_B_**
-+ **_A_** is related with a transaction (item) of **_B_**
-+ etc.
-
-
-
+### _Associations between conceptual classes_ ###
 | Concept (A) 		|  Association   |  Concept (B) |
 |----------	   		|:--------------:|:------------:|
 | Company  	        | 1. performs <br> 2. conducts <br> 3.owns| 1. Test <br> 2. TestType <br> 3. ClinicalAnalysisLaboratory <br> 3. Chemical Laboratory      |
@@ -171,11 +156,4 @@ An association is a relationship between instances of objects that indicates a r
 
 ## Domain Model
 
-**Do NOT forget to identify concepts atributes too.**
-
-**Insert below the Domain Model Diagram in a SVG format**
-
 ![DM.svg](DM.svg)
-
-
-
