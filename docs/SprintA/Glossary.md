@@ -18,7 +18,7 @@
 | **SD** | **Doutor Especialista** | Acronym for Specialist Doctor: Analyzes the results of the chemical analysis and writes a report | 
 | **SOC** | **Classificação de Profissão** | Acronym for Standard Occupational Classification: A code assigned to a job based on the skills and qualifications needed |
 | **Test** | **Teste** | Clinical blood tests and Covid-19 tests |
-| **TIF** | **NIF** | Tax Identification Number |
+| **TIN** | **NIF** | Tax Identification Number |
 | **WBC** | **Glóbulos Brancos** | White Blood Cells |
 
 
