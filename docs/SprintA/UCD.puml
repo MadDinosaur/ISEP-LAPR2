@@ -9,7 +9,6 @@ skinparam packageStyle rectangle
 :Clinical Chemistry\n Technologist: as CCT
 :Specialist Doctor: as Doctor
 :Laboratory Coordinator: as LC
-:User:
 :Client:
 :Administrator:
 :System\n Clock: as Clock
@@ -45,10 +44,10 @@ UC9 -- MLT
 CCT -- UC9
 UC9 -- LC
 Doctor -- UC9
-User -- UC9
 LC -- UC10
 Doctor -- UC11
 Clock -- UC12
+Administrator -- UC13
 Administrator -- UC14
 Administrator -- UC15
 @enduml
