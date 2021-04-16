@@ -57,7 +57,9 @@ configurability, installability, scalability and more._
 |Testability |Unit tests and coverage report |Unit tests must be implemented for all methods except methods that implement Input/Output operations. 
 |Adaptability |Other tests support|The system should be developed having in mind the need to easily support other kinds of tests (e.g. urine). 
 |Compatibility |Plataforms | The application should run on all platforms for which there exists a Java Virtual Machine. 
-
+|Configurability|Brute-force algorithm |The application must implement a brute-force algorithm (an algorithm which examines each subsequence) to determine the testing process efficiency (number of tests waiting for result). The time complexity analysis should be documented in the user manual. 
+|Configurability|Ordering algorithm |The application must allow ordering the clients by TIF and by name. At least two sorting algorithms should be evaluated, implemented and documented in the application user manual. 
+|Configurability|Linear and multiple linear regression algorithms | The NHS requires that both simple linear and multiple linear regression algorithms should be evaluated to select the best model for Covid-19 cases predictions. 
 
 
 
@@ -88,9 +90,6 @@ database integrity, resource limits, operating system._
 |Platform support | JaCoCo test coverage plugin | The JaCoCo plugin should be used to generate the test coverage report. 
 |Standards-compliance |CamelCase coding standard | The implementation must adopt recognized coding standards, in this case CamelCase. 
 |Standards-compliance |OO software analysis and design |The implementation must adopt OO standards. 
-| |Brute-force algorithm |The application must implement a brute-force algorithm (an algorithm which examines each subsequence) to determine the testing process efficiency (number of tests waiting for result). The time complexity analysis should be documented in the user manual. 
-| |Ordering algorithm |The application must allow ordering the clients by TIF and by name. At least two sorting algorithms should be evaluated, implemented and documented in the application user manual. 
-| |Linear and multiple linear regression algorithms | The NHS requires that both simple linear and multiple linear regression algorithms should be evaluated to select the best model for Covid-19 cases predictions. 
 |Resource limits |RAM |The application must run in a machine with 8GB of RAM. 
 
 
