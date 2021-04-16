@@ -32,7 +32,7 @@ _Refers to the integrity, compliance and interoperability of the software. The r
 |:------------------------|:-----------------|:--------------------------------------------|
 |Availibility| |The system should not fail more than 5 days in one year. 
 |Recoverability| | Whenever the system fails, there should be no data loss. 
-
+|Accuracy| | Using both simple and multiple linear regression algorithms to provide accurate predictions of covid cases for the following day, week and month. 
 
 
 
