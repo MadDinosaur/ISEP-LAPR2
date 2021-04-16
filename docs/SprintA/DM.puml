@@ -53,9 +53,6 @@ class SpecialistDoctor
 class LabCoordinator
 class Diagnosis
 class NHS
-class User {
--password
-}
 Client -left- "Lab Order" : has a >
 Company -down- TestType : conducts >
 Company -down- ChemicalLaboratory : owns >
@@ -83,6 +80,7 @@ Diagnosis -up- LabCoordinator : validated by >
 Diagnosis -right- TestResult : associated to >
 NHS -down- Company : requests report to >
 Company -down- Category : has >
+TestType -right- Administrator : is created by >
 
 'Note:
 'Consider the following generalizations: Employee and Laboratory
