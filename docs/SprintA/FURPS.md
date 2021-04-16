@@ -54,7 +54,6 @@ configurability, installability, scalability and more._
 
 | **_Subcategory_** | **_Function_** | **_Description/Example_** |
 |:------------------------|:-----------------|:--------------------------------------------|
-|Implementation languages | English language | The application must support the English language only. 
 |Testability |Unit tests and coverage report |Unit tests must be implemented for all methods except methods that implement Input/Output operations. 
 |Adaptability |Other tests support|The system should be developed having in mind the need to easily support other kinds of tests (e.g. urine). 
 |Compatibility |Plataforms | The application should run on all platforms for which there exists a Java Virtual Machine. 
@@ -81,6 +80,7 @@ database integrity, resource limits, operating system._
 
 | **_Subcategory_** | **_Function_** | **_Description/Example_** |
 |:------------------------|:-----------------|:--------------------------------------------|
+|Implementation languages | English language | The application must support the English language only. 
 |Platform support | Java code base | The application must be developed in Java language using the IntelliJ IDE or Netbeans. 
 |Platform support | JavaFX 11 graphical interface |The application graphical interface is to be developed in JavaFX 11. 
 |Platform support | Javadoc documentation | The Java code must use Javadoc to generate useful documentation. 
