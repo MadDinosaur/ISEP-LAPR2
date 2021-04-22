@@ -165,4 +165,5 @@ TestResult "*"--"1" ClinicalChemistryTechnologist : generates <
 TestResult "1"--"*" ParameterResult : has >
 TestType "*"--"1" Administrator : created by >
 TestType "1"--"1..*" Parameter : has >
+SampleType "1"--"1..*" CollectionMethod : has >
 @enduml
