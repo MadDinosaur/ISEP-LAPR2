@@ -25,6 +25,7 @@ The construction process of the domain model is based on the client specificatio
 * Parameter
 * Analysis Result / Parameter Result
 * Diagnosis
+* Collection Method
 
 ---
 

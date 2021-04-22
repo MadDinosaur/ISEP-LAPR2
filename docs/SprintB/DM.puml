@@ -21,6 +21,9 @@ class ChemicalLaboratory {
 -phoneNumber
 -TIN
 }
+class CollectionMethod {
+-designation
+}
 class Client {
 -name 
 -cardNumber 
@@ -97,6 +100,8 @@ class Test {
 }
 class Parameter {
 -designation
+-upperReferenceValue
+-lowerReferenceValue
 }
 class ParameterResult
 class Report {
