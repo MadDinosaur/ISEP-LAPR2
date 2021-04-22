@@ -15,39 +15,40 @@ skinparam packageStyle rectangle
 
 package Application {
     (Register test) as UC1
-    (Register client) as UC2
-    (Register sample) as UC3
+    (Register client) as UC3
     (Register analysis results) as UC4
     (Generate diagnosis) as UC5
-    (Choose client sorting method) as UC6
-    (Validate the clinical analysis) as UC7
-    (View results) as UC8
-    (Check results) as UC9
-    (View statistics for number of tests waiting for result) as UC10
-    (Access all client data) as UC11
     (Generate NHS report) as UC12
-    (Specify new test) as UC13
-    (Specify new test parameter) as UC14
-    (Specify a new parameter category) as UC15
+    (Validate the clinical analysis) as UC13
+    (View results) as UC14
+    (Check results) as UC15
+    (Choose client sorting method) as UC6
+    (Specify new employee) as UC7
+    (Specify a new clinical analysis laboratory) as UC8
+    (Specify new test) as UC9
+    (Specify new test parameter) as UC10
+    (Specify a new parameter category) as UC11
+    (Register sample) as UC2
+    (View statistics for number of tests waiting for result) as UC16
+    (Access all client data) as UC17
 }
 
 'Use Cases
 Receptionist -- UC1
-Receptionist -- UC2
-UC3 -- MLT
+Receptionist -- UC3
 CCT -- UC4
 Doctor -- UC5
+UC13 -- LC
+UC14 -- Client
+UC2 -- MLT
+UC15 -- MLT
 Administrator -- UC6
-UC7 -- LC
-UC8 -- Client
-UC9 -- MLT
-CCT -- UC9
-UC9 -- LC
-Doctor -- UC9
-LC -- UC10
-Doctor -- UC11
+Administrator -- UC7
+Administrator -- UC8
+Administrator -- UC9
+Administrator -- UC10
+Administrator -- UC11
+UC16 -- LC
+Doctor -- UC17
 Clock -- UC12
-Administrator -- UC13
-Administrator -- UC14
-Administrator -- UC15
 @enduml
