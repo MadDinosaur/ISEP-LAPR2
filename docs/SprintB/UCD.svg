@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="723.6px" preserveAspectRatio="none" style="width:444px;height:723px;" version="1.1" viewBox="0 0 444 723" width="444px" zoomAndPan="magnify"><defs><filter height="300%" id="fibcow8h8oq52" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="1.2"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="2.4" dy="2.4" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[d64883541e3d62e3241c4d12decf100d]
+cluster Application--><rect fill="#FFFFFF" filter="url(#fibcow8h8oq52)" height="708" style="stroke:#000000;stroke-width:0.8999999999999999;" width="227.4" x="97.2" y="4.2"/><text fill="#000000" font-family="sans-serif" font-size="8.4" font-weight="bold" lengthAdjust="spacing" textLength="46.8" x="187.5" y="14.1199">Application</text><ellipse cx="210.8501" cy="76.73" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="40.4501" ry="9.53" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="48" x="185.0501" y="79.44">Register test</text><ellipse cx="210.814" cy="36.0428" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="42.514" ry="9.9428" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="54" x="182.014" y="38.7528">Register client</text><ellipse cx="211.0353" cy="365.9671" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="45.1353" ry="10.4671" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="61.2" x="178.6353" y="368.677">Register sample</text><ellipse cx="210.8715" cy="185.8743" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="58.1715" ry="13.0743" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="92.4" x="164.6715" y="188.1114">Register analysis results</text><ellipse cx="210.9039" cy="322.9208" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="50.4039" ry="11.5208" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="74.4" x="173.7039" y="325.1579">Generate diagnosis</text><ellipse cx="210.8604" cy="539.3921" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="66.2604" ry="14.6921" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="110.4" x="155.6604" y="541.6292">Choose client sorting method</text><ellipse cx="210.7789" cy="234.4558" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="64.0789" ry="14.2558" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="105.6" x="157.9789" y="236.6929">Validate the clinical analysis</text><ellipse cx="210.8046" cy="452.4709" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="39.2046" ry="9.3709" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="45" x="186.5046" y="455.1809">View results</text><ellipse cx="210.8742" cy="280.0748" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="41.6742" ry="9.7748" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="51.6" x="183.2742" y="282.7848">Check results</text><ellipse cx="210.7733" cy="129.6347" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="103.9733" ry="22.2347" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="190.2" x="115.6733" y="131.8718">View statistics for number of tests waiting for result</text><ellipse cx="210.8354" cy="409.7271" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="52.4354" ry="11.9271" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="79.2" x="171.2354" y="411.9642">Access all client data</text><ellipse cx="210.7916" cy="690.5783" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="52.6916" ry="11.9783" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="79.8" x="170.8916" y="692.8154">Generate NHS report</text><ellipse cx="211.0353" cy="493.1671" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="45.1353" ry="10.4671" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="61.2" x="178.6353" y="495.877">Specify new test</text><ellipse cx="210.9238" cy="589.0848" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="62.7238" ry="13.9848" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="102.6" x="159.6238" y="591.3219">Specify new test parameter</text><ellipse cx="211.0432" cy="640.7086" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="74.8432" ry="16.4086" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="129" x="146.5432" y="642.9458">Specify a new parameter category</text><!--MD5=[87a04b683345c3cce94ac9a6e159ab2f]
+entity Receptionist--><ellipse cx="37.2" cy="37.2" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="4.8" ry="4.8" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><path d="M37.2,42 L37.2,58.2 M29.4,46.8 L45,46.8 M37.2,58.2 L29.4,67.2 M37.2,58.2 L45,67.2 " fill="none" filter="url(#fibcow8h8oq52)" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="46.8" x="13.8" y="79.2199">Receptionist</text><!--MD5=[e7d38603a700bedb049d1f5e1789c8aa]
+entity MLT--><ellipse cx="395.4" cy="314.1" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="4.8" ry="4.8" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><path d="M395.4,318.9 L395.4,335.1 M387.6,323.7 L403.2,323.7 M395.4,335.1 L387.6,344.1 M395.4,335.1 L403.2,344.1 " fill="none" filter="url(#fibcow8h8oq52)" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="45.6" x="372.6" y="356.1199">Medical Lab</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="41.4" x="375" y="366.6855">Technician</text><!--MD5=[234b11d210a3d78b3bcac40f493e1b07]
+entity CCT--><ellipse cx="37.2" cy="191.7" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="4.8" ry="4.8" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><path d="M37.2,196.5 L37.2,212.7 M29.4,201.3 L45,201.3 M37.2,212.7 L29.4,221.7 M37.2,212.7 L45,221.7 " fill="none" filter="url(#fibcow8h8oq52)" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="67.2" x="3.6" y="233.7199">Clinical Chemistry</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="48.6" x="6" y="244.2855">Technologist</text><!--MD5=[5a5d35bcfc46556bdff8e646cc6c81c2]
+entity Doctor--><ellipse cx="37.2" cy="303.6" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="4.8" ry="4.8" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><path d="M37.2,308.4 L37.2,324.6 M29.4,313.2 L45,313.2 M37.2,324.6 L29.4,333.6 M37.2,324.6 L45,333.6 " fill="none" filter="url(#fibcow8h8oq52)" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="63.6" x="5.4" y="345.6199">Specialist Doctor</text><!--MD5=[b0100dfa164aec77c855c16afe11d7ec]
+entity LC--><ellipse cx="395.4" cy="215.4" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="4.8" ry="4.8" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><path d="M395.4,220.2 L395.4,236.4 M387.6,225 L403.2,225 M395.4,236.4 L387.6,245.4 M395.4,236.4 L403.2,245.4 " fill="none" filter="url(#fibcow8h8oq52)" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="88.8" x="351" y="257.4199">Laboratory Coordinator</text><!--MD5=[0ba5ee7700168656dc1b457c6fe9fdac]
+entity Client--><ellipse cx="395.4" cy="433.2" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="4.8" ry="4.8" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><path d="M395.4,438 L395.4,454.2 M387.6,442.8 L403.2,442.8 M395.4,454.2 L387.6,463.2 M395.4,454.2 L403.2,463.2 " fill="none" filter="url(#fibcow8h8oq52)" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="21.6" x="384.6" y="475.2199">Client</text><!--MD5=[62529e7d5259bf274c3bf3e446350d88]
+entity Administrator--><ellipse cx="37.2" cy="545.4" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="4.8" ry="4.8" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><path d="M37.2,550.2 L37.2,566.4 M29.4,555 L45,555 M37.2,566.4 L29.4,575.4 M37.2,566.4 L45,575.4 " fill="none" filter="url(#fibcow8h8oq52)" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="49.8" x="12.3" y="587.4199">Administrator</text><!--MD5=[8deeff1cfa66d96b67ddb5a2a7f9c862]
+entity Clock--><ellipse cx="37.2" cy="666.3" fill="#FEFECE" filter="url(#fibcow8h8oq52)" rx="4.8" ry="4.8" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><path d="M37.2,671.1 L37.2,687.3 M29.4,675.9 L45,675.9 M37.2,687.3 L29.4,696.3 M37.2,687.3 L45,696.3 " fill="none" filter="url(#fibcow8h8oq52)" style="stroke:#A80036;stroke-width:0.8999999999999999;"/><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="27.6" x="23.4" y="708.3199">System</text><text fill="#000000" font-family="sans-serif" font-size="8.4" lengthAdjust="spacing" textLength="21" x="25.8" y="718.8855">Clock</text><!--MD5=[ae1ffe75aad78ec08f72c7afce75d044]
+link Receptionist to UC1--><path d="M60.708,59.106 C89.802,62.55 140.34,68.526 174.534,72.57 " fill="none" id="Receptionist-UC1" style="stroke:#A80036;stroke-width:0.6;"/><!--MD5=[15efd0eb678966c0b6b20d0a4a200ded]
+link Receptionist to UC2--><path d="M60.708,53.694 C89.298,50.31 138.594,44.478 172.746,40.44 " fill="none" id="Receptionist-UC2" style="stroke:#A80036;stroke-width:0.6;"/><!--MD5=[a5e458ca0e7efe4fa5557b44823e053f]
+link UC3 to MLT--><path d="M249.036,360.348 C286.218,354.75 341.916,346.362 372.576,341.748 " fill="none" id="UC3-MLT" style="stroke:#A80036;stroke-width:0.6;"/><!--MD5=[0af8a168789322cb67d283e9c283da4c]
+link CCT to UC4--><path d="M70.854,210.252 C97.416,205.632 135.018,199.092 164.484,193.968 " fill="none" id="CCT-UC4" style="stroke:#A80036;stroke-width:0.6;"/><!--MD5=[52bc5f20303bcb268c08179222897b9f]
+link Doctor to UC5--><path d="M69.036,322.8 C94.476,322.8 130.872,322.8 160.344,322.8 " fill="none" id="Doctor-UC5" style="stroke:#A80036;stroke-width:0.6;"/><!--MD5=[664b5d658f02658dc2bb7afbea31a1ab]
+link Administrator to UC6--><path d="M62.148,561.042 C86.25,557.52 123.978,552.012 155.328,547.428 " fill="none" id="Administrator-UC6" style="stroke:#A80036;stroke-width:0.6;"/><!--MD5=[2f4c32df500e49590e9a4aef56f1f542]
+link UC7 to LC--><path d="M275.352,234.6 C300.252,234.6 328.176,234.6 350.76,234.6 " fill="none" id="UC7-LC" style="stroke:#A80036;stroke-width:0.6;"/><!--MD5=[12da0fdaeace2c57f9712b0f99c4a009]
+link UC8 to Client--><path d="M250.374,452.4 C293.142,452.4 359.178,452.4 384.468,452.4 " fill="none" id="UC8-Client" style="stroke:#A80036;stroke-width:0.6;"/><!--MD5=[06be2763310ddd95af07270b0594564a]
+link UC9 to MLT--><path d="M250.35,283.44 C273.774,286.242 303.912,291.366 329.4,300.6 C344.568,306.096 360.258,315.036 372.462,322.842 " fill="none" id="UC9-MLT" style="stroke:#A80036;stroke-width:0.6;"/><!--MD5=[8cc042cfcf0a4909d3174965a02feaa0]
+link CCT to UC9--><path d="M70.764,246.216 C77.538,251.196 84.906,255.828 92.4,259.2 C116.856,270.204 146.604,275.454 170.1,277.95 " fill="none" id="CCT-UC9" style="stroke:#A80036;stroke-width:0.6;"/><!--MD5=[1b7a3f4376922a3c069ca2af1eec6a6f]
+link UC9 to LC--><path d="M247.74,275.502 C271.26,272.028 302.436,266.604 329.4,259.2 C336.42,257.274 343.74,254.898 350.838,252.39 " fill="none" id="UC9-LC" style="stroke:#A80036;stroke-width:0.6;"/><!--MD5=[b46f60c65289d8272c1ad835bf57711c]
+link Doctor to UC9--><path d="M69.156,308.712 C76.662,305.718 84.726,302.796 92.4,300.6 C118.962,292.998 149.748,287.79 173.196,284.538 " fill="none" id="Doctor-UC9" style="stroke:#A80036;stroke-width:0.6;"/><!--MD5=[40e2592b95e22baa35de449a6ed4bfd1]
+link LC to UC10--><path d="M378.102,209.682 C366.264,193.848 349.032,174.114 329.4,162 C317.25,154.506 303.348,148.71 289.452,144.24 " fill="none" id="LC-UC10" style="stroke:#A80036;stroke-width:0.6;"/><!--MD5=[92e0f4fcf3c7a902f29996be55f66c1e]
+link Doctor to UC11--><path d="M52.968,347.814 C62.58,361.506 76.23,377.556 92.4,387 C112.476,398.724 137.43,404.556 159.204,407.412 " fill="none" id="Doctor-UC11" style="stroke:#A80036;stroke-width:0.6;"/><!--MD5=[6044fe0673fcfe8344998787b7ee2ec3]
+link Clock to UC12--><path d="M51.048,690.6 C73.65,690.6 120.822,690.6 157.992,690.6 " fill="none" id="Clock-UC12" style="stroke:#A80036;stroke-width:0.6;"/><!--MD5=[279a83dbfe76f284cd6a3391181339e4]
+link Administrator to UC13--><path d="M59.196,539.49 C68.472,530.148 80.034,520.338 92.4,514.2 C115.302,502.83 143.418,497.538 166.446,495.108 " fill="none" id="Administrator-UC13" style="stroke:#A80036;stroke-width:0.6;"/><!--MD5=[94b9b3f4b26fd95ef878f7b442ebc71b]
+link Administrator to UC14--><path d="M62.148,568.074 C86.85,571.596 125.874,577.158 157.674,581.694 " fill="none" id="Administrator-UC14" style="stroke:#A80036;stroke-width:0.6;"/><!--MD5=[f4be9e0e21d21cf4bf93cf1ea00232ac]
+link Administrator to UC15--><path d="M60.234,589.566 C69.408,598.416 80.622,607.68 92.4,613.8 C109.032,622.44 128.394,628.338 146.568,632.358 " fill="none" id="Administrator-UC15" style="stroke:#A80036;stroke-width:0.6;"/><!--MD5=[a6572ff4b21c6ac120d1dff32c70c71f]
+@startuml
+'https://plantuml.com/use-case-diagram
+
+left to right direction
+skinparam packageStyle rectangle
+'Actors
+:Receptionist:
+:Medical Lab\n Technician: as MLT
+:Clinical Chemistry\n Technologist: as CCT
+:Specialist Doctor: as Doctor
+:Laboratory Coordinator: as LC
+:Client:
+:Administrator:
+:System\n Clock: as Clock
+
+package Application {
+    (Register test) as UC1
+    (Register client) as UC2
+    (Register sample) as UC3
+    (Register analysis results) as UC4
+    (Generate diagnosis) as UC5
+    (Choose client sorting method) as UC6
+    (Validate the clinical analysis) as UC7
+    (View results) as UC8
+    (Check results) as UC9
+    (View statistics for number of tests waiting for result) as UC10
+    (Access all client data) as UC11
+    (Generate NHS report) as UC12
+    (Specify new test) as UC13
+    (Specify new test parameter) as UC14
+    (Specify a new parameter category) as UC15
+}
+
+'Use Cases
+Receptionist - - UC1
+Receptionist - - UC2
+UC3 - - MLT
+CCT - - UC4
+Doctor - - UC5
+Administrator - - UC6
+UC7 - - LC
+UC8 - - Client
+UC9 - - MLT
+CCT - - UC9
+UC9 - - LC
+Doctor - - UC9
+LC - - UC10
+Doctor - - UC11
+Clock - - UC12
+Administrator - - UC13
+Administrator - - UC14
+Administrator - - UC15
+@enduml
+
+@startuml
+
+left to right direction
+skinparam packageStyle rectangle
+:Receptionist:
+:Medical Lab\n Technician: as MLT
+:Clinical Chemistry\n Technologist: as CCT
+:Specialist Doctor: as Doctor
+:Laboratory Coordinator: as LC
+:Client:
+:Administrator:
+:System\n Clock: as Clock
+
+package Application {
+    (Register test) as UC1
+    (Register client) as UC2
+    (Register sample) as UC3
+    (Register analysis results) as UC4
+    (Generate diagnosis) as UC5
+    (Choose client sorting method) as UC6
+    (Validate the clinical analysis) as UC7
+    (View results) as UC8
+    (Check results) as UC9
+    (View statistics for number of tests waiting for result) as UC10
+    (Access all client data) as UC11
+    (Generate NHS report) as UC12
+    (Specify new test) as UC13
+    (Specify new test parameter) as UC14
+    (Specify a new parameter category) as UC15
+}
+
+Receptionist - - UC1
+Receptionist - - UC2
+UC3 - - MLT
+CCT - - UC4
+Doctor - - UC5
+Administrator - - UC6
+UC7 - - LC
+UC8 - - Client
+UC9 - - MLT
+CCT - - UC9
+UC9 - - LC
+Doctor - - UC9
+LC - - UC10
+Doctor - - UC11
+Clock - - UC12
+Administrator - - UC13
+Administrator - - UC14
+Administrator - - UC15
+@enduml
+
+PlantUML version 1.2021.2(Sun Mar 07 11:10:27 GMT 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>
