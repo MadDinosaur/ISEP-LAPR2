@@ -1,0 +1,33 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Administrator
+class ClinicalChemistryTechnologist
+class Company {
+-designation
+}
+class Employee {
+-employeeID
+-organizationID
+-name
+-address
+-phoneNumber
+-email
+-SOCcode
+}
+class LaboratoryCoordinator
+class MedicalLabTechnician
+class Receptionist
+class SpecialistDoctor {
+-doctorIndexNumber
+}
+
+Company "1"--"1..*" Employee : has >
+Employee <|-- Administrator
+Employee <|-- ClinicalChemistryTechnologist
+Employee <|-- MedicalLabTechnician
+Employee <|-- LaboratoryCoordinator
+Employee <|-- Receptionist
+Employee <|-- SpecialistDoctor
+Administrator "1"--"*" Employee : registers >
+@enduml

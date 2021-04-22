@@ -1,4 +1,4 @@
-# US XXX - XXXX XXXX
+# US 7 -  Specify a new employee
 
 ## 1. Requirements Engineering
 
@@ -7,7 +7,7 @@
 
 ### 1.1. User Story Description
 
-*Insert here the User Story as described by the client.*
+As an administrator, I want to register a new employee.
 
 ### 1.2. Customer Specifications and Clarifications 
 
@@ -15,7 +15,8 @@
 
 ### 1.3. Acceptance Criteria
 
-*Insert here the client acceptance criteria.*
+Each user must have a single role defined in the system. The "auth" component available on the repository must be reused (without
+modifications).
 
 ### 1.4. Found out Dependencies
 
@@ -43,7 +44,7 @@
 ### 2.1. Relevant Domain Model Excerpt 
 *In this section, it is suggested to present an excerpt of the domain model that is seen as relevant to fulfill this requirement.* 
 
-![USXX-MD](USXX-MD.svg)
+![US7-DM](US7_DM.svg)
 
 ### 2.2. Other Remarks
 

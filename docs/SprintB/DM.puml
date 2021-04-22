@@ -1,15 +1,7 @@
 @startuml
 skinparam classAttributeIconSize 0
 
-class Administrator {
--employeeID
--organizationID
--name
--address
--phoneNumber
--email
--SOCcode
-}
+class Administrator
 class Category {
 -code
 -description
@@ -21,14 +13,11 @@ class ChemicalLaboratory {
 -phoneNumber
 -TIN
 }
-class CollectionMethod {
--designation
-}
 class Client {
--name 
--cardNumber 
--birthDate 
--sex 
+-name
+-cardNumber
+-birthDate
+-sex
 -nhsID
 -TIF
 -phoneNumber
@@ -41,24 +30,16 @@ class ClinicalAnalysisLaboratory {
 -TIN
 -laboratoryID
 }
-class ClinicalChemistryTechnologist {
--employeeID
--organizationID
--name
--address
--phoneNumber
--email
--SOCcode
-}
+class ClinicalChemistryTechnologist
 class Company {
 -designation
 }
 class Diagnosis
 class LabOrder {
--testType 
--parameters 
+-testType
+-parameters
 }
-class LaboratoryCoordinator {
+class Employee {
 -employeeID
 -organizationID
 -name
@@ -67,27 +48,12 @@ class LaboratoryCoordinator {
 -email
 -SOCcode
 }
-class MedicalLabTechnician {
--employeeID
--organizationID
--name
--address
--phoneNumber
--email
--SOCcode
-}
+class LaboratoryCoordinator
+class MedicalLabTechnician
 class NHS
-class Receptionist {
--employeeID
--organizationID
--name
--address
--phoneNumber
--email
--SOCcode
-}
+class Receptionist
 class Test {
--internalCode 
+-internalCode
 -nhsCode
 -createdAt
 -sampleCollectionMethod
@@ -100,8 +66,6 @@ class Test {
 }
 class Parameter {
 -designation
--upperReferenceValue
--lowerReferenceValue
 }
 class ParameterResult
 class Report {
@@ -118,13 +82,6 @@ class Sample {
 }
 class SampleType
 class SpecialistDoctor {
--employeeID
--organizationID
--name
--address
--phoneNumber
--email
--SOCcode
 -doctorIndexNumber
 }
 
@@ -165,5 +122,12 @@ TestResult "*"--"1" ClinicalChemistryTechnologist : generates <
 TestResult "1"--"*" ParameterResult : has >
 TestType "*"--"1" Administrator : created by >
 TestType "1"--"1..*" Parameter : has >
-SampleType "1"--"1..*" CollectionMethod : has >
+Employee <|-down- Administrator
+Employee <|-down- ClinicalChemistryTechnologist
+Employee <|-down- MedicalLabTechnician
+Employee <|-down- LaboratoryCoordinator
+Employee <|-down- Receptionist
+Employee <|-right- SpecialistDoctor
+Company "1"--"1..*" Employee : has >
+Administrator "1"--"*" Employee : registers >
 @enduml

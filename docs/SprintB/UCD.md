@@ -14,7 +14,7 @@
 | US4 | [Register analysis results](US4.md)| Clinical Chemistry Technologist | Record the results of the chemical analysis on the samples. |
 | US5 | [Generate diagnosis](US5.md) | Specialist Doctor | The results of all chemical analysis are automatically validated using test reference values. The doctor makes a diagnosis with that information and writes a report to deliver to the client. |
 | US6 | [Choose sorting method](US6.md)| Administrator | Display the list of clients sorted by name or by TIF. |
-| US7 | [Specify a new employee](US7.md) | Administrator | Register a new employee in the application. |
+| US7 | [Specify a new employee](US7/US7.md) | Administrator | Register a new employee in the application. |
 | US8 | [Specify a new clinical analysis laboratory](US8.md) | Administrator | Register a new clinical analysis laboratory in the application and state what kind of tests it operates. |
 | US9 | [Specify new test](US9.md) | Administrator | Specify a new type of test and its collecting methods. |
 | US10 | [Specify new test parameter](US10.md) | Administrator | Specify a new test parameter and categorize it. |
