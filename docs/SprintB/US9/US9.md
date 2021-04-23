@@ -19,7 +19,7 @@
 
 ### 1.4. Found out Dependencies
 
-*Identify here any found out dependency to other US and/or requirements.*
+*My user story depends on user story 10.*
 
 ### 1.5 Input and Output Data
 

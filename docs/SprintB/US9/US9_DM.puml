@@ -31,11 +31,6 @@ class Sample {
 -timeCollection
 }
 class SampleType
-class Category {
--code
--description
--nhsID
-}
 class Parameter {
 -designation
 -upperReferenceValue
@@ -53,5 +48,4 @@ TestType "*"-up-"1" Administrator : created by >
 TestType "1"-down-"1..*" Parameter : has >
 SampleType "1"--"1..*" CollectionMethod : has a >
 SampleType "1"-up-"1" TestType  : associated to <
-Parameter "1"--"1" Category : presented under >
 @enduml
