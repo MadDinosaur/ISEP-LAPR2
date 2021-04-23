@@ -1,0 +1,16 @@
+@startuml
+
+autonumber
+
+Administrator -> ":System": starts new test type
+":System" -> Administrator: requests the name of the test
+Administrator -> ":System": types the requested name
+":System" -> Administrator: shows the name and requests a confirmation
+Administrator -> ":System": confirms the name
+":System" -> Administrator: requests a description of the new test type
+Administrator -> ":System": types the requested description
+":System" -> Administrator: shows the description and requests a confirmation
+Administrator -> ":System": confirms the description
+
+
+@enduml

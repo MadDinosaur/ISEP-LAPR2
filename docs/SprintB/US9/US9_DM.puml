@@ -1,0 +1,57 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Administrator
+class CollectionMethod {
+-designation
+}
+class LabOrder {
+-testType
+-parameters
+}
+class Test {
+-internalCode
+-nhsCode
+-createdAt
+-designation
+-dateAnalysis
+-timeAnalysis
+-dateDiagnosis
+-timeDiagnosis
+-dateValidation
+-timeValidation
+}
+class TestResult
+class TestType {
+-designation
+}
+class Sample {
+-barcode
+-dateCollection
+-timeCollection
+}
+class SampleType
+class Category {
+-code
+-description
+-nhsID
+}
+class Parameter {
+-designation
+-upperReferenceValue
+-lowerReferenceValue
+}
+
+Sample "*"--"1" Test : associated to >
+SampleType "1"--"1" Sample  : is of <
+Test "*"-down-"1..*" Parameter : requests analysis of >
+Test "1"-down-"1" LabOrder : requires >
+Test "*"-down-"1" TestType : is of >
+Test "1"-down-"1" TestResult : has a >
+Test "1"-down-"*" Sample : collects >
+TestType "*"-up-"1" Administrator : created by >
+TestType "1"-down-"1..*" Parameter : has >
+SampleType "1"--"1..*" CollectionMethod : has a >
+SampleType "1"-up-"1" TestType  : associated to <
+Parameter "1"--"1" Category : presented under >
+@enduml
