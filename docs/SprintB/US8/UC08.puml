@@ -1,0 +1,17 @@
+@startuml
+
+actor Administrator
+activate Administrator
+
+
+
+Administrator -> createNewClinicalAnalysis: 1. register a new clinical analysis laboratory
+activate createNewClinicalAnalysis
+createNewClinicalAnalysis --> Administrator: 2. request data (i.e., type of test(s), )
+deactivate createNewClinicalAnalysis
+
+Administrator -> System: 3. gives requested data
+
+
+deactivate Administrator
+@enduml
