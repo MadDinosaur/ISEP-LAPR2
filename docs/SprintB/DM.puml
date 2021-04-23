@@ -25,6 +25,7 @@ class Client {
 -TIF
 -phoneNumber
 -email
+-password
 }
 class ClinicalAnalysisLaboratory {
 -name
