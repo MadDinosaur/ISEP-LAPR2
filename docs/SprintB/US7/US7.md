@@ -2,48 +2,72 @@
 
 ## 1. Requirements Engineering
 
-*In this section, it is suggested to capture the requirement description and specifications as provided by the client as well as any further clarification on it. It is also suggested to capture the requirements acceptance criteria and existing dependencies to other requirements. At last, identfy the involved input and output data and depicted an Actor-System interaction in order to fulfill the requirement.*
-
-
 ### 1.1. User Story Description
 
 As an administrator, I want to register a new employee.
 
 ### 1.2. Customer Specifications and Clarifications 
 
-*Insert here any related specification and/or clarification provided by the client together with **your interpretation**. When possible, provide a link to such specifications/clarifications.*
+**From the Specifications Document:**
+* " All those who wish to use the application must be authenticated with a password holding seven alphanumeric characters, including three capital letters and two digits."
+
+**From the client clarifications:**
+* **Q**: What kind of information does the company store about their employees?
+    * **A**: All the roles that exist in the Many Labs company are characterized by the following attributes:
+      
+      Employee ID;
+      
+      Organization Role;
+      
+      Name;
+      
+      Address;
+      
+      Phone Number;
+      
+      E-Mail;
+      
+      Standard Occupational Classification (SOC) code.
+
+      The Specialist Doctor has an additional attribute:
+      Doctor Index Number.
+
 
 ### 1.3. Acceptance Criteria
 
-Each user must have a single role defined in the system. The "auth" component available on the repository must be reused (without
+* AC1: Each user must have a single role defined in the system. 
+
+* AC2: The "auth" component available on the repository must be reused (without
 modifications).
 
 ### 1.4. Found out Dependencies
 
-*Identify here any found out dependency to other US and/or requirements.*
+No dependencies were found.
 
 ### 1.5 Input and Output Data
 
-*Identity here the data to be inputted by the system actor as well as the output data that the system have/needs to present in order to properly support the actor actions. Regarding the inputted data, it is suggested to distinguish between typed data and selected data (e.g. from a list)*
+**Input Data**
+* **Typed data:** employee name, address, phone number and e-mail
+* **Selected data:** employee role
+* **Unclear:** employee ID, organization ID, SOC code, doctor index number
 
+**Output Data**
+* (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
 
-*Insert here a SSD depicting the envisioned Actor-System interactions and throughout which data is inputted and outputted to fulfill the requirement. All interactions must be numbered.*
-
-![USXX-SSD](USXX-SSD.svg)
+![US7_SSD](US7_SSD.svg)
 
 
 ### 1.7 Other Relevant Remarks
 
-*Use this section to capture other relevant information that is related with this US such as (i) special requirements ; (ii) data and/or technology variations; (iii) how often this US is held.* 
-
+* **Special requirements:** None.
+* **Data and/or technology variations:** None.
+* **Frequency:** This US will happen several times during the application setup, in order to register all employess currently working at *Many Labs*. After the setup, it is expected to happen occasionally.
 
 ## 2. OO Analysis
 
-### 2.1. Relevant Domain Model Excerpt 
-*In this section, it is suggested to present an excerpt of the domain model that is seen as relevant to fulfill this requirement.* 
-
+### 2.1. Relevant Domain Model Excerpt
 ![US7-DM](US7_DM.svg)
 
 ### 2.2. Other Remarks
