@@ -10,6 +10,7 @@ class Client {
 -TIF
 -phoneNumber
 -email
+-password
 }
 class Receptionist
 class Test {

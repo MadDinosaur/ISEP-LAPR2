@@ -1,0 +1,22 @@
+@startuml
+autonumber
+actor "Laboratory Receptionist" as LR
+
+activate LR
+
+LR -> ":System"  : starts new Client
+activate ":System"
+":System" --> LR : request data (name, cardNumber, nhsId, birthDate, \n sex, TIF, phoneNumber, email, password)
+deactivate ":System"
+
+LR -> ":System" : types requested data
+activate ":System"
+":System" --> LR : shows data and requests confirmation
+deactivate ":System"
+
+LR -> ":System" : confirms data
+activate ":System"
+":System" --> LR : informs operation success
+
+
+@enduml
