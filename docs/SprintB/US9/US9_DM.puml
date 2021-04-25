@@ -3,17 +3,13 @@ skinparam classAttributeIconSize 0
 
 class Administrator
 class CollectionMethod {
--designation
+-description
 }
-class LabOrder {
--testType
--parameters
-}
+
 class Test {
 -internalCode
 -nhsCode
 -createdAt
--designation
 -dateAnalysis
 -timeAnalysis
 -dateDiagnosis
@@ -21,7 +17,7 @@ class Test {
 -dateValidation
 -timeValidation
 }
-class TestResult
+class ParameterResult
 class TestType {
 -designation
 }
@@ -40,12 +36,11 @@ class Parameter {
 Sample "*"--"1" Test : associated to >
 SampleType "1"--"1" Sample  : is of <
 Test "*"-down-"1..*" Parameter : requests analysis of >
-Test "1"-down-"1" LabOrder : requires >
 Test "*"-down-"1" TestType : is of >
-Test "1"-down-"1" TestResult : has a >
 Test "1"-down-"*" Sample : collects >
 TestType "*"-up-"1" Administrator : created by >
-TestType "1"-down-"1..*" Parameter : has >
 SampleType "1"--"1..*" CollectionMethod : has a >
 SampleType "1"-up-"1" TestType  : associated to <
+SampleType "1"-down-"1" Parameter : has >
+Parameter "1"-down-"1" ParameterResult : has >
 @enduml

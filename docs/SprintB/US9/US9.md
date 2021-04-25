@@ -2,35 +2,43 @@
 
 ## 1. Requirements Engineering
 
-*In this section, it is suggested to capture the requirement description and specifications as provided by the client as well as any further clarification on it. It is also suggested to capture the requirements acceptance criteria and existing dependencies to other requirements. At last, identfy the involved input and output data and depicted an Actor-System interaction in order to fulfill the requirement.*
-
-
 ### 1.1. User Story Description
 
 *As an administrator, I want to specify a new type of test and its collecting methods.*
 
 ### 1.2. Customer Specifications and Clarifications 
 
-*Insert here any related specification and/or clarification provided by the client together with **your interpretation**. When possible, provide a link to such specifications/clarifications.*
+**From the specifications document:**
+
+>Such tests rely on measuring one or more parameters that can be grouped/organized by categories.
 
 ### 1.3. Acceptance Criteria
 
-*Insert here the client acceptance criteria.*
+*There were no acceptance criteria found.*
 
 ### 1.4. Found out Dependencies
 
-*My user story depends on user story 10.*
+*There is a dependency to "US10 - Specifying a new parameter and categorizing it" since any type of test requires different parameters to be measured.*
 
 ### 1.5 Input and Output Data
 
-*The administrator has to input two strings: the type of test and its description.*
+**Input Data:**
+
+* Typed data:
+    * a designation;
+    * a description;
+  
+* Selected data:
+    * a parameter, or more
+  
+**Output Data:**
+
+* (In)Success of the operation.
 
 
 ### 1.6. System Sequence Diagram (SSD)
 
-*Insert here a SSD depicting the envisioned Actor-System interactions and throughout which data is inputted and outputted to fulfill the requirement. All interactions must be numbered.*
-
-![USXX-SSD](USXX-SSD.svg)
+![US9_SSD](US9_SSD.svg)
 
 
 ### 1.7 Other Relevant Remarks
@@ -40,10 +48,9 @@
 
 ## 2. OO Analysis
 
-### 2.1. Relevant Domain Model Excerpt 
-*In this section, it is suggested to present an excerpt of the domain model that is seen as relevant to fulfill this requirement.* 
+### 2.1. Relevant Domain Model Excerpt
 
-![USXX-MD](USXX-MD.svg)
+![US9_DM](US9_DM.svg)
 
 ### 2.2. Other Remarks
 
