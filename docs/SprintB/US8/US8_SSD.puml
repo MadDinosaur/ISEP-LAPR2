@@ -1,17 +1,13 @@
 @startuml
+actor Administrator as admin
+participant ":System" as sys
 
-actor Administrator
-activate Administrator
-
-
-
-Administrator -> createNewClinicalAnalysis: 1. register a new clinical analysis laboratory
-activate createNewClinicalAnalysis
-createNewClinicalAnalysis --> Administrator: 2. request data (i.e., type of test(s), )
-deactivate createNewClinicalAnalysis
-
-Administrator -> System: 3. gives requested data
-
-
-deactivate Administrator
+admin -> sys : **1** register a new clinical analysis laboratory
+sys --> admin : **2** request laboratory information
+admin -> sys : **3** gives requested data
+sys --> admin : **4** request types of tests
+admin -> sys : **5** selects requested data
+sys --> admin : **6** shows the given information and requests confirmation
+admin -> sys : **7** confirms the data
+sys --> admin : **8** shows operation success
 @enduml

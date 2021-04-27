@@ -15,7 +15,11 @@ kind of test(s) it operates.
 
 ### 1.3. Acceptance Criteria
 
+*There were no acceptance criteria found.*
+
 ### 1.4. Found out Dependencies
+
+There is a dependency to US9, before creating a new clinical analysis laboratory, the program needs to know what type of tests there are.
 
 ### 1.5. Input and Output data
 **Input data:**
@@ -26,7 +30,7 @@ kind of test(s) it operates.
 - Success of the operation.
 
 ### 1.6. System Squence Diagram
-![US8-SSD](US8-SSD.svg)
+![US8-SSD](US8_SSD.svg)
 
 
 ## 2. OO Analysis
