@@ -1,74 +1,40 @@
-# US 7 -  Specify a new employee
+# US8 - Register a new clinical analysis laboratory
 
-## 1. Requirements Engineering
+## 1. Engineering Requirements
+### 1.1 User Story Description
+As an **administrator**, I want to **register a new clinical analysis laboratory** stating which
+kind of test(s) it operates.
 
-### 1.1. User Story Description
-
-As an administrator, I want to register a new employee.
-
-### 1.2. Customer Specifications and Clarifications 
-
+### 1.2. Specifications and Clarifications
 **From the Specifications Document:**
-* " All those who wish to use the application must be authenticated with a password holding seven alphanumeric characters, including three capital letters and two digits."
-
-**From the client clarifications:**
-* **Q**: What kind of information does the company store about their employees?
-    * **A**: All the roles that exist in the Many Labs company are characterized by the following attributes:
-      
-      Employee ID;
-      
-      Organization Role;
-      
-      Name;
-      
-      Address;
-      
-      Phone Number;
-      
-      E-Mail;
-      
-      Standard Occupational Classification (SOC) code.
-
-      The Specialist Doctor has an additional attribute:
-      Doctor Index Number.
-
+- _"Many Labs performs two types of tests. Each test is characterized by an internal code, an NHS
+   code, a description that identifies the sample collection method, the date and time when the samples
+   were collected, the date and time of the chemical analysis, the date and time of the diagnosis made
+   by the specialist doctor, the date and time when the laboratory coordinator validated the test, and the
+   test type."_
 
 ### 1.3. Acceptance Criteria
 
-* AC1: Each user must have a single role defined in the system. 
-
-* AC2: The "auth" component available on the repository must be reused (without
-modifications).
-
 ### 1.4. Found out Dependencies
 
-No dependencies were found.
+### 1.5. Input and Output data
+**Input data:**
+- **Typed data:** Clinical Analysis Laboratory Name, Lab Address, Phone Number, Tax Identification Number, Laboratory ID
+- **Selected data:** Types of Test
 
-### 1.5 Input and Output Data
+**Output data:**
+- Success of the operation.
 
-**Input Data**
-* **Typed data:** employee name, address, phone number and e-mail
-* **Selected data:** employee role
-* **Unclear:** employee ID, organization ID, SOC code, doctor index number
+### 1.6. System Squence Diagram
+![US8-SSD](US8-SSD.svg)
 
-**Output Data**
-* (In)Success of the operation
-
-### 1.6. System Sequence Diagram (SSD)
-
-![US7_SSD](US7_SSD.svg)
-
-
-### 1.7 Other Relevant Remarks
-
-* **Special requirements:** None.
-* **Data and/or technology variations:** None.
-* **Frequency:** This US will happen several times during the application setup, in order to register all employess currently working at *Many Labs*. After the setup, it is expected to happen occasionally.
 
 ## 2. OO Analysis
 
-### 2.1. Relevant Domain Model Excerpt
-![US7-DM](US7_DM.svg)
+### 2.1. Relevant Domain Model Excerpt 
+*In this section, it is suggested to present an excerpt of the domain model that is seen as relevant to fulfill this requirement.* 
+
+![US8-DM](US8_DM.svg)
 
 ### 2.2. Other Remarks
 
@@ -143,8 +109,3 @@ Other software classes (i.e. Pure Fabrication) identified:
 # 7. Observations
 
 *In this section, it is suggested to present a critical perspective on the developed work, pointing, for example, to other alternatives and or future related work.*
-
-
-
-
-

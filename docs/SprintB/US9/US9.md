@@ -1,74 +1,56 @@
-# US 7 -  Specify a new employee
+# US 9 - Define a new type of test and its collecting methods 
 
 ## 1. Requirements Engineering
 
 ### 1.1. User Story Description
 
-As an administrator, I want to register a new employee.
+*As an administrator, I want to specify a new type of test and its collecting methods.*
 
 ### 1.2. Customer Specifications and Clarifications 
 
-**From the Specifications Document:**
-* " All those who wish to use the application must be authenticated with a password holding seven alphanumeric characters, including three capital letters and two digits."
+**From the specifications document:**
 
-**From the client clarifications:**
-* **Q**: What kind of information does the company store about their employees?
-    * **A**: All the roles that exist in the Many Labs company are characterized by the following attributes:
-      
-      Employee ID;
-      
-      Organization Role;
-      
-      Name;
-      
-      Address;
-      
-      Phone Number;
-      
-      E-Mail;
-      
-      Standard Occupational Classification (SOC) code.
-
-      The Specialist Doctor has an additional attribute:
-      Doctor Index Number.
-
+>Such tests rely on measuring one or more parameters that can be grouped/organized by categories.
 
 ### 1.3. Acceptance Criteria
 
-* AC1: Each user must have a single role defined in the system. 
-
-* AC2: The "auth" component available on the repository must be reused (without
-modifications).
+*There were no acceptance criteria found.*
 
 ### 1.4. Found out Dependencies
 
-No dependencies were found.
+*There is a dependency to "US10 - Specifying a new parameter and categorizing it" since any type of test requires different parameters to be measured.*
 
 ### 1.5 Input and Output Data
 
-**Input Data**
-* **Typed data:** employee name, address, phone number and e-mail
-* **Selected data:** employee role
-* **Unclear:** employee ID, organization ID, SOC code, doctor index number
+**Input Data:**
 
-**Output Data**
-* (In)Success of the operation
+* Typed data:
+    * a designation;
+    * a description;
+  
+* Selected data:
+    * a parameter, or more
+  
+**Output Data:**
+
+* (In)Success of the operation.
+
 
 ### 1.6. System Sequence Diagram (SSD)
 
-![US7_SSD](US7_SSD.svg)
+![US9_SSD](US9_SSD.svg)
 
 
 ### 1.7 Other Relevant Remarks
 
-* **Special requirements:** None.
-* **Data and/or technology variations:** None.
-* **Frequency:** This US will happen several times during the application setup, in order to register all employess currently working at *Many Labs*. After the setup, it is expected to happen occasionally.
+*Use this section to capture other relevant information that is related with this US such as (i) special requirements ; (ii) data and/or technology variations; (iii) how often this US is held.* 
+
 
 ## 2. OO Analysis
 
 ### 2.1. Relevant Domain Model Excerpt
-![US7-DM](US7_DM.svg)
+
+![US9_DM](US9_DM.svg)
 
 ### 2.2. Other Remarks
 

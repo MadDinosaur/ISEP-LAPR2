@@ -1,0 +1,13 @@
+@startuml
+actor Administrator as admin
+participant ":System" as sys
+
+admin -> sys : **1** starts a new employee registration
+sys --> admin : **2** requests employee role
+admin -> sys : **3** selects requested data
+sys --> admin : **4** requests employee information (ie. name, address, phone number, e-mail, DIN)
+admin -> sys : **5** types requested data
+sys --> admin : **6** shows the data and requests confirmation
+admin -> sys : **7** confirms the data
+sys --> admin : **8** informs operation success
+@enduml

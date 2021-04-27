@@ -6,6 +6,7 @@
 |:------------------------|:-----------------|:--------------------------------------------|
 | **CCT** | **Tecnólogo em Química Clínica** | Acronym for Clinical Chemistry Technologist: Performs the chemical analysis | 
 | **Client** | **Cliente** | Person with a lab order prescribed by a doctor |
+| **DIN** | **---** | Acronym for Doctor Index Number |
 | **Hemogram** | **Hemograma** | Exam that evaluates the blood cells |
 | **HQ** | **Sede** | Acronym for headquarters |
 | **Lab Order** | **Prescrição** | Contains the type of test and parameters to be measured |
