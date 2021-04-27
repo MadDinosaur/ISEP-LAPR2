@@ -17,7 +17,7 @@ class Test {
 -dateValidation
 -timeValidation
 }
-class ParameterResult
+class TestResult
 class TestType {
 -designation
 }
@@ -42,5 +42,5 @@ TestType "*"-up-"1" Administrator : created by >
 SampleType "1"--"1..*" CollectionMethod : has a >
 SampleType "1"-up-"1" TestType  : associated to <
 SampleType "1"-down-"1" Parameter : has >
-Parameter "1"-down-"1" ParameterResult : has >
+Test "1"-down-"1" TestResult : has >
 @enduml
