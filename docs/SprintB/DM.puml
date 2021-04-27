@@ -69,7 +69,9 @@ class Test {
 -timeValidation
 }
 class Parameter {
--designation
+-code
+-shortName
+-description
 -upperReferenceValue
 -lowerReferenceValue
 }
