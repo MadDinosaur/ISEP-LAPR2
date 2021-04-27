@@ -137,4 +137,5 @@ Employee <|-right- SpecialistDoctor
 Company "1"--"1..*" Employee : has >
 Administrator "1"--"*" Employee : registers >
 SampleType "1"--"1..*" CollectionMethod : has >
+SampleType "1"--"1" TestType  : associated to <
 @enduml

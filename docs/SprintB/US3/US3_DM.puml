@@ -25,3 +25,4 @@ class Test {
 -dateValidation
 -timeValidation
 }
+@enduml
