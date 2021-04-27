@@ -1,13 +1,16 @@
 # US8 - Register a new clinical analysis laboratory
 
 ## 1. Engineering Requirements
+
 ### 1.1 User Story Description
+
 As an **administrator**, I want to **register a new clinical analysis laboratory** stating which
 kind of test(s) it operates.
 
 ### 1.2. Specifications and Clarifications
+
 **From the Specifications Document:**
-- _"Many Labs performs two types of tests. Each test is characterized by an internal code, an NHS
+> _"Many Labs performs two types of tests. Each test is characterized by an internal code, an NHS
    code, a description that identifies the sample collection method, the date and time when the samples
    were collected, the date and time of the chemical analysis, the date and time of the diagnosis made
    by the specialist doctor, the date and time when the laboratory coordinator validated the test, and the
