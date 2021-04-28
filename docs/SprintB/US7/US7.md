@@ -31,7 +31,11 @@ As an administrator, I want to register a new employee.
 
       The Specialist Doctor has an additional attribute:
       Doctor Index Number.
-
+* **Q**: How should the system respond in the event of creating a new user with the same attributes of an already existing user?
+    * **A**: This should be treated as an error. A subset of the attributes of any client are unique.
+    
+* **Q**: And what attributes (...) will trigger this response?
+  * **A**: The e-mail address and phone number should be unique. The sex of each user is optional.
 
 ### 1.3. Acceptance Criteria
 
