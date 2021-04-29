@@ -2,8 +2,8 @@
 actor Administrator as admin
 participant ":System" as sys
 
-admin -> sys : **1** register a new clinical analysis laboratory
-sys --> admin : **2** request laboratory information
+admin -> sys : **1** registers a new clinical analysis laboratory
+sys --> admin : **2** request laboratory information (name, address, phonenumber, TIN, laboratory ID)
 admin -> sys : **3** gives requested data
 sys --> admin : **4** request types of tests
 admin -> sys : **5** selects requested data

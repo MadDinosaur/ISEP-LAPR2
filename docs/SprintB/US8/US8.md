@@ -43,7 +43,11 @@ kind of test(s) it operates.
          
 ### 1.3. Acceptance Criteria
 
-*There were no acceptance criteria found.*
+* _**AC1**_ Laboratory's name must contain 20 characters or fewer.
+* _**AC2**_ Laboratory's address should not have more than 30 characters.
+* _**AC3**_ Laboratory's phone number must be an 11 digit number.
+* _**AC4**_ Laboratory's TIN must be a 10 digit number.
+* _**AC5**_ Laboratory ID should contain exactly 5 alphanumeric characters.
 
 ### 1.4. Found out Dependencies
 
@@ -58,8 +62,8 @@ There is a dependency to US9, before creating a new clinical analysis laboratory
 - Success of the operation.
 
 ### 1.6. System Squence Diagram
-![US8-SSD](US8_SSD.svg)
 
+![US8-SSD](US8_SSD.svg)
 
 ## 2. OO Analysis
 
