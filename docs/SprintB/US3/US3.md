@@ -31,6 +31,20 @@ Answer: …
 
 •	AC3: The client must become a system user. The "auth" component available on the repository must be reused (without modifications).
 
+•	AC4: The Citizen Card must contain 16 digit number.
+
+•	AC5: The NHS number must contain 10 digit number.
+
+•	AC6: The TIN must contain 10 digit number.
+
+•	AC7: Birthdate must be in the format DD/MM/YY.
+
+•	AC8: The sex should only be Male/Female or include more options. 
+
+•	AC9: The phone number must contain 11 digit number.
+
+•	AC10: The sex is opcional. All other fields are required.
+
 
 ### 1.4. Found out Dependencies
 
@@ -40,13 +54,13 @@ Answer: …
 
 ####Input Data
 
-•	Typed Data: Client Citizen Card Number, NHS number, birth date, sex, TIF, phone number, e-mail, name.
+•	Typed Data: Client Citizen Card Number, NHS number, birth date, TIN, phone number, e-mail, name.
 
-•	Selected Data: (none)
+•	Selected Data: sex
 
 #### Output Data
 
-(...)
+•	(In)success of the operation.
 
 
 ### 1.6. System Sequence Diagram (SSD)
@@ -63,9 +77,9 @@ Answer: …
 ## 2. OO Analysis
 
 ### 2.1. Relevant Domain Model Excerpt 
-*In this section, it is suggested to present an excerpt of the domain model that is seen as relevant to fulfill this requirement.* 
 
-![USXX-MD](USXX-MD.svg)
+
+![US3_DM](US3_DM.svg)
 
 ### 2.2. Other Remarks
 
