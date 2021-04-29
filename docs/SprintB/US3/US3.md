@@ -14,36 +14,48 @@
 •	“Once the laboratory coordinator confirms that everything was done correctly, the client receives a notification alerting that the results are already available in the central application and informing that he/she must access the application to view those results”
 
 ### From the client Clarifications
-•	Q1:Does the Client give the password to the receptionist as a parameter, or the password is generated at the moment that the client is registered? And if it is the second option, how is it generated?
- 
- Answer: …
 
-•	Q2:Does the administrator need to register a receptionist in the system, or do we have to assume that there is already a receptionist in the system?
+•	**Q1:** Does the administrator need to register a receptionist in the system, or do we have to assume that there is already a receptionist in the system?
 
-Answer: …
+**Answer:** …
 
+•	**Q2**: Does the receptionist need to be logged in the app to preform the regist.
+
+**Answer:** Yes.
+
+•	**Q3**: What parameter (asked by the receptionist) should the system use to create the password of the new client?
+
+**Answer:** The password should be randomly generated. It should have ten alphanumeric characters.
+
+•	**Q4:** Relative to registering a new user, how should the system respond in the event of creating a new user with the same attributes of an already existing user?
+
+**Answer:** This should be treated as an error. A subset of the attributes of any client are unique.
+
+•	**Q5:** how are the passwords delivered to the users (client/employee)?
+
+**Answer:** Each users receives an e-mail informing that the registration was successful and that he can start to use the system. The e-mail includes the user password.
 
 ### 1.3. Acceptance Criteria
 
-•	AC1: The password used in authentication must have 7 alphanumeric characters, including 3 capital letters and 2 digits.
+•	**AC1:** The password used in authentication must have 7 alphanumeric characters, including 3 capital letters and 2 digits.
 
-•	AC2: Only the specialist doctor is allowed to access all client data.
+•	**AC2:** Only the specialist doctor is allowed to access all client data.
 
-•	AC3: The client must become a system user. The "auth" component available on the repository must be reused (without modifications).
+•	**AC3:** The client must become a system user. The "auth" component available on the repository must be reused (without modifications).
 
-•	AC4: The Citizen Card must contain 16 digit number.
+•	**AC4:** The Citizen Card must contain 16 digit number.
 
-•	AC5: The NHS number must contain 10 digit number.
+•	**AC5:** The NHS number must contain 10 digit number.
 
-•	AC6: The TIN must contain 10 digit number.
+•	**AC6:** The TIN must contain 10 digit number.
 
-•	AC7: Birthdate must be in the format DD/MM/YY.
+•	**AC7:** Birthdate must be in the format DD/MM/YY.
 
-•	AC8: The sex should only be Male/Female or include more options. 
+•	**AC8:** The sex should only be Male/Female or include more options. 
 
-•	AC9: The phone number must contain 11 digit number.
+•	**AC9:** The phone number must contain 11 digit number.
 
-•	AC10: The sex is opcional. All other fields are required.
+•	**AC10:** The sex is opcional. All other fields are required.
 
 
 ### 1.4. Found out Dependencies
