@@ -49,6 +49,7 @@ Test "*"--"1" Client : requested by >
 Receptionist "1"--"*" Test : registers >
 Sample "*"--"1" Test : associated to >
 Test "1"--"*" Sample : collects >
+Test "1"--"1" LabOrder : requires >
 
 
 @enduml
