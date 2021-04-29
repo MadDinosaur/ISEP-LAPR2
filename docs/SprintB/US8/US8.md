@@ -10,12 +10,37 @@ kind of test(s) it operates.
 ### 1.2. Specifications and Clarifications
 
 **From the Specifications Document:**
-> _"Many Labs performs two types of tests. Each test is characterized by an internal code, an NHS
-   code, a description that identifies the sample collection method, the date and time when the samples
-   were collected, the date and time of the chemical analysis, the date and time of the diagnosis made
-   by the specialist doctor, the date and time when the laboratory coordinator validated the test, and the
-   test type."_
+> _"All Many Labs clinical analysis laboratories perform clinical blood tests, and a subset of
+    these laboratories also performs Covid-19 tests."_
 
+**From the client clarifications:**
+* **Q:** What information is associated with a clinical Analysis laboratory (e.g. designation, localization...)? What rules are applicable to such data?
+    * **A:** Each Clinical Analysis Laboratory is characterized by the following attributes:
+        * Laboratory ID;
+        * Name;
+        * Address;
+        * Phone Number;
+        * TIN number.
+
+        The Chemical Laboratory is characterized by the following attributes:
+        * Name;
+        * Address;
+        * Phone Number;
+        * TIN number.
+
+        Many Labs company has only one chemical lab.
+
+* **Q:** Which type/format has LaboratoryID, address, name, phone number, and TIN number on Clinical Analysis Laboratory?
+    * **A:** Each Clinical Analysis Laboratory is characterized by the following attributes:
+         * Laboratory ID: five alphanumeric characters;
+         * Name: A string with no more than 20 characters;
+         * Address: A string with no more than 30 characters;
+         * Phone Number: 11 digit number;
+         * TIN number: 10 digit number;
+         * Type of tests performed by the lab.
+         
+         All information is required.
+         
 ### 1.3. Acceptance Criteria
 
 *There were no acceptance criteria found.*
