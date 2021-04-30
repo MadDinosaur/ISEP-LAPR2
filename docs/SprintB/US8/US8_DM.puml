@@ -1,5 +1,5 @@
 @startuml
-skinparam classAttributeIconSize 1
+skinparam classAttributeIconSize 0
 
 class Administrator
 class Company
@@ -13,6 +13,7 @@ class ClinicalAnalysisLaboratory {
 class TestType
 
 Administrator "1 "---" *  " ClinicalAnalysisLaboratory : registers >
-Company "1  "---"*" ClinicalAnalysisLaboratory: owns >
-ClinicalAnalysisLaboratory - TestType
+Company "1   " --- "*" ClinicalAnalysisLaboratory: owns >
+Company "1" --- " * " TestType: conducts >
+ClinicalAnalysisLaboratory "1  ‎ " - " *   ‎" TestType : performs >
 @enduml
