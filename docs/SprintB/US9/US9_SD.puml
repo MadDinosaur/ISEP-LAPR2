@@ -1,0 +1,25 @@
+@startuml
+
+
+autonumber
+
+actor Administrator
+
+Administrator -> ":CreateTestTypeUI": starts new test type
+":CreateTestTypeUI" -> Administrator: requests the designation
+Administrator -> ":CreateTestTypeUI": types the designation
+":CreateTestTypeUI" -> Administrator: requests the description of the collection method
+Administrator -> ":CreateTestTypeUI": types the description
+
+":CreateTestTypeUI" -> ":CreateTestTypeController": createTestType(designation, CollectionMethod)
+
+":CreateTestTypeUI" -> Administrator: shows and requests the parameters
+
+":CreateTestTypeUI" -> ":CreateTestTypeController": addParametersToTestType(parameters)
+
+":CreateTestTypeUI" -> Administrator: shows the data (designation, collectionmethod, parameters) and requests confirmation
+Administrator -> ":CreateTestTypeUI": confirms the data
+":CreateTestTypeUI" -> ":CreateTestTypeController": saveTestType()
+
+
+@enduml
