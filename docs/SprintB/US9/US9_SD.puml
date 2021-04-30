@@ -6,12 +6,19 @@ autonumber
 actor Administrator
 
 Administrator -> ":CreateTestTypeUI": starts new test type
+create ":CreateTestTypeController"
+":CreateTestTypeUI" -> ":CreateTestTypeController": create
+":CreateTestTypeUI" -> ":CreateTestTypeController": createTestType()
+":CreateTestTypeController" -> "???": tt = createTestType()
+
 ":CreateTestTypeUI" -> Administrator: requests the designation
 Administrator -> ":CreateTestTypeUI": types the designation
 ":CreateTestTypeUI" -> Administrator: requests the description of the collection method
 Administrator -> ":CreateTestTypeUI": types the description
 
-":CreateTestTypeUI" -> ":CreateTestTypeController": createTestType(designation, CollectionMethod)
+":CreateTestTypeUI" -> ":CreateTestTypeController": setTestType(designation, CollectionMethod)
+":CreateTestTypeController" -> "???": setDesignation(designation)
+":CreateTestTypeController" -> "???": setCollectionMethod(CollectionMethod)
 
 ":CreateTestTypeUI" -> Administrator: shows and requests the parameters
 
@@ -20,6 +27,10 @@ Administrator -> ":CreateTestTypeUI": types the description
 ":CreateTestTypeUI" -> Administrator: shows the data (designation, collectionmethod, parameters) and requests confirmation
 Administrator -> ":CreateTestTypeUI": confirms the data
 ":CreateTestTypeUI" -> ":CreateTestTypeController": saveTestType()
+":CreateTestTypeController" -> "???": saveTestType(tt)
+
+
+
 
 
 @enduml
