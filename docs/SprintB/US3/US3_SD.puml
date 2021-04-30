@@ -10,12 +10,14 @@ activate ui
 ui -> controller : createClient()
 activate controller
 deactivate controller
-ui --> LR : request data (name, cardNumber, nhsId, birthDate, \n sex, TIN, phoneNumber, email, password)
+ui --> LR : request data (name, cardNumber, nhsId, birthDate, \n sex, TIN, phoneNumber, email)
 deactivate ui
 LR -> ui : types requested data
 activate ui
-ui -> controller : setData(name, cardNumber, nhsId, birthDate, \n sex, TIN, phoneNumber, email, password)
+ui -> controller : setData(name, cardNumber, nhsId, birthDate, \n sex, TIN, phoneNumber, email)
 activate controller
+controller -> new : validate(cardNumber, nhsId, TIN)
+controller -> new : validate(phoneNumber, email)
 controller --> ui : result
 deactivate controller
 ui --> LR : shows all data and requests confirmation
