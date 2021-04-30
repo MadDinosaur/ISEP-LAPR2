@@ -9,7 +9,7 @@ Administrator -> ":System": starts new test type
 Administrator -> ":System": types the requested designation
 ":System" -> Administrator: shows the designation and requests a confirmation
 Administrator -> ":System": confirms the name
-":System" -> Administrator: requests a description of the collection methods
+":System" -> Administrator: requests a description of the collection method
 Administrator -> ":System": types the requested description
 ":System" -> Administrator: shows the description and requests a confirmation
 Administrator -> ":System": confirms the description
