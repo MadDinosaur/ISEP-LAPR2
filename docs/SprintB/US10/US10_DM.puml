@@ -1,0 +1,23 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Administrator
+class Parameter {
+-code
+-shortName
+-description
+-upperReferenceValue
+-lowerReferenceValue
+}
+
+class Category {
+-code
+-description
+-nhsID
+}
+
+Category "*"--"1" Parameter : presented under <
+Parameter "*"-up-"1" Administrator : specified by >
+
+@enduml

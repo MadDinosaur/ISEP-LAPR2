@@ -6,7 +6,7 @@ activate LR
 
 LR -> ":System"  : starts new Client
 activate ":System"
-":System" --> LR : request data (name, cardNumber, nhsId, birthDate, \n sex, TIF, phoneNumber, email, password)
+":System" --> LR : request data (name, cardNumber, nhsId, birthDate, \n sex, TIN, phoneNumber, email, password)
 deactivate ":System"
 
 LR -> ":System" : types requested data

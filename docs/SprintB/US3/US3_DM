@@ -1,0 +1,55 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Client {
+-name
+-cardNumber
+-birthDate
+-sex
+-nhsID
+-TIN
+-phoneNumber
+-email
+}
+class Receptionist {
+-employeeID
+-organizationID
+-name
+-address
+-phoneNumber
+-email
+-SOCcode
+}
+class LabOrder {
+-testType
+-parameters
+}
+class Test {
+-internalCode
+-nhsCode
+-createdAt
+-dateAnalysis
+-timeAnalysis
+-dateDiagnosis
+-timeDiagnosis
+-dateValidation
+-timeValidation
+}
+class Sample {
+-barcode
+-dateCollection
+-timeCollection
+}
+
+Client "1"--"*" LabOrder : has a >
+Receptionist "1"--"*" Client : registers >
+Sample "*"--"1" Client : associated to >
+Test "*"--"1" Client : requested by >
+Receptionist "1"--"*" Test : registers >
+Sample "*"--"1" Test : associated to >
+Test "1"--"*" Sample : collects >
+Test "1"--"1" LabOrder : requires >
+
+
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+actor "Laboratory Receptionist" as LR
+
+
+
+
+@enduml
