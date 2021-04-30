@@ -1,0 +1,23 @@
+@startuml
+
+autonumber
+
+actor Administrator as admin
+participant ":createNewParameterUI" as UI
+participant ":createNewParameterController" as createNewParam
+
+admin -> UI: starts new parameter
+UI --> admin: requests name of new parameter
+admin -> UI: types the name of the parameter that will be added
+UI --> admin: shows name that was typed in and asks for confirmation
+admin -> UI: confirms name of new parameter
+UI --> admin: requests code of the new parameter
+admin -> UI: types in code of new parameter
+UI --> admin: shows code typed in and asks for confirmation
+admin -> UI: confirms code
+UI --> admin: asks for a description of the new parameter
+admin -> UI: types in a description for the new parameter
+UI --> admin: shows that description and asks for confirmation
+admin -> UI: confirms description
+
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+autonumber
+
+actor Administrator as admin
+participant ":newLabUI" as UI
+participant ":newLabController" as controller
+
+admin -> UI : registers a new clinical analysis laboratory
+create controller
+UI -> controller : create
+UI -> controller : createLab()
+UI --> admin : request laboratory information (name, address, phonenumber, TIN, laboratory ID)
+admin -> UI : gives requested data
+UI -> controller : setData(name, address, phonenumber, TIN, laboratoryID)
+UI --> admin : request types of tests
+admin -> UI : selects requested data
+UI -> controller : setTest()
+UI --> admin : shows all the data and requests confirmation
+admin -> UI : confirms the data
+UI -> controller : saveLab()
+UI --> admin : shows operation success
+@enduml

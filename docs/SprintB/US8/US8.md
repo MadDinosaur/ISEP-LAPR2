@@ -1,78 +1,76 @@
-# US 7 -  Specify a new employee
+# US8 - Register a new clinical analysis laboratory
 
-## 1. Requirements Engineering
+## 1. Engineering Requirements
 
-### 1.1. User Story Description
+### 1.1 User Story Description
 
-As an administrator, I want to register a new employee.
+As an **administrator**, I want to **register a new clinical analysis laboratory** stating which
+kind of test(s) it operates.
 
-### 1.2. Customer Specifications and Clarifications 
+### 1.2. Specifications and Clarifications
 
 **From the Specifications Document:**
-* " All those who wish to use the application must be authenticated with a password holding seven alphanumeric characters, including three capital letters and two digits."
+> _"All Many Labs clinical analysis laboratories perform clinical blood tests, and a subset of
+    these laboratories also performs Covid-19 tests."_
 
 **From the client clarifications:**
-* **Q**: What kind of information does the company store about their employees?
-    * **A**: All the roles that exist in the Many Labs company are characterized by the following attributes:
-      
-      Employee ID;
-      
-      Organization Role;
-      
-      Name;
-      
-      Address;
-      
-      Phone Number;
-      
-      E-Mail;
-      
-      Standard Occupational Classification (SOC) code.
+* **Q:** What information is associated with a clinical Analysis laboratory (e.g. designation, localization...)? What rules are applicable to such data?
+    * **A:** Each Clinical Analysis Laboratory is characterized by the following attributes:
+        * Laboratory ID;
+        * Name;
+        * Address;
+        * Phone Number;
+        * TIN number.
 
-      The Specialist Doctor has an additional attribute:
-      Doctor Index Number.
-* **Q**: How should the system respond in the event of creating a new user with the same attributes of an already existing user?
-    * **A**: This should be treated as an error. A subset of the attributes of any client are unique.
-    
-* **Q**: And what attributes (...) will trigger this response?
-  * **A**: The e-mail address and phone number should be unique. The sex of each user is optional.
+        The Chemical Laboratory is characterized by the following attributes:
+        * Name;
+        * Address;
+        * Phone Number;
+        * TIN number.
 
+        Many Labs company has only one chemical lab.
+
+* **Q:** Which type/format has LaboratoryID, address, name, phone number, and TIN number on Clinical Analysis Laboratory?
+    * **A:** Each Clinical Analysis Laboratory is characterized by the following attributes:
+         * Laboratory ID: five alphanumeric characters;
+         * Name: A string with no more than 20 characters;
+         * Address: A string with no more than 30 characters;
+         * Phone Number: 11 digit number;
+         * TIN number: 10 digit number;
+         * Type of tests performed by the lab.
+         
+         All information is required.
+         
 ### 1.3. Acceptance Criteria
 
-* AC1: Each user must have a single role defined in the system. 
-
-* AC2: The "auth" component available on the repository must be reused (without
-modifications).
+* _**AC1**_ Laboratory's name must contain 20 characters or fewer.
+* _**AC2**_ Laboratory's address should not have more than 30 characters.
+* _**AC3**_ Laboratory's phone number must be an 11 digit number.
+* _**AC4**_ Laboratory's TIN must be a 10 digit number.
+* _**AC5**_ Laboratory ID should contain exactly 5 alphanumeric characters.
 
 ### 1.4. Found out Dependencies
 
-No dependencies were found.
+There is a dependency to US9, before creating a new clinical analysis laboratory, the program needs to know what type of tests there are.
 
-### 1.5 Input and Output Data
+### 1.5. Input and Output data
+**Input data:**
+- **Typed data:** Clinical Analysis Laboratory Name, Lab Address, Phone Number, Tax Identification Number, Laboratory ID
+- **Selected data:** Types of Test
 
-**Input Data**
-* **Typed data:** employee name, address, phone number and e-mail
-* **Selected data:** employee role
-* **Unclear:** employee ID, organization ID, SOC code, doctor index number
+**Output data:**
+- Success of the operation.
 
-**Output Data**
-* (In)Success of the operation
+### 1.6. System Squence Diagram
 
-### 1.6. System Sequence Diagram (SSD)
-
-![US7_SSD](US7_SSD.svg)
-
-
-### 1.7 Other Relevant Remarks
-
-* **Special requirements:** None.
-* **Data and/or technology variations:** None.
-* **Frequency:** This US will happen several times during the application setup, in order to register all employess currently working at *Many Labs*. After the setup, it is expected to happen occasionally.
+![US8-SSD](US8_SSD.svg)
 
 ## 2. OO Analysis
 
-### 2.1. Relevant Domain Model Excerpt
-![US7-DM](US7_DM.svg)
+### 2.1. Relevant Domain Model Excerpt 
+*In this section, it is suggested to present an excerpt of the domain model that is seen as relevant to fulfill this requirement.* 
+
+![US8-DM](US8_DM.svg)
 
 ### 2.2. Other Remarks
 
@@ -147,8 +145,3 @@ Other software classes (i.e. Pure Fabrication) identified:
 # 7. Observations
 
 *In this section, it is suggested to present a critical perspective on the developed work, pointing, for example, to other alternatives and or future related work.*
-
-
-
-
-
