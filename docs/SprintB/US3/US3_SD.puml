@@ -2,6 +2,7 @@
 actor "Laboratory Receptionist" as LR
 participant ":CreateCreateUI" as ui
 participant ":CreateClientController" as controller
+participant "Client\n:Client" as clt
 participant ":???" as new
 
 activate LR
@@ -16,9 +17,12 @@ LR -> ui : types requested data
 activate ui
 ui -> controller : setData(name, cardNumber, nhsId, birthDate, \n sex, TIN, phoneNumber, email)
 activate controller
-controller -> new : validate(cardNumber, nhsId, TIN)
-controller -> new : validate(phoneNumber, email)
+controller -> clt** : create(name, cardNumber, nhsId, birthDate, \n sex, TIN, phoneNumber, email)
+activate clt
+clt -> clt : validate(cardNumber, nhsId, TIN)
+clt -> clt : validate(phoneNumber, email)
 controller --> ui : result
+deactivate clt
 deactivate controller
 ui --> LR : shows all data and requests confirmation
 deactivate ui
@@ -26,7 +30,12 @@ LR -> ui : confirms the data
 activate ui
 ui -> controller : saveClient()
 activate controller
+controller -> clt : saveClient(Client)
+activate clt
+clt -> clt : validate(Client)
+clt -> clt : addClient(Client)
 controller --> ui : result
+deactivate clt
 deactivate controller
 ui --> LR : informs operation success
 deactivate ui
