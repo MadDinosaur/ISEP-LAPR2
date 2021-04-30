@@ -9,7 +9,7 @@ Administrator -> ":CreateTestTypeUI": starts new test type
 create ":CreateTestTypeController"
 ":CreateTestTypeUI" -> ":CreateTestTypeController": create
 ":CreateTestTypeUI" -> ":CreateTestTypeController": createTestType()
-":CreateTestTypeController" -> "???": tt = createTestType()
+":CreateTestTypeController" -> ":???": tt = createTestType()
 
 ":CreateTestTypeUI" -> Administrator: requests the designation
 Administrator -> ":CreateTestTypeUI": types the designation
@@ -17,8 +17,8 @@ Administrator -> ":CreateTestTypeUI": types the designation
 Administrator -> ":CreateTestTypeUI": types the description
 
 ":CreateTestTypeUI" -> ":CreateTestTypeController": setTestType(designation, CollectionMethod)
-":CreateTestTypeController" -> "???": setDesignation(designation)
-":CreateTestTypeController" -> "???": setCollectionMethod(CollectionMethod)
+":CreateTestTypeController" -> ":???": setDesignation(designation)
+":CreateTestTypeController" -> ":???": setCollectionMethod(CollectionMethod)
 
 ":CreateTestTypeUI" -> Administrator: shows and requests the parameters
 
@@ -27,7 +27,7 @@ Administrator -> ":CreateTestTypeUI": types the description
 ":CreateTestTypeUI" -> Administrator: shows the data (designation, collectionmethod, parameters) and requests confirmation
 Administrator -> ":CreateTestTypeUI": confirms the data
 ":CreateTestTypeUI" -> ":CreateTestTypeController": saveTestType()
-":CreateTestTypeController" -> "???": saveTestType(tt)
+":CreateTestTypeController" -> ":???": saveTestType(tt)
 
 
 

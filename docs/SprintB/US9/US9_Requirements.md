@@ -66,7 +66,7 @@
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
-| Step 1: starts new test type 		 |							 |             |                              |
+| Step 1: starts new test type 		 |	TestType						 |             |                              |
 | Step 2  		 |							 |             |                              |
 | Step 3  		 |							 |             |                              |
 | Step 4  		 |							 |             |                              |
@@ -77,8 +77,8 @@
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * Class1
- * Class2
+ * TestType
+ * Parameter
  * Class3
 
 Other software classes (i.e. Pure Fabrication) identified: 

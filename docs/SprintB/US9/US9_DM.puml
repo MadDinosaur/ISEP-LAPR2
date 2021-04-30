@@ -1,48 +1,28 @@
 @startuml
 skinparam classAttributeIconSize 0
 
+class Company {
+-designation
+}
+
 class Administrator
+
 class CollectionMethod {
 -description
 }
 
-class Test {
--internalCode
--nhsCode
--createdAt
--dateAnalysis
--timeAnalysis
--dateDiagnosis
--timeDiagnosis
--dateValidation
--timeValidation
-}
-class TestResult
 class TestType {
 -designation
 }
-class Sample {
--barcode
--dateCollection
--timeCollection
-}
-class SampleType {
--designation
-}
+
 class Parameter {
 -designation
 -upperReferenceValue
 -lowerReferenceValue
 }
 
-Sample "*"--"1" Test : associated to >
-SampleType "1"-up-"1" Sample  : is of <
-Test "*"-down-"1..*" Parameter : requests analysis of >
-Test "*"-up-"1" TestType : is of >
-Test "1"-down-"*" Sample : collects >
 TestType "*"-up-"1" Administrator : created by >
-SampleType "1"--"1..*" CollectionMethod : has a >
 Parameter "1..*"-up-"1" TestType  : associated to <
-SampleType "1"--"1..*" Parameter : depends on >
-Test "1"-down-"1" TestResult : has >
+TestType "1"--"1" CollectionMethod : has a  >
+Company "1"-down-"*" TestType : conducts >
 @enduml
