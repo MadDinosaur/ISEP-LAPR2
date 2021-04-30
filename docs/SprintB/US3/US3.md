@@ -60,7 +60,7 @@
 
 ### 1.4. Found out Dependencies
 
-*Identify here any found out dependency to other US and/or requirements.*
+There is a dependency to US7, before registering a new Client, a Laboratory Receptionist must be already registered.
 
 ### 1.5 Input and Output Data
 

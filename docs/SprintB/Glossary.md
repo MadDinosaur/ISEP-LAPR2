@@ -22,8 +22,9 @@
 | **Test** | **Teste** | Clinical blood tests and Covid-19 tests |
 | **TIN** | **NIF** | Tax Identification Number |
 | **WBC** | **Glóbulos Brancos** | White Blood Cells |
-| **LR**| **Recepcionista de Laboratório** | Acronym for Laboratory Receptionist |
-| **CCN**| **Numero de ID civil** | Acronym for Citizen Card Number | 
+| **Laboratory Receptionist**| **Recepcionista de Laboratório** | Acronym for Laboratory Receptionist |
+| **CCN**| **Número de ID civil** | Acronym for Citizen Card Number | 
+
 
 
 
