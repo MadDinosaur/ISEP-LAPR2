@@ -11,6 +11,7 @@ _Specifies functionalities that:_
 | **Authentication** |Authentication |All those who wish to use the application must be authenticated with a password holding seven alphanumeric characters, including three capital letters and two digits. |
 | **Persistence** | Object serialization | The application should use object serialization to ensure data persistance between two runs of the application. |
 | **Security** | Access control|Only the specialist doctor is allowed to access all client data. 
+| **Localisation** | English language | The application must support the English language only. |
 
 
 ## Usability 
@@ -20,7 +21,8 @@ documentation; consistency and standards._
 
 | **_Subcategory_** | **_Function_** | **_Description/Example_** |
 |:------------------------|:-----------------|:--------------------------------------------|
-| **Aesthetics** | Graphical interface | The application must have a graphical interface which must be simple, intuitive and consistent. 
+| **Accessibility** | User manual | The application must delivered with a user manual.
+| **Consistency** | Graphical interface | The application must have a graphical interface which must be simple, intuitive and consistent. 
 
 
 ## Reliability
@@ -29,9 +31,7 @@ _Refers to the integrity, compliance and interoperability of the software. The r
 | **_Subcategory_** | **_Function_** | **_Description/Example_** |
 |:------------------------|:-----------------|:--------------------------------------------|
 |**Availability**| System failure |The system should not fail more than 5 days in one year. 
-|**Recoverability**| Data loss | Whenever the system fails, there should be no data loss. 
-|**Accuracy**| Covid-19 Predictions| The system should use both simple and multiple linear regression algorithms to provide accurate predictions of covid cases for the following day, week and month. 
-
+|**Recoverability**| Data loss | Whenever the system fails, there should be no data loss.
 
 
 ## Performance
@@ -51,7 +51,6 @@ configurability, installability, scalability and more._
 
 | **_Subcategory_** | **_Function_** | **_Description/Example_** |
 |:------------------------|:-----------------|:--------------------------------------------|
-|**Localizability** | English language | The application must support the English language only. |
 |**Testability** |Unit tests and coverage report |Unit tests must be implemented for all methods except methods that implement Input/Output operations. 
 |**Adaptability** |Other tests support|The system should be developed having in mind the need to easily support other kinds of clinical tests (e.g. urine). 
 |**Configurability**|Ordering algorithm | The ordering algorithm to be used by the application must be defined through a configuration file.|
@@ -61,8 +60,12 @@ configurability, installability, scalability and more._
 
 ### Design Constraints
 _Specifies or constraints the system design process. Examples may include: programming languages, software process, mandatory standards/patterns, use of development tools, class library, etc._
- 
-None.
+
+| **_Subcategory_** | **_Function_** | **_Description/Example_** |
+|:------------------------|:-----------------|:--------------------------------------------|
+|**Best Practices** |CamelCase coding standard | The implementation must adopt recognized coding standards, in this case CamelCase.
+|**Best Practices** |OO software analysis and design |The implementation must adopt OO standards.
+
 
 ### Implementation Constraints
 _Specifies or constraints the code or construction of a system such
@@ -73,12 +76,10 @@ database integrity, resource limits, operating system._
 |:------------------------|:-----------------|:--------------------------------------------|
 |**Implementation Languages** | Java code base | The application must be developed in Java language using the IntelliJ IDE or Netbeans. 
 |**Implementation Languages** | JavaFX 11 graphical interface |The application graphical interface is to be developed in JavaFX 11. 
-|**Implementation Languages** | Javadoc documentation | The Java code must use Javadoc to generate useful documentation. 
-|**Implementation Languages** | JUnit 4 testing framework | The unit tests should be implemented using the JUnit 4 framework. 
-|**Implementation Languages** | JaCoCo test coverage plugin | The JaCoCo plugin should be used to generate the test coverage report. 
+|**Standards Compliance** | Javadoc documentation | The Java code must use Javadoc to generate useful documentation. 
+|**Standards Compliance** | JUnit 4 testing framework | The unit tests should be implemented using the JUnit 4 framework. 
+|**Standards Compliance** | JaCoCo test coverage | The JaCoCo plugin should be used to generate the test coverage report. 
 |**Platform Support** | Java Virtual Machine | The application should run on all platforms for which there exists a Java Virtual Machine. |
-|**Standards-Compliance** |CamelCase coding standard | The implementation must adopt recognized coding standards, in this case CamelCase. 
-|**Standards-Compliance** |OO software analysis and design |The implementation must adopt OO standards. 
 |**Resource Limits** |RAM |The application must run in a machine with 8GB of RAM. 
 
 

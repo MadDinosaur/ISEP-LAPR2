@@ -13,42 +13,38 @@ skinparam packageStyle rectangle
 :Administrator:
 :System\n Clock: as Clock
 
-package Application {
-    (Register test) as UC1
-    (Register client) as UC3
-    (Register analysis results) as UC4
-    (Generate diagnosis) as UC5
-    (Generate NHS report) as UC12
-    (Validate the clinical analysis) as UC13
-    (View results) as UC14
-    (Check results) as UC15
-    (Choose client sorting method) as UC6
-    (Specify new employee) as UC7
-    (Specify a new clinical analysis laboratory) as UC8
-    (Specify new test) as UC9
-    (Specify new test parameter) as UC10
-    (Specify a new parameter category) as UC11
-    (Register sample) as UC2
-    (View statistics for number of tests waiting for result) as UC16
-    (Access all client data) as UC17
+package System {
+    (US1: Register test) as US1
+    (US3: Register client) as US3
+    (US4: Register analysis results) as US4
+    (US5: Generate diagnosis) as US5
+    (US12: Generate NHS report) as US12
+    (US13: Validate the clinical analysis) as US13
+    (US14: View results) as US14
+    (US15: Check results) as US15
+    (US7: Specify new employee) as US7
+    (US8: Specify a new clinical analysis laboratory) as US8
+    (US9: Specify new test) as US9
+    (US10: Specify new test parameter) as US10
+    (US11: Specify a new parameter category) as US11
+    (US2: Register sample) as US2
+    (US6: View statistics for number of tests waiting for result) as US6
 }
 
 'Use Cases
-Receptionist -- UC1
-Receptionist -- UC3
-CCT -- UC4
-Doctor -- UC5
-UC13 -- LC
-UC14 -- Client
-UC2 -- MLT
-UC15 -- MLT
-Administrator -- UC6
-Administrator -- UC7
-Administrator -- UC8
-Administrator -- UC9
-Administrator -- UC10
-Administrator -- UC11
-UC16 -- LC
-Doctor -- UC17
-Clock -- UC12
+Receptionist -- US1
+Receptionist -- US3
+CCT -- US4
+Doctor -- US5
+US13 -- LC
+US14 -- Client
+US2 -- MLT
+US15 -- MLT
+Administrator -- US7
+Administrator -- US8
+Administrator -- US9
+Administrator -- US10
+Administrator -- US11
+US6 -- LC
+Clock -- US12
 @enduml
