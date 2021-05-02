@@ -12,6 +12,7 @@ class ClinicalAnalysisLaboratory {
 }
 class TestType
 
+Administrator "*" - "1" Company : employs <
 Administrator "1 "---" *  " ClinicalAnalysisLaboratory : registers >
 Company "1   " --- "*" ClinicalAnalysisLaboratory: owns >
 Company "1" --- " * " TestType: conducts >
