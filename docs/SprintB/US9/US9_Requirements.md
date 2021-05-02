@@ -11,6 +11,12 @@
 **From the specifications document:**
 
 >Such tests rely on measuring one or more parameters that can be grouped/organized by categories.
+ 
+**From the client clarifications:**
+
+In the US9 what do you mean by the collecting methods and  what collecting methods  are available??
+>When the administrator (US9) specifies a new type of test, the administrator also specifies the method to collect a sample. The administrator introduces a brief description for each collecting method.
+
 
 ### 1.3. Acceptance Criteria
 
@@ -18,7 +24,7 @@
 
 ### 1.4. Found out Dependencies
 
-*There is a dependency to "US10 - Specifying a new parameter and categorizing it" since any type of test requires different parameters to be measured.*
+*There is a dependency to "US10 - Specifying a new parameter and categorizing it" since any type of test requires different parameters to be measured, which are grouped into categories.*
 
 ### 1.5 Input and Output Data
 
@@ -29,7 +35,7 @@
     * a description;
   
 * Selected data:
-    * a parameter, or more
+    * a category, or more
   
 **Output Data:**
 
@@ -66,7 +72,7 @@
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
-| Step 1: starts new test type 		 |	TestType						 |             |                              |
+| Step 1 		 |	starting a new test type?|Administrator             |                              |
 | Step 2  		 |							 |             |                              |
 | Step 3  		 |							 |             |                              |
 | Step 4  		 |							 |             |                              |
@@ -78,7 +84,7 @@
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
  * TestType
- * Parameter
+ * Category
  * Class3
 
 Other software classes (i.e. Pure Fabrication) identified: 

@@ -13,9 +13,11 @@ Administrator -> ":System": confirms the name
 Administrator -> ":System": types the requested description
 ":System" -> Administrator: shows the description and requests a confirmation
 Administrator -> ":System": confirms the description
-":System" -> Administrator: shows a list of parameters
-Administrator -> ":System": chooses parameters within the list to be associated to the new test type
-":System" -> Administrator: shows the parameters chosen and requests confirmation
-Administrator -> ":System": confirms the parameters
+loop until the administrator doesn't want to select more categories
+":System" -> Administrator: shows a list of categories
+Administrator -> ":System": chooses a category within the list to be associated to the new test type
+end loop
+":System" -> Administrator: shows the categories chosen and requests confirmation
+Administrator -> ":System": confirms the categories
 
 @enduml

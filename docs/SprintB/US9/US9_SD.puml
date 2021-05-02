@@ -20,11 +20,11 @@ Administrator -> ":CreateTestTypeUI": types the description
 ":CreateTestTypeController" -> ":???": setDesignation(designation)
 ":CreateTestTypeController" -> ":???": setCollectionMethod(CollectionMethod)
 
-":CreateTestTypeUI" -> Administrator: shows and requests the parameters
+":CreateTestTypeUI" -> Administrator: shows and requests the categories
 
-":CreateTestTypeUI" -> ":CreateTestTypeController": addParametersToTestType(parameters)
+":CreateTestTypeUI" -> ":CreateTestTypeController": addCategoriesToTestType(categories)
 
-":CreateTestTypeUI" -> Administrator: shows the data (designation, collectionmethod, parameters) and requests confirmation
+":CreateTestTypeUI" -> Administrator: shows the data (designation, CollectionMethod, Categories) and requests confirmation
 Administrator -> ":CreateTestTypeUI": confirms the data
 ":CreateTestTypeUI" -> ":CreateTestTypeController": saveTestType()
 ":CreateTestTypeController" -> ":???": saveTestType(tt)

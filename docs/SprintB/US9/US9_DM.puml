@@ -15,14 +15,14 @@ class TestType {
 -designation
 }
 
-class Parameter {
--designation
--upperReferenceValue
--lowerReferenceValue
+class Category {
+-code
+-description
+-nhsID
 }
 
 TestType "*"-up-"1" Administrator : created by >
-Parameter "1..*"-up-"1" TestType  : associated to <
+Category "1..*"-up-"1" TestType  : associated to <
 TestType "1"--"1" CollectionMethod : has a  >
 Company "1"-down-"*" TestType : conducts >
 @enduml
