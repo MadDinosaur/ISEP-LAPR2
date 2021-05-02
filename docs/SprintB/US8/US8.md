@@ -35,8 +35,8 @@ kind of test(s) it operates.
          * Laboratory ID: five alphanumeric characters;
          * Name: A string with no more than 20 characters;
          * Address: A string with no more than 30 characters;
-         * Phone Number: 11 digit number;
-         * TIN number: 10 digit number;
+         * Phone Number: 11-digit number;
+         * TIN number: 10-digit number;
          * Type of tests performed by the lab.
          
          All information is required.
@@ -45,8 +45,8 @@ kind of test(s) it operates.
 
 * _**AC1**_ Laboratory's name must contain 20 characters or fewer.
 * _**AC2**_ Laboratory's address should not have more than 30 characters.
-* _**AC3**_ Laboratory's phone number must be an 11 digit number.
-* _**AC4**_ Laboratory's TIN must be a 10 digit number.
+* _**AC3**_ Laboratory's phone number must be an 11-digit number.
+* _**AC4**_ Laboratory's TIN must be a 10-digit number.
 * _**AC5**_ Laboratory ID should contain exactly 5 alphanumeric characters.
 
 ### 1.4. Found out Dependencies
@@ -74,9 +74,7 @@ There is a dependency to US9, before creating a new clinical analysis laboratory
 
 ### 2.2. Other Remarks
 
-*Use this section to capture some aditional notes/remarks that must be taken into consideration into the design activity. In some case, it might be usefull to add other analysis artifacts (e.g. activity or state diagrams).* 
-
-
+*Use this section to capture some additional notes/remarks that must be taken into consideration into the design activity. In some case, it might be usefull to add other analysis artifacts (e.g. activity or state diagrams).*
 
 ## 3. Design - User Story Realization 
 
@@ -109,7 +107,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 *In this section, it is suggested to present an UML dynamic view stating the sequence of domain related software objects' interactions that allows to fulfill the requirement.* 
 
-![USXX-SD](USXX-SD.svg)
+![US8-SD](US8_SD.svg)
 
 ## 3.3. Class Diagram (CD)
 
