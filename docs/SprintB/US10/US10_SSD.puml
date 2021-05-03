@@ -17,5 +17,9 @@ Administrator -> ":System": confirms code
 Administrator -> ":System": types in a description for the new parameter
 ":System" -> Administrator: shows that description and asks for confirmation
 Administrator -> ":System": confirms description
+":System" -> Administrator: asks for upper and lower reference values
+Administrator -> ":System": types in upper and lower reference values
+":System" -> Administrator: shows typed data and asks for confirmation
+Administrator -> ":System": confirms typed data
 
 @enduml

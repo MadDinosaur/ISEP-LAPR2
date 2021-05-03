@@ -4,20 +4,29 @@ autonumber
 
 actor Administrator as admin
 participant ":createNewParameterUI" as UI
-participant ":createNewParameterController" as createNewParam
+participant ":createNewParameterController" as Controller
+participant ":???" as new
 
 admin -> UI: starts new parameter
+create Controller
+UI -> Controller: create
+UI -> Controller: createNewParameter()
+Controller -> new: parameter = createNewParameter()
 UI --> admin: requests name of new parameter
 admin -> UI: types the name of the parameter that will be added
-UI --> admin: shows name that was typed in and asks for confirmation
-admin -> UI: confirms name of new parameter
+UI -> Controller: setShortName(shortName)
+Controller -> new: setShortName(shortName)
 UI --> admin: requests code of the new parameter
 admin -> UI: types in code of new parameter
-UI --> admin: shows code typed in and asks for confirmation
-admin -> UI: confirms code
+UI -> Controller: setCode(code)
+Controller -> new: setCode(code)
 UI --> admin: asks for a description of the new parameter
 admin -> UI: types in a description for the new parameter
-UI --> admin: shows that description and asks for confirmation
-admin -> UI: confirms description
+UI -> Controller: setDescription(description)
+Controller -> new: setDescription(description)
+UI --> admin: asks for upper and lower reference values
+admin -> UI: types in upper and lower reference values
+UI -> Controller: setUpperLower(value1, value2)
+Controller -> new: setUpperLower(upperValue, lowerValue)
 
 @enduml
