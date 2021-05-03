@@ -6,10 +6,8 @@ autonumber
 actor Administrator
 
 Administrator -> ":CreateTestTypeUI": starts new test type
-create ":CreateTestTypeController"
-":CreateTestTypeUI" -> ":CreateTestTypeController": create
 ":CreateTestTypeUI" -> ":CreateTestTypeController": createTestType()
-":CreateTestTypeController" -> ":???": tt = createTestType()
+":CreateTestTypeController" -> ":Company": tt = createTestType()
 
 ":CreateTestTypeUI" -> Administrator: requests the designation
 Administrator -> ":CreateTestTypeUI": types the designation
@@ -17,19 +15,22 @@ Administrator -> ":CreateTestTypeUI": types the designation
 Administrator -> ":CreateTestTypeUI": types the description
 
 ":CreateTestTypeUI" -> ":CreateTestTypeController": setTestType(designation, CollectionMethod)
-":CreateTestTypeController" -> ":???": setDesignation(designation)
-":CreateTestTypeController" -> ":???": setCollectionMethod(CollectionMethod)
+":CreateTestTypeController" -> ":TestType": setDesignation(designation)
+":CreateTestTypeController" -> ":CollectionMethod": setCollectionMethod(CollectionMethod)
+":CreateTestTypeController" -> ":TestType": setCollectionMethodToTestType(CollectionMethod)
 
 ":CreateTestTypeUI" -> Administrator: shows and requests the categories
+Administrator -> ":CreateTestTypeUI": types the wanted categories
 
 ":CreateTestTypeUI" -> ":CreateTestTypeController": addCategoriesToTestType(categories)
-
+":CreateTestTypeController" -> ":TestType": setCategoriesToTestType(categories)
+":CreateTestTypeController" -> ":Company": validateTestType(tt)
 ":CreateTestTypeUI" -> Administrator: shows the data (designation, CollectionMethod, Categories) and requests confirmation
 Administrator -> ":CreateTestTypeUI": confirms the data
 ":CreateTestTypeUI" -> ":CreateTestTypeController": saveTestType()
-":CreateTestTypeController" -> ":???": saveTestType(tt)
+":CreateTestTypeController" -> ":Company": saveTestType(tt)
 
-
+":CreateTestTypeUI" -> Administrator: informs operation success
 
 
 

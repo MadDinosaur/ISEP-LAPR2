@@ -1,0 +1,49 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Administrator
+class CreateTestTypeUI {
++setTestType(designation, CollectionMethod)
+}
+class CreateTestTypeController {
++createTestType()
++setTestType(designation, CollectionMethod)
++addCategoriesToTestType(categories)
++saveTestType()
+}
+class CollectionMethod {
+-String description
++setCollectionMethod(CollectionMethod)
+}
+class TestType {
+-String designation
++setDesignation(designation)
++setCategoriesToTestType(categories)
++setCollectionMethodToTestType(CollectionMethod)
+}
+class Category {
+-String code
+-String description
+-String nhsID
++addCategoriesToTestType(categories)
+}
+class Company {
+-String designation
++createTestType()
++validateTestType(tt)
++saveTestType(tt)
+}
+
+Administrator ..> CreateTestTypeUI
+CreateTestTypeUI ..> CreateTestTypeController
+TestType "*"-up-"1" Administrator : created by >
+Category "1..*"-up-"1" TestType  : associated to <
+TestType "1"--"1" CollectionMethod : has a  >
+Company "1"-down-"*" TestType : conducts >
+CreateTestTypeController ..> Company
+CreateTestTypeController ..> TestType
+CreateTestTypeController ..> CollectionMethod
+
+
+@enduml
