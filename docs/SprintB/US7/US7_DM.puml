@@ -18,16 +18,19 @@ class Employee {
 class LaboratoryCoordinator
 class MedicalLabTechnician
 class Receptionist
+class Role
 class SpecialistDoctor {
 -doctorIndexNumber
 }
 
 Company "1"--"1..*" Employee : has >
-Employee <|-- Administrator
-Employee <|-- ClinicalChemistryTechnologist
-Employee <|-- MedicalLabTechnician
-Employee <|-- LaboratoryCoordinator
-Employee <|-- Receptionist
-Employee <|-- SpecialistDoctor
+Company "1"--"1..*" Role : has >
+Role .. Administrator
+Role .. ClinicalChemistryTechnologist
+Role .. MedicalLabTechnician
+Role .. LaboratoryCoordinator
+Role .. Receptionist
+Role .. SpecialistDoctor
 Administrator "1"--"*" Employee : registers >
+Employee "1"-right-"1" Role : has >
 @enduml
