@@ -32,7 +32,8 @@ activate controller
 controller -> clt : saveClient(Client)
 activate clt
 clt -> clt : validate(Client)
-clt -> clt : addClient(Client)
+clt -> ":Company" : addClient(Client)
+clt -> ":Company" : sendEmail()
 controller --> ui : result
 deactivate clt
 deactivate controller
