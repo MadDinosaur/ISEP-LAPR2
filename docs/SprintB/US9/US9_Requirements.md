@@ -72,12 +72,16 @@ In the US9 what do you mean by the collecting methods and  what collecting metho
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
-| Step 1 		 |	starting a new test type?|Administrator             |                              |
-| Step 2  		 |							 |             |                              |
-| Step 3  		 |							 |             |                              |
-| Step 4  		 |							 |             |                              |
-| Step 5  		 |							 |             |                              |
-| Step 6  		 |							 |             |                              |              
+| Step 1 		 |	starting a new test type?| Administrator             |                              |
+| Step 2  		 |	instantiating a new test type?	| Company					|             |                              |
+| Step 3         |  typing the data required? | Administrator
+| Step 4  		 |	setting the designation?						 | TestType            |                              |
+| Step 5  		 |	setting the collection method?						 | CollectionMethod             |                              |
+| Step 6  		 |	adding categories to the test type?					 | TestType             |                              |
+| Step 7  		 |	validating the data globally?						 | Company            |                              |              
+| Step 8         |  saving the created test type? | Company | |
+| Step 9 |  informing operation success? | CreateTestTypeUI | |
+
 
 ### Systematization ##
 
@@ -85,11 +89,13 @@ According to the taken rationale, the conceptual classes promoted to software cl
 
  * TestType
  * Category
- * Class3
+ * Company
+ * CollectionMethod
+ * Administrator
 
 Other software classes (i.e. Pure Fabrication) identified: 
- * xxxxUI  
- * xxxxController
+ * CreateTestTypeUI  
+ * CreateTestTypeController
 
 ## 3.2. Sequence Diagram (SD)
 
@@ -101,7 +107,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 *In this section, it is suggested to present an UML static view representing the main domain related software classes that are involved in fulfilling the requirement as well as and their relations, attributes and methods.*
 
-![USXX-CD](USXX-CD.svg)
+![US9_CD](US9_CD.svg)
 
 # 4. Tests 
 *In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.* 
