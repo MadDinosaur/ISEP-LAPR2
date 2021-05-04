@@ -7,19 +7,15 @@ actor Administrator
 Administrator -> ":System": starts new parameter
 ":System" -> Administrator: requests name of new parameter
 Administrator -> ":System": types the name of the parameter that will be added
-":System" -> Administrator: shows name that was typed in and asks for confirmation
-Administrator -> ":System": confirms name of new parameter
 ":System" -> Administrator: requests code of the new parameter
 Administrator -> ":System": types in code of new parameter
-":System" -> Administrator: shows code typed in and asks for confirmation
-Administrator -> ":System": confirms code
 ":System" -> Administrator: asks for a description of the new parameter
 Administrator -> ":System": types in a description for the new parameter
-":System" -> Administrator: shows that description and asks for confirmation
-Administrator -> ":System": confirms description
+":System" -> Administrator: shows parameter category list and asks to pick the one that the new parameter falls under
+Administrator -> ":System": picks the wanted parameter category
 ":System" -> Administrator: asks for upper and lower reference values
 Administrator -> ":System": types in upper and lower reference values
-":System" -> Administrator: shows typed data and asks for confirmation
+":System" -> Administrator: shows all typed data and asks for confirmation
 Administrator -> ":System": confirms typed data
 
 @enduml
