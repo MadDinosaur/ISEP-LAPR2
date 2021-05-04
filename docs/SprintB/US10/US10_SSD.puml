@@ -4,6 +4,7 @@ autonumber
 
 actor Administrator
 
+loop until the administrator doesn't want to specify any more parameters
 Administrator -> ":System": starts new parameter
 ":System" -> Administrator: requests name of new parameter
 Administrator -> ":System": types the name of the parameter that will be added
@@ -17,5 +18,8 @@ Administrator -> ":System": picks the wanted parameter category
 Administrator -> ":System": types in upper and lower reference values
 ":System" -> Administrator: shows all typed data and asks for confirmation
 Administrator -> ":System": confirms typed data
+end loop
+":System" -> Administrator: shows all parameters created and asks for confirmation
+Administrator -> ":System": confirms parameters
 
 @enduml
