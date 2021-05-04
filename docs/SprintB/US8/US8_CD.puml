@@ -1,5 +1,4 @@
 @startuml
-
 class Administrator
 class newLabUI{
 +LabInfo(name, address, phonenumber, TIN, laboratoryID)
@@ -19,6 +18,11 @@ class ClinicalAnalysisLaboratory {
 -int TIN
 -String laboratoryID
 -TestType tt
++validateName(name)
++validateAddress(address)
++validatePhoneNumber(phonenumber)
++validateTIN(TIN)
++validateLabID(laboratoryID)
 }
 class TestType
 
@@ -26,11 +30,10 @@ Administrator ..> newLabUI
 newLabUI .> newLabController
 newLabController ...> Company
 newLabController .> ClinicalAnalysisLaboratory
-Company"1"--"*"ClinicalAnalysisLaboratory : > owns
-Administrator"1 "-" *  "ClinicalAnalysisLaboratory : > registers
-ClinicalAnalysisLaboratory"1  ‎ "--" *   ‎"TestType : > performs
-Company"1"-"*"TestType : > conducts
-Company"1"-"*"Administrator : > employs
+Company"1"--"1..*"ClinicalAnalysisLaboratory : > owns
+Administrator"1 "-"1..* "ClinicalAnalysisLaboratory : > registers
+ClinicalAnalysisLaboratory"1   ‎ "--"1..*"TestType : > performs
+Company" 1 "-" * "TestType : > conducts
+Company"1   ‎"-"1..*"Administrator : > employs
 TestType .> newLabUI
-
 @enduml
