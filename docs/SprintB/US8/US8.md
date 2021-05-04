@@ -67,8 +67,7 @@ There is a dependency to US9, before creating a new clinical analysis laboratory
 
 ## 2. OO Analysis
 
-### 2.1. Relevant Domain Model Excerpt 
-*In this section, it is suggested to present an excerpt of the domain model that is seen as relevant to fulfill this requirement.* 
+### 2.1. Relevant Domain Model Excerpt
 
 ![US8-DM](US8_DM.svg)
 
@@ -82,22 +81,21 @@ There is a dependency to US9, before creating a new clinical analysis laboratory
 
 **The rationale grounds on the SSD interactions and the identified input/output data.**
 
-| Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
-|:-------------  |:--------------------- |:------------|:---------------------------- |
-| Step 1  		 |							 |             |                              |
-| Step 2  		 |							 |             |                              |
-| Step 3  		 |							 |             |                              |
-| Step 4  		 |							 |             |                              |
-| Step 5  		 |							 |             |                              |
-| Step 6  		 |							 |             |                              |              
+| Interaction ID | Question: Which class is responsible for...| Answer      | Justification (with patterns)  |
+|:-------------  |:------------------------------------------ |:------------|:------------------------------ |
+| Step 1  		 |register a new clinical analysis laboratory?|Administrator|                                |
+| Step 2  		 |							                  |             |                                |
+| Step 3  		 |						                      |             |                                |
+| Step 4  		 |							                  |             |                                |
+| Step 5  		 |						                      |             |                                |
+| Step 6  		 |							                  |             |                                |              
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * Class1
- * Class2
- * Class3
+ * ClinicalAnalysisLaboratory
+ * TestType
 
 Other software classes (i.e. Pure Fabrication) identified: 
  * xxxxUI  
@@ -113,7 +111,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 *In this section, it is suggested to present an UML static view representing the main domain related software classes that are involved in fulfilling the requirement as well as and their relations, attributes and methods.*
 
-![USXX-CD](USXX-CD.svg)
+![US8-CD](US8_CD.svg)
 
 # 4. Tests 
 *In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.* 
@@ -138,7 +136,6 @@ Other software classes (i.e. Pure Fabrication) identified:
 # 6. Integration and Demo 
 
 *In this section, it is suggested to describe the efforts made to integrate this functionality with the other features of the system.*
-
 
 # 7. Observations
 

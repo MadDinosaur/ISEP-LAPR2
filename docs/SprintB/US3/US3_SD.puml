@@ -1,9 +1,9 @@
 @startuml
 actor "Laboratory Receptionist" as LR
-participant ":CreateCreateUI" as ui
+participant ":CreateClientUI" as ui
 participant ":CreateClientController" as controller
 participant "Client\n:Client" as clt
-participant ":???" as new
+
 
 activate LR
 LR -> ui : starts the client registration
@@ -19,8 +19,7 @@ ui -> controller : setData(name, cardNumber, nhsId, birthDate, \n sex, TIN, phon
 activate controller
 controller -> clt** : create(name, cardNumber, nhsId, birthDate, \n sex, TIN, phoneNumber, email)
 activate clt
-clt -> clt : validate(cardNumber, nhsId, TIN)
-clt -> clt : validate(phoneNumber, email)
+clt -> clt : validate(cardNumber, nhsId,\n TIN, phoneNumber, email)
 controller --> ui : result
 deactivate clt
 deactivate controller
@@ -33,7 +32,8 @@ activate controller
 controller -> clt : saveClient(Client)
 activate clt
 clt -> clt : validate(Client)
-clt -> clt : addClient(Client)
+clt -> ":Company" : addClient(Client)
+clt -> ":Company" : sendEmail()
 controller --> ui : result
 deactivate clt
 deactivate controller

@@ -31,9 +31,18 @@
 
 **Answer:** This should be treated as an error. A subset of the attributes of any client are unique.
 
-•	**Q5:** how are the passwords delivered to the users (client/employee)?
+•	**Q5:** How are the passwords delivered to the users (client/employee)?
 
 **Answer:** Each users receives an e-mail informing that the registration was successful and that he can start to use the system. The e-mail includes the user password.
+
+•	**Q6:** Does the client need to tell his age to the recepcionis. Im asking because before you didnt especified that that would be a parameter?
+
+**Answer:** No, only needs to tell the birth day (from a previous post). The application must validate and should not accept clients who have more than 150 years of age.
+
+•	**Q7:** What should be the maximum length of the String with the name of the Client?
+
+**Answer:** A string with no more than 35 characters.
+
 
 ### 1.3. Acceptance Criteria
 
@@ -107,36 +116,32 @@ There is a dependency to US7, before registering a new Client, a Laboratory Rece
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
-| Step 1  		 |							 |             |                              |
-| Step 2  		 |							 |             |                              |
-| Step 3  		 |							 |             |                              |
-| Step 4  		 |							 |             |                              |
-| Step 5  		 |							 |             |                              |
+| Step 1  		 | Registering a new Client? |   Receptionist    |                              |
+| Step 2  		 | Typing the data required? | Receptionist |                              |
+| Step 3  		 | Creating and validating new Client? |  Client   |                              |
+| Step 4  		 | Confirm the data? |  Receptionist  |                              |
+| Step 5  		 | Inform operation success?  | CreateClientUI |                              |
 | Step 6  		 |							 |             |                              |              
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * Class1
- * Class2
- * Class3
+ * Receptionist
+ * Client
 
 Other software classes (i.e. Pure Fabrication) identified: 
- * xxxxUI  
- * xxxxController
+ * CreateClientUI 
+ * CreateClientController
+ * Send
 
 ## 3.2. Sequence Diagram (SD)
 
-*In this section, it is suggested to present an UML dynamic view stating the sequence of domain related software objects' interactions that allows to fulfill the requirement.* 
-
-![USXX-SD](USXX-SD.svg)
+![US3_SD](US3_SD.svg)
 
 ## 3.3. Class Diagram (CD)
 
-*In this section, it is suggested to present an UML static view representing the main domain related software classes that are involved in fulfilling the requirement as well as and their relations, attributes and methods.*
-
-![USXX-CD](USXX-CD.svg)
+![US3_CD](US3_CD.svg)
 
 # 4. Tests 
 *In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.* 
