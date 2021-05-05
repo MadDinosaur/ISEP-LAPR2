@@ -84,9 +84,9 @@ There is a dependency to US9, before creating a new clinical analysis laboratory
 | Interaction ID | Question: Which class is responsible for...| Answer      | Justification (with patterns)  |
 |:-------------  |:------------------------------------------ |:------------|:------------------------------ |
 | Step 1  		 |register a new clinical analysis laboratory?|Administrator|                                |
-| Step 2  		 |							                  |             |                                |
-| Step 3  		 |						                      |             |                                |
-| Step 4  		 |							                  |             |                                |
+| Step 2  		 |request information about the new laboratory?|newLabUI    |                                |
+| Step 3  		 |give the new laboratory information?        |Administrator|                                |
+| Step 4  		 |request type of tests performed by the lab? |newLabUI     |                                |
 | Step 5  		 |						                      |             |                                |
 | Step 6  		 |							                  |             |                                |              
 
@@ -98,8 +98,8 @@ According to the taken rationale, the conceptual classes promoted to software cl
  * TestType
 
 Other software classes (i.e. Pure Fabrication) identified: 
- * xxxxUI  
- * xxxxController
+ * newLabUI  
+ * newLabController
 
 ## 3.2. Sequence Diagram (SD)
 
