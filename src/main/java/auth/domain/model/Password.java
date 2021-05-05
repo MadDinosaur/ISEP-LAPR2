@@ -41,6 +41,8 @@ public class Password {
         BCrypt.Result result = BCrypt.verifyer().verify(pwd.toCharArray(),this.password.toCharArray());
         return result.verified;
     }
+    
+
 
     @Override
     public int hashCode()

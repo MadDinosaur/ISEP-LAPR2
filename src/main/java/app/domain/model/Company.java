@@ -46,7 +46,7 @@ public class Company {
 
     public boolean addTestType(TestType tt) {
         if(!tt.validateAttributes() || !validateTestType(tt)) {   //ver isto crlh já me estou a passar
-            return false;
+            return false;                                         //vdd
         } else {
             return testTypeList.add(tt);
         }
