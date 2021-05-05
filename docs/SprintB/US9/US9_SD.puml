@@ -7,7 +7,11 @@ actor Administrator
 
 Administrator -> ":CreateTestTypeUI": starts new test type
 ":CreateTestTypeUI" -> ":CreateTestTypeController": createTestType()
+":CreateTestTypeUI" -> ":CreateTestTypeController": createCollectionMethod()
 ":CreateTestTypeController" -> ":Company": tt = createTestType()
+":CreateTestTypeController" -> ":Company": cm = createCollectionMethod()
+":Company" -> ":TestType": createTestType()
+":Company" -> ":CollectionMethod": createCollectionMethod()
 
 ":CreateTestTypeUI" -> Administrator: requests the designation
 Administrator -> ":CreateTestTypeUI": types the designation
@@ -16,19 +20,26 @@ Administrator -> ":CreateTestTypeUI": types the description
 
 ":CreateTestTypeUI" -> ":CreateTestTypeController": setTestType(designation, CollectionMethod)
 ":CreateTestTypeController" -> ":TestType": setDesignation(designation)
-":CreateTestTypeController" -> ":CollectionMethod": setCollectionMethod(CollectionMethod)
-":CreateTestTypeController" -> ":TestType": setCollectionMethodToTestType(CollectionMethod)
+":CreateTestTypeController" -> ":CollectionMethod": setCollectionMethod(description)
+":CreateTestTypeController" -> ":TestType": setCollectionMethodToTestType(cm)
+
+":Company" -> ":TestType": validate()
+":TestType" -> ":TestType": validateAttributes()
+
+":Company" -> ":CreateTestTypeController": getCategoryList()
+":CreateTestTypeController" -> ":CreateTestTypeUI": displayCategoryList()
 
 ":CreateTestTypeUI" -> Administrator: shows and requests the categories
 Administrator -> ":CreateTestTypeUI": types the wanted categories
 
 ":CreateTestTypeUI" -> ":CreateTestTypeController": addCategoriesToTestType(categories)
 ":CreateTestTypeController" -> ":TestType": setCategoriesToTestType(categories)
-":CreateTestTypeController" -> ":Company": validateTestType(tt)
 ":CreateTestTypeUI" -> Administrator: shows the data (designation, CollectionMethod, Categories) and requests confirmation
 Administrator -> ":CreateTestTypeUI": confirms the data
 ":CreateTestTypeUI" -> ":CreateTestTypeController": saveTestType()
 ":CreateTestTypeController" -> ":Company": saveTestType(tt)
+":Company" -> ":Company": validateTestType(tt)
+":Company" -> ":Company": addTestType(tt)
 
 ":CreateTestTypeUI" -> Administrator: informs operation success
 

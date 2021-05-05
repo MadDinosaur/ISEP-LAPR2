@@ -73,14 +73,15 @@ In the US9 what do you mean by the collecting methods and  what collecting metho
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
 | Step 1 		 |	starting a new test type?| Administrator             |                              |
-| Step 2  		 |	instantiating a new test type?	| Company					|             |                              |
-| Step 3         |  typing the data required? | Administrator
-| Step 4  		 |	setting the designation?						 | TestType            |                              |
-| Step 5  		 |	setting the collection method?						 | CollectionMethod             |                              |
-| Step 6  		 |	adding categories to the test type?					 | TestType             |                              |
-| Step 7  		 |	validating the data globally?						 | Company            |                              |              
-| Step 8         |  saving the created test type? | Company | |
-| Step 9 |  informing operation success? | CreateTestTypeUI | |
+| Step 2  		 |	instantiating a new test type?	| Company					| Creator Pattern            |                              |
+| Step 3         |  requesting the data required? | CreateTestTypeUI | |
+| Step 4         |  typing the data required? | Administrator
+| Step 5  		 |	setting the designation?						 | TestType            |                              |
+| Step 6  		 |	setting the collection method?						 | CollectionMethod             |                              |
+| Step 7  		 |	adding categories to the test type?					 | TestType             |                              |
+| Step 8  		 |	validating the data globally?						 | Company            |                              |              
+| Step 9         |  saving the created test type? | Company | |
+| Step 10        |  informing operation success? | CreateTestTypeUI | |
 
 
 ### Systematization ##
