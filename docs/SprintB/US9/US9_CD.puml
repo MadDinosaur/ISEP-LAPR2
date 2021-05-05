@@ -30,6 +30,7 @@ class Category {
 }
 class Company {
 -String designation
+-ArrayList<TestType> listaDeTestes
 +createTestType()
 +validateTestType(tt)
 +saveTestType(tt)
