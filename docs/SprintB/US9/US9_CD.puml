@@ -18,6 +18,8 @@ class CollectionMethod {
 }
 class TestType {
 -String designation
+-CollectionMethod collectionmethod
+-Arraylist<Category> categories
 +setDesignation(designation)
 +setCategoriesToTestType(categories)
 +setCollectionMethodToTestType(CollectionMethod)
@@ -30,7 +32,7 @@ class Category {
 }
 class Company {
 -String designation
--ArrayList<TestType> listaDeTestes
+-ArrayList<TestType> testTypeList
 +createTestType()
 +validateTestType(tt)
 +saveTestType(tt)
