@@ -120,8 +120,9 @@ There is a dependency to US7, before registering a new Client, a Laboratory Rece
 | Step 2  		 | Typing the data required? | Receptionist |                              |
 | Step 3  		 | Creating and validating new Client? |  Client   |                              |
 | Step 4  		 | Confirm the data? |  Receptionist  |                              |
-| Step 5  		 | Inform operation success?  | CreateClientUI |                              |
-| Step 6  		 |							 |             |                              |              
+| Step 5  		 | Sending email with registering confirmation and password   | CreateClientUI |                              |
+| Step 6  		 | Inform operation success?  | Company |                              |
+| Step 6  		 |	 |             |                              |              
 
 ### Systematization ##
 

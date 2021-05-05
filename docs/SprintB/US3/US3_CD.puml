@@ -14,13 +14,6 @@ class Client {
 +validate(name, cardNumber, nhsId, birthDate, \n sex, TIN, phoneNumber, email)
 }
 class Receptionist {
--employeeID
--organizationID
--name
--address
--phoneNumber
--email
--SOCcode
 +confirmData()
 }
 class Company{
