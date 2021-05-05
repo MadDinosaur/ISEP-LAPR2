@@ -1,0 +1,39 @@
+@startuml
+class Administrator
+class newLabUI{
++LabInfo(name, address, phonenumber, TIN, laboratoryID)
++TestTypes(tt)
+}
+class newLabController {
++createLab()
++setData(name, address, phonenumber, TIN, laboratoryID)
++setTest(tt)
++saveData()
+}
+class Company
+class ClinicalAnalysisLaboratory {
+-String name
+-String address
+-int phonenumber
+-int TIN
+-String laboratoryID
+-TestType tt
++validateName(name)
++validateAddress(address)
++validatePhoneNumber(phonenumber)
++validateTIN(TIN)
++validateLabID(laboratoryID)
+}
+class TestType
+
+Administrator ..> newLabUI
+newLabUI .> newLabController
+newLabController ...> Company
+newLabController .> ClinicalAnalysisLaboratory
+Company"1"--"1..*"ClinicalAnalysisLaboratory : > owns
+Administrator"1 "-"1..* "ClinicalAnalysisLaboratory : > registers
+ClinicalAnalysisLaboratory"1   ‎ "--"1..*"TestType : > performs
+Company" 1 "-" * "TestType : > conducts
+Company"1   ‎"-"1..*"Administrator : > employs
+TestType .> newLabUI
+@enduml

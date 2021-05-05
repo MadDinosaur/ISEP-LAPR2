@@ -1,3 +1,33 @@
+Notes:
+- A grande novidade destas duas US prende-se com a necessidade de interligar com o componente "auth" de modo a que cada cliente/funcionário se torne também um utilizador do sistema.
+
+De resto é bastante semelhante às restantes.
+
+
+
+
+
+Para esta interligação, precisam:
+
+
+
+Ler a documentação do componente "auth" e decidir a que objeto(s) e método(s) devem recorrer;
+Atribuir a responsabilidade de interação a uma só classe (no âmbito de cada US)
+
+Para o envio do email, é suficiente também mostrarem a classe a que atribuíram a responsabilidade de o fazer.
+
+Saliento ainda que não devem confundir "UserRole" e "OrganizationRole".
+Apesar de bastante semelhantes, não são a mesma coisa.
+
+
+
+
+Por fim, saliento mais duas coisas:
+
+
+
+Quando no âmbito de uma US é requerido/necessário estabelecer associações com objetos conhecidos do sistema, essa associação deve ser feita sempre por seleção (a partir de uma lista).
+Após a seleção de objetos de uma lista na UI, a UI apenas deve/pode enviar os identificadores desses objetos para o Controller. Cabe depois à camada de dominio obter o respetivo objetivo a partir desse identificador.
 # US 7 -  Specify a new employee
 
 ## 1. Requirements Engineering
@@ -88,30 +118,34 @@ No dependencies were found.
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
-| Step 1  		 |							 |             |                              |
-| Step 2  		 |							 |             |                              |
-| Step 3  		 |							 |             |                              |
-| Step 4  		 |							 |             |                              |
-| Step 5  		 |							 |             |                              |
-| Step 6  		 |							 |             |                              |              
+| Step 1: starts a new employee registration | ... instantiating a new Employee? | Company | Creator: aggregates objects of Employee class |
+| Step 2: requests employee role | ... returning the existent Roles? | Company | IE: knows all Role objects |
+| Step 3: selects requested data | ... saving the input | Role | IE: knows its own data |
+| Step 4: requests employee information | ... returning data necessary for each Role? | Employee<br>Role | IE: Employee knows general data, Role knows specific data |
+| Step 5: types requested data | ... saving the input?<br>...validating the data locally?<br>...validating the data globally? | Employee<br>Employee/Role<br>Company| IE: knows its own data<br>IE: knows its own data<br>IE: knows all Employee objects
+| Step 6: shows the data and requests confirmation 		 |	N/A | |                              |
+| Step 7: confirms the data | ... saving the new Employee? | Company | IE: adopts/records all Employee objects |
+| Step 8: informs operation success | ... informing operation success? | UI | IE: Responsible for user interaction |
+
+*Note: IE - Information Expert*
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * Class1
- * Class2
- * Class3
+ * Company
+ * Employee
+ * Role
 
-Other software classes (i.e. Pure Fabrication) identified: 
- * xxxxUI  
- * xxxxController
+Other software classes identified: 
+ * CreateEmployeeUI (applying the Pure Fabrication pattern)  
+ * CreateEmployeeController (applying the Pure Fabrication pattern)
 
 ## 3.2. Sequence Diagram (SD)
 
 *In this section, it is suggested to present an UML dynamic view stating the sequence of domain related software objects' interactions that allows to fulfill the requirement.* 
 
-![USXX-SD](USXX-SD.svg)
+![US7-SD](US7-SD.svg)
 
 ## 3.3. Class Diagram (CD)
 

@@ -2,23 +2,39 @@
 actor Administrator as admin
 participant ":CreateEmployeeUI" as ui
 participant ":CreateEmployeeController" as controller
-participant ":???" as new
-admin -> ui : **1** starts a new employee registration
+participant ":Company" as company
+participant "e:Employee" as employee
+participant ":Role" as role
+
+admin -> ui : **1** starts a company employee registration
 create controller
 ui -> controller : **2** create
-ui -> controller : **3** createEmployee
-controller -> new : **4** employee = createEmployee()
-ui --> admin : **5** requests employee role
-admin -> ui : **6** selects requested data
-ui -> controller : **7** setRole(role)
-controller -> new : **8** setRole(role)
-ui --> admin : **7** requests employee information (ie. name, address, phone number, e-mail, **optional** DIN)
-admin -> ui : **8** types requested data
-ui -> controller : **9** setData(name, address, phone number, e-mail, **optional** DIN)
-ui --> admin : **10** shows the data and requests confirmation
-admin -> ui : **11** confirms the data
-ui -> controller : **12** saveEmployee()
-ui --> admin : **13** informs operation success
+ui -> controller : **3** createEmployee()
+controller -> company : **4** e = createEmployee()
+company -> employee : **5** create()
+company -> controller : **6** getRoles()
+controller -> ui : **7** displayRoles()
+ui --> admin : **8** requests employee role
+admin -> ui : **9** selects requested data
+ui -> controller : **10** setRole(role)
+controller -> role : **11** setRole(role)
+ui --> admin : **12** requests employee information (ie. name, address, phone number, e-mail, **optional** DIN)
+admin -> ui : **13** types requested data
+ui -> controller : **14** setData(name, address, phoneNumber, email, **optional** DIN)
+controller -> employee : **15** setName(name)
+controller -> employee : **16** setAddress(address)
+controller -> employee : **17** setPhoneNumber(phoneNumber)
+controller -> employee : **18** setEmail(email)
+controller -> employee : **19 (optional)** setDIN(DIN)
+controller -> company : **20** validateEmployee()
+company -> employee : **21** validate()
+employee -> role: **22** validateAttributes()
+ui --> admin : **23** shows the data and requests confirmation
+admin -> ui : **24** confirms the data
+ui -> controller : **25** saveEmployee()
+controller -> company : **26** saveEmployee(e)
+company -> company : **27** addEmployee(e)
+ui --> admin : **28** informs operation success
 
 
 @enduml
