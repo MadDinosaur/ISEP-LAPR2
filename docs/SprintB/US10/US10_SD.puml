@@ -5,35 +5,35 @@ autonumber
 actor Administrator as admin
 participant ":createNewParameterUI" as UI
 participant ":createNewParameterController" as Controller
-participant ":ParameterList" as param
+participant ":Parameter" as param
 participant ":Category" as cat
+participant ":Company" as comp
 
 admin -> UI: starts new parameter
 create Controller
 UI -> Controller: create
 UI -> Controller: createNewParameter()
 Controller -> param: parameter = createNewParameter()
-UI --> admin: requests name of new parameter
-admin -> UI: types the name of the parameter that will be added
-UI --> admin: requests code of the new parameter
-admin -> UI: types in code of new parameter
-UI --> admin: asks for a description of the new parameter
-admin -> UI: types in a description for the new parameter
-UI --> admin: asks for upper and lower reference values
-admin -> UI: types in upper and lower reference values
+UI --> admin: requests parameter information (ie. name, code, description, reference values)
+admin -> UI: types in data
+UI --> admin: shows all typed data and asks for confirmation
+admin -> UI: confirms typed data
 UI -> Controller: setParameter(shortName, code, description, upperReferenceValue, lowerReferenceValue)
 Controller -> param: setShortName(shortName)
 Controller -> param: setCode(code)
 Controller -> param: setDescription(description)
 Controller -> param: setUpperLower(upperReferenceValue, lowerReferenceValue)
-UI -> admin: shows parameter category list and asks to pick the one that the new parameter falls under
+UI -> Controller: getCategoryList()
+Controller -> comp: getCategoryList()
+comp -> Controller: categoryList
+Controller -> UI: categoryList
+UI --> admin: shows parameter category list and asks to pick the one that the new parameter falls under
 admin -> UI: picks the wanted parameter category
-UI -> Controller: setCategoryParameter()
-Controller -> cat: setCategoryParameter(parameter)
-UI -> admin: shows all typed data and asks for confirmation
-admin -> UI: confirms typed data
+UI -> Controller: setParameterCategory()
+Controller -> cat: setParameterCategory(newParameter)
 UI -> Controller: saveParameter()
-Controller -> cat: saveParameter(parameter)
+Controller -> cat: saveParameter(newParameter)
+
 
 
 @enduml

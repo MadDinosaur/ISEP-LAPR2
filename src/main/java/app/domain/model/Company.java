@@ -15,6 +15,8 @@ public class Company {
     private AuthFacade authFacade;
     private ArrayList<TestType> testTypeList;
 
+    private ArrayList<Category> categoryList;
+
     public Company(String designation)
     {
         if (StringUtils.isBlank(designation))
@@ -57,6 +59,20 @@ public class Company {
         } else {
             return true;
         }
+    }
+
+
+
+
+    /**
+     *
+     * @author Diogo Gaspar <1200966@isep.ipp.pt>
+     * Returns the list of the available categories
+     * @return list of categories
+     */
+
+    public ArrayList<Category> getCategoryList(){
+        return categoryList;
     }
 
 

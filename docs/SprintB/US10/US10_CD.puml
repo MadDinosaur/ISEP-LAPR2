@@ -16,37 +16,34 @@ class Parameter {
 
 class CreateNewParameterUI{
 +parameterData(shortName, code, description, upperReferenceValue, lowerReferenceValue)
++getCategoryList()
 +parameterCategory(category)
 }
 
 class CreateNewParameterController{
-
-+createNewParameter()
-+setShortName(shortName)
-+setCode(code)
-+setDescription(description)
-+setUpperLower(upperReferenceValue, lowerReferenceValue)
-+saveParameter(category)
++createNewParameter(shortName, code, description, upperReferenceValue,lowerReferenceValue)
++getCategoryList()
 }
 
-class Company
+class Company{
+ArrayList<Category>
+
++getCategoryList()
+}
 
 class Category {
 -String code
 -String description
 -int nhsID
 -ArrayList<Parameter>
-}
 
-class CatMapper{
-
-+List<catDto> toDTO(List<Category> list)
-+catDto toDTO(Category obj)
++saveParameter(newParameter)
 }
 
 Administrator ...> CreateNewParameterUI
 CreateNewParameterUI ...> CreateNewParameterController
 CreateNewParameterController ...> Parameter
+CreateNewParameterController ...> Company
 Category "*"--"1" Parameter : presented under <
 Parameter "*"-up-"1" Administrator : specified by >
 Company"1 "-"1..*" Administrator : > employs

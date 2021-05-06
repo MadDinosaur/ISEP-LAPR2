@@ -13,8 +13,6 @@ Administrator -> ":System": confirms typed data
 ":System" -> Administrator: shows list of parameter categories and asks to choose the one the new parameter falls under
 Administrator -> ":System": selects the parameter's category
 end loop
-":System" -> Administrator: shows all parameters created and asks for confirmation
-Administrator -> ":System": confirms parameters
-":System" -> Administrator: informs the operation's success
+":System" -> Administrator: shows all parameters created and informs the operation's success
 
 @enduml
