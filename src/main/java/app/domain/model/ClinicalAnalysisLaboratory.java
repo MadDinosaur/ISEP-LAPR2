@@ -23,7 +23,6 @@ public class ClinicalAnalysisLaboratory {
         this.TIN = NO_TIN;
         this.laboratoryID = NO_LABORATORYID;
     }
-*/
 
     public ClinicalAnalysisLaboratory(String name, String address, long phonenumber, long TIN, String laboratoryID) {
         this.name = name;
@@ -32,25 +31,26 @@ public class ClinicalAnalysisLaboratory {
         this.TIN = TIN;
         this.laboratoryID = laboratoryID;
     }
+*/
 
     public void setName(String name) {
-        if (name == null || name.length() > 20) {
-            throw new InvalidNameException();
-        } else {
+        if (validateName(name)) {
             this.name = name;
+        } else {
+            throw new InvalidNameException();
         }
     }
 
     public void setAddress(String address) {
-        if (address == null || address.length() > 30) {
-            throw new InvalidAddressException();
-        } else {
+        if (validateAddress(address)) {
             this.address = address;
+        } else {
+            throw new InvalidAddressException();
         }
     }
 
     public void setPhoneNumber(long phonenumber) {
-        if (phonenumber > 10000000000L && phonenumber < 99999999999L) {
+        if (validatePhoneNumber(phonenumber)) {
             this.phonenumber = phonenumber;
         } else {
             throw new InvalidPhoneNumberException();
@@ -58,7 +58,7 @@ public class ClinicalAnalysisLaboratory {
     }
 
     public void setTIN(long TIN){
-        if (TIN > 1000000000 && TIN < 9999999999L) {
+        if (validateTIN(TIN)) {
             this.TIN = TIN;
         } else {
             throw new InvalidTINException();
@@ -66,10 +66,10 @@ public class ClinicalAnalysisLaboratory {
     }
 
     public void setLaboratoryID(String laboratoryID){
-        if (laboratoryID == null || laboratoryID.length() != 5) {
-            throw new InvalidLaboratoryIDException();
-        } else {
+        if (validateLaboratoryID(laboratoryID)) {
             this.laboratoryID = laboratoryID;
+        } else {
+            throw new InvalidLaboratoryIDException();
         }
     }
 
@@ -78,4 +78,10 @@ public class ClinicalAnalysisLaboratory {
     public long getPhonenumber() { return phonenumber; }
     public long getTIN() { return TIN; }
     public String getLaboratoryID() { return laboratoryID; }
+
+    public boolean validateName (String name) { return !(address == null || address.length() > 30); }
+    public boolean validateAddress (String address) { return !(address == null || address.length() > 30); }
+    public boolean validatePhoneNumber (long phonenumber) { return (phonenumber > 10000000000L && phonenumber < 99999999999L); }
+    public boolean validateTIN (long TIN) { return (TIN > 1000000000 && TIN < 9999999999L); }
+    public boolean validateLaboratoryID (String laboratoryID) { return !(laboratoryID == null || laboratoryID.length() != 5); }
 }
