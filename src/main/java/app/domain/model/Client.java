@@ -1,6 +1,5 @@
 package app.domain.model;
 import app.controller.RegisterClientController;
-import app.domain.store.ClientStore;
 import auth.domain.model.Email;
 import auth.domain.model.Password;
 import auth.domain.model.User;
@@ -15,7 +14,7 @@ public class Client{
     private int TIN;
     private int phoneNumber;
     private Email email;
-    private String sex; //???
+    private String sex;
     private String SEX_POR_OMISSAO = "No sex assigned";
 
     public Client(String name, int cardNumber, int nhsId, String dateBirth, int TIN, int phoneNumber, Email email, String sex) {
@@ -49,13 +48,13 @@ public class Client{
     }
 
     public void setCardNumber(int cardNumber) {
-        if(!RegisterClientController.listClients.existsCardNumber(cardNumber)){
+        if(!Company.listClients.existsCardNumber(cardNumber)){
             this.cardNumber = cardNumber;
         }
     }
 
     public void setNhsId(int nhsId) {
-        if (!RegisterClientController.listClients.existsNhsId(nhsId)) {
+        if (!Company.listClients.existsNhsId(nhsId)) {
             this.nhsId = nhsId;
         }
     }
@@ -66,13 +65,13 @@ public class Client{
     }
 
     public void setTIN(int TIN) {
-        if(!RegisterClientController.listClients.existsTIN(TIN)){
+        if(!Company.listClients.existsTIN(TIN)){
             this.TIN = TIN;
         }
     }
-    
+
     public void setPhoneNumber(int phoneNumber) {
-        if(!RegisterClientController.listClients.existsPhoneNumber(phoneNumber)) {
+        if(!Company.listClients.existsPhoneNumber(phoneNumber)) {
             this.phoneNumber = phoneNumber;
         }
     }
@@ -82,7 +81,7 @@ public class Client{
     }
 
     public void setEmail(Email email) {
-        if (!RegisterClientController.listClients.exists(email)) {
+        if (!Company.listClients.exists(email)) {
             this.email = email;
         }
     }

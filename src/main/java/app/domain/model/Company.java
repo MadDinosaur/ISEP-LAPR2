@@ -1,5 +1,6 @@
 package app.domain.model;
 
+import app.domain.store.ClientStore;
 import auth.AuthFacade;
 import org.apache.commons.lang3.StringUtils;
 
@@ -10,10 +11,10 @@ import java.util.ArrayList;
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
 public class Company {
-
     private String designation;
     private AuthFacade authFacade;
     private ArrayList<TestType> testTypeList;
+    public static ClientStore listClients = new ClientStore();
 
     public Company(String designation)
     {
