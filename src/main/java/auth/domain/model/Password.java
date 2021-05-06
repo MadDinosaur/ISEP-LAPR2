@@ -41,14 +41,14 @@ public class Password {
         BCrypt.Result result = BCrypt.verifyer().verify(pwd.toCharArray(),this.password.toCharArray());
         return result.verified;
     }
-    
+
 
 
     @Override
     public int hashCode()
     {
-        int hash = 7;
-        hash = 7 * hash + this.password.hashCode();
+        int hash = 10;
+        hash = 10 * hash + this.password.hashCode();
         return hash;
     }
 

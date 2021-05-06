@@ -46,7 +46,7 @@
 
 ### 1.3. Acceptance Criteria
 
-•	**AC1:** The password used in authentication must have 7 alphanumeric characters, including 3 capital letters and 2 digits.
+•	**AC1:** The password used in authentication must have 10 alphanumeric characters, including 3 capital letters and 2 digits.
 
 •	**AC2:** Only the specialist doctor is allowed to access all client data.
 

@@ -10,7 +10,7 @@ class Client {
 -int nhsID
 -int TIN
 -int phoneNumber
--String email
+-Email email
 +validate(name, cardNumber, nhsId, birthDate, \n sex, TIN, phoneNumber, email)
 }
 class Receptionist {
