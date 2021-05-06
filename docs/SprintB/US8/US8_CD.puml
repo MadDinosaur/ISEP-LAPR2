@@ -2,15 +2,19 @@
 class Administrator
 class newLabUI{
 +LabInfo(name, address, phonenumber, TIN, laboratoryID)
-+TestTypes(tt)
++TestType(testtype)
 }
 class newLabController {
-+createLab()
 +setData(name, address, phonenumber, TIN, laboratoryID)
 +setTest(tt)
 +saveData()
 }
-class Company
+class Company {
+-designation
++getTestType()
++getLab()
++createLab()
+}
 class ClinicalAnalysisLaboratory {
 -String name
 -String address
@@ -35,5 +39,5 @@ Administrator"1 "-"1..* "ClinicalAnalysisLaboratory : > registers
 ClinicalAnalysisLaboratory"1   ‎ "--"1..*"TestType : > performs
 Company" 1 "-" * "TestType : > conducts
 Company"1   ‎"-"1..*"Administrator : > employs
-TestType .> newLabUI
+Company .> newLabUI
 @enduml

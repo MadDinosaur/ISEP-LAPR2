@@ -4,7 +4,8 @@ autonumber
 actor Administrator as admin
 participant ":newLabUI" as UI
 participant ":newLabController" as controller
-participant ":???" as validate
+participant ":Company" as validate
+participant ":ClinicalAnalysisLaboratory" as lab
 
 admin -> UI : registers a new clinical analysis laboratory
 create controller
@@ -14,7 +15,7 @@ controller -> validate : newLab = createLaboratory()
 UI --> admin : request laboratory information (name, address, phonenumber, TIN, laboratory ID)
 admin -> UI : gives requested data
 UI -> controller : setData(name, address, phonenumber, TIN, laboratoryID)
-controller -> validate : validate(name, address, phonenumber, TIN, laboratoryID)
+controller -> lab : validate(name, address, phonenumber, TIN, laboratoryID)
 UI --> admin : request types of tests
 admin -> UI : selects requested data
 UI -> controller : setTest()
