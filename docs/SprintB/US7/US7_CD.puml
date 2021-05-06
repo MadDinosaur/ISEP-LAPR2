@@ -1,0 +1,55 @@
+@startuml
+class CreateEmployeeUI
+class CreateEmployeeController {
+{method} CreateEmployeeController()
+{method} getOrganizationRoles()
+{method} createEmployee(role)
+{method} setEmployeeData(name, address, phoneNumber, email)
+{method} setEmployeeData(name, address, phoneNumber, email, DIN)
+{method} saveEmployee(employee)
+}
+class Company {
+{field} designation
+{field} employees
+{field} organizationRoles
+{method} getRoles()
+{method} createEmployee(roleId)
+{method} setEmployeeData(name, address, phoneNumber, email)
+{method} setEmployeeData(name, address, phoneNumber, email, DIN)
+{method} saveEmployee(employee)
+{method} validateEmployee(employee)
+{method} generateEmployeePassword()
+}
+class Employee {
+{field} id
+{field} name
+{field} address
+{field} email
+{field} phoneNumber
+{field} organizationRole
+{method} Employee(roleId)
+{method} setData(name, address, phoneNumber, email)
+{method} setData(name, address, phoneNumber, email, DIN)
+{method} validateName(name)
+{method} validateAddress(address)
+{method} validateEmail(email)
+{method} validatePhoneNumber(phoneNumber)
+}
+class OrganizationRole {
+{field} id
+{field} description
+}
+class SpecialistDoctor {
+{field} doctorIndexNumber
+{method} setDIN()
+{method} validateDIN()
+}
+class AuthFacade
+
+CreateEmployeeUI ..> CreateEmployeeController
+CreateEmployeeController .right.> Company
+Company --> Employee : contains
+Company .right.> AuthFacade
+Employee --> OrganizationRole : has
+Employee <|-- SpecialistDoctor : is a
+@enduml

@@ -1,8 +1,6 @@
 @startuml
 skinparam classAttributeIconSize 0
 
-class Administrator
-class ClinicalChemistryTechnologist
 class Company {
 -designation
 }
@@ -15,22 +13,22 @@ class Employee {
 -email
 -SOCcode
 }
-class LaboratoryCoordinator
-class MedicalLabTechnician
-class Receptionist
-class Role
+class OrganizationRole {
+-id
+-description
+}
 class SpecialistDoctor {
 -doctorIndexNumber
 }
+class User {
+-name
+-email
+-password
+}
 
-Company "1"--"1..*" Employee : has >
-Company "1"--"1..*" Role : has >
-Role .. Administrator
-Role .. ClinicalChemistryTechnologist
-Role .. MedicalLabTechnician
-Role .. LaboratoryCoordinator
-Role .. Receptionist
-Role .. SpecialistDoctor
-Administrator "1"--"*" Employee : registers >
-Employee "1"-right-"1" Role : has >
+Company "1"-right-"1..*" Employee : employs >
+Company "1"--"1..*" OrganizationRole : comprehends >
+Employee <|-- SpecialistDoctor
+Employee "1"--"1" OrganizationRole : has >
+Employee "0..1"-right-"1" User : relates to >
 @enduml

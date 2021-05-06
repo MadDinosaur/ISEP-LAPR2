@@ -39,10 +39,11 @@ As an administrator, I want to register a new employee.
 ### 1.2. Customer Specifications and Clarifications 
 
 **From the Specifications Document:**
-* " All those who wish to use the application must be authenticated with a password holding seven alphanumeric characters, including three capital letters and two digits."
+* **Outdated:** " All those who wish to use the application must be authenticated with a password holding seven alphanumeric characters, including three capital letters and two digits."
+* **Updated specification (from client):** "The password should be randomly generated. It should have ten alphanumeric characters."
 
 **From the client clarifications:**
-* **Q**: What kind of information does the company store about their employees?
+* **Q: What kind of information does the company store about their employees?**
     * **A**: All the roles that exist in the Many Labs company are characterized by the following attributes:
       
       Employee ID;
@@ -61,22 +62,45 @@ As an administrator, I want to register a new employee.
 
       The Specialist Doctor has an additional attribute:
       Doctor Index Number.
-* **Q**: How should the system respond in the event of creating a new user with the same attributes of an already existing user?
+* **Q: How should the system respond in the event of creating a new user with the same attributes of an already existing user?**
     * **A**: This should be treated as an error. A subset of the attributes of any client are unique.
     
-* **Q**: And what attributes (...) will trigger this response?
+* **Q: And what attributes (...) will trigger this response?**
   * **A**: The e-mail address and phone number should be unique. The sex of each user is optional.
+    
+* **Q: When creating a new employee, the attributes "Employee ID" and "Doctor Index Number", are implemented by the administrator or incremented by the system?**
+    * **A**: Only the employee ID should be generated from the initials of the employee name and should include a number. The number has 5 digits and is increases automatically when a new employee is registered in the system. For instance, if the company has 20 employees and wants to register a specialist doctor having the name Ana Maria Santos Moura, then the the employee ID for this specialist doctor should be AMSM00021.
+    The Doctor Index Number should be introduced by the administrator.
 
+* **Q: How are the passwords delivered to the users (client/employee)?**
+    * **A**: Each users receives an e-mail informing that the registration was successful and that he can start to use the system. The e-mail includes the user password.
+
+* **Q: When the application is delivered , should it have default employees , ex:administrator,etc.. , or should be completly empty (without any user or employee).**
+    * **A**: One Administrator must be registered before starting the application for the first time.
+
+* **Q: The apllication can add new employess but can it remove them , for exemple when one of them is fired ?**
+    * **A**: For now I do not want such feature.
+
+* **Q: Are there any other employee roles than the ones specified in the documents?**
+    * **A**: No.
+
+* **Q: Do these roles have different contracts with ManyLabs (i.e. temporary contract, permanent contract, freelance, etc...)? If so, should this be registered in the system together with the employee role information?**
+    * **A**: Many Labs is known for making only permanent full-time contracts.Therefore, there is no need to register this type of information.
+
+* **Q: Regarding the registration of a new employee, which is the organization role's format?**
+    *   **A**: Organization Role: a string with no more than 15 characters.
 ### 1.3. Acceptance Criteria
 
 * AC1: Each user must have a single role defined in the system. 
-
-* AC2: The "auth" component available on the repository must be reused (without
+* AC2: Each employee must become also a system user/actor
+* AC3: The "auth" component available on the repository must be reused (without
 modifications).
 
 ### 1.4. Found out Dependencies
 
-No dependencies were found.
+This US is dependent on "Specify a new organization Role", regarding:
+* All organization Roles (class Role) are already created, as well as corresponding User Roles (class AuthFacade).
+* User Role attribute "id" directly matches Organization Role "id".
 
 ### 1.5 Input and Output Data
 
@@ -124,7 +148,7 @@ No dependencies were found.
 | Step 4: requests employee information | ... returning data necessary for each Role? | Employee<br>Role | IE: Employee knows general data, Role knows specific data |
 | Step 5: types requested data | ... saving the input?<br>...validating the data locally?<br>...validating the data globally? | Employee<br>Employee/Role<br>Company| IE: knows its own data<br>IE: knows its own data<br>IE: knows all Employee objects
 | Step 6: shows the data and requests confirmation 		 |	N/A | |                              |
-| Step 7: confirms the data | ... saving the new Employee? | Company | IE: adopts/records all Employee objects |
+| Step 7: confirms the data | ... saving the new Employee?<br>... registering user account for new Employee? | Company<br>AuthFacade | IE: adopts/records all Employee objects<br>IE: knows/records all application users |
 | Step 8: informs operation success | ... informing operation success? | UI | IE: Responsible for user interaction |
 
 *Note: IE - Information Expert*
@@ -143,15 +167,11 @@ Other software classes identified:
 
 ## 3.2. Sequence Diagram (SD)
 
-*In this section, it is suggested to present an UML dynamic view stating the sequence of domain related software objects' interactions that allows to fulfill the requirement.* 
-
-![US7-SD](US7-SD.svg)
+![US7-SD](US7_SD.svg)
 
 ## 3.3. Class Diagram (CD)
 
-*In this section, it is suggested to present an UML static view representing the main domain related software classes that are involved in fulfilling the requirement as well as and their relations, attributes and methods.*
-
-![USXX-CD](USXX-CD.svg)
+![US7-CD](US7_CD.svg)
 
 # 4. Tests 
 *In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.* 

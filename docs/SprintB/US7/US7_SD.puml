@@ -4,37 +4,47 @@ participant ":CreateEmployeeUI" as ui
 participant ":CreateEmployeeController" as controller
 participant ":Company" as company
 participant "e:Employee" as employee
-participant ":Role" as role
+participant ":OrganizationRole" as role
+participant ":AuthFacade" as auth
 
 admin -> ui : **1** starts a company employee registration
 create controller
-ui -> controller : **2** create
-ui -> controller : **3** createEmployee()
-controller -> company : **4** e = createEmployee()
-company -> employee : **5** create()
-company -> controller : **6** getRoles()
-controller -> ui : **7** displayRoles()
-ui --> admin : **8** requests employee role
-admin -> ui : **9** selects requested data
-ui -> controller : **10** setRole(role)
-controller -> role : **11** setRole(role)
-ui --> admin : **12** requests employee information (ie. name, address, phone number, e-mail, **optional** DIN)
-admin -> ui : **13** types requested data
-ui -> controller : **14** setData(name, address, phoneNumber, email, **optional** DIN)
-controller -> employee : **15** setName(name)
-controller -> employee : **16** setAddress(address)
+ui -> controller : **2** create()
+ui -> controller : **3** getRoles()
+controller -> company : **4** getRoles()
+ui --> admin : **5** requests employee role
+admin -> ui : **6** selects requested data
+ui -> controller : **7** createEmployee(role)
+controller -> company : **8** e = createEmployee(role)
+create employee
+company -> employee : **9** create(role)
+create role
+employee -> role : **10** create()
+ui --> admin : **10** requests employee information (ie. name, address, phone number, e-mail, **optional** DIN)
+admin -> ui : **11** types requested data
+ui -> controller : **12** setEmployeeData(name, address, phoneNumber, email, **optional** DIN)
+controller -> employee : **13** setName(name)
+employee -> employee : **14** validateName(name)
+controller -> employee : **15** setAddress(address)
+employee -> employee : **16** validateAddress(name)
 controller -> employee : **17** setPhoneNumber(phoneNumber)
-controller -> employee : **18** setEmail(email)
-controller -> employee : **19 (optional)** setDIN(DIN)
-controller -> company : **20** validateEmployee()
-company -> employee : **21** validate()
-employee -> role: **22** validateAttributes()
-ui --> admin : **23** shows the data and requests confirmation
-admin -> ui : **24** confirms the data
-ui -> controller : **25** saveEmployee()
-controller -> company : **26** saveEmployee(e)
-company -> company : **27** addEmployee(e)
-ui --> admin : **28** informs operation success
+employee -> employee : **18** validatePhoneNumber(name)
+controller -> employee : **19** setEmail(email)
+employee -> employee : **20** validateEmail(name)
+controller -> employee : **21 (optional)** setDIN(DIN)
+employee -> role : **22** validateDIN(DIN)
+role -> role : **23** validate(DIN)
+ui --> admin : **24** shows the data and requests confirmation
+admin -> ui : **25** confirms the data
+ui -> controller : **26** saveEmployee()
+controller -> company : **27** saveEmployee(e)
+company -> company : **28** validateEmployee(e)
+company -> company : **29** addEmployee(e)
+company -> company : **30** pwd = generateEmployeePassword()
+company -> auth : **30** addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId())
+auth -> auth : existsUser(email)
+auth -> auth : addUserWithRole(name, email, pwd, roleId)
+ui --> admin : **30** informs operation success
 
 
 @enduml
