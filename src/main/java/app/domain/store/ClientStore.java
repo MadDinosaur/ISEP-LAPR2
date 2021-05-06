@@ -82,6 +82,30 @@ public class ClientStore {
         Optional<Client> result = getByCardNumber(cardNumber);
         return result.isPresent();
     }
+    public Optional<Client> getByNhsId (int nshId){
+        for(Client client: this.store)
+        {
+            if(client.hasNhsID(nshId))
+                return Optional.of(client);
+        }
+        return Optional.empty();
+    }
+    public boolean existsNhsId(int nhsId){
+        Optional<Client> result = getByNhsId(nhsId);
+        return result.isPresent();
+    }
+    public Optional<Client> getByPhoneNumber (int phoneNumber){
+        for(Client client: this.store)
+        {
+            if(client.hasPhoneNumber(phoneNumber))
+                return Optional.of(client);
+        }
+        return Optional.empty();
+    }
+    public boolean existsPhoneNumber(int phoneNumber){
+        Optional<Client> result = getByPhoneNumber(phoneNumber);
+        return result.isPresent();
+    }
 }
 
 

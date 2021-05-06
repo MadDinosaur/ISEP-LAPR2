@@ -55,8 +55,9 @@ public class Client{
     }
 
     public void setNhsId(int nhsId) {
-        //checar se existe na store
-        this.nhsId = nhsId;
+        if (!RegisterClientController.listClients.existsNhsId(nhsId)) {
+            this.nhsId = nhsId;
+        }
     }
 
     public void setDate(String dateBirth) {
@@ -69,10 +70,11 @@ public class Client{
             this.TIN = TIN;
         }
     }
-
+    
     public void setPhoneNumber(int phoneNumber) {
-        //checar se existe na store
-        this.phoneNumber = phoneNumber;
+        if(!RegisterClientController.listClients.existsPhoneNumber(phoneNumber)) {
+            this.phoneNumber = phoneNumber;
+        }
     }
 
     public void setSex(String sex) {
@@ -87,7 +89,8 @@ public class Client{
 
     //Verify if equal in Company
     public boolean hasEmail(Email email) {
-        return this.email.equals(email); }
+        return this.email.equals(email);
+    }
     public boolean hasTIN(int TIN){
         return  this.TIN == TIN;
     }
@@ -98,7 +101,5 @@ public class Client{
         return this.nhsId == nhsId;
     }
     public boolean hasPhoneNumber(int phoneNumber){return this.phoneNumber == phoneNumber;}
-
-
 
 }
