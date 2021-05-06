@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.domain.model.Category;
 import app.domain.model.CollectionMethod;
 import app.domain.model.Company;
 import app.domain.model.TestType;
@@ -32,6 +33,14 @@ public class CreateTestTypeController {
 
     public boolean saveTestType() {
         return this.company.addTestType(tt);
+    }
+
+    public void displayCategoryList() { //chamar o método do UI para dar display à categorylist
+
+    }
+
+    public void setCategoriesToTestType(Category category) {
+        this.tt.setCategory(category);
     }
 
 }

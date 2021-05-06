@@ -16,7 +16,7 @@ class CreateTestTypeController {
 +setDesignation(String designation)
 +setCollectionMethod(String description)
 +setCollectionMethodToTestType(CollectionMethod cm)
-+setCategoriesToTestType(Category categories)
++setCategoriesToTestType(Category category)
 +saveTestType(tt)
 }
 class CollectionMethod {
@@ -28,7 +28,7 @@ class TestType {
 -CollectionMethod collectionMethod
 -Arraylist<Category> categories
 +setDesignation(designation)
-+setCategories(categories)
++setCategory(category)
 +setCollectionMethod(collectionMethod)
 +validateAttributes()
 }
@@ -36,7 +36,6 @@ class Category {
 -String code
 -String description
 -String nhsID
-+addCategoriesToTestType(categories)
 }
 class Company {
 -String designation
