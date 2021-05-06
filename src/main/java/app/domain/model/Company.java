@@ -4,6 +4,7 @@ import auth.AuthFacade;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,6 +15,7 @@ public class Company {
     private String designation;
     private AuthFacade authFacade;
     private ArrayList<TestType> testTypeList;
+    private List<Category> parameterCategoryList;
 
     public Company(String designation)
     {
@@ -59,5 +61,20 @@ public class Company {
         }
     }
 
+    public Category createParameterCategory(String code, String description, String nhsId) {
+        return new Category(code, description, nhsId);
+    }
+
+    public boolean validateParameterCategory(Category pc) {
+        if (pc == null)
+            return false;
+        return ! this.parameterCategoryList.contains(pc);
+    }
+
+    public boolean saveParameterCategory(Category pc) {
+        if (!validateParameterCategory(pc))
+            return false;
+        return this.parameterCategoryList.add(pc);
+    }
 
 }
