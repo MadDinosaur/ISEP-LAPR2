@@ -14,7 +14,7 @@ public class RegisterClientController {
     private static long cardNumber;
     private static long nhsId;
     private String dateBirth;   //String dateBirth ---> Date dateBirth
-    private int TIN;
+    private static long TIN;
     private int phoneNumber;
     private Email email;
     private static String sex;
@@ -50,6 +50,13 @@ public class RegisterClientController {
         }
         RegisterClientController.nhsId = nhsId;
     }
+    public static void setTIN(long TIN){
+        if(TIN < 1000000000 || TIN > 9999999999.0){
+            throw new InvalidNhsIdException("NHS ID must have 10 digits");
+        }
+        RegisterClientController.TIN = TIN;
+    }
+
 }
 
 //add CLient to Cliente Store

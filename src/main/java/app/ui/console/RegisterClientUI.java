@@ -4,7 +4,7 @@ import app.controller.RegisterClientController;
 import app.domain.model.Exceptions.InvalidNameException;
 
 public class RegisterClientUI {
-    public static void main(String[] args) {
+ /*   public static void main(String[] args) {
         boolean valido = false;
         while(!valido) {
             try {
@@ -14,5 +14,5 @@ public class RegisterClientUI {
                 System.out.println(e);
             }
         }
-    }
+    }*/
 }
