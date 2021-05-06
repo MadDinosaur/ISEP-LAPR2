@@ -15,11 +15,10 @@ public class Company {
     private String designation;
     private AuthFacade authFacade;
     private ArrayList<TestType> testTypeList;
-<<<<<<< HEAD
+
     public static ClientStore listClients = new ClientStore();
-=======
     private List<Category> parameterCategoryList;
->>>>>>> bdd5ab50e7c1a1808b2ea9ec8fbb6122f4395a8e
+
 
     public Company(String designation)
     {
