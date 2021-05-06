@@ -17,7 +17,7 @@ public class TestType {
         this.collectionMethod = collectionMethod;
     }
 
-    public void setCategories(Category category) {
+    public void setCategory(Category category) {
         this.categories.add(category);
     }
 
@@ -33,6 +33,14 @@ public class TestType {
         return categories;
     }
 
+    public boolean validateAttributes() {
+        if (designation.equals("") || collectionMethod.getDescription().equals("") || categories.isEmpty()) {
+            throw new IllegalArgumentException("One or more of the test type's attributes are not valid");
+        } else {
+            return true;
+        }
+    }
+
     @Override
     public String toString() {
         return (String.format("This test type's name is: %s\nIts collection method is the following: %s\nIt is under the following categories: %s", designation, collectionMethod, categories));
@@ -44,13 +52,5 @@ public class TestType {
         if (o == null || getClass() != o.getClass()) return false;
         TestType testType = (TestType) o;
         return Objects.equals(designation, testType.designation) && Objects.equals(collectionMethod, testType.collectionMethod) && Objects.equals(categories, testType.categories);
-    }
-
-    public boolean validateAttributes() {
-        if (designation.equals("") || collectionMethod.getDescription().equals("") || categories.isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
     }
 }

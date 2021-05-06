@@ -1,8 +1,7 @@
 package app.controller;
 
-import app.domain.store.ClientStore;
-
 public class RegisterClientController {
+<<<<<<< HEAD
     // public String setName(){
      //   return
    // }
@@ -18,3 +17,6 @@ public class RegisterClientController {
     }
 
 }
+=======
+}
+>>>>>>> bdd5ab50e7c1a1808b2ea9ec8fbb6122f4395a8e

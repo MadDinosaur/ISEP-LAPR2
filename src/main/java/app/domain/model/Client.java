@@ -1,4 +1,5 @@
 package app.domain.model;
+<<<<<<< HEAD
 import app.controller.RegisterClientController;
 import auth.domain.model.Email;
 import auth.domain.model.Password;
@@ -100,5 +101,8 @@ public class Client{
         return this.nhsId == nhsId;
     }
     public boolean hasPhoneNumber(int phoneNumber){return this.phoneNumber == phoneNumber;}
+=======
+>>>>>>> bdd5ab50e7c1a1808b2ea9ec8fbb6122f4395a8e
 
+public class Client {
 }
