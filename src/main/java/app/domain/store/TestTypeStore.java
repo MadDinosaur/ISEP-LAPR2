@@ -25,6 +25,7 @@ public class TestTypeStore {
     public boolean addTestType(TestType tt) {
         if(!tt.validateAttributes() || !validateTestType(tt)) {   //ver isto crlh já me estou a passar
             return false;                                         //vdd
+                                                                    //mental breakdowns bravos
         } else {
             return testTypeList.add(tt);
         }
