@@ -1,54 +1,28 @@
 package app.domain.model;
 
-import java.util.ArrayList;
+import org.apache.commons.lang3.StringUtils;
 
-/**
- *
- * @author Diogo Gaspar <1200966@isep.ipp.pt>
- */
 public class Category {
 
-    /**
-     * NHS identification number for the category
-     */
-    private int nhsID;
-
-    /**
-     * Category's code
-     */
     private String code;
-
-    /**
-     * Category's description
-     */
     private String description;
+    private String nhsId;
 
-    /**
-     * List of parameters belonging to the class
-     */
-    private ArrayList<Parameter> parameterList;
-
-    /**
-     * Constructor of the class Category
-     */
-    public Category() {
-        this.parameterList = null;
+    public Category(String code, String description, String nhsId) {
+        checkCodeRules(code);
+        checkDescriptionRules(description);
+        this.code = code;
+        this.description = description;
+        this.nhsId = nhsId;
+    }
+    private void checkCodeRules(String code) {
+        if (StringUtils.isBlank(code))
+            throw new IllegalArgumentException("Code cannot be blank.");
+        if ( (code.length() < 4) || (code.length() > 8))
+            throw new IllegalArgumentException("Code must have 4 to 8 chars.");
     }
 
-    public void createNewParameter(String shortName, String code, String description){
-        Parameter pc = new Parameter(shortName, code, description);
-    }
+    private void checkDescriptionRules(String description){
 
-    public boolean validateParameter(Parameter pc) {
-        if (pc == null)
-            return false;
-        return ! this.parameterList.contains(pc);
-    }
-
-
-    public boolean saveParameter(Parameter pc) {
-        if (!validateParameter(pc))
-            return false;
-        return this.parameterList.add(pc);
     }
 }
