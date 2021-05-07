@@ -18,7 +18,7 @@ UI -> controller : setData(name, address, phonenumber, TIN, laboratoryID)
 controller -> lab : validate(name, address, phonenumber, TIN, laboratoryID)
 UI --> admin : request types of tests
 admin -> UI : selects requested data
-UI -> controller : setTest()
+UI -> controller : setTestTypeList()
 UI --> admin : shows all the data and requests confirmation
 admin -> UI : confirms the data
 UI -> controller : saveLab()

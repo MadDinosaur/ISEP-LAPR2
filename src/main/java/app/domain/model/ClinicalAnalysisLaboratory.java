@@ -2,12 +2,15 @@ package app.domain.model;
 
 import app.domain.model.Exceptions.*;
 
+import java.util.ArrayList;
+
 public class ClinicalAnalysisLaboratory {
     private String name;
     private String address;
     private long phonenumber;
     private long TIN;
     private String laboratoryID;
+    private ArrayList<TestType> testTypeList;
 
 /*
     private static final String NO_NAME = "";
@@ -33,6 +36,10 @@ public class ClinicalAnalysisLaboratory {
     }
 */
 
+    /**
+     *
+     * setters
+     */
     public void setName(String name) {
         if (validateName(name)) {
             this.name = name;
@@ -73,12 +80,26 @@ public class ClinicalAnalysisLaboratory {
         }
     }
 
+    public void setTestTypeList(ArrayList<TestType> testTypeList) {
+        this.testTypeList = testTypeList;
+        System.out.println(testTypeList);
+    }
+
+    /**
+     *
+     * getters
+     */
     public String getName() { return name; }
     public String getAddress() { return address; }
     public long getPhonenumber() { return phonenumber; }
     public long getTIN() { return TIN; }
     public String getLaboratoryID() { return laboratoryID; }
+    public ArrayList<TestType> getTestTypeList() { return testTypeList; }
 
+    /**
+     *
+     * parameter validation according to us8 acceptance criteria
+     */
     public boolean validateName (String name) { return !(address == null || address.length() > 30); }
     public boolean validateAddress (String address) { return !(address == null || address.length() > 30); }
     public boolean validatePhoneNumber (long phonenumber) { return (phonenumber > 10000000000L && phonenumber < 99999999999L); }

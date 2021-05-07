@@ -80,4 +80,11 @@ public class Company {
         return this.parameterCategoryList.add(pc);
     }
 
+    /**
+     *
+     * getter used on US8
+     */
+    public ArrayList<TestType> getTestTypeList() {
+        return testTypeList;
+    }
 }
