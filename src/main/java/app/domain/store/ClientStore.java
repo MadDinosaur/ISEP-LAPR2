@@ -35,8 +35,8 @@ public class ClientStore {
     {
         for(Client client: this.store)
         {
-           if(client.hasEmail(email))
-            return Optional.of(client);
+            if(client.hasEmail(email))
+                return Optional.of(client);
         }
         return Optional.empty();
     }
@@ -107,5 +107,4 @@ public class ClientStore {
         return result.isPresent();
     }
 }
-
 

@@ -71,23 +71,22 @@ As an administrator, I want to specify a new parameter and categorize it.
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:---------------------|:------------|:---------------------------- |
 | Step 1: Start a new parameter |	... instantiating a new Parameter? | Company | Creator: aggregates objects of Parameter class |
-| Step 2: Request the data for the new parameter  |	... requesting the data? | CreateNewParameterUI | IE: responsible for user interaction |
-| Step 3: Types in requested data | N/A |  |  |
-| Step 4: Shows the data and asks for confirmation | ... showing the data? | CreateNewParameterUI | IE: responsible for user interaction |
-| Step 5: Confirms typed data | ... saving and validating the typed data? |  |  |
-| Step 6: Shows list of parameter categories and asks to choose the one the new parameter falls under | ...returning the list of categories?<br>saving the category chosen? | Company<br>Parameter | IE: knows all categories <br> IE: knows which category it belongs to |
-| Step 7: Selects the parameter's category | ... saving the parameter in the selected category? | Category | IE: knows its own parameters |
-| Step 8: Informs the operation's success | ... informing operation success? | CreateNewParameterUI | IE: Responsible for user interaction |
-
+| Step 2: Request the data for the new parameter  |	... typing in the data? | Administrator |  |
+| Step 3: Types in requested data | ... saving the typed data?<br>...validating the input? | Parameter | IE: knows its own data |
+| Step 4: Shows the data and asks for confirmation | N/A |  |  |
+| Step 5: Confirms typed data | N/A |  |  |
+| Step 6: Shows list of parameter categories and asks to choose the one the new parameter falls under |  |  |  |
+| Step 7: selects the parameter's category | ... saving selected data? |  |  |
+| Step 8: shows all parameters created and asks for confirmation |  |  |  |
+| Step 9: confirms parameters | ... saving new parameters? |  |  |
+| Step 10: informs the operation's success |  |  |  |
 
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
-* **Parameter**
-* **Category**
-* **Company**
+ * 
 
 Other software classes (i.e. Pure Fabrication) identified: 
  * CreateNewParameterUI  
