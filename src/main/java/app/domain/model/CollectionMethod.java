@@ -9,8 +9,11 @@ public class CollectionMethod {
     }
 
     public void setDescription(String description) {
-        if (description.equals(""))
-        this.description = description;
+        if (description.equals("")) {
+            throw new IllegalArgumentException("The description introduced isn't valid.");
+        } else {
+            this.description = description;
+        }
     }
 
     @Override

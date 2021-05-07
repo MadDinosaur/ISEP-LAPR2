@@ -16,29 +16,38 @@ Administrator -> ":CreateTestTypeUI": starts new test type
 
 ":CreateTestTypeUI" -> Administrator: requests the designation
 Administrator -> ":CreateTestTypeUI": types the designation
+":CreateTestTypeUI" -> Administrator: requests confirmation
+Administrator -> ":CreateTestTypeUI": confirms
+
+":CreateTestTypeUI" -> ":CreateTestTypeController": setDesignation(designation)
+":CreateTestTypeController" -> ":TestType": setDesignation(designation)
+
 ":CreateTestTypeUI" -> Administrator: requests the description of the collection method
 Administrator -> ":CreateTestTypeUI": types the description
+":CreateTestTypeUI" -> Administrator: requests confirmation
+Administrator -> ":CreateTestTypeUI": confirms
 
-":CreateTestTypeUI" -> ":CreateTestTypeController": setTestType(designation, CollectionMethod)
-":CreateTestTypeController" -> ":TestType": setDesignation(designation)
+":CreateTestTypeUI" -> ":CreateTestTypeController": setDescription(description)
+
 ":CreateTestTypeController" -> ":CollectionMethod": setCollectionMethod(description)
 ":CreateTestTypeController" -> ":TestType": setCollectionMethodToTestType(cm)
 
 ":TestTypeStore" -> ":TestType": validate()
-":TestType" -> ":TestType": validateAttributes()
 
 ":Company" -> ":CreateTestTypeController": getCategoryList()
 ":CreateTestTypeController" -> ":CreateTestTypeUI": displayCategoryList()
 
 ":CreateTestTypeUI" -> Administrator: shows and requests the categories
 Administrator -> ":CreateTestTypeUI": types the wanted categories
+":CreateTestTypeUI" -> Administrator: requests confirmation
+Administrator -> ":CreateTestTypeUI": confirms
 
-":CreateTestTypeUI" -> ":CreateTestTypeController": addCategoriesToTestType(categories)
+":CreateTestTypeUI" -> ":CreateTestTypeController": setCategories()
 ":CreateTestTypeController" -> ":TestType": setCategoriesToTestType(categories)
 ":CreateTestTypeUI" -> Administrator: shows the data (designation, CollectionMethod, Categories) and requests confirmation
 Administrator -> ":CreateTestTypeUI": confirms the data
 ":CreateTestTypeUI" -> ":CreateTestTypeController": saveTestType()
-":CreateTestTypeController" -> ":Company": saveTestType(tt)
+":CreateTestTypeController" -> ":Company": saveTestType()
 ":TestTypeStore" -> ":TestTypeStore": validateTestType(tt)
 ":TestTypeStore" -> ":TestTypeStore": addTestType(tt)
 

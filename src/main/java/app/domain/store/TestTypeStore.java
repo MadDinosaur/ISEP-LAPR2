@@ -18,12 +18,8 @@ public class TestTypeStore {
         return new CollectionMethod();
     }
 
-    public boolean validate(TestType tt) {
-        return tt.validateAttributes();
-    }
-
     public boolean addTestType(TestType tt) {
-        if(!tt.validateAttributes() || !validateTestType(tt)) {   //ver isto crlh já me estou a passar
+        if(!validateTestType(tt)) {   //ver isto crlh já me estou a passar
             return false;                                         //vdd
                                                                     //mental breakdowns bravos
         } else {

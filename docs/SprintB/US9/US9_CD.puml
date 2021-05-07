@@ -5,32 +5,39 @@ skinparam classAttributeIconSize 0
 class Administrator
 class CreateTestTypeUI {
 +createTestType()
-+setTestType(designation, CollectionMethod)
-+addCategoriesToTestType(categories)
++createCollectionMethod()
++setDesignation(String designation)
++setDescription(String description)
++displayCategoryList()
++setCategories()
 +saveTestType()
 }
 class CreateTestTypeController {
-+displayCategoryList()
 +createTestType()
 +createCollectionMethod()
 +setDesignation(String designation)
 +setCollectionMethod(String description)
 +setCollectionMethodToTestType(CollectionMethod cm)
-+setCategoriesToTestType(Category categories)
-+saveTestType(tt)
++saveTestType()
++displayCategoryList()
++setCategoriesToTestType(int index)
 }
 class CollectionMethod {
 -String description
-+setCollectionMethod(CollectionMethod)
++setDescription(String description)
++getDescription()
+
 }
 class TestType {
 -String designation
 -CollectionMethod collectionMethod
 -Arraylist<Category> categories
-+setDesignation(designation)
-+setCategories(categories)
-+setCollectionMethod(collectionMethod)
-+validateAttributes()
++setDesignation(String designation)
++setCollectionMethod(CollectionMethod collectionMethod)
++setCategory(Category category)
++getDesignation()
++getCollectionMethod()
++getCategories()
 }
 class Category {
 -String code

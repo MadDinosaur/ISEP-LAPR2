@@ -4,7 +4,8 @@ import app.domain.model.Category;
 import app.domain.model.CollectionMethod;
 import app.domain.model.Company;
 import app.domain.model.TestType;
-import app.domain.store.TestTypeStore;
+
+import java.util.List;
 
 public class CreateTestTypeController {
     private Company company;
@@ -27,21 +28,26 @@ public class CreateTestTypeController {
     public void setCollectionMethod(String description) {
         this.cm.setDescription(description);
     }
-    
-    public void setCollectionMethodToTestType(CollectionMethod cm) {
-        this.tt.setCollectionMethod(cm);
+
+    public void setCollectionMethodToTestType() {
+        this.tt.setCollectionMethod(this.cm);
     }
 
     public boolean saveTestType() {
         return this.company.getTestTypeStore().addTestType(tt);
     }
 
-    public void displayCategoryList() { //chamar o método do UI para dar display à categorylist
-
+    public void displayCategoryList() {
+        List<Category> list = this.company.getCategoryList();
+        int index = 0;
+        for (Category category : list) {
+            System.out.printf("%s - %s\n", index, category.getDescription());
+            index++;
+        }
     }
 
-    public void setCategoriesToTestType(Category category) {
-        this.tt.setCategory(category);
+    public void setCategoriesToTestType(int index) {
+        this.tt.setCategory(this.company.getCategoryList().get(index));
     }
 
 }

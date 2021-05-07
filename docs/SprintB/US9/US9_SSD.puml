@@ -8,7 +8,7 @@ Administrator -> ":System": starts new test type
 ":System" -> Administrator: requests the designation of the test
 Administrator -> ":System": types the requested designation
 ":System" -> Administrator: shows the designation and requests a confirmation
-Administrator -> ":System": confirms the name
+Administrator -> ":System": confirms the designation
 ":System" -> Administrator: requests a description of the collection method
 Administrator -> ":System": types the requested description
 ":System" -> Administrator: shows the description and requests a confirmation
@@ -16,8 +16,8 @@ Administrator -> ":System": confirms the description
 loop until the administrator doesn't want to select more categories
 ":System" -> Administrator: shows a list of categories
 Administrator -> ":System": chooses a category within the list to be associated to the new test type
+":CreateTestTypeUI" -> Administrator: requests confirmation
+Administrator -> ":CreateTestTypeUI": confirms
 end loop
-":System" -> Administrator: shows the categories chosen and requests confirmation
-Administrator -> ":System": confirms the categories
 
 @enduml

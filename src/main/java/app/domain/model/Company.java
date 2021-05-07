@@ -9,19 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
 public class Company {
     private String designation;
     private AuthFacade authFacade;
     private TestTypeStore tts;
+    private List<Category> categoryList;
 
-    private List<Category> parameterCategoryList;
-
-
-    public Company(String designation)
-    {
+    public Company(String designation) {
         if (StringUtils.isBlank(designation))
             throw new IllegalArgumentException("Designation cannot be blank.");
         this.designation = designation;
@@ -38,25 +34,23 @@ public class Company {
     }
 
 
-
-    public Category createParameterCategory(String code, String description, String nhsId) {
+    public Category createCategory(String code, String description, String nhsId) {
         return new Category(code, description, nhsId);
     }
 
-    public boolean validateParameterCategory(Category pc) {
+    public boolean validateCategory(Category pc) {
         if (pc == null)
             return false;
-        return ! this.parameterCategoryList.contains(pc);
+        return !this.categoryList.contains(pc);
     }
 
-    public boolean saveParameterCategory(Category pc) {
-        if (!validateParameterCategory(pc))
+    public boolean saveCategory(Category pc) {
+        if (!validateCategory(pc))
             return false;
-        return this.parameterCategoryList.add(pc);
+        return this.categoryList.add(pc);
     }
 
     /**
-     *
      * getter used on US8
      */
     public ArrayList<TestType> getTestTypeList() {
@@ -67,10 +61,13 @@ public class Company {
         return tts;
     }
 
-    public boolean addClient(Client client){
-        String pass= ".";
-        authFacade.addUser(client.getName(),client.getEmail().toString(),pass);
+    public boolean addClient(Client client) {
+        String pass = ".";
+        authFacade.addUser(client.getName(), client.getEmail().toString(), pass);
         return true;
     }
 
+    public List<Category> getCategoryList() {
+        return this.categoryList;
+    }
 }
