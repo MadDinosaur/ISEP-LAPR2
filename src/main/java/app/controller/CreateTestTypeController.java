@@ -13,11 +13,11 @@ public class CreateTestTypeController {
 
 
     public void createTestType() {
-        this.tt = this.company.createTestType();
+        this.tt = this.company.getTestTypeStore().createTestType();
     }
 
     public void createCollectionMethod() {
-        this.cm = this.company.createCollectionMethod();
+        this.cm = this.company.getTestTypeStore().createCollectionMethod();
     }
 
     public void setDesignation(String designation) {
@@ -33,7 +33,7 @@ public class CreateTestTypeController {
     }
 
     public boolean saveTestType() {
-        return this.company.addTestType(tt);
+        return this.company.getTestTypeStore().addTestType(tt);
     }
 
     public void displayCategoryList() { //chamar o método do UI para dar display à categorylist
