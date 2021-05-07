@@ -1,7 +1,6 @@
 package app.domain.model;
 
 import app.domain.model.Exceptions.*;
-
 import java.util.ArrayList;
 
 public class ClinicalAnalysisLaboratory {
@@ -100,7 +99,7 @@ public class ClinicalAnalysisLaboratory {
      *
      * parameter validation according to us8 acceptance criteria
      */
-    public boolean validateName (String name) { return !(address == null || address.length() > 30); }
+    public static boolean validateName(String name) { return !(name == null || name.length() > 30); }
     public boolean validateAddress (String address) { return !(address == null || address.length() > 30); }
     public boolean validatePhoneNumber (long phonenumber) { return (phonenumber > 10000000000L && phonenumber < 99999999999L); }
     public boolean validateTIN (long TIN) { return (TIN > 1000000000 && TIN < 9999999999L); }
