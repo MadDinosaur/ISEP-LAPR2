@@ -1,4 +1,5 @@
 package app.domain.model;
+import app.controller.App;
 import app.controller.RegisterClientController;
 import app.domain.model.Exceptions.*;
 import auth.domain.model.Email;
@@ -28,7 +29,7 @@ public class Client {
         setTIN(TIN);
         setPhoneNumber(phoneNumber);
         setSex(sex);
-        clientUser = new User(email, pwd, name);
+
     }
 
     public void setName(String name) {
@@ -80,7 +81,14 @@ public class Client {
             throw new InvalidEmailException("Email already in use!");
         }
         this.email = email;
+    }
 
+    public Email getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
     }
 
     //Verify if equal in Company

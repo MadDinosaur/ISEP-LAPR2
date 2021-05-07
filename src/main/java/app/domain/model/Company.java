@@ -24,9 +24,9 @@ public class Company {
     {
         if (StringUtils.isBlank(designation))
             throw new IllegalArgumentException("Designation cannot be blank.");
-
         this.designation = designation;
         this.authFacade = new AuthFacade();
+
     }
 
     public String getDesignation() {
@@ -66,4 +66,11 @@ public class Company {
     public TestTypeStore getTestTypeStore() {
         return tts;
     }
+
+    public boolean addClient(Client client){
+        String pass= ".";
+        authFacade.addUser(client.getName(),client.getEmail().toString(),pass);
+        return true;
+    }
+
 }

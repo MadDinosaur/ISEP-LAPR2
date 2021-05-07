@@ -77,6 +77,7 @@ public class RegisterClientController {
     public void createClient(){
         String id =RegisterClientController.email.toString();
         RegisterClientController.newClient = new Client(RegisterClientController.name,RegisterClientController.cardNumber,RegisterClientController.nhsId,RegisterClientController.dateBirth,RegisterClientController.TIN,RegisterClientController.phoneNumber,RegisterClientController.email,RegisterClientController.sex);
+        App.getInstance().getCompany().addClient(newClient);
 
     }
 
