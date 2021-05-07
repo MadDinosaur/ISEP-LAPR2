@@ -8,10 +8,11 @@ actor Administrator
 Administrator -> ":CreateTestTypeUI": starts new test type
 ":CreateTestTypeUI" -> ":CreateTestTypeController": createTestType()
 ":CreateTestTypeUI" -> ":CreateTestTypeController": createCollectionMethod()
-":CreateTestTypeController" -> ":Company": tt = createTestType()
-":CreateTestTypeController" -> ":Company": cm = createCollectionMethod()
-":Company" -> ":TestType": createTestType()
-":Company" -> ":CollectionMethod": createCollectionMethod()
+":CreateTestTypeController" -> ":Company": store = getTestTypeStore()
+":CreateTestTypeController" -> ":TestTypeStore": tt = createTestType()
+":CreateTestTypeController" -> ":TestTypeStore": cm = createCollectionMethod()
+":TestTypeStore" -> ":TestType": createTestType()
+":TestTypeStore" -> ":CollectionMethod": createCollectionMethod()
 
 ":CreateTestTypeUI" -> Administrator: requests the designation
 Administrator -> ":CreateTestTypeUI": types the designation
@@ -23,7 +24,7 @@ Administrator -> ":CreateTestTypeUI": types the description
 ":CreateTestTypeController" -> ":CollectionMethod": setCollectionMethod(description)
 ":CreateTestTypeController" -> ":TestType": setCollectionMethodToTestType(cm)
 
-":Company" -> ":TestType": validate()
+":TestTypeStore" -> ":TestType": validate()
 ":TestType" -> ":TestType": validateAttributes()
 
 ":Company" -> ":CreateTestTypeController": getCategoryList()
@@ -38,8 +39,8 @@ Administrator -> ":CreateTestTypeUI": types the wanted categories
 Administrator -> ":CreateTestTypeUI": confirms the data
 ":CreateTestTypeUI" -> ":CreateTestTypeController": saveTestType()
 ":CreateTestTypeController" -> ":Company": saveTestType(tt)
-":Company" -> ":Company": validateTestType(tt)
-":Company" -> ":Company": addTestType(tt)
+":TestTypeStore" -> ":TestTypeStore": validateTestType(tt)
+":TestTypeStore" -> ":TestTypeStore": addTestType(tt)
 
 ":CreateTestTypeUI" -> Administrator: informs operation success
 
