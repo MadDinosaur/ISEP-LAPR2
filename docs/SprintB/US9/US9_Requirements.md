@@ -17,6 +17,8 @@
 In the US9 what do you mean by the collecting methods and  what collecting methods  are available??
 >When the administrator (US9) specifies a new type of test, the administrator also specifies the method to collect a sample. The administrator introduces a brief description for each collecting method.
 
+Should the collection method be associated to the test type or to the sample type?
+>With the test type.
 
 ### 1.3. Acceptance Criteria
 
