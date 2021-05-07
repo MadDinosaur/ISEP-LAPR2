@@ -11,18 +11,23 @@ class Parameter {
 +setShortName(shortName)
 +setCode(code)
 +setDescription(description)
-+setUpperLower(upperReferenceValue, lowerReferenceValue)
++setUpper(upperReferenceValue)
++setLower(lowerReferenceValue)
++getShortName()
++getCode()
++getDescription()
++setUpper(upperReferenceValue)
++setLower(lowerReferenceValue)
+
 }
 
 class CreateNewParameterUI{
-+parameterData(shortName, code, description, upperReferenceValue, lowerReferenceValue)
-+getCategoryList()
-+parameterCategory(category)
 }
 
 class CreateNewParameterController{
-+createNewParameter(shortName, code, description, upperReferenceValue,lowerReferenceValue)
++createNewParameter(shortName, code, description)
 +getCategoryList()
++saveParameter()
 }
 
 class Company{
@@ -35,9 +40,11 @@ class Category {
 -String code
 -String description
 -int nhsID
--ArrayList<Parameter>
+-ArrayList<Parameter> parameterList
 
-+saveParameter(newParameter)
++validateParameter(par)
++saveParameter(par)
++addParameter(par)
 }
 
 Administrator ...> CreateNewParameterUI

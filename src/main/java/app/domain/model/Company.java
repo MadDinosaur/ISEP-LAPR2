@@ -14,7 +14,6 @@ public class Company {
     private String designation;
     private AuthFacade authFacade;
     private ArrayList<TestType> testTypeList;
-
     private ArrayList<Category> categoryList;
 
     public Company(String designation)

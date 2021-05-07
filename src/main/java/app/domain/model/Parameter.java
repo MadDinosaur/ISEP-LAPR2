@@ -37,7 +37,7 @@ public class Parameter {
     /**
      * Contructor of the class
      */
-    public Parameter() {
+    public Parameter(String shortName, String code, String description) {
 
     }
 
@@ -144,8 +144,8 @@ public class Parameter {
                 "shortName='" + shortName + '\'' +
                 ", code='" + code + '\'' +
                 ", description='" + description + '\'' +
-                ", upperReferenceValue=" + upperReferenceValue +
-                ", lowerReferenceValue=" + lowerReferenceValue +
                 '}';
     }
+
+
 }

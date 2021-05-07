@@ -95,15 +95,25 @@ public class Category {
      * Sets the list of parameters that fall under the category
      * @param parameterList
      */
+
     public void setParameterList(ArrayList<Parameter> parameterList) {
         this.parameterList = parameterList;
     }
 
-    /**
-     * Adds a new parameter to the category
-     * @param newParameter
-     */
-    public void saveParameter(Parameter newParameter){
-        this.parameterList.add(newParameter);
+    public void createNewParameter(String shortName, String code, String description){
+        Parameter pc = new Parameter(shortName, code, description);
+    }
+
+    public boolean validateParameter(Parameter pc) {
+        if (pc == null)
+            return false;
+        return ! this.parameterList.contains(pc);
+    }
+
+
+    public boolean saveParameter(Parameter pc) {
+        if (!validateParameter(pc))
+            return false;
+        return this.parameterList.add(pc);
     }
 }

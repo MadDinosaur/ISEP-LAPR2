@@ -5,35 +5,29 @@ autonumber
 actor Administrator as admin
 participant ":createNewParameterUI" as UI
 participant ":createNewParameterController" as Controller
-participant ":Parameter" as param
 participant ":Category" as cat
+participant ":Parameter" as param
 participant ":Company" as comp
 
 admin -> UI: starts new parameter
-create Controller
-UI -> Controller: create
-UI -> Controller: createNewParameter()
-Controller -> param: parameter = createNewParameter()
-UI --> admin: requests parameter information (ie. name, code, description, reference values)
-admin -> UI: types in data
-UI --> admin: shows all typed data and asks for confirmation
-admin -> UI: confirms typed data
-UI -> Controller: setParameter(shortName, code, description, upperReferenceValue, lowerReferenceValue)
-Controller -> param: setShortName(shortName)
-Controller -> param: setCode(code)
-Controller -> param: setDescription(description)
-Controller -> param: setUpperLower(upperReferenceValue, lowerReferenceValue)
 UI -> Controller: getCategoryList()
 Controller -> comp: getCategoryList()
 comp -> Controller: categoryList
 Controller -> UI: categoryList
 UI --> admin: shows parameter category list and asks to pick the one that the new parameter falls under
 admin -> UI: picks the wanted parameter category
-UI -> Controller: setParameterCategory()
-Controller -> cat: setParameterCategory(newParameter)
-UI -> Controller: saveParameter()
-Controller -> cat: saveParameter(newParameter)
-
-
+UI --> admin: requests parameter information (ie. name, code, description)
+admin -> UI: types in data
+UI -> Controller: createNewParameter(shortName, code, description)
+Controller -> cat: par = createNewParameter(shortName, code, description)
+create param
+cat -> param: create(shortName, code, description)
+UI --> admin: shows all typed data and asks for confirmation
+admin -> UI: confirms typed data
+UI -> Controller: saveParameter(par)
+Controller -> cat: saveParameter(par)
+cat -> cat: validateParameter(par)
+cat -> cat: addParameter(par)
+UI --> admin: informs operation's success
 
 @enduml
