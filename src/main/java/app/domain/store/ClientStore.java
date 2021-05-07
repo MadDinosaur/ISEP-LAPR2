@@ -58,7 +58,7 @@ public class ClientStore {
     {
         return this.store.contains(client);
     }
-    public Optional<Client> getByTIN (int TIN){
+    public Optional<Client> getByTIN (long TIN){
         for(Client client: this.store)
         {
             if(client.hasTIN(TIN))
@@ -66,11 +66,11 @@ public class ClientStore {
         }
         return Optional.empty();
     }
-    public boolean existsTIN(int TIN){
+    public boolean existsTIN(long TIN){
         Optional<Client> result = getByTIN(TIN);
         return result.isPresent();
     }
-    public Optional<Client> getByCardNumber (int cardNumber){
+    public Optional<Client> getByCardNumber (long cardNumber){
         for(Client client: this.store)
         {
             if(client.hasCardNumber(cardNumber))
@@ -78,11 +78,11 @@ public class ClientStore {
         }
         return Optional.empty();
     }
-    public boolean existsCardNumber(int cardNumber){
+    public boolean existsCardNumber(long cardNumber){
         Optional<Client> result = getByCardNumber(cardNumber);
         return result.isPresent();
     }
-    public Optional<Client> getByNhsId (int nshId){
+    public Optional<Client> getByNhsId (long nshId){
         for(Client client: this.store)
         {
             if(client.hasNhsID(nshId))
@@ -90,11 +90,11 @@ public class ClientStore {
         }
         return Optional.empty();
     }
-    public boolean existsNhsId(int nhsId){
+    public boolean existsNhsId(long nhsId){
         Optional<Client> result = getByNhsId(nhsId);
         return result.isPresent();
     }
-    public Optional<Client> getByPhoneNumber (int phoneNumber){
+    public Optional<Client> getByPhoneNumber (long phoneNumber){
         for(Client client: this.store)
         {
             if(client.hasPhoneNumber(phoneNumber))
@@ -102,7 +102,7 @@ public class ClientStore {
         }
         return Optional.empty();
     }
-    public boolean existsPhoneNumber(int phoneNumber){
+    public boolean existsPhoneNumber(long phoneNumber){
         Optional<Client> result = getByPhoneNumber(phoneNumber);
         return result.isPresent();
     }
