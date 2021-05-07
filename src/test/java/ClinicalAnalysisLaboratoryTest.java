@@ -1,3 +1,5 @@
+package java;
+
 import app.domain.model.ClinicalAnalysisLaboratory;
 import org.junit.Test;
 
