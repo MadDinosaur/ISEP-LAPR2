@@ -40,17 +40,19 @@ class Category {
 }
 class Company {
 -String designation
--ArrayList<TestType> testTypeList
 -TestTypeStore tts
 +getCategoryList()
++getTestTypeStore()
 }
 
 class TestTypeStore {
+-ArrayList<TestType> testTypeList
 +createTestType()
 +createCollectionMethod()
 +validate()
 +validateTestType(tt)
 +addTestType(tt)
++getTestTypeList()
 }
 
 Administrator ..> CreateTestTypeUI

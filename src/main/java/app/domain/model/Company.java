@@ -1,6 +1,7 @@
 package app.domain.model;
 
 import app.domain.store.ClientStore;
+import app.domain.store.TestTypeStore;
 import auth.AuthFacade;
 import org.apache.commons.lang3.StringUtils;
 
@@ -14,7 +15,7 @@ import java.util.List;
 public class Company {
     private String designation;
     private AuthFacade authFacade;
-    private ArrayList<TestType> testTypeList;
+    private TestTypeStore tts;
 
     public static ClientStore listClients = new ClientStore();
     private List<Category> parameterCategoryList;
@@ -37,32 +38,7 @@ public class Company {
         return authFacade;
     }
 
-    public TestType createTestType() {
-        return new TestType();
-    }
 
-    public CollectionMethod createCollectionMethod() {
-        return new CollectionMethod();
-    }
-
-    public boolean validate(TestType tt) {
-        return tt.validateAttributes();
-    }
-
-    public boolean addTestType(TestType tt) {
-        if(!tt.validateAttributes() || !validateTestType(tt)) {   //ver isto crlh já me estou a passar
-            return false;                                         //vdd
-        } else {
-            return testTypeList.add(tt);
-        }
-    }
-    public boolean validateTestType(TestType tt) {
-        if (testTypeList.contains(tt)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
 
     public Category createParameterCategory(String code, String description, String nhsId) {
         return new Category(code, description, nhsId);
@@ -85,6 +61,10 @@ public class Company {
      * getter used on US8
      */
     public ArrayList<TestType> getTestTypeList() {
-        return testTypeList;
+        return getTestTypeStore().getTestTypeList();
+    }
+
+    public TestTypeStore getTestTypeStore() {
+        return tts;
     }
 }
