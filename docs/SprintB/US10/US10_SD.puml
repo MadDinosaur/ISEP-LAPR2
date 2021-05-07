@@ -33,7 +33,7 @@ Controller -> cat: setCategoryParameter(parameter)
 UI -> admin: shows all typed data and asks for confirmation
 admin -> UI: confirms typed data
 UI -> Controller: saveParameter()
-Controller -> param: saveParameter(parameter)
+Controller -> cat: saveParameter(parameter)
 
 
 @enduml

@@ -1,11 +1,8 @@
+package app.domain.model;
+
 public class CollectionMethod {
 
     private String description;
-
-
-    public CollectionMethod (String description) {
-        this.description = description;
-    }
 
     public String getDescription() {
         return description;

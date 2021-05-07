@@ -1,7 +1,5 @@
 @startuml
 
-skinparam classAttributeIconSize 0
-
 class Administrator
 class Parameter {
 -int code
@@ -10,10 +8,10 @@ class Parameter {
 -double upperReferenceValue
 -double lowerReferenceValue
 
-+validateShortName(shortName)
-+validateCode(code)
-+validateDescription(description)
-+validateUpperLower(upperReferenceValue, lowerReferenceValue)
++setShortName(shortName)
++setCode(code)
++setDescription(description)
++setUpperLower(upperReferenceValue, lowerReferenceValue)
 }
 
 class CreateNewParameterUI{
@@ -34,17 +32,23 @@ class CreateNewParameterController{
 class Company
 
 class Category {
--code
--description
--nhsID
+-String code
+-String description
+-int nhsID
 -ArrayList<Parameter>
 }
 
-Administrator ..> CreateNewParameterUI
-CreateNewParameterUI .> CreateNewParameterController
-CreateNewParameterController ...> Company
+class CatMapper{
+
++List<catDto> toDTO(List<Category> list)
++catDto toDTO(Category obj)
+}
+
+Administrator ...> CreateNewParameterUI
+CreateNewParameterUI ...> CreateNewParameterController
+CreateNewParameterController ...> Parameter
 Category "*"--"1" Parameter : presented under <
 Parameter "*"-up-"1" Administrator : specified by >
-Company"1   ‎"-"1..*"Administrator : > employs
+Company"1 "-"1..*" Administrator : > employs
 
 @enduml

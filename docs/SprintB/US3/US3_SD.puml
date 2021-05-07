@@ -1,7 +1,7 @@
 @startuml
 actor "Laboratory Receptionist" as LR
-participant ":CreateClientUI" as ui
-participant ":CreateClientController" as controller
+participant ":RegisterClientUI" as ui
+participant ":RegisterClientController" as controller
 participant "Client\n:Client" as clt
 
 

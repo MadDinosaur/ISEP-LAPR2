@@ -42,11 +42,13 @@ public class Password {
         return result.verified;
     }
 
+
+
     @Override
     public int hashCode()
     {
-        int hash = 7;
-        hash = 7 * hash + this.password.hashCode();
+        int hash = 10;
+        hash = 10 * hash + this.password.hashCode();
         return hash;
     }
 
