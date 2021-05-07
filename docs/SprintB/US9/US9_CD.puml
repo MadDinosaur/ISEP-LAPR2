@@ -41,12 +41,16 @@ class Category {
 class Company {
 -String designation
 -ArrayList<TestType> testTypeList
+-TestTypeStore tts
++getCategoryList()
+}
+
+class TestTypeStore {
 +createTestType()
 +createCollectionMethod()
 +validate()
 +validateTestType(tt)
 +addTestType(tt)
-+getCategoryList()
 }
 
 Administrator ..> CreateTestTypeUI
@@ -58,6 +62,6 @@ Company "1"-down-"*" TestType : conducts >
 CreateTestTypeController ..> Company
 CreateTestTypeController ..> TestType
 CreateTestTypeController ..> CollectionMethod
-
+Company ..> TestTypeStore
 
 @enduml

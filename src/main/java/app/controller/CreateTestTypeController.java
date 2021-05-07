@@ -4,6 +4,7 @@ import app.domain.model.Category;
 import app.domain.model.CollectionMethod;
 import app.domain.model.Company;
 import app.domain.model.TestType;
+import app.domain.store.TestTypeStore;
 
 public class CreateTestTypeController {
     private Company company;

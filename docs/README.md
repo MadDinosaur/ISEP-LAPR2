@@ -31,6 +31,8 @@ Throughout the project's development period, the distribution of _tasks / requir
 | US 2 (SDP Activities)  |  [1190002](SprintA/US2.md)   |    |   |  |
 | US 3 (SDP Activities)  |  [1190003](SprintA/US3.md)   |    |   |  |
 | US 4 (SDP Activities)  |  [1190004](SprintA/US4.md)   |    |   |  |
+| US 7 (SPD Activities)  |    | [1191507](SprintB/US7) | | | 
+| US 9 (SPD Activities)  |        | [1200985](SprintB/US9)    | | |
 | ...  |  ...   | ...   | ...  | ... |
 | US 326 (SDP Activities)  |    |    |   | [1190004](SprintA/US326.md) |
 
