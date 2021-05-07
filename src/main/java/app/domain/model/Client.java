@@ -1,4 +1,5 @@
 package app.domain.model;
+import app.controller.RegisterClientController;
 import app.domain.model.Exceptions.*;
 import auth.domain.model.Email;
 import auth.domain.model.Password;
@@ -35,14 +36,14 @@ public class Client {
     }
 
     public void setCardNumber(long cardNumber) {
-        if (Company.listClients.existsCardNumber(cardNumber)) {
+        if (RegisterClientController.listClients.existsCardNumber(cardNumber)) {
             throw new InvalidCardNumberException("Card Number already in use!");
         }
         this.cardNumber = cardNumber;
     }
 
     public void setNhsId(long nhsId) {
-        if (Company.listClients.existsNhsId(nhsId)) {
+        if (RegisterClientController.listClients.existsNhsId(nhsId)) {
             throw new InvalidNhsIdException("NHS Id already in use!");
         }
         this.nhsId = nhsId;
@@ -55,7 +56,7 @@ public class Client {
     }
 
     public void setTIN(long TIN) {
-        if (Company.listClients.existsTIN(TIN)) {
+        if (RegisterClientController.listClients.existsTIN(TIN)) {
             throw new InvalidTINException("TIN already in use!");
         }
         this.TIN = TIN;
@@ -63,7 +64,7 @@ public class Client {
     }
 
     public void setPhoneNumber(long phoneNumber) {
-        if (Company.listClients.existsPhoneNumber(phoneNumber)) {
+        if (RegisterClientController.listClients.existsPhoneNumber(phoneNumber)) {
             throw new InvalidPhoneNumberException("Phone Number alreay in use!");
         }
         this.phoneNumber = phoneNumber;
@@ -75,7 +76,7 @@ public class Client {
     }
 
     public void setEmail(Email email) {
-        if (Company.listClients.exists(email)) {
+        if (RegisterClientController.listClients.exists(email)) {
             throw new InvalidEmailException("Email already in use!");
         }
         this.email = email;

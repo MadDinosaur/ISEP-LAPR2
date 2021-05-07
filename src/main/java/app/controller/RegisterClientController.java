@@ -6,15 +6,11 @@ import app.domain.model.Exceptions.InvalidCardNumberException;
 import app.domain.model.Exceptions.InvalidNameException;
 import app.domain.model.Exceptions.InvalidNhsIdException;
 import app.domain.model.Exceptions.InvalidPhoneNumberException;
-import app.domain.model.listClients;
+import app.domain.store.ClientStore;
 import auth.domain.model.Email;
-import auth.domain.model.User;
-
-import javax.print.DocFlavor;
-import java.util.Date;
 
 public class RegisterClientController {
-
+    public static ClientStore listClients = new ClientStore();
     private static String name;
     private static long cardNumber;
     private static long nhsId;
@@ -24,6 +20,7 @@ public class RegisterClientController {
     private static Email email;
     private static String sex;
     private static String SEX_POR_OMISSAO = "No sex assigned";
+    private static Client newClient;
 
     public static void setSexOpcao(int opcao) {
         if (opcao == 1) {
@@ -79,11 +76,10 @@ public class RegisterClientController {
     }
     public void createClient(){
         String id =RegisterClientController.email.toString();
-        Client newClient = new Client(RegisterClientController.name,RegisterClientController.cardNumber,RegisterClientController.nhsId,RegisterClientController.dateBirth,RegisterClientController.TIN,RegisterClientController.phoneNumber,RegisterClientController.email,RegisterClientController.sex);
+        RegisterClientController.newClient = new Client(RegisterClientController.name,RegisterClientController.cardNumber,RegisterClientController.nhsId,RegisterClientController.dateBirth,RegisterClientController.TIN,RegisterClientController.phoneNumber,RegisterClientController.email,RegisterClientController.sex);
+
     }
-    public void addClientToStores(){
-        listClients.add
-    }
+
 }
 
 //add CLient to Cliente Store

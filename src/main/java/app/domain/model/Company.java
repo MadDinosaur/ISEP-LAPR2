@@ -17,7 +17,6 @@ public class Company {
     private AuthFacade authFacade;
     private TestTypeStore tts;
 
-    public static ClientStore listClients = new ClientStore();
     private List<Category> parameterCategoryList;
 
 
