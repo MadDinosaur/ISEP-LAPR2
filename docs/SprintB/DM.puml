@@ -88,7 +88,6 @@ class Sample {
 -dateCollection
 -timeCollection
 }
-class SampleType
 class SpecialistDoctor {
 -doctorIndexNumber
 }
@@ -115,7 +114,6 @@ Report "1"--"1" Diagnosis : contains >
 Report "1"--"1" TestResult : associated to >
 Sample "*"--"1" Client : associated to >
 Sample "*"--"1" Test : associated to >
-SampleType "1"--"1" Sample  : is of <
 SpecialistDoctor "1"--"*" Report : generates >
 Test "*"--"1" Client : requested by >
 Test "*"-up-"1" Company : performs <
@@ -139,6 +137,5 @@ Employee <|-right- SpecialistDoctor
 Company "1"--"1..*" Employee : has >
 Company "1"--"1..*" Client : has >
 Administrator "1"--"*" Employee : registers >
-SampleType "1"--"1..*" CollectionMethod : has >
-SampleType "1"--"1" TestType  : associated to <
+TestType "1"--"1" CollectionMethod : has a  >
 @enduml

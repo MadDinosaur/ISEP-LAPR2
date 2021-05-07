@@ -6,12 +6,12 @@ actor Administrator
 
 loop until the administrator doesn't want to specify any more parameters
 Administrator -> ":System": starts new parameter
-":System" -> Administrator: requests parameter information (ie. name, code, description, reference values)
+":System" -> Administrator: shows list of parameter categories and asks to choose the one the new parameter falls under
+Administrator -> ":System": selects the parameter's category
+":System" -> Administrator: requests parameter information (ie. name, code, description)
 Administrator -> ":System": types in data
 ":System" -> Administrator: shows all typed data and asks for confirmation
 Administrator -> ":System": confirms typed data
-":System" -> Administrator: shows list of parameter categories and asks to choose the one the new parameter falls under
-Administrator -> ":System": selects the parameter's category
 end loop
 ":System" -> Administrator: shows all parameters created and asks for confirmation
 Administrator -> ":System": confirms parameters
