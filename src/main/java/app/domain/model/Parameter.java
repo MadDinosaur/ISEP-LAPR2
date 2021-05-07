@@ -2,6 +2,7 @@ package app.domain.model;
 
 
 import app.domain.model.Exceptions.*;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -38,99 +39,33 @@ public class Parameter {
      * Contructor of the class
      */
     public Parameter(String shortName, String code, String description) {
-
+        checkNameRules(shortName);
+        checkCodeRules(code);
+        checkDescriptionRules(description);
+        this.shortName = shortName;
+        this.code = code;
+        this.description = description;
     }
 
-    /**
-     * Returns the name of the parameter
-     * @return parameter name
-     */
-    public String getShortName() {
-        return shortName;
+    private void checkNameRules(String shortName){
+        if (StringUtils.isBlank(shortName))
+            throw new IllegalArgumentException("Name cannot be blank.");
+        if ( (shortName.length() > 8))
+            throw new IllegalArgumentException("Name must have less than 8 chars.");
     }
 
-    /**
-     * Sets the name of the parameter
-     * @param shortName
-     */
-    public void setShortName(String shortName) {
-        if(shortName.length() <= 8){
-            this.shortName = shortName;
-        }else {
-            throw new InvalidParNameException("The parameter's name is invalid! The name can only have a maximum of 8 characters.");
-        }
+    private void checkCodeRules(String code){
+        if (StringUtils.isBlank(code))
+            throw new IllegalArgumentException("Code cannot be blank.");
+        if ( (code.length() != 5))
+            throw new IllegalArgumentException("Code must have 5 characters.");
     }
 
-    /**
-     * Returns the code of the parameter
-     * @return parameter code
-     */
-    public String getCode() {
-        return code;
-    }
-
-    /**
-     * Sets the code of the parameter
-     * @param code
-     */
-    public void setCode(String code) {
-        if(code.length() == 5){
-            this.code = code;
-        }else {
-            throw new InvalidParCodeException("The parameter's code is invalid! It should have 5 alphanumerical characters.");
-        }
-    }
-
-    /**
-     * Returns the description of the parameter
-     * @return parameter description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * Sets the description of the parameter
-     * @param description
-     */
-    public void setDescription(String description) {
-        if(description.length() <= 20){
-            this.description = description;
-        }else {
-            throw new InvalidParDescriptionException("The parameter's description is invalid! It can only have a maximum of 20 characters.");
-        }
-    }
-
-    /**
-     * Returns the upper reference value of the parameter
-     * @return parameter upper reference value
-     */
-    public double getUpperReferenceValue() {
-        return upperReferenceValue;
-    }
-
-    /**
-     * Sets the upper reference value of the parameter
-     * @param upperReferenceValue
-     */
-    public void setUpperReferenceValue(double upperReferenceValue) {
-        this.upperReferenceValue = upperReferenceValue;
-    }
-
-    /**
-     * returns the lower reference value of the parameter
-     * @return parameter lower reference value
-     */
-    public double getLowerReferenceValue() {
-        return lowerReferenceValue;
-    }
-
-    /**
-     * Sets the lower reference value of the parameter
-     * @param lowerReferenceValue
-     */
-    public void setLowerReferenceValue(double lowerReferenceValue) {
-        this.lowerReferenceValue = lowerReferenceValue;
+    private void checkDescriptionRules(String description){
+        if (StringUtils.isBlank(description))
+            throw new IllegalArgumentException("Description cannot be blank.");
+        if ( (description.length() > 20))
+            throw new IllegalArgumentException("Descriptiom must have less than 20 chars.");
     }
 
 
