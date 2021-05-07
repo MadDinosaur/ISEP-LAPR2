@@ -47,7 +47,7 @@ kind of test(s) it operates.
 * _**AC2**_ Laboratory's address should not have more than 30 characters.
 * _**AC3**_ Laboratory's phone number must be an 11-digit number.
 * _**AC4**_ Laboratory's TIN must be a 10-digit number.
-* _**AC5**_ Laboratory ID should contain exactly 5 alphanumeric characters.
+* _**AC5**_ Laboratory ID must contain exactly 5 alphanumeric characters.
 
 ### 1.4. Found out Dependencies
 
