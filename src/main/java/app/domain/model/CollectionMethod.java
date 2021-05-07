@@ -9,6 +9,7 @@ public class CollectionMethod {
     }
 
     public void setDescription(String description) {
+        if (description.equals(""))
         this.description = description;
     }
 

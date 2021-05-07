@@ -1,5 +1,3 @@
-package java;
-
 import app.domain.model.ClinicalAnalysisLaboratory;
 import app.domain.model.Exceptions.*;
 import org.junit.Test;
