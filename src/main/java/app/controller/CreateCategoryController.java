@@ -17,10 +17,10 @@ public class CreateCategoryController {
         this.pc = null;
     }
     public boolean createCategory(String code, String description, String nhsId) {
-        this.pc = this.company.createParameterCategory(code, description, nhsId);
-        return this.company.validateParameterCategory(pc);
+        this.pc = this.company.createCategory(code, description, nhsId);
+        return this.company.validateCategory(pc);
     }
     public boolean saveCategory() {
-        return this.company.saveParameterCategory(pc);
+        return this.company.saveCategory(pc);
     }
 }

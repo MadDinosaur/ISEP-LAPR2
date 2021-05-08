@@ -15,6 +15,11 @@ public class Category {
         this.description = description;
         this.nhsId = nhsId;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
     private void checkCodeRules(String code) {
         if (StringUtils.isBlank(code))
             throw new IllegalArgumentException("Code cannot be blank.");

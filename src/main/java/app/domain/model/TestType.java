@@ -10,7 +10,11 @@ public class TestType {
     private ArrayList<Category> categories;
 
     public void setDesignation(String designation) {
-        this.designation = designation;
+        if (designation.equals("")) {
+            throw new IllegalArgumentException("The designation introduced isn't valid.");
+        } else {
+            this.designation = designation;
+        }
     }
 
     public void setCollectionMethod(CollectionMethod collectionMethod) {
@@ -31,14 +35,6 @@ public class TestType {
 
     public ArrayList<Category> getCategories() {
         return categories;
-    }
-
-    public boolean validateAttributes() {
-        if (designation.equals("") || collectionMethod.getDescription().equals("") || categories.isEmpty()) {
-            throw new IllegalArgumentException("One or more of the test type's attributes are not valid");
-        } else {
-            return true;
-        }
     }
 
     @Override
