@@ -4,6 +4,7 @@ import app.domain.model.Category;
 import app.domain.model.Company;
 import app.domain.model.Parameter;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class CreateNewParameterController {
@@ -37,4 +38,20 @@ public class CreateNewParameterController {
         return this.pc.saveParameter(par);
     }
 
+    public List<Category> getCategoryList(){
+        return company.getCategoryList();
+    }
+
+    public String getCategoryName() {
+        Iterator<Category> iterator = company.getCategoryList().iterator();
+        while (iterator.hasNext()) {
+            Category cat = iterator.next();
+            return cat.getName();
+        }
+        return null;
+    }
+
+    public Category getCategory(){
+        return pc;
+    }
 }

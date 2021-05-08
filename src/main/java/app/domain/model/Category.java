@@ -75,6 +75,10 @@ public class Category {
         return ! this.parameterList.contains(par);
     }
 
+    public String getName() {
+        return name;
+    }
+
     public List<Parameter> getParameterList(){
         return parameterList;
     }
