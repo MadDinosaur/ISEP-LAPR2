@@ -1,8 +1,9 @@
 package app.domain.model;
 
 import app.domain.model.Exceptions.*;
+import auth.domain.model.User;
 
-public class Employee implements User{
+public class Employee {
     private String id;
     private String name;
     private String address;

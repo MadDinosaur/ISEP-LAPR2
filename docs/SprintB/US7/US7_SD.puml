@@ -44,7 +44,7 @@ controller -> company : empStore = getEmployeeStore()
 controller -> es : **27** saveEmployee(e)
 es -> es : **28** validateEmployee(e)
 es -> es : **29** addEmployee(e)
-controller -> company : saveUser(e)
+controller -> company : saveEmployeeAsUser(e)
 company -> company : **30** pwd = generateUserPassword()
 company -> auth : **30** addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId())
 ui --> admin : **30** informs operation success

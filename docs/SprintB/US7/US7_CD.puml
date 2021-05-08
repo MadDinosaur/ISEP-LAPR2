@@ -12,7 +12,7 @@ class Company {
 {field} designation
 {method} getOrgRoleStore()
 {method} getEmployeeStore()
-{method} saveUser(user)
+{method} saveEmployeeAsUser(user)
 {method} generateUserPassword()
 }
 class EmployeeStore {
