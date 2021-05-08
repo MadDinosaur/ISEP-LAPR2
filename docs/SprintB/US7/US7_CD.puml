@@ -10,13 +10,14 @@ class CreateEmployeeController {
 }
 class Company {
 {field} designation
-{field} employees
-{field} organizationRoles
+{field} employeeList
+{field} rolesList
 {method} getRoles()
 {method} createEmployee(roleId)
 {method} setEmployeeData(name, address, phoneNumber, email)
 {method} setEmployeeData(name, address, phoneNumber, email, DIN)
 {method} saveEmployee(employee)
+{method} addEmployee(employee)
 {method} validateEmployee(employee)
 {method} generateEmployeePassword()
 }

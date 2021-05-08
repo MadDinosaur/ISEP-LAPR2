@@ -14,14 +14,12 @@ ui -> controller : **3** getRoles()
 controller -> company : **4** getRoles()
 ui --> admin : **5** requests employee role
 admin -> ui : **6** selects requested data
-ui -> controller : **7** createEmployee(role)
-controller -> company : **8** e = createEmployee(role)
+ui --> admin : **7** requests employee information (ie. name, address, phone number, e-mail, **optional** DIN)
+admin -> ui : **8** types requested data
+ui -> controller : **9** createEmployee(role, name, address, phoneNumber, email, **optional** DIN)
+controller -> company : **8** e = createEmployee(role, name, address, phoneNumber, email, **optional** DIN)
 create employee
-company -> employee : **9** create(role)
-create role
-employee -> role : **10** create()
-ui --> admin : **10** requests employee information (ie. name, address, phone number, e-mail, **optional** DIN)
-admin -> ui : **11** types requested data
+company -> employee : **9** create(role, name, address, phoneNumber, email, **optional** DIN)
 ui -> controller : **12** setEmployeeData(name, address, phoneNumber, email, **optional** DIN)
 controller -> employee : **13** setName(name)
 employee -> employee : **14** validateName(name)

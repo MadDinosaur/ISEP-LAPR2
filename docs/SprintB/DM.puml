@@ -91,6 +91,7 @@ class Sample {
 class SpecialistDoctor {
 -doctorIndexNumber
 }
+class OrganizationRole
 
 Administrator "1"--"*" Category : created by <
 ChemicalLaboratory "1"--"*" Sample : analyses >
@@ -128,12 +129,13 @@ TestResult "*"--"1" ClinicalChemistryTechnologist : generates <
 TestResult "1"--"*" ParameterResult : has >
 TestType "*"--"1" Administrator : created by >
 TestType "1"--"1..*" Parameter : has >
-Employee <|-down- Administrator
-Employee <|-down- ClinicalChemistryTechnologist
-Employee <|-down- MedicalLabTechnician
-Employee <|-down- LaboratoryCoordinator
-Employee <|-down- Receptionist
-Employee <|-right- SpecialistDoctor
+OrganizationRole "0..*"--"1" Administrator : has >
+OrganizationRole "0..*"--"1" ClinicalChemistryTechnologist : has >
+OrganizationRole "0..*"--"1" MedicalLabTechnician : has >
+OrganizationRole "0..*"--"1" LaboratoryCoordinator : has >
+OrganizationRole "0..*"--"1" Receptionist : has >
+Employee <|-- SpecialistDoctor
+Employee -- OrganizationRole : has >
 Company "1"--"1..*" Employee : has >
 Company "1"--"1..*" Client : has >
 Administrator "1"--"*" Employee : registers >
