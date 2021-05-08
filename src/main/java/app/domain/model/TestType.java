@@ -9,6 +9,10 @@ public class TestType {
     private CollectionMethod collectionMethod;
     private ArrayList<Category> categories;
 
+    public TestType() {
+
+    }
+
     public void setDesignation(String designation) {
         if (designation.equals("")) {
             throw new IllegalArgumentException("The designation introduced isn't valid.");

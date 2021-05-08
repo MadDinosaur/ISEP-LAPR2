@@ -4,6 +4,10 @@ public class CollectionMethod {
 
     private String description;
 
+    public CollectionMethod() {
+
+    }
+
     public String getDescription() {
         return description;
     }

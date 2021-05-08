@@ -28,7 +28,7 @@ public class Company {
     private EmployeeStore employeeStore = new EmployeeStore();
     private OrgRoleStore orgRoleStore = new OrgRoleStore();
     private List<Category> parameterCategoryList;
-    private TestTypeStore tts;
+    private TestTypeStore tts = new TestTypeStore();
     private List<Category> categoryList;
 
     public Company(String designation) {

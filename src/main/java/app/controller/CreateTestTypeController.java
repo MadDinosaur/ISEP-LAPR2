@@ -12,6 +12,10 @@ public class CreateTestTypeController {
     private TestType tt;
     private CollectionMethod cm;
 
+    public CreateTestTypeController() {
+
+    }
+
 
     public void createTestType() {
         this.tt = this.company.getTestTypeStore().createTestType();
