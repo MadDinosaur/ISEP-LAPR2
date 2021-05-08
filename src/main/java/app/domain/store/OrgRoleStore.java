@@ -9,16 +9,16 @@ import java.util.stream.Collectors;
 public class OrgRoleStore {
     private ArrayList<OrganizationRole> rolesList;
 
-    public List<String> getRoles() {
+    public List<String> getOrganizationRoles() {
         List<String> toString = rolesList.stream()
                 .map(role -> String.valueOf(role))
                 .collect(Collectors.toList());
         return toString;
     }
 
-    public OrganizationRole getRole(String description) {
+    public OrganizationRole getOrganizationRole(String description) {
         for (OrganizationRole role : rolesList) {
-            if (role.getDescription().equals(description)) {
+            if (role.getDescription().equalsIgnoreCase(description)) {
                 return role;
             }
         }

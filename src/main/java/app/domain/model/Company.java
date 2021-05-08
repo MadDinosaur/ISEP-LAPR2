@@ -39,9 +39,6 @@ public class Company {
         this.authFacade = new AuthFacade();
 
     }
-    public EmployeeStore getEmployeeStore() {
-        return this.employeeStore;
-    }
 
     public String getDesignation() {
         return designation;
@@ -50,7 +47,6 @@ public class Company {
     public AuthFacade getAuthFacade() {
         return authFacade;
     }
-
 
     public Category createCategory(String code, String description, String nhsId) {
         return new Category(code, description, nhsId);
@@ -90,9 +86,16 @@ public class Company {
         return this.categoryList;
     }
 
+    public EmployeeStore getEmployeeStore() {
+        return this.employeeStore;
+    }
 
+    public OrgRoleStore getOrgRoleStore() { return this.orgRoleStore;}
 
-
+    public boolean saveUser(User user) {
+        String pwd = generateUserPassword();
+        return authFacade.addUserWithRole(user.getName(), user.getEmail(), pwd, user.getRoleId());
+    }
 
     private String generateUserPassword() {
         int leftLimit = 48; // numeral '0'
