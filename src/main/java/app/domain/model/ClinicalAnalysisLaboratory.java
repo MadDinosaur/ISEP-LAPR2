@@ -1,6 +1,7 @@
 package app.domain.model;
 
 import app.domain.model.Exceptions.*;
+
 import java.util.ArrayList;
 
 public class ClinicalAnalysisLaboratory {
@@ -83,7 +84,6 @@ public class ClinicalAnalysisLaboratory {
 
     public void setTestTypeList(ArrayList<TestType> testTypeList) {
         this.testTypeList = testTypeList;
-        System.out.println(testTypeList);
     }
 
     /**

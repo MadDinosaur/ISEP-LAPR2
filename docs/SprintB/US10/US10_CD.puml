@@ -8,45 +8,42 @@ class Parameter {
 -double upperReferenceValue
 -double lowerReferenceValue
 
-+setShortName(shortName)
-+setCode(code)
-+setDescription(description)
-+setUpperLower(upperReferenceValue, lowerReferenceValue)
++Parameter(shortName, code, description)
 }
 
 class CreateNewParameterUI{
-+parameterData(shortName, code, description, upperReferenceValue, lowerReferenceValue)
-+parameterCategory(category)
 }
 
 class CreateNewParameterController{
 
++getCategoryList()
 +createNewParameter()
-+setShortName(shortName)
-+setCode(code)
-+setDescription(description)
-+setUpperLower(upperReferenceValue, lowerReferenceValue)
 +saveParameter(category)
 }
 
-class Company
+class Company{
+-String designation
+-List<Category> parameterCategoryList
+
++getCategoryList()
+}
 
 class Category {
 -String code
 -String description
 -int nhsID
--ArrayList<Parameter>
+-List<Parameter> parameterList
+
++saveParameter(par)
++validateParameter(par)
++addParameter(par)
 }
 
-class CatMapper{
-
-+List<catDto> toDTO(List<Category> list)
-+catDto toDTO(Category obj)
-}
 
 Administrator ...> CreateNewParameterUI
 CreateNewParameterUI ...> CreateNewParameterController
-CreateNewParameterController ...> Parameter
+CreateNewParameterController ...> Category
+CreateNewParameterController ...> Company
 Category "*"--"1" Parameter : presented under <
 Parameter "*"-up-"1" Administrator : specified by >
 Company"1 "-"1..*" Administrator : > employs
