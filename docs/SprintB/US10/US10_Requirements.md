@@ -1,4 +1,4 @@
-# US 7 -  Specify a new employee
+# US 10 -  Specify a new employee
 
 ## 1. Requirements Engineering
 
@@ -6,7 +6,7 @@
 
 As an administrator, I want to specify a new parameter and categorize it.
 
-### 1.2. Customer Specifications and Clarifications 
+### 1.2. Customer Specifications and Clarifications
 
 ####From the specifications document
 
@@ -52,17 +52,11 @@ As an administrator, I want to specify a new parameter and categorize it.
 
 ## 2. OO Analysis
 
-### 2.1. Relevant Domain Model Excerpt 
+### 2.1. Relevant Domain Model Excerpt
 
 ![US10-DM](US10_DM.svg)
 
-### 2.2. Other Remarks
-
-*Use this section to capture some aditional notes/remarks that must be taken into consideration into the design activity. In some case, it might be usefull to add other analysis artifacts (e.g. activity or state diagrams).* 
-
-
-
-## 3. Design - User Story Realization 
+## 3. Design - User Story Realization
 
 ### 3.1. Rationale
 
@@ -70,27 +64,27 @@ As an administrator, I want to specify a new parameter and categorize it.
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:---------------------|:------------|:---------------------------- |
-| Step 1: Start a new parameter |	... instantiating a new Parameter? | Company | Creator: aggregates objects of Parameter class |
-| Step 2: Request the data for the new parameter  |	... typing in the data? | Administrator |  |
-| Step 3: Types in requested data | ... saving the typed data?<br>...validating the input? | Parameter | IE: knows its own data |
-| Step 4: Shows the data and asks for confirmation | N/A |  |  |
-| Step 5: Confirms typed data | N/A |  |  |
-| Step 6: Shows list of parameter categories and asks to choose the one the new parameter falls under |  |  |  |
-| Step 7: selects the parameter's category | ... saving selected data? |  |  |
-| Step 8: shows all parameters created and asks for confirmation |  |  |  |
-| Step 9: confirms parameters | ... saving new parameters? |  |  |
-| Step 10: informs the operation's success |  |  |  |
+| Step 1: Start a new parameter |	... instantiating a new Parameter? | Category | Creator: aggregates objects of Parameter class |
+| Step 2: Shows list of parameter categories and asks to choose the one the new parameter falls under | ... getting the list of parameter categories available? | Company | IE: knows all the Category objects |
+| Step 3: selects the parameter's category | N/A |  |  |
+| Step 4: Requests the data for the new parameter  | N/A |  |  |
+| Step 5: Types in requested data | N/A |  |  |
+| Step 6: Shows the data and asks for confirmation | N/A |  |  |
+| Step 7: Confirms typed data | ... validating and saving the typed data? | Category | IE: knows its own parameters |
+| Step 8: informs the operation's success | ... informing operations success? | CreateNewParameterUI | PF: responsible for user interaction |
 
 
 ### Systematization ##
 
-According to the taken rationale, the conceptual classes promoted to software classes are: 
+According to the taken rationale, the conceptual classes promoted to software classes are:
 
- * 
+* **Company**
+* **Category**
+* **Parameter**
 
-Other software classes (i.e. Pure Fabrication) identified: 
- * CreateNewParameterUI  
- * CreateNewParameterController
+Other software classes (i.e. Pure Fabrication) identified:
+* CreateNewParameterUI
+* CreateNewParameterController
 
 ## 3.2. Sequence Diagram (SD)
 
@@ -100,27 +94,27 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 ![US10-CD](US10_CD.svg)
 
-# 4. Tests 
-*In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.* 
+# 4. Tests
+*In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.*
 
 **_DO NOT COPY ALL DEVELOPED TESTS HERE_**
 
-**Test 1:** Check that it is not possible to create an instance of the Example class with null values. 
+**Test 1:** Check that it is not possible to create an instance of the Example class with null values.
 
 	@Test(expected = IllegalArgumentException.class)
 		public void ensureNullIsNotAllowed() {
 		Exemplo instance = new Exemplo(null, null);
 	}
 
-*It is also recommended to organize this content by subsections.* 
+*It is also recommended to organize this content by subsections.*
 
 # 5. Construction (Implementation)
 
 *In this section, it is suggested to provide, if necessary, some evidence that the construction/implementation is in accordance with the previously carried out design. Furthermore, it is recommeded to mention/describe the existence of other relevant (e.g. configuration) files and highlight relevant commits.*
 
-*It is also recommended to organize this content by subsections.* 
+*It is also recommended to organize this content by subsections.*
 
-# 6. Integration and Demo 
+# 6. Integration and Demo
 
 *In this section, it is suggested to describe the efforts made to integrate this functionality with the other features of the system.*
 

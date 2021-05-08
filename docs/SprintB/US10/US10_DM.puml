@@ -12,6 +12,7 @@ class Parameter {
 }
 
 class Category {
+-name
 -code
 -description
 -nhsID

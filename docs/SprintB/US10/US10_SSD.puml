@@ -13,8 +13,6 @@ Administrator -> ":System": types in data
 ":System" -> Administrator: shows all typed data and asks for confirmation
 Administrator -> ":System": confirms typed data
 end loop
-":System" -> Administrator: shows all parameters created and asks for confirmation
-Administrator -> ":System": confirms parameters
 ":System" -> Administrator: informs the operation's success
 
 @enduml
