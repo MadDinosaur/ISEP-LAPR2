@@ -6,11 +6,11 @@ import app.domain.model.TestType;
 
 import java.util.ArrayList;
 
-public class CreateNewLabController {
+public class RegisterNewLabController {
     private ClinicalAnalysisLaboratory newlab = new ClinicalAnalysisLaboratory();
     private Company company;
 
-    public void createNewLab() {
+    public void RegisterNewLab() {
 
     }
 

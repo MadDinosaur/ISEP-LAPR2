@@ -1,14 +1,14 @@
 package app.ui.console;
 
-import app.controller.CreateNewLabController;
+import app.controller.RegisterNewLabController;
 import app.domain.model.TestType;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class CreateNewLabUI implements Runnable {
+public class RegisterNewLabUI implements Runnable {
     static Scanner input = new Scanner(System.in);
-    private CreateNewLabController CNLC = new CreateNewLabController();
+    private RegisterNewLabController CNLC = new RegisterNewLabController();
 
     public void run(){
         System.out.println("Creating a new clinical analysis laboratory...");

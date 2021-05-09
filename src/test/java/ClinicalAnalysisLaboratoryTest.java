@@ -3,6 +3,10 @@ import app.domain.model.Exceptions.*;
 import org.junit.Test;
 
 public class ClinicalAnalysisLaboratoryTest {
+
+    /**
+     * Name test
+     */
     @Test(expected = InvalidNameException.class)
     public void testEmptyName() {
         String name = "";
@@ -17,8 +21,11 @@ public class ClinicalAnalysisLaboratoryTest {
         newLab.setName(name);
     }
 
+    /**
+     * Address test
+     */
     @Test(expected = InvalidAddressException.class)
-    public void testEmptyAdress() {
+    public void testEmptyAddress() {
         String address = "";
         ClinicalAnalysisLaboratory newLab = new ClinicalAnalysisLaboratory();
         newLab.setAddress(address);
@@ -31,6 +38,9 @@ public class ClinicalAnalysisLaboratoryTest {
         newLab.setAddress(address);
     }
 
+    /**
+     * Phone Number test
+     */
     @Test(expected = InvalidPhoneNumberException.class)
     public void testPhoneNumber() {
         long phonenumber = 0;
@@ -44,6 +54,10 @@ public class ClinicalAnalysisLaboratoryTest {
         ClinicalAnalysisLaboratory newLab = new ClinicalAnalysisLaboratory();
         newLab.setPhoneNumber(phonenumber);
     }
+
+    /**
+     * Tax Identification Number test
+     */
     @Test(expected = InvalidTINException.class)
     public void testTIN() {
         long TIN = 0;
@@ -56,6 +70,16 @@ public class ClinicalAnalysisLaboratoryTest {
         long TIN = 10000000000L;
         ClinicalAnalysisLaboratory newLab = new ClinicalAnalysisLaboratory();
         newLab.setTIN(TIN);
+    }
+
+    /**
+     * labID test
+     */
+    @Test
+    public void testValidLabID() {
+        String labID = "xd123";
+        ClinicalAnalysisLaboratory newlab = new ClinicalAnalysisLaboratory();
+        newlab.setLaboratoryID(labID);
     }
 
     @Test(expected = InvalidLaboratoryIDException.class)
