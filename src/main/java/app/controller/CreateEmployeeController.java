@@ -18,14 +18,16 @@ public class CreateEmployeeController {
     }
 
     public void createEmployee(String role, String name, String address, String phoneNumber, String email, String soc) {
-        employee = company.getOrgRoleStore().getOrganizationRole(role).createEmployee(name, address, phoneNumber, email, soc);
+        String id = company.getEmployeeStore().generateEmployeeId(name);
+        employee = company.getOrgRoleStore().createEmployee(role, id, name, address, phoneNumber, email, soc);
     }
 
     public void createEmployee(String role, String name, String address, String phoneNumber, String email, String soc, String DIN) {
-        employee = company.getOrgRoleStore().getOrganizationRole(role).createEmployee(name, address, phoneNumber, email, soc, DIN);
+        String id = company.getEmployeeStore().generateEmployeeId(name);
+        employee = company.getOrgRoleStore().createEmployee(role, id, name, address, phoneNumber, email, soc, DIN);
     }
 
     public boolean saveEmployee() {
-        return company.getEmployeeStore().saveEmployee(employee);
+        return company.getEmployeeStore().saveEmployee(employee) && company.saveEmployeeAsUser(employee);
     }
 }

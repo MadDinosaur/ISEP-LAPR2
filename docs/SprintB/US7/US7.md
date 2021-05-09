@@ -174,19 +174,55 @@ Other software classes identified:
 ![US7-CD](US7_CD.svg)
 
 # 4. Tests 
-*In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.* 
+Tests were conducted on critical class methods such as *createEmployee* and *saveEmployee*, which manage many private (and smaller) function calls.
 
-**_DO NOT COPY ALL DEVELOPED TESTS HERE_**
+## 4.1. createEmployee
+**Test 1:** Check that it is not possible to create an instance of the Employee class with null values. 
 
-**Test 1:** Check that it is not possible to create an instance of the Example class with null values. 
+	@Test (expected = IllegalArgumentException.class)
+    public void createEmployeeNull() {
+        orgRoleTest.createEmployee(null, null, null, null, null, null,null);
+    }
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Exemplo instance = new Exemplo(null, null);
-	}
+**Test 2:** Check that it is not possible to create an instance of the Employee class with an invalid email.
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void createEmployeeInvalidEmail() {
+    orgRoleTest.createEmployee(validId, validName, validAddress, validPhoneNumber, "email", validSocCode);
+    }
 
-*It is also recommended to organize this content by subsections.* 
+## 4.2. saveEmployee
+**Test 1:** Check that it is not possible to save an Employee which already exists.
 
+    @Test
+    public void saveEmployeeDuplicate() {
+    boolean exceptionFlag;
+    
+    Employee e = new Employee(validId, validRole, validName, validAddress, validEmail, validPhoneNumber, validSocCode);
+    Assert.assertTrue(es.saveEmployee(e));
+    //Same Employee
+    try {exceptionFlag = false; es.saveEmployee(e);} catch (InvalidEmployeeException ex) {exceptionFlag = true;}
+    Assert.assertTrue(exceptionFlag);
+
+    //Same e-mail
+    Employee e2 = new Employee("another id", validRole, "another name", "another address", validEmail, "987654321", "4321");
+    try {exceptionFlag = false; es.saveEmployee(e2);} catch (InvalidEmployeeException ex) {exceptionFlag = true;}
+    Assert.assertTrue(exceptionFlag);
+
+    //Same phone number
+    Employee e3 = new Employee("another id", validRole, "another name", "another address", "another@email.com", validPhoneNumber, "4321");
+    try {exceptionFlag = false; es.saveEmployee(e3);} catch (InvalidEmployeeException ex) {exceptionFlag = true;}
+    Assert.assertTrue(exceptionFlag);
+
+    //Same name and address
+    Employee e4 = new Employee("another id", validRole, validName, validAddress, "another@email.com", "987654321", "4321");
+    try {exceptionFlag = false; es.saveEmployee(e4);} catch (InvalidEmployeeException ex) {exceptionFlag = true;}
+    Assert.assertTrue(exceptionFlag);
+
+    //Different Employee
+    Employee e5 = new Employee("another id", validRole, "another name", "another address", "another@email.com", "987654321", "4321");
+    Assert.assertTrue(es.saveEmployee(e5));
+    }
 # 5. Construction (Implementation)
 
 *In this section, it is suggested to provide, if necessary, some evidence that the construction/implementation is in accordance with the previously carried out design. Furthermore, it is recommeded to mention/describe the existence of other relevant (e.g. configuration) files and highlight relevant commits.*

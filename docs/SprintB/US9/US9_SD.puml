@@ -5,61 +5,112 @@ autonumber
 
 actor Administrator
 
+activate Administrator
 Administrator -> ":CreateTestTypeUI": starts new test type
+activate ":CreateTestTypeUI"
 ":CreateTestTypeUI" -> ":CreateTestTypeController": createTestType()
 ":CreateTestTypeUI" -> ":CreateTestTypeController": createCollectionMethod()
+deactivate ":CreateTestTypeUI"
+activate ":CreateTestTypeController"
 ":CreateTestTypeController" -> ":Company": store = getTestTypeStore()
 ":CreateTestTypeController" -> ":TestTypeStore": tt = createTestType()
 ":CreateTestTypeController" -> ":TestTypeStore": cm = createCollectionMethod()
+deactivate ":CreateTestTypeController"
+activate ":TestTypeStore"
 ":TestTypeStore" -> ":TestType": createTestType()
 ":TestTypeStore" -> ":CollectionMethod": createCollectionMethod()
+deactivate ":TestTypeStore"
 
+activate ":CreateTestTypeUI"
 ":CreateTestTypeUI" -> Administrator: requests the code
 Administrator -> ":CreateTestTypeUI": types the code
 ":CreateTestTypeUI" -> Administrator: requests confirmation
 Administrator -> ":CreateTestTypeUI": confirms
 
 ":CreateTestTypeUI" -> ":CreateTestTypeController": setCode(String code)
+deactivate ":CreateTestTypeUI"
+activate ":CreateTestTypeController"
 ":CreateTestTypeController" -> ":TestType": setCode(String code)
+deactivate ":CreateTestTypeController"
+activate ":TestType"
 ":TestType" -> ":TestType": validateCode(String designation)
+deactivate ":TestType"
 
+activate ":CreateTestTypeUI"
 ":CreateTestTypeUI" -> Administrator: requests the description
 Administrator -> ":CreateTestTypeUI": types the description
 ":CreateTestTypeUI" -> Administrator: requests confirmation
 Administrator -> ":CreateTestTypeUI": confirms
-
 ":CreateTestTypeUI" -> ":CreateTestTypeController": setTestTypeDescription(designation)
-":CreateTestTypeController" -> ":TestType": setDescription(description)
-":TestType" -> ":TestType": validateDescription(String description)
+deactivate ":CreateTestTypeUI"
 
+activate ":CreateTestTypeController"
+":CreateTestTypeController" -> ":TestType": setDescription(description)
+deactivate ":CreateTestTypeController"
+activate ":TestType"
+":TestType" -> ":TestType": validateDescription(String description)
+deactivate ":TestType"
+
+activate ":CreateTestTypeUI"
 ":CreateTestTypeUI" -> Administrator: requests the description of the collection method
 Administrator -> ":CreateTestTypeUI": types the description
 ":CreateTestTypeUI" -> Administrator: requests confirmation
 Administrator -> ":CreateTestTypeUI": confirms
-
 ":CreateTestTypeUI" -> ":CreateTestTypeController": setDescription(description)
+deactivate ":CreateTestTypeUI"
 
+activate ":CreateTestTypeController"
 ":CreateTestTypeController" -> ":CollectionMethod": setCollectionMethod(description)
+deactivate ":CreateTestTypeController"
+
+activate ":CollectionMethod"
 ":CollectionMethod" -> ":CollectionMethod": validateDescription(String description)
+deactivate ":CollectionMethod"
+
+activate ":CreateTestTypeController"
 ":CreateTestTypeController" -> ":TestType": setCollectionMethodToTestType(cm)
+deactivate ":CreateTestTypeController"
 
+activate ":Company"
 ":Company" -> ":CreateTestTypeController": getCategoryList()
+deactivate ":Company"
+activate ":CreateTestTypeController"
 ":CreateTestTypeController" -> ":CreateTestTypeUI": displayCategoryList()
+deactivate ":CreateTestTypeController"
 
+activate ":CreateTestTypeUI"
 ":CreateTestTypeUI" -> Administrator: shows and requests the categories
 Administrator -> ":CreateTestTypeUI": types the wanted categories
 ":CreateTestTypeUI" -> Administrator: requests confirmation
 Administrator -> ":CreateTestTypeUI": confirms
-
 ":CreateTestTypeUI" -> ":CreateTestTypeController": setCategories()
+deactivate ":CreateTestTypeUI"
+
+activate ":CreateTestTypeController"
 ":CreateTestTypeController" -> ":TestType": setCategoriesToTestType(categories)
+deactivate ":CreateTestTypeController"
+
+activate ":TestType"
 ":TestType" -> ":TestType": validateCategory(Category category)
+deactivate ":TestType"
+
+activate ":CreateTestTypeUI"
 ":CreateTestTypeUI" -> ":CreateTestTypeController": saveTestType()
+deactivate ":CreateTestTypeUI"
+
+activate ":CreateTestTypeController"
 ":CreateTestTypeController" -> ":Company": saveTestType()
+deactivate ":CreateTestTypeController"
+activate ":TestTypeStore"
 ":TestTypeStore" -> ":TestTypeStore": validateTestType(tt)
 ":TestTypeStore" -> ":TestTypeStore": addTestType(tt)
+deactivate ":TestTypeStore"
 
+activate ":CreateTestTypeUI"
 ":CreateTestTypeUI" -> Administrator: informs operation success
+deactivate ":CreateTestTypeUI"
+
+deactivate Administrator
 
 
 

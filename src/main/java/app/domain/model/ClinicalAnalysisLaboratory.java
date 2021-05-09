@@ -10,7 +10,7 @@ public class ClinicalAnalysisLaboratory {
     private long phonenumber;
     private long TIN;
     private String laboratoryID;
-    private ArrayList<TestType> testTypeList;
+    private ArrayList<TestType> testTypeList = new ArrayList<>();
 
 /*
     private static final String NO_NAME = "";
@@ -106,5 +106,5 @@ public class ClinicalAnalysisLaboratory {
     public boolean validateAddress (String address) { return (address == null || address.isEmpty() || address.length() > 30); }
     public boolean validatePhoneNumber (long phonenumber) { return (phonenumber > 10000000000L && phonenumber < 99999999999L); }
     public boolean validateTIN (long TIN) { return (TIN > 1000000000 && TIN < 9999999999L); }
-    public boolean validateLaboratoryID (String laboratoryID) { return (laboratoryID == null || laboratoryID.length() != 5); }
+    public boolean validateLaboratoryID (String laboratoryID) { return laboratoryID.length() == 5; }
 }
