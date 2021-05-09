@@ -66,7 +66,7 @@ As an administrator, I want to specify a new parameter and categorize it.
 |:-------------  |:---------------------|:------------|:---------------------------- |
 | Step 1: Start a new parameter |	... instantiating a new Parameter? | Category | Creator: aggregates objects of Parameter class |
 | Step 2: Shows list of parameter categories and asks to choose the one the new parameter falls under | ... getting the list of parameter categories available? | Company | IE: knows all the Category objects |
-| Step 3: selects the parameter's category | N/A |  |  |
+| Step 3: selects the parameter's category | ... setting the category? | CreateNewParameterController | Controller: saves instance of category |
 | Step 4: Requests the data for the new parameter  | N/A |  |  |
 | Step 5: Types in requested data | N/A |  |  |
 | Step 6: Shows the data and asks for confirmation | N/A |  |  |
@@ -111,11 +111,15 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 # 5. Construction (Implementation)
 
+## Class CreateNewParameterController
+
+    public void createNewParameter(String shortName, String code, String description) {
+    this.par = this.pc.createNewParameter(shortName, code, description);
+    }
 
 
 # 6. Integration and Demo
 
-*In this section, it is suggested to describe the efforts made to integrate this functionality with the other features of the system.*
 
 
 
