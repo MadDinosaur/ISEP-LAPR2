@@ -3,7 +3,10 @@ package app.controller;
 import app.domain.model.Client;
 import app.domain.model.Company;
 import app.domain.model.DateBirth;
-import app.domain.model.Exceptions.*;
+import app.domain.model.Exceptions.InvalidCardNumberException;
+import app.domain.model.Exceptions.InvalidNameException;
+import app.domain.model.Exceptions.InvalidNhsIdException;
+import app.domain.model.Exceptions.InvalidPhoneNumberException;
 import app.domain.store.ClientStore;
 import auth.domain.model.Email;
 import auth.domain.model.Password;
@@ -23,10 +26,10 @@ public class RegisterClientController {
 
     public static void setSexOpcao(int opcao) {
         if (opcao == 1) {
-            sex = "Male";
+            sex = "masculine";
         }
         if (opcao == 2) {
-            sex = "Female";
+            sex = "femenine";
         }
         if (opcao == 3) {
             sex = SEX_POR_OMISSAO;
@@ -54,13 +57,13 @@ public class RegisterClientController {
     }
     public static void setTIN(long TIN){
         if(TIN < 1000000000 || TIN > 9999999999.0){
-            throw new InvalidTINException("TIN must have 10 digits");
+            throw new InvalidNhsIdException("NHS ID must have 10 digits");
         }
         RegisterClientController.TIN = TIN;
     }
     public static void setPhoneNumber(long phoneNumber){
         if(phoneNumber < 10000000000.0 || phoneNumber> 99999999999.0){
-            throw new InvalidPhoneNumberException("Phone Number must have 11 digits");
+            throw new InvalidPhoneNumberException("NHS ID must have 11 digits");
         }
         RegisterClientController.phoneNumber = TIN;
     }
@@ -105,10 +108,9 @@ public class RegisterClientController {
         RegisterClientController.newClient = new Client(RegisterClientController.name,RegisterClientController.cardNumber,RegisterClientController.nhsId,RegisterClientController.dateBirth,RegisterClientController.TIN,RegisterClientController.phoneNumber,RegisterClientController.email,RegisterClientController.sex);
     }
 
-    public static boolean saveClient(){
-        return App.getInstance().getCompany().addClient(newClient);
+    public static void saveClient(){
+        App.getInstance().getCompany().addClient(newClient);
     }
-
 
 }
 

@@ -1,3 +1,33 @@
+Notes:
+- A grande novidade destas duas US prende-se com a necessidade de interligar com o componente "auth" de modo a que cada cliente/funcionário se torne também um utilizador do sistema.
+
+De resto é bastante semelhante às restantes.
+
+
+
+
+
+Para esta interligação, precisam:
+
+
+
+Ler a documentação do componente "auth" e decidir a que objeto(s) e método(s) devem recorrer;
+Atribuir a responsabilidade de interação a uma só classe (no âmbito de cada US)
+
+Para o envio do email, é suficiente também mostrarem a classe a que atribuíram a responsabilidade de o fazer.
+
+Saliento ainda que não devem confundir "UserRole" e "OrganizationRole".
+Apesar de bastante semelhantes, não são a mesma coisa.
+
+
+
+
+Por fim, saliento mais duas coisas:
+
+
+
+Quando no âmbito de uma US é requerido/necessário estabelecer associações com objetos conhecidos do sistema, essa associação deve ser feita sempre por seleção (a partir de uma lista).
+Após a seleção de objetos de uma lista na UI, a UI apenas deve/pode enviar os identificadores desses objetos para o Controller. Cabe depois à camada de dominio obter o respetivo objetivo a partir desse identificador.
 # US 7 -  Specify a new employee
 
 ## 1. Requirements Engineering
@@ -75,8 +105,9 @@ This US is dependent on "Specify a new organization Role", regarding:
 ### 1.5 Input and Output Data
 
 **Input Data**
-* **Typed data:** employee name, address, phone number, e-mail, SOC code, doctor index number
+* **Typed data:** employee name, address, phone number and e-mail
 * **Selected data:** employee role
+* **Unclear:** employee ID, organization ID, SOC code, doctor index number
 
 **Output Data**
 * (In)Success of the operation
@@ -98,7 +129,10 @@ This US is dependent on "Specify a new organization Role", regarding:
 ![US7-DM](US7_DM.svg)
 
 ### 2.2. Other Remarks
-None.
+
+*Use this section to capture some aditional notes/remarks that must be taken into consideration into the design activity. In some case, it might be usefull to add other analysis artifacts (e.g. activity or state diagrams).* 
+
+
 
 ## 3. Design - User Story Realization 
 
@@ -110,9 +144,9 @@ None.
 |:-------------  |:--------------------- |:------------|:---------------------------- |
 | Step 1: starts a new employee registration | ... instantiating a new Employee? | Company | Creator: aggregates objects of Employee class |
 | Step 2: requests employee role | ... returning the existent Roles? | Company | IE: knows all Role objects |
-| Step 3: selects requested data | ... saving the input | OrganizationRole | IE: knows its own data |
-| Step 4: requests employee information | ... returning data necessary for each Role? | OrganizationRole | IE: knows its own data |
-| Step 5: types requested data | ... saving the input?<br>...validating the data locally?<br>...validating the data globally? | Employee<br>Employee/SpecialistDoctor<br>Company| IE: knows its own data<br>IE: knows its own data<br>IE: knows all Employee objects
+| Step 3: selects requested data | ... saving the input | Role | IE: knows its own data |
+| Step 4: requests employee information | ... returning data necessary for each Role? | Employee<br>Role | IE: Employee knows general data, Role knows specific data |
+| Step 5: types requested data | ... saving the input?<br>...validating the data locally?<br>...validating the data globally? | Employee<br>Employee/Role<br>Company| IE: knows its own data<br>IE: knows its own data<br>IE: knows all Employee objects
 | Step 6: shows the data and requests confirmation 		 |	N/A | |                              |
 | Step 7: confirms the data | ... saving the new Employee?<br>... registering user account for new Employee? | Company<br>AuthFacade | IE: adopts/records all Employee objects<br>IE: knows/records all application users |
 | Step 8: informs operation success | ... informing operation success? | UI | IE: Responsible for user interaction |
@@ -125,7 +159,7 @@ According to the taken rationale, the conceptual classes promoted to software cl
 
  * Company
  * Employee
- * OrganizationRole
+ * Role
 
 Other software classes identified: 
  * CreateEmployeeUI (applying the Pure Fabrication pattern)  
@@ -138,7 +172,7 @@ Other software classes identified:
 ## 3.3. Class Diagram (CD)
 
 ![US7-CD](US7_CD.svg)
-**Note:** OrganizationRole id is assumed to be the same as the its corresponding UserRole id. 
+
 # 4. Tests 
 *In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.* 
 

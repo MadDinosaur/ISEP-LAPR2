@@ -23,7 +23,6 @@ public class RegisterClientUI implements Runnable {
                 String name = sc.nextLine();
                 if(name.equals("exit")) {
                     System.out.println("sair");
-                    System.out.println("Returnado ao ReceptionistUI");
                 }
                 RegisterClientController.setNameClient(name);
                 verifier = true;
@@ -39,12 +38,11 @@ public class RegisterClientUI implements Runnable {
                 String clientCard = sc.nextLine();
                 if(clientCard.equals("exit")) {
                     System.out.println("sair");
-                    System.out.println("Returnado ao ReceptionistUI");
                 }
                 long cardNumber = Long.parseLong(clientCard);
                 RegisterClientController.setCardNumber(cardNumber);
                 verifier = true;
-            }catch (InvalidCardNumberException e){
+            }catch (InvalidNameException e){
                 System.out.println(e);
             }catch (InputMismatchException e){
                 System.out.println("Card Number must only contain numbers");
@@ -58,7 +56,6 @@ public class RegisterClientUI implements Runnable {
                 String nshId = sc.nextLine();
                 if(nshId.equals("exit")) {
                     System.out.println("sair");
-                    System.out.println("Returnado ao ReceptionistUI");
                 }
                 long nhsId = Long.parseLong(nshId);
                 RegisterClientController.setNhsId(nhsId);
@@ -77,7 +74,6 @@ public class RegisterClientUI implements Runnable {
                 String date = sc.nextLine();
                 if(date.equals("exit")) {
                     System.out.println("sair");
-                    System.out.println("Returnado ao ReceptionistUI");
                 }
                 RegisterClientController.setDate(date);
                 verifier = true;
@@ -97,7 +93,6 @@ public class RegisterClientUI implements Runnable {
                 String TIN = sc.nextLine();
                 if(TIN.equals("exit")) {
                     System.out.println("sair");
-                    System.out.println("Returnado ao ReceptionistUI");
                 }
                 long TIN2 = Long.parseLong(TIN);
                 RegisterClientController.setTIN(TIN2);
@@ -116,7 +111,6 @@ public class RegisterClientUI implements Runnable {
                 String phone = sc.nextLine();
                 if(phone.equals("exit")) {
                     System.out.println("sair");
-                    System.out.println("Returnado ao ReceptionistUI");
                 }
                 long phoneNumber = Long.parseLong(phone);
                 RegisterClientController.setPhoneNumber(phoneNumber);
@@ -135,7 +129,6 @@ public class RegisterClientUI implements Runnable {
                 String email = sc.nextLine();
                 if(email.equals("exit")) {
                     System.out.println("sair");
-                    System.out.println("Returnado ao ReceptionistUI");
                 }
                 RegisterClientController.setEmail(email);
                 verifier = true;
@@ -157,7 +150,6 @@ public class RegisterClientUI implements Runnable {
                 String option = sc.nextLine();
                 if(option.equals("exit")) {
                     System.out.println("sair");
-                    System.out.println("Returnado ao ReceptionistUI");
                 }
                 int optionUser = Integer.parseInt(option);
                 if(optionUser == 1){
@@ -173,52 +165,23 @@ public class RegisterClientUI implements Runnable {
             }
         }
         System.out.println("Please confirm Client Data");
-        System.out.println("Name: " + RegisterClientController.getName());
-        System.out.println("Card Number: " + RegisterClientController.getCardNumber());
-        System.out.println("Nhs Id: "+ RegisterClientController.getNhsId());
-        System.out.println("Birth Date: "+ RegisterClientController.getDateBirth());
-        System.out.println("TIN: " + RegisterClientController.getTIN());
-        System.out.println("Phone Number: "+ RegisterClientController.getPhoneNumber());
-        System.out.println("Email: "+ RegisterClientController.getEmail());
-        System.out.println("Sex: " + RegisterClientController.getSex());
+        System.out.println("Name:" + RegisterClientController.getName());
+        System.out.println("Card Number:" + RegisterClientController.getCardNumber());
+        System.out.println("Nhs Id:"+ RegisterClientController.getNhsId());
+        System.out.println("Birth Date:"+ RegisterClientController.getDateBirth());
+        System.out.println("TIN:" + RegisterClientController.getTIN());
+        System.out.println("Phone Number:"+ RegisterClientController.getPhoneNumber());
+        System.out.println("Email:"+ RegisterClientController.getEmail());
+        System.out.println("Sex" + RegisterClientController.getSex());
 
         System.out.println("Is the data correct?");
         System.out.println("Type Yes/No/Cancel");
         String awnser = sc.nextLine();
-        boolean valid = false;
-        while (!valid) {
-            if (awnser.equalsIgnoreCase("yes")) {
-                RegisterClientController.createClient();
-                if (RegisterClientController.saveClient()){
-                    System.out.println("Client Registered with success");
-                }else {
-                    System.out.println("Client could not me Registered with success");
-                }
-                valid = true;
-
-            }
-            if (awnser.equalsIgnoreCase("no")) {
-                System.out.println("Would you like to restart the user creation or to leave?");
-                System.out.println("Type Restart/Leave");
-                String newAwnser = sc.nextLine();
-                boolean validAwnser = false;
-                while (!validAwnser) {
-                    if (newAwnser.equalsIgnoreCase("restart")) {
-                        new RegisterClientUI().run();
-                        validAwnser = true;
-                    }
-                    if (newAwnser.equalsIgnoreCase("leave")) {
-                        //new ReceptionistUI.run();
-                        System.out.println("Returnado ao ReceptionistUI");
-                        validAwnser = true;
-                    } else {
-                        System.out.println("Invalid option! Type Restart/Leave");
-                    }
-                }
-                valid = true;
-            }else {
-                System.out.println("Invalid option! Type Yes/No");
-            }
+        if (awnser.equalsIgnoreCase("yes")){
+            RegisterClientController.createClient();
+            RegisterClientController.saveClient();
+        }if(awnser.equalsIgnoreCase("no")){
+            System.out.println("Would you like ");
         }
 
 
