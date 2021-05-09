@@ -25,8 +25,8 @@ public class CreateTestTypeController {
         this.cm = this.company.getTestTypeStore().createCollectionMethod();
     }
 
-    public void setDesignation(String designation) {
-        this.tt.setDesignation(designation);
+    public void setCode(String code) {
+        this.tt.setCode(code);
     }
 
     public void setCollectionMethod(String description) {
@@ -50,8 +50,17 @@ public class CreateTestTypeController {
         }
     }
 
+    public int getCategoryListSize() {
+        List<Category> list = this.company.getCategoryList();
+        return list.size();
+    }
+
     public void setCategoriesToTestType(int index) {
         this.tt.setCategory(this.company.getCategoryList().get(index));
     }
 
+
+    public void setDescription(String description) {
+        this.tt.setDescription(description);
+    }
 }

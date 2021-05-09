@@ -1,5 +1,7 @@
 package app.domain.model;
 
+import app.domain.model.Exceptions.InvalidDescriptionException;
+
 public class CollectionMethod {
 
     private String description;
@@ -13,8 +15,8 @@ public class CollectionMethod {
     }
 
     public void setDescription(String description) {
-        if (description.equals("")) {
-            throw new IllegalArgumentException("The description introduced isn't valid.");
+        if (!validateDescription(description)) {
+            throw new InvalidDescriptionException();
         } else {
             this.description = description;
         }
@@ -23,6 +25,14 @@ public class CollectionMethod {
     @Override
     public String toString() {
         return (String.format("Collection method description: %s", description));
+    }
+
+    public boolean validateDescription(String description) {
+        if (description.equals("") || description.length() > 20) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 

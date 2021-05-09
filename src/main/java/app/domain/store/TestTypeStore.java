@@ -22,9 +22,8 @@ public class TestTypeStore {
     }
 
     public boolean addTestType(TestType tt) {
-        if(!validateTestType(tt)) {   //ver isto crlh já me estou a passar
-            return false;                                         //vdd
-                                                                    //mental breakdowns bravos
+        if(!validateTestType(tt)) {
+            return false;
         } else {
             return testTypeList.add(tt);
         }

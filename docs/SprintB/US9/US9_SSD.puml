@@ -5,10 +5,14 @@ autonumber
 actor Administrator
 
 Administrator -> ":System": starts new test type
-":System" -> Administrator: requests the designation of the test
-Administrator -> ":System": types the requested designation
-":System" -> Administrator: shows the designation and requests a confirmation
-Administrator -> ":System": confirms the designation
+":System" -> Administrator: requests the code of the test
+Administrator -> ":System": types the requested code
+":System" -> Administrator: shows the code and requests a confirmation
+Administrator -> ":System": confirms the code
+":System" -> Administrator: requests a description of the test type
+Administrator -> ":System": types the requested description
+":System" -> Administrator: shows the description and requests a confirmation
+Administrator -> ":System": confirms the description
 ":System" -> Administrator: requests a description of the collection method
 Administrator -> ":System": types the requested description
 ":System" -> Administrator: shows the description and requests a confirmation

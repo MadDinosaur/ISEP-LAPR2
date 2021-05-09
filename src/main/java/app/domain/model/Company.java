@@ -20,9 +20,6 @@ public class Company {
 
     private String designation;
     private AuthFacade authFacade;
-    private ArrayList<TestType> testTypeList;
-
-
 
     private static ClientStore listClients = new ClientStore();
     private EmployeeStore employeeStore = new EmployeeStore();
