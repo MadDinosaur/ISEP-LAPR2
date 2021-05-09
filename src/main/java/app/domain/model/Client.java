@@ -21,7 +21,6 @@ public class Client {
 
 
     public Client(String name, long cardNumber, long nhsId, DateBirth dateBirth, long TIN, long phoneNumber, Email email, String sex) {
-        Password pwd = new Password(email.getEmail());
         setName(name);
         setCardNumber(cardNumber);
         setNhsId(nhsId);
@@ -29,6 +28,7 @@ public class Client {
         setTIN(TIN);
         setPhoneNumber(phoneNumber);
         setSex(sex);
+
 
     }
 
@@ -52,7 +52,6 @@ public class Client {
     }
 
     public void setDateBirth(DateBirth dateBirth) {
-        //mudar para date
         this.dateBirth = dateBirth;
     }
 
