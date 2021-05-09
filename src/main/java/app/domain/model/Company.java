@@ -92,9 +92,9 @@ public class Company {
 
     public OrgRoleStore getOrgRoleStore() { return this.orgRoleStore;}
 
-    public boolean saveUser(User user) {
+    public boolean saveEmployeeAsUser(Employee e) {
         String pwd = generateUserPassword();
-        return authFacade.addUserWithRole(user.getName(), user.getEmail(), pwd, user.getRoleId());
+        return authFacade.addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId());
     }
 
     private String generateUserPassword() {
