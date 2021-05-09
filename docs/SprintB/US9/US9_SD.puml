@@ -54,8 +54,6 @@ Administrator -> ":CreateTestTypeUI": confirms
 ":CreateTestTypeUI" -> ":CreateTestTypeController": setCategories()
 ":CreateTestTypeController" -> ":TestType": setCategoriesToTestType(categories)
 ":TestType" -> ":TestType": validateCategory(Category category)
-":CreateTestTypeUI" -> Administrator: shows the data (code, CollectionMethod, Categories) and requests confirmation
-Administrator -> ":CreateTestTypeUI": confirms the data
 ":CreateTestTypeUI" -> ":CreateTestTypeController": saveTestType()
 ":CreateTestTypeController" -> ":Company": saveTestType()
 ":TestTypeStore" -> ":TestTypeStore": validateTestType(tt)
