@@ -8,12 +8,20 @@ import app.domain.model.Exceptions.InvalidDescriptionException;
 import app.domain.model.Exceptions.InvalidNameException;
 import app.domain.model.Exceptions.InvalidNhsIdException;
 import app.ui.Main;
+import javafx.application.*;
+import javafx.scene.control.*;
+import javafx.scene.layout.StackPane;
+import javafx.stage.*;
+import javafx.scene.*;
+import javafx.event.*;
 
 import javax.swing.*;
 
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
+
+import static javafx.application.Application.*;
 
 public class CreateNewParameterUI implements Runnable{
 
@@ -27,39 +35,42 @@ public class CreateNewParameterUI implements Runnable{
         System.out.println("Write \"exit\" at any moment to exit.");
         boolean verifier = false;
         if(cnpc.getCategoryList() != null) {
+            System.out.println("These are the available categories in the system: ");
             System.out.println(cnpc.getCategoryList());
             Iterator<Category> iterator = cnpc.getCategoryList().iterator();
             while (!verifier) {
-
-                    String category = sc.nextLine();
-                    if (category.equalsIgnoreCase("exit")) {
-                        System.out.println("Exiting....");
-                        verifier = true;
-                    } else while (iterator.hasNext()) {
-                        Category cat = iterator.next();
-                        if (cat.getName().equals(category)) {
-                            cnpc.setCategory(cat);
-                        }
+                String category = sc.nextLine();
+                if (category.equalsIgnoreCase("exit")) {
+                    System.out.println("Exiting....");
+                    verifier = true;
+                } else while (iterator.hasNext()) {
+                    Category cat = iterator.next();
+                    if (cat.getName().equals(category)) {
+                        cnpc.setCategory(cat);
                     }
-                    if (cnpc.getCategory().equals(null)) {
-                        System.out.println("That category isn't in the system.");
-                    }
+                }
+                if (cnpc.getCategory().equals(null)) {
+                    System.out.println("That category isn't in the system.");
+                }
                 String confirmation = "N";
                 while (confirmation.equalsIgnoreCase("N") || confirmation.equalsIgnoreCase("No")) {
-
                     System.out.println("Please introduce the parameter data in the following order, pressing enter after each: name, code, description.");
-                    String shortName = sc.nextLine();
-                    String code = sc.nextLine();
-                    String description = sc.nextLine();
-                    if (shortName.equalsIgnoreCase("exit") || code.equalsIgnoreCase("exit") || description.equalsIgnoreCase("exit")) {
-                        System.out.println("Exiting....");
-                        verifier = true;
-                    } else {
+                    boolean exception = false;
+                    while(!exception) {
                         try {
-                            System.out.println(shortName + "; " + code + "; " + description + ". Do you confirm this is the data for the new parameter?(Write Y/N  for yes or no respectively)");
-                            confirmation = sc.nextLine();
-                            if (confirmation.equalsIgnoreCase("Y") || confirmation.equalsIgnoreCase("Yes")) {
-                                cnpc.createNewParameter(shortName, code, description);
+                            String shortName = sc.nextLine();
+                            String code = sc.nextLine();
+                            String description = sc.nextLine();
+                            if (shortName.equalsIgnoreCase("exit") || code.equalsIgnoreCase("exit") || description.equalsIgnoreCase("exit")) {
+                                System.out.println("Exiting....");
+                                verifier = true;
+                            } else {
+                                System.out.println(shortName + "; " + code + "; " + description + ". Do you confirm this is the data for the new parameter?(Write Y/N  for yes or no respectively)");
+                                confirmation = sc.nextLine();
+                                if (confirmation.equalsIgnoreCase("Y") || confirmation.equalsIgnoreCase("Yes")) {
+                                    cnpc.createNewParameter(shortName, code, description);
+                                    exception = true;
+                                }
                             }
                         } catch (InvalidNameException e) {
                             System.out.println("The name introduced doesn't seem to be acceptable. Please re-introduce the parameter data in the following order, pressing enter after each: name, code, description.");
@@ -68,9 +79,9 @@ public class CreateNewParameterUI implements Runnable{
                         } catch (InvalidDescriptionException e) {
                             System.out.println("The description introduced doesn't seem to be acceptable. Please re-introduce the parameter data in the following order, pressing enter after each: name, code, description.");
                         }
-                        if (cnpc.saveParameter()) {
-                            System.out.println("Parameter saved.");
-                        }
+                    }
+                    if (cnpc.saveParameter()) {
+                        System.out.println("Parameter saved.");
                     }
                 }
                 System.out.println("Would you like to add more parameters? (write Y/N for yes or no respectively.)");
