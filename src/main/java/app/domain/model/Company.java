@@ -5,6 +5,7 @@ import app.domain.store.EmployeeStore;
 import app.domain.store.OrgRoleStore;
 import app.domain.store.TestTypeStore;
 import auth.AuthFacade;
+import auth.domain.model.Email;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -74,9 +75,9 @@ public class Company {
         return tts;
     }
 
-    public boolean addClient(Client client) {
+    public boolean addClient(String name, Email email) {
         String pass = generateUserPassword();
-        return authFacade.addUser(client.getName(), client.getEmail().toString(), pass);
+        return authFacade.addUser(name , email.toString(), pass);
     }
 
     public List<Category> getCategoryList() {
