@@ -1,6 +1,7 @@
 package app.controller;
 
 import junit.framework.TestCase;
+import org.junit.Assert;
 
 import java.rmi.registry.Registry;
 
@@ -18,7 +19,8 @@ public class RegisterClientControllerTest extends TestCase {
 
     public void testSetNameClient() {
         RegisterClientController.setNameClient("ana");
-        RegisterClientController.
+        Assert.assertEquals("ana",RegisterClientController.getName());
+
     }
 
     public void testSetCardNumber() {

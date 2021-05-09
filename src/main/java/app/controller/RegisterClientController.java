@@ -4,18 +4,13 @@ import app.domain.model.Client;
 import app.domain.model.Company;
 import app.domain.model.DateBirth;
 import app.domain.model.Exceptions.*;
-import app.domain.store.ClientStore;
-import auth.AuthFacade;
 import auth.domain.model.Email;
-import auth.domain.model.Password;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Random;
 
 public class RegisterClientController {
-    public static ClientStore listClients = new ClientStore();
     private static String name; //-
     private static long cardNumber; //-
     private static long nhsId; //-

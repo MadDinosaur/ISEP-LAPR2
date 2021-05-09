@@ -1,21 +1,16 @@
 package app.domain.model;
 
-import app.domain.store.ClientStore;
 import app.domain.store.EmployeeStore;
 import app.domain.store.OrgRoleStore;
 import app.domain.store.TestTypeStore;
 import auth.AuthFacade;
 import auth.domain.model.Email;
-import auth.domain.model.Password;
-import auth.domain.model.User;
 import org.apache.commons.lang3.StringUtils;
 
-import java.lang.reflect.AnnotatedArrayType;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 /**
  *
