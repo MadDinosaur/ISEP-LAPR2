@@ -89,8 +89,7 @@ There is a dependency to US7, before registering a new Client, a Laboratory Rece
 
 ### 1.7 Other Relevant Remarks
 
-*Use this section to capture other relevant information that is related with this US such as (i) special requirements ; (ii) data and/or technology variations; (iii) how often this US is held.* 
-
+This US is hold very often, since it hands the creation of new Clients in the System.
 
 ## 2. OO Analysis
 
@@ -100,9 +99,6 @@ There is a dependency to US7, before registering a new Client, a Laboratory Rece
 ![US3_DM](US3_DM.svg)
 
 ### 2.2. Other Remarks
-
-*Use this section to capture some aditional notes/remarks that must be taken into consideration into the design activity. In some case, it might be usefull to add other analysis artifacts (e.g. activity or state diagrams).* 
-
 
 
 ## 3. Design - User Story Realization 
@@ -131,7 +127,7 @@ According to the taken rationale, the conceptual classes promoted to software cl
 Other software classes (i.e. Pure Fabrication) identified: 
  * CreateClientUI 
  * CreateClientController
- * Send
+
 
 ## 3.2. Sequence Diagram (SD)
 
@@ -157,12 +153,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 # 5. Construction (Implementation)
 
-Considering the Sequence Diagram, the RegisterClientUI is responsible by showing and asking data to the Receptionist related 
-
-
-*In this section, it is suggested to provide, if necessary, some evidence that the construction/implementation is in accordance with the previously carried out design. Furthermore, it is recommeded to mention/describe the existence of other relevant (e.g. configuration) files and highlight relevant commits.*
-
-*It is also recommended to organize this content by subsections.* 
+Considering the Sequence Diagram, the RegisterClientUI is responsible by showing and asking data to the Receptionist related to the User, and also sends the information to the controller, which handles the User and Client creation and saving.
 
 # 6. Integration and Demo 
 
