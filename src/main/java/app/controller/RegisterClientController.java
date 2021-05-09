@@ -20,6 +20,8 @@ public class RegisterClientController {
     private static String sex; //
     private static String SEX_POR_OMISSAO = "No sex assigned";
     private static Client newClient;
+    private static Company company = App.getInstance().getCompany();
+
 
     public static void setSexOpcao(int opcao) {
         if (opcao == 1) {
@@ -106,7 +108,9 @@ public class RegisterClientController {
     }
 
     public static boolean saveClient(){
-        return App.getInstance().getCompany().addClient(newClient);
+        System.out.println("Chegou aqui save");
+        RegisterClientController.newClient = new Client(RegisterClientController.name,RegisterClientController.cardNumber,RegisterClientController.nhsId,RegisterClientController.dateBirth,RegisterClientController.TIN,RegisterClientController.phoneNumber,RegisterClientController.email,RegisterClientController.sex);
+        return company.addClient(newClient.getName(),newClient.getEmail());
     }
 
 

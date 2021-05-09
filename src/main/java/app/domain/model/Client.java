@@ -19,7 +19,6 @@ public class Client {
     private String sex;
     private String SEX_POR_OMISSAO = "No sex assigned";
 
-
     public Client(String name, long cardNumber, long nhsId, DateBirth dateBirth, long TIN, long phoneNumber, Email email, String sex) {
         setName(name);
         setCardNumber(cardNumber);
