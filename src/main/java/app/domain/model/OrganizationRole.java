@@ -7,7 +7,7 @@ public class OrganizationRole {
     private String description;
     private Company organization;
 
-    OrganizationRole(String id, String description, Company organization) {
+    public OrganizationRole(String id, String description, Company organization) {
         this.id = id;
         this.description = description;
         this.organization = organization;
@@ -43,5 +43,10 @@ public class OrganizationRole {
         if (this.description.equalsIgnoreCase("SpecialistDoctor"))
             throw new InvalidParameterException("Specialist Doctor must have a Doctor Index Number!");
         return new Employee(id, this, name, address, email, phoneNumber, soc);
+    }
+
+    @Override
+    public String toString() {
+        return this.description;
     }
 }

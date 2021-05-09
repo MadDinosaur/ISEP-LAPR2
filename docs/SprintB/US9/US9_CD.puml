@@ -60,7 +60,6 @@ class TestTypeStore {
 -ArrayList<TestType> testTypeList
 +createTestType()
 +createCollectionMethod()
-+validate()
 +validateTestType(tt)
 +addTestType(tt)
 +getTestTypeList()
