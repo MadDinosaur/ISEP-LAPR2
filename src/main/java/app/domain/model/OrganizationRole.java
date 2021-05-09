@@ -5,10 +5,12 @@ import java.security.InvalidParameterException;
 public class OrganizationRole {
     private String id;
     private String description;
+    private Company organization;
 
-    OrganizationRole(String id, String description) {
+    OrganizationRole(String id, String description, Company organization) {
         this.id = id;
         this.description = description;
+        this.organization = organization;
     }
 
     public String getId() {
@@ -21,8 +23,6 @@ public class OrganizationRole {
 
     /**
      *
-     * @param id
-     * @param role
      * @param name
      * @param address
      * @param phoneNumber
@@ -31,14 +31,15 @@ public class OrganizationRole {
      *            createEmployee(String, String, String, String, int, String).
      * @return
      */
-    public Employee createEmployee(String id, String role, String name, String address, int phoneNumber, String email, int soc, int DIN) {
+    public Employee createEmployee(String name, String address, String phoneNumber, String email, String soc, String DIN) {
+        String id = organization.getEmployeeStore().generateEmployeeId(name);
         if (this.description.equalsIgnoreCase("Specialist Doctor"))
             return new SpecialistDoctor(id, this, name, address, email, phoneNumber, soc,  DIN);
         else
             return new Employee(id, this, name, address, email, phoneNumber, soc);
     }
 
-    public Employee createEmployee(String id, String role, String name, String address, int phoneNumber, String email, int soc) {
+    public Employee createEmployee(String name, String address, String phoneNumber, String email, String soc) {
         if (this.description.equalsIgnoreCase("SpecialistDoctor"))
             throw new InvalidParameterException("Specialist Doctor must have a Doctor Index Number!");
         return new Employee(id, this, name, address, email, phoneNumber, soc);
