@@ -9,6 +9,9 @@ public class TestTypeStore {
 
     private ArrayList<TestType> testTypeList;
 
+    public TestTypeStore() {
+
+    }
 
     public TestType createTestType() {
         return new TestType();

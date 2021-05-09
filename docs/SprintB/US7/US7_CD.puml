@@ -10,16 +10,22 @@ class CreateEmployeeController {
 }
 class Company {
 {field} designation
+{method} getOrgRoleStore()
+{method} getEmployeeStore()
+{method} saveEmployeeAsUser(user)
+{method} generateUserPassword()
+}
+class EmployeeStore {
+{field} id
 {field} employeeList
-{field} rolesList
-{method} getRoles()
-{method} createEmployee(roleId)
-{method} setEmployeeData(name, address, phoneNumber, email)
-{method} setEmployeeData(name, address, phoneNumber, email, DIN)
-{method} saveEmployee(employee)
+{method} generateEmployeeId(employee)
 {method} addEmployee(employee)
 {method} validateEmployee(employee)
-{method} generateEmployeePassword()
+}
+class OrgRoleStore {
+{field} rolesList
+{method} getOrganizationRoles()
+{method} getOrganizationRole(designation)
 }
 class Employee {
 {field} id
@@ -27,30 +33,36 @@ class Employee {
 {field} address
 {field} email
 {field} phoneNumber
+{field} socCode
 {field} organizationRole
-{method} Employee(roleId)
-{method} setData(name, address, phoneNumber, email)
-{method} setData(name, address, phoneNumber, email, DIN)
+{method} Employee(role, name, address, phoneNumber, email, soc)
 {method} validateName(name)
 {method} validateAddress(address)
 {method} validateEmail(email)
 {method} validatePhoneNumber(phoneNumber)
+{method} validateSocCode(soc)
 }
 class OrganizationRole {
 {field} id
 {field} description
+{method} createEmployee(role, name, address, phoneNumber, email)
+{method} createEmployee(role, name, address, phoneNumber, email, DIN)
 }
 class SpecialistDoctor {
 {field} doctorIndexNumber
-{method} setDIN()
-{method} validateDIN()
+{method} SpecialistDoctor(role, name, address, phoneNumber, email, DIN)
+{method} setDIN(din)
+{method} validateDIN(din)
 }
 class AuthFacade
 
 CreateEmployeeUI ..> CreateEmployeeController
 CreateEmployeeController .right.> Company
-Company --> Employee : contains
+Company --> EmployeeStore : uses
+Company --> OrgRoleStore : uses
+EmployeeStore --> Employee : contains
 Company .right.> AuthFacade
+OrgRoleStore --> OrganizationRole : contains
 Employee --> OrganizationRole : has
 Employee <|-- SpecialistDoctor : is a
 @enduml

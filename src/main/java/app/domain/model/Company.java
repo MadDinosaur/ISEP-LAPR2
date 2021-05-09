@@ -1,6 +1,5 @@
 package app.domain.model;
 
-import app.controller.App;
 import app.domain.store.ClientStore;
 import app.domain.store.EmployeeStore;
 import app.domain.store.OrgRoleStore;
@@ -29,7 +28,7 @@ public class Company {
     private EmployeeStore employeeStore = new EmployeeStore();
     private OrgRoleStore orgRoleStore = new OrgRoleStore();
     private List<Category> parameterCategoryList;
-    private TestTypeStore tts;
+    private TestTypeStore tts = new TestTypeStore();
     private List<Category> categoryList;
 
     public Company(String designation) {
@@ -40,9 +39,6 @@ public class Company {
         this.authFacade = new AuthFacade();
 
     }
-    public EmployeeStore getEmployeeStore() {
-        return this.employeeStore;
-    }
 
     public String getDesignation() {
         return designation;
@@ -51,7 +47,6 @@ public class Company {
     public AuthFacade getAuthFacade() {
         return authFacade;
     }
-
 
     public Category createCategory(String code, String description, String nhsId) {
         return new Category(code, description, nhsId);
@@ -82,8 +77,8 @@ public class Company {
     }
 
     public boolean addClient(Client client) {
-        String pwd = getPassword();
-        authFacade.addUser(client.getName(), client.getEmail().toString(), pwd);
+        String pass = ".";
+        authFacade.addUser(client.getName(), client.getEmail().toString(), pass);
         return true;
     }
 
@@ -91,10 +86,18 @@ public class Company {
         return this.categoryList;
     }
 
+    public EmployeeStore getEmployeeStore() {
+        return this.employeeStore;
+    }
 
+    public OrgRoleStore getOrgRoleStore() { return this.orgRoleStore;}
 
+    public boolean saveEmployeeAsUser(Employee e) {
+        String pwd = generateUserPassword();
+        return authFacade.addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId());
+    }
 
-    public static String generateUserPassword() {    //pus static e public  mas nao sei se e correto
+    private String generateUserPassword() {
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'
         int targetStringLength = 10;
@@ -107,9 +110,5 @@ public class Company {
                 .toString();
 
         return generatedString;
-    }
-
-    public static String getPassword(){
-        return generateUserPassword();
     }
 }

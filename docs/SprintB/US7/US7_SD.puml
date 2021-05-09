@@ -3,45 +3,50 @@ actor Administrator as admin
 participant ":CreateEmployeeUI" as ui
 participant ":CreateEmployeeController" as controller
 participant ":Company" as company
-participant "e:Employee" as employee
+participant "roleStore: OrgRoleStore" as ors
 participant ":OrganizationRole" as role
+participant "e: Employee" as employee
+participant "e: SpecialistDoctor" as sd
+participant "empStore: EmployeeStore" as es
 participant ":AuthFacade" as auth
+
 
 admin -> ui : **1** starts a company employee registration
 create controller
 ui -> controller : **2** create()
-ui -> controller : **3** getRoles()
-controller -> company : **4** getRoles()
+ui -> controller : **3** getOrganizationRoles()
+controller -> company : **4** roleStore = getOrgRolesStore()
+controller -> ors : roles = getOrganizationRoles()
 ui --> admin : **5** requests employee role
 admin -> ui : **6** selects requested data
-ui --> admin : **7** requests employee information (ie. name, address, phone number, e-mail, **optional** DIN)
+ui --> admin : **7** requests employee information (ie. name, address, phone number, e-mail, soc, **optional** DIN)
 admin -> ui : **8** types requested data
-ui -> controller : **9** createEmployee(role, name, address, phoneNumber, email, **optional** DIN)
-controller -> company : **8** e = createEmployee(role, name, address, phoneNumber, email, **optional** DIN)
+ui -> controller : **9** createEmployee(role, name, address, phoneNumber, email, soc, **optional** DIN)
+controller -> role : **8** e = createEmployee(role, name, address, phoneNumber, email, soc, **optional** DIN)
+role -> es : id = generateEmployeeId(name)
+alt role = "Specialist Doctor"
+create sd
+role -> sd : create(id, role, name, address, phoneNumber, email, soc, DIN)
+else
 create employee
-company -> employee : **9** create(role, name, address, phoneNumber, email, **optional** DIN)
-ui -> controller : **12** setEmployeeData(name, address, phoneNumber, email, **optional** DIN)
-controller -> employee : **13** setName(name)
+role -> employee : create(id, role, name, address, phoneNumber, email, soc)
+end
 employee -> employee : **14** validateName(name)
-controller -> employee : **15** setAddress(address)
-employee -> employee : **16** validateAddress(name)
-controller -> employee : **17** setPhoneNumber(phoneNumber)
-employee -> employee : **18** validatePhoneNumber(name)
-controller -> employee : **19** setEmail(email)
-employee -> employee : **20** validateEmail(name)
-controller -> employee : **21 (optional)** setDIN(DIN)
-employee -> role : **22** validateDIN(DIN)
-role -> role : **23** validate(DIN)
+employee -> employee : **16** validateAddress(address)
+employee -> employee : **18** validatePhoneNumber(phoneNumber)
+employee -> employee : **20** validateEmail(email)
+employee -> employee : validateSocCode(soc)
+sd -> sd : **23** validate(DIN)
 ui --> admin : **24** shows the data and requests confirmation
 admin -> ui : **25** confirms the data
 ui -> controller : **26** saveEmployee()
-controller -> company : **27** saveEmployee(e)
-company -> company : **28** validateEmployee(e)
-company -> company : **29** addEmployee(e)
-company -> company : **30** pwd = generateEmployeePassword()
+controller -> company : empStore = getEmployeeStore()
+controller -> es : **27** saveEmployee(e)
+es -> es : **28** validateEmployee(e)
+es -> es : **29** addEmployee(e)
+controller -> company : saveEmployeeAsUser(e)
+company -> company : **30** pwd = generateUserPassword()
 company -> auth : **30** addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId())
-auth -> auth : existsUser(email)
-auth -> auth : addUserWithRole(name, email, pwd, roleId)
 ui --> admin : **30** informs operation success
 
 
