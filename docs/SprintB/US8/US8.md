@@ -98,8 +98,8 @@ According to the taken rationale, the conceptual classes promoted to software cl
  * TestType
 
 Other software classes (i.e. Pure Fabrication) identified: 
- * newLabUI  
- * newLabController
+ * CreateNewLabUI  
+ * CreateNewLabController
 
 ## 3.2. Sequence Diagram (SD)
 

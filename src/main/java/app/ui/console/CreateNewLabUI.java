@@ -1,10 +1,12 @@
 package app.ui.console;
 
 import app.controller.CreateNewLabController;
+import app.domain.model.TestType;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class newLabUI {
+public class CreateNewLabUI {
     static Scanner input = new Scanner(System.in);
     private CreateNewLabController CNLC = new CreateNewLabController();
 
@@ -37,21 +39,40 @@ public class newLabUI {
         System.out.println("Laboratory ID " + labID);
         System.out.println("Is this information correct? (yes/no)");
 
-        int value = 0;
-        while(value == 0) {
+        boolean confirm = confirmation();
+        if(confirm) { CNLC.setData(name, address, phonenumber, TIN, labID);} else { setData(); }
+
+    }
+
+    public void setTestType() {
+        ArrayList<TestType> TestTypeList = CNLC.getTestTypeList();
+        System.out.println("Choose one or more of the following test types (type -1 to end selection):");
+
+        int index = 0;
+        for(TestType tt : TestTypeList){
+            System.out.printf("%s - %s\n", index, tt.getCode());
+            index++;
+        }
+
+        int i = input.nextInt();
+        while (i != -1) {
+            CNLC.setTestType(TestTypeList.get(i));
+            i = input.nextInt();
+        }
+    }
+
+    public boolean confirmation() {
+        while(true) {
             String confirmation = input.nextLine();
             if (confirmation.equalsIgnoreCase("yes")) {
-                CreateNewLabController.setData(name, address, phonenumber, TIN, labID);
-                value = 1;
+                return true;
             } else {
                 if (confirmation.equalsIgnoreCase("no")) {
-                    setData();
-                    value = 1;
+                    return false;
                 } else {
                     System.out.println("Insert valid answer");
                 }
             }
         }
-
     }
 }

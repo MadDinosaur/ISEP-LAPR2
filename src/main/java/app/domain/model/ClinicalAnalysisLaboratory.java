@@ -35,6 +35,9 @@ public class ClinicalAnalysisLaboratory {
         this.laboratoryID = laboratoryID;
     }
 */
+    public ClinicalAnalysisLaboratory() {
+
+    }
 
     /**
      *
@@ -80,8 +83,8 @@ public class ClinicalAnalysisLaboratory {
         }
     }
 
-    public void setTestTypeList(ArrayList<TestType> testTypeList) {
-        this.testTypeList = testTypeList;
+    public void setTestTypeList(TestType tt) {
+        this.testTypeList.add(tt);
     }
 
     /**
