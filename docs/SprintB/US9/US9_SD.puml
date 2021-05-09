@@ -14,13 +14,23 @@ Administrator -> ":CreateTestTypeUI": starts new test type
 ":TestTypeStore" -> ":TestType": createTestType()
 ":TestTypeStore" -> ":CollectionMethod": createCollectionMethod()
 
-":CreateTestTypeUI" -> Administrator: requests the designation
-Administrator -> ":CreateTestTypeUI": types the designation
+":CreateTestTypeUI" -> Administrator: requests the code
+Administrator -> ":CreateTestTypeUI": types the code
 ":CreateTestTypeUI" -> Administrator: requests confirmation
 Administrator -> ":CreateTestTypeUI": confirms
 
-":CreateTestTypeUI" -> ":CreateTestTypeController": setDesignation(designation)
-":CreateTestTypeController" -> ":TestType": setDesignation(designation)
+":CreateTestTypeUI" -> ":CreateTestTypeController": setCode(String code)
+":CreateTestTypeController" -> ":TestType": setCode(String code)
+":TestType" -> ":TestType": validateCode(String designation)
+
+":CreateTestTypeUI" -> Administrator: requests the description
+Administrator -> ":CreateTestTypeUI": types the description
+":CreateTestTypeUI" -> Administrator: requests confirmation
+Administrator -> ":CreateTestTypeUI": confirms
+
+":CreateTestTypeUI" -> ":CreateTestTypeController": setTestTypeDescription(designation)
+":CreateTestTypeController" -> ":TestType": setDescription(description)
+":TestType" -> ":TestType": validateDescription(String description)
 
 ":CreateTestTypeUI" -> Administrator: requests the description of the collection method
 Administrator -> ":CreateTestTypeUI": types the description
@@ -30,9 +40,8 @@ Administrator -> ":CreateTestTypeUI": confirms
 ":CreateTestTypeUI" -> ":CreateTestTypeController": setDescription(description)
 
 ":CreateTestTypeController" -> ":CollectionMethod": setCollectionMethod(description)
+":CollectionMethod" -> ":CollectionMethod": validateDescription(String description)
 ":CreateTestTypeController" -> ":TestType": setCollectionMethodToTestType(cm)
-
-":TestTypeStore" -> ":TestType": validate()
 
 ":Company" -> ":CreateTestTypeController": getCategoryList()
 ":CreateTestTypeController" -> ":CreateTestTypeUI": displayCategoryList()
@@ -44,7 +53,7 @@ Administrator -> ":CreateTestTypeUI": confirms
 
 ":CreateTestTypeUI" -> ":CreateTestTypeController": setCategories()
 ":CreateTestTypeController" -> ":TestType": setCategoriesToTestType(categories)
-":CreateTestTypeUI" -> Administrator: shows the data (designation, CollectionMethod, Categories) and requests confirmation
+":CreateTestTypeUI" -> Administrator: shows the data (code, CollectionMethod, Categories) and requests confirmation
 Administrator -> ":CreateTestTypeUI": confirms the data
 ":CreateTestTypeUI" -> ":CreateTestTypeController": saveTestType()
 ":CreateTestTypeController" -> ":Company": saveTestType()

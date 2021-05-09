@@ -12,7 +12,8 @@ class CollectionMethod {
 }
 
 class TestType {
--designation
+-code
+-description
 }
 
 class Category {

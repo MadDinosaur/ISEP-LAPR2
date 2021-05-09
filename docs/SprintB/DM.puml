@@ -81,7 +81,8 @@ class Report {
 }
 class TestResult
 class TestType {
--designation
+-code
+-description
 }
 class Sample {
 -barcode

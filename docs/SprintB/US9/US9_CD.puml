@@ -6,48 +6,52 @@ class Administrator
 class CreateTestTypeUI {
 +createTestType()
 +createCollectionMethod()
-+setDesignation(String designation)
++setCode(String code)
 +setDescription(String description)
 +displayCategoryList()
 +setCategories()
 +saveTestType()
 }
+
 class CreateTestTypeController {
 +createTestType()
 +createCollectionMethod()
-+setDesignation(String designation)
++setCode(String code)
++setDescription(String description)
 +setCollectionMethod(String description)
 +setCollectionMethodToTestType(CollectionMethod cm)
 +saveTestType()
 +displayCategoryList()
 +setCategoriesToTestType(int index)
 }
+
 class CollectionMethod {
 -String description
 +setDescription(String description)
 +getDescription()
++validateDescription(String description)
+}
 
-}
 class TestType {
--String designation
--CollectionMethod collectionMethod
--Arraylist<Category> categories
-+setDesignation(String designation)
-+setCollectionMethod(CollectionMethod collectionMethod)
-+setCategory(Category category)
-+getDesignation()
-+getCollectionMethod()
-+getCategories()
-}
-class Category {
 -String code
 -String description
--String nhsID
-+addCategoriesToTestType(categories)
+-CollectionMethod collectionMethod
+-Arraylist<Category> categories
++setCode(String code)
++setDescription(String description)
++setCollectionMethod(CollectionMethod collectionMethod)
++setCategory(Category category)
++getCode()
++getCollectionMethod()
++getCategories()
++validateCode(String code)
++validateDescription(String description)
 }
+
 class Company {
 -String designation
 -TestTypeStore tts
+-List<Category> categoryList
 +getCategoryList()
 +getTestTypeStore()
 }
