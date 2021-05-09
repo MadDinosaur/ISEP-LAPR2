@@ -28,7 +28,7 @@ public class Company {
     private OrgRoleStore orgRoleStore = new OrgRoleStore(this);
     private List<Category> parameterCategoryList;
     private TestTypeStore tts = new TestTypeStore();
-    private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("fixe", "pistola", "se queres", "toma")));
+    private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
 
     public Company(String designation) {
         if (StringUtils.isBlank(designation))

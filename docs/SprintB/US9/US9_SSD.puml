@@ -20,8 +20,9 @@ Administrator -> ":System": confirms the description
 loop until the administrator doesn't want to select more categories
 ":System" -> Administrator: shows a list of categories
 Administrator -> ":System": chooses a category within the list to be associated to the new test type
-":CreateTestTypeUI" -> Administrator: requests confirmation
-Administrator -> ":CreateTestTypeUI": confirms
+":System" -> Administrator: requests confirmation
+Administrator -> ":System": confirms
 end loop
+":System" -> Administrator: informs operation success
 
 @enduml

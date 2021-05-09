@@ -30,7 +30,7 @@ public class CreateTestTypeUI implements Runnable {
         while (!valid) {
             try {
                 boolean loop = false;
-                System.out.println("Insert the code wanted for the test type:");
+                System.out.println("Insert the code for the test type: (make sure it is five alphanumeric characters)");
                 String code = sc.nextLine();
                 System.out.printf("This is the code you inserted: \"%s\". Are you sure this is the code you want? (Yes/No)\n", code);
                 String confirmation = sc.nextLine();
@@ -51,7 +51,7 @@ public class CreateTestTypeUI implements Runnable {
                     }
                 }
             } catch (InvalidCodeException e) {
-                System.out.println("The code shouldn't be any longer than 5 alphanumeric characters!!");
+                System.out.println("The code should only have 5 alphanumeric characters!!");
             }
         }
     }

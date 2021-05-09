@@ -1,4 +1,4 @@
-# US 9 - Define a new type of test and its collecting methods 
+# US 9 - Define a new type of test and its collection method
 
 ## 1. Requirements Engineering
 
@@ -30,9 +30,9 @@ From a previous post: "Each category has a name and a unique code. There are no 
 
 ### 1.3. Acceptance Criteria
 
-*AC1*: the code shouldn't have more than five alphanumeric characters.
-*AC2*: the description of the test type should be a string with no more than 15 characters.
-*AC3*: the collection method's description should be a string with no more than 20 characters.
+* AC1: the code should have five alphanumeric characters.
+* AC2: the description of the test type should be a string with no more than 15 characters.
+* AC3: the collection method's description should be a string with no more than 20 characters.
 
 ### 1.4. Found out Dependencies
 
@@ -43,8 +43,9 @@ From a previous post: "Each category has a name and a unique code. There are no 
 **Input Data:**
 
 * Typed data:
-    * a designation;
-    * a description;
+    * a code;
+    * a description for the test type;
+    * a description for the collection method;
   
 * Selected data:
     * a category, or more
@@ -61,7 +62,7 @@ From a previous post: "Each category has a name and a unique code. There are no 
 
 ### 1.7 Other Relevant Remarks
 
->The administrator introduces a brief description for each collecting method.
+**Frequency:** this US is supposed to be used at least two times, to insert the blood test and the covid test.
 
 
 ## 2. OO Analysis
@@ -165,7 +166,7 @@ The rest of the tests follow this exact same pattern, testing if it is possible 
 
 # 7. Observations
 
-*In this section, it is suggested to present a critical perspective on the developed work, pointing, for example, to other alternatives and or future related work.*
+*I think that I didn't adopt the easiest methodology to develop this work. In the future, I pretend to be better at making the artifacts required.*
 
 
 

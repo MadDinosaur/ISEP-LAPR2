@@ -64,8 +64,8 @@ public class TestType {
         return Objects.equals(code, testType.code) && Objects.equals(collectionMethod, testType.collectionMethod) && Objects.equals(categories, testType.categories);
     }
 
-    public boolean validateCode(String designation) {
-        if (designation.equals("") || !StringUtils.isAlphanumeric(designation) || designation.length() > 5) {
+    public boolean validateCode(String code) {
+        if (code.equals("") || !StringUtils.isAlphanumeric(code) || code.length() > 5 || code.length() < 5) {
             return false;
         } else {
             return true;
