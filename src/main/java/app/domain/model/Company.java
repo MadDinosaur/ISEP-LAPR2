@@ -23,7 +23,7 @@ public class Company {
 
     private static ClientStore listClients = new ClientStore();
     private EmployeeStore employeeStore = new EmployeeStore();
-    private OrgRoleStore orgRoleStore = new OrgRoleStore();
+    private OrgRoleStore orgRoleStore = new OrgRoleStore(this);
     private List<Category> parameterCategoryList;
     private TestTypeStore tts = new TestTypeStore();
     private List<Category> categoryList;

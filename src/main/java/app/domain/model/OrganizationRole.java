@@ -7,7 +7,7 @@ public class OrganizationRole {
     private String description;
     private Company organization;
 
-    OrganizationRole(String id, String description, Company organization) {
+    public OrganizationRole(String id, String description, Company organization) {
         this.id = id;
         this.description = description;
         this.organization = organization;
