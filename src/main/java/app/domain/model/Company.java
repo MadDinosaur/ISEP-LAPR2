@@ -22,7 +22,7 @@ public class Company {
     private AuthFacade authFacade;
 
     private EmployeeStore employeeStore = new EmployeeStore();
-    private OrgRoleStore orgRoleStore = new OrgRoleStore(this);
+    private OrgRoleStore orgRoleStore = new OrgRoleStore();
     private List<Category> parameterCategoryList;
     private TestTypeStore tts = new TestTypeStore();
     private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
@@ -105,5 +105,4 @@ public class Company {
 
         return generatedString;
     }
-
 }

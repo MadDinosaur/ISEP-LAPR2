@@ -4,10 +4,11 @@ import app.domain.model.CollectionMethod;
 import app.domain.model.TestType;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class TestTypeStore {
 
-    private ArrayList<TestType> testTypeList = new ArrayList<>();
+    private ArrayList<TestType> testTypeList = new ArrayList<>(Collections.singleton(new TestType("sex69")));
 
     public TestTypeStore() {
 

@@ -7,11 +7,11 @@ import app.domain.model.Exceptions.InvalidNameException;
 import java.util.ArrayList;
 
 public class EmployeeStore {
-    private int id = 0;
+    private int id = 1;
     private ArrayList<Employee> employeeList = new ArrayList<>();
 
     public String generateEmployeeId(String fullName) {
-        if (fullName == null) throw new InvalidNameException();
+        if (fullName == null || fullName.isEmpty()) throw new InvalidNameException();
 
         StringBuilder initials = new StringBuilder();
         String[] names = fullName.split(" ");

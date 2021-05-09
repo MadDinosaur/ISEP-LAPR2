@@ -3,8 +3,10 @@ package app.ui.console;
 import app.controller.App;
 import app.controller.CreateEmployeeController;
 import app.controller.RegisterClientController;
+import app.domain.model.Exceptions.InvalidEmployeeException;
 import app.domain.model.Exceptions.InvalidNameException;
 import app.domain.model.Exceptions.InvalidNhsIdException;
+import app.domain.model.Exceptions.UnregisteredOrgRolesException;
 import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.InputMismatchException;
@@ -22,22 +24,34 @@ public class CreateEmployeeUI implements Runnable {
     String din;
 
     Scanner sc = new Scanner(System.in);
+
     @Override
     public void run() {
-        while (!chooseRole()) chooseRole();
-        insertInfo();
+        try {while (!chooseRole()) chooseRole();} catch (UnregisteredOrgRolesException ex) {
+            System.out.println(ex.getMessage());
+            return;
+        }
+        try {insertInfo();} catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+            displayInfo();
+            return;
+        }
         displayInfo();
-        saveInfo();
+        try {saveInfo();} catch (InvalidEmployeeException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     private boolean chooseRole() {
         List<String> roles = controller.getOrganizationRoles();
+
         System.out.println("Please choose an employee role:");
         int optionNum = 1;
         for (String option : roles) {
             System.out.printf("%d - %s\n", optionNum, option);
             optionNum++;
         }
+
         int optionSelect = Integer.parseInt(sc.nextLine());
         if (optionSelect >= optionNum || optionSelect < 1) {
             System.out.println("Invalid option!");
@@ -63,13 +77,16 @@ public class CreateEmployeeUI implements Runnable {
             this.din = sc.nextLine();
         }
         System.out.println("Checking information...");
-        controller.createEmployee(organizationRole, name, address, phoneNumber, email, soc, din);
+        try {controller.createEmployee(organizationRole, name, address, phoneNumber, email, soc, din);}
+        catch (InvalidEmployeeException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     private void displayInfo() {
         System.out.printf("Job: %s\nName: %s\nAddress: %s\nPhone number: %s\nE-mail: %s\nSOC code: %s\n",
                 organizationRole, name, address, phoneNumber, email, soc);
-        if(din != null)
+        if (din != null)
             System.out.printf("DIN: %s\n", din);
     }
 
