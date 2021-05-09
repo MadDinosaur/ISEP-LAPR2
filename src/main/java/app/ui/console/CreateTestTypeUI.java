@@ -18,6 +18,7 @@ public class CreateTestTypeUI {
         setCollectionMethod();
         setCategories();
         saveTestType();
+        System.out.println("The test type you just created was saved!");
     }
 
     public String setDesignation() {
@@ -35,6 +36,9 @@ public class CreateTestTypeUI {
                 System.out.println("Please, type the designation you want once again");
                 designation = sc.nextLine();
                 System.out.printf("This is the designation you inserted: %s. Are you sure this is the designation you want? Yes/No\n", designation);
+                confirmation = sc.nextLine();
+            } else {
+                System.out.println("Please insert either yes or no!");
                 confirmation = sc.nextLine();
             }
         }
@@ -58,21 +62,24 @@ public class CreateTestTypeUI {
                 description = sc.nextLine();
                 System.out.printf("This is the description you inserted: \"%s\". Are you sure this is the description you want? (Yes/No)\n", description);
                 confirmation = sc.nextLine();
+            } else {
+                System.out.println("Please insert either yes or no!");
+                confirmation = sc.nextLine();
             }
         }
         return description;
     }
 
     public void setCategories() {
-        boolean noMore = false;
+        boolean loop = false;
         String confirmation;
         System.out.println("Here is a list of the categories available:\n");
         cttc.displayCategoryList();
         System.out.println("One by one, insert the number of the category you want to associate to the test type (If you don't want to insert any more categories, please press ENTER)\n");
         String indexPedido = sc.nextLine();
-        while (!noMore) {
+        while (!loop) {
             if (indexPedido.equals("")) {
-                noMore = true;
+                loop = true;
             } else {
                 System.out.printf("Are you sure this is the category you want? (Yes/No)\n");
                 confirmation = sc.nextLine();
