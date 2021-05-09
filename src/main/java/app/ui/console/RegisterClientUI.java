@@ -42,7 +42,7 @@ public class RegisterClientUI implements Runnable {
                 long cardNumber = Long.parseLong(clientCard);
                 RegisterClientController.setCardNumber(cardNumber);
                 verifier = true;
-            }catch (InvalidNameException e){
+            }catch (InvalidCardNumberException e){
                 System.out.println(e);
             }catch (InputMismatchException e){
                 System.out.println("Card Number must only contain numbers");
@@ -81,8 +81,6 @@ public class RegisterClientUI implements Runnable {
                 System.out.println(e);
             }catch (InputMismatchException e){
                 System.out.println("Birthdate must be in the format DD/MM/YYYY");
-                int a = 50;
-                System.out.println("O brito é burro %d");
             }
         }
         System.out.println("Now introduce Client TIN");
@@ -118,7 +116,7 @@ public class RegisterClientUI implements Runnable {
             }catch (InvalidPhoneNumberException e){
                 System.out.println(e);
             }catch (InputMismatchException e){
-                System.out.println("TIN must only contain numbers");
+                System.out.println("Phone Number must only contain numbers");
             }
         }
         System.out.println("Now introduce Client email");

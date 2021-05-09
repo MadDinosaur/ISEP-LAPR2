@@ -8,20 +8,12 @@ import app.domain.model.Exceptions.InvalidDescriptionException;
 import app.domain.model.Exceptions.InvalidNameException;
 import app.domain.model.Exceptions.InvalidNhsIdException;
 import app.ui.Main;
-import javafx.application.*;
-import javafx.scene.control.*;
-import javafx.scene.layout.StackPane;
-import javafx.stage.*;
-import javafx.scene.*;
-import javafx.event.*;
 
 import javax.swing.*;
 
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
-
-import static javafx.application.Application.*;
 
 public class CreateNewParameterUI implements Runnable{
 
@@ -38,7 +30,7 @@ public class CreateNewParameterUI implements Runnable{
             System.out.println(cnpc.getCategoryList());
             Iterator<Category> iterator = cnpc.getCategoryList().iterator();
             while (!verifier) {
-                while (cnpc.getCategory().equals(null)) {
+
                     String category = sc.nextLine();
                     if (category.equalsIgnoreCase("exit")) {
                         System.out.println("Exiting....");
@@ -52,7 +44,6 @@ public class CreateNewParameterUI implements Runnable{
                     if (cnpc.getCategory().equals(null)) {
                         System.out.println("That category isn't in the system.");
                     }
-                }
                 String confirmation = "N";
                 while (confirmation.equalsIgnoreCase("N") || confirmation.equalsIgnoreCase("No")) {
 
@@ -65,7 +56,7 @@ public class CreateNewParameterUI implements Runnable{
                         verifier = true;
                     } else {
                         try {
-                            System.out.println(shortName + "; " + code + "; " + description + " Do you confirm this is the data for the new parameter?(Write Y/N  for yes or no respectively)");
+                            System.out.println(shortName + "; " + code + "; " + description + ". Do you confirm this is the data for the new parameter?(Write Y/N  for yes or no respectively)");
                             confirmation = sc.nextLine();
                             if (confirmation.equalsIgnoreCase("Y") || confirmation.equalsIgnoreCase("Yes")) {
                                 cnpc.createNewParameter(shortName, code, description);

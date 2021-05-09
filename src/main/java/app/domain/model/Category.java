@@ -2,6 +2,7 @@ package app.domain.model;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class Category {
@@ -64,15 +65,20 @@ public class Category {
     }
 
     public boolean saveParameter(Parameter par){
-        if (!validateParameter(par))
-            return false;
-        return this.parameterList.add(par);
-    }
-
-    public boolean validateParameter(Parameter par){
-        if (par == null)
-            return false;
-        return ! this.parameterList.contains(par);
+        int cont = 0;
+        if(parameterList != null) {
+            Iterator<Parameter> iterator = parameterList.iterator();
+            while (iterator.hasNext()) {
+                Parameter newPar = iterator.next();
+                if (newPar.getShortName().equalsIgnoreCase(par.getShortName()) || newPar.getCode().equalsIgnoreCase(par.getCode()) || newPar.getDescription().equalsIgnoreCase(par.getDescription())) {
+                    cont++;
+                }
+            }
+            if (cont < 1) {
+                parameterList.add(par);
+                return true;
+            } else return false;
+        }else return false;
     }
 
     public String getName() {

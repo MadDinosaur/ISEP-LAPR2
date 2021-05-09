@@ -1,6 +1,5 @@
 package app.domain.model;
 
-import app.domain.store.ClientStore;
 import app.domain.store.EmployeeStore;
 import app.domain.store.OrgRoleStore;
 import app.domain.store.TestTypeStore;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 /**
  *
@@ -23,7 +21,6 @@ public class Company {
     private String designation;
     private AuthFacade authFacade;
 
-    private static ClientStore listClients = new ClientStore();
     private EmployeeStore employeeStore = new EmployeeStore();
     private OrgRoleStore orgRoleStore = new OrgRoleStore(this);
     private List<Category> parameterCategoryList;
@@ -75,9 +72,8 @@ public class Company {
         return tts;
     }
 
-    public boolean addClient(String name, Email email) {
-        String pass = generateUserPassword();
-        return authFacade.addUser(name , email.toString(), pass);
+    public boolean addClient(String name, Email email, String pass) {
+        return authFacade.addUser(name,email.toString(),pass);
     }
 
     public List<Category> getCategoryList() {
@@ -95,7 +91,7 @@ public class Company {
         return authFacade.addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId());
     }
 
-    private String generateUserPassword() {
+    public String generateUserPassword() {
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'
         int targetStringLength = 10;
@@ -109,4 +105,5 @@ public class Company {
 
         return generatedString;
     }
+
 }

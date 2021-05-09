@@ -15,31 +15,28 @@
 
 ### From the client Clarifications
 
-•	**Q1:** Does the administrator need to register a receptionist in the system, or do we have to assume that there is already a receptionist in the system?
 
-**Answer:** …
-
-•	**Q2**: Does the receptionist need to be logged in the app to preform the regist.
+•	**Q1**: Does the receptionist need to be logged in the app to preform the regist.
 
 **Answer:** Yes.
 
-•	**Q3**: What parameter (asked by the receptionist) should the system use to create the password of the new client?
+•	**Q2**: What parameter (asked by the receptionist) should the system use to create the password of the new client?
 
 **Answer:** The password should be randomly generated. It should have ten alphanumeric characters.
 
-•	**Q4:** Relative to registering a new user, how should the system respond in the event of creating a new user with the same attributes of an already existing user?
+•	**Q3:** Relative to registering a new user, how should the system respond in the event of creating a new user with the same attributes of an already existing user?
 
 **Answer:** This should be treated as an error. A subset of the attributes of any client are unique.
 
-•	**Q5:** How are the passwords delivered to the users (client/employee)?
+•	**Q4:** How are the passwords delivered to the users (client/employee)?
 
 **Answer:** Each users receives an e-mail informing that the registration was successful and that he can start to use the system. The e-mail includes the user password.
 
-•	**Q6:** Does the client need to tell his age to the recepcionis. Im asking because before you didnt especified that that would be a parameter?
+•	**Q5:** Does the client need to tell his age to the recepcionis. Im asking because before you didnt especified that that would be a parameter?
 
 **Answer:** No, only needs to tell the birth day (from a previous post). The application must validate and should not accept clients who have more than 150 years of age.
 
-•	**Q7:** What should be the maximum length of the String with the name of the Client?
+•	**Q6:** What should be the maximum length of the String with the name of the Client?
 
 **Answer:** A string with no more than 35 characters.
 
@@ -92,8 +89,7 @@ There is a dependency to US7, before registering a new Client, a Laboratory Rece
 
 ### 1.7 Other Relevant Remarks
 
-*Use this section to capture other relevant information that is related with this US such as (i) special requirements ; (ii) data and/or technology variations; (iii) how often this US is held.* 
-
+This US is hold very often, since it hands the creation of new Clients in the System.
 
 ## 2. OO Analysis
 
@@ -103,9 +99,6 @@ There is a dependency to US7, before registering a new Client, a Laboratory Rece
 ![US3_DM](US3_DM.svg)
 
 ### 2.2. Other Remarks
-
-*Use this section to capture some aditional notes/remarks that must be taken into consideration into the design activity. In some case, it might be usefull to add other analysis artifacts (e.g. activity or state diagrams).* 
-
 
 
 ## 3. Design - User Story Realization 
@@ -134,7 +127,7 @@ According to the taken rationale, the conceptual classes promoted to software cl
 Other software classes (i.e. Pure Fabrication) identified: 
  * CreateClientUI 
  * CreateClientController
- * Send
+
 
 ## 3.2. Sequence Diagram (SD)
 
@@ -160,19 +153,15 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 # 5. Construction (Implementation)
 
-*In this section, it is suggested to provide, if necessary, some evidence that the construction/implementation is in accordance with the previously carried out design. Furthermore, it is recommeded to mention/describe the existence of other relevant (e.g. configuration) files and highlight relevant commits.*
-
-*It is also recommended to organize this content by subsections.* 
+Considering the Sequence Diagram, the RegisterClientUI is responsible by showing and asking data to the Receptionist related to the User, and also sends the information to the controller, which handles the User and Client creation and saving.
 
 # 6. Integration and Demo 
 
-*In this section, it is suggested to describe the efforts made to integrate this functionality with the other features of the system.*
-
+Most of the Client attributes were created using the auth package of the System.
 
 # 7. Observations
 
-*In this section, it is suggested to present a critical perspective on the developed work, pointing, for example, to other alternatives and or future related work.*
-
+During the realisation of this Sprint it was evident that Dtos would have been useful in many situations.
 
 
      

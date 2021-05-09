@@ -45,6 +45,18 @@ public class Parameter {
             throw new InvalidDescriptionException("Description must have less than 20 characters.");
     }
 
+    public String getShortName() {
+        return shortName;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public String toString() {
         return "Parameter{" +
