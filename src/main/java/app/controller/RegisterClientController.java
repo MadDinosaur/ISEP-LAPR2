@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.domain.model.Client;
+import app.domain.model.Company;
 import app.domain.model.DateBirth;
 import app.domain.model.Exceptions.InvalidCardNumberException;
 import app.domain.model.Exceptions.InvalidNameException;
@@ -8,6 +9,7 @@ import app.domain.model.Exceptions.InvalidNhsIdException;
 import app.domain.model.Exceptions.InvalidPhoneNumberException;
 import app.domain.store.ClientStore;
 import auth.domain.model.Email;
+import auth.domain.model.Password;
 
 public class RegisterClientController {
     public static ClientStore listClients = new ClientStore();
@@ -78,7 +80,11 @@ public class RegisterClientController {
         String id =RegisterClientController.email.toString();
         RegisterClientController.newClient = new Client(RegisterClientController.name,RegisterClientController.cardNumber,RegisterClientController.nhsId,RegisterClientController.dateBirth,RegisterClientController.TIN,RegisterClientController.phoneNumber,RegisterClientController.email,RegisterClientController.sex);
         App.getInstance().getCompany().addClient(newClient);
+    }
 
+    public void saveClient(){
+
+        App.getInstance().getCompany().getAuthFacade().addUser(name,email.toString(), Company.getPassword());
     }
 
 }

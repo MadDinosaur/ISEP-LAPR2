@@ -1,9 +1,12 @@
 package app.ui.console;
 
 import app.controller.RegisterClientController;
+import app.domain.model.Exceptions.InvalidDateException;
 import app.domain.model.Exceptions.InvalidNameException;
 import app.domain.model.Exceptions.InvalidNhsIdException;
+import app.domain.model.Exceptions.InvalidTINException;
 
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -70,14 +73,33 @@ public class RegisterClientUI implements Runnable {
         verifier = false;
         while(!verifier) {
             try {
+                String date = sc.nextLine();
+                if(date.equals("exit")) {
+                    System.out.println("sair");
+                }
+                RegisterClientController.setDate(date);
+                verifier = true;
+            }catch (InvalidDateException e){
+                System.out.println(e);
+            }catch (InputMismatchException e){
+                System.out.println("Birthdate must be in the format DD/MM/YYYY");
+                int a = 50;
+                System.out.println("O brito é burro %d");
+            }
+        }
+        System.out.println("Now introduce Client TIN");
+        System.out.println("*write \"exit\" at any moment to exit*");
+        verifier = false;
+        while(!verifier) {
+            try {
                 String nshId = sc.nextLine();
                 if(nshId.equals("exit")) {
                     System.out.println("sair");
                 }
-                long nhsId = Long.parseLong(nshId);
-                RegisterClientController.setNhsId(nhsId);
+                long TIN = Long.parseLong(nshId);
+                RegisterClientController.setTIN(TIN);
                 verifier = true;
-            }catch (InvalidNhsIdException e){
+            }catch (InvalidTINException e){
                 System.out.println(e);
             }catch (InputMismatchException e){
                 System.out.println("NHS Id must only contain numbers");

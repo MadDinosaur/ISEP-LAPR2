@@ -1,5 +1,6 @@
 package app.domain.model;
 
+import app.controller.App;
 import app.domain.store.ClientStore;
 import app.domain.store.EmployeeStore;
 import app.domain.store.OrgRoleStore;
@@ -81,8 +82,8 @@ public class Company {
     }
 
     public boolean addClient(Client client) {
-        String pass = ".";
-        authFacade.addUser(client.getName(), client.getEmail().toString(), pass);
+        String pwd = getPassword();
+        authFacade.addUser(client.getName(), client.getEmail().toString(), pwd);
         return true;
     }
 
@@ -93,8 +94,7 @@ public class Company {
 
 
 
-
-    private String generateUserPassword() {
+    public static String generateUserPassword() {    //pus static e public  mas nao sei se e correto
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'
         int targetStringLength = 10;
@@ -107,5 +107,9 @@ public class Company {
                 .toString();
 
         return generatedString;
+    }
+
+    public static String getPassword(){
+        return generateUserPassword();
     }
 }
