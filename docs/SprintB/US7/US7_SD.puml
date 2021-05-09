@@ -16,38 +16,38 @@ create controller
 ui -> controller : **2** create()
 ui -> controller : **3** getOrganizationRoles()
 controller -> company : **4** roleStore = getOrgRolesStore()
-controller -> ors : roles = getOrganizationRoles()
-ui --> admin : **5** requests employee role
-admin -> ui : **6** selects requested data
-ui --> admin : **7** requests employee information (ie. name, address, phone number, e-mail, soc, **optional** DIN)
-admin -> ui : **8** types requested data
-ui -> controller : **9** createEmployee(role, name, address, phoneNumber, email, soc, **optional** DIN)
-controller -> role : **8** e = createEmployee(role, name, address, phoneNumber, email, soc, **optional** DIN)
-role -> es : id = generateEmployeeId(name)
+controller -> ors : **5** roles = getOrganizationRoles()
+ui --> admin : **6** requests employee role
+admin -> ui : **7** selects requested data
+ui --> admin : **8** requests employee information (ie. name, address, phone number, e-mail, soc, **optional** DIN)
+admin -> ui : **9** types requested data
+ui -> controller : **10** createEmployee(role, name, address, phoneNumber, email, soc, **optional** DIN)
+controller -> es : **11** id = generateEmployeeId(name)
+controller -> ors : **12** e = createEmployee(role, name, address, phoneNumber, email, soc, **optional** DIN)
 alt role = "Specialist Doctor"
 create sd
-role -> sd : create(id, role, name, address, phoneNumber, email, soc, DIN)
+role -> sd : **13** create(id, role, name, address, phoneNumber, email, soc, DIN)
 else
 create employee
-role -> employee : create(id, role, name, address, phoneNumber, email, soc)
+role -> employee : **14** create(id, role, name, address, phoneNumber, email, soc)
 end
-employee -> employee : **14** validateName(name)
+employee -> employee : **15** validateName(name)
 employee -> employee : **16** validateAddress(address)
-employee -> employee : **18** validatePhoneNumber(phoneNumber)
-employee -> employee : **20** validateEmail(email)
-employee -> employee : validateSocCode(soc)
-sd -> sd : **23** validate(DIN)
-ui --> admin : **24** shows the data and requests confirmation
-admin -> ui : **25** confirms the data
-ui -> controller : **26** saveEmployee()
-controller -> company : empStore = getEmployeeStore()
-controller -> es : **27** saveEmployee(e)
-es -> es : **28** validateEmployee(e)
-es -> es : **29** addEmployee(e)
-controller -> company : saveEmployeeAsUser(e)
-company -> company : **30** pwd = generateUserPassword()
+employee -> employee : **17** validatePhoneNumber(phoneNumber)
+employee -> employee : **18** validateEmail(email)
+employee -> employee : **19** validateSocCode(soc)
+sd -> sd : **20** validate(DIN)
+ui --> admin : **21** shows the data and requests confirmation
+admin -> ui : **22** confirms the data
+ui -> controller : **23** saveEmployee()
+controller -> company : **24** empStore = getEmployeeStore()
+controller -> es : **25** saveEmployee(e)
+es -> es : **26** validateEmployee(e)
+es -> es : **27** addEmployee(e)
+controller -> company : **28** saveEmployeeAsUser(e)
+company -> company : **29** pwd = generateUserPassword()
 company -> auth : **30** addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId())
-ui --> admin : **30** informs operation success
+ui --> admin : **31** informs operation success
 
 
 @enduml
