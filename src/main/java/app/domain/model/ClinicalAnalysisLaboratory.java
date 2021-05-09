@@ -36,8 +36,6 @@ public class ClinicalAnalysisLaboratory {
     }
 */
 
-    public ClinicalAnalysisLaboratory() {}
-
     /**
      *
      * setters
