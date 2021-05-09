@@ -54,7 +54,7 @@ class Employee {
 }
 class LaboratoryCoordinator
 class MedicalLabTechnician
-class NHS
+class NHSReportType
 class Receptionist
 class Test {
 -internalCode
@@ -75,7 +75,6 @@ class Parameter {
 -upperReferenceValue
 -lowerReferenceValue
 }
-class ParameterResult
 class Report {
 -textBody
 }
@@ -107,15 +106,16 @@ Company "1"-down-"1" ChemicalLaboratory : owns >
 Diagnosis "*"--"1" LaboratoryCoordinator : validated by >
 Diagnosis "*"--"1" SpecialistDoctor : generates <
 MedicalLabTechnician "1"--"*" Sample : collected by <
-NHS "1"--"1" Company : requests report to >
+"NHS API" "1"--"*" NHSReportType : sent via <
+NHSReportType "*"--"1" Company : generates <
 Parameter "*"--"1" Category : presented under >
-ParameterResult "1"--"1" Parameter : associated to >
 Receptionist "1"--"*" Client : registers >
 Receptionist "1"--"*" Test : registers >
 Report "1"--"1" Diagnosis : contains >
 Report "1"--"1" TestResult : associated to >
 Sample "*"--"1" Client : associated to >
 Sample "*"--"1" Test : associated to >
+Sample "1"--"1" BarcodeAPI : identified by >
 SpecialistDoctor "1"--"*" Report : generates >
 Test "*"--"1" Client : requested by >
 Test "*"-up-"1" Company : performs <
@@ -124,17 +124,19 @@ Test "1"--"1" LabOrder : requires >
 Test "*"--"1" "TestType" : is of >
 Test "1"--"1" TestResult : has a >
 Test "1"--"*" Sample : collects >
+TestParameter "*"--"1" Test : has <
+TestParameter "*"--"1" Parameter : associated to >
 TestResult "*"--"1" LaboratoryCoordinator : validated by >
 TestResult "*"--"1" SpecialistDoctor : analysed by >
 TestResult "*"--"1" ClinicalChemistryTechnologist : generates <
-TestResult "1"--"*" ParameterResult : has >
+TestResult "1"--"1" TestValidationModule : is validated by >
 TestType "*"--"1" Administrator : created by >
 TestType "1"--"1..*" Parameter : has >
-OrganizationRole "0..*"--"1" Administrator : has >
-OrganizationRole "0..*"--"1" ClinicalChemistryTechnologist : has >
-OrganizationRole "0..*"--"1" MedicalLabTechnician : has >
-OrganizationRole "0..*"--"1" LaboratoryCoordinator : has >
-OrganizationRole "0..*"--"1" Receptionist : has >
+OrganizationRole "0..*"--"1" Administrator : has <
+OrganizationRole "0..*"--"1" ClinicalChemistryTechnologist : has <
+OrganizationRole "0..*"--"1" MedicalLabTechnician : has <
+OrganizationRole "0..*"--"1" LaboratoryCoordinator : has <
+OrganizationRole "0..*"--"1" Receptionist : has <
 Employee <|-- SpecialistDoctor
 Employee -- OrganizationRole : has >
 Company "1"--"1..*" Employee : has >
