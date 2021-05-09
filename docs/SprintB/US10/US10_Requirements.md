@@ -95,7 +95,6 @@ Other software classes (i.e. Pure Fabrication) identified:
 ![US10-CD](US10_CD.svg)
 
 # 4. Tests
-*In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.*
 
 **_DO NOT COPY ALL DEVELOPED TESTS HERE_**
 
@@ -113,9 +112,11 @@ Other software classes (i.e. Pure Fabrication) identified:
 # 5. Construction (Implementation)
 
 
+
 # 6. Integration and Demo
 
 *In this section, it is suggested to describe the efforts made to integrate this functionality with the other features of the system.*
+
 
 
 # 7. Observations
