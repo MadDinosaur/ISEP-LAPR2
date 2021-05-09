@@ -74,9 +74,8 @@ public class Company {
     }
 
     public boolean addClient(Client client) {
-        String pass = ".";
-        authFacade.addUser(client.getName(), client.getEmail().toString(), pass);
-        return true;
+        String pass = generateUserPassword();
+        return authFacade.addUser(client.getName(), client.getEmail().toString(), pass);
     }
 
     public List<Category> getCategoryList() {

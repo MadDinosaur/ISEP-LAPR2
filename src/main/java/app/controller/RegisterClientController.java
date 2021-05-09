@@ -13,14 +13,14 @@ import auth.domain.model.Password;
 
 public class RegisterClientController {
     public static ClientStore listClients = new ClientStore();
-    private static String name;
-    private static long cardNumber;
-    private static long nhsId;
-    private static DateBirth dateBirth;   //String dateBirth ---> Date dateBirth
-    private static long TIN;
-    private static long phoneNumber;
-    private static Email email;
-    private static String sex;
+    private static String name; //-
+    private static long cardNumber; //-
+    private static long nhsId; //-
+    private static DateBirth dateBirth;   //-
+    private static long TIN; //-
+    private static long phoneNumber; //-
+    private static Email email; //
+    private static String sex; //
     private static String SEX_POR_OMISSAO = "No sex assigned";
     private static Client newClient;
 
@@ -30,7 +30,8 @@ public class RegisterClientController {
         }
         if (opcao == 2) {
             sex = "femenine";
-        } else {
+        }
+        if (opcao == 3) {
             sex = SEX_POR_OMISSAO;
         }
     }
@@ -76,21 +77,44 @@ public class RegisterClientController {
         int year = Integer.parseInt(dateDivided[2]);
         RegisterClientController.dateBirth = new DateBirth(day,month,year);
     }
-    public void createClient(){
-        String id =RegisterClientController.email.toString();
-        RegisterClientController.newClient = new Client(RegisterClientController.name,RegisterClientController.cardNumber,RegisterClientController.nhsId,RegisterClientController.dateBirth,RegisterClientController.TIN,RegisterClientController.phoneNumber,RegisterClientController.email,RegisterClientController.sex);
-        App.getInstance().getCompany().addClient(newClient);
+
+    public static String getName() {
+        return name;
+    }
+    public static long getCardNumber() {
+        return cardNumber;
+    }
+    public static long getNhsId() {
+        return nhsId;
+    }
+    public static DateBirth getDateBirth() {
+        return dateBirth;
+    }
+    public static long getTIN() {
+        return TIN;
+    }
+    public static long getPhoneNumber() {
+        return phoneNumber;
+    }
+    public static Email getEmail() {
+        return email;
+    }
+    public static String getSex() {
+        return sex;
     }
 
-    public void saveClient(){
+    public static void createClient(){
+        String id =RegisterClientController.email.toString();
+        RegisterClientController.newClient = new Client(RegisterClientController.name,RegisterClientController.cardNumber,RegisterClientController.nhsId,RegisterClientController.dateBirth,RegisterClientController.TIN,RegisterClientController.phoneNumber,RegisterClientController.email,RegisterClientController.sex);
+    }
 
-        App.getInstance().getCompany().getAuthFacade().addUser(name,email.toString(), Company.getPassword());
+    public static void saveClient(){
+        App.getInstance().getCompany().addClient(newClient);
     }
 
 }
 
-//add CLient to Cliente Store
-//add Client to UserStore
+
 
 
 
