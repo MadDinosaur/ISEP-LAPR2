@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class OrgRoleStore {
     private Company company;
-    private ArrayList<OrganizationRole> rolesList;
+    private ArrayList<OrganizationRole> rolesList = new ArrayList<>();
 
     public OrgRoleStore(Company company) {
         rolesList.add(new OrganizationRole("admin", "Administrator", company));

@@ -38,7 +38,7 @@ public class CreateEmployeeUI implements Runnable {
             System.out.printf("%d - %s\n", optionNum, option);
             optionNum++;
         }
-        int optionSelect = sc.nextInt();
+        int optionSelect = Integer.parseInt(sc.nextLine());
         if (optionSelect >= optionNum || optionSelect < 1) {
             System.out.println("Invalid option!");
             return false;

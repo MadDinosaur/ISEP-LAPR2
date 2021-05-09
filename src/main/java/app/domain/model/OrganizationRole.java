@@ -44,4 +44,9 @@ public class OrganizationRole {
             throw new InvalidParameterException("Specialist Doctor must have a Doctor Index Number!");
         return new Employee(id, this, name, address, email, phoneNumber, soc);
     }
+
+    @Override
+    public String toString() {
+        return this.description;
+    }
 }
