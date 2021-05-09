@@ -79,16 +79,15 @@ There is a dependency to US9, before creating a new clinical analysis laboratory
 
 ### 3.1. Rationale
 
-**The rationale grounds on the SSD interactions and the identified input/output data.**
-
-| Interaction ID | Question: Which class is responsible for...| Answer      | Justification (with patterns)  |
-|:-------------  |:------------------------------------------ |:------------|:------------------------------ |
-| Step 1  		 |register a new clinical analysis laboratory?|Administrator|                                |
-| Step 2  		 |request information about the new laboratory?|newLabUI    |                                |
-| Step 3  		 |give the new laboratory information?        |Administrator|                                |
-| Step 4  		 |request type of tests performed by the lab? |newLabUI     |                                |
-| Step 5  		 |select test types performed by the lab?	  |Administrator|                                |
-| Step 6  		 |							                  |             |                                |              
+| Interaction ID | Question: Which class is responsible for... | Answer        | Justification (with patterns)  |
+|:-------------  |:------------------------------------------  |:--------------|:------------------------------ |
+| Step 1 | register a new clinical analysis laboratory? | Administrator| |
+| Step 2 | request information about the new laboratory? | RegisterNewLabUI | |
+| Step 3 | give the new laboratory information? | Administrator | |
+| Step 4 | request type of tests performed by the lab? | RegisterNewLabUI | |
+| Step 5 | select test types performed by the lab? | Administrator | |
+| Step 6 | request for confirmation? | RegiterNewLabUI | |
+| Step 7 | confirm all the data? | Administrator | |              
 
 ### Systematization ##
 
@@ -98,34 +97,36 @@ According to the taken rationale, the conceptual classes promoted to software cl
  * TestType
 
 Other software classes (i.e. Pure Fabrication) identified: 
- * CreateNewLabUI  
- * CreateNewLabController
+ * RegisterNewLabUI  
+ * RegisterNewLabController
 
 ## 3.2. Sequence Diagram (SD)
-
-*In this section, it is suggested to present an UML dynamic view stating the sequence of domain related software objects' interactions that allows to fulfill the requirement.* 
 
 ![US8-SD](US8_SD.svg)
 
 ## 3.3. Class Diagram (CD)
 
-*In this section, it is suggested to present an UML static view representing the main domain related software classes that are involved in fulfilling the requirement as well as and their relations, attributes and methods.*
-
 ![US8-CD](US8_CD.svg)
 
 # 4. Tests 
-*In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.* 
-
-**_DO NOT COPY ALL DEVELOPED TESTS HERE_**
 
 **Test 1:** Check that it is not possible to create an instance of the Example class with null values. 
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Exemplo instance = new Exemplo(null, null);
-	}
+	    @Test(expected = InvalidNameException.class)
+        public void testEmptyName() {
+            String name = "";
+            ClinicalAnalysisLaboratory newLab = new ClinicalAnalysisLaboratory();
+            newLab.setName(name);
+        }
 
-*It is also recommended to organize this content by subsections.* 
+**Test 2:** Check that is not possible to create an instance over the character/digit limit for each parameter. This is also tested for the same 5 parameters.
+
+    @Test(expected = InvalidNameException.class)
+        public void testOver20CharacterName() {
+            String name = "123456789012345678901";
+            ClinicalAnalysisLaboratory newLab = new ClinicalAnalysisLaboratory();
+            newLab.setName(name);
+        }
 
 # 5. Construction (Implementation)
 
