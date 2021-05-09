@@ -15,31 +15,28 @@
 
 ### From the client Clarifications
 
-•	**Q1:** Does the administrator need to register a receptionist in the system, or do we have to assume that there is already a receptionist in the system?
 
-**Answer:** …
-
-•	**Q2**: Does the receptionist need to be logged in the app to preform the regist.
+•	**Q1**: Does the receptionist need to be logged in the app to preform the regist.
 
 **Answer:** Yes.
 
-•	**Q3**: What parameter (asked by the receptionist) should the system use to create the password of the new client?
+•	**Q2**: What parameter (asked by the receptionist) should the system use to create the password of the new client?
 
 **Answer:** The password should be randomly generated. It should have ten alphanumeric characters.
 
-•	**Q4:** Relative to registering a new user, how should the system respond in the event of creating a new user with the same attributes of an already existing user?
+•	**Q3:** Relative to registering a new user, how should the system respond in the event of creating a new user with the same attributes of an already existing user?
 
 **Answer:** This should be treated as an error. A subset of the attributes of any client are unique.
 
-•	**Q5:** How are the passwords delivered to the users (client/employee)?
+•	**Q4:** How are the passwords delivered to the users (client/employee)?
 
 **Answer:** Each users receives an e-mail informing that the registration was successful and that he can start to use the system. The e-mail includes the user password.
 
-•	**Q6:** Does the client need to tell his age to the recepcionis. Im asking because before you didnt especified that that would be a parameter?
+•	**Q5:** Does the client need to tell his age to the recepcionis. Im asking because before you didnt especified that that would be a parameter?
 
 **Answer:** No, only needs to tell the birth day (from a previous post). The application must validate and should not accept clients who have more than 150 years of age.
 
-•	**Q7:** What should be the maximum length of the String with the name of the Client?
+•	**Q6:** What should be the maximum length of the String with the name of the Client?
 
 **Answer:** A string with no more than 35 characters.
 
