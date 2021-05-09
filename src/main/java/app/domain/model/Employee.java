@@ -12,7 +12,7 @@ public class Employee {
     private int socCode;
     private OrganizationRole organizationRole;
 
-    public Employee(String id, OrganizationRole role, String name, String address, String email, int phoneNumber, int soc) {
+    public Employee(String id, OrganizationRole role, String name, String address, String email, String phoneNumber, String soc) {
         if (!validateName(name)) throw new InvalidNameException();
         if (!validateAddress(address)) throw new InvalidAddressException();
         if (!validateEmail(email)) throw new InvalidEmailException();
@@ -24,7 +24,8 @@ public class Employee {
         this.name = name;
         this.address = address;
         this.email = email;
-        this.phoneNumber = phoneNumber;
+        this.phoneNumber = Integer.parseInt(phoneNumber);
+        this.socCode = Integer.parseInt(soc);
     }
 
     private boolean validateName(String name) {
@@ -43,13 +44,25 @@ public class Employee {
         return true;
     }
 
-    private boolean validatePhoneNumber(int phoneNumber) {
-        if (phoneNumber > 999999999 || phoneNumber < 100000000 ) return false;
+    private boolean validatePhoneNumber(String phoneNumber) {
+        int convertedPhoneNumber;
+        try {
+            convertedPhoneNumber = Integer.parseInt(phoneNumber); }
+        catch (NumberFormatException e) {
+            throw new InvalidPhoneNumberException("Phone number must be a number!");
+        }
+        if (convertedPhoneNumber > 999999999 || convertedPhoneNumber < 100000000 ) return false;
         return true;
     }
 
-    private boolean validateSocCode(int soc) {
-        if (soc > 9999 || soc < 1000) return false;
+    private boolean validateSocCode(String soc) {
+        int convertedSocCode;
+        try {
+            convertedSocCode = Integer.parseInt(soc); }
+        catch (NumberFormatException e) {
+            throw new InvalidPhoneNumberException("SOC code must be a number!");
+        }
+        if (convertedSocCode > 9999 || convertedSocCode < 1000) return false;
         return true;
     }
 
@@ -77,3 +90,4 @@ public class Employee {
         return organizationRole.getId();
     }
 }
+
