@@ -1,36 +1,51 @@
-# US XXX - XXXX XXXX
+# US 11 - Specifying a new parameter category
 
 ## 1. Requirements Engineering
 
-*In this section, it is suggested to capture the requirement description and specifications as provided by the client as well as any further clarification on it. It is also suggested to capture the requirements acceptance criteria and existing dependencies to other requirements. At last, identfy the involved input and output data and depicted an Actor-System interaction in order to fulfill the requirement.*
-
-
 ### 1.1. User Story Description
 
-*Insert here the User Story as described by the client.*
+* As an administrator, I want to specify a new parameter category.*
 
 ### 1.2. Customer Specifications and Clarifications 
 
-*Insert here any related specification and/or clarification provided by the client together with **your interpretation**. When possible, provide a link to such specifications/clarifications.*
+**From the Specifications Document:**
+* "Blood tests are frequently characterized by measuring several parameters which for presentation/reporting purposes are organized
+by categories. For example, parameters such as the number of Red Blood Cells (RBC), White Blood Cells (RBC) and Platelets (PLT) are
+usually presented under the blood count (Hemogram) category."
+* "Regardless, such tests rely on measuring one or more parameters that can be grouped/organized by categories."
+
+**From the client clarifications:**
+* Question: What are the data that characterize a parameter category?
+* Answer: Simply consider a code, a description and an NHS identifier
 
 ### 1.3. Acceptance Criteria
 
-*Insert here the client acceptance criteria.*
+* AC1: name is a string with no more than 10 characters
+* AC2: code is a string with 5 alphanumeric numbers
+* AC3: NHS identifier is not mandatory
 
 ### 1.4. Found out Dependencies
 
-*Identify here any found out dependency to other US and/or requirements.*
+*There were no dependencies found.*
 
 ### 1.5 Input and Output Data
 
-*Identity here the data to be inputted by the system actor as well as the output data that the system have/needs to present in order to properly support the actor actions. Regarding the inputted data, it is suggested to distinguish between typed data and selected data (e.g. from a list)*
+**Input Data:**
 
+* Typed data:
+    * a name;
+    * a code;
+
+* Selected data:
+    * (none)
+
+**Output Data:**
+
+* (In)Success of the operation.
 
 ### 1.6. System Sequence Diagram (SSD)
 
-*Insert here a SSD depicting the envisioned Actor-System interactions and throughout which data is inputted and outputted to fulfill the requirement. All interactions must be numbered.*
-
-![USXX-SSD](USXX-SSD.svg)
+![US11_SSD](US11_SSD.svg)
 
 
 ### 1.7 Other Relevant Remarks

@@ -15,40 +15,34 @@ public class CreateNewParameterController {
     private List<Category> categoryList;
 
     public CreateNewParameterController() {
-        this(App.getInstance().getCompany());
+        this.company = (App.getInstance().getCompany());
+        this.pc = null;
+        this.par = null;
+        this.categoryList = company.getCategoryList();
     }
 
     public CreateNewParameterController(Company company) {
         this.company = company;
         this.pc = null;
         this.par = null;
-        this.categoryList = company.getCategoryList();
+        this.categoryList = this.company.getCategoryList();
     }
 
     public void setCategory(Category pc){
         this.pc = pc;
     }
 
-    public boolean createNewParameter(String shortName, String code, String description) {
+    public void createNewParameter(String shortName, String code, String description) {
         this.par = this.pc.createNewParameter(shortName, code, description);
-        return this.pc.validateParameter(par);
     }
 
     public boolean saveParameter() {
-        return this.pc.saveParameter(par);
+        this.pc.saveParameter(par);
+        return true;
     }
 
     public List<Category> getCategoryList(){
         return company.getCategoryList();
-    }
-
-    public String getCategoryName() {
-        Iterator<Category> iterator = company.getCategoryList().iterator();
-        while (iterator.hasNext()) {
-            Category cat = iterator.next();
-            return cat.getName();
-        }
-        return null;
     }
 
     public Category getCategory(){

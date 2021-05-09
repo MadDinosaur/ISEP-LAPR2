@@ -6,7 +6,7 @@ import app.domain.model.TestType;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class CreateNewLabUI {
+public class CreateNewLabUI implements Runnable {
     static Scanner input = new Scanner(System.in);
     private CreateNewLabController CNLC = new CreateNewLabController();
 
@@ -29,6 +29,7 @@ public class CreateNewLabUI {
         System.out.println("Insert tax identification number.");
         long TIN = input.nextLong();
 
+        input.nextLine();
         System.out.println("Insert laboratory ID.");
         String labID = input.nextLine();
 
@@ -36,11 +37,16 @@ public class CreateNewLabUI {
         System.out.println("Address: " + address);
         System.out.println("Phone Number: " + phonenumber);
         System.out.println("Tax Identification Number: " + TIN);
-        System.out.println("Laboratory ID " + labID);
+        System.out.println("Laboratory ID: " + labID);
         System.out.println("Is this information correct? (yes/no)");
 
         boolean confirm = confirmation();
-        if(confirm) { CNLC.setData(name, address, phonenumber, TIN, labID);} else { setData(); }
+        if(confirm) {
+            CNLC.setData(name, address, phonenumber, TIN, labID);
+        } else {
+            System.out.println("Reenter the information.");
+            setData();
+        }
 
     }
 
@@ -62,8 +68,8 @@ public class CreateNewLabUI {
     }
 
     public boolean confirmation() {
+        String confirmation = input.nextLine();
         while(true) {
-            String confirmation = input.nextLine();
             if (confirmation.equalsIgnoreCase("yes")) {
                 return true;
             } else {
@@ -73,6 +79,7 @@ public class CreateNewLabUI {
                     System.out.println("Insert valid answer");
                 }
             }
+            confirmation = input.nextLine();
         }
     }
 }

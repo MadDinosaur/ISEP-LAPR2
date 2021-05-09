@@ -45,17 +45,5 @@ public class ParameterTests {
         Parameter par = new Parameter(name, code, description);
     }
 
-    @Test
-    public void testCreateNewParameterController(){
-        CreateNewParameterController controller = new CreateNewParameterController();
-        Category pc = new Category("Hemogram", "13425", "Blood contents");
-        controller.setCategory(pc);
-        controller.createNewParameter("PLT", "12345", "Platelets");
-        controller.saveParameter();
-        Parameter newPar = new Parameter("PLT", "12345", "Platelets");
-        List<Parameter> parameterList = null;
-        parameterList.add(newPar);
 
-        Assert.assertSame(pc.getParameterList(), parameterList);
-    }
 }

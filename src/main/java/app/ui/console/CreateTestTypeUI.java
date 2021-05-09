@@ -1,6 +1,7 @@
 package app.ui.console;
 
 import app.controller.CreateTestTypeController;
+import app.domain.model.Exceptions.InvalidCategoryException;
 import app.domain.model.Exceptions.InvalidCodeException;
 import app.domain.model.Exceptions.InvalidDescriptionException;
 
@@ -26,10 +27,10 @@ public class CreateTestTypeUI implements Runnable {
 
     public void setCode() {
         boolean valid = false;
-        while(!valid) {
+        while (!valid) {
             try {
                 boolean loop = false;
-                System.out.println("Insert the code wanted for the test type:");
+                System.out.println("Insert the code for the test type: (make sure it is five alphanumeric characters)");
                 String code = sc.nextLine();
                 System.out.printf("This is the code you inserted: \"%s\". Are you sure this is the code you want? (Yes/No)\n", code);
                 String confirmation = sc.nextLine();
@@ -50,7 +51,7 @@ public class CreateTestTypeUI implements Runnable {
                     }
                 }
             } catch (InvalidCodeException e) {
-                System.out.println("The code shouldn't be any longer than 5 alphanumeric characters!!");
+                System.out.println("The code should only have 5 alphanumeric characters!!");
             }
         }
     }
@@ -89,46 +90,53 @@ public class CreateTestTypeUI implements Runnable {
 
     public void setCategories() {
         boolean noMore = false;
-        boolean loop = false;
         int counter = 0;
         String confirmation;
         System.out.println("Here is a list of the categories available:\n");
         cttc.displayCategoryList();
-        System.out.println("One by one, insert the number of the category you want to associate to the test type (If you don't want to insert any more categories, please press ENTER)\n");
+        System.out.println();
+        System.out.println("One by one, insert the number of the category you want to associate to the test type (If you don't want to insert any more categories, please press ENTER)");
         String indexPedido = sc.nextLine();
         while (!noMore) {
-            if (indexPedido.equals("") && counter > 0) {
-                noMore = true;
-            } else if (indexPedido.equals("") && counter == 0) {
-                System.out.println("You should insert at least one category!");
-                cttc.displayCategoryList();
-                indexPedido = sc.nextLine();
-            } else if (Integer.parseInt(indexPedido) < 0 || Integer.parseInt(indexPedido) > (cttc.getCategoryListSize() - 1) ) {
+            try {
+                boolean loop = false;
+                if (indexPedido.equals("") && counter > 0) {
+                    noMore = true;
+                } else if (indexPedido.equals("") && counter == 0) {
+                    System.out.println("You should insert at least one category!");
+                    cttc.displayCategoryList();
+                    indexPedido = sc.nextLine();
+                } else if (Integer.parseInt(indexPedido) < 0 || Integer.parseInt(indexPedido) > (cttc.getCategoryListSize() - 1)) {
                     System.out.println("Please insert a valid category!!");
                     cttc.displayCategoryList();
                     indexPedido = sc.nextLine();
-            } else {
-                System.out.printf("Are you sure this is the category you want? (Yes/No)\n");
-                confirmation = sc.nextLine();
-                while (!loop) {
-                    if (confirmation.equalsIgnoreCase("yes")) {
-                        loop = true;
-                        cttc.setCategoriesToTestType(Integer.parseInt(indexPedido));
-                        counter++;
-                        cttc.displayCategoryList();
-                        System.out.println("Please insert another category (If you don't want to insert any more categories, please press ENTER)");
-                        indexPedido = sc.nextLine();
-                    } else if (confirmation.equalsIgnoreCase("no")) {
-                        System.out.println("Please, choose another category");
-                        cttc.displayCategoryList();
-                        indexPedido = sc.nextLine();
-                        System.out.printf("Are you sure this is the category you want? (Yes/No)\n");
-                        confirmation = sc.nextLine();
-                    } else {
-                        System.out.println("Please insert either yes or no!");
-                        confirmation = sc.nextLine();
+                } else {
+                    System.out.printf("Are you sure this is the category you want? (Yes/No)\n");
+                    confirmation = sc.nextLine();
+                    while (!loop) {
+                        if (confirmation.equalsIgnoreCase("yes")) {
+                            loop = true;
+                            cttc.setCategoriesToTestType(Integer.parseInt(indexPedido));
+                            counter++;
+                            cttc.displayCategoryList();
+                            System.out.println("Please insert another category (If you don't want to insert any more categories, please press ENTER)");
+                            indexPedido = sc.nextLine();
+                        } else if (confirmation.equalsIgnoreCase("no")) {
+                            System.out.println("Please, choose another category");
+                            cttc.displayCategoryList();
+                            indexPedido = sc.nextLine();
+                            System.out.printf("Are you sure this is the category you want? (Yes/No)\n");
+                            confirmation = sc.nextLine();
+                        } else {
+                            System.out.println("Please insert either yes or no!");
+                            confirmation = sc.nextLine();
+                        }
                     }
                 }
+            } catch (InvalidCategoryException e) {
+                System.out.println("This category was already selected!!\nPlease chooser another category");
+                cttc.displayCategoryList();
+                indexPedido = sc.nextLine();
             }
         }
     }

@@ -7,19 +7,19 @@ import org.junit.Test;
 public class TestTypeTests {
 
     @Test(expected = InvalidCodeException.class)
-    public void testEmptyTestTypeDesignation() {
+    public void testEmptyTestTypeCode() {
         TestType test = new TestType();
         test.setCode("");
     }
 
     @Test(expected = InvalidCodeException.class)
-    public void testTestTypeDesignationWithMoreThan5Characters() {
+    public void testTestTypeCodeWithMoreThan5Characters() {
         TestType test = new TestType();
         test.setCode("yayaya");
     }
 
     @Test(expected = InvalidCodeException.class)
-    public void testTestTypeDesignationWithNonAlphanumericCharacters() {
+    public void testTestTypeCodeWithNonAlphanumericCharacters() {
         TestType test = new TestType();
         test.setCode("asd!");
     }

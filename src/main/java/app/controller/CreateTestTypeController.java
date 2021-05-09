@@ -3,6 +3,7 @@ package app.controller;
 import app.domain.model.Category;
 import app.domain.model.CollectionMethod;
 import app.domain.model.Company;
+import app.domain.model.Exceptions.InvalidCategoryException;
 import app.domain.model.TestType;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public class CreateTestTypeController {
         List<Category> list = this.company.getCategoryList();
         int index = 0;
         for (Category category : list) {
-            System.out.printf("%s - %s\n", index, category.getDescription());
+            System.out.printf("%s - %s\n", index, category.getName());
             index++;
         }
     }
