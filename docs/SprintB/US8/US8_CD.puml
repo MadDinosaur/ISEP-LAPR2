@@ -1,10 +1,10 @@
 @startuml
 class Administrator
-class newLabUI{
+class CreateNewLabUI{
 +LabInfo(name, address, phonenumber, TIN, laboratoryID)
 +TestType(testtype)
 }
-class newLabController {
+class CreateNewLabController {
 +setData(name, address, phonenumber, TIN, laboratoryID)
 +setTest(tt)
 +saveData()

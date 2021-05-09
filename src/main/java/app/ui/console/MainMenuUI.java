@@ -23,6 +23,7 @@ public class MainMenuUI {
         options.add(new MenuItem("Do Login", new AuthUI()));
         options.add(new MenuItem("Know the Development Team",new DevTeamUI()));
         options.add(new MenuItem("Test RegisterClient",new RegisterClientUI()));
+        options.add(new MenuItem("Test RegisterEmployee", new CreateEmployeeUI()));
         int option = 0;
         do
         {
@@ -38,3 +39,4 @@ public class MainMenuUI {
 
 
 }
+

@@ -13,7 +13,7 @@ public class CreateTestTypeController {
     private CollectionMethod cm;
 
     public CreateTestTypeController() {
-
+        this.company = App.getInstance().getCompany();
     }
 
 

@@ -8,6 +8,12 @@ import app.domain.model.Exceptions.InvalidDescriptionException;
 import app.domain.model.Exceptions.InvalidNameException;
 import app.domain.model.Exceptions.InvalidNhsIdException;
 import app.ui.Main;
+import javafx.application.*;
+import javafx.scene.control.*;
+import javafx.scene.layout.StackPane;
+import javafx.stage.*;
+import javafx.scene.*;
+import javafx.event.*;
 
 import javax.swing.*;
 
@@ -15,6 +21,7 @@ import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import static javafx.application.Application.*;
 
 public class CreateNewParameterUI implements Runnable{
 

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class EmployeeStore {
     private int id = 0;
-    private ArrayList<Employee> employeeList;
+    private ArrayList<Employee> employeeList = new ArrayList<>();
 
     public String generateEmployeeId(String fullName) {
         if (fullName == null) throw new InvalidNameException();

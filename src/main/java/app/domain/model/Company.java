@@ -9,6 +9,7 @@ import auth.domain.model.Email;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -24,10 +25,10 @@ public class Company {
 
     private static ClientStore listClients = new ClientStore();
     private EmployeeStore employeeStore = new EmployeeStore();
-    private OrgRoleStore orgRoleStore = new OrgRoleStore();
+    private OrgRoleStore orgRoleStore = new OrgRoleStore(this);
     private List<Category> parameterCategoryList;
     private TestTypeStore tts = new TestTypeStore();
-    private List<Category> categoryList;
+    private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("fixe", "pistola", "se queres", "toma")));
 
     public Company(String designation) {
         if (StringUtils.isBlank(designation))

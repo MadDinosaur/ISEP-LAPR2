@@ -12,17 +12,17 @@ public class TestType {
     private String description;
     private String code;
     private CollectionMethod collectionMethod;
-    private ArrayList<Category> categories;
+    private ArrayList<Category> categories = new ArrayList<>();
 
     public TestType() {
 
     }
 
-    public void setCode(String designation) {
-        if (!validateCode(designation)) {
-            throw new InvalidCodeException("The designation introduced isn't valid.");
+    public void setCode(String code) {
+        if (!validateCode(code)) {
+            throw new InvalidCodeException();
         } else {
-            this.code = designation;
+            this.code = code;
         }
     }
 
@@ -32,6 +32,10 @@ public class TestType {
 
     public void setCategory(Category category) {
         this.categories.add(category);
+    }
+
+    public void setCategories(ArrayList<Category> categories) {
+        this.categories = categories;
     }
 
     public String getCode() {

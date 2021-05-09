@@ -4,7 +4,7 @@ import app.domain.model.Exceptions.InvalidDescriptionException;
 import app.domain.model.TestType;
 import org.junit.Test;
 
-public class TestTypeTest {
+public class TestTypeTests {
 
     @Test(expected = InvalidCodeException.class)
     public void testEmptyTestTypeDesignation() {
