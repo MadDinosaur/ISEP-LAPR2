@@ -30,9 +30,9 @@ From a previous post: "Each category has a name and a unique code. There are no 
 
 ### 1.3. Acceptance Criteria
 
-*Code:* five alphanumeric characters.
-*Description:* a string with no more than 15 characters.
-*Collection Method:* a string with no more than 20 characters.
+*AC1*: the code shouldn't have more than five alphanumeric characters.
+*AC2*: the description of the test type should be a string with no more than 15 characters.
+*AC3*: the collection method's description should be a string with no more than 20 characters.
 
 ### 1.4. Found out Dependencies
 
@@ -85,7 +85,7 @@ From a previous post: "Each category has a name and a unique code. There are no 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:--------------------|:---------------------------- |
 | Step 1 starts a new test type | instantiating a new test type? | TestTypeStore | Creator Pattern |
-| Step 2 requests the data required (designation and description) 		 | saving the input data? <br> validating the data locally? <br> validating the data globally? | TestType <br> TestType and Collection Method <br> TestTypeStore 	| IE: knows its own data <br> IE: knows its own data <br> IE: knows all TestType objects |                              |
+| Step 2 requests the data required (code, description and collection method's description) 		 | saving the input data? <br> validating the data locally? <br> validating the data globally? | TestType <br> TestType and Collection Method <br> TestTypeStore 	| IE: knows its own data <br> IE: knows its own data <br> IE: knows all TestType objects |                              |
 | Step 3 requests the categories        | showing the category list? <br> saving the input categories? | Company <br> TestType | IE: Company knows all the categories <br> IE: knows its own data | 
 | Step 4 confirms the data        |  saving the new Test Type? | TestTypeStore | IE: adopts/records all TestType objects |
 | Step 5 informs operation success 		 |	informing operation success?						 | CreateTestTypeUI           | IE: Responsible for user interaction                          |
@@ -123,14 +123,34 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 **_DO NOT COPY ALL DEVELOPED TESTS HERE_**
 
-**Test 1:** Check that it is not possible to create an instance of the Example class with null values. 
+**Tests related to the test type's code:**
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Exemplo instance = new Exemplo(null, null);
-	}
+**Test 1:** Check that it is not possible to set an empty code. 
 
-*It is also recommended to organize this content by subsections.* 
+	@Test(expected = InvalidCodeException.class)
+    public void testEmptyTestTypeDesignation() {
+        TestType test = new TestType();
+        test.setCode("");
+    }
+
+**Test 2:** Check that it is not possible to set a code with more than 5 alphanumeric characters (according to the acceptance criteria).
+
+    @Test(expected = InvalidCodeException.class)
+    public void testTestTypeDesignationWithMoreThan5Characters() {
+    TestType test = new TestType();
+    test.setCode("yayaya");
+    }
+
+**Test 3:** Check that it is not possible to set a code with non-alphanumeric characters.
+
+    @Test(expected = InvalidCodeException.class)
+    public void testTestTypeDesignationWithNonAlphanumericCharacters() {
+        TestType test = new TestType();
+        test.setCode("asd!");
+    }
+
+The rest of the tests follow this exact same pattern, testing if it is possible to create an empty string or if it is possible to create objects that aren't according to the respective acceptance criteria.
+
 
 # 5. Construction (Implementation)
 
