@@ -76,7 +76,7 @@ public class ClinicalAnalysisLaboratory {
     }
 
     public void setLaboratoryID(String laboratoryID){
-        if (!(validateLaboratoryID(laboratoryID))) {
+        if ((validateLaboratoryID(laboratoryID))) {
             this.laboratoryID = laboratoryID;
         } else {
             throw new InvalidLaboratoryIDException();

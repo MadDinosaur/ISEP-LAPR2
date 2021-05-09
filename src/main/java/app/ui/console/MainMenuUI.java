@@ -24,6 +24,8 @@ public class MainMenuUI {
         options.add(new MenuItem("Know the Development Team",new DevTeamUI()));
         options.add(new MenuItem("Test RegisterClient",new RegisterClientUI()));
         options.add(new MenuItem("Test RegisterEmployee", new CreateEmployeeUI()));
+        options.add(new MenuItem("Test RegisterClinicalAnalysisLaboratory", new CreateNewLabUI()));
+        options.add(new MenuItem("Test CreateNewTestType", new CreateTestTypeUI()));
         int option = 0;
         do
         {
