@@ -115,27 +115,5 @@ public class RegisterClientUI implements Runnable {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
- /*   public static void main(String[] args) {
-        boolean valido = false;
-        while(!valido) {
-            try {
-                RegisterClientController.setNameClient("");
-                valido =true;
-            } catch (InvalidNameException e) {
-                System.out.println(e);
-            }
-        }
-    }*/
+    
 }
