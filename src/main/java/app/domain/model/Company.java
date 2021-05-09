@@ -6,8 +6,11 @@ import app.domain.store.OrgRoleStore;
 import app.domain.store.TestTypeStore;
 import auth.AuthFacade;
 import auth.domain.model.Email;
+import auth.domain.model.Password;
+import auth.domain.model.User;
 import org.apache.commons.lang3.StringUtils;
 
+import java.lang.reflect.AnnotatedArrayType;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -75,9 +78,8 @@ public class Company {
         return tts;
     }
 
-    public boolean addClient(String name, Email email) {
-        String pass = generateUserPassword();
-        return authFacade.addUser(name , email.toString(), pass);
+    public boolean addClient(String name, Email email, String pass) {
+        return authFacade.addUser(name,email.toString(),pass);
     }
 
     public List<Category> getCategoryList() {
@@ -95,7 +97,7 @@ public class Company {
         return authFacade.addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId());
     }
 
-    private String generateUserPassword() {
+    public String generateUserPassword() {
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'
         int targetStringLength = 10;
@@ -109,4 +111,5 @@ public class Company {
 
         return generatedString;
     }
+
 }
