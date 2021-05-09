@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class TestTypeStore {
 
-    private ArrayList<TestType> testTypeList;
+    private ArrayList<TestType> testTypeList = new ArrayList<>();
 
     public TestTypeStore() {
 
