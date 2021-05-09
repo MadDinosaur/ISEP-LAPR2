@@ -67,11 +67,10 @@ public class Category {
     public boolean saveParameter(Parameter par){
         int cont = 0;
         if(parameterList != null) {
-
             Iterator<Parameter> iterator = parameterList.iterator();
             while (iterator.hasNext()) {
                 Parameter newPar = iterator.next();
-                if (newPar.getShortName().equalsIgnoreCase(par.getShortName())) {
+                if (newPar.getShortName().equalsIgnoreCase(par.getShortName()) || newPar.getCode().equalsIgnoreCase(par.getCode()) || newPar.getDescription().equalsIgnoreCase(par.getDescription())) {
                     cont++;
                 }
             }
