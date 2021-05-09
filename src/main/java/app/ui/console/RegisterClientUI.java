@@ -1,14 +1,12 @@
 package app.ui.console;
 
 import app.controller.RegisterClientController;
-import app.domain.model.Exceptions.InvalidDateException;
-import app.domain.model.Exceptions.InvalidNameException;
-import app.domain.model.Exceptions.InvalidNhsIdException;
-import app.domain.model.Exceptions.InvalidTINException;
+import app.domain.model.Exceptions.*;
+import app.ui.console.utils.Utils;
 
-import java.util.Date;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.sql.ResultSet;
+import java.sql.SQLOutput;
+import java.util.*;
 
 public class RegisterClientUI implements Runnable {
 
@@ -92,19 +90,103 @@ public class RegisterClientUI implements Runnable {
         verifier = false;
         while(!verifier) {
             try {
-                String nshId = sc.nextLine();
-                if(nshId.equals("exit")) {
+                String TIN = sc.nextLine();
+                if(TIN.equals("exit")) {
                     System.out.println("sair");
                 }
-                long TIN = Long.parseLong(nshId);
-                RegisterClientController.setTIN(TIN);
+                long TIN2 = Long.parseLong(TIN);
+                RegisterClientController.setTIN(TIN2);
                 verifier = true;
             }catch (InvalidTINException e){
                 System.out.println(e);
             }catch (InputMismatchException e){
-                System.out.println("NHS Id must only contain numbers");
+                System.out.println("TIN must only contain numbers");
             }
         }
+        System.out.println("Now introduce Client phone number");
+        System.out.println("*write \"exit\" at any moment to exit*");
+        verifier = false;
+        while(!verifier) {
+            try {
+                String phone = sc.nextLine();
+                if(phone.equals("exit")) {
+                    System.out.println("sair");
+                }
+                long phoneNumber = Long.parseLong(phone);
+                RegisterClientController.setPhoneNumber(phoneNumber);
+                verifier = true;
+            }catch (InvalidPhoneNumberException e){
+                System.out.println(e);
+            }catch (InputMismatchException e){
+                System.out.println("TIN must only contain numbers");
+            }
+        }
+        System.out.println("Now introduce Client email");
+        System.out.println("*write \"exit\" at any moment to exit*");
+        verifier = false;
+        while(!verifier) {
+            try {
+                String email = sc.nextLine();
+                if(email.equals("exit")) {
+                    System.out.println("sair");
+                }
+                RegisterClientController.setEmail(email);
+                verifier = true;
+            }catch (InvalidEmailException e){
+                System.out.println(e);
+            }catch (Exception a){
+                System.out.println(a);
+            }
+        }
+        System.out.println("Now introduce Client sex");
+        System.out.println("*write \"exit\" at any moment to exit*");
+        verifier = false;
+        while(!verifier) {
+            System.out.println("Sex Options (Optional)");
+            try {
+                System.out.println("1- Male");
+                System.out.println("2- Female");
+                System.out.println("3- Move foward wthout sex");
+                String option = sc.nextLine();
+                if(option.equals("exit")) {
+                    System.out.println("sair");
+                }
+                int optionUser = Integer.parseInt(option);
+                if(optionUser == 1){
+                    RegisterClientController.setSexOpcao(1);
+                }if(optionUser == 2){
+                    RegisterClientController.setSexOpcao(2);
+                }if(optionUser == 3){
+                    RegisterClientController.setSexOpcao(3);
+                }
+                verifier = true;
+            }catch (InputMismatchException e){
+                System.out.println("Opcion must be a number from 1 to 3");
+            }
+        }
+        System.out.println("Please confirm Client Data");
+        System.out.println("Name:" + RegisterClientController.getName());
+        System.out.println("Card Number:" + RegisterClientController.getCardNumber());
+        System.out.println("Nhs Id:"+ RegisterClientController.getNhsId());
+        System.out.println("Birth Date:"+ RegisterClientController.getDateBirth());
+        System.out.println("TIN:" + RegisterClientController.getTIN());
+        System.out.println("Phone Number:"+ RegisterClientController.getPhoneNumber());
+        System.out.println("Email:"+ RegisterClientController.getEmail());
+        System.out.println("Sex" + RegisterClientController.getSex());
+
+        System.out.println("Is the data correct?");
+        System.out.println("Type Yes/No/Cancel");
+        String awnser = sc.nextLine();
+        if (awnser.equalsIgnoreCase("yes")){
+            RegisterClientController.createClient();
+            RegisterClientController.saveClient();
+        }if(awnser.equalsIgnoreCase("no")){
+            System.out.println("Would you like ");
+        }
+
+
+
+
 
 
 
@@ -115,5 +197,5 @@ public class RegisterClientUI implements Runnable {
 
 
 
-    
+
 }
