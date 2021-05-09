@@ -15,6 +15,10 @@ public class TestType {
     private CollectionMethod collectionMethod;
     private ArrayList<Category> categories = new ArrayList<>();
 
+    public TestType(String code) {
+        this.code = code;
+    }
+
     public TestType() {
 
     }

@@ -161,7 +161,7 @@ The rest of the tests follow this exact same pattern, testing if it is possible 
 
 # 6. Integration and Demo 
 
-*In this section, it is suggested to describe the efforts made to integrate this functionality with the other features of the system.*
+*This system was developed using OOP (Object Oriented Programming)*
 
 
 # 7. Observations
