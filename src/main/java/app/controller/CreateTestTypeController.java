@@ -3,6 +3,7 @@ package app.controller;
 import app.domain.model.Category;
 import app.domain.model.CollectionMethod;
 import app.domain.model.Company;
+import app.domain.model.Exceptions.InvalidCategoryException;
 import app.domain.model.TestType;
 
 import java.util.List;
