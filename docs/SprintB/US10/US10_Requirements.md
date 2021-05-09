@@ -101,12 +101,14 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 **Test 1:** Check that it is not possible to create an instance of the Example class with null values.
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Exemplo instance = new Exemplo(null, null);
-	}
+	@Test(expected = InvalidNameException.class)
+    public void testNullName(){
+        String name = "";
+        String code = "12345";
+        String description = "Red blood cells";
 
-*It is also recommended to organize this content by subsections.*
+        Parameter par = new Parameter(name, code, description);
+    }
 
 # 5. Construction (Implementation)
 
