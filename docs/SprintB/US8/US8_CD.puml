@@ -1,25 +1,25 @@
 @startuml
 class Administrator
-class CreateNewLabUI{
-+LabInfo(name, address, phonenumber, TIN, laboratoryID)
-+TestType(testtype)
+class RegisterNewLabUI{
++setData()
++setTestType()
++confirmation()
 }
-class CreateNewLabController {
-+setData(name, address, phonenumber, TIN, laboratoryID)
+class RegisterNewLabController {
++registerNewLab()
++setData(name, address, phonenumber, TIN, labID)
 +setTest(tt)
-+saveData()
 }
 class Company {
 -designation
-+getTestType()
++getTestTypeList()
 +getLab()
-+createLab()
 }
 class ClinicalAnalysisLaboratory {
 -String name
 -String address
--int phonenumber
--int TIN
+-long phonenumber
+-long TIN
 -String laboratoryID
 -TestType tt
 +validateName(name)
@@ -30,14 +30,13 @@ class ClinicalAnalysisLaboratory {
 }
 class TestType
 
-Administrator ..> newLabUI
-newLabUI .> newLabController
-newLabController ...> Company
-newLabController .> ClinicalAnalysisLaboratory
+Administrator ..> RegisterNewLabUI
+RegisterNewLabUI .> RegisterNewLabController
+RegisterNewLabController <... Company
+RegisterNewLabController .> ClinicalAnalysisLaboratory
 Company"1"--"1..*"ClinicalAnalysisLaboratory : > owns
 Administrator"1 "-"1..* "ClinicalAnalysisLaboratory : > registers
 ClinicalAnalysisLaboratory"1   ‎ "--"1..*"TestType : > performs
 Company" 1 "-" * "TestType : > conducts
 Company"1   ‎"-"1..*"Administrator : > employs
-Company .> newLabUI
 @enduml

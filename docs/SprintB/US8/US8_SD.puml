@@ -2,8 +2,8 @@
 autonumber
 
 actor Administrator as admin
-participant ":CreateNewLabUI" as UI
-participant ":CreateNewLabController" as controller
+participant ":RegisterNewLabUI" as UI
+participant ":RegisterNewLabController" as controller
 participant ":Company" as validate
 participant ":ClinicalAnalysisLaboratory" as lab
 
