@@ -161,7 +161,7 @@ The rest of the tests follow this exact same pattern, testing if it is possible 
 
 # 6. Integration and Demo 
 
-*This system was developed using OOP (Object Oriented Programming)*
+*This system was developed using OOP (Object Oriented Programming) in order to make the software easy to maintain.*
 
 
 # 7. Observations
