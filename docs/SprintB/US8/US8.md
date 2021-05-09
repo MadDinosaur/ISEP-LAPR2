@@ -9,10 +9,6 @@ kind of test(s) it operates.
 
 ### 1.2. Specifications and Clarifications
 
-**From the Specifications Document:**
-> _"All Many Labs clinical analysis laboratories perform clinical blood tests, and a subset of
-    these laboratories also performs Covid-19 tests."_
-
 **From the client clarifications:**
 * **Q:** What information is associated with a clinical Analysis laboratory (e.g. designation, localization...)? What rules are applicable to such data?
     * **A:** Each Clinical Analysis Laboratory is characterized by the following attributes:
@@ -21,14 +17,6 @@ kind of test(s) it operates.
         * Address;
         * Phone Number;
         * TIN number.
-
-        The Chemical Laboratory is characterized by the following attributes:
-        * Name;
-        * Address;
-        * Phone Number;
-        * TIN number.
-
-        Many Labs company has only one chemical lab.
 
 * **Q:** Which type/format has LaboratoryID, address, name, phone number, and TIN number on Clinical Analysis Laboratory?
     * **A:** Each Clinical Analysis Laboratory is characterized by the following attributes:
@@ -51,7 +39,7 @@ kind of test(s) it operates.
 
 ### 1.4. Found out Dependencies
 
-There is a dependency to US9, before creating a new clinical analysis laboratory, the program needs to know what type of tests there are.
+There is a dependency to US9, before creating a new clinical analysis laboratory, the program needs to know what type of tests there exists.
 
 ### 1.5. Input and Output data
 **Input data:**
@@ -130,9 +118,21 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 # 5. Construction (Implementation)
 
-*In this section, it is suggested to provide, if necessary, some evidence that the construction/implementation is in accordance with the previously carried out design. Furthermore, it is recommeded to mention/describe the existence of other relevant (e.g. configuration) files and highlight relevant commits.*
-
-*It is also recommended to organize this content by subsections.* 
+        public void setData(String name, String address, long phonenumber, long TIN, String labID) {
+            newlab.setName(name);
+            newlab.setAddress(address);
+            newlab.setPhoneNumber(phonenumber);
+            newlab.setTIN(TIN);
+            newlab.setLaboratoryID(labID);
+        }
+    
+        public ArrayList<TestType> getTestTypeList() {
+           return company.getTestTypeList();
+        }
+    
+        public void setTestType(TestType tt){
+            newlab.setTestTypeList(tt);
+        }
 
 # 6. Integration and Demo 
 

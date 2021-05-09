@@ -7,20 +7,34 @@ participant ":RegisterNewLabController" as controller
 participant ":Company" as validate
 participant ":ClinicalAnalysisLaboratory" as lab
 
+activate admin
 admin -> UI : registers a new clinical analysis laboratory
+activate UI
 create controller
 UI -> controller : create
 UI -> controller : createLab()
+activate controller
 controller -> validate : newLab = createLaboratory()
+deactivate controller
 UI --> admin : request laboratory information (name, address, phonenumber, TIN, laboratory ID)
+deactivate UI
 admin -> UI : gives requested data
+activate UI
 UI -> controller : setData(name, address, phonenumber, TIN, laboratoryID)
 controller -> lab : validate(name, address, phonenumber, TIN, laboratoryID)
+activate lab
 UI --> admin : request types of tests
+deactivate UI
 admin -> UI : selects requested data
+activate UI
 UI -> controller : setTestTypeList()
 UI --> admin : shows all the data and requests confirmation
+deactivate UI
 admin -> UI : confirms the data
+activate UI
 UI -> controller : saveLab()
-UI --> admin : shows operation success
+UI --> admin : shows operation
+deactivate lab
+deactivate UI
+deactivate admin
 @enduml
