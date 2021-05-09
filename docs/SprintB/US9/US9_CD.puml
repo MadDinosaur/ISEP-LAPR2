@@ -46,6 +46,7 @@ class TestType {
 +getCategories()
 +validateCode(String code)
 +validateDescription(String description)
++validateCategories(Category category)
 }
 
 class Company {

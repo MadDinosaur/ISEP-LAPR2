@@ -1,5 +1,6 @@
 package app.domain.model;
 
+import app.domain.model.Exceptions.InvalidCategoryException;
 import app.domain.model.Exceptions.InvalidCodeException;
 import app.domain.model.Exceptions.InvalidDescriptionException;
 
@@ -31,11 +32,11 @@ public class TestType {
     }
 
     public void setCategory(Category category) {
-        this.categories.add(category);
-    }
-
-    public void setCategories(ArrayList<Category> categories) {
-        this.categories = categories;
+        if (!validateCategories(category)) {
+            throw new InvalidCategoryException();
+        } else {
+            this.categories.add(category);
+        }
     }
 
     public String getCode() {
@@ -85,6 +86,16 @@ public class TestType {
 
     public boolean validateDescription(String description) {
         if(description.equals("") || description.length() > 15) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+
+    public boolean validateCategories(Category category) {
+        if (this.categories.contains(category)) {
             return false;
         } else {
             return true;
