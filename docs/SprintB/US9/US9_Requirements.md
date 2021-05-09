@@ -155,9 +155,64 @@ The rest of the tests follow this exact same pattern, testing if it is possible 
 
 # 5. Construction (Implementation)
 
-*In this section, it is suggested to provide, if necessary, some evidence that the construction/implementation is in accordance with the previously carried out design. Furthermore, it is recommeded to mention/describe the existence of other relevant (e.g. configuration) files and highlight relevant commits.*
+## Class CreateTestTypeController
+    public class CreateTestTypeController {
+    private Company company;
+    private TestType tt;
+    private CollectionMethod cm;
 
-*It is also recommended to organize this content by subsections.* 
+    public CreateTestTypeController() {
+        this.company = App.getInstance().getCompany();
+    }
+
+
+    public void createTestType() {
+        this.tt = this.company.getTestTypeStore().createTestType();
+    }
+
+    public void createCollectionMethod() {
+        this.cm = this.company.getTestTypeStore().createCollectionMethod();
+    }
+
+    public void setCode(String code) {
+        this.tt.setCode(code);
+    }
+
+    public void setCollectionMethod(String description) {
+        this.cm.setDescription(description);
+    }
+
+    public void setCollectionMethodToTestType() {
+        this.tt.setCollectionMethod(this.cm);
+    }
+
+    public boolean saveTestType() {
+        return this.company.getTestTypeStore().addTestType(tt);
+    }
+
+    public void displayCategoryList() {
+        List<Category> list = this.company.getCategoryList();
+        int index = 0;
+        for (Category category : list) {
+            System.out.printf("%s - %s\n", index, category.getName());
+            index++;
+        }
+    }
+
+    public int getCategoryListSize() {
+        List<Category> list = this.company.getCategoryList();
+        return list.size();
+    }
+
+    public void setCategoriesToTestType(int index) {
+        this.tt.setCategory(this.company.getCategoryList().get(index));
+    }
+
+
+    public void setDescription(String description) {
+        this.tt.setDescription(description);
+    }
+    }
 
 # 6. Integration and Demo 
 
