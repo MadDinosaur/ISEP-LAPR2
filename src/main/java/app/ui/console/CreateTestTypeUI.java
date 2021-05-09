@@ -6,7 +6,7 @@ import app.domain.model.Exceptions.InvalidDescriptionException;
 
 import java.util.Scanner;
 
-public class CreateTestTypeUI {
+public class CreateTestTypeUI implements Runnable {
 
     static Scanner sc = new Scanner(System.in);
     private CreateTestTypeController cttc;
