@@ -49,6 +49,14 @@ public class Parameter {
         return shortName;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public String toString() {
         return "Parameter{" +
