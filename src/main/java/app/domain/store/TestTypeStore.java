@@ -1,6 +1,7 @@
 package app.domain.store;
 
 import app.domain.model.CollectionMethod;
+import app.domain.model.Exceptions.InvalidTestType;
 import app.domain.model.TestType;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class TestTypeStore {
     }
     public boolean validateTestType(TestType tt) {
         if (testTypeList.contains(tt)) {
-            return false;
+            throw new InvalidTestType();
         } else {
             return true;
         }

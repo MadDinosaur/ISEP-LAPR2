@@ -10,6 +10,10 @@ public class CollectionMethod {
 
     }
 
+    public CollectionMethod(String description) {
+        this.description = description;
+    }
+
     public String getDescription() {
         return description;
     }

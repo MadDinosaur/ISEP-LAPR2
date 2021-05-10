@@ -1,4 +1,3 @@
-import app.domain.model.CollectionMethod;
 import app.domain.model.Exceptions.InvalidCodeException;
 import app.domain.model.Exceptions.InvalidDescriptionException;
 import app.domain.model.TestType;
@@ -36,16 +35,5 @@ public class TestTypeTests {
         test.setDescription("abcdefghijklmnop");
     }
 
-    @Test(expected = InvalidDescriptionException.class)
-    public void testEmptyCollectionMethod() {
-        CollectionMethod test = new CollectionMethod();
-        test.setDescription("");
-    }
 
-    @Test(expected = InvalidDescriptionException.class)
-    public void testCollectionMethodWithMoreThan20Characters() {
-        CollectionMethod test = new CollectionMethod();
-        test.setDescription("123456789123456789012");
-    }
-
-    }
+}
