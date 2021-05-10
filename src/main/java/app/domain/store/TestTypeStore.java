@@ -15,6 +15,10 @@ public class TestTypeStore {
 
     }
 
+    public TestTypeStore(ArrayList<TestType> testTypeList) {
+        this.testTypeList = testTypeList;
+    }
+
     public TestType createTestType() {
         return new TestType();
     }

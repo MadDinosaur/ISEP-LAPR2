@@ -2,6 +2,8 @@ package app.domain.model;
 
 import app.domain.model.Exceptions.InvalidDescriptionException;
 
+import java.util.Objects;
+
 public class CollectionMethod {
 
     private String description;
@@ -34,5 +36,12 @@ public class CollectionMethod {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CollectionMethod that = (CollectionMethod) o;
+        return Objects.equals(description, that.description);
+    }
 
 }

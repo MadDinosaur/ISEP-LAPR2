@@ -10,13 +10,20 @@ import org.apache.commons.lang3.StringUtils;
 
 public class TestType {
 
-    private String description;
     private String code;
+    private String description;
     private CollectionMethod collectionMethod;
     private ArrayList<Category> categories = new ArrayList<>();
 
     public TestType(String code) {
         this.code = code;
+    }
+
+    public TestType(String code, String description, CollectionMethod collectionMethod, ArrayList<Category> categories) {
+        this.code = code;
+        this.description = description;
+        this.collectionMethod = collectionMethod;
+        this.categories = categories;
     }
 
     public TestType() {
@@ -60,7 +67,7 @@ public class TestType {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TestType testType = (TestType) o;
-        return Objects.equals(code, testType.code) && Objects.equals(collectionMethod, testType.collectionMethod) && Objects.equals(categories, testType.categories);
+        return Objects.equals(code, testType.code) && Objects.equals(description, testType.description) && Objects.equals(collectionMethod, testType.collectionMethod) && Objects.equals(categories, testType.categories);
     }
 
     public boolean validateCode(String code) {

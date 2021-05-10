@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 public class Category {
 
@@ -97,5 +98,13 @@ public class Category {
                 ", description='" + description + '\'' +
                 ", nhsId='" + nhsId + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Category category = (Category) o;
+        return Objects.equals(name, category.name) && Objects.equals(code, category.code) && Objects.equals(description, category.description) && Objects.equals(nhsId, category.nhsId) && Objects.equals(parameterList, category.parameterList);
     }
 }
