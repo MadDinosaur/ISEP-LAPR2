@@ -26,11 +26,6 @@ public class CollectionMethod {
         }
     }
 
-    @Override
-    public String toString() {
-        return (String.format("Collection method description: %s", description));
-    }
-
     public boolean validateDescription(String description) {
         if (description.equals("") || description.length() > 20) {
             return false;

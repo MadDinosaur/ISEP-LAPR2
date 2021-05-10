@@ -25,14 +25,14 @@ public class TestTypeStore {
 
     public boolean addTestType(TestType tt) {
         if(!validateTestType(tt)) {
-            return false;
+            throw new InvalidTestType();
         } else {
             return testTypeList.add(tt);
         }
     }
     public boolean validateTestType(TestType tt) {
         if (testTypeList.contains(tt)) {
-            throw new InvalidTestType();
+            return false;
         } else {
             return true;
         }

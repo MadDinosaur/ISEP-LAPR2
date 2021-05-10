@@ -56,11 +56,6 @@ public class TestType {
     }
 
     @Override
-    public String toString() {
-        return (String.format("This test type's name is: %s\nIts collection method is the following: %s\nIt is under the following categories: %s", code, collectionMethod, categories));
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

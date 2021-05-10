@@ -13,5 +13,5 @@ public class TestTypeStoreTest {
         tts.addTestType(new TestType("12345"));
         tts.validateTestType(new TestType("12345"));
     }
-    
+
 }
