@@ -13,12 +13,5 @@ public class TestTypeStoreTest {
         tts.addTestType(new TestType("12345"));
         tts.validateTestType(new TestType("12345"));
     }
-
-    @Test
-    public void checkingIfACollectionMethodIsCreatedNull() {
-        TestTypeStore tts = new TestTypeStore();
-        CollectionMethod cmR = tts.createCollectionMethod();
-        CollectionMethod cmE = new CollectionMethod();
-        Assert.assertEquals(cmR, cmE);
-    }
+    
 }
