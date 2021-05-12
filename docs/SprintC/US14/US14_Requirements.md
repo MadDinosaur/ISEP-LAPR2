@@ -49,7 +49,7 @@ values.
 
 *Insert here a SSD depicting the envisioned Actor-System interactions and throughout which data is inputted and outputted to fulfill the requirement. All interactions must be numbered.*
 
-![USXX-SSD](USXX-SSD.svg)
+![US14_SSD](US14_SSD.svg)
 
 
 ### 1.7 Other Relevant Remarks
@@ -62,11 +62,11 @@ values.
 ### 2.1. Relevant Domain Model Excerpt 
 *In this section, it is suggested to present an excerpt of the domain model that is seen as relevant to fulfill this requirement.* 
 
-![USXX-MD](USXX-MD.svg)
+![US14_DM](US14_DM.svg)
 
 ### 2.2. Other Remarks
 
-*Use this section to capture some aditional notes/remarks that must be taken into consideration into the design activity. In some case, it might be usefull to add other analysis artifacts (e.g. activity or state diagrams).* 
+*The diagnosis is part of the report and will be put somewhere on that report's text body.* 
 
 
 
