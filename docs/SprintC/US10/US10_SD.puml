@@ -1,0 +1,56 @@
+@startuml
+
+autonumber
+
+actor Administrator as admin
+participant ":createNewParameterUI" as UI
+participant ":createNewParameterController" as Controller
+participant ":Category" as cat
+participant ":Parameter" as param
+participant ":Company" as comp
+
+activate admin
+loop until the administrator doesn't want to add more parameters
+admin -> UI: starts new parameter
+activate UI
+UI -> Controller: getCategoryList()
+activate Controller
+Controller -> comp: getCategoryList()
+activate comp
+comp -> Controller: categoryList
+deactivate comp
+Controller -> UI: categoryList
+deactivate Controller
+UI -> admin: shows parameter category list and asks to pick the one that the new parameter falls under
+deactivate UI
+admin -> UI: picks the wanted parameter category
+activate UI
+UI -> admin: requests the parameter information
+deactivate UI
+admin -> UI: types in requested data
+activate UI
+UI -> admin: shows typed data and asks for confirmation
+deactivate UI
+admin -> UI: confirms the information
+activate UI
+UI -> Controller: createNewParameter(shortName, code, description)
+activate Controller
+Controller -> cat: par = createNewParameter(shortName, code, description)
+activate cat
+create param
+cat -> param: create(shortName, code, description)
+Controller -> cat: saveParameter()
+deactivate Controller
+cat -> cat: validateParameter(par)
+activate cat
+deactivate cat
+cat -> cat: addParameter(par)
+activate cat
+deactivate cat
+deactivate cat
+end loop
+UI -> admin: informs operation's success
+deactivate UI
+deactivate admin
+
+@enduml

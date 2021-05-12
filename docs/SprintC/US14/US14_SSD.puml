@@ -1,0 +1,13 @@
+@startuml
+
+autonumber
+
+"Specialist Doctor" -> ":System":
+":System" -> "Specialist Doctor":
+"Specialist Doctor" -> ":System":
+":System" -> "Specialist Doctor":
+"Specialist Doctor" -> ":System":
+":System" -> "Specialist Doctor":
+"Specialist Doctor" -> ":System":
+":System" -> "Specialist Doctor":
+@enduml

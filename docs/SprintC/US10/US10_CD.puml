@@ -1,0 +1,51 @@
+@startuml
+
+class Administrator
+class Parameter {
+-int code
+-String shortName
+-String description
+-double upperReferenceValue
+-double lowerReferenceValue
+
++Parameter(shortName, code, description)
+}
+
+class CreateNewParameterUI{
+}
+
+class CreateNewParameterController{
+
++getCategoryList()
++createNewParameter()
++saveParameter(category)
+}
+
+class Company{
+-String designation
+-List<Category> parameterCategoryList
+
++getCategoryList()
+}
+
+class Category {
+-String code
+-String description
+-int nhsID
+-List<Parameter> parameterList
+
++saveParameter(par)
++validateParameter(par)
++addParameter(par)
+}
+
+
+Administrator ...> CreateNewParameterUI
+CreateNewParameterUI ...> CreateNewParameterController
+CreateNewParameterController ...> Category
+CreateNewParameterController ...> Company
+Category "*"--"1" Parameter : presented under <
+Parameter "*"-up-"1" Administrator : specified by >
+Company"1 "-"1..*" Administrator : > employs
+
+@enduml

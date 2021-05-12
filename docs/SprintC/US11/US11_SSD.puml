@@ -1,0 +1,12 @@
+@startuml
+
+autonumber
+
+actor Administrator
+Administrator -> ":System": starts new parameter
+":System" -> Administrator: request data(i.e., code, description, nhsId)
+Administrator -> ":System": types requested data
+":System" -> Administrator: shows the data and requests a confirmation
+Administrator -> ":System": confirms the data
+":System" -> Administrator: informs operation success
+@enduml

@@ -1,0 +1,44 @@
+@startuml
+actor "Laboratory Receptionist" as LR
+participant ":RegisterClientUI" as ui
+participant ":RegisterClientController" as controller
+participant "Client\n:Client" as clt
+
+
+activate LR
+LR -> ui : starts the client registration
+activate ui
+ui -> controller : createClient()
+activate controller
+deactivate controller
+ui --> LR : request data (name, cardNumber, nhsId, birthDate, \n sex, TIN, phoneNumber, email)
+deactivate ui
+LR -> ui : types requested data
+activate ui
+ui -> controller : setData(name, cardNumber, nhsId, birthDate, \n sex, TIN, phoneNumber, email)
+activate controller
+controller -> clt** : create(name, cardNumber, nhsId, birthDate, \n sex, TIN, phoneNumber, email)
+activate clt
+clt -> clt : validate(cardNumber, nhsId,\n TIN, phoneNumber, email)
+controller --> ui : result
+deactivate clt
+deactivate controller
+ui --> LR : shows all data and requests confirmation
+deactivate ui
+LR -> ui : confirms the data
+activate ui
+ui -> controller : saveClient()
+activate controller
+controller -> clt : saveClient(Client)
+activate clt
+clt -> clt : validate(Client)
+clt -> ":Company" : addClient(Client)
+clt -> ":Company" : sendEmail()
+controller --> ui : result
+deactivate clt
+deactivate controller
+ui --> LR : informs operation success
+deactivate ui
+deactivate LR
+
+@enduml
