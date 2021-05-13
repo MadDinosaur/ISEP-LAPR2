@@ -1,0 +1,8 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+"Laboratory coordinator" -> ":System": Re
+
+@enduml
