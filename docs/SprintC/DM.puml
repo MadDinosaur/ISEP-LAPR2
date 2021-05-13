@@ -1,0 +1,144 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Administrator
+class Category {
+-code
+-description
+-nhsID
+}
+class ChemicalLaboratory {
+-name
+-address
+-phoneNumber
+-TIN
+}
+class CollectionMethod {
+-designation
+}
+class Client {
+-name
+-cardNumber
+-birthDate
+-sex
+-nhsID
+-TIF
+-phoneNumber
+-email
+-password
+}
+class ClinicalAnalysisLaboratory {
+-name
+-address
+-phoneNumber
+-TIN
+-laboratoryID
+}
+class ClinicalChemistryTechnologist
+class Company {
+-designation
+}
+class Diagnosis
+class LabOrder {
+-testType
+-parameters
+}
+class Employee {
+-employeeID
+-organizationID
+-name
+-address
+-phoneNumber
+-email
+-SOCcode
+}
+class LaboratoryCoordinator
+class MedicalLabTechnician
+class NHS
+class Receptionist
+class Test {
+-internalCode
+-nhsCode
+-createdAt
+-designation
+-dateAnalysis
+-timeAnalysis
+-dateDiagnosis
+-timeDiagnosis
+-dateValidation
+-timeValidation
+}
+class Parameter {
+-code
+-shortName
+-description
+-upperReferenceValue
+-lowerReferenceValue
+}
+class ParameterResult
+class Report {
+-textBody
+}
+class TestResult
+class TestType {
+-code
+-description
+}
+class Sample {
+-barcode
+-dateCollection
+-timeCollection
+}
+class SpecialistDoctor {
+-doctorIndexNumber
+}
+class OrganizationRole
+
+Administrator "1"--"*" Category : created by <
+ChemicalLaboratory "1"--"*" Sample : analyses >
+Client "1"--"*" LabOrder : has a >
+ClinicalAnalysisLaboratory "1"--"*" Sample : collects >
+ClinicalAnalysisLaboratory "1"--"*" TestType : performs >
+ClinicalChemistryTechnologist "1"--"*" Sample : analysed by <
+Company "1"-down-"*" TestType : conducts >
+Company "1"-down-"*" Category : has >
+Company "1"-down-"*" ClinicalAnalysisLaboratory : owns >
+Company "1"-down-"1" ChemicalLaboratory : owns >
+Diagnosis "*"--"1" LaboratoryCoordinator : validated by >
+Diagnosis "*"--"1" SpecialistDoctor : generates <
+MedicalLabTechnician "1"--"*" Sample : collected by <
+NHS "1"--"1" Company : requests report to >
+Parameter "*"--"1" Category : presented under >
+ParameterResult "1"--"1" Parameter : associated to >
+Receptionist "1"--"*" Client : registers >
+Receptionist "1"--"*" Test : registers >
+Report "1"--"1" Diagnosis : contains >
+Report "1"--"1" TestResult : associated to >
+Sample "*"--"1" Client : associated to >
+Sample "*"--"1" Test : associated to >
+SpecialistDoctor "1"--"*" Report : generates >
+Test "*"--"1" Client : requested by >
+Test "*"-up-"1" Company : performs <
+Test "*"--"1..*" Parameter : requests analysis of >
+Test "1"--"1" LabOrder : requires >
+Test "*"--"1" "TestType" : is of >
+Test "1"--"1" TestResult : has a >
+Test "1"--"*" Sample : collects >
+TestResult "*"--"1" LaboratoryCoordinator : validated by >
+TestResult "*"--"1" SpecialistDoctor : analysed by >
+TestResult "*"--"1" ClinicalChemistryTechnologist : generates <
+TestResult "1"--"*" ParameterResult : has >
+TestType "*"--"1" Administrator : created by >
+TestType "1"--"1..*" Parameter : has >
+OrganizationRole "0..*"--"1" Administrator : has >
+OrganizationRole "0..*"--"1" ClinicalChemistryTechnologist : has >
+OrganizationRole "0..*"--"1" MedicalLabTechnician : has >
+OrganizationRole "0..*"--"1" LaboratoryCoordinator : has >
+OrganizationRole "0..*"--"1" Receptionist : has >
+Employee <|-- SpecialistDoctor
+Employee -- OrganizationRole : has >
+Company "1"--"1..*" Employee : has >
+Company "1"--"1..*" Client : has >
+Administrator "1"--"*" Employee : registers >
+TestType "1"--"1" CollectionMethod : has a  >
+@enduml

@@ -20,7 +20,6 @@ public class Company {
 
     private String designation;
     private AuthFacade authFacade;
-
     private EmployeeStore employeeStore = new EmployeeStore();
     private OrgRoleStore orgRoleStore = new OrgRoleStore();
     private List<Category> parameterCategoryList;

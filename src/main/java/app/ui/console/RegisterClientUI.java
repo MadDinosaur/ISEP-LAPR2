@@ -2,13 +2,11 @@ package app.ui.console;
 
 import app.controller.RegisterClientController;
 import app.domain.model.Exceptions.*;
-import app.ui.console.utils.Utils;
 
-import java.sql.ResultSet;
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class RegisterClientUI implements Runnable {
+    private RegisterClientController clientController = new RegisterClientController();
 
     Scanner sc = new Scanner(System.in);
     @Override
@@ -24,7 +22,7 @@ public class RegisterClientUI implements Runnable {
                 if(name.equals("exit")) {
                     System.out.println("sair");
                 }
-                RegisterClientController.setNameClient(name);
+                clientController.setNameClient(name);
                 verifier = true;
             }catch (InvalidNameException e){
                 System.out.println(e);
@@ -40,7 +38,7 @@ public class RegisterClientUI implements Runnable {
                     System.out.println("sair");
                 }
                 long cardNumber = Long.parseLong(clientCard);
-                RegisterClientController.setCardNumber(cardNumber);
+                clientController.setCardNumber(cardNumber);
                 verifier = true;
             }catch (InvalidCardNumberException e){
                 System.out.println(e);
@@ -58,7 +56,7 @@ public class RegisterClientUI implements Runnable {
                     System.out.println("sair");
                 }
                 long nhsId = Long.parseLong(nshId);
-                RegisterClientController.setNhsId(nhsId);
+                clientController.setNhsId(nhsId);
                 verifier = true;
             }catch (InvalidNhsIdException e){
                 System.out.println(e);
@@ -75,7 +73,7 @@ public class RegisterClientUI implements Runnable {
                 if(date.equals("exit")) {
                     System.out.println("sair");
                 }
-                RegisterClientController.setDate(date);
+                clientController.setDate(date);
                 verifier = true;
             }catch (InvalidDateException e){
                 System.out.println(e);
@@ -93,7 +91,7 @@ public class RegisterClientUI implements Runnable {
                     System.out.println("sair");
                 }
                 long TIN2 = Long.parseLong(TIN);
-                RegisterClientController.setTIN(TIN2);
+                clientController.setTIN(TIN2);
                 verifier = true;
             }catch (InvalidTINException e){
                 System.out.println(e);
@@ -111,7 +109,7 @@ public class RegisterClientUI implements Runnable {
                     System.out.println("sair");
                 }
                 long phoneNumber = Long.parseLong(phone);
-                RegisterClientController.setPhoneNumber(phoneNumber);
+                clientController.setPhoneNumber(phoneNumber);
                 verifier = true;
             }catch (InvalidPhoneNumberException e){
                 System.out.println(e);
@@ -128,7 +126,7 @@ public class RegisterClientUI implements Runnable {
                 if(email.equals("exit")) {
                     System.out.println("sair");
                 }
-                RegisterClientController.setEmail(email);
+                clientController.setEmail(email);
                 verifier = true;
             }catch (InvalidEmailException e){
                 System.out.println(e);
@@ -151,11 +149,11 @@ public class RegisterClientUI implements Runnable {
                 }
                 int optionUser = Integer.parseInt(option);
                 if(optionUser == 1){
-                    RegisterClientController.setSexOpcao(1);
+                    clientController.setSexOpcao(1);
                 }if(optionUser == 2){
-                    RegisterClientController.setSexOpcao(2);
+                    clientController.setSexOpcao(2);
                 }if(optionUser == 3){
-                    RegisterClientController.setSexOpcao(3);
+                    clientController.setSexOpcao(3);
                 }
                 verifier = true;
             }catch (InputMismatchException e){
@@ -163,23 +161,23 @@ public class RegisterClientUI implements Runnable {
             }
         }
         System.out.println("Please confirm Client Data");
-        System.out.println("Name:" + RegisterClientController.getName());
-        System.out.println("Card Number:" + RegisterClientController.getCardNumber());
-        System.out.println("Nhs Id:"+ RegisterClientController.getNhsId());
-        System.out.println("Birth Date:"+ RegisterClientController.getDateBirth());
-        System.out.println("TIN:" + RegisterClientController.getTIN());
-        System.out.println("Phone Number:"+ RegisterClientController.getPhoneNumber());
-        System.out.println("Email:"+ RegisterClientController.getEmail());
-        System.out.println("Sex" + RegisterClientController.getSex());
+        System.out.println("Name:" + clientController.getName());
+        System.out.println("Card Number:" + clientController.getCardNumber());
+        System.out.println("Nhs Id:"+ clientController.getNhsId());
+        System.out.println("Birth Date:"+ clientController.getDateBirth());
+        System.out.println("TIN:" + clientController.getTIN());
+        System.out.println("Phone Number:"+ clientController.getPhoneNumber());
+        System.out.println("Email:"+ clientController.getEmail());
+        System.out.println("Sex" + clientController.getSex());
 
         System.out.println("Is the data correct?");
         System.out.println("Type Yes/No/Cancel");
         String awnser = sc.nextLine();
         if (awnser.equalsIgnoreCase("yes")){
-            RegisterClientController.createClient();
-            RegisterClientController.saveClient();
+            clientController.saveClient();
+            clientController.sendEmail();
         }if(awnser.equalsIgnoreCase("no")){
-            System.out.println("Would you like ");
+            System.out.println("Would you like to restart?");
         }
 
 

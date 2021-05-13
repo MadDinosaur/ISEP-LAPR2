@@ -1,0 +1,80 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Administrator
+class CreateTestTypeUI {
++createTestType()
++createCollectionMethod()
++setCode(String code)
++setDescription(String description)
++displayCategoryList()
++setCategories()
++saveTestType()
+}
+
+class CreateTestTypeController {
++createTestType()
++createCollectionMethod()
++setCode(String code)
++setDescription(String description)
++setCollectionMethod(String description)
++setCollectionMethodToTestType(CollectionMethod cm)
++saveTestType()
++displayCategoryList()
++setCategoriesToTestType(int index)
+}
+
+class CollectionMethod {
+-String description
++setDescription(String description)
++getDescription()
++validateDescription(String description)
+}
+
+class TestType {
+-String code
+-String description
+-CollectionMethod collectionMethod
+-Arraylist<Category> categories
++setCode(String code)
++setDescription(String description)
++setCollectionMethod(CollectionMethod collectionMethod)
++setCategory(Category category)
++getCode()
++getCollectionMethod()
++getCategories()
++validateCode(String code)
++validateDescription(String description)
++validateCategories(Category category)
+}
+
+class Company {
+-String designation
+-TestTypeStore tts
+-List<Category> categoryList
++getCategoryList()
++getTestTypeStore()
+}
+
+class TestTypeStore {
+-ArrayList<TestType> testTypeList
++createTestType()
++createCollectionMethod()
++validateTestType(tt)
++addTestType(tt)
++getTestTypeList()
+}
+
+Administrator ..> CreateTestTypeUI
+CreateTestTypeUI ..> CreateTestTypeController
+TestType "*"-up-"1" Administrator : created by >
+Category "1..*"-up-"1" TestType  : associated to <
+TestType "1"--"1" CollectionMethod : has a  >
+Company "1"-down-"*" TestType : conducts >
+CreateTestTypeController ..> Company
+CreateTestTypeController ..> TestType
+CreateTestTypeController ..> CollectionMethod
+Company ..> TestTypeStore
+
+@enduml

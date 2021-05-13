@@ -1,9 +1,5 @@
 package app.domain.model;
-import app.controller.App;
-import app.controller.RegisterClientController;
-import app.domain.model.Exceptions.*;
 import auth.domain.model.Email;
-import auth.domain.model.Password;
 import auth.domain.model.User;
 
 public class Client {
