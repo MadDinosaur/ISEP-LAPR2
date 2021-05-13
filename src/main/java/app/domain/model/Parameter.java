@@ -5,64 +5,113 @@ import org.apache.commons.lang3.StringUtils;
 
 public class Parameter {
 
-    private String shortName;
+    /**
+     *
+     */
+    private String parameterName;
 
-    private String code;
+    /**
+     *
+     */
+    private String parameterCode;
 
-    private String description;
+    /**
+     *
+     */
+    private String parameterDescription;
 
+    /**
+     *
+     */
     private double upperRefVal;
 
+    /**
+     *
+     */
     private double lowerRefVal;
 
-    public Parameter(String shortName, String code, String description){
-        checkNameRules(shortName);
-        checkCodeRules(code);
-        checkDescriptionRules(description);
-        this.shortName = shortName;
-        this.code = code;
-        this.description = description;
+    /**
+     *
+     * @param parameterName
+     * @param parameterCode
+     * @param parameterDescription
+     */
+    public Parameter(String parameterName, String parameterCode, String parameterDescription){
+        checkNameRules(parameterName);
+        checkCodeRules(parameterCode);
+        checkDescriptionRules(parameterDescription);
+        this.parameterName = parameterName;
+        this.parameterCode = parameterCode;
+        this.parameterDescription = parameterDescription;
     }
 
-    private void checkNameRules(String shortName) {
-        if (StringUtils.isBlank(shortName))
+    /**
+     *
+     * @param parameterName
+     */
+    private void checkNameRules(String parameterName) {
+        if (StringUtils.isBlank(parameterName))
             throw new InvalidNameException("Name cannot be blank.");
-        if (shortName.length() > 8)
+        if (parameterName.length() > 8)
             throw new InvalidNameException("Name must have less than 8 characters.");
     }
 
-    private void checkCodeRules(String code) {
-        if (StringUtils.isBlank(code))
+    /**
+     *
+     * @param parameterCode
+     */
+    private void checkCodeRules(String parameterCode) {
+        if (StringUtils.isBlank(parameterCode))
             throw new InvalidCodeException("Code cannot be blank.");
-        if (code.length() != 5)
+        if (parameterCode.length() != 5)
             throw new InvalidCodeException("Code must have 5 characters.");
     }
 
-    private void checkDescriptionRules(String description) {
-        if (StringUtils.isBlank(description))
+    /**
+     *
+     * @param parameterDescription
+     */
+    private void checkDescriptionRules(String parameterDescription) {
+        if (StringUtils.isBlank(parameterDescription))
             throw new InvalidDescriptionException("Description cannot be blank.");
-        if (description.length() > 20)
+        if (parameterDescription.length() > 20)
             throw new InvalidDescriptionException("Description must have less than 20 characters.");
     }
 
-    public String getShortName() {
-        return shortName;
+    /**
+     *
+     * @return
+     */
+    public String getParameterName() {
+        return parameterName;
     }
 
-    public String getCode() {
-        return code;
+    /**
+     *
+     * @return
+     */
+    public String getParameterCode() {
+        return parameterCode;
     }
 
-    public String getDescription() {
-        return description;
+    /**
+     *
+     * @return
+     */
+    public String getParameterDescription() {
+        return parameterDescription;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Parameter{" +
-                "shortName='" + shortName + '\'' +
-                ", code='" + code + '\'' +
-                ", description='" + description + '\'' +
+                "shortName='" + parameterName + '\'' +
+                ", code='" + parameterCode + '\'' +
+                ", description='" + parameterDescription + '\'' +
                 '}';
     }
 }

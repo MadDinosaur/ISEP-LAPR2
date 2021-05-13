@@ -71,7 +71,7 @@ public class Category {
             Iterator<Parameter> iterator = parameterList.iterator();
             while (iterator.hasNext()) {
                 Parameter newPar = iterator.next();
-                if (newPar.getShortName().equalsIgnoreCase(par.getShortName()) || newPar.getCode().equalsIgnoreCase(par.getCode()) || newPar.getDescription().equalsIgnoreCase(par.getDescription())) {
+                if (newPar.getParameterName().equalsIgnoreCase(par.getParameterName()) || newPar.getParameterCode().equalsIgnoreCase(par.getParameterCode()) || newPar.getParameterDescription().equalsIgnoreCase(par.getParameterDescription())) {
                     cont++;
                 }
             }
