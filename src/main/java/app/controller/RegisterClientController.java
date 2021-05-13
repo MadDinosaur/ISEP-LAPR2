@@ -128,7 +128,8 @@ public class RegisterClientController {
 
     public boolean saveClient() {
         newClient = new Client(name, cardNumber, nhsId, dateBirth, TIN, phoneNumber, email, sex);
-       return company.addClient(newClient.getName(), newClient.getEmail(),passGen());
+
+       return company.getAuthFacade().addUser(name,email.toString(),passGen());
     }
 
     private  String passGen(){
