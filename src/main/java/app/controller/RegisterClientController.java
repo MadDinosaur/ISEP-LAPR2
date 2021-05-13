@@ -11,21 +11,23 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class RegisterClientController {
-    private static String name; //-
-    private static long cardNumber; //-
-    private static long nhsId; //-
-    private static DateBirth dateBirth;   //-
-    private static long TIN; //-
-    private static long phoneNumber; //-
-    private static Email email; //
-    private static String sex; //
-    private static String SEX_POR_OMISSAO = "No sex assigned";
-    private static Client newClient;
-    private static Company company = App.getInstance().getCompany();
-    private static String pass;
+    private  String name; //-
+    private  long cardNumber; //-
+    private  long nhsId; //-
+    private  DateBirth dateBirth;   //-
+    private  long TIN; //-
+    private  long phoneNumber; //-
+    private  Email email; //-
+    private  String sex; //-
+    private  String SEX_POR_OMISSAO = "No sex assigned";
+    private  Client newClient;
+    private  Company company;
+    private  String pass;
 
-
-    public static void setSexOpcao(int opcao) {
+    public RegisterClientController(){
+        this.company = App.getInstance().getCompany();
+    }
+    public  void setSexOpcao(int opcao) {
         if (opcao == 1) {
             sex = "Male";
         }
@@ -37,103 +39,103 @@ public class RegisterClientController {
         }
     }
 
-    public static void setNameClient(String name) {
+    public void setNameClient(String name) {
         if (name.length() > 35) {
             throw new InvalidNameException("Name is too long! Name length=" + name.length() + " Max length=35");
         }
         if (name.isEmpty()) {
             throw new InvalidNameException("Name is blank!");
         }
-        RegisterClientController.name = name;
+        this.name = name;
     }
 
-    public static void setCardNumber(long cardNumber) {
+    public void setCardNumber(long cardNumber) {
         if (cardNumber > 9999999999999999.0 || cardNumber < 1000000000000000.0) {
             throw new InvalidCardNumberException("Card Number must have 16 digits");
         }
-        RegisterClientController.cardNumber = cardNumber;
+        this.cardNumber = cardNumber;
     }
 
-    public static void setNhsId(long nhsId) {
+    public void setNhsId(long nhsId) {
         if (nhsId < 1000000000 || nhsId > 9999999999.0) {
             throw new InvalidNhsIdException("NHS ID must have 10 digits");
         }
-        RegisterClientController.nhsId = nhsId;
+        this.nhsId = nhsId;
     }
 
-    public static void setTIN(long TIN) {
+    public void setTIN(long TIN) {
         if (TIN < 1000000000 || TIN > 9999999999.0) {
             throw new InvalidTINException("TIN must have 10 digits");
         }
-        RegisterClientController.TIN = TIN;
+        this.TIN = TIN;
     }
 
-    public static void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         if (phoneNumber < 10000000000.0 || phoneNumber > 99999999999.0) {
             throw new InvalidPhoneNumberException("Phone Number must have 11 digits");
         }
-        RegisterClientController.phoneNumber = TIN;
+        this.phoneNumber = TIN;
     }
 
-    public static void setEmail(String email) {
-        RegisterClientController.email = new Email(email);
+    public void setEmail(String email) {
+        this.email = new Email(email);
     }
 
-    public static void setDate(String date) {
+    public void setDate(String date) {
         String[] dateDivided = date.split("/");
         int day = Integer.parseInt(dateDivided[0]);
         int month = Integer.parseInt(dateDivided[1]);
         int year = Integer.parseInt(dateDivided[2]);
-        RegisterClientController.dateBirth = new DateBirth(day, month, year);
+        this.dateBirth = new DateBirth(day, month, year);
     }
 
-    public static String getName() {
+    public  String getName() {
         return name;
     }
 
-    public static long getCardNumber() {
+    public  long getCardNumber() {
         return cardNumber;
     }
 
-    public static long getNhsId() {
+    public  long getNhsId() {
         return nhsId;
     }
 
-    public static DateBirth getDateBirth() {
+    public  DateBirth getDateBirth() {
         return dateBirth;
     }
 
-    public static long getTIN() {
+    public  long getTIN() {
         return TIN;
     }
 
-    public static long getPhoneNumber() {
+    public  long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public static Email getEmail() {
+    public  Email getEmail() {
         return email;
     }
 
-    public static String getSex() {
+    public  String getSex() {
         return sex;
     }
 
-    public static void createClient() {
-        String id = RegisterClientController.email.toString();
-        RegisterClientController.newClient = new Client(RegisterClientController.name, RegisterClientController.cardNumber, RegisterClientController.nhsId, RegisterClientController.dateBirth, RegisterClientController.TIN, RegisterClientController.phoneNumber, RegisterClientController.email, RegisterClientController.sex);
+    public  void createClient() {
+        String id = email.toString();
+        this.newClient = new Client(name, cardNumber, nhsId, dateBirth, TIN, phoneNumber, email, sex);
     }
 
-    public static boolean saveClient() {
-        RegisterClientController.newClient = new Client(RegisterClientController.name, RegisterClientController.cardNumber, RegisterClientController.nhsId, RegisterClientController.dateBirth, RegisterClientController.TIN, RegisterClientController.phoneNumber, RegisterClientController.email, RegisterClientController.sex);
+    public boolean saveClient() {
+        newClient = new Client(name, cardNumber, nhsId, dateBirth, TIN, phoneNumber, email, sex);
        return company.addClient(newClient.getName(), newClient.getEmail(),passGen());
     }
 
-    private static String passGen(){
+    private  String passGen(){
         return pass = company.generateUserPassword();
     }
 
-    public static void sendEmail(){
+    public void sendEmail(){
         try {
             File myObj = new File("SMS-Emails\\Register"+email+".txt");
             if (myObj.createNewFile()) {
