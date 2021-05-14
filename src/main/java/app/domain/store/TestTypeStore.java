@@ -9,7 +9,7 @@ import java.util.Collections;
 
 public class TestTypeStore {
 
-    private ArrayList<TestType> testTypeList = new ArrayList<>(Collections.singleton(new TestType("sex69")));
+    private ArrayList<TestType> testTypeList = new ArrayList<>(Collections.singleton(new TestType("Blood")));
 
     public TestTypeStore() {
 

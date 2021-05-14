@@ -21,6 +21,18 @@ To facilitate and simplify the validation work performed by the specialist docto
 uses an external module that is responsible for doing an automatic validation using test reference
 values.
 
+**From the client's clarifications:**
+* Q1: Is there a limit of characters for the report and the diagnosis that will be made by the Specialist Doctor?
+>
+* Q2: Should the specialist doctor make the diagnosis and report at the same time? Or should he have the possibility to make one of them and, later, the other? (eg.: in case he needs to exit the application but has already worked on one of the two)
+>
+* Q3: Should the application have a specific order for the "documents" to be made by the specialist doctor? Or can he choose which one he wants to make first?
+>
+* Q4: Should the specialist doctor write the diagnosis and report in the application, or should he upload files written in another API?
+>
+* Q5: How should the specialist doctor choose the test to work on? By the indexes on a list with all the tests to validate, or by a specific parameter of the test (eg.: code)? In case he should do it by a specific parameter, which one should it be?
+>
+
 ### 1.3. Acceptance Criteria
 
 *Already asked the client, waiting for his response.*
@@ -54,7 +66,9 @@ values.
 
 ### 1.7 Other Relevant Remarks
 
-*This user story will be used every time there are new test results on the system.* 
+* **Special requirements**: None;
+* **Data and/or technology variations**: None
+* **Frequency**: This user story will be used every time there are new test results on the system. 
 
 
 ## 2. OO Analysis
@@ -78,24 +92,25 @@ values.
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
-| Step 1  		 |							 |             |                              |
-| Step 2  		 |							 |             |                              |
-| Step 3  		 |							 |             |                              |
-| Step 4  		 |							 |             |                              |
-| Step 5  		 |							 |             |                              |
-| Step 6  		 |							 |             |                              |              
-
+| Step 1: starts a new report  		 |	instantiating a new report?	| TestResult | Creator Pattern: TestResult contains an object from the Report class  |                        
+| Step 2: shows a list of tests and requests a test result to be shown  		 | 							 |             |                              |
+| Step 3: types in the test result he wants to see  		 |	 						 |             |                              |
+| Step 4: shows the test result and requests data (diagnosis, report)  		 |							 |             |                              |
+| Step 5: types the requested data  		 | saving the input?  | Report |  Information Expert: the object created in step 1 has its own data |
+| Step 6: shows the data and requests confirmation   | validating the data locally? |  Report | Information Expert: knows its own data |                                            
+| Step 7: confirms | saving the report? | TestResult | Information Expert: records all the Report objects
+| Step 8: informs operation success | CreateReportUI | Responsible for all the user-system interactions | 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * Class1
- * Class2
+ * TestResult
+ * Report
  * Class3
 
 Other software classes (i.e. Pure Fabrication) identified: 
- * xxxxUI  
- * xxxxController
+ * CreateReportUI  
+ * CreateReportController
 
 ## 3.2. Sequence Diagram (SD)
 
