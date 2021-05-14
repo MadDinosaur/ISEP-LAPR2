@@ -1,0 +1,29 @@
+@startuml
+class ClinicalChemistryTechnologist
+class Test {
+-internalCode
+-nhsCode
+-createdAt
+-designation
+-dateAnalysis
+-timeAnalysis
+-dateDiagnosis
+-timeDiagnosis
+-dateValidation
+-timeValidation
+}
+class Parameter {
+-code
+-shortName
+-description
+-upperReferenceValue
+-lowerReferenceValue
+}
+class ParameterResult
+
+ParameterResult "1"--"1" Parameter : associated to >
+Test "*"--"1..*" Parameter : requests analysis of >
+Test "1"--"1" TestResult : has a >
+TestResult "*"-up-"1" ClinicalChemistryTechnologist : generates <
+TestResult "1"--"*" ParameterResult : has >
+@enduml

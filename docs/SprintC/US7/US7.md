@@ -1,33 +1,3 @@
-Notes:
-- A grande novidade destas duas US prende-se com a necessidade de interligar com o componente "auth" de modo a que cada cliente/funcionário se torne também um utilizador do sistema.
-
-De resto é bastante semelhante às restantes.
-
-
-
-
-
-Para esta interligação, precisam:
-
-
-
-Ler a documentação do componente "auth" e decidir a que objeto(s) e método(s) devem recorrer;
-Atribuir a responsabilidade de interação a uma só classe (no âmbito de cada US)
-
-Para o envio do email, é suficiente também mostrarem a classe a que atribuíram a responsabilidade de o fazer.
-
-Saliento ainda que não devem confundir "UserRole" e "OrganizationRole".
-Apesar de bastante semelhantes, não são a mesma coisa.
-
-
-
-
-Por fim, saliento mais duas coisas:
-
-
-
-Quando no âmbito de uma US é requerido/necessário estabelecer associações com objetos conhecidos do sistema, essa associação deve ser feita sempre por seleção (a partir de uma lista).
-Após a seleção de objetos de uma lista na UI, a UI apenas deve/pode enviar os identificadores desses objetos para o Controller. Cabe depois à camada de dominio obter o respetivo objetivo a partir desse identificador.
 # US 7 -  Specify a new employee
 
 ## 1. Requirements Engineering
@@ -43,6 +13,10 @@ As an administrator, I want to register a new employee.
 * **Updated specification (from client):** "The password should be randomly generated. It should have ten alphanumeric characters."
 
 **From the client clarifications:**
+* Considering a set of technical restrictions, during the development of the Integrative Project we will not use any e-mail or SMS API services to send messages. All the e-mail and SMS messages should be written to a file with the name emailAndSMSMessages.txt. This file simulates the use of e-mail and SMS API services.
+
+
+
 * **Q: What kind of information does the company store about their employees?**
     * **A**: All the roles that exist in the Many Labs company are characterized by the following attributes:
       
@@ -105,9 +79,8 @@ This US is dependent on "Specify a new organization Role", regarding:
 ### 1.5 Input and Output Data
 
 **Input Data**
-* **Typed data:** employee name, address, phone number and e-mail
+* **Typed data:** employee name, address, phone number and e-mail, SOC code, doctor index number
 * **Selected data:** employee role
-* **Unclear:** employee ID, organization ID, SOC code, doctor index number
 
 **Output Data**
 * (In)Success of the operation
