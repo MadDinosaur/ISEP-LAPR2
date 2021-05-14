@@ -31,5 +31,6 @@ Test "1"-"1" TestResult: has a >
 TestResult "1"-"1" Report: associated to >
 Report "1"-"1" Diagnosis: contains >
 TestResult "1"-down-"1" SpecialistDoctor: analysed by >
+SpecialistDoctor "1"-right-"*" Report: creates >
 
 @enduml

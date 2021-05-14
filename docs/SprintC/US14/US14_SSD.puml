@@ -2,12 +2,12 @@
 
 autonumber
 
-"Specialist Doctor" -> ":System": starts
+"Specialist Doctor" -> ":System": starts a new report
 ":System" -> "Specialist Doctor": shows a list of tests and requests a test result to be shown
 "Specialist Doctor" -> ":System": types in the test result he wants to see
 ":System" -> "Specialist Doctor": shows the test result and requests data (diagnosis, report)
 "Specialist Doctor" -> ":System": types the requested data
-":System" -> "Specialist Doctor": requests confirmation
+":System" -> "Specialist Doctor": shows the data and requests confirmation
 "Specialist Doctor" -> ":System": confirms
 ":System" -> "Specialist Doctor": informs operation success
 @enduml
