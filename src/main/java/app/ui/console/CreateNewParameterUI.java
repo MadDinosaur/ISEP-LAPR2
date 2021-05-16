@@ -45,7 +45,7 @@ public class CreateNewParameterUI implements Runnable{
                     verifier = true;
                 } else while (iterator.hasNext()) {
                     Category cat = iterator.next();
-                    if (cat.getName().equals(category)) {
+                    if (cat.getCategoryName().equals(category)) {
                         cnpc.setCategory(cat);
                     }
                 }
@@ -54,30 +54,32 @@ public class CreateNewParameterUI implements Runnable{
                 }
                 String confirmation = "N";
                 while (confirmation.equalsIgnoreCase("N") || confirmation.equalsIgnoreCase("No")) {
-                    System.out.println("Please introduce the parameter data in the following order, pressing enter after each: name, code, description.");
+                    System.out.println("Please introduce the parameter data in the following format: name; code; description.");
                     boolean exception = false;
                     while(!exception) {
                         try {
-                            String shortName = sc.nextLine();
-                            String code = sc.nextLine();
-                            String description = sc.nextLine();
-                            if (shortName.equalsIgnoreCase("exit") || code.equalsIgnoreCase("exit") || description.equalsIgnoreCase("exit")) {
+                            String data = sc.nextLine();
+                            String[] parts = data.split("; ");
+                            String parameterName = parts[0];
+                            String parameterCode = parts[1];
+                            String parameterDescription = parts[2];
+                            if (parameterName.equalsIgnoreCase("exit") || parameterCode.equalsIgnoreCase("exit") || parameterDescription.equalsIgnoreCase("exit")) {
                                 System.out.println("Exiting....");
                                 verifier = true;
                             } else {
-                                System.out.println(shortName + "; " + code + "; " + description + ". Do you confirm this is the data for the new parameter?(Write Y/N  for yes or no respectively)");
+                                System.out.println(parameterName + "; " + parameterCode + "; " + parameterDescription + ". Do you confirm this is the data for the new parameter?(Write Y/N  for yes or no respectively)");
                                 confirmation = sc.nextLine();
                                 if (confirmation.equalsIgnoreCase("Y") || confirmation.equalsIgnoreCase("Yes")) {
-                                    cnpc.createNewParameter(shortName, code, description);
+                                    cnpc.createNewParameter(parameterName, parameterCode, parameterDescription);
                                     exception = true;
                                 }
                             }
                         } catch (InvalidNameException e) {
-                            System.out.println("The name introduced doesn't seem to be acceptable. Please re-introduce the parameter data in the following order, pressing enter after each: name, code, description.");
+                            System.out.println("The name introduced doesn't seem to be acceptable. Please re-introduce the parameter data in the following format: name, code, description.");
                         } catch (InvalidCodeException e) {
-                            System.out.println("The code introduced doesn't seem to be acceptable. Please re-introduce the parameter data in the following order, pressing enter after each: name, code, description.");
+                            System.out.println("The code introduced doesn't seem to be acceptable. Please re-introduce the parameter data in the following format: name, code, description.");
                         } catch (InvalidDescriptionException e) {
-                            System.out.println("The description introduced doesn't seem to be acceptable. Please re-introduce the parameter data in the following order, pressing enter after each: name, code, description.");
+                            System.out.println("The description introduced doesn't seem to be acceptable. Please re-introduce the parameter data in the following format: name, code, description.");
                         }
                     }
                     if (cnpc.saveParameter()) {

@@ -46,7 +46,7 @@ public class CreateTestTypeController {
         List<Category> list = this.company.getCategoryList();
         int index = 0;
         for (Category category : list) {
-            System.out.printf("%s - %s\n", index, category.getName());
+            System.out.printf("%s - %s\n", index, category.getCategoryName());
             index++;
         }
     }

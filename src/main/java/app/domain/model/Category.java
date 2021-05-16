@@ -165,9 +165,10 @@ public class Category {
     @Override
     public String toString() {
         return "Category{" +
-                "categoryName='" + categoryName + '\'' +
-                ", categoryCode='" + categoryCode + '\'' +
-                ", categoryDescription='" + categoryDescription + '\'' +
+                "name: "+ categoryName + "; " +
+                "code: " + categoryCode + "; " +
+                "description: " + categoryDescription + "; " +
+                "nhs id: " + categoryNhsId +
                 '}';
     }
 
