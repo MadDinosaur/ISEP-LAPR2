@@ -151,11 +151,7 @@ public class TestType {
      * @return True if it's valid and false if it's invalid
      */
     public boolean validateCode(String code) {
-        if (code.equals("") || !StringUtils.isAlphanumeric(code) || code.length() > 5 || code.length() < 5) {
-            return false;
-        } else {
-            return true;
-        }
+        return !(code.equals("") || !StringUtils.isAlphanumeric(code) || code.length() != 5);
     }
 
     /**
