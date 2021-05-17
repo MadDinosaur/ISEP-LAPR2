@@ -4,8 +4,6 @@ import app.domain.model.Category;
 import app.domain.model.CollectionMethod;
 import app.domain.model.Exceptions.InvalidTestType;
 import app.domain.model.TestType;
-import app.domain.store.TestTypeStore;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;

@@ -1,10 +1,8 @@
 package app.domain.model;
 
-import app.domain.model.Category;
-import app.domain.model.CollectionMethod;
+import app.domain.model.Exceptions.InvalidCategoryException;
 import app.domain.model.Exceptions.InvalidCodeException;
 import app.domain.model.Exceptions.InvalidDescriptionException;
-import app.domain.model.TestType;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -46,6 +44,12 @@ public class TestTypeTest {
         TestType tt1 = new TestType();
         tt1.setCollectionMethod(new CollectionMethod("isso"));
         Assert.assertEquals(tt1.getCollectionMethod().getDescription(), tt.getCollectionMethod().getDescription());
+    }
+
+    @Test(expected = InvalidCategoryException.class)
+    public void addingAnAlreadyExistingCategory() {
+        Category c2 = new Category("nome", "code", "description");
+        tt.setCategory(c2);
     }
 
 }

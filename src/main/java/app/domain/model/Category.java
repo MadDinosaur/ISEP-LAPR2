@@ -172,4 +172,17 @@ public class Category {
                 '}';
     }
 
+    /**
+     *
+     * @param o Another object
+     * @return True if a category is equal to another category and false otherwise
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Category category = (Category) o;
+        return Objects.equals(categoryName, category.categoryName) && Objects.equals(categoryCode, category.categoryCode) && Objects.equals(categoryDescription, category.categoryDescription) && Objects.equals(categoryNhsId, category.categoryNhsId) && Objects.equals(parameterList, category.parameterList);
+    }
+
 }

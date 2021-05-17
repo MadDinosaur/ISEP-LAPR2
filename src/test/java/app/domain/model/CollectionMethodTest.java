@@ -1,6 +1,5 @@
 package app.domain.model;
 
-import app.domain.model.CollectionMethod;
 import app.domain.model.Exceptions.InvalidDescriptionException;
 import org.junit.Assert;
 import org.junit.Test;
