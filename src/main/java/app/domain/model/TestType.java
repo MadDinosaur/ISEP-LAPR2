@@ -5,6 +5,7 @@ import app.domain.model.Exceptions.InvalidCodeException;
 import app.domain.model.Exceptions.InvalidDescriptionException;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
@@ -34,7 +35,7 @@ public class TestType {
     /**
      * The list of categories associated to the test type
      */
-    private ArrayList<Category> categories = new ArrayList<>();
+    private List<Category> categories = new ArrayList<>();
 
 
     /**
@@ -55,7 +56,7 @@ public class TestType {
      * @param collectionMethod Test Type's Collection Method
      * @param categories       Test Type's categories
      */
-    public TestType(String code, String description, CollectionMethod collectionMethod, ArrayList<Category> categories) {
+    public TestType(String code, String description, CollectionMethod collectionMethod, List<Category> categories) {
         this.code = code;
         this.description = description;
         this.collectionMethod = collectionMethod;
@@ -128,7 +129,7 @@ public class TestType {
      *
      * @return categories
      */
-    public ArrayList<Category> getCategories() {
+    public List<Category> getCategories() {
         return categories;
     }
 

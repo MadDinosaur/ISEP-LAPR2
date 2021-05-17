@@ -25,6 +25,11 @@ public class TestTypeTest {
     }
 
     @Test(expected = InvalidCodeException.class)
+    public void testTestTypeCodeWithLessThan5Characters() {
+        tt.setCode("yaya");
+    }
+
+    @Test(expected = InvalidCodeException.class)
     public void testTestTypeCodeWithNonAlphanumericCharacters() {
         tt.setCode("asd!");
     }
@@ -50,6 +55,26 @@ public class TestTypeTest {
     public void addingAnAlreadyExistingCategory() {
         Category c2 = new Category("nome", "code", "description");
         tt.setCategory(c2);
+    }
+
+    @Test
+    public void settingAValidCode() {
+        TestType tt3 = new TestType();
+        tt3.setCode("yayaa");
+        String expected = "yayaa";
+        Assert.assertEquals(expected, tt3.getCode());
+    }
+
+    @Test
+    public void addingACategoryToATest() {
+        Category c2 = new Category("nome", "code", "description");
+        TestType tt = new TestType();
+        tt.setCategory(c2);
+    }
+
+    @Test
+    public void settingAValidDescription() {
+        tt.setDescription("Blood Test");
     }
 
 }
