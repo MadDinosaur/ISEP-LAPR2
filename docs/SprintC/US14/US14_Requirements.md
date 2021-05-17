@@ -1,4 +1,4 @@
-# US 14 - XXXX XXXX
+# US 14 - Creating a report as a Specialist Doctor
 
 ## 1. Requirements Engineering
 
@@ -23,7 +23,7 @@ values.
 
 **From the client's clarifications:**
 * Q1: Is there a limit of characters for the report and the diagnosis that will be made by the Specialist Doctor?
->
+> Yes, at most 400 words.
 * Q2: Should the specialist doctor make the diagnosis and report at the same time? Or should he have the possibility to make one of them and, later, the other? (eg.: in case he needs to exit the application but has already worked on one of the two)
 >
 * Q3: Should the application have a specific order for the "documents" to be made by the specialist doctor? Or can he choose which one he wants to make first?
@@ -32,10 +32,11 @@ values.
 >
 * Q5: How should the specialist doctor choose the test to work on? By the indexes on a list with all the tests to validate, or by a specific parameter of the test (eg.: code)? In case he should do it by a specific parameter, which one should it be?
 >
-
+* Q6: Regarding the tests that the Specialist Doctor can write a report about: should the specialist doctor choose from a list of tests? Should he only receive a list of tests that have completed all of the previous steps?
+> The system shows all tests ready (that have completed all the previous steps) to make the diagnosis and the Specialist Doctor selects one test. Then, the Specialist Doctor writes the report for the selected test.
 ### 1.3. Acceptance Criteria
 
-*Already asked the client, waiting for his response.*
+* AC1: The report should have a maximum of 400 words.
 
 ### 1.4. Found out Dependencies
 
@@ -94,19 +95,19 @@ values.
 |:-------------  |:--------------------- |:------------|:---------------------------- |
 | Step 1: starts a new report  		 |	instantiating a new report?	| TestResult | Creator Pattern: TestResult contains an object from the Report class  |                        
 | Step 2: shows a list of tests and requests a test result to be shown  		 | 							 |             |                              |
-| Step 3: types in the test result he wants to see  		 |	 						 |             |                              |
-| Step 4: shows the test result and requests data (diagnosis, report)  		 |							 |             |                              |
-| Step 5: types the requested data  		 | saving the input?  | Report |  Information Expert: the object created in step 1 has its own data |
+| Step 3: types in the test result he wants to see | saving the input? | CreateReportUI            |                              |
+| Step 4: shows the test result and requests data (diagnosis, report) |							 |             |                              |
+| Step 5: types the requested data | saving the input?  | Report |  Information Expert: the object created in step 1 has its own data |
 | Step 6: shows the data and requests confirmation   | validating the data locally? |  Report | Information Expert: knows its own data |                                            
 | Step 7: confirms | saving the report? | TestResult | Information Expert: records all the Report objects
-| Step 8: informs operation success | CreateReportUI | Responsible for all the user-system interactions | 
+| Step 8: informs operation success | informing operation success? | CreateReportUI | Responsible for all the user-system interactions | 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
  * TestResult
  * Report
- * Class3
+ * Diagnosis
 
 Other software classes (i.e. Pure Fabrication) identified: 
  * CreateReportUI  

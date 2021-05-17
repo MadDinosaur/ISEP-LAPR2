@@ -6,32 +6,32 @@ import org.apache.commons.lang3.StringUtils;
 public class Parameter {
 
     /**
-     *
+     * Parameter's name
      */
     private String parameterName;
 
     /**
-     *
+     * Parameter's code
      */
     private String parameterCode;
 
     /**
-     *
+     * Parameter's description
      */
     private String parameterDescription;
 
     /**
-     *
+     * Parameter's upper reference value
      */
     private double upperRefVal;
 
     /**
-     *
+     * Parameter's lower reference value
      */
     private double lowerRefVal;
 
     /**
-     *
+     * Parameter class constructor with three parameters (Parameter's name, code and description)
      * @param parameterName
      * @param parameterCode
      * @param parameterDescription
@@ -46,7 +46,7 @@ public class Parameter {
     }
 
     /**
-     *
+     * Method that checks the parameter's name's compliance with the acceptance criteria
      * @param parameterName
      */
     private void checkNameRules(String parameterName) {
@@ -57,7 +57,7 @@ public class Parameter {
     }
 
     /**
-     *
+     * Method that checks the parameter's code's compliance with the acceptance criteria
      * @param parameterCode
      */
     private void checkCodeRules(String parameterCode) {
@@ -68,7 +68,7 @@ public class Parameter {
     }
 
     /**
-     *
+     * Method that checks the parameter's description's compliance with the acceptance criteria
      * @param parameterDescription
      */
     private void checkDescriptionRules(String parameterDescription) {
@@ -79,39 +79,39 @@ public class Parameter {
     }
 
     /**
-     *
-     * @return
+     * Getter for the parameter's name
+     * @return parameter's name
      */
     public String getParameterName() {
         return parameterName;
     }
 
     /**
-     *
-     * @return
+     * Getter for the parameter's code
+     * @return parameter's code
      */
     public String getParameterCode() {
         return parameterCode;
     }
 
     /**
-     *
-     * @return
+     * Getter for the parameter's description
+     * @return parameter's description
      */
     public String getParameterDescription() {
         return parameterDescription;
     }
 
     /**
-     *
-     * @return
+     * Method to turn the parameter's name, code and description into a single string
+     * @return string with parameter's name, code, description
      */
     @Override
     public String toString() {
         return "Parameter{" +
-                "shortName='" + parameterName + '\'' +
-                ", code='" + parameterCode + '\'' +
-                ", description='" + parameterDescription + '\'' +
+                "parameterName='" + parameterName + '\'' +
+                ", parameterCode='" + parameterCode + '\'' +
+                ", parameterDescription='" + parameterDescription + '\'' +
                 '}';
     }
 }
