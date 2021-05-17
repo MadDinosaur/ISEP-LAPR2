@@ -14,37 +14,40 @@ skinparam packageStyle rectangle
 :System\n Clock: as Clock
 
 package System {
-    (US1: Register test) as US1
+    (US4: Register test) as US4
     (US3: Register client) as US3
-    (US4: Register analysis results) as US4
-    (US5: Generate diagnosis) as US5
-    (US12: Generate NHS report) as US12
-    (US13: Validate the clinical analysis) as US13
-    (US14: View results) as US14
-    (US15: Check results) as US15
+    (US12: Register test results) as US12
+    (US14: Generate diagnosis) as US14
+    (US1: Generate NHS report) as US1
+    (US15: Validate the clinical analysis) as US15
+    (US2: View results) as US2
+    (US13: Check results) as US13
     (US7: Specify new employee) as US7
     (US8: Specify a new clinical analysis laboratory) as US8
     (US9: Specify new test) as US9
     (US10: Specify new test parameter) as US10
     (US11: Specify a new parameter category) as US11
-    (US2: Register sample) as US2
+    (US5: Register sample) as US5
     (US6: View statistics for number of tests waiting for result) as US6
 }
 
 'Use Cases
-Receptionist -- US1
+Receptionist -- US4
 Receptionist -- US3
-CCT -- US4
-Doctor -- US5
+CCT -- US12
+CCT -- US13
+Doctor -- US14
+Doctor -- US13
+US15 -- LC
 US13 -- LC
-US14 -- Client
-US2 -- MLT
-US15 -- MLT
+US2 -- Client
+US5 -- MLT
+US13 -- MLT
 Administrator -- US7
 Administrator -- US8
 Administrator -- US9
 Administrator -- US10
 Administrator -- US11
 US6 -- LC
-Clock -- US12
+Clock -- US1
 @enduml
