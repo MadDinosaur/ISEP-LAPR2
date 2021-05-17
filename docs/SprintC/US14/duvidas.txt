@@ -1,2 +1,3 @@
 é o specialist doctor que pede para analisar o resultado de um teste? ou isto tudo funciona numa linha contínua, em que após ser feito a análise química o specialist doctor é logo acionado para fazer o diagnóstico?
 _será melhor ter uma lista de testes e depois dessa lista pedir o resultado do teste que eu quero ou mostrar uma lista de resultados de testes?
+de acordo com o "Rationale", a classe Diagnosis não aparece, mas eu sei que é uma classe promovida a software.
