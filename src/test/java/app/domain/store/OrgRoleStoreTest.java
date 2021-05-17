@@ -1,3 +1,5 @@
+package app.domain.store;
+
 import app.domain.model.OrganizationRole;
 import app.domain.store.OrgRoleStore;
 import com.sun.org.apache.xpath.internal.operations.Or;

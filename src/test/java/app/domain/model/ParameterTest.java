@@ -1,3 +1,5 @@
+package app.domain.model;
+
 import app.controller.CreateNewParameterController;
 import app.domain.model.ClinicalAnalysisLaboratory;
 import app.domain.model.Exceptions.*;
@@ -7,7 +9,7 @@ import app.domain.model.*;
 
 import java.util.List;
 
-public class ParameterTests {
+public class ParameterTest {
 
     @Test(expected = InvalidNameException.class)
     public void testInvalidName(){

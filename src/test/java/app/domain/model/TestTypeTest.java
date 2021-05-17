@@ -1,3 +1,5 @@
+package app.domain.model;
+
 import app.domain.model.Category;
 import app.domain.model.CollectionMethod;
 import app.domain.model.Exceptions.InvalidCodeException;
@@ -9,7 +11,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class TestTypeTests {
+public class TestTypeTest {
     Category c1 = new Category("nome", "code", "description");
     ArrayList<Category> list = new ArrayList<>(Collections.singleton(c1));
     TestType tt = new TestType("code", "description", new CollectionMethod("isso"), list);
