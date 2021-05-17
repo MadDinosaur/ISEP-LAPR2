@@ -6,19 +6,55 @@ import app.domain.model.Exceptions.InvalidDescriptionException;
 
 import java.util.ArrayList;
 import java.util.Objects;
+
 import org.apache.commons.lang3.StringUtils;
 
+
+/**
+ * @author 1200985 Tomás Cancela
+ */
 public class TestType {
 
+
+    /**
+     * Test Type's code
+     */
     private String code;
+
+    /**
+     * Test type's description
+     */
     private String description;
+
+    /**
+     * The collection method associated to the test type
+     */
     private CollectionMethod collectionMethod;
+
+    /**
+     * The list of categories associated to the test type
+     */
     private ArrayList<Category> categories = new ArrayList<>();
 
+
+    /**
+     * Constructs a test type with only a code
+     *
+     * @param code Test Type's code
+     */
     public TestType(String code) {
         this.code = code;
     }
 
+
+    /**
+     * Constructs a test type with all of its parameters (code, description, collection method, categories)
+     *
+     * @param code             Test Type's code
+     * @param description      Test Type's description
+     * @param collectionMethod Test Type's Collection Method
+     * @param categories       Test Type's categories
+     */
     public TestType(String code, String description, CollectionMethod collectionMethod, ArrayList<Category> categories) {
         this.code = code;
         this.description = description;
@@ -26,10 +62,18 @@ public class TestType {
         this.categories = categories;
     }
 
+    /**
+     * Empty constructor
+     */
     public TestType() {
 
     }
 
+    /**
+     * Code setter
+     *
+     * @param code Five Alphanumeric Characters
+     */
     public void setCode(String code) {
         if (!validateCode(code)) {
             throw new InvalidCodeException();
@@ -38,10 +82,21 @@ public class TestType {
         }
     }
 
+    /**
+     * Collection Method setter
+     *
+     * @param collectionMethod 20 or less characters
+     */
     public void setCollectionMethod(CollectionMethod collectionMethod) {
         this.collectionMethod = collectionMethod;
     }
 
+
+    /**
+     * Category setter
+     *
+     * @param category Category from the categories list
+     */
     public void setCategory(Category category) {
         if (!validateCategories(category)) {
             throw new InvalidCategoryException();
@@ -50,18 +105,37 @@ public class TestType {
         }
     }
 
+    /**
+     * Code getter
+     *
+     * @return Code
+     */
     public String getCode() {
         return code;
     }
 
+    /**
+     * Collection Method getter
+     *
+     * @return collectionMethod
+     */
     public CollectionMethod getCollectionMethod() {
         return collectionMethod;
     }
 
+    /**
+     * Category getter
+     *
+     * @return categories
+     */
     public ArrayList<Category> getCategories() {
         return categories;
     }
 
+    /**
+     * @param o Another object
+     * @return True if a Test Type has the same code, description, collection method and categories as another Test Type
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,6 +144,12 @@ public class TestType {
         return Objects.equals(code, testType.code) && Objects.equals(description, testType.description) && Objects.equals(collectionMethod, testType.collectionMethod) && Objects.equals(categories, testType.categories);
     }
 
+    /**
+     * Checks if the code is valid (if it's in accordance with the acceptance criteria given)
+     *
+     * @param code Test Type's code
+     * @return True if it's valid and false if it's invalid
+     */
     public boolean validateCode(String code) {
         if (code.equals("") || !StringUtils.isAlphanumeric(code) || code.length() > 5 || code.length() < 5) {
             return false;
@@ -78,10 +158,21 @@ public class TestType {
         }
     }
 
+    /**
+     * Description getter
+     *
+     * @return description
+     */
     public String getDescription() {
         return description;
     }
 
+
+    /**
+     * Description setter
+     *
+     * @param description 15 or less characters
+     */
     public void setDescription(String description) {
         if (!validateDescription(description)) {
             throw new InvalidDescriptionException();
@@ -90,8 +181,14 @@ public class TestType {
         }
     }
 
+    /**
+     * Checks if the description is invalid (If it is empty or if it is bigger than 15 characters)
+     *
+     * @param description Test Type's description
+     * @return True if it's valid and false if it's invalid
+     */
     public boolean validateDescription(String description) {
-        if(description.equals("") || description.length() > 15) {
+        if (description.equals("") || description.length() > 15) {
             return false;
         } else {
             return true;
@@ -99,7 +196,12 @@ public class TestType {
     }
 
 
-
+    /**
+     * Checks if the categories are invalid (If the category exists in the test type's category list already)
+     *
+     * @param category Test Type's category
+     * @return True if it's valid and false if it's invalid
+     */
     public boolean validateCategories(Category category) {
         if (this.categories.contains(category)) {
             return false;
