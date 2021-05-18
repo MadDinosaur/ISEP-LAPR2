@@ -75,7 +75,7 @@ class SpecialistDoctor {
 -doctorIndexNumber
 }
 class Test {
--internalCode
+-testCode
 -nhsCode
 -createdAt
 -designation

@@ -24,6 +24,25 @@ be performed to that client.
 **Answer:** "Each parameter is associated with one category. Each parameter has a Code, a Short Name and a Description. The Code are five alphanumeric characters. The Short Name is a String with no more than 8 characters. The Description is a String with no more than 20 characters."
             This answers your question? Moreover, you have US10 saying "As an administrator, I want to specify a new parameter and categorize it".
 
+•	**Q2**: Other than the attributes already mentioned (test code, NHS code, designation) are there any other attributes that characterize a test?
+            On those attributes, what requirements are there? For example, the characters on a designation, the code length, etc
+          
+
+**Answer:**  The test attributes are:
+
+•	Test code : Sequential number with 12 digits. The code is automatically generated.
+                      
+•	NHS code: 12 alphanumeric characters. //AC ----
+  
+•	**Q3**: When the receptionist chooses the test type, should the categories appear, and then when selecting the category, the receptionist can choose the parameters for the test? Or when the Receptionist chooses the test type, should appear all the parameters that it includes immediately?
+
+**Answer:**  Firstly, the receptionist should choose a test type. Then choose a category from a set of categories. Last, the receptionist should choose a parameter.
+
+•	**Q3**: Since the Client has a Lab Order which contains the type of test and all the parameters to be measured, all the parameters selected by the Receptionist need to be equal to the Lab Order's parameters?
+
+**Answer:** Yes.
+
+
 ### 1.3. Acceptance Criteria
 
 **AC1** The receptionist must select the parameters to be analysed from
@@ -41,8 +60,6 @@ There is also a dependence with US9 and US10 since the receptionist must select 
 
 
 ### 1.6. System Sequence Diagram (SSD)
-
-*Insert here a SSD depicting the envisioned Actor-System interactions and throughout which data is inputted and outputted to fulfill the requirement. All interactions must be numbered.*
 
 ![US4_SSD](US4_SSD.svg)
 
