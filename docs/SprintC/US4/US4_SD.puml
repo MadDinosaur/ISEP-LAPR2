@@ -1,0 +1,11 @@
+@startuml
+autonumber
+actor "Laboratory Receptionist" as LR
+participant ":CreateTestUI" as ui
+participant ":CreateTestController" as ctrl
+
+activate LR
+LR -> ui :
+activate ui
+
+@enduml
