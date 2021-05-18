@@ -1,3 +1,5 @@
+package app.domain.model;
+
 import app.domain.model.Employee;
 import app.domain.model.Exceptions.InvalidEmployeeException;
 import app.domain.model.OrganizationRole;

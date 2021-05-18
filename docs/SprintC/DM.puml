@@ -7,6 +7,7 @@ class Category {
 -description
 -nhsID
 }
+class ClinicalChemistryTechnologist
 class ChemicalLaboratory {
 -name
 -address
@@ -34,15 +35,10 @@ class ClinicalAnalysisLaboratory {
 -TIN
 -laboratoryID
 }
-class ClinicalChemistryTechnologist
 class Company {
 -designation
 }
 class Diagnosis
-class LabOrder {
--testType
--parameters
-}
 class Employee {
 -employeeID
 -organizationID
@@ -52,10 +48,32 @@ class Employee {
 -email
 -SOCcode
 }
+class LabOrder {
+-testType
+-parameters
+}
 class LaboratoryCoordinator
 class MedicalLabTechnician
 class NHS
+class OrganizationRole
+class Parameter {
+-code
+-shortName
+-description
+}
 class Receptionist
+class ReferenceValueModule
+class Report {
+-textBody
+}
+class Sample {
+-barcode
+-dateCollection
+-timeCollection
+}
+class SpecialistDoctor {
+-doctorIndexNumber
+}
 class Test {
 -internalCode
 -nhsCode
@@ -68,77 +86,70 @@ class Test {
 -dateValidation
 -timeValidation
 }
-class Parameter {
--code
--shortName
--description
--upperReferenceValue
--lowerReferenceValue
-}
-class ParameterResult
-class Report {
--textBody
-}
-class TestResult
 class TestType {
 -code
 -description
 }
-class Sample {
--barcode
--dateCollection
--timeCollection
+class TestParameterResult {
+-createdAt
+-value
+-metric
 }
-class SpecialistDoctor {
--doctorIndexNumber
-}
-class OrganizationRole
 
+
+
+"NHS API" "1"-left-"*" NHSReportType : sent via <
+(Test, Parameter) .. TestParameter
 Administrator "1"--"*" Category : created by <
+Administrator "1"--"*" Employee : registers >
 ChemicalLaboratory "1"--"*" Sample : analyses >
 Client "1"--"*" LabOrder : has a >
 ClinicalAnalysisLaboratory "1"--"*" Sample : collects >
 ClinicalAnalysisLaboratory "1"--"*" TestType : performs >
 ClinicalChemistryTechnologist "1"--"*" Sample : analysed by <
-Company "1"-down-"*" TestType : conducts >
+Company "1"--"1..*" Client : has >
+Company "1"--"1..*" Employee : has >
 Company "1"-down-"*" Category : has >
 Company "1"-down-"*" ClinicalAnalysisLaboratory : owns >
+Company "1"-down-"*" TestType : conducts >
 Company "1"-down-"1" ChemicalLaboratory : owns >
 Diagnosis "*"--"1" LaboratoryCoordinator : validated by >
 Diagnosis "*"--"1" SpecialistDoctor : generates <
+Employee -- OrganizationRole : has >
+Employee <|-- SpecialistDoctor
 MedicalLabTechnician "1"--"*" Sample : collected by <
-NHS "1"--"1" Company : requests report to >
+"NHS API" -right- NHS : owned by >
+NHSReportType "*"--"1" Company : generates <
+OrganizationRole "0..*"--"1" Administrator : has <
+OrganizationRole "0..*"--"1" ClinicalChemistryTechnologist : has <
+OrganizationRole "0..*"--"1" LaboratoryCoordinator : has <
+OrganizationRole "0..*"--"1" MedicalLabTechnician : has <
+OrganizationRole "0..*"--"1" Receptionist : has <
 Parameter "*"--"1" Category : presented under >
-ParameterResult "1"--"1" Parameter : associated to >
 Receptionist "1"--"*" Client : registers >
 Receptionist "1"--"*" Test : registers >
+ReferenceValue "*"-up-"1" ReferenceValueModule : provided by >
 Report "1"--"1" Diagnosis : contains >
-Report "1"--"1" TestResult : associated to >
+Report "1"--"1" TestParameterResult : associated to >
 Sample "*"--"1" Client : associated to >
-Sample "*"--"1" Test : associated to >
+Sample "1"--"1" BarcodeAPI : identified by >
 SpecialistDoctor "1"--"*" Report : generates >
 Test "*"--"1" Client : requested by >
-Test "*"-up-"1" Company : performs <
 Test "*"--"1..*" Parameter : requests analysis of >
-Test "1"--"1" LabOrder : requires >
-Test "*"--"1" "TestType" : is of >
-Test "1"--"1" TestResult : has a >
+Test "*"-right-"1" "TestType" : is of >
+Test "*"-up-"1" Company : performs <
 Test "1"--"*" Sample : collects >
-TestResult "*"--"1" LaboratoryCoordinator : validated by >
-TestResult "*"--"1" SpecialistDoctor : analysed by >
-TestResult "*"--"1" ClinicalChemistryTechnologist : generates <
-TestResult "1"--"*" ParameterResult : has >
+Test "1"--"1" LabOrder : requires >
+TestParameter "*"--"1" Parameter : associated to >
+TestParameter "*"--"1" Test : has <
+TestParameter "1"-right- "0..1" TestParameterResult : contains >
+TestParameterResult "*"-right-"1" ClinicalChemistryTechnologist : generates <
+TestParameterResult "1"--"1" Parameter : associated to >
+TestParameterResult "1"-up-"1" ReferenceValue : records >
+TestParameterResult "*"--"1" LaboratoryCoordinator : validated by >
+TestParameterResult "*"--"1" SpecialistDoctor : analysed by >
 TestType "*"--"1" Administrator : created by >
-TestType "1"--"1..*" Parameter : has >
-OrganizationRole "0..*"--"1" Administrator : has >
-OrganizationRole "0..*"--"1" ClinicalChemistryTechnologist : has >
-OrganizationRole "0..*"--"1" MedicalLabTechnician : has >
-OrganizationRole "0..*"--"1" LaboratoryCoordinator : has >
-OrganizationRole "0..*"--"1" Receptionist : has >
-Employee <|-- SpecialistDoctor
-Employee -- OrganizationRole : has >
-Company "1"--"1..*" Employee : has >
-Company "1"--"1..*" Client : has >
-Administrator "1"--"*" Employee : registers >
+TestType "*"-right-"1" ReferenceValueModule : makes use of >
 TestType "1"--"1" CollectionMethod : has a  >
+TestType "1"--"1..*" Parameter : has >
 @enduml

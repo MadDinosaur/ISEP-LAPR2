@@ -1,9 +1,10 @@
-import app.domain.model.CollectionMethod;
+package app.domain.model;
+
 import app.domain.model.Exceptions.InvalidDescriptionException;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class CollectionMethodTests {
+public class CollectionMethodTest {
 
     @Test(expected = InvalidDescriptionException.class)
     public void testEmptyCollectionMethod() {

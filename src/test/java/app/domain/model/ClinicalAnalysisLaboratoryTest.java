@@ -1,3 +1,5 @@
+package app.domain.model;
+
 import app.domain.model.ClinicalAnalysisLaboratory;
 import app.domain.model.Exceptions.*;
 import org.junit.Test;

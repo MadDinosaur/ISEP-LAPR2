@@ -1,15 +1,15 @@
-import app.domain.model.Category;
-import app.domain.model.CollectionMethod;
+package app.domain.model;
+
+import app.domain.model.Exceptions.InvalidCategoryException;
 import app.domain.model.Exceptions.InvalidCodeException;
 import app.domain.model.Exceptions.InvalidDescriptionException;
-import app.domain.model.TestType;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class TestTypeTests {
+public class TestTypeTest {
     Category c1 = new Category("nome", "code", "description");
     ArrayList<Category> list = new ArrayList<>(Collections.singleton(c1));
     TestType tt = new TestType("code", "description", new CollectionMethod("isso"), list);
@@ -22,6 +22,11 @@ public class TestTypeTests {
     @Test(expected = InvalidCodeException.class)
     public void testTestTypeCodeWithMoreThan5Characters() {
         tt.setCode("yayaya");
+    }
+
+    @Test(expected = InvalidCodeException.class)
+    public void testTestTypeCodeWithLessThan5Characters() {
+        tt.setCode("yaya");
     }
 
     @Test(expected = InvalidCodeException.class)
@@ -44,6 +49,32 @@ public class TestTypeTests {
         TestType tt1 = new TestType();
         tt1.setCollectionMethod(new CollectionMethod("isso"));
         Assert.assertEquals(tt1.getCollectionMethod().getDescription(), tt.getCollectionMethod().getDescription());
+    }
+
+    @Test(expected = InvalidCategoryException.class)
+    public void addingAnAlreadyExistingCategory() {
+        Category c2 = new Category("nome", "code", "description");
+        tt.setCategory(c2);
+    }
+
+    @Test
+    public void settingAValidCode() {
+        TestType tt3 = new TestType();
+        tt3.setCode("yayaa");
+        String expected = "yayaa";
+        Assert.assertEquals(expected, tt3.getCode());
+    }
+
+    @Test
+    public void addingACategoryToATest() {
+        Category c2 = new Category("nome", "code", "description");
+        TestType tt = new TestType();
+        tt.setCategory(c2);
+    }
+
+    @Test
+    public void settingAValidDescription() {
+        tt.setDescription("Blood Test");
     }
 
 }
