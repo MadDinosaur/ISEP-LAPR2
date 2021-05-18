@@ -22,8 +22,8 @@ class Category {
 -nhsID
 }
 
-TestType "*"-up-"1" Administrator : created by >
-Category "1..*"-up-"1" TestType  : associated to <
+Administrator "*"-down-"1" TestType : creates >
+TestType "1..*"-down-"1" Category : associated to >
 TestType "1"--"1" CollectionMethod : has a  >
 Company "1"-down-"*" TestType : conducts >
 @enduml
