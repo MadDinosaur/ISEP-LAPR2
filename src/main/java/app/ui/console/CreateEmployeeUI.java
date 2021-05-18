@@ -2,14 +2,9 @@ package app.ui.console;
 
 import app.controller.App;
 import app.controller.CreateEmployeeController;
-import app.controller.RegisterClientController;
 import app.domain.model.Exceptions.InvalidEmployeeException;
-import app.domain.model.Exceptions.InvalidNameException;
-import app.domain.model.Exceptions.InvalidNhsIdException;
 import app.domain.model.Exceptions.UnregisteredOrgRolesException;
-import org.apache.commons.lang3.NotImplementedException;
 
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 

@@ -5,8 +5,10 @@ Receptionist -> ":System" : starts to register a test
 ":System" --> Receptionist : requests client data(cardNumber)
 Receptionist -> ":System" : types requested data
 ":System" --> Receptionist : asks test type
-Receptionist -> ":System" : types test type
-":System" --> Receptionist : shows all possible parameters of the typed test \n and asks which to be selected
+Receptionist -> ":System" : chooses test type
+":System" --> Receptionist : asks category
+Receptionist -> ":System" : chooses category
+":System" --> Receptionist : shows all possible parameters of the typed test and asks \n which to be selected
 Receptionist -> ":System" : chooses wanted parameters
 ":System" --> Receptionist : shows all data and requests confirmation
 Receptionist -> ":System" : confirms data
