@@ -1,5 +1,16 @@
 @startuml
 
+class MedicalLabTechnician
+class Sample {
+-barcode
+}
+class BarcodeAPI
+class Client
+class TestType
 
+Sample "1"--"1" BarcodeAPI : identified by >
+MedicalLabTechnician "1"--"*" Sample : collected by <
+Sample "*"--"1 " Client : associated to >
+Sample "*"--" 1  " TestType: associated to >
 
 @enduml

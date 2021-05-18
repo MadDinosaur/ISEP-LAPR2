@@ -35,13 +35,13 @@ defined by configuration.
 
 ### 1.4. Found out Dependencies
 
-*Identify here any found out dependency to other US and/or requirements.*
+* **US9**: Test types list needed to associate samples to a test type.
 
 ### 1.5 Input and Output Data
 
 **Input data:**
-* **Typed data:** Sample's Collection Date, Sample's Collection Time
-* **Selected data:** Barcode
+* **Typed data:** Number of Samples
+* **Selected data:** Test Type
 
 **Output data:**
 - Success of operation.
@@ -50,7 +50,7 @@ defined by configuration.
 
 *Insert here a SSD depicting the envisioned Actor-System interactions and throughout which data is inputted and outputted to fulfill the requirement. All interactions must be numbered.*
 
-![US5-SSD](US5-SSD.svg)
+![US5_SSD](US5_SSD.svg)
 
 
 ### 1.7 Other Relevant Remarks
@@ -63,7 +63,7 @@ defined by configuration.
 ### 2.1. Relevant Domain Model Excerpt 
 *In this section, it is suggested to present an excerpt of the domain model that is seen as relevant to fulfill this requirement.* 
 
-![US5-MD](US5-MD.svg)
+![US5_DM](US5_DM.svg)
 
 ### 2.2. Other Remarks
 
@@ -102,13 +102,13 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 *In this section, it is suggested to present an UML dynamic view stating the sequence of domain related software objects' interactions that allows to fulfill the requirement.* 
 
-![US5-SD](US5-SD.svg)
+![US5_SD](US5_SD.svg)
 
 ## 3.3. Class Diagram (CD)
 
 *In this section, it is suggested to present an UML static view representing the main domain related software classes that are involved in fulfilling the requirement as well as and their relations, attributes and methods.*
 
-![US5-CD](US5-CD.svg)
+![US5_CD](US5_CD.svg)
 
 # 4. Tests 
 *In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.* 
