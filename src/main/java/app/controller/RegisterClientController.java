@@ -121,10 +121,6 @@ public class RegisterClientController {
         return sex;
     }
 
-    public  void createClient() {
-        String id = email.toString();
-        this.newClient = new Client(name, cardNumber, nhsId, dateBirth, TIN, phoneNumber, email, sex);
-    }
 
     public boolean saveClient() {
         newClient = new Client(name, cardNumber, nhsId, dateBirth, TIN, phoneNumber, email, sex);

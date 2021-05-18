@@ -71,10 +71,6 @@ public class Company {
         return tts;
     }
 
-    public boolean addClient(String name, Email email, String pass) {
-        return authFacade.addUser(name,email.toString(),pass);
-    }
-
     public List<Category> getCategoryList() {
         return this.categoryList;
     }
