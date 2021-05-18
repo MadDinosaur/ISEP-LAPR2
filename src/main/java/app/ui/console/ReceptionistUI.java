@@ -10,8 +10,8 @@ import java.util.List;
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
 
-public class AdminUI implements Runnable{
-    public AdminUI()
+public class ReceptionistUI implements Runnable{
+    public ReceptionistUI()
     {
     }
 
@@ -19,15 +19,11 @@ public class AdminUI implements Runnable{
     {
         List<MenuItem> options = new ArrayList<MenuItem>();
         options.add(new MenuItem("Register a new client",new RegisterClientUI()));
-        options.add(new MenuItem("Register a new employee", new CreateEmployeeUI()));
-        options.add(new MenuItem("Register a new clinical analysis laboratory", new RegisterNewLabUI()));
-        options.add(new MenuItem("Create a new test type", new CreateTestTypeUI()));
-        options.add(new MenuItem("Create new parameter", new CreateNewParameterUI()));
 
         int option = 0;
         do
         {
-            option = Utils.showAndSelectIndex(options, "\n\nAdmin Menu:");
+            option = Utils.showAndSelectIndex(options, "\n\nReceptionist Menu:");
 
             if ( (option >= 0) && (option < options.size()))
             {
