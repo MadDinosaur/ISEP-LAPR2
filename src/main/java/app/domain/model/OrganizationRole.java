@@ -19,6 +19,10 @@ public class OrganizationRole {
         return description;
     }
 
+    public boolean validate() {
+        return !id.isEmpty() && !description.isEmpty();
+    }
+
     /**
      *
      * @param name

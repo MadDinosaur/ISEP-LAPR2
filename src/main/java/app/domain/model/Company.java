@@ -1,12 +1,17 @@
 package app.domain.model;
 
+import app.domain.shared.Constants;
 import app.domain.store.EmployeeStore;
 import app.domain.store.OrgRoleStore;
 import app.domain.store.TestTypeStore;
 import auth.AuthFacade;
 import auth.domain.model.Email;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,8 +25,8 @@ public class Company {
 
     private String designation;
     private AuthFacade authFacade;
-    private EmployeeStore employeeStore = new EmployeeStore();
-    private OrgRoleStore orgRoleStore = new OrgRoleStore();
+    private EmployeeStore employeeStore;
+    private OrgRoleStore orgRoleStore;
     private List<Category> parameterCategoryList;
     private TestTypeStore tts = new TestTypeStore();
     private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
@@ -32,6 +37,8 @@ public class Company {
 
         this.designation = designation;
         this.authFacade = new AuthFacade();
+        this.employeeStore = new EmployeeStore();
+        this.orgRoleStore = new OrgRoleStore(authFacade);
 
     }
 
@@ -83,7 +90,11 @@ public class Company {
 
     public boolean saveEmployeeAsUser(Employee e) {
         String pwd = generateUserPassword();
-        return authFacade.addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId());
+        if (authFacade.addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId())) {
+            sendUserPassword(e.getEmail(), pwd);
+            return true;
+        }
+        return false;
     }
 
     public String generateUserPassword() {
@@ -99,5 +110,19 @@ public class Company {
                 .toString();
 
         return generatedString;
+    }
+
+    private void sendUserPassword(String email, String pwd) {
+        File file = null;
+        try {
+            file = new File("SMS-Emails\\Register" + email + ".txt");
+
+            FileWriter myWriter = new FileWriter("SMS-Emails\\Register" + email + ".txt");
+            myWriter.write("You are now registered in " + getDesignation() + "'s application. " +
+                    "Your password is: " + pwd);
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred on file " + file.getName());
+        }
     }
 }

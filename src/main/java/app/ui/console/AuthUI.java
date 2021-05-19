@@ -6,6 +6,7 @@ import app.ui.console.utils.Utils;
 import auth.domain.model.UserRole;
 import auth.mappers.dto.UserRoleDTO;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -55,10 +56,12 @@ public class AuthUI implements Runnable{
     private List<MenuItem> getMenuItemForRoles()
     {
         List<MenuItem> rolesUI = new ArrayList<>();
-        rolesUI.add(new MenuItem(Constants.ROLE_ADMIN, new AdminUI()));
-        // To complete with other user roles and related RoleUI
-
-        //
+        rolesUI.add(new MenuItem("Administrator", new AdminUI()));
+        rolesUI.add(new MenuItem("Receptionist", new ReceptionistUI()));
+        rolesUI.add(new MenuItem("Medical Lab Technician", new MedLabTechUI()));
+        rolesUI.add(new MenuItem("Clinical Chemistry Technologist", new CliChemTechUI()));
+        rolesUI.add(new MenuItem("Laboratory Coordinator", new LabCoordUI()));
+        rolesUI.add(new MenuItem("Specialist Doctor", new SpecDocUI()));
         return rolesUI;
     }
 

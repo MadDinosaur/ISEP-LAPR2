@@ -6,6 +6,6 @@ autonumber
 ":Laboratory coordinator" -> ":System": Requests the specialist doctor's/clinical chemistry technologist's work
 ":System" --> ":Laboratory coordinator": Shows the specialist doctor's/clinical chemistry technologist's work
 ":Laboratory coordinator" -> ":System": Reviews and validates the work done
-":System" --> ":Laboratory coordinator": Confirms validation and that the client has been sent notification that their results are available
+":System" --> ":Laboratory coordinator": Confirms validation and (if results are valid) that the client has been sent notification that their results are available
 
 @enduml

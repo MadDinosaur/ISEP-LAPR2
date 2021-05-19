@@ -48,28 +48,21 @@ defined by configuration.
 
 ### 1.6. System Sequence Diagram (SSD)
 
-*Insert here a SSD depicting the envisioned Actor-System interactions and throughout which data is inputted and outputted to fulfill the requirement. All interactions must be numbered.*
-
 ![US5_SSD](US5_SSD.svg)
-
 
 ### 1.7 Other Relevant Remarks
 
 *Use this section to capture other relevant information that is related with this US such as (i) special requirements ; (ii) data and/or technology variations; (iii) how often this US is held.* 
 
-
 ## 2. OO Analysis
 
 ### 2.1. Relevant Domain Model Excerpt 
-*In this section, it is suggested to present an excerpt of the domain model that is seen as relevant to fulfill this requirement.* 
 
 ![US5_DM](US5_DM.svg)
 
 ### 2.2. Other Remarks
 
 *Use this section to capture some aditional notes/remarks that must be taken into consideration into the design activity. In some case, it might be usefull to add other analysis artifacts (e.g. activity or state diagrams).* 
-
-
 
 ## 3. Design - User Story Realization 
 
@@ -134,12 +127,6 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 *In this section, it is suggested to describe the efforts made to integrate this functionality with the other features of the system.*
 
-
 # 7. Observations
 
 *In this section, it is suggested to present a critical perspective on the developed work, pointing, for example, to other alternatives and or future related work.*
-
-
-
-
-

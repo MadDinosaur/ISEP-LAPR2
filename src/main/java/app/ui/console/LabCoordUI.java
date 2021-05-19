@@ -2,30 +2,28 @@ package app.ui.console;
 
 import app.ui.console.utils.Utils;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  *
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
-public class MainMenuUI {
 
-    public MainMenuUI()
+public class LabCoordUI implements Runnable{
+    public LabCoordUI()
     {
     }
 
-    public void run() throws IOException
+    public void run()
     {
         List<MenuItem> options = new ArrayList<MenuItem>();
-        options.add(new MenuItem("Do Login", new AuthUI()));
-        options.add(new MenuItem("Know the Development Team",new DevTeamUI()));
+        options.add(new MenuItem("Option A",new ShowTextUI("No options implemented yet.")));
+
         int option = 0;
         do
         {
-            option = Utils.showAndSelectIndex(options, "\n\nMain Menu\n\nLogin as ADMIN\nUsername: admin@lei.sem2.pt  Password: 123456\n\n");
+            option = Utils.showAndSelectIndex(options, "\n\nLaboratory Coordinator Menu:");
 
             if ( (option >= 0) && (option < options.size()))
             {
@@ -34,7 +32,4 @@ public class MainMenuUI {
         }
         while (option != -1 );
     }
-
-
 }
-

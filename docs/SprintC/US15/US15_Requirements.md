@@ -13,12 +13,13 @@ As a laboratory coordinator, I want to validate the work done by the clinical ch
 * "After the specialist doctor has completed the diagnosis, the results of the clinical analyses and the report become available in the system and must be validated by the laboratory coordinator."
 * "To validate the work done, the laboratory coordinator checks the chemical test/result and associated diagnosis made and confirms that everything was done correctly."
 * "Once the laboratory coordinator confirms that everything was done correctly, the client receives a notification alerting that the results are already available in the central application and informing that he/she must access the application to view those results."
+* "The client receives the notification by SMS and e-mail. At the same time the results are also available in the central application where the medical lab technicians who collect the samples, the clinical chemistry technologist, the specialist doctor, and the laboratory coordinator can check them."
 
 ####From the client clarifications
 
-* **Q**: "Does the laboratory coordinator choose which client's results to validate?" **A**: ""
-* **Q**: "Does the laboratory coordinator review the work of the specialist doctor and clinical chemical technologist's work separately or both at the same time?" **A**: ""
-* **Q**: "Does the notification sent to client informing them that they have their results on the central application get sent automatically after the laboratory coordinator confirms the clinical chemistry technologist and specialist doctor's work?" **A**: ""
+* **Q**: "Does the laboratory coordinator choose which client's results to validate?" **A**: "The laboratory coordinator chooses a set of tests he wants to validate."
+* **Q**: "Does the laboratory coordinator review the work of the specialist doctor and clinical chemical technologist's work separately or both at the same time?" **A**: "I already answered this question."
+* **Q**: "Does the notification sent to client informing them that they have their results on the central application get sent automatically after the laboratory coordinator confirms the clinical chemistry technologist and specialist doctor's work?" **A**: "From the Project Description: "Once the laboratory coordinator confirms that everything was done correctly, the client receives a notification alerting that the results are already available in the central application and informing that he/she must access the application to view those results.""
 
 ### 1.3. Acceptance Criteria
 
@@ -26,13 +27,13 @@ As a laboratory coordinator, I want to validate the work done by the clinical ch
 
 ### 1.4. Found out Dependencies
 
-* User story 15 is dependent on User story 12 considering the fact that the categorization of a new parameter requires the existance of a parameter category to include it in.
-* User story 15 is dependent on User Story 14
+* There is a dependency to "US012 As a clinical chemistry technologist, I intend to record the results of a given test" considering that the results to a given test need to exist for the laboratory coordinator to validate them.
+* There is a dependency to "US014 As a specialist doctor, I intend to make the diagnosis and write a report for a given test." seeing that the report to a certain test needs to already exist in order to be validated by the laboratory coordinator.
 
 ### 1.5 Input and Output Data
 
-* **Typed data:**
-* **Selected data**
+* **Typed data:** Validation for the tests
+* **Selected data** Tests to be validated
 
 ### 1.6. System Sequence Diagram (SSD)
 

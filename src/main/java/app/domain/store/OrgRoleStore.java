@@ -4,21 +4,25 @@ import app.domain.model.Company;
 import app.domain.model.Employee;
 import app.domain.model.Exceptions.UnregisteredOrgRolesException;
 import app.domain.model.OrganizationRole;
+import app.domain.shared.Constants;
+import auth.AuthFacade;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class OrgRoleStore {
+    private AuthFacade authFacade;
     private ArrayList<OrganizationRole> rolesList = new ArrayList<>();
 
-    public OrgRoleStore() {
-        rolesList.add(new OrganizationRole("admin", "Administrator"));
-        rolesList.add(new OrganizationRole("cct", "Clinical Chemistry Technologist"));
-        rolesList.add(new OrganizationRole("lc", "Laboratory Coordinator"));
-        rolesList.add(new OrganizationRole("mlt", "Medical Lab Technician"));
-        rolesList.add(new OrganizationRole("receptionist", "Receptionist"));
-        rolesList.add(new OrganizationRole("sd", "Specialist Doctor"));
+    public OrgRoleStore(AuthFacade auth) {
+        this.authFacade = auth;
+        addOrganizationRole(Constants.ROLE_ADMIN, "Administrator");
+        addOrganizationRole("cct", "Clinical Chemistry Technologist");
+        addOrganizationRole("lc", "Laboratory Coordinator");
+        addOrganizationRole("mlt", "Medical Lab Technician");
+        addOrganizationRole("receptionist", "Receptionist");
+        addOrganizationRole("sd", "Specialist Doctor");
     }
 
     public List<String> getOrganizationRoles() {
@@ -40,7 +44,15 @@ public class OrgRoleStore {
         }
         return null;
     }
-
+    public boolean addOrganizationRole(String id, String description) {
+        OrganizationRole newRole = new OrganizationRole(id, description);
+        if (validateOrganizationRole(newRole)) return rolesList.add(newRole) && authFacade.addUserRole(id, description);
+        return false;
+    }
+    private boolean validateOrganizationRole(OrganizationRole role) {
+        if (role == null) return false;
+        return !rolesList.contains(role) && role.validate();
+    }
     public Employee createEmployee(String role, String id, String name, String address, String phoneNumber, String email, String soc) {
         return getOrganizationRole(role).createEmployee(id, name, address, phoneNumber, email, soc);
     }
