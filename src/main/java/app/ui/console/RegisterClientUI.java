@@ -168,30 +168,20 @@ public class RegisterClientUI implements Runnable {
         System.out.println("TIN:" + clientController.getTIN());
         System.out.println("Phone Number:"+ clientController.getPhoneNumber());
         System.out.println("Email:"+ clientController.getEmail());
-        System.out.println("Sex" + clientController.getSex());
+        System.out.println("Sex:" + clientController.getSex());
 
         System.out.println("Is the data correct?");
         System.out.println("Type Yes/No/Cancel");
         String awnser = sc.nextLine();
         if (awnser.equalsIgnoreCase("yes")){
             clientController.saveClient();
-            clientController.sendEmail();
         }if(awnser.equalsIgnoreCase("no")){
             System.out.println("Would you like to restart?");
         }
 
 
 
-
-
-
-
     }
-
-
-
-
-
 
 
 }

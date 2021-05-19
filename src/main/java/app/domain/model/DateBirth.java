@@ -33,4 +33,9 @@ public class DateBirth {
         }
         this.year = year;
     }
+
+    @Override
+    public String toString(){
+        return String.format(day+"/"+month+"/"+year);
+    }
 }

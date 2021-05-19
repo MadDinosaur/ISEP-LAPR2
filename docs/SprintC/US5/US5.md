@@ -5,7 +5,7 @@
 ### 1.1. User Story Description
 
 _As a **medical lab technician**, I want to **record the samples collected in
-the scope of a given test.**_
+the scope of a given test.**
 
 ### 1.2. Customer Specifications and Clarifications 
 

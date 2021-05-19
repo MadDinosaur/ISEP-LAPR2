@@ -19,9 +19,9 @@ public class RegisterClientController {
     private  long phoneNumber; //-
     private  Email email; //-
     private  String sex; //-
-    private  String SEX_POR_OMISSAO = "No sex assigned";
+    private  final String SEX_POR_OMISSAO = "No sex assigned";
     private  Client newClient;
-    private  Company company;
+    private final Company company;
     private  String pass;
 
     public RegisterClientController(){
@@ -123,37 +123,16 @@ public class RegisterClientController {
 
 
     public boolean saveClient() {
-        newClient = new Client(name, cardNumber, nhsId, dateBirth, TIN, phoneNumber, email, sex);
-
-       return company.getAuthFacade().addUser(name,email.toString(),passGen());
+        this.newClient = new Client(this.name, this.cardNumber, this.nhsId, this.dateBirth, this.TIN,this.phoneNumber,this.email,this.sex);
+        System.out.println(email);
+        System.out.println(email.toString());
+        this.pass = passGen();
+       return company.saveClientAsUser(newClient,email.toString());
     }
 
     private  String passGen(){
         return pass = company.generateUserPassword();
     }
-
-    public void sendEmail(){
-        try {
-            File myObj = new File("SMS-Emails\\Register"+email+".txt");
-            if (myObj.createNewFile()) {
-                System.out.println("Email sent: " + myObj.getName());
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        try {
-            FileWriter myWriter = new FileWriter("SMS-Emails\\Register"+email+".txt");
-            myWriter.write("You are now Registered as a Client of "+ company.getDesignation());
-            myWriter.write("Your password is:"+pass);
-            myWriter.close();
-            System.out.println("Email sent");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
-
 
 }
 
