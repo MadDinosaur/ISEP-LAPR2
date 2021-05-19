@@ -9,6 +9,6 @@ sys --> mlt: requests test type
 mlt -> sys: selects test type
 sys --> mlt: requests number of samples to record
 mlt -> sys: gives number of samples to record
-sys --> mlt:
+sys --> mlt: gives success of operation
 
 @enduml
