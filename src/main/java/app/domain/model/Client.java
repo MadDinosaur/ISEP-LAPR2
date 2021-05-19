@@ -14,6 +14,7 @@ public class Client {
     private Email email;
     private String sex;
     private String SEX_POR_OMISSAO = "No sex assigned";
+    private final String organizationRole = "cl";
 
     public Client(String name, long cardNumber, long nhsId, DateBirth dateBirth, long TIN, long phoneNumber, Email email, String sex) {
         setName(name);
@@ -28,36 +29,29 @@ public class Client {
     public void setName(String name) {
         this.name = name;
     }
-
     public void setCardNumber(long cardNumber) {
 
         this.cardNumber = cardNumber;
     }
-
     public void setNhsId(long nhsId) {
         this.nhsId = nhsId;
 
     }
-
     public void setDateBirth(DateBirth dateBirth) {
         this.dateBirth = dateBirth;
     }
-
     public void setTIN(long TIN) {
 
         this.TIN = TIN;
 
     }
-
     public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
 
     }
-
     public void setSex(String sex) {
         this.sex = sex;
     }
-
     public void setEmail(Email email) {
 
         this.email = email;
@@ -66,12 +60,10 @@ public class Client {
     public Email getEmail() {
         return email;
     }
-
     public String getName() {
         return name;
     }
-
-
-
-
+    public String getOrganizationRole() {
+        return organizationRole;
+    }
 }

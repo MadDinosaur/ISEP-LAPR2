@@ -5,10 +5,12 @@ import app.domain.model.Company;
 import app.domain.model.DateBirth;
 import app.domain.model.Exceptions.*;
 import auth.domain.model.Email;
+import auth.domain.model.UserRole;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Optional;
 
 public class RegisterClientController {
     private  String name; //-
@@ -124,9 +126,11 @@ public class RegisterClientController {
 
     public boolean saveClient() {
         this.newClient = new Client(this.name, this.cardNumber, this.nhsId, this.dateBirth, this.TIN,this.phoneNumber,this.email,this.sex);
-        System.out.println(email);
-        System.out.println(email.toString());
         this.pass = passGen();
+
+        company.getAuthFacade().addUserRole("cl","Client");
+
+
        return company.saveClientAsUser(newClient,email.toString());
     }
 

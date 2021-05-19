@@ -98,14 +98,13 @@ public class Company {
     }
     public boolean saveClientAsUser(Client c,String email){
         String pwd = generateUserPassword();
-        System.out.println(c.getName());
-        System.out.println(c.getEmail());
-        System.out.println(email);
-        System.out.println(pwd);
-        if (authFacade.addUser(c.getName(), email, pwd)) {
+        if (authFacade.addUserWithRole(c.getName(), email, pwd, c.getOrganizationRole())) {
+            System.out.println(c.getClass().getSimpleName());
             sendUserPassword(email, pwd);
+            System.out.println("Client has been successfully registered"); //a alterar
             return true;
         }
+        System.out.println("An error has happened during the registration"); //a alterar
         return false;
     }
 
