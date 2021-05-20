@@ -1,11 +1,36 @@
 @startuml
-'https://plantuml.com/sequence-diagram
 
 autonumber
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+actor Administrator as admin
+participant CreateReportUI as crUI
+participant CreateReportController as crC
+participant TestResult as tr
+participant Company as com
+participant TestStore as ts
+participant Report as rep
+participant Diagnosis as dg
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+
+activate admin
+
+admin -> crUI: starts new report
+crUI -> admin: shows a list of tests and requests a test result to be shown
+crUI -> crC: displayTestsList()
+crC -> com: getTestsList()
+com -> ts: getTestsList()
+
+admin -> crUI: types in the test result he wants to see (by its index)
+crUI -> crC: getTestByIndex(index)
+crC -> ts: getTestByIndex(index)
+crUI -> admin: shows the test result and requests data (diagnosis, report)
+admin -> crUI: types the requested data
+crUI -> crC: createReport(textReport, textDiagnosis)
+crC -> tr: cr = createReport(textReport, textDiagnosis)
+
+
+crUI -> admin: shows the data and requests confirmation
+admin -> crUI: confirms
+crUI -> admin: informs operation success
+
 @enduml
