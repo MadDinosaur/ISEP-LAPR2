@@ -5,9 +5,9 @@ autonumber
 actor Administrator as admin
 participant CreateReportUI as crUI
 participant CreateReportController as crC
-participant TestResult as tr
 participant Company as com
 participant TestStore as ts
+participant TestResult as tr
 participant Report as rep
 participant Diagnosis as dg
 
@@ -27,6 +27,8 @@ crUI -> admin: shows the test result and requests data (diagnosis, report)
 admin -> crUI: types the requested data
 crUI -> crC: createReport(textReport, textDiagnosis)
 crC -> tr: cr = createReport(textReport, textDiagnosis)
+rep -> rep: validateReport()
+dg -> dg: validateDiagnosis()
 
 
 crUI -> admin: shows the data and requests confirmation
