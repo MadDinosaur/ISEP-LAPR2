@@ -5,10 +5,12 @@ import app.domain.model.Company;
 import app.domain.model.DateBirth;
 import app.domain.model.Exceptions.*;
 import auth.domain.model.Email;
+import auth.domain.model.UserRole;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Optional;
 
 public class RegisterClientController {
     private  String name; //-
@@ -19,9 +21,9 @@ public class RegisterClientController {
     private  long phoneNumber; //-
     private  Email email; //-
     private  String sex; //-
-    private  String SEX_POR_OMISSAO = "No sex assigned";
+    private  final String SEX_POR_OMISSAO = "No sex assigned";
     private  Client newClient;
-    private  Company company;
+    private final Company company;
     private  String pass;
 
     public RegisterClientController(){
@@ -123,37 +125,18 @@ public class RegisterClientController {
 
 
     public boolean saveClient() {
-        newClient = new Client(name, cardNumber, nhsId, dateBirth, TIN, phoneNumber, email, sex);
+        this.newClient = new Client(this.name, this.cardNumber, this.nhsId, this.dateBirth, this.TIN,this.phoneNumber,this.email,this.sex);
+        this.pass = passGen();
 
-       return company.getAuthFacade().addUser(name,email.toString(),passGen());
+        company.getAuthFacade().addUserRole("cl","Client");
+
+
+       return company.saveClientAsUser(newClient,email.toString());
     }
 
     private  String passGen(){
         return pass = company.generateUserPassword();
     }
-
-    public void sendEmail(){
-        try {
-            File myObj = new File("SMS-Emails\\Register"+email+".txt");
-            if (myObj.createNewFile()) {
-                System.out.println("Email sent: " + myObj.getName());
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        try {
-            FileWriter myWriter = new FileWriter("SMS-Emails\\Register"+email+".txt");
-            myWriter.write("You are now Registered as a Client of "+ company.getDesignation());
-            myWriter.write("Your password is:"+pass);
-            myWriter.close();
-            System.out.println("Email sent");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
-
 
 }
 

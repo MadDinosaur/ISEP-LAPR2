@@ -59,27 +59,24 @@ As a laboratory coordinator, I want to validate the work done by the clinical ch
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:---------------------|:------------|:---------------------------- |
-| Step 1: Start a new parameter |	... instantiating a new Parameter? | Category | Creator: aggregates objects of Parameter class |
-| Step 2: Shows list of parameter categories and asks to choose the one the new parameter falls under | ... getting the list of parameter categories available? | Company | IE: knows all the Category objects |
-| Step 3: selects the parameter's category | ... setting the category? | CreateNewParameterController | Controller: saves instance of category |
-| Step 4: Requests the data for the new parameter  | N/A |  |  |
-| Step 5: Types in requested data | N/A |  |  |
-| Step 6: Shows the data and asks for confirmation | N/A |  |  |
-| Step 7: Confirms typed data | ... validating and saving the typed data? | Category | IE: knows its own parameters |
-| Step 8: informs the operation's success | ... informing operations success? | CreateNewParameterUI | PF: responsible for user interaction |
+| Step 1: Requests the tests that already have results and report available |	... storing all the tests in the system? | TestStore | IE: knows its own objects |
+| Step 2: Shows list of tests that have results and report | .. showing all the tests? | ValidateTestUI | Pure Frabrication: responsible for user interactions |
+| Step 3: Chooses tests to validate |  |  |  |
+| Step 4: Shows test info, results and report |  |  |  |
+| Step 5: Reviews and validates test results and report |  |  |  |
+| Step 6: Confirms validation and (if results are valid) that the client has been sent a notification that their results are available |  |  |  |
+| Step 7: Informs operation's success |  |  |  |
 
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are:
 
-* **Company**
-* **Category**
-* **Parameter**
+*
 
 Other software classes (i.e. Pure Fabrication) identified:
-* CreateNewParameterUI
-* CreateNewParameterController
+* ValidateTestUI
+* ValidateTestController
 
 ## 3.2. Sequence Diagram (SD)
 

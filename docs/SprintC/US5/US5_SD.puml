@@ -1,0 +1,24 @@
+@startuml
+
+autonumber
+
+actor MedicalLabTechnician as mlt
+participant SampleUI as UI
+participant SampleController as Controller
+participant BarcodeAPI as API
+participant Sample
+
+
+mlt -> UI: records a new sample collected
+activate UI
+create Controller
+UI -> Controller : create
+UI -> Controller : createSample()
+activate Controller
+UI --> mlt: requests test type
+deactivate UI
+mlt -> UI: selects test type
+UI --> mlt: requests number of samples to record
+mlt -> UI: gives number of samples to record
+UI --> mlt: gives success of operation
+@enduml
