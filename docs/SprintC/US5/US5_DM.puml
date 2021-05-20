@@ -6,11 +6,11 @@ class Sample {
 }
 class BarcodeAPI
 class Client
-class TestType
+class Test
 
-Sample "1"--"1" BarcodeAPI : identified by >
+Sample "1"--"1 " BarcodeAPI : identified by >
 MedicalLabTechnician "1"--"*" Sample : collected by <
-Sample "*"--"1 " Client : associated to >
-Sample "*"--" 1  " TestType: associated to >
+Sample "*"--"1  " Client : associated to >
+Test "1  "--"*" Sample : collects >
 
 @enduml

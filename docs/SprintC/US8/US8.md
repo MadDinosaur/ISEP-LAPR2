@@ -74,8 +74,9 @@ There is a dependency to US9, before creating a new clinical analysis laboratory
 | Step 3 | give the new laboratory information? | Administrator | |
 | Step 4 | request type of tests performed by the lab? | RegisterNewLabUI | |
 | Step 5 | select test types performed by the lab? | Administrator | |
-| Step 6 | request for confirmation? | RegiterNewLabUI | |
-| Step 7 | confirm all the data? | Administrator | |              
+| Step 6 | request for confirmation? | RegisterNewLabUI | |
+| Step 7 | confirm all the data? | Administrator | |
+| Step 8 | show success of the operation? | RegisterNewLabUI             
 
 ### Systematization ##
 

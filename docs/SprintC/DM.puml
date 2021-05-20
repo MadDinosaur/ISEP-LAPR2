@@ -68,8 +68,6 @@ class Report {
 }
 class Sample {
 -barcode
--dateCollection
--timeCollection
 }
 class SpecialistDoctor {
 -doctorIndexNumber
