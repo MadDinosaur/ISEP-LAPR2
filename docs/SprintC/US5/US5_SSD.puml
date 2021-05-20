@@ -4,11 +4,13 @@ autonumber
 
 actor MedicalLabTechnician as mlt
 participant ":System" as sys
-mlt -> sys: records a new sample collected
+mlt -> sys: requests to record new sample(s) collected
 sys --> mlt: requests test type
 mlt -> sys: selects test type
 sys --> mlt: requests number of samples to record
 mlt -> sys: gives number of samples to record
+sys --> mlt: request confirmation
+mlt -> sys: gives confirmation
 sys --> mlt: gives success of operation
 
 @enduml
