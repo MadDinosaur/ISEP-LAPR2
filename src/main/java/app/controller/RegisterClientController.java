@@ -128,8 +128,7 @@ public class RegisterClientController {
         this.newClient = new Client(this.name, this.cardNumber, this.nhsId, this.dateBirth, this.TIN,this.phoneNumber,this.email,this.sex);
         this.pass = passGen();
 
-        company.getAuthFacade().addUserRole("cl","Client");
-
+        // company.getAuthFacade().addUserRole("cl","Client"); //....
 
        return company.saveClientAsUser(newClient,email.toString());
     }

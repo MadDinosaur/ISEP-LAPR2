@@ -99,7 +99,6 @@ public class Company {
     public boolean saveClientAsUser(Client c,String email){
         String pwd = generateUserPassword();
         if (authFacade.addUserWithRole(c.getName(), email, pwd, c.getOrganizationRole())) {
-            System.out.println(c.getClass().getSimpleName());
             sendUserPassword(email, pwd);
             System.out.println("Client has been successfully registered"); //a alterar
             return true;
@@ -126,7 +125,7 @@ public class Company {
     private void sendUserPassword(String email, String pwd) {
         File file = null;
         try {
-            file = new File("SMS-Emails\\Register " + email + ".txt");
+            file = new File("SMS-Emails\\Register_" + email + ".txt");
 
             FileWriter myWriter = new FileWriter("SMS-Emails\\Register" + email + ".txt");
             myWriter.write("You are now registered in " + getDesignation() + "'s application. " +

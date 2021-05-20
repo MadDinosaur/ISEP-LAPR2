@@ -1,6 +1,7 @@
 package app.ui.console;
 
 import app.controller.RegisterClientController;
+import app.domain.model.Client;
 import app.domain.model.Exceptions.*;
 
 import java.util.*;
@@ -176,7 +177,8 @@ public class RegisterClientUI implements Runnable {
         if (awnser.equalsIgnoreCase("yes")){
             clientController.saveClient();
         }if(awnser.equalsIgnoreCase("no")){
-            System.out.println("Would you like to restart?");
+            System.out.println("Press any Key to restart Client Registration");
+            new RegisterClientUI().run();
         }
 
 
