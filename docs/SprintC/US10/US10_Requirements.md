@@ -38,7 +38,8 @@ As an administrator, I want to specify a new parameter and categorize it.
 ### 1.5 Input and Output Data
 
 * **Typed data:** New parameter name; Code; Short description.
-* **Selected data** Parameter category.
+* **Selected data:** Parameter category.
+* **Output data:** Information of operation's success
 
 ### 1.6. System Sequence Diagram (SSD)
 

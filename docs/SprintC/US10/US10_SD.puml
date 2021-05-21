@@ -10,8 +10,8 @@ participant ":Parameter" as param
 participant ":Company" as comp
 
 activate admin
+admin -> UI: starts parameter specification
 loop until the administrator doesn't want to add more parameters
-admin -> UI: starts new parameter
 activate UI
 UI -> Controller: getCategoryList()
 activate Controller
@@ -24,6 +24,8 @@ deactivate Controller
 UI -> admin: shows parameter category list and asks to pick the one that the new parameter falls under
 deactivate UI
 admin -> UI: picks the wanted parameter category
+UI -> Controller: setCategory()
+activate Controller
 activate UI
 UI -> admin: requests the parameter information
 deactivate UI

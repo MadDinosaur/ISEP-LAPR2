@@ -47,10 +47,10 @@ public class CreateNewParameterController {
 
     /**
      * Setter for the parameter's category
-     * @param pc
+     * @param parameterCategory
      */
-    public void setCategory(Category pc){
-        this.parameterCategory = pc;
+    public void setCategory(Category parameterCategory){
+        this.parameterCategory = parameterCategory;
     }
 
     /**

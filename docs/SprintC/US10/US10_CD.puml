@@ -1,6 +1,6 @@
 @startuml
 
-class Administrator
+
 class Parameter {
 -int code
 -String shortName
@@ -34,18 +34,14 @@ class Category {
 -int nhsID
 -List<Parameter> parameterList
 
-+saveParameter(par)
-+validateParameter(par)
-+addParameter(par)
++saveParameter(parameter)
++validateParameter(parameter)
++addParameter(parameter)
 }
 
-
-Administrator ...> CreateNewParameterUI
 CreateNewParameterUI ...> CreateNewParameterController
 CreateNewParameterController ...> Category
 CreateNewParameterController ...> Company
 Category "*"--"1" Parameter : presented under <
-Parameter "*"-up-"1" Administrator : specified by >
-Company"1 "-"1..*" Administrator : > employs
 
 @enduml
