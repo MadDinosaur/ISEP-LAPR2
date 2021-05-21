@@ -4,8 +4,8 @@ autonumber
 
 actor Administrator
 
+Administrator -> ":System": starts parameter specification
 loop until the administrator doesn't want to specify any more parameters
-Administrator -> ":System": starts new parameter
 ":System" -> Administrator: shows list of parameter categories and asks to choose the one the new parameter falls under
 Administrator -> ":System": selects the parameter's category
 ":System" -> Administrator: requests parameter information (ie. name, code, description)
