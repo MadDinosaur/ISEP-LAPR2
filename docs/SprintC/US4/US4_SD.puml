@@ -3,9 +3,24 @@ autonumber
 actor "Laboratory Receptionist" as LR
 participant ":CreateTestUI" as ui
 participant ":CreateTestController" as ctrl
+participant ":Company" as cm
+participant ":ClientStore" as ct
+participant ":TestTypeStore" as tts
 
-activate LR
-LR -> ui :
-activate ui
+LR -> ui : requests test registration
+ui --> LR : requests client data(cardNumber)
+LR -> ui : types requested data
+create ctrl
+ui -> ctrl : create
+ui -> ctrl : getClientStore()
+ctrl -> cm : clientStore = getClientStore()
+ctrl -> ct : client = getClient(cardNumber)
+ui --> LR : asks client confirmation
+LR -> ui: confirms client
+ui -> ctrl : getTestTypeStore()
+ctrl -> cm : testTypeStore = getTestTypeStore()
+ctrl -> tts : testTypes = getTestTypes()
+loop
+ui --> LR : requests test type 
 
 @enduml

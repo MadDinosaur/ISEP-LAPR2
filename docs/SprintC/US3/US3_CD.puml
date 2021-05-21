@@ -13,9 +13,6 @@ class Client {
 -Email email
 +validate(name, cardNumber, nhsId, birthDate, \n sex, TIN, phoneNumber, email)
 }
-class Receptionist {
-+confirmData()
-}
 class Company{
 -String designation
 +saveClient()
@@ -28,7 +25,6 @@ class CreateClientController{
 +create(name, cardNumber, nhsId, birthDate, \n sex, TIN, phoneNumber, email)
 }
 
-Receptionist ..> CreateClientUI
 CreateClientUI ..> CreateClientController
 CreateClientController ..> Client
 Receptionist "1"--"*" Client : registers >

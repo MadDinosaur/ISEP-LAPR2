@@ -12,23 +12,11 @@ class Client {
 -phoneNumber
 -email
 }
-class Receptionist {
--employeeID
--organizationID
--name
--address
--phoneNumber
--email
--SOCcode
-}
-
 class Company{
 -designation
 }
 
-Receptionist "1"--"*" Client : registers >
 Company "1"--"1..*" Client : has >
-Client "1"--"1..*" User : is >
-Company "1"--"1..*" User : has >
+
 
 @enduml
