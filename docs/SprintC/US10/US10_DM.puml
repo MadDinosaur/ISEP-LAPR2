@@ -17,6 +17,13 @@ class Category {
 -nhsID
 }
 
-Category "*"--"1" Parameter : presented under <
+class Company{
+-designation
+}
+
+Company "1"--"*" Parameter : capable of analysing >
+Company "1"--"*" Category: adopts >
+Category "1"--"*" Parameter : presented under <
+
 
 @enduml

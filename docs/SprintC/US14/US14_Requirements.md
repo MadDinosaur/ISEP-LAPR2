@@ -34,6 +34,12 @@ values.
 >
 * Q6: Regarding the tests that the Specialist Doctor can write a report about: should the specialist doctor choose from a list of tests? Should he only receive a list of tests that have completed all of the previous steps?
 > The system shows all tests ready (that have completed all the previous steps) to make the diagnosis and the Specialist Doctor selects one test. Then, the Specialist Doctor writes the report for the selected test.
+* Q7: Once the specialist doctor decides to write the report for a given test, should the results of the chemical analysis and the reference values be presented on the screen? If not, how should the specialist doctor access the data related to the diagnosis he needs to make?
+> After selecting a test (to make the diagnosis/report) the results of the chemical analysis and the reference values should be presented on the screen. Then the Specialist Doctor should write the report.
+* Q8: While in the "Make a diagnosis and write a report" option of the main menu, should the specialist doctor be able to make a diagnosis and write a report for more than one test? Or does he need to exit and enter the "Make a diagnosis and write a report" option every time he wants to make a new diagnosis and write a new report?
+> After writing a report the SD can choose to write other reports without leaving the use case.
+* Q9: Can the Specialist Doctor edit a report once it has already been written? If yes, in what occasion should he be able to edit? Can he edit after the Laboratory Coordinator has already approved the report?
+> No. No.
 ### 1.3. Acceptance Criteria
 
 * AC1: The report should have a maximum of 400 words.
@@ -94,7 +100,7 @@ values.
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
 | Step 1: starts a new report  		 |	instantiating a new report?	| TestResult | Creator Pattern: TestResult contains an object from the Report class.  |                        
-| Step 2: shows a list of tests and requests a test result to be shown | having the list of tests? | TestStore | Information Expert: knows its own data. |
+| Step 2: shows a list of tests and requests a test parameter result to be shown | having the list of tests? | TestStore | Information Expert: knows its own data. |
 | Step 3: types in the test result he wants to see | saving the input? | CreateReportUI | Responsible for all the user-system interactions. |
 | Step 4: shows the test result and requests data (diagnosis, report) | n/a	| n/a | n/a |
 | Step 5: types the requested data | saving the input?  | Report |  Information Expert: the object created in step 1 has its own data. |
