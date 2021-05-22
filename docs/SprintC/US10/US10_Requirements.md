@@ -1,4 +1,4 @@
-# US 10 -  Specify a new employee
+# US 10 -  Specify a new parameter
 
 ## 1. Requirements Engineering
 
@@ -29,7 +29,6 @@ As an administrator, I want to specify a new parameter and categorize it.
 * AC1: The code introduced should have 5 alphanumerical charaters.
 * AC2: The name for the new parameter should be a string with no more than 8 characters.
 * AC3: The description should be a string with less than 20 characters.
-
 
 ### 1.4. Found out Dependencies
 
@@ -65,21 +64,21 @@ As an administrator, I want to specify a new parameter and categorize it.
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:---------------------|:------------|:---------------------------- |
-| Step 1: Start a new parameter |	... instantiating a new Parameter? | Category | Creator: aggregates objects of Parameter class |
-| Step 2: Shows list of parameter categories and asks to choose the one the new parameter falls under | ... getting the list of parameter categories available? | Company | IE: knows all the Category objects |
+| Step 1: Start parameter specification | N/A |  |  |
+| Step 2: Shows list of parameter categories and asks to choose the one the new parameter falls under | ... getting the list of parameter categories available? | CategoryStore | High cohesion: knows all the parameter categories |
 | Step 3: selects the parameter's category | ... setting the category? | CreateNewParameterController | Controller: saves instance of category |
-| Step 4: Requests the data for the new parameter  | N/A |  |  |
-| Step 5: Types in requested data | N/A |  |  |
+| Step 4: Requests the data for the new parameter  | ... requesting the parameter data? | CreateNewParameterUI | Pure Fabrication: responsible for user interaction |
+| Step 5: Types in requested data | ... saving the typed data? |  |  |
 | Step 6: Shows the data and asks for confirmation | N/A |  |  |
-| Step 7: Confirms typed data | ... validating and saving the typed data? | Category | IE: knows its own parameters |
-| Step 8: informs the operation's success | ... informing operations success? | CreateNewParameterUI | PF: responsible for user interaction |
+| Step 7: Confirms typed data | ... validating and saving the new parameter? | Category | IE: knows its own parameters |
+| Step 8: informs the operation's success | N/A |  |  |
 
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are:
 
-* **Company**
+* **CategoryStore**
 * **Category**
 * **Parameter**
 

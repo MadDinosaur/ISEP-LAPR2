@@ -34,14 +34,22 @@ class Category {
 -int nhsID
 -List<Parameter> parameterList
 
+}
+
+class CategoryStore{
+}
+
+class ParameterStore{
 +saveParameter(parameter)
 +validateParameter(parameter)
 +addParameter(parameter)
 }
 
 CreateNewParameterUI ...> CreateNewParameterController
-CreateNewParameterController ...> Category
-CreateNewParameterController ...> Company
-Category "*"--"1" Parameter : presented under <
+CreateNewParameterController ...> CategoryStore
+Category "*"--"1" ParameterStore : presented under <
+CategoryStore "*"--"1" Category : contains >
+Company "*"-- CategoryStore : uses >
+ParameterStore "*"-- Parameter : contains >
 
 @enduml
