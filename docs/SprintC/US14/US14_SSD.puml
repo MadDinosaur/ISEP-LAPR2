@@ -3,7 +3,7 @@
 autonumber
 
 "Specialist Doctor" -> ":System": starts a new report
-":System" -> "Specialist Doctor": shows a list of tests and requests a test result to be shown
+":System" -> "Specialist Doctor": shows a list of tests and requests a test parameter result to be shown
 "Specialist Doctor" -> ":System": types in the test result he wants to see (by its index)
 ":System" -> "Specialist Doctor": shows the test result and requests data (diagnosis, report)
 "Specialist Doctor" -> ":System": types the requested data

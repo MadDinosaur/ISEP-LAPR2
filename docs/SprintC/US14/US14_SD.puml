@@ -15,7 +15,7 @@ participant Diagnosis as dg
 activate admin
 
 admin -> crUI: starts new report
-crUI -> admin: shows a list of tests and requests a test result to be shown
+crUI -> admin: shows a list of tests and requests a test parameter result to be shown
 crUI -> crC: displayTestsList()
 crC -> com: getTestsList()
 com -> ts: getTestsList()
