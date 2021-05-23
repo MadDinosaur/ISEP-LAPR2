@@ -43,7 +43,9 @@ public class CreateEmployeeUI implements Runnable {
         System.out.println("Please choose an employee role:");
         int optionNum = 1;
         for (String option : roles) {
-            System.out.printf("%d - %s\n", optionNum, option);
+            if(!option.equals("Client")) {                                //
+                System.out.printf("%d - %s\n", optionNum, option);        //
+            }
             optionNum++;
         }
 

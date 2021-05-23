@@ -3,53 +3,86 @@
 autonumber
 
 actor Administrator as admin
-participant ":createNewParameterUI" as UI
-participant ":createNewParameterController" as Controller
-participant ":Category" as cat
+participant ":CreateNewParameterUI" as UI
+participant ":CreateNewParameterController" as CTRL
+participant ":Company" as CMP
+participant "parameterStore: Parameter\nStore" as paramStore
+participant "categoryStore: Category\nStore" as catStore
+participant "categoryMapper: CategoryMapper" as catMap
 participant ":Parameter" as param
-participant ":Company" as comp
+participant "parameterCategory: Category" as cat
+participant "categoryList: List<Category>" as catList
+participant "categoryListDto: List<CategoryDto>" as catListDto
+
+
 
 activate admin
+admin -> UI: starts parameter specification
 loop until the administrator doesn't want to add more parameters
-admin -> UI: starts new parameter
 activate UI
-UI -> Controller: getCategoryList()
-activate Controller
-Controller -> comp: getCategoryList()
-activate comp
-comp -> Controller: categoryList
-deactivate comp
-Controller -> UI: categoryList
-deactivate Controller
-UI -> admin: shows parameter category list and asks to pick the one that the new parameter falls under
+UI -> CTRL: categoryList = getCategoryList()
+activate CTRL
+CTRL -> CMP: categoryStore = getCategoryStore()
+activate CMP
+deactivate CMP
+
+CTRL -> catStore: categoryList = getCategories()
+activate catStore
+deactivate catStore
+CTRL -> catMap: categoryListDto = toDto(categoryList)
+activate catMap
+deactivate catMap
+deactivate CTRL
+
+UI --> admin: shows parameter category list and asks to pick the one that the new parameter falls under
 deactivate UI
 admin -> UI: picks the wanted parameter category
 activate UI
-UI -> admin: requests the parameter information
+UI --> admin: requests the parameter information
 deactivate UI
 admin -> UI: types in requested data
 activate UI
-UI -> admin: shows typed data and asks for confirmation
+UI -> CTRL: createNewParameter(shortName, code, description, categoryCode)
+activate CTRL
+CTRL -> CMP: parameterStore = getParameterStore()
+activate CMP
+deactivate CMP
+
+CTRL -> paramStore : parameter = createParameter(code, shortName, description, pcId)
+activate paramStore
+
+paramStore -> catStore: parameterCategory = getParameterCategory(categoryCode)
+activate catStore
+deactivate catStore
+
+create param
+paramStore --> param: create(code, shortName, description, pc)
+deactivate paramStore
+
+CTRL -> paramStore: validateParameter(parameter)
+activate paramStore
+deactivate paramStore
+deactivate CTRL
+
+
+UI --> admin: shows typed data and asks for confirmation
 deactivate UI
 admin -> UI: confirms the information
 activate UI
-UI -> Controller: createNewParameter(shortName, code, description)
-activate Controller
-Controller -> cat: par = createNewParameter(shortName, code, description)
-activate cat
-create param
-cat -> param: create(shortName, code, description)
-Controller -> cat: saveParameter()
-deactivate Controller
-cat -> cat: validateParameter(par)
-activate cat
-deactivate cat
-cat -> cat: addParameter(par)
-activate cat
-deactivate cat
-deactivate cat
+UI -> CTRL: saveParameter()
+activate CTRL
+CTRL -> paramStore: saveParameter(parameter)
+activate paramStore
+paramStore -> paramStore: validateParameter(parameter)
+activate paramStore
+deactivate paramStore
+paramStore -> paramStore: addParameter(parameter)
+activate paramStore
+deactivate paramStore
+deactivate CTRL
+
 end loop
-UI -> admin: informs operation's success
+UI --> admin: informs operation's success
 deactivate UI
 deactivate admin
 

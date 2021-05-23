@@ -1,0 +1,57 @@
+@startuml
+
+autonumber
+
+actor LaboratoryCoordinator as labCo
+participant ":ValidateTestUI" as UI
+participant ":ValidateTestController" as Controller
+participant ":TestStore" as store
+participant ":TestMapper" as map
+participant "ListTestsWithReport : List <Test>" as testList
+participant "ListTestsWithReportDTO : List <TestDTO>" as testList
+participant "ListTestsWithReportDTO : List <TestDTO>" as testListDTO
+participant "objDTO : testDTO" as testDTO
+
+activate labCo
+labCo -> UI: Requests tests that already have results and reports
+activate UI
+UI -> Controller: getListTestsWithReport()
+activate Controller
+Controller -> store: getListTestsWithReport()
+create testList
+store -> testList: create()
+store -> Controller: listTestsWithReport
+Controller -> map: toDTO(listTestsWithReport)
+activate map
+create testListDTO
+map -> testListDTO: create()
+loop for each test on the list
+map -> testList: obj = get(i)
+activate testList
+deactivate testList
+map -> map: objDTO = toDTO(obj)
+activate map
+create testDTO
+map -> testDTO: create
+deactivate map
+map -> testListDTO: add(objDTO)
+activate testListDTO
+deactivate testListDTO
+end loop
+activate testList
+deactivate testList
+map -> Controller: listTestswithReportDTO
+deactivate map
+Controller -> UI: listTestsWithReportDTO
+deactivate Controller
+UI --> labCo: Shows list of tests with results and report available
+labCo -> UI: picks the tests to validate
+
+
+
+
+
+deactivate labCo
+
+
+@enduml

@@ -6,7 +6,7 @@ import app.domain.store.OrgRoleStore;
 import app.domain.store.TestTypeStore;
 import auth.AuthFacade;
 import auth.domain.model.Email;
-import com.sun.org.apache.xpath.internal.operations.Or;
+
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
@@ -96,6 +96,16 @@ public class Company {
         }
         return false;
     }
+    public boolean saveClientAsUser(Client c,String email){
+        String pwd = generateUserPassword();
+        if (authFacade.addUserWithRole(c.getName(), email, pwd, c.getOrganizationRole())) {
+            sendUserPassword(email, pwd);
+            System.out.println("Client has been successfully registered"); //a alterar
+            return true;
+        }
+        System.out.println("An error has happened during the registration"); //a alterar
+        return false;
+    }
 
     public String generateUserPassword() {
         int leftLimit = 48; // numeral '0'
@@ -115,7 +125,7 @@ public class Company {
     private void sendUserPassword(String email, String pwd) {
         File file = null;
         try {
-            file = new File("SMS-Emails\\Register" + email + ".txt");
+            file = new File("SMS-Emails\\Register_" + email + ".txt");
 
             FileWriter myWriter = new FileWriter("SMS-Emails\\Register" + email + ".txt");
             myWriter.write("You are now registered in " + getDesignation() + "'s application. " +

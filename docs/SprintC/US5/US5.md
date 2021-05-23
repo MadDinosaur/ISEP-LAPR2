@@ -5,9 +5,20 @@
 ### 1.1. User Story Description
 
 _As a **medical lab technician**, I want to **record the samples collected in
-the scope of a given test.**_
+the scope of a given test.**
 
 ### 1.2. Customer Specifications and Clarifications 
+
+**From the Specifications Document:**
+>"...the client should wait until a medical lab technician calls him/her
+ to collect the samples required to perform a given test."
+
+>"All the tests (clinical blood tests and Covid-19 tests) performed by the network of laboratories are
+  registered locally by the medical lab technicians who collect the samples."
+
+>"When sampling (blood or swab) the medical lab technician records the samples in the system,
+  associating the samples with the client/test, and identifying each sample with a barcode that is
+  automatically generated using an external API."
 
 **From the client clarifications**:
 
@@ -19,7 +30,7 @@ the scope of a given test.**_
 * **Q2**: Can a test have more than one sample?
     * **A2**: Yes.
     
-
+    
 * **Q3**: We didn't fully understand what will the API do in this US, so here's out interpretation from the US, correct us if we're wrong please: The API will be generated randomly and the API is an attribute from the sample.
     * **A3**: The API will be used to generate/print barcodes.
 
@@ -27,6 +38,9 @@ the scope of a given test.**_
 * **Q4**: In the US acceptance criteria, it's also said that: "The API to use is defined by configuration.", does this means the medical lab technician is the one who chooses which kind of API wants to use for a certain sample?
     * **A4**: No. You should study ESOFT to answer this question.
     
+    
+* **Q5**: What information does the medical lab technician needs to input to record a new sample?
+    * **A5**: The medical lab technician checks a list of tests and selects one. Then, the application generates barcodes (one or more). After printing the barcodes (one or more) the use case ends.
 
 ### 1.3. Acceptance Criteria
 
@@ -44,7 +58,8 @@ defined by configuration.
 * **Selected data:** Test Type
 
 **Output data:**
-- Success of operation.
+- Test Type List
+- (In)Success of operation.
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -88,8 +103,8 @@ According to the taken rationale, the conceptual classes promoted to software cl
  * Class3
 
 Other software classes (i.e. Pure Fabrication) identified: 
- * xxxxUI  
- * xxxxController
+ * SampleUI  
+ * SampleController
 
 ## 3.2. Sequence Diagram (SD)
 

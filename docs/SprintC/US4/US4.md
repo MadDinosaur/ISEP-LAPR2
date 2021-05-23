@@ -74,7 +74,7 @@ There is also a dependence with US9 and US10 since the receptionist must select 
 ### 2.1. Relevant Domain Model Excerpt 
 *In this section, it is suggested to present an excerpt of the domain model that is seen as relevant to fulfill this requirement.* 
 
-![USXX-MD](USXX-MD.svg)
+![US4_DM](US4_DM.svg)
 
 ### 2.2. Other Remarks
 
@@ -106,8 +106,8 @@ According to the taken rationale, the conceptual classes promoted to software cl
  * Class3
 
 Other software classes (i.e. Pure Fabrication) identified: 
- * xxxxUI  
- * xxxxController
+ * CreateTestUI  
+ * CreateTestController
 
 ## 3.2. Sequence Diagram (SD)
 

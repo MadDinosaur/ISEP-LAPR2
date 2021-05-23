@@ -1,15 +1,12 @@
 package app.domain.store;
 
 import app.domain.model.OrganizationRole;
-import app.domain.store.OrgRoleStore;
 import auth.AuthFacade;
-import com.sun.org.apache.xpath.internal.operations.Or;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
 
 public class OrgRoleStoreTest {
     AuthFacade auth = new AuthFacade();

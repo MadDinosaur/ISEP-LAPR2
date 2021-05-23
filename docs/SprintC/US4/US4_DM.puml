@@ -27,7 +27,6 @@ class Client {
 -email
 -password
 }
-class Receptionist
 class TestType {
 -code
 -description
@@ -48,20 +47,15 @@ class Client {
 -email
 -password
 }
-class Category {
--code
--description
--nhsID
-}
+
+
 
 TestType "1"--"1..*" Parameter : has >
 (Test, Parameter) .. TestParameter
 Test "*"--"1" Client : requested by >
 TestParameter "*"--"1" Test : has <
-Receptionist "1"--"*" Test : registers >
 Test "*"-up-"1" Company : performs <
 Test "*"-right-"1" "TestType" : is of >
 TestParameter "*"--"1" Parameter : associated to >
-Parameter "*"--"1" Category : presented under >
 
 @enduml

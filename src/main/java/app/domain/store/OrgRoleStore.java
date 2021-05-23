@@ -23,6 +23,7 @@ public class OrgRoleStore {
         addOrganizationRole("mlt", "Medical Lab Technician");
         addOrganizationRole("receptionist", "Receptionist");
         addOrganizationRole("sd", "Specialist Doctor");
+        addOrganizationRole("cl","Client"); //
     }
 
     public List<String> getOrganizationRoles() {

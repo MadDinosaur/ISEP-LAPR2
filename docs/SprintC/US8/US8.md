@@ -69,13 +69,14 @@ There is a dependency to US9, before creating a new clinical analysis laboratory
 
 | Interaction ID | Question: Which class is responsible for... | Answer        | Justification (with patterns)  |
 |:-------------  |:------------------------------------------  |:--------------|:------------------------------ |
-| Step 1 | register a new clinical analysis laboratory? | Administrator| |
-| Step 2 | request information about the new laboratory? | RegisterNewLabUI | |
-| Step 3 | give the new laboratory information? | Administrator | |
-| Step 4 | request type of tests performed by the lab? | RegisterNewLabUI | |
-| Step 5 | select test types performed by the lab? | Administrator | |
-| Step 6 | request for confirmation? | RegiterNewLabUI | |
-| Step 7 | confirm all the data? | Administrator | |              
+| Step 1 - register a new clinical analysis laboratory | instantiating a new clinical analysis laboratory ? | ClinicalAnalysisLaboratory | |
+| Step 2 - request information about the new laboratory | saving the new laboratory's information? | ClinicalAnalysisLaboratory | |
+| Step 3 - give the new laboratory information | writing the information? | Administrator | |
+| Step 4 - request type of tests performed by the lab | having the test types list? | TestTypeStore | |
+| Step 5 - select test types performed by the lab | choose what types of test that will be performed by the lab? | Administrator | |
+| Step 6 - request for confirmation | asking the administrator for data confirmation? | RegisterNewLabUI | |
+| Step 7 - confirm all the data | giving a confirmation? | Administrator | |
+| Step 8 - show success of the operation | validating all the typed data? | ClinicalAnalysisLaboratory             
 
 ### Systematization ##
 
@@ -136,8 +137,8 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 # 6. Integration and Demo 
 
-*In this section, it is suggested to describe the efforts made to integrate this functionality with the other features of the system.*
+*This system was developed using OOP (Object Oriented Programming) in order to make the software easy to maintain.*
 
 # 7. Observations
 
-*In this section, it is suggested to present a critical perspective on the developed work, pointing, for example, to other alternatives and or future related work.*
+*Even though the User Story code seems to work just fine, the adopted methodology to create it wasn't the best one. It feels like the work could have been way easier and smoother. Also the console interface of this user story doesn't really match others user story's interface, and that makes the program harder to understand. In the future it will have to be fixed.*

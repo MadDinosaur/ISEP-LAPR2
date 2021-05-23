@@ -3,9 +3,14 @@
 
 autonumber
 
-":Laboratory coordinator" -> ":System": Requests the specialist doctor's/clinical chemistry technologist's work
-":System" --> ":Laboratory coordinator": Shows the specialist doctor's/clinical chemistry technologist's work
-":Laboratory coordinator" -> ":System": Reviews and validates the work done
-":System" --> ":Laboratory coordinator": Confirms validation and (if results are valid) that the client has been sent notification that their results are available
+":Laboratory coordinator" -> ":System": Requests the tests that already have results and report available
+":System" --> ":Laboratory coordinator": Shows list of tests that have results and report
+":Laboratory coordinator" -> ":System": Chooses tests to validate
+loop until all the tests are validated
+":System" --> ":Laboratory coordinator": Shows test info, results and report
+":Laboratory coordinator" -> ":System": Reviews and validates test results and report
+":System" --> ":Laboratory coordinator": Confirms validation and (if results are valid) that the client has been sent a notification that their results are available
+end loop
+":System" --> ":Laboratory coordinator": Informs operation's success
 
 @enduml
