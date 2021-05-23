@@ -1,0 +1,61 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Company
+class Test {
+-code
+-NhsCode
+-createdAt
++ getParameters()
++ createTestParameterResult(paramCode, result, metric)
+- getTestParameter(paramCode)
+}
+class TestType {
+-code
+-description
++ getExternalModule()
++ getParameters()
+}
+class TestParameter {
++ getParameter()
++ createTestParameterResult(result, metric, refValue)
+}
+class Parameter {
+-code
+-shortName
+-description
+}
+class ReferenceValue
+class TestParameterResult {
+-createdAt
+-value
+-metric
++ TestParameterResult(value, metric, refValue)
+}
+interface ExternalModule {
++ ReferenceValue getReferenceValue(Parameter param)
+}
+class ExternalModuleAdapter1 {
++ ReferenceValue getReferenceValue((Parameter param)
+}
+class ExternalModule1API {
++ List<NhsMetric> getPossibleMetrics(String key, NHSParameterId id)
++ NHSReferenceValue getReferenceValue(String key, NHSParameterId id)
++ NHSReferenceValue getReferenceValue(String key, NHSParameterId id, NhsMetric metric)
+}
+class ExternalModuleAdapter2 {
++ ReferenceValue getReferenceValue((Parameter param)
+}
+class ExternalModule2API {
++ List<String> getMetricsFor(String parameterId)
++ EMRefValue getReferenceFor(String parameterId)
++ EMRefValue getReferenceFor(String parameterId, Date onDate)
+}
+class ExternalModuleAdapter3 {
++ ReferenceValue getReferenceValue((Parameter param)
+}
+class ExternalModule3API {
++ String usedMetric(String parameterId, Integer accessKey)
++ Double getMinReferenceValue(String parameterId, Integer accessKey)
++ Double getMaxReferenceValue(String parameterId, Integer accessKey)
+}
+@enduml
