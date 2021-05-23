@@ -9,6 +9,17 @@ the scope of a given test.**
 
 ### 1.2. Customer Specifications and Clarifications 
 
+**From the Specifications Document:**
+>"...the client should wait until a medical lab technician calls him/her
+ to collect the samples required to perform a given test."
+
+>"All the tests (clinical blood tests and Covid-19 tests) performed by the network of laboratories are
+  registered locally by the medical lab technicians who collect the samples."
+
+>"When sampling (blood or swab) the medical lab technician records the samples in the system,
+  associating the samples with the client/test, and identifying each sample with a barcode that is
+  automatically generated using an external API."
+
 **From the client clarifications**:
 
 * **Q1**: What kind of attributes should a sample have?
@@ -47,7 +58,8 @@ defined by configuration.
 * **Selected data:** Test Type
 
 **Output data:**
-- Success of operation.
+- Test Type List
+- (In)Success of operation.
 
 ### 1.6. System Sequence Diagram (SSD)
 

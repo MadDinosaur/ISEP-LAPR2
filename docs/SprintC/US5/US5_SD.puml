@@ -5,48 +5,42 @@ autonumber
 actor MedicalLabTechnician as mlt
 participant SampleUI as UI
 participant SampleController as Controller
+participant Company
+participant TestStore
+participant Test
 participant Sample
 participant BarcodeAPI as API
-participant SampleDTO as DTO
+participant SampleStore
 
 activate mlt
-mlt -> UI: requests to record new sample(s) collected
+mlt -> UI: requests to record new collected sample(s)
 activate UI
-create Controller
-UI -> Controller : create
-UI -> Controller : createSamples()
-activate Controller
-Controller -> DTO : SampleDTO()
-activate DTO
-deactivate Controller
-UI --> mlt: requests test type
+
+UI --> mlt: requests test
 deactivate UI
-mlt -> UI: selects test type
+
+mlt -> UI: selects test
 activate UI
-UI -> Controller: setTestType()
+UI -> Controller: getTestCode(int code)
 activate Controller
-Controller -> Sample : setTestType()
-activate Sample
-deactivate Controller
+Controller -> Company: getTest(int code)
+
 UI --> mlt: requests number of samples to record
 deactivate UI
+
 mlt -> UI: gives number of samples to record
 activate UI
+loop loop for n times, n being the number of samples
+UI -> Controller: createBarCode()
+end loop
+
 UI --> mlt: request confirmation
 deactivate UI
+
 mlt -> UI: gives confirmation
 activate UI
-UI -> Controller : setSamplesNumber(int n)
-activate Controller
-Controller -> Sample : newSamples(int n)
-Sample -> API : generateCodes(int n)
-activate API
-API --> Sample : setCodes()
-deactivate API
-Sample -> DTO : registerSample()
-deactivate DTO
-deactivate Sample
-UI --> mlt: gives success of operation
+
+UI --> mlt: gives (in)success of operation
 deactivate UI
 deactivate mlt
 
