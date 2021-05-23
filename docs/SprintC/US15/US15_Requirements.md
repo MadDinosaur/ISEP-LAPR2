@@ -17,9 +17,14 @@ As a laboratory coordinator, I want to validate the work done by the clinical ch
 
 ####From the client clarifications
 
-* **Q**: "Does the laboratory coordinator choose which client's results to validate?" **A**: "The laboratory coordinator chooses a set of tests he wants to validate."
-* **Q**: "Does the laboratory coordinator review the work of the specialist doctor and clinical chemical technologist's work separately or both at the same time?" **A**: "I already answered this question."
-* **Q**: "Does the notification sent to client informing them that they have their results on the central application get sent automatically after the laboratory coordinator confirms the clinical chemistry technologist and specialist doctor's work?" **A**: "From the Project Description: "Once the laboratory coordinator confirms that everything was done correctly, the client receives a notification alerting that the results are already available in the central application and informing that he/she must access the application to view those results.""
+* **Q1**: "Does the laboratory coordinator choose which client's results to validate?" **A**: "The laboratory coordinator chooses a set of tests he wants to validate."
+* **Q2**: "Does the laboratory coordinator review the work of the specialist doctor and clinical chemical technologist's work separately or both at the same time?" **A**: "I already answered this question."
+* **Q3**: "Does the notification sent to client informing them that they have their results on the central application get sent automatically after the laboratory coordinator confirms the clinical chemistry technologist and specialist doctor's work?" **A**: "From the Project Description: "Once the laboratory coordinator confirms that everything was done correctly, the client receives a notification alerting that the results are already available in the central application and informing that he/she must access the application to view those results.""
+* **Q4**: "When the laboratory coordinator wants to validate a test does all the tests available show up for him or does he search using a code that identifies a specific test?" **A**: "The system shows all tests ready to validate (tests that already have the test registration date, the chemical analysis date and the diagnosis date registered in the system) and the laboratory coordinator selects one or more tests to mark as validated."
+* **Q5**: "What should happen to a test if either the test report or the results are invalid? Should we prompt for a redo of either process or simply erase the test?" **A**: "The laboratory coordinator only sees the test dates of tests that already have all dates registered in the system (test registration date, the chemical analysys date and the diagnosis date)."
+* **Q6**: "After validation do we need to have the time and date of the validation?" **A**: "Yes, the system should record the date (DD/MM/YYYY) and time (HH:MM) when the validation was made. Moreover, in this US, when the system shows to the laboratory coordinator all the dates (test registration date, chemical analysis date and diagnosis date), the system should show the date (DD/MM/YYYY) and the time (HH:MM)."
+* **Q7**: "As soon as a test is validated should the system send the notification to a txt file like in sprint B?" **A**: "Please read carefully my answers!In the Project Description we get: "Once the laboratory coordinator confirms that everything was done correctly, the client receives a notification alerting that the results are already available in the central application and informing that he/she must access the application to view those results. The client receives the notification by SMS and e-mail. In a previous post in this forum: "During the development of the Integrative Project we will not use any e-mail or SMS API services to send messages. All the e-mail and SMS messages should be written to a file with the name emailAndSMSMessages.txt. This file simulates the use of e-mail and SMS API services.""
+
 
 ### 1.3. Acceptance Criteria
 
@@ -28,12 +33,13 @@ As a laboratory coordinator, I want to validate the work done by the clinical ch
 ### 1.4. Found out Dependencies
 
 * There is a dependency to "US012 As a clinical chemistry technologist, I intend to record the results of a given test" considering that the results to a given test need to exist for the laboratory coordinator to validate them.
-* There is a dependency to "US014 As a specialist doctor, I intend to make the diagnosis and write a report for a given test." seeing that the report to a certain test needs to already exist in order to be validated by the laboratory coordinator.
+* There is a dependency to "US014 As a specialist doctor, I intend to make the diagnosis and write a report for a given test." seeing that there needs to be a  in order to be validated by the laboratory coordinator.
 
 ### 1.5 Input and Output Data
 
 * **Typed data:** Validation for the tests
-* **Selected data** Tests to be validated
+* **Selected data**: Tests to be validated
+* **Output data**: Validation's success
 
 ### 1.6. System Sequence Diagram (SSD)
 
