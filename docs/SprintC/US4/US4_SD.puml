@@ -6,6 +6,9 @@ participant ":CreateTestController" as ctrl
 participant ":Company" as cm
 participant ":ClientStore" as ct
 participant ":TestTypeStore" as tts
+participant ":TestTypeMapper" as ttMapper
+participant ":listTestTypeDto : List<TestTypeDto>" as ttDto
+participant "objDto : TestTypeDto" as TTobjDto
 
 LR -> ui : requests test registration
 ui --> LR : requests client data(cardNumber)
@@ -19,8 +22,22 @@ ui --> LR : asks client confirmation
 LR -> ui: confirms client
 ui -> ctrl : getTestTypeStore()
 ctrl -> cm : testTypeStore = getTestTypeStore()
-ctrl -> tts : testTypes = getTestTypes()
+ctrl -> tts : testTypeList = getTestTypes()
+ctrl -> ttMapper : toDto(testTypeList)
+create ttDto
+ttMapper -> ttDto : create()
+loop for each object in list testTypeList
+ttMapper -> ttMapper : obj = testTypeList(i)
+ttMapper -> ttMapper : objDto = toDTO(obj)
+create TTobjDto
+ttMapper -> TTobjDto : create(objDto)
+ttMapper -> ttDto : add(objDto)
+end loop
+ttMapper --> ctrl : listTestTypeDto
+ctrl --> ui : listTestTypeDto
+ui --> LR : shows list of test types and requests 1
+LR -> ui : chooses test type
 loop
-ui --> LR : requests test type 
+
 
 @enduml
