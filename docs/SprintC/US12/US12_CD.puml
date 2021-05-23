@@ -1,6 +1,8 @@
 @startuml
 skinparam classAttributeIconSize 0
-class Company
+class Company {
++ getTestStore()
+}
 class Test {
 -code
 -NhsCode
@@ -19,12 +21,23 @@ class TestParameter {
 + getParameter()
 + createTestParameterResult(result, metric, refValue)
 }
+class TestStore {
++ getTestsWithCollectedSamples()
++ getTestBySampleBarcode(barcode)
++ getTestParameters(test)
++ createTestParameterResult(paramCode, result, metric)
+}
 class Parameter {
 -code
 -shortName
 -description
 }
-class ReferenceValue
+class ReferenceValue {
+-minValue
+-maxValue
+-metric
++ReferenceValue(minValue, maxValue, metric)
+}
 class TestParameterResult {
 -createdAt
 -value
@@ -58,4 +71,29 @@ class ExternalModule3API {
 + Double getMinReferenceValue(String parameterId, Integer accessKey)
 + Double getMaxReferenceValue(String parameterId, Integer accessKey)
 }
+class RecordTestResultUI
+class RecordTestResultController {
++ RecordTestResultController()
++ getTestsWithCollectedSamples()
++ getTestParameters(barcode)
++ createTestParameterResult(paramCode, result, metric)
++ saveTestParameterResult()
+}
+
+RecordTestResultUI ..> RecordTestResultController
+RecordTestResultController .right.> Company
+Company --> TestStore : uses
+TestStore --> Test : contains
+ReferenceValue .right.> ExternalModule
+Test --> TestParameter : contains
+Test --> TestType : is of
+TestType --> Parameter : contains
+TestParameter --> TestParameterResult : has
+TestParameterResult --> ReferenceValue : has
+ExternalModule <|.. ExternalModuleAdapter1
+ExternalModule <|.. ExternalModuleAdapter2
+ExternalModule <|.. ExternalModuleAdapter3
+ExternalModuleAdapter1 --> ExternalModule1API
+ExternalModuleAdapter2 --> ExternalModule2API
+ExternalModuleAdapter3 --> ExternalModule3API
 @enduml

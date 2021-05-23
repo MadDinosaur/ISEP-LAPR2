@@ -36,11 +36,12 @@ ui -> controller : createTestParameterResult(paramCode, result, metric)
 controller -> ts : createTestParameterResult(paramCode, result, metric)
 ts -> test : createTestParameterResult(paramCode, result, metric)
 ref over test : SD_CreateTestResult
+end loop
 ui --> cct : shows the data and requests confirmation
 cct -> ui : confirms the data
-ui -> controller : saveTestParameter()
 ui -> controller : saveTestParameterResult()
-end loop
+controller -> ts : saveTestParameterResult()
+ts -> test : addTestParameterResult()
 test -> test : setStatus("Samples Analysed")
 ui --> cct : informs operation success
 
