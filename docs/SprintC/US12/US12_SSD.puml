@@ -3,13 +3,15 @@ actor CCT as cct
 participant ":System" as sys
 
 cct -> sys : **1** starts a new test result registration
-sys --> cct : **2** requests test code
-cct -> sys : **3** selects requested data
+sys --> cct : **2** requests sample barcode number
+cct -> sys : **3** types requested data
+loop for each test parameter being analysed
 sys --> cct : **4** requests parameter
 cct -> sys : **5** selects requested data
-sys --> cct : **6** requests result data
+sys --> cct : **6** requests result value and metric
 cct -> sys : **7** types requested data
 sys --> cct : **8** shows the data and requests confirmation
 cct -> sys : **9** confirms the data
 sys --> cct : **10** informs operation success
+end loop
 @enduml

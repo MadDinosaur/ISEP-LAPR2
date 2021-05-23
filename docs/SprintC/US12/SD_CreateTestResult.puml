@@ -1,0 +1,18 @@
+@startuml
+participant "test: Test" as test
+participant "type: TestType" as type
+participant "testParam: TestParameter" as testParam
+participant "testResult: TestParameterResult" as testResult
+participant "em: ReferenceValueModule" as em
+
+[o-> test : createTestParameterResult(paramCode, result, metric)
+test -> test : getTestParameter(paramCode)
+test -> testParam : param = getParameter()
+test -> type : getExternalModule()
+test -> em : getReferenceValue(param)
+test -> testParam : createTestParameterResult(result, metric, refValue)
+create testResult
+testParam -> testResult : create(result, metric, refValue)
+testResult -> testResult : validateResult(result)
+testResult -> testResult : validateMetric(metric)
+@enduml
