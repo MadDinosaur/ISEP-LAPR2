@@ -1,5 +1,6 @@
 package app.domain.model;
 
+import app.domain.adapter.ExternalModule;
 import app.domain.model.Exceptions.InvalidCategoryException;
 import app.domain.model.Exceptions.InvalidCodeException;
 import app.domain.model.Exceptions.InvalidDescriptionException;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import app.domain.model.Exceptions.UnassignedExternalModuleException;
 import org.apache.commons.lang3.StringUtils;
 
 
@@ -204,6 +206,27 @@ public class TestType {
             return false;
         } else {
             return true;
+        }
+    }
+
+    public ExternalModule getExternalModule() {
+        Class<?> oClass = null;
+
+        try {
+            switch (code) {
+                case "Covid":
+                    oClass = Class.forName("app.domain.adapter.ExternalModuleAdapter1");
+                    break;
+                case "Blood":
+                    oClass = Class.forName("app.domain.adapter.ExternalModuleAdapter2");
+                    break;
+            }
+            return (ExternalModule) oClass.newInstance();
+
+        } catch (ClassNotFoundException ex) {
+            throw new UnassignedExternalModuleException();
+        } catch (Exception ex) {
+            throw new UnassignedExternalModuleException("Cannot access external validation module!");
         }
     }
 }

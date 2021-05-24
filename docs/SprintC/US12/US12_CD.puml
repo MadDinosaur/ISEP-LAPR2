@@ -43,6 +43,9 @@ class TestParameterResult {
 -value
 -metric
 + TestParameterResult(value, metric, refValue)
+- validateValue()
+- validateMetric()
+- validateRefValue()
 }
 interface ExternalModule {
 + ReferenceValue getReferenceValue(Parameter param)

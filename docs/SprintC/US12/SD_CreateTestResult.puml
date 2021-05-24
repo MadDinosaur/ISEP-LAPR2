@@ -5,14 +5,15 @@ participant "testParam: TestParameter" as testParam
 participant "testResult: TestParameterResult" as testResult
 participant "em: ReferenceValueModule" as em
 
-[o-> test : createTestParameterResult(paramCode, result, metric)
+[o-> test : createTestParameterResult(paramCode, value, metric)
 test -> test : getTestParameter(paramCode)
 test -> testParam : param = getParameter()
 test -> type : getExternalModule()
 test -> em : getReferenceValue(param)
-test -> testParam : createTestParameterResult(result, metric, refValue)
+test -> testParam : createTestParameterResult(value, metric, refValue)
 create testResult
-testParam -> testResult : create(result, metric, refValue)
-testResult -> testResult : validateResult(result)
+testParam -> testResult : create(value, metric, refValue)
+testResult -> testResult : validateValue(value)
 testResult -> testResult : validateMetric(metric)
+testResult -> testResult : validateRefValue(refValue)
 @enduml

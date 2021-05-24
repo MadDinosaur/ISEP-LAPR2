@@ -10,4 +10,12 @@ public class ReferenceValue {
         this.minValue = minValue;
         this.metric = metric;
     }
+
+    public Double getMinValue() {
+        return minValue;
+    }
+
+    public Double getMaxValue() {
+        return maxValue;
+    }
 }
