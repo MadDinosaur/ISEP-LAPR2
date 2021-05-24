@@ -5,10 +5,26 @@ participant ":CreateTestUI" as ui
 participant ":CreateTestController" as ctrl
 participant ":Company" as cm
 participant ":ClientStore" as ct
+participant "client : Client" as client
 participant ":TestTypeStore" as tts
 participant ":TestTypeMapper" as ttMapper
 participant ":listTestTypeDto : List<TestTypeDto>" as ttDto
 participant "objDto : TestTypeDto" as TTobjDto
+participant "testType :TestType" as tt
+participant "TestCategoriesMapper" as tcm
+participant "listTestCategories : List<Category>" as ltc
+participant "listTestCategoriesDTO \n :List<TestCategoriesDTO>" as ltcDto
+participant "objDto : TestCategoriesDto" as tcdto
+participant "testCategory : Category" as cat
+participant ":ParameterMapper" as parM
+participant "listTestParameters : List<Parameter>" as listPar
+participant "listOfTestParametersDto : List<ParameterDto>" as listParDto
+participant "objDto : TestParametersDto" as parDto
+participant "listParametersOfCategory : List<Parameter>" as listPar2
+participant "listCategoriesOfTest : List<Category>" as listCategories
+participant ":ClientTest" as clientTest
+
+
 
 LR -> ui : requests test registration
 ui --> LR : requests client data(cardNumber)
@@ -30,14 +46,75 @@ loop for each object in list testTypeList
 ttMapper -> ttMapper : obj = testTypeList(i)
 ttMapper -> ttMapper : objDto = toDTO(obj)
 create TTobjDto
-ttMapper -> TTobjDto : create(objDto)
+ttMapper -> TTobjDto : create()
 ttMapper -> ttDto : add(objDto)
 end loop
 ttMapper --> ctrl : listTestTypeDto
 ctrl --> ui : listTestTypeDto
 ui --> LR : shows list of test types and requests 1
 LR -> ui : chooses test type
-loop
+ui -> ctrl : getTestType(chosenTestType)
+ctrl -> tts : testType = getTestType(chosenTestType)
+loop for each category that in lab order
+ui -> ctrl : getListOfTestCategories(testType)
+ctrl -> tt : listOfTestCategories = getListOfTestCategories(testType)
+create ltc
+tt -> ltc : create()
+tt --> ctrl : listOfTestCategories
+ctrl -> tcm : toDTO(listOfTestCategories)
+create ltcDto
+tcm -> ltcDto : create()
+loop for each Category in listTestCategory
+tcm ->  ltc :  obj = get(i)
+tcm -> tcm : objDto = toDTO(obj)
+create tcdto
+tcm -> tcdto : create()
+tcm -> ltcDto : add(objDto)
+end loop
+tcm --> ctrl : listTestCategoriesDto
+ctrl --> ui : listTestCategoriesDto
+ui --> LR : shows list of test categories and requests 1
+LR -> ui : chooses category
+ui-> ctrl : getCategory(chosenCategory)
+ctrl -> tt : testCategory = getCategory(chosenCategory)
+loop for each parameter in lab order of that category
+ui-> ctrl : getListOfTestParameters
+ctrl -> cat : listOfTestParameters = getListOfTestParameters(testCategory)
+create listPar
+cat --> listPar : create()
+cat --> ctrl : listOfTestParameters
+ctrl -> parM : toDTO(listOfTestParameters)
+create listParDto
+parM -> listParDto : create()
+loop for each parameter in listOfTestParameters
+parM -> listPar : obj = get(i)
+parM -> parM : objDto = toDTO(obj)
+create parDto
+parM -> parDto : create()
+parM -> listParDto : add(objDto)
+end loop
+parM --> ctrl : listOfTestParametersDto
+ctrl --> ui : listOfTestParametersDto
+ui --> LR : shows a list of parameters and asks wanted \n parameter
+LR -> ui : chooses parameter wanted
+ui -> ctrl : createParameterList(chosenParameter)
+ctrl -> cat : createParameterList()
+create listPar2
+cat-> listPar2 :create()
+ctrl -> listPar2 : add(chosenParameter)
+end loop
+ui -> ctrl : createCategory(chosenCategory)
+ctrl -> listCategories : create()
+ctrl -> listCategories : add(chosenCategory)
+end loop
+ui-> ctrl : createTest(client,listCategoriesOfTest)
+ctrl -> clientTest : test = createTest(client, listOfTestCategories)
+ui -> LR : shows data and requests confirmation
+ui -> ctrl : saveTest()
+ctrl -> cm : registerTestToUser()
+
+
+
 
 
 @enduml

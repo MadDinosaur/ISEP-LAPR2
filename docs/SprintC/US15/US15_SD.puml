@@ -33,7 +33,14 @@ UI --> LABCO: shows test's information (test registration date, chemical analysi
 LABCO -> UI: analyses the test dates and writes if it's valid or not
 UI -> CTRL: validateTest()
 activate CTRL
-CTRL ->
+deactivate UI
+CTRL -> STORE: validateTest(internalCode)
+activate STORE
+STORE -> STORE: validateTest(internalCode)
+activate STORE
+deactivate STORE
+deactivate STORE
+CTRL -> Company: sendNotification(internalCode))
 
 end loop
 
