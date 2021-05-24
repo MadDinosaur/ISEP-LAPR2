@@ -1,0 +1,99 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Company {
++ getTestStore()
+}
+class Test {
+-code
+-NhsCode
+-createdAt
++ getParameters()
++ createTestParameterResult(paramCode, result, metric)
+- getTestParameter(paramCode)
+}
+class TestType {
+-code
+-description
++ getExternalModule()
++ getParameters()
+}
+class TestParameter {
++ getParameter()
++ createTestParameterResult(result, metric, refValue)
+}
+class TestStore {
++ getTestsWithCollectedSamples()
++ getTestBySampleBarcode(barcode)
++ getTestParameters(test)
++ createTestParameterResult(paramCode, result, metric)
+}
+class Parameter {
+-code
+-shortName
+-description
+}
+class ReferenceValue {
+-minValue
+-maxValue
+-metric
++ReferenceValue(minValue, maxValue, metric)
+}
+class TestParameterResult {
+-createdAt
+-value
+-metric
++ TestParameterResult(value, metric, refValue)
+}
+interface ExternalModule {
++ ReferenceValue getReferenceValue(Parameter param)
+}
+class ExternalModuleAdapter1 {
++ ReferenceValue getReferenceValue((Parameter param)
+}
+class ExternalModule1API {
++ List<NhsMetric> getPossibleMetrics(String key, NHSParameterId id)
++ NHSReferenceValue getReferenceValue(String key, NHSParameterId id)
++ NHSReferenceValue getReferenceValue(String key, NHSParameterId id, NhsMetric metric)
+}
+class ExternalModuleAdapter2 {
++ ReferenceValue getReferenceValue((Parameter param)
+}
+class ExternalModule2API {
++ List<String> getMetricsFor(String parameterId)
++ EMRefValue getReferenceFor(String parameterId)
++ EMRefValue getReferenceFor(String parameterId, Date onDate)
+}
+class ExternalModuleAdapter3 {
++ ReferenceValue getReferenceValue((Parameter param)
+}
+class ExternalModule3API {
++ String usedMetric(String parameterId, Integer accessKey)
++ Double getMinReferenceValue(String parameterId, Integer accessKey)
++ Double getMaxReferenceValue(String parameterId, Integer accessKey)
+}
+class RecordTestResultUI
+class RecordTestResultController {
++ RecordTestResultController()
++ getTestsWithCollectedSamples()
++ getTestParameters(barcode)
++ createTestParameterResult(paramCode, result, metric)
++ saveTestParameterResult()
+}
+
+RecordTestResultUI ..> RecordTestResultController
+RecordTestResultController .right.> Company
+Company --> TestStore : uses
+TestStore --> Test : contains
+ReferenceValue .right.> ExternalModule
+Test --> TestParameter : contains
+Test --> TestType : is of
+TestType --> Parameter : contains
+TestParameter --> TestParameterResult : has
+TestParameterResult --> ReferenceValue : has
+ExternalModule <|.. ExternalModuleAdapter1
+ExternalModule <|.. ExternalModuleAdapter2
+ExternalModule <|.. ExternalModuleAdapter3
+ExternalModuleAdapter1 --> ExternalModule1API
+ExternalModuleAdapter2 --> ExternalModule2API
+ExternalModuleAdapter3 --> ExternalModule3API
+@enduml

@@ -1,5 +1,4 @@
 @startuml
-class ClinicalChemistryTechnologist
 class Company {
 -designation
 }
@@ -39,7 +38,7 @@ Test "*"-up-"1" Company : performs <
 Test "*"-right-"1" "TestType" : is of >
 (Test, Parameter) .. TestParameter
 TestParameter "1"-right- "0..1"TestParameterResult : contains >
-TestParameterResult "*"-right-"1" ClinicalChemistryTechnologist : generates <
 ReferenceValue "*"-up-"1" ReferenceValueModule : provided by >
 TestParameterResult "1"-up-"1" ReferenceValue : records >
+Test "1"--"*" Sample : collects >
 @enduml

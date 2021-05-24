@@ -2,56 +2,49 @@
 
 autonumber
 
-actor LaboratoryCoordinator as labCo
+actor LaboratoryCoordinator as LABCO
 participant ":ValidateTestUI" as UI
-participant ":ValidateTestController" as Controller
-participant ":TestStore" as store
-participant ":TestMapper" as map
-participant "ListTestsWithReport : List <Test>" as testList
-participant "ListTestsWithReportDTO : List <TestDTO>" as testList
-participant "ListTestsWithReportDTO : List <TestDTO>" as testListDTO
-participant "objDTO : testDTO" as testDTO
+participant ":ValidateTestController" as CTRL
+participant ":TestStore" as STORE
+participant ":TestMapper" as MAP
+participant "listTestsWithReport : List <Test>" as testList
+participant "listTestsWithReportDTO: List <TestDTO>" as testListDTO
 
-activate labCo
-labCo -> UI: Requests tests that already have results and reports
+activate LABCO
+LABCO -> UI: Requests tests to validate
 activate UI
-UI -> Controller: getListTestsWithReport()
-activate Controller
-Controller -> store: getListTestsWithReport()
-create testList
-store -> testList: create()
-store -> Controller: listTestsWithReport
-Controller -> map: toDTO(listTestsWithReport)
-activate map
-create testListDTO
-map -> testListDTO: create()
-loop for each test on the list
-map -> testList: obj = get(i)
-activate testList
-deactivate testList
-map -> map: objDTO = toDTO(obj)
-activate map
-create testDTO
-map -> testDTO: create
-deactivate map
-map -> testListDTO: add(objDTO)
-activate testListDTO
-deactivate testListDTO
+UI -> CTRL: getListTestsWithReport()
+activate CTRL
+CTRL -> STORE: getListTestsWithReport()
+activate STORE
+deactivate STORE
+
+CTRL -> MAP: listTestswithReportDto = toDTO(listTestsWithReport)
+activate MAP
+deactivate MAP
+
+deactivate CTRL
+UI --> LABCO: Shows list of tests ready to be validated
+deactivate UI
+LABCO -> UI: picks the tests to validate
+loop until all the tests are validated
+activate UI
+UI --> LABCO: shows test's information (test registration date, chemical analysis date, diagnosis date)
+LABCO -> UI: analyses the test dates and writes if it's valid or not
+UI -> CTRL: validateTest()
+activate CTRL
+deactivate UI
+CTRL -> STORE: validateTest(internalCode)
+activate STORE
+STORE -> STORE: validateTest(internalCode)
+activate STORE
+deactivate STORE
+deactivate STORE
+CTRL -> Company: sendNotification(internalCode))
+
 end loop
-activate testList
-deactivate testList
-map -> Controller: listTestswithReportDTO
-deactivate map
-Controller -> UI: listTestsWithReportDTO
-deactivate Controller
-UI --> labCo: Shows list of tests with results and report available
-labCo -> UI: picks the tests to validate
 
-
-
-
-
-deactivate labCo
+deactivate LABCO
 
 
 @enduml

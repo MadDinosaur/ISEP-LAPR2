@@ -7,40 +7,63 @@ participant SampleUI as UI
 participant SampleController as Controller
 participant Company
 participant TestStore
-participant Test
-participant Sample
 participant BarcodeAPI as API
+participant Sample
 participant SampleStore
 
 activate mlt
 mlt -> UI: requests to record new collected sample(s)
 activate UI
-
+UI -> Controller: getTestList()
+activate Controller
+Controller -> Company: getTestList()
+deactivate Controller
+activate Company
+Company -> TestStore: getTestCodes()
+deactivate Company
+activate TestStore
+TestStore -> Controller: usar dto para os codes todos
+deactivate TestStore
+activate Controller
+Controller -> UI: lista de test codes
+deactivate Controller
 UI --> mlt: requests test
 deactivate UI
 
 mlt -> UI: selects test
 activate UI
-UI -> Controller: getTestCode(int code)
+UI -> Controller: selectTestCode(testCode)
 activate Controller
-Controller -> Company: getTest(int code)
+
+deactivate Company
 
 UI --> mlt: requests number of samples to record
 deactivate UI
 
 mlt -> UI: gives number of samples to record
 activate UI
-loop loop for n times, n being the number of samples
-UI -> Controller: createBarCode()
-end loop
-
 UI --> mlt: request confirmation
 deactivate UI
-
 mlt -> UI: gives confirmation
 activate UI
 
-UI --> mlt: gives (in)success of operation
+Controller -> SampleStore: setTestCode(testCode)
+activate SampleStore
+loop loop for n times, n being the number of samples
+UI -> Controller: generateBarcode()
+Controller -> API: generateBarcode()
+activate API
+API -> Controller: newBarcode(barcode)
+deactivate API
+Controller -> Sample: cs = createSample(testCode, barcode)
+deactivate Controller
+activate Sample
+Sample -> SampleStore: saveSample(Sample sample)
+deactivate Sample
+deactivate SampleStore
+end loop
+
+UI --> mlt: shows (in)success of operation
 deactivate UI
 deactivate mlt
 

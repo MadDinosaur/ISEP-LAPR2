@@ -11,6 +11,6 @@ sys --> mlt: requests number of samples to record
 mlt -> sys: gives number of samples to record
 sys --> mlt: request confirmation
 mlt -> sys: gives confirmation
-sys --> mlt: gives (in)success of operation
+sys --> mlt: shows (in)success of operation
 
 @enduml
