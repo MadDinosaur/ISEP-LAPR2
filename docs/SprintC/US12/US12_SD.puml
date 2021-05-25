@@ -5,12 +5,8 @@ participant ":RecordTestResultController" as controller
 participant ":Company" as company
 participant "testStore: TestStore" as ts
 participant "test: Test" as test
-participant "type: TestType" as type
+participant "testParamStore: TestParamStore" as tpstore
 participant "testParam: TestParameter" as testParam
-participant "param: Parameter" as param
-participant "testResult: TestParameterResult" as testResult
-participant "em: ReferenceValueModule" as em
-participant "refValue: ReferenceValue" as refValue
 
 
 cct -> ui : starts a new test result registration
@@ -25,8 +21,11 @@ ui -> controller : getTestParameters(barcode)
 controller -> ts : test = getTestBySampleBarcode(barcode)
 ts -> ts : getTestBySampleBarcode(barcode)
 controller -> ts : getTestParameters(test)
-ts -> test : getParameters()
-test -> type : getParameters()
+ts -> test : getTestParamStore()
+ts -> tpstore : getParameters()
+loop
+tpstore -> testParam : getParameter()
+end loop
 loop for each test parameter being analysed
 ui --> cct : requests parameter
 cct -> ui : selects requested data

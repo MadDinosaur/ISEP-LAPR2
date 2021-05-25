@@ -1,16 +1,19 @@
 @startuml
 participant "test: Test" as test
-participant "type: TestType" as type
+participant "testParamStore: TestParamStore" as tpstore
 participant "testParam: TestParameter" as testParam
 participant "testResult: TestParameterResult" as testResult
-participant "em: ReferenceValueModule" as em
+participant "type: TestType" as type
+participant "em: ExternalModule" as em
 
 [o-> test : createTestParameterResult(paramCode, value, metric)
-test -> test : getTestParameter(paramCode)
-test -> testParam : param = getParameter()
-test -> type : getExternalModule()
-test -> em : getReferenceValue(param)
-test -> testParam : createTestParameterResult(value, metric, refValue)
+test -> test: testParamStore = getTestParamStore()
+test -> tpstore: createTestParameterResult(paramCode, value, metric)
+tpstore -> tpstore : getTestParameter(paramCode)
+tpstore -> testParam : param = getParameter()
+tpstore -> type : em = getExternalModule()
+tpstore -> em : getReferenceValue(param)
+tpstore -> testParam : createTestParameterResult(value, metric, refValue)
 create testResult
 testParam -> testResult : create(value, metric, refValue)
 testResult -> testResult : validateValue(value)
