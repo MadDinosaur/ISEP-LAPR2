@@ -19,8 +19,12 @@ public class Test {
 
     private enum StateOfTest{
         REGISTERED,
-        //...
+        SAMPLES_COLLECTED,
+        SAMPLES_ANALYZED,
+        DIAGNOSIS_MADE,
+        VALIDATED
     }
+
     public Test(Client client, List<Category> listOfCategories,String testCode, String nhsCode){
         setClient(client);
         setListOfCategories(listOfCategories);
@@ -40,6 +44,10 @@ public class Test {
     }
     public void setNhsCode(String nhsCode) {
         this.nhsCode = nhsCode;
+    }
+
+    public TestParamStore getTestParamStore() {
+        return testParamStore;
     }
 
     private void getParametersFromCategoriesToStore(){
