@@ -5,7 +5,7 @@ autonumber
 actor MedicalLabTechnician as mlt
 participant ":System" as sys
 mlt -> sys: requests to record new collected sample(s)
-sys --> mlt: requests test
+sys --> mlt: shows list of tests
 mlt -> sys: selects test
 sys --> mlt: requests number of samples to record
 mlt -> sys: gives number of samples to record

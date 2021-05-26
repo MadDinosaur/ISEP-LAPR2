@@ -1,0 +1,46 @@
+@startuml
+
+class SampleUI {
++getTestList()
++selectTestCode(testCode)
++setSampleNumber(n)
+}
+class SampleController {
++getTestList()
++toDTO(listTest)
++setTestCode(testCode)
++generateBarcode()
++createSample(barcode)
+}
+class Company {
++getUnusedTests()
+}
+class TestStore
+class TestMapper
+class Sample {
+-barcode
++saveSample(Sample sample)
+}
+class SampleStore {
++updateTestStatus(testCode)
+}
+class BarcodeAPI {
++newBarcode(barcode)
+}
+class Client
+class Test
+
+SampleUI ..> SampleController
+SampleController --> Company
+Company --> TestStore
+SampleController --> TestMapper
+SampleController -> BarcodeAPI
+SampleController -> Sample
+SampleController -> SampleStore
+Sample -> SampleStore
+
+Sample "1"--"1 " BarcodeAPI : identified by >
+Sample "*"--"1  " Client : associated to >
+Test "1  "--"*" Sample : collects >
+
+@enduml
