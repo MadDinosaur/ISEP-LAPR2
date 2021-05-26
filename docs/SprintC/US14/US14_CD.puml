@@ -1,11 +1,52 @@
 @startuml
-'https://plantuml.com/sequence-diagram
 
-autonumber
+skinparam classAttributeIconSize 0
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+class CreateReportUI
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+class CreateReportController {
++getTestsListReadyForReport()
++getTestParameterResultByCode(code)
++createReport(reportDTO)
++saveReport()
+}
+
+class Company {
++getTestStore()
++getReportStore()
+}
+
+class TestStore {
++getTestsListReadyForReport()
++test = getTestByCode(code)
++getTestParameterResultOf(test)
++saveReport(report)
+}
+
+class Test {
++addReport(report)
++setStatus(Report Made)
+}
+
+class ReportStore {
++createReport(reportDTO)
+}
+
+class ReportMapper
+
+class ReportDTO {
++getTextReport()
++getTextDiagnosis()
+}
+
+class Report {
++create(textReport, textDiagnosis)
++validateReport()
+}
+
+class Diagnosis {
++create(textDiagnosis)
++validateDiagnosis()
+}
+
 @enduml

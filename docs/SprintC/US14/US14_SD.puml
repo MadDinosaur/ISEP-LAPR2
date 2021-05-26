@@ -6,33 +6,71 @@ actor Administrator as admin
 participant CreateReportUI as crUI
 participant CreateReportController as crC
 participant Company as com
-participant TestStore as ts
-participant TestResult as tr
+participant "testStore: TestStore" as ts
+participant TestListReadyForReportMapper as tlrm
+participant "testListReadyForReport: List<Test>" as tlrfr
+participant TestListReadyForReportDTO as tlrdto
+participant "testReadyForReportDTO: TestReadyForReportDTO" as trfrdto
+participant Test as t
+participant "reportStore: ReportStore" as rs
+participant "reportMapper: ReportMapper" as rm
 participant Report as rep
+participant "reportDTO: ReportDTO" as rdto
 participant Diagnosis as dg
 
 
+
 activate admin
-
 admin -> crUI: starts new report
-crUI -> admin: shows a list of tests and requests a test parameter result to be shown
-crUI -> crC: displayTestsList()
-crC -> com: getTestsList()
-com -> ts: getTestsList()
+crUI -> crC: getTestsListReadyForReport()
+crC -> com: testStore = getTestStore()
+crC -> ts: testListReadyForReport = getTestsListReadyForReport()
+crC -> tlrm: toDTO(testListReadyForReport)
+create tlrdto
+tlrm -> tlrdto: create()
+loop for every single object inside the testListReadyForReport
+tlrm -> tlrfr: testReadyForReport = get(i)
+activate tlrm
+tlrm -> tlrm: testReadyForReportDTO = toDTO(testReadyForReport)
+create trfrdto
+tlrm -> trfrdto: create() não sei que parâmetros passar
+deactivate tlrm
+tlrm -> tlrdto: add(testReadyForReportDTO)
+activate tlrdto
+deactivate tlrdto
+end loop
+crUI -[dashed]> admin: shows a list of tests ready to have a report and requests a test to be shown
+deactivate crUI
 
-admin -> crUI: types in the test result he wants to see (by its index)
-crUI -> crC: getTestByIndex(index)
-crC -> ts: getTestByIndex(index)
-crUI -> admin: shows the test result and requests data (diagnosis, report)
+admin -> crUI: types in the test result he wants to see (by its code)
+crUI -> crC: getTestParameterResultByCode(code)
+crC -> ts: test = getTestByCode(code)
+crC -> ts: getTestParameterResultsOf(test)
+crUI -[dashed]> admin: shows the test's parameter result and requests data (diagnosis, report)
+deactivate crUI
 admin -> crUI: types the requested data
-crUI -> crC: createReport(textReport, textDiagnosis)
-crC -> tr: cr = createReport(textReport, textDiagnosis)
+crUI -> crC: createReport(reportDTO)
+crC -> com: reportStore = getReportStore()
+crC -> rs: report = createReport(reportDTO)
+rs -> rm: report = toModel(reportDTO)
+rm -> rdto: textReport = getTextReport()
+rm -> rdto: textDiagnosis = getTextDiagnosis()
+
+create rep
+rm -> rep: create(textReport, textDiagnosis)
+create dg
+rep -> dg: create(textDiagnosis)
 rep -> rep: validateReport()
 dg -> dg: validateDiagnosis()
 
-
-crUI -> admin: shows the data and requests confirmation
+crUI -[dashed]> admin: shows the data and requests confirmation
 admin -> crUI: confirms
-crUI -> admin: informs operation success
+crUI -> crC: saveReport()
+crC -> ts: saveReport(report)
+ts -> t: addReport(report)
+t -> t: test : setStatus(Report Made)
+
+
+crUI -[dashed]> admin: informs operation success
 
 @enduml

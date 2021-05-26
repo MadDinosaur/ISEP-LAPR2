@@ -2,9 +2,6 @@
 
 ## 1. Requirements Engineering
 
-*In this section, it is suggested to capture the requirement description and specifications as provided by the client as well as any further clarification on it. It is also suggested to capture the requirements acceptance criteria and existing dependencies to other requirements. At last, identfy the involved input and output data and depicted an Actor-System interaction in order to fulfill the requirement.*
-
-
 ### 1.1. User Story Description
 
 *As a specialist doctor, I intend to make the diagnosis and write a report for a
@@ -99,19 +96,19 @@ values.
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
-| Step 1: starts a new report  		 |	instantiating a new report?	| TestResult | Creator Pattern: TestResult contains an object from the Report class.  |                        
-| Step 2: shows a list of tests and requests a test parameter result to be shown | having the list of tests? | TestStore | Information Expert: knows its own data. |
+| Step 1: starts a new report |	instantiating a new report?	| Test | Creator Pattern: Test contains an object from the Report class.  |                        
+| Step 2: shows a list of tests ready to have a report and requests a test to be shown | having the list of tests? | TestStore | Information Expert: knows its own data. |
 | Step 3: types in the test result he wants to see | saving the input? | CreateReportUI | Responsible for all the user-system interactions. |
-| Step 4: shows the test result and requests data (diagnosis, report) | n/a	| n/a | n/a |
-| Step 5: types the requested data | saving the input?  | Report |  Information Expert: the object created in step 1 has its own data. |
-| Step 6: shows the data and requests confirmation   | validating the data locally? |  Report | Information Expert: knows its own data. |                                            
-| Step 7: confirms | saving the report? | TestResult | Information Expert: records all the Report objects. |
+| Step 4: shows the test's parameter result and requests data (diagnosis, report) | n/a	| n/a | n/a |
+| Step 5: types the requested data | saving the input? | Report | Information Expert: the object created in step 1 has its own data. |
+| Step 6: shows the data and requests confirmation | validating the data locally? | Report , Diagnosis | Information Expert: knows its own data. |                                            
+| Step 7: confirms | saving the report? | Test | Information Expert: records all the Report objects. |
 | Step 8: informs operation success | informing operation success? | CreateReportUI | Responsible for all the user-system interactions. | 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * TestResult
+ * Test
  * Report
  * Diagnosis
 
