@@ -1,6 +1,7 @@
 package app.domain.model;
 
 import app.domain.shared.Constants;
+import app.domain.store.ClientStore;
 import app.domain.store.EmployeeStore;
 import app.domain.store.OrgRoleStore;
 import app.domain.store.TestTypeStore;
@@ -26,6 +27,7 @@ public class Company {
     private String designation;
     private AuthFacade authFacade;
     private EmployeeStore employeeStore;
+    private ClientStore clientStore;
     private OrgRoleStore orgRoleStore;
     private List<Category> parameterCategoryList;
     private TestTypeStore tts = new TestTypeStore();
@@ -86,6 +88,10 @@ public class Company {
         return this.employeeStore;
     }
 
+    public ClientStore getClientStore() {
+        return clientStore;
+    }
+
     public OrgRoleStore getOrgRoleStore() { return this.orgRoleStore;}
 
     public boolean saveEmployeeAsUser(Employee e) {
@@ -96,14 +102,15 @@ public class Company {
         }
         return false;
     }
-    public boolean saveClientAsUser(Client c,String email){
+    public boolean saveClientAsUser(Client client,String email){
         String pwd = generateUserPassword();
-        if (authFacade.addUserWithRole(c.getName(), email, pwd, c.getOrganizationRole())) {
+        if (authFacade.addUserWithRole(client.getName(), email, pwd, client.getOrganizationRole())) {
+            clientStore.saveClient(client);
             sendUserPassword(email, pwd);
-            System.out.println("Client has been successfully registered"); //a alterar
+            System.out.println("Client has been successfully registered"); //__
             return true;
         }
-        System.out.println("An error has happened during the registration"); //a alterar
+        System.out.println("An error has happened during the registration");
         return false;
     }
 

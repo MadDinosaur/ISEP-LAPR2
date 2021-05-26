@@ -63,6 +63,9 @@ public class Client {
     public String getName() {
         return name;
     }
+    public long getCardNumber() {
+        return cardNumber;
+    }
     public String getOrganizationRole() {
         return organizationRole;
     }
