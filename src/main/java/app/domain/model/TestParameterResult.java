@@ -12,18 +12,26 @@ public class TestParameterResult {
     private String metric;
     private ReferenceValue refValue;
 
-    public TestParameterResult(int value, String metric, ReferenceValue refValue) {
-        validateValue(value);
+    public TestParameterResult(String value, String metric, ReferenceValue refValue) {
         validateMetric(metric);
         validateRefValue(refValue);
-        this.value = value;
+        this.value = validateValue(value);
         this.metric = metric;
         this.refValue = refValue;
         this.createdAt = new Date();
     }
 
-    private void validateValue(int value) {
-        if (value < 0) throw new InvalidSampleValueException();
+    private int validateValue(String value) {
+        int parsedValue;
+
+        try {
+            parsedValue = Integer.parseInt(value);
+        } catch (NumberFormatException ex) {
+            throw new InvalidSampleValueException("Result must be a number!");
+        }
+        if (parsedValue < 0) throw new InvalidSampleValueException();
+
+        return parsedValue;
     }
 
     private void validateMetric(String metric) {

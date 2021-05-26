@@ -7,9 +7,11 @@ class Test {
 -code
 -NhsCode
 -createdAt
+}
+class TestParameterStore {
+- getTestParameter(paramCode)
 + getParameters()
 + createTestParameterResult(paramCode, result, metric)
-- getTestParameter(paramCode)
 }
 class TestType {
 -code
@@ -88,7 +90,8 @@ RecordTestResultController .right.> Company
 Company --> TestStore : uses
 TestStore --> Test : contains
 ReferenceValue .right.> ExternalModule
-Test --> TestParameter : contains
+Test --> TestParameterStore: uses
+TestParameterStore --> TestParameter : contains
 Test --> TestType : is of
 TestType --> Parameter : contains
 TestParameter --> TestParameterResult : has

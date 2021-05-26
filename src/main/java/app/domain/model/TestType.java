@@ -229,4 +229,12 @@ public class TestType {
             throw new UnassignedExternalModuleException("Cannot access external validation module!");
         }
     }
+
+    public List<Parameter> getParameters() {
+        List<Parameter> parameterList = new ArrayList<>();
+        for(Category cat : categories) {
+            parameterList.addAll(cat.getParameterList());
+        }
+        return parameterList;
+    }
 }
