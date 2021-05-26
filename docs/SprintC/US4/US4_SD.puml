@@ -107,12 +107,20 @@ ui -> ctrl : createCategory(chosenCategory)
 ctrl -> listCategories : create()
 ctrl -> listCategories : add(chosenCategory)
 end loop
-ui-> ctrl : createTest(client,listCategoriesOfTest)
-ctrl -> clientTest : test = createTest(client, listOfTestCategories)
-ui -> LR : shows data and requests confirmation
+ctrl -> cm : createTest(client, listOfTestCategories)
+cm -> cm : testCode = testCodeGenerator()
+cm -> cm : nhsCode = nhsCodeGenerator()
+cm -> "testStore :TestStore" : registerTest(client,listOfTestCategories,testCode,nhsCode)
+ui --> LR : shows data and requests confirmation
+ui -> ctrl : getTestStore()
+ctrl -> cm : testStore = getTestStore()
 ui -> ctrl : saveTest()
-ctrl -> cm : registerTestToUser()
-
+ctrl -> cm : registerTestToUser(test)
+ctrl -> cm : saveTest(test)
+cm -> cm : generateTestCode()
+cm -> cm : generateNhsCode()
+cm -> "testStore :TestStore" : addTest(test,)
+ui --> LR : informs operation success
 
 
 
