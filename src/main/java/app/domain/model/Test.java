@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Test {
+
     private Client client;
     private List<Category> listOfCategories;
     private String testCode;

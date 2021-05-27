@@ -27,8 +27,14 @@ public class Company {
     private ClientStore clientStore;
     private OrgRoleStore orgRoleStore;
     private TestStore testStore;
+<<<<<<< HEAD
+    private List<Test> registeredTests = testStore.getRegisteredTests();
+    private List<Category> parameterCategoryList;
+    private TestTypeStore tts = new TestTypeStore();
+=======
     private List<Category> parameterCategoryList = new ArrayList<>();
     private TestTypeStore testTypeStore = new TestTypeStore();
+>>>>>>> bb0ec1fde5faa90448098cfd9553ad84f27b17d0
     private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
 
     public Company(String designation) {
@@ -100,6 +106,8 @@ public class Company {
 
     public TestStore getTestStore() { return this.testStore;}
 
+    public List<Test> getUnusedTests() { return this.registeredTests; }
+
     public boolean saveEmployeeAsUser(Employee e) {
         String pwd = generateUserPassword();
         if (authFacade.addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId())) {
@@ -149,7 +157,4 @@ public class Company {
         }
     }
 
-    public static void getUnusedTests() {
-
-    }
 }

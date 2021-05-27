@@ -18,7 +18,7 @@ public class MedLabTechUI implements Runnable{
     public void run()
     {
         List<MenuItem> options = new ArrayList<MenuItem>();
-        options.add(new MenuItem("Option A",new ShowTextUI("No options implemented yet.")));
+        options.add(new MenuItem("Register Collected Samples",new SampleUI()));
 
         int option = 0;
         do
