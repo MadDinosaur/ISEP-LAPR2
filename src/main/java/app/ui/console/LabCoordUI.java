@@ -18,7 +18,7 @@ public class LabCoordUI implements Runnable{
     public void run()
     {
         List<MenuItem> options = new ArrayList<MenuItem>();
-        options.add(new MenuItem("Option A",new ShowTextUI("No options implemented yet.")));
+        options.add(new MenuItem("Option A", new ValidateTestUI()));
 
         int option = 0;
         do
