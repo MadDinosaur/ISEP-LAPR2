@@ -31,12 +31,12 @@ ui --> LR : requests client data(cardNumber)
 LR -> ui : types requested data
 create ctrl
 ui -> ctrl : create
-ui -> ctrl : getClientStore()
+ui -> ctrl : getClientByCardNumber()
 ctrl -> cm : clientStore = getClientStore()
 ctrl -> ct : client = getClient(cardNumber)
 ui --> LR : asks client confirmation
 LR -> ui: confirms client
-ui -> ctrl : getTestTypeStore()
+ui -> ctrl : getTestTypeList()
 ctrl -> cm : testTypeStore = getTestTypeStore()
 ctrl -> tts : testTypeList = getTestTypes()
 ctrl -> ttMapper : toDto(testTypeList)
@@ -110,7 +110,7 @@ end loop
 ctrl -> cm : createTest(client, listOfTestCategories)
 cm -> cm : testCode = testCodeGenerator()
 cm -> cm : nhsCode = nhsCodeGenerator()
-cm -> "testStore :TestStore" : registerTest(client,listOfTestCategories,testCode,nhsCode)
+cm -> "testStore :TestStore" : create(client,listOfTestCategories,testCode,nhsCode)
 ui --> LR : shows data and requests confirmation
 ui -> ctrl : getTestStore()
 ctrl -> cm : testStore = getTestStore()

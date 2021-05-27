@@ -7,6 +7,11 @@ class Test {
 -code
 -NhsCode
 -createdAt
++ getTestParamStore()
++ getSampleStore()
+}
+class SampleStore {
++ existsSample(barcode)
 }
 class TestParameterStore {
 - getTestParameter(paramCode)
@@ -27,7 +32,7 @@ class TestStore {
 + getTestsWithCollectedSamples()
 + getTestBySampleBarcode(barcode)
 + getTestParameters(test)
-+ createTestParameterResult(paramCode, result, metric)
++ createTestParameterResult(test, paramCode, result, metric)
 }
 class Parameter {
 -code
@@ -90,6 +95,7 @@ RecordTestResultController .right.> Company
 Company --> TestStore : uses
 TestStore --> Test : contains
 ReferenceValue .right.> ExternalModule
+Test -left-> SampleStore: uses
 Test --> TestParameterStore: uses
 TestParameterStore --> TestParameter : contains
 Test --> TestType : is of

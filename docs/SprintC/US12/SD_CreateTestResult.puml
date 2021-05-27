@@ -7,7 +7,6 @@ participant "type: TestType" as type
 participant "em: ExternalModule" as em
 
 [o-> test : createTestParameterResult(paramCode, value, metric)
-test -> test: testParamStore = getTestParamStore()
 test -> tpstore: createTestParameterResult(paramCode, value, metric)
 tpstore -> tpstore : getTestParameter(paramCode)
 tpstore -> testParam : param = getParameter()

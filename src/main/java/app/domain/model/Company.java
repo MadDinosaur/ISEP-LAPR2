@@ -1,10 +1,7 @@
 package app.domain.model;
 
 import app.domain.shared.Constants;
-import app.domain.store.EmployeeStore;
-import app.domain.store.OrgRoleStore;
-import app.domain.store.ReportStore;
-import app.domain.store.TestTypeStore;
+import app.domain.store.*;
 import auth.AuthFacade;
 import auth.domain.model.Email;
 
@@ -27,11 +24,12 @@ public class Company {
     private String designation;
     private AuthFacade authFacade;
     private EmployeeStore employeeStore;
+    private ClientStore clientStore;
     private OrgRoleStore orgRoleStore;
+    private TestStore testStore;
     private List<Category> parameterCategoryList;
     private TestTypeStore tts = new TestTypeStore();
     private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
-    private ReportStore reportStore;
 
     public Company(String designation) {
         if (StringUtils.isBlank(designation))
@@ -41,6 +39,7 @@ public class Company {
         this.authFacade = new AuthFacade();
         this.employeeStore = new EmployeeStore();
         this.orgRoleStore = new OrgRoleStore(authFacade);
+        this.testStore = new TestStore();
 
     }
 
@@ -88,7 +87,13 @@ public class Company {
         return this.employeeStore;
     }
 
+    public ClientStore getClientStore() {
+        return clientStore;
+    }
+
     public OrgRoleStore getOrgRoleStore() { return this.orgRoleStore;}
+
+    public TestStore getTestStore() { return this.testStore;}
 
     public boolean saveEmployeeAsUser(Employee e) {
         String pwd = generateUserPassword();
@@ -98,14 +103,15 @@ public class Company {
         }
         return false;
     }
-    public boolean saveClientAsUser(Client c,String email){
+    public boolean saveClientAsUser(Client client,String email){
         String pwd = generateUserPassword();
-        if (authFacade.addUserWithRole(c.getName(), email, pwd, c.getOrganizationRole())) {
+        if (authFacade.addUserWithRole(client.getName(), email, pwd, client.getOrganizationRole())) {
+            clientStore.saveClient(client);
             sendUserPassword(email, pwd);
-            System.out.println("Client has been successfully registered"); //a alterar
+            System.out.println("Client has been successfully registered"); //__
             return true;
         }
-        System.out.println("An error has happened during the registration"); //a alterar
+        System.out.println("An error has happened during the registration");
         return false;
     }
 
@@ -138,7 +144,7 @@ public class Company {
         }
     }
 
-    public ReportStore getReportStore() {
-        return this.reportStore;
+    public static void getUnusedTests() {
+
     }
 }

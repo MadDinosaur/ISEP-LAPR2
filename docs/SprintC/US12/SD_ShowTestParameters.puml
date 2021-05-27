@@ -1,0 +1,24 @@
+@startuml
+participant ":RecordTestResultController" as controller
+participant "testStore: TestStore" as ts
+participant "test: Test" as test
+participant "sampleStore: SampleStore" as ss
+participant "testParamStore: TestParamStore" as tpstore
+participant "param: Parameter" as testParam
+participant ":ParamMapper" as map
+
+[o-> controller : getTestParameters(barcode)
+controller -> ts : test = getTestBySampleBarcode(barcode)
+loop for each test
+ts -> test : getSampleStore()
+ts -> ss : existsSample(barcode)
+end loop
+controller -> ts : params = getTestParameters(test)
+ts -> test : getTestParamStore()
+ts -> tpstore : getParameters()
+loop for each Test Parameter in Store
+tpstore -> testParam : getParameter()
+end loop
+controller -> map : toDTO(params)
+ref over map : SD_ParamMapper_toDTO
+@enduml

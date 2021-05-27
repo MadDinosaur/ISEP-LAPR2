@@ -1,0 +1,20 @@
+@startuml
+participant ":ParamMapper" as map
+participant "params: List<Parameter>" as params
+participant "paramsDTO: List<ParamDTO>" as dtols
+participant "dto: ParamDTO" as dto
+participant "param: Parameter" as param
+
+[o-> map : toDTO(params)
+create dtols
+map -> dtols : create()
+loop for each parameter
+map -> params : param = get(i)
+map -> param : name = getName()
+map -> param : code = getCode()
+map -> param : description = getDescription()
+create dto
+map -> dto : dto = create(name, code, description)
+map -> dtols : add(dto)
+end loop
+@enduml
