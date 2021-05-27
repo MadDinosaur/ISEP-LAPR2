@@ -37,6 +37,9 @@ values.
 > After writing a report the SD can choose to write other reports without leaving the use case.
 * Q9: Can the Specialist Doctor edit a report once it has already been written? If yes, in what occasion should he be able to edit? Can he edit after the Laboratory Coordinator has already approved the report?
 > No. No.
+* Q10: Although it was not asked for, should we order the list of tests to be displayed by date of chemical analysis older to newer?
+> Sorting is not required in this sprint.
+* Q11: 
 ### 1.3. Acceptance Criteria
 
 * AC1: The report should have a maximum of 400 words.
@@ -99,7 +102,7 @@ values.
 | Step 1: starts a new report |	instantiating a new report?	| Test | Creator Pattern: Test contains an object from the Report class.  |                        
 | Step 2: shows a list of tests ready to have a report and requests a test to be shown | having the list of tests? | TestStore | Information Expert: knows its own data. |
 | Step 3: types in the test result he wants to see | saving the input? | CreateReportUI | Responsible for all the user-system interactions. |
-| Step 4: shows the test's parameter result and requests data (diagnosis, report) | n/a	| n/a | n/a |
+| Step 4: shows the test's parameter result and test reference values and requests data (diagnosis, report) | n/a	| n/a | n/a |
 | Step 5: types the requested data | saving the input? | Report | Information Expert: the object created in step 1 has its own data. |
 | Step 6: shows the data and requests confirmation | validating the data locally? | Report , Diagnosis | Information Expert: knows its own data. |                                            
 | Step 7: confirms | saving the report? | Test | Information Expert: records all the Report objects. |
@@ -110,7 +113,6 @@ According to the taken rationale, the conceptual classes promoted to software cl
 
  * Test
  * Report
- * Diagnosis
 
 Other software classes (i.e. Pure Fabrication) identified: 
  * CreateReportUI  

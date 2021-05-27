@@ -12,4 +12,10 @@ public class Test {
     private Date createdAt;
 
     private TestParamStore testParamStore;
+
+    private Report report;
+
+    public void addReport(Report report) {
+        this.report = report;
+    }
 }

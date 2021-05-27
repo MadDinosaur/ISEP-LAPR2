@@ -3,6 +3,7 @@ package app.domain.model;
 import app.domain.shared.Constants;
 import app.domain.store.EmployeeStore;
 import app.domain.store.OrgRoleStore;
+import app.domain.store.ReportStore;
 import app.domain.store.TestTypeStore;
 import auth.AuthFacade;
 import auth.domain.model.Email;
@@ -30,6 +31,7 @@ public class Company {
     private List<Category> parameterCategoryList;
     private TestTypeStore tts = new TestTypeStore();
     private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
+    private ReportStore reportStore;
 
     public Company(String designation) {
         if (StringUtils.isBlank(designation))
@@ -134,5 +136,9 @@ public class Company {
         } catch (IOException e) {
             System.out.println("An error occurred on file " + file.getName());
         }
+    }
+
+    public ReportStore getReportStore() {
+        return this.reportStore;
     }
 }
