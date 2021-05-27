@@ -11,37 +11,30 @@ class CreateReportController {
 
 
 +testListReadyForReport<Test> getTestsListReadyForReport()
-+getTestParameterResultByCode(code)
++getTestParametersResultsByCode(code)
 +report createReport(reportDTO)
 +saveReport()
 }
 
-class Company {
+class CompanyDONE {
 +getTestStore()
 +getReportStore()
 }
 
-class TestStore {
+class TestStoreDONE {
 +getTestsListReadyForReport()
-+getTestByCode(code)
-+getTestParameterResultOf(test)
++getTestByCode(testCode)
 +saveReport(report)
 }
 
 class Test {
 -testCode
--nhsCode
--createdAt
--designation
--dateAnalysis
--timeAnalysis
 -dateReport
 -timeReport
--dateValidation
--timeValidation
 
 +addReport(report)
 +setStatus(Report Made)
++testParamStore getTestParamStore()
 }
 
 class ReportStore {
@@ -59,6 +52,7 @@ class ReportDTO {
 
 class Report {
 -textReport
+-textDiagnosis
 
 +create(textReport, textDiagnosis)
 +validateReport()
@@ -74,15 +68,15 @@ class TestListReadyForReportDTO {
 }
 
 class TestParamStore {
-+testParamStore getTestParamStore()
++getTestParameterResults()
 +getReferenceValue(testParam)
 }
 
 CreateReportUI ..> CreateReportController
 CreateReportController ..> Company
 Company "1"-down->"1" TestStore: uses >
-Company "1"->"1" ReportStore: uses >
-Company "1"-left->"1" TestParamStore: uses >
+Company "1"-down->"1" ReportStore: uses >
+Company "1"-down->"1" TestParamStore: uses >
 TestStore "1"->"*" Test: contains >
 Test "1"->"1" Report: contains >
 CreateReportController ..> TestStore
@@ -97,6 +91,7 @@ CreateReportController ..> ReportDTO
 CreateReportController ..> ReportMapper
 ReportMapper ..> ReportDTO
 ReportMapper ..> Report
+ReportStore "1"-->"1" Report: contains >
 
 CreateReportController ..> TestParamStore
 

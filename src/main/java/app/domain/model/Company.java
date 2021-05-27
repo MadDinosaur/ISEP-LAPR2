@@ -23,12 +23,15 @@ public class Company {
 
     private String designation;
     private AuthFacade authFacade;
+
     private EmployeeStore employeeStore;
     private ClientStore clientStore;
     private OrgRoleStore orgRoleStore;
     private TestStore testStore;
-    private List<Category> parameterCategoryList;
     private TestTypeStore tts = new TestTypeStore();
+    private ReportStore reportStore;
+
+    private List<Category> parameterCategoryList;
     private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
 
     public Company(String designation) {
@@ -94,6 +97,10 @@ public class Company {
     public OrgRoleStore getOrgRoleStore() { return this.orgRoleStore;}
 
     public TestStore getTestStore() { return this.testStore;}
+
+    public ReportStore getReportStore() {
+        return this.reportStore;
+    }
 
     public boolean saveEmployeeAsUser(Employee e) {
         String pwd = generateUserPassword();

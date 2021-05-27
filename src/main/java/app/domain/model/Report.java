@@ -2,8 +2,6 @@ package app.domain.model;
 
 import app.domain.model.Exceptions.InvalidTextReportException;
 
-import java.util.ArrayList;
-
 public class Report {
 
     private String textReport;
@@ -15,7 +13,7 @@ public class Report {
         this.textDiagnosis = textDiagnosis;
     }
 
-    public boolean validateReport(String textReport) {
+    private boolean validateReport(String textReport) {
         String[] listaDePalavras = textReport.split(" ");
         if (listaDePalavras.length > 400) {
             throw new InvalidTextReportException();
