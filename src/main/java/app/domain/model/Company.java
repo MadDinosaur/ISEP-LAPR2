@@ -44,7 +44,7 @@ public class Company {
         //Para testes
         clientStore.saveClient(new Client("Joni",(long) 1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512345,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
         // this.testTypeStore.addTestType(new TestType("123",));
-        //
+
     }
 
 
