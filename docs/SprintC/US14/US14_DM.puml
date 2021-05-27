@@ -30,6 +30,7 @@ Test "1"-"1" Report: associated to >
 Report "1"-"1" Diagnosis: contains >
 TestParameterResult "1"-down-"1" SpecialistDoctor: analysed by >
 SpecialistDoctor "1"-right-"*" Report: creates >
-TestParameterResult -up- ExternalModule: validated by >
+TestParameterResult -left- ReferenceValue: records >
+ReferenceValue -down- ExternalModule: provided by >
 
 @enduml

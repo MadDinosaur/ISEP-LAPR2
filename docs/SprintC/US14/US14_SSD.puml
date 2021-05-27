@@ -3,11 +3,13 @@
 autonumber
 
 "Specialist Doctor" -> ":System": starts a new report
+loop Until the Specialist Doctor doesn't want to write more reports
 ":System" -> "Specialist Doctor": shows a list of tests ready to have a report and requests a test to be shown
 "Specialist Doctor" -> ":System": types in the test result he wants to see (by its index)
-":System" -> "Specialist Doctor": shows the test's parameter result and requests data (diagnosis, report)
+":System" -> "Specialist Doctor": shows the test's parameters results and the test reference values and requests data (diagnosis, report)
 "Specialist Doctor" -> ":System": types the requested data
 ":System" -> "Specialist Doctor": shows the data and requests confirmation
 "Specialist Doctor" -> ":System": confirms
 ":System" -> "Specialist Doctor": informs operation success
+end loop
 @enduml
