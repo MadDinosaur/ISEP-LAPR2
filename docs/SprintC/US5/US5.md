@@ -43,7 +43,7 @@ the scope of a given test.**
     * **A**: The medical lab technician checks a list of tests and selects one. Then, the application generates barcodes (one or more). After printing the barcodes (one or more) the use case ends.
 
 
-* **Q6**:During the current sprint, how should we allow the barcodes to be printed. After generating them via the API, should we save the barcode images to the disk?
+* **Q6**: During the current sprint, how should we allow the barcodes to be printed. After generating them via the API, should we save the barcode images to the disk?
   * **A** : Each generated barcode should be saved in a folder as a jpeg file.
 
 
@@ -72,6 +72,8 @@ the scope of a given test.**
 
 * **AC1**: The system should support several barcode APIs. The API to use is
 defined by configuration.
+* **AC2**: One test can have more than a sample.
+* **AC3**: Each barcode generated must be saved in a folder as a .jpeg file. 
 
 ### 1.4. Found out Dependencies
 

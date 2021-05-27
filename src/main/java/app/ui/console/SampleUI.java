@@ -1,6 +1,10 @@
 package app.ui.console;
 
 import app.controller.SampleController;
+import app.domain.model.Test;
+import net.sourceforge.barbecue.BarcodeException;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class SampleUI implements Runnable {
@@ -8,23 +12,41 @@ public class SampleUI implements Runnable {
     private SampleController SC = new SampleController();
 
     public void run() {
-        getTestList();
-        selectTestCode();
+
+        List<Test> TestList = SC.getTestList();;
+        TestCodeSelection(TestList);
 
         System.out.println("Insert number of samples:");
-        setSampleNumber();
-    }
-
-    public void getTestList() {
-        SC.getTestList();
-    }
-
-    public void selectTestCode() {
+        try {
+            setSampleNumber();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
+    public void TestCodeSelection(List<Test> testList) {
 
-    public void setSampleNumber() {
+        int index = 1;
+        for (Test i : testList) {
+            System.out.println(index + ":");
+            System.out.print(i);
+            index++;
+        }
+
+        System.out.println("Choose a test code by inserting its index:");
+        int k = input.nextInt();
+
+        System.out.println("Is the test code" + testList.get(k) + "?");
+
+        if(confirmation()) {
+            SC.setTestCode(testList.get(k));
+        } else {
+            TestCodeSelection(testList);
+        }
+    }
+
+    public void setSampleNumber() throws Exception {
         int n = input.nextInt();
 
         System.out.println("Number of samples:" + n);
@@ -38,6 +60,7 @@ public class SampleUI implements Runnable {
             setSampleNumber();
         }
     }
+
 
     public boolean confirmation() {
         String confirmation = input.nextLine();

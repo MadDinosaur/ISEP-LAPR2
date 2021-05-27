@@ -8,7 +8,7 @@ participant SampleController as Controller
 participant Company
 participant TestStore
 participant ":TestMapper" as TestMapper
-participant BarcodeAPI as API
+participant Barbecue as API
 participant Sample
 participant SampleStore
 
