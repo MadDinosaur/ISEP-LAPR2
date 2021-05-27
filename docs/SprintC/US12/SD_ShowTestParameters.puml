@@ -1,0 +1,22 @@
+@startuml
+participant ":RecordTestResultController" as controller
+participant "testStore: TestStore" as ts
+participant "test: Test" as test
+participant "sampleStore: SampleStore" as ss
+participant "testParamStore: TestParamStore" as tpstore
+participant "testParam: TestParameter" as testParam
+
+
+[o-> controller : getTestParameters(barcode)
+controller -> ts : test = getTestBySampleBarcode(barcode)
+loop for each test
+ts -> test : getSampleStore()
+ts -> ss : existsSample(barcode)
+end loop
+controller -> ts : getTestParameters(test)
+ts -> test : getTestParamStore()
+ts -> tpstore : getParameters()
+loop
+tpstore -> testParam : getParameter()
+end loop
+@enduml

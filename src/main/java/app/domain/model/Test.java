@@ -1,6 +1,7 @@
 package app.domain.model;
 
 
+import app.domain.store.SampleStore;
 import app.domain.store.TestParamStore;
 
 import java.util.ArrayList;
@@ -15,7 +16,8 @@ public class Test {
     private Date dateOfCreation;
     private List<Parameter> listOfParameters = new ArrayList<>();
     private TestParamStore testParamStore;
-    private int stateOfTest;
+    private SampleStore sampleStore = new SampleStore();
+    private StateOfTest stateOfTest;
 
     private enum StateOfTest{
         REGISTERED,
@@ -31,23 +33,48 @@ public class Test {
         setTestCode(testCode);
         setNhsCode(nhsCode);
         getParametersFromCategoriesToStore();
+        stateOfTest = StateOfTest.REGISTERED;
     }
 
-    public void setClient(Client client) {
+    private void setClient(Client client) {
         this.client = client;
     }
-    public void setListOfCategories(List<Category> listOfCategories) {
+    private void setListOfCategories(List<Category> listOfCategories) {
         this.listOfCategories = listOfCategories;
     }
-    public void setTestCode(String testCode) {
+    private void setTestCode(String testCode) {
         this.testCode = testCode;
     }
-    public void setNhsCode(String nhsCode) {
+    private void setNhsCode(String nhsCode) {
         this.nhsCode = nhsCode;
     }
 
     public TestParamStore getTestParamStore() {
         return testParamStore;
+    }
+
+    public SampleStore getSampleStore() {
+        return sampleStore;
+    }
+
+    public boolean isRegistered() {
+        return stateOfTest.equals(StateOfTest.REGISTERED);
+    }
+
+    public boolean hasCollectedSamples() {
+        return stateOfTest.equals(StateOfTest.SAMPLES_COLLECTED);
+    }
+
+    public boolean hasAnalyzedSamples() {
+        return stateOfTest.equals(StateOfTest.SAMPLES_ANALYZED);
+    }
+
+    public boolean hasDiagnosis() {
+        return stateOfTest.equals(StateOfTest.DIAGNOSIS_MADE);
+    }
+
+    public boolean isValidated() {
+        return stateOfTest.equals(StateOfTest.VALIDATED);
     }
 
     private void getParametersFromCategoriesToStore(){

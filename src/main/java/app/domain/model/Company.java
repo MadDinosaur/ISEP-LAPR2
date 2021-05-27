@@ -1,10 +1,7 @@
 package app.domain.model;
 
 import app.domain.shared.Constants;
-import app.domain.store.ClientStore;
-import app.domain.store.EmployeeStore;
-import app.domain.store.OrgRoleStore;
-import app.domain.store.TestTypeStore;
+import app.domain.store.*;
 import auth.AuthFacade;
 import auth.domain.model.Email;
 
@@ -29,6 +26,7 @@ public class Company {
     private EmployeeStore employeeStore;
     private ClientStore clientStore;
     private OrgRoleStore orgRoleStore;
+    private TestStore testStore;
     private List<Category> parameterCategoryList;
     private TestTypeStore tts = new TestTypeStore();
     private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
@@ -41,6 +39,7 @@ public class Company {
         this.authFacade = new AuthFacade();
         this.employeeStore = new EmployeeStore();
         this.orgRoleStore = new OrgRoleStore(authFacade);
+        this.testStore = new TestStore();
 
     }
 
@@ -93,6 +92,8 @@ public class Company {
     }
 
     public OrgRoleStore getOrgRoleStore() { return this.orgRoleStore;}
+
+    public TestStore getTestStore() { return this.testStore;}
 
     public boolean saveEmployeeAsUser(Employee e) {
         String pwd = generateUserPassword();

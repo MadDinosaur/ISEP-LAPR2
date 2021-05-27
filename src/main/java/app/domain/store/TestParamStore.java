@@ -1,11 +1,8 @@
 package app.domain.store;
 
 import app.domain.adapter.ExternalModule;
+import app.domain.model.*;
 import app.domain.model.Exceptions.UnregisteredParameterException;
-import app.domain.model.Parameter;
-import app.domain.model.ReferenceValue;
-import app.domain.model.TestParameter;
-import app.domain.model.TestType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +31,10 @@ public class TestParamStore {
             params.add(testParam.getParameter());
 
         return params;
+    }
+
+    public ReferenceValue getReferenceValue(TestParameter testParam) {
+        return testParam.getReferenceValue();
     }
 
     public boolean createTestParameterResult(String paramCode, String result, String metric) {
