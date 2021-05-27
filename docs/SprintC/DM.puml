@@ -48,10 +48,7 @@ class Employee {
 -email
 -SOCcode
 }
-class LabOrder {
--testType
--parameters
-}
+
 class LaboratoryCoordinator
 class MedicalLabTechnician
 class NHS
@@ -101,7 +98,6 @@ class TestParameterResult {
 Administrator "1"--"*" Category : created by <
 Administrator "1"--"*" Employee : registers >
 ChemicalLaboratory "1"--"*" Sample : analyses >
-Client "1"--"*" LabOrder : has a >
 ClinicalAnalysisLaboratory "1"--"*" Sample : collects >
 ClinicalAnalysisLaboratory "1"--"*" TestType : performs >
 ClinicalChemistryTechnologist "1"--"*" Sample : analysed by <
@@ -137,7 +133,6 @@ Test "*"--"1..*" Parameter : requests analysis of >
 Test "*"-right-"1" "TestType" : is of >
 Test "*"-up-"1" Company : performs <
 Test "1"--"*" Sample : collects >
-Test "1"--"1" LabOrder : requires >
 TestParameter "*"--"1" Parameter : associated to >
 TestParameter "*"--"1" Test : has <
 TestParameter "1"-right- "0..1" TestParameterResult : contains >
