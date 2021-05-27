@@ -81,7 +81,7 @@ public class Company {
     }
 
     public TestTypeStore getTestTypeStore() {
-        return tts;
+        return testTypeStore;
     }
 
     public List<Category> getCategoryList() {
