@@ -19,12 +19,13 @@ public class Test {
     private TestParamStore testParamStore;
     private SampleStore sampleStore = new SampleStore();
     private StateOfTest stateOfTest;
+    private Report report;
 
     private enum StateOfTest{
         REGISTERED,
         SAMPLES_COLLECTED,
         SAMPLES_ANALYZED,
-        DIAGNOSIS_MADE,
+        REPORT_MADE,
         VALIDATED
     }
 
@@ -71,7 +72,7 @@ public class Test {
     }
 
     public boolean hasDiagnosis() {
-        return stateOfTest.equals(StateOfTest.DIAGNOSIS_MADE);
+        return stateOfTest.equals(StateOfTest.REPORT_MADE);
     }
 
     public boolean isValidated() {
@@ -88,6 +89,15 @@ public class Test {
                 //a testParamStore não tem metodo de add para a store ainda
             }
         }
+    }
+
+    public String getTestCode() {
+        return this.testCode;
+    }
+
+    public void addReport(Report report) {
+        this.report = report;
+        this.stateOfTest = StateOfTest.REPORT_MADE;
     }
 
 }

@@ -15,10 +15,6 @@ class Test {
 -timeValidation
 }
 
-class SpecialistDoctor {
--doctorIndexNumber
-}
-
 class Diagnosis
 
 class Report {
@@ -28,8 +24,6 @@ class Report {
 Test "1"-down-"1" TestParameterResult: has a >
 Test "1"-"1" Report: associated to >
 Report "1"-"1" Diagnosis: contains >
-TestParameterResult "1"-down-"1" SpecialistDoctor: analysed by >
-SpecialistDoctor "1"-right-"*" Report: creates >
 TestParameterResult -left- ReferenceValue: records >
 ReferenceValue -down- ExternalModule: provided by >
 

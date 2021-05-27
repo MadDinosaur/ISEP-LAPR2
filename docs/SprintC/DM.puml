@@ -2,21 +2,26 @@
 skinparam classAttributeIconSize 0
 
 class Administrator
+
 class Category {
 -code
 -description
 -nhsID
 }
+
 class ClinicalChemistryTechnologist
+
 class ChemicalLaboratory {
 -name
 -address
 -phoneNumber
 -TIN
 }
+
 class CollectionMethod {
 -designation
 }
+
 class Client {
 -name
 -cardNumber
@@ -28,6 +33,7 @@ class Client {
 -email
 -password
 }
+
 class ClinicalAnalysisLaboratory {
 -name
 -address
@@ -35,10 +41,11 @@ class ClinicalAnalysisLaboratory {
 -TIN
 -laboratoryID
 }
+
 class Company {
 -designation
 }
-class Diagnosis
+
 class Employee {
 -employeeID
 -organizationID
@@ -47,6 +54,11 @@ class Employee {
 -phoneNumber
 -email
 -SOCcode
+}
+
+class LabOrder {
+-testType
+-parameters
 }
 
 class LaboratoryCoordinator
@@ -58,17 +70,23 @@ class Parameter {
 -shortName
 -description
 }
+
 class Receptionist
+
 class ReferenceValueModule
+
 class Report {
--textBody
+-textReport
 }
+
 class Sample {
 -barcode
 }
+
 class SpecialistDoctor {
 -doctorIndexNumber
 }
+
 class Test {
 -testCode
 -nhsCode
@@ -76,20 +94,24 @@ class Test {
 -designation
 -dateAnalysis
 -timeAnalysis
--dateDiagnosis
--timeDiagnosis
+-dateReport
+-timeReport
 -dateValidation
 -timeValidation
 }
+
 class TestType {
 -code
 -description
 }
+
 class TestParameterResult {
 -createdAt
 -value
 -metric
 }
+
+class Diagnosis
 
 
 
@@ -98,6 +120,7 @@ class TestParameterResult {
 Administrator "1"--"*" Category : created by <
 Administrator "1"--"*" Employee : registers >
 ChemicalLaboratory "1"--"*" Sample : analyses >
+Client "1"--"*" LabOrder : has a >
 ClinicalAnalysisLaboratory "1"--"*" Sample : collects >
 ClinicalAnalysisLaboratory "1"--"*" TestType : performs >
 ClinicalChemistryTechnologist "1"--"*" Sample : analysed by <
@@ -107,8 +130,8 @@ Company "1"-down-"*" Category : has >
 Company "1"-down-"*" ClinicalAnalysisLaboratory : owns >
 Company "1"-down-"*" TestType : conducts >
 Company "1"-down-"1" ChemicalLaboratory : owns >
-Diagnosis "*"--"1" LaboratoryCoordinator : validated by >
-Diagnosis "*"--"1" SpecialistDoctor : generates <
+Report "*"--"1" LaboratoryCoordinator : validated by >
+Report "*"--"1" SpecialistDoctor : generates <
 Employee -- OrganizationRole : has >
 Employee <|-- SpecialistDoctor
 MedicalLabTechnician "1"--"*" Sample : collected by <
@@ -123,8 +146,7 @@ Parameter "*"--"1" Category : presented under >
 Receptionist "1"--"*" Client : registers >
 Receptionist "1"--"*" Test : registers >
 ReferenceValue "*"-up-"1" ReferenceValueModule : provided by >
-Report "1"--"1" Diagnosis : contains >
-Report "1"--"1" TestParameterResult : associated to >
+Test -> Report: contains >
 Sample "*"--"1" Client : associated to >
 Sample "1"--"1" BarcodeAPI : identified by >
 SpecialistDoctor "1"--"*" Report : generates >
@@ -133,6 +155,7 @@ Test "*"--"1..*" Parameter : requests analysis of >
 Test "*"-right-"1" "TestType" : is of >
 Test "*"-up-"1" Company : performs <
 Test "1"--"*" Sample : collects >
+Test "1"--"1" LabOrder : requires >
 TestParameter "*"--"1" Parameter : associated to >
 TestParameter "*"--"1" Test : has <
 TestParameter "1"-right- "0..1" TestParameterResult : contains >
@@ -145,4 +168,5 @@ TestType "*"--"1" Administrator : created by >
 TestType "*"-right-"1" ReferenceValueModule : makes use of >
 TestType "1"--"1" CollectionMethod : has a  >
 TestType "1"--"1..*" Parameter : has >
+Report "1"--"1" Diagnosis: contains >
 @enduml
