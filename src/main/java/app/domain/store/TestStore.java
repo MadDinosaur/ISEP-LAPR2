@@ -38,7 +38,7 @@ public class TestStore {
         return readyForDiagnosis;
     }
 
-    public List<Test> getTestsWithDiagnosisMade() {
+    public List<Test> getListTestsWithReport() {
         List<Test> readyForValidation = new ArrayList<>();
         for (Test test: tests)
             if (test.hasDiagnosis())

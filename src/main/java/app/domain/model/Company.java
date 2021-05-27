@@ -27,9 +27,14 @@ public class Company {
     private ClientStore clientStore;
     private OrgRoleStore orgRoleStore;
     private TestStore testStore;
+<<<<<<< HEAD
     private List<Test> registeredTests = testStore.getRegisteredTests();
     private List<Category> parameterCategoryList;
     private TestTypeStore tts = new TestTypeStore();
+=======
+    private List<Category> parameterCategoryList = new ArrayList<>();
+    private TestTypeStore testTypeStore = new TestTypeStore();
+>>>>>>> bb0ec1fde5faa90448098cfd9553ad84f27b17d0
     private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
 
     public Company(String designation) {
@@ -39,10 +44,15 @@ public class Company {
         this.designation = designation;
         this.authFacade = new AuthFacade();
         this.employeeStore = new EmployeeStore();
+        this.clientStore = new ClientStore();
         this.orgRoleStore = new OrgRoleStore(authFacade);
         this.testStore = new TestStore();
-
+        //Para testes
+        clientStore.saveClient(new Client("Joni",(long) 1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512345,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
+        // this.testTypeStore.addTestType(new TestType("123",));
+        //
     }
+
 
     public String getDesignation() {
         return designation;
@@ -77,7 +87,7 @@ public class Company {
     }
 
     public TestTypeStore getTestTypeStore() {
-        return tts;
+        return testTypeStore;
     }
 
     public List<Category> getCategoryList() {
