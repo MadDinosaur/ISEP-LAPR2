@@ -42,11 +42,7 @@ public class RecordTestResultController {
     }
 
     public boolean saveTestParameterResult() {
-        //not implemented yet
+        System.out.println("Not implemented yet");//not implemented yet
         return false;
-    }
-
-    public String getParamCodeFromString(String param) {
-        return Parameter.getParamCodeFromString(param);
     }
 }

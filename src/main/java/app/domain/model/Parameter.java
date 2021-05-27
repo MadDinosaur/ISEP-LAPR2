@@ -114,9 +114,4 @@ public class Parameter {
                 ", parameterDescription='" + parameterDescription + '\'' +
                 '}';
     }
-
-    public static String getParamCodeFromString(String string) {
-        String prefix = "Parameter{parameterName='";
-        return string.substring(prefix.length(), string.indexOf('\''));
-    }
 }

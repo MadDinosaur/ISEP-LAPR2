@@ -96,8 +96,7 @@ public class RecordTestResultUI implements Runnable {
         System.out.println("Insert metric:");
         metrics.set(selectedParameter, sc.nextLine());
 
-        paramCodes.set(selectedParameter,
-                recordTestResultController.getParamCodeFromString(parameters.get(selectedParameter - 1)));
+        //paramCodes.set(selectedParameter,recordTestResultController.getParamCodeFromString(parameters.get(selectedParameter - 1)));
 
         recordTestResultController.createTestParameterResult(paramCodes.get(selectedParameter), results.get(selectedParameter), metrics.get(selectedParameter));
     }
