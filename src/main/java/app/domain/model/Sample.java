@@ -1,7 +1,7 @@
 package app.domain.model;
 
 public class Sample {
-    public int getBarcode() {
-        return 1;
+    public String getBarcode() {
+        return "";
     }
 }

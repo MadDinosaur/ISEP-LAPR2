@@ -7,9 +7,9 @@ import java.util.List;
 public class SampleList {
     List<Sample> samples;
 
-    public boolean existsSample(int barcode) {
+    public boolean existsSample(String barcode) {
         for(Sample sample: samples)
-            if (sample.getBarcode() == barcode)
+            if (sample.getBarcode().equals(barcode))
                 return true;
 
         return false;
