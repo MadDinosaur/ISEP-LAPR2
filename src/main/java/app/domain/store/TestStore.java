@@ -5,7 +5,6 @@ import app.domain.model.Exceptions.UnregisteredBarcodeException;
 import app.domain.model.Parameter;
 import app.domain.model.Report;
 import app.domain.model.Test;
-import app.domain.model.TestParameter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,18 +59,18 @@ public class TestStore {
 
     public Test getTestBySampleBarcode(int barcode) {
         for (Test test : tests)
-            if (test.getSampleStore().existsSample(barcode))
+            if (test.getSampleList().existsSample(barcode))
                 return test;
 
         throw new UnregisteredBarcodeException();
     }
 
     public List<Parameter> getTestParameters(Test test) {
-        return test.getTestParamStore().getParameters();
+        return test.getTestParamList().getParameters();
     }
 
     public boolean createTestParameterResult(Test test, String paramCode, String result, String metric) {
-        return test.getTestParamStore().createTestParameterResult(paramCode, result, metric);
+        return test.getTestParamList().createTestParameterResult(paramCode, result, metric);
     }
 
     public Test getTestByCode(String testCode) {
