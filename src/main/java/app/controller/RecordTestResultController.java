@@ -3,6 +3,8 @@ package app.controller;
 import app.domain.model.Company;
 import app.domain.model.Parameter;
 import app.domain.model.Test;
+import app.mappers.ParamMapper;
+import app.mappers.dto.ParamDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +24,7 @@ public class RecordTestResultController {
                 .collect(Collectors.toList());
     }
 
-    public List<String> getTestParameters(String barcode) {
+    public List<ParamDTO> getTestParameters(String barcode) {
         int convertedBarcode;
 
         try { convertedBarcode = Integer.parseInt(barcode); }
@@ -31,10 +33,9 @@ public class RecordTestResultController {
         }
 
         test = company.getTestStore().getTestBySampleBarcode(convertedBarcode);
-        return company.getTestStore().getTestParameters(test)
-                .stream()
-                .map(Parameter::toString)
-                .collect(Collectors.toList());
+
+        ParamMapper map = new ParamMapper();
+        return map.toDTO(company.getTestStore().getTestParameters(test));
     }
 
     public boolean createTestParameterResult(String paramCode, String result, String metric) {

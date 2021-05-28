@@ -5,7 +5,6 @@ import app.domain.model.Exceptions.UnregisteredBarcodeException;
 import app.domain.model.Parameter;
 import app.domain.model.Report;
 import app.domain.model.Test;
-import app.domain.model.TestParameter;
 
 import java.util.ArrayList;
 import java.util.List;
