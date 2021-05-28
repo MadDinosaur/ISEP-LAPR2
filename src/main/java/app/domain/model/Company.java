@@ -28,7 +28,7 @@ public class Company {
 
     private ClientStore clientStore;
     private OrgRoleStore orgRoleStore;
-    private TestStore testStore;
+    private TestStore testStore = new TestStore();
     private TestTypeStore testTypeStore = new TestTypeStore();
     private ReportStore reportStore;
     private SampleStore sampleList;

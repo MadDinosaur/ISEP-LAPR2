@@ -4,13 +4,15 @@ import app.controller.CreateReportController;
 import app.domain.model.Exceptions.InvalidTestCodeException;
 import app.domain.model.Exceptions.InvalidTextReportException;
 import app.mappers.dto.ReportDTO;
+import app.mappers.dto.TestDTO;
+import app.mappers.dto.TestListReadyForReportDTO;
 
 import java.util.Scanner;
 
 public class CreateReportUI implements Runnable {
 
     private static final Scanner sc = new Scanner(System.in);
-    private CreateReportController createReportController;
+    private CreateReportController createReportController = new CreateReportController();
 
     public void run() {
         System.out.println("-----Create Report Menu-----");
@@ -22,7 +24,10 @@ public class CreateReportUI implements Runnable {
     }
 
     private void displayTestsListReadyForReport() {
-        System.out.println(createReportController.getTestsListReadyForReport());
+        TestListReadyForReportDTO testListReadyForReportDTO = createReportController.getTestsListReadyForReport();
+        for (TestDTO testDTO : testListReadyForReportDTO.getTestListReadyForReportDTO()) {
+            System.out.printf("- %s", testDTO.getTestCode());
+        }
     }
 
     private void getTestParameterResultsAndReferenceValues() {

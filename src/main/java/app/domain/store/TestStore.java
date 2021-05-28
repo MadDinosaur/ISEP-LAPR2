@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestStore {
-    private List<Test> tests;
+    private List<Test> tests = new ArrayList<>();
 
     public List<Test> getRegisteredTests() {
         List<Test> readyForCollection = new ArrayList<>();
