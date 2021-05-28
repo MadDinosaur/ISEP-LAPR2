@@ -7,12 +7,12 @@ import app.domain.model.Exceptions.UnregisteredParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestParamStore {
+public class TestParamList {
     List<TestParameter> testParameters = new ArrayList<>();
 
     TestType testType;
 
-    public TestParamStore(TestType testType) {
+    public TestParamList(TestType testType) {
         this.testType = testType;
     }
 
