@@ -7,7 +7,7 @@ participant CreateReportUI as crUI
 participant CreateReportController as crC
 participant Company as com
 participant "testStore: TestStore" as ts
-participant "testParamStore: TestParamStore" as tps
+participant "testParamList: TestParamList" as tps
 participant TestListReadyForReportMapper as tlrm
 participant "test: Test" as t
 participant "reportStore: ReportStore" as rs

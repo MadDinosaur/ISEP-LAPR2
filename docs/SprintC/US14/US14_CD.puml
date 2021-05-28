@@ -5,13 +5,15 @@ skinparam classAttributeIconSize 0
 class CreateReportUI
 
 class CreateReportController {
--testStore
 -test
 -reportStore
+-testStore
+-testParamList
 
 
 +testListReadyForReport<Test> getTestsListReadyForReport()
 +getTestParametersResultsByCode(code)
++getTestParametersReferenceValues()
 +report createReport(reportDTO)
 +saveReport()
 }
@@ -24,7 +26,7 @@ class Company {
 class TestStore {
 +getTestsListReadyForReport()
 +getTestByCode(testCode)
-+saveReport(report)
++saveReport(test, report)
 }
 
 class Test {
@@ -34,7 +36,7 @@ class Test {
 
 +addReport(report)
 +setStatus(Report Made)
-+testParamStore getTestParamStore()
++testParamList getTestParamList()
 }
 
 class ReportStore {
@@ -67,7 +69,7 @@ class TestListReadyForReportDTO {
 +add(TestReadyForReportDTO)
 }
 
-class TestParamStore {
+class TestParamList {
 +getTestParameterResults()
 +getReferenceValue(testParam)
 }
@@ -76,7 +78,7 @@ CreateReportUI ..> CreateReportController
 CreateReportController ..> Company
 Company "1"-down->"1" TestStore: uses >
 Company "1"-down->"1" ReportStore: uses >
-Company "1"-down->"1" TestParamStore: uses >
+Company "1"-down->"1" TestParamList: uses >
 TestStore "1"->"*" Test: contains >
 Test "1"->"1" Report: contains >
 CreateReportController ..> TestStore
@@ -93,7 +95,7 @@ ReportMapper ..> ReportDTO
 ReportMapper ..> Report
 ReportStore "1"-->"1" Report: contains >
 
-CreateReportController ..> TestParamStore
+CreateReportController ..> TestParamList
 
 CreateReportUI ..> TestListReadyForReportDTO
 @enduml

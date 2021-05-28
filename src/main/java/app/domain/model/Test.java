@@ -4,6 +4,9 @@ package app.domain.model;
 import app.domain.store.SampleStore;
 import app.domain.store.TestParamStore;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +23,8 @@ public class Test {
     private SampleStore sampleStore = new SampleStore();
     private StateOfTest stateOfTest;
     private Report report;
+    private LocalDate dateReport;
+    private LocalTime timeReport;
 
     private enum StateOfTest{
         REGISTERED,
@@ -98,6 +103,16 @@ public class Test {
     public void addReport(Report report) {
         this.report = report;
         this.stateOfTest = StateOfTest.REPORT_MADE;
+        this.dateReport = getDate();
+        this.timeReport = getTime();
+    }
+
+    public LocalDate getDate() {
+        return LocalDate.now();
+    }
+
+    public LocalTime getTime() {
+        return LocalTime.now();
     }
 
 }

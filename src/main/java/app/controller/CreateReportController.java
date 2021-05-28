@@ -2,7 +2,7 @@ package app.controller;
 
 import app.domain.model.*;
 import app.domain.store.ReportStore;
-import app.domain.store.TestParamStore;
+import app.domain.store.TestParamList;
 import app.domain.store.TestStore;
 import app.mappers.TestListReadyForReportMapper;
 import app.mappers.dto.ReportDTO;
@@ -17,7 +17,7 @@ public class CreateReportController {
     private Test test;
     private Report report;
     private TestStore testStore = company.getTestStore();
-    private TestParamStore testParamStore = test.getTestParamStore();
+    private TestParamList testParamList = test.getTestParamList();
     private ReportStore reportStore = company.getReportStore();
 
     public TestListReadyForReportDTO getTestsListReadyForReport() {
@@ -28,12 +28,12 @@ public class CreateReportController {
 
     public List<TestParameterResult> getTestParametersResultsByCode(String testCode) {
         this.test = testStore.getTestByCode(testCode);
-        return testParamStore.getTestParameterResults();
+        return testParamList.getTestParameterResults();
     }
 
     public List<ReferenceValue> getTestParametersReferenceValues() {
         List<ReferenceValue> referenceValueList = new ArrayList<>();
-        for (TestParameter testParameter : testParamStore.getTestParameters()) {
+        for (TestParameter testParameter : testParamList.getTestParameters()) {
             referenceValueList.add(testParameter.getReferenceValue());
         }
         return referenceValueList;
