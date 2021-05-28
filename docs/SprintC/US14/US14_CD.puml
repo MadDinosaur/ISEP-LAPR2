@@ -16,12 +16,12 @@ class CreateReportController {
 +saveReport()
 }
 
-class CompanyDONE {
+class Company {
 +getTestStore()
 +getReportStore()
 }
 
-class TestStoreDONE {
+class TestStore {
 +getTestsListReadyForReport()
 +getTestByCode(testCode)
 +saveReport(report)

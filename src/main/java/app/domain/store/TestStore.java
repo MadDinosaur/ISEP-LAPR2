@@ -3,6 +3,7 @@ package app.domain.store;
 import app.domain.model.Exceptions.InvalidTestCodeException;
 import app.domain.model.Exceptions.UnregisteredBarcodeException;
 import app.domain.model.Parameter;
+import app.domain.model.Report;
 import app.domain.model.Test;
 import app.domain.model.TestParameter;
 
@@ -85,5 +86,9 @@ public class TestStore {
         } else {
             throw new InvalidTestCodeException();
         }
+    }
+
+    public void saveReport(Report report) {
+
     }
 }

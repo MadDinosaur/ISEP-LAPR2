@@ -1,8 +1,11 @@
 @startuml
+
 participant TestListReadyForReportMapper as tlrm
 participant "testListReadyForReport: List<Test>" as tlrfr
 participant TestListReadyForReportDTO as tlrdto
-participant "testReadyForReportDTO: TestReadyForReportDTO" as trfrdto
+participant "testDTO: TestDTO" as tdto
+
+
 
 [o-> tlrm: toDTO(testListReadyForReport)
 create tlrdto
@@ -11,8 +14,8 @@ loop for every single object inside the testListReadyForReport
 tlrm -> tlrfr: testReadyForReport = get(i)
 activate tlrm
 tlrm -> tlrm: testReadyForReportDTO = toDTO(testReadyForReport)
-create trfrdto
-tlrm -> trfrdto: create() não sei que parâmetros passar
+create tdto
+tlrm -> tdto: create() não sei que parâmetros passar
 deactivate tlrm
 tlrm -> tlrdto: add(testReadyForReportDTO)
 activate tlrdto

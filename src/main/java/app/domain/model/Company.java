@@ -24,17 +24,18 @@ public class Company {
     private String designation;
     private AuthFacade authFacade;
     private EmployeeStore employeeStore;
+
+
     private ClientStore clientStore;
     private OrgRoleStore orgRoleStore;
     private TestStore testStore;
-<<<<<<< HEAD
-    private List<Test> registeredTests = testStore.getRegisteredTests();
-    private List<Category> parameterCategoryList;
-    private TestTypeStore tts = new TestTypeStore();
-=======
-    private List<Category> parameterCategoryList = new ArrayList<>();
     private TestTypeStore testTypeStore = new TestTypeStore();
->>>>>>> bb0ec1fde5faa90448098cfd9553ad84f27b17d0
+    private ReportStore reportStore;
+
+    private List<Test> registeredTests = testStore.getRegisteredTests();
+    private TestTypeStore tts = new TestTypeStore();
+    private List<Category> parameterCategoryList = new ArrayList<>();
+
     private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
 
     public Company(String designation) {
@@ -108,6 +109,10 @@ public class Company {
 
     public List<Test> getUnusedTests() { return this.registeredTests; }
 
+    public ReportStore getReportStore() {
+        return this.reportStore;
+    }
+
     public boolean saveEmployeeAsUser(Employee e) {
         String pwd = generateUserPassword();
         if (authFacade.addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId())) {
@@ -156,5 +161,6 @@ public class Company {
             System.out.println("An error occurred on file " + file.getName());
         }
     }
+
 
 }
