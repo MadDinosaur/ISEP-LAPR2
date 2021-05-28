@@ -4,11 +4,10 @@ import app.domain.model.Client;
 import app.domain.model.Company;
 import app.domain.model.TestType;
 import app.domain.store.TestTypeStore;
-import app.mappers.TestTypeMapper;
-import app.mappers.dto.TestTypeDto;
+import app.mapper.TestTypeMapper;
+import app.DTO.TestTypeDto;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 public class RegisterTestController {
 

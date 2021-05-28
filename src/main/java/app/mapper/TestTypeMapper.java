@@ -1,7 +1,7 @@
-package app.mappers;
+package app.mapper;
 
 import app.domain.model.TestType;
-import app.mappers.dto.TestTypeDto;
+import app.DTO.TestTypeDto;
 
 import java.util.ArrayList;
 import java.util.List;
