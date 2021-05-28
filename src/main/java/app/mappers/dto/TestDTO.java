@@ -3,8 +3,8 @@ package app.mappers.dto;
 import app.domain.model.Category;
 import app.domain.model.Client;
 import app.domain.model.Parameter;
-import app.domain.store.SampleStore;
-import app.domain.store.TestParamStore;
+import app.domain.store.SampleList;
+import app.domain.store.TestParamList;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,8 +18,8 @@ public class TestDTO {
     private String nhsCode;
     private Date dateOfCreation;
     private List<Parameter> listOfParameters = new ArrayList<>();
-    private TestParamStore testParamStore;
-    private SampleStore sampleStore = new SampleStore();
+    private TestParamList testParamList;
+    private SampleList sampleList = new SampleList();
     private TestDTO.StateOfTest stateOfTest;
 
     private enum StateOfTest{
@@ -37,8 +37,8 @@ public class TestDTO {
         this.nhsCode = null;
         this.dateOfCreation = null;
         this.listOfParameters = null;
-        this.testParamStore = null;
-        this.sampleStore = null;
+        this.testParamList = null;
+        this.sampleList = null;
         this.stateOfTest = null;
     }
 
@@ -90,20 +90,20 @@ public class TestDTO {
         this.listOfParameters = listOfParameters;
     }
 
-    public TestParamStore getTestParamStore() {
-        return testParamStore;
+    public TestParamList getTestParamStore() {
+        return testParamList;
     }
 
-    public void setTestParamStore(TestParamStore testParamStore) {
-        this.testParamStore = testParamStore;
+    public void setTestParamStore(TestParamList testParamStore) {
+        this.testParamList = testParamStore;
     }
 
-    public SampleStore getSampleStore() {
-        return sampleStore;
+    public SampleList getSampleStore() {
+        return sampleList;
     }
 
-    public void setSampleStore(SampleStore sampleStore) {
-        this.sampleStore = sampleStore;
+    public void setSampleStore(SampleList sampleStore) {
+        this.sampleList = sampleStore;
     }
 
     public StateOfTest getStateOfTest() {

@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class CreateTestTypeUI implements Runnable {
 
-    static Scanner sc = new Scanner(System.in);
+    private static final Scanner sc = new Scanner(System.in);
     private CreateTestTypeController cttc = new CreateTestTypeController();
 
     public void run() {
