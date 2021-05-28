@@ -1,8 +1,8 @@
 package app.domain.model;
 
 
-import app.domain.store.SampleStore;
-import app.domain.store.TestParamStore;
+import app.domain.store.SampleList;
+import app.domain.store.TestParamList;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,8 +16,8 @@ public class Test {
     private String nhsCode;
     private Date dateOfCreation;
     private List<Parameter> listOfParameters = new ArrayList<>();
-    private TestParamStore testParamStore;
-    private SampleStore sampleStore = new SampleStore();
+    private TestParamList testParamList;
+    private SampleList sampleList = new SampleList();
     private StateOfTest stateOfTest;
     private Report report;
 
@@ -51,12 +51,12 @@ public class Test {
         this.nhsCode = nhsCode;
     }
 
-    public TestParamStore getTestParamStore() {
-        return testParamStore;
+    public TestParamList getTestParamStore() {
+        return testParamList;
     }
 
-    public SampleStore getSampleStore() {
-        return sampleStore;
+    public SampleList getSampleStore() {
+        return sampleList;
     }
 
     public boolean isRegistered() {
