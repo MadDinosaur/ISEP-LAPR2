@@ -2,53 +2,45 @@
 
 autonumber
 
-actor Administrator as admin
+actor SpecialistDoctor as sd
 participant CreateReportUI as crUI
 participant CreateReportController as crC
 participant Company as com
 participant "testStore: TestStore" as ts
+participant "testParamStore: TestParamStore" as tps
 participant TestListReadyForReportMapper as tlrm
-participant "testListReadyForReport: List<Test>" as tlrfr
-participant TestListReadyForReportDTO as tlrdto
-participant "testReadyForReportDTO: TestReadyForReportDTO" as trfrdto
-participant Test as t
+participant "test: Test" as t
 participant "reportStore: ReportStore" as rs
 participant "reportMapper: ReportMapper" as rm
 participant Report as rep
 participant "reportDTO: ReportDTO" as rdto
-participant Diagnosis as dg
 
 
 
-activate admin
-admin -> crUI: starts new report
+
+activate sd
+sd -> crUI: starts new report
 crUI -> crC: getTestsListReadyForReport()
 crC -> com: testStore = getTestStore()
 crC -> ts: testListReadyForReport = getTestsListReadyForReport()
 crC -> tlrm: toDTO(testListReadyForReport)
-create tlrdto
-tlrm -> tlrdto: create()
-loop for every single object inside the testListReadyForReport
-tlrm -> tlrfr: testReadyForReport = get(i)
-activate tlrm
-tlrm -> tlrm: testReadyForReportDTO = toDTO(testReadyForReport)
-create trfrdto
-tlrm -> trfrdto: create() não sei que parâmetros passar
-deactivate tlrm
-tlrm -> tlrdto: add(testReadyForReportDTO)
-activate tlrdto
-deactivate tlrdto
-end loop
-crUI -[dashed]> admin: shows a list of tests ready to have a report and requests a test to be shown
+ref over tlrm : SD_TestListReadyForReportToDTO
+crUI -[dashed]> sd: shows a list of tests ready to have a report and requests a test to be shown
 deactivate crUI
 
-admin -> crUI: types in the test result he wants to see (by its code)
-crUI -> crC: getTestParameterResultByCode(code)
-crC -> ts: test = getTestByCode(code)
-crC -> ts: getTestParameterResultsOf(test)
-crUI -[dashed]> admin: shows the test's parameter result and requests data (diagnosis, report)
+sd -> crUI: types in the test result he wants to see (by its code)
+crUI -> crC: getTestParametersResultsByCode(testCode)
+crC -> ts: test = getTestByCode(testCode)
+crC -> t: testParamStore = getTestParamStore()
+crC -> tps: getTestParametersResults()
+crUI -> crC: getTestParametersReferenceValues()
+loop for test parameters in test
+crC -> tps: getReferenceValue(testParam)
+end loop
+
+crUI -[dashed]> sd: shows the test's parameters results and test reference values and requests data (diagnosis, report)
 deactivate crUI
-admin -> crUI: types the requested data
+sd -> crUI: types the requested data
 crUI -> crC: createReport(reportDTO)
 crC -> com: reportStore = getReportStore()
 crC -> rs: report = createReport(reportDTO)
@@ -58,19 +50,16 @@ rm -> rdto: textDiagnosis = getTextDiagnosis()
 
 create rep
 rm -> rep: create(textReport, textDiagnosis)
-create dg
-rep -> dg: create(textDiagnosis)
 rep -> rep: validateReport()
-dg -> dg: validateDiagnosis()
 
-crUI -[dashed]> admin: shows the data and requests confirmation
-admin -> crUI: confirms
+crUI -[dashed]> sd: shows the data and requests confirmation
+sd -> crUI: confirms
 crUI -> crC: saveReport()
 crC -> ts: saveReport(report)
 ts -> t: addReport(report)
 t -> t: test : setStatus(Report Made)
 
 
-crUI -[dashed]> admin: informs operation success
+crUI -[dashed]> sd: informs operation success
 
 @enduml

@@ -5,9 +5,14 @@ skinparam classAttributeIconSize 0
 class CreateReportUI
 
 class CreateReportController {
-+getTestsListReadyForReport()
-+getTestParameterResultByCode(code)
-+createReport(reportDTO)
+-testStore
+-test
+-reportStore
+
+
++testListReadyForReport<Test> getTestsListReadyForReport()
++getTestParametersResultsByCode(code)
++report createReport(reportDTO)
 +saveReport()
 }
 
@@ -18,21 +23,27 @@ class Company {
 
 class TestStore {
 +getTestsListReadyForReport()
-+test = getTestByCode(code)
-+getTestParameterResultOf(test)
++getTestByCode(testCode)
 +saveReport(report)
 }
 
 class Test {
+-testCode
+-dateReport
+-timeReport
+
 +addReport(report)
 +setStatus(Report Made)
++testParamStore getTestParamStore()
 }
 
 class ReportStore {
 +createReport(reportDTO)
 }
 
-class ReportMapper
+class ReportMapper {
++toModel(reportDTO)
+}
 
 class ReportDTO {
 +getTextReport()
@@ -40,13 +51,49 @@ class ReportDTO {
 }
 
 class Report {
+-textReport
+-textDiagnosis
+
 +create(textReport, textDiagnosis)
 +validateReport()
 }
 
-class Diagnosis {
-+create(textDiagnosis)
-+validateDiagnosis()
+class TestListReadyForReportMapper {
++toDTO(testListReadyForReport)
++testReadyForReportDTO toDTO(testReadyForReport)
 }
 
+class TestListReadyForReportDTO {
++add(TestReadyForReportDTO)
+}
+
+class TestParamStore {
++getTestParameterResults()
++getReferenceValue(testParam)
+}
+
+CreateReportUI ..> CreateReportController
+CreateReportController ..> Company
+Company "1"-down->"1" TestStore: uses >
+Company "1"-down->"1" ReportStore: uses >
+Company "1"-down->"1" TestParamStore: uses >
+TestStore "1"->"*" Test: contains >
+Test "1"->"1" Report: contains >
+CreateReportController ..> TestStore
+CreateReportController ..> ReportStore
+
+
+CreateReportController ..> TestListReadyForReportMapper
+TestListReadyForReportMapper ..> TestListReadyForReportDTO
+
+
+CreateReportController ..> ReportDTO
+CreateReportController ..> ReportMapper
+ReportMapper ..> ReportDTO
+ReportMapper ..> Report
+ReportStore "1"-->"1" Report: contains >
+
+CreateReportController ..> TestParamStore
+
+CreateReportUI ..> TestListReadyForReportDTO
 @enduml

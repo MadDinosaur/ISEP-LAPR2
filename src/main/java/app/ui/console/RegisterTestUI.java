@@ -4,6 +4,7 @@ import app.controller.RegisterClientController;
 import app.controller.RegisterTestController;
 import app.domain.model.Client;
 import app.domain.model.TestType;
+import app.mappers.dto.TestTypeDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ public class RegisterTestUI implements Runnable{
 
     private RegisterTestController registerTestController = new RegisterTestController();
     private Client client;
-    private List<TestType> testTypeList = new ArrayList<TestType>();
+    private List<TestTypeDto> testTypeList = new ArrayList<TestTypeDto>();
 
     Scanner sc = new Scanner(System.in);
 
@@ -26,8 +27,12 @@ public class RegisterTestUI implements Runnable{
         this.client = registerTestController.getClientByCardNumber(clientCardNumber);
         System.out.println("Is this the correct Client? (Type Yes/No)");
         System.out.println("Client name: " + client.getName());
-        //adicionar confirmation ----
-       // this.testTypeList=
+        this.testTypeList = registerTestController.testTypeList();
+        for (TestTypeDto testTypeDto : testTypeList) {
+            System.out.println(testTypeDto.getDescription());
+        }
 
     }
+
+
 }

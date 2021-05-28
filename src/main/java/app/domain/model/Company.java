@@ -24,11 +24,18 @@ public class Company {
     private String designation;
     private AuthFacade authFacade;
     private EmployeeStore employeeStore;
+
+
     private ClientStore clientStore;
     private OrgRoleStore orgRoleStore;
     private TestStore testStore;
-    private List<Category> parameterCategoryList;
+    private TestTypeStore testTypeStore = new TestTypeStore();
+    private ReportStore reportStore;
+
+    private List<Test> registeredTests = testStore.getRegisteredTests();
     private TestTypeStore tts = new TestTypeStore();
+    private List<Category> parameterCategoryList = new ArrayList<>();
+
     private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
 
     public Company(String designation) {
@@ -38,10 +45,15 @@ public class Company {
         this.designation = designation;
         this.authFacade = new AuthFacade();
         this.employeeStore = new EmployeeStore();
+        this.clientStore = new ClientStore();
         this.orgRoleStore = new OrgRoleStore(authFacade);
         this.testStore = new TestStore();
+        //Para testes
+        clientStore.saveClient(new Client("Joni",(long) 1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512345,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
+        // this.testTypeStore.addTestType(new TestType("123",));
 
     }
+
 
     public String getDesignation() {
         return designation;
@@ -76,7 +88,7 @@ public class Company {
     }
 
     public TestTypeStore getTestTypeStore() {
-        return tts;
+        return testTypeStore;
     }
 
     public List<Category> getCategoryList() {
@@ -94,6 +106,12 @@ public class Company {
     public OrgRoleStore getOrgRoleStore() { return this.orgRoleStore;}
 
     public TestStore getTestStore() { return this.testStore;}
+
+    public List<Test> getUnusedTests() { return this.registeredTests; }
+
+    public ReportStore getReportStore() {
+        return this.reportStore;
+    }
 
     public boolean saveEmployeeAsUser(Employee e) {
         String pwd = generateUserPassword();
@@ -144,7 +162,5 @@ public class Company {
         }
     }
 
-    public static void getUnusedTests() {
 
-    }
 }

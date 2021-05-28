@@ -43,4 +43,12 @@ public class TestParamList {
         ReferenceValue refValue = module.getReferenceValue(testParam.getParameter());
         return testParam.createTestParameterResult(result, metric, refValue);
     }
+
+    public List<TestParameterResult> getTestParameterResults() {
+        List<TestParameterResult> listTestParameterResults = new ArrayList<>();
+        for (TestParameter tp : testParameters) {
+            listTestParameterResults.add(tp.getResult());
+        }
+        return listTestParameterResults;
+    }
 }
