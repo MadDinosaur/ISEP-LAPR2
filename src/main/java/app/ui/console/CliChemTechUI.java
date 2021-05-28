@@ -18,7 +18,7 @@ public class CliChemTechUI implements Runnable{
     public void run()
     {
         List<MenuItem> options = new ArrayList<MenuItem>();
-        options.add(new MenuItem("Option A",new ShowTextUI("No options implemented yet.")));
+        options.add(new MenuItem("Record Test Results", new RecordTestResultUI()));
 
         int option = 0;
         do

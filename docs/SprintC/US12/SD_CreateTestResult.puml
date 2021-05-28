@@ -1,6 +1,6 @@
 @startuml
 participant "test: Test" as test
-participant "testParamStore: TestParamStore" as tpstore
+participant "testParamList: TestParamList" as tpstore
 participant "testParam: TestParameter" as testParam
 participant "testResult: TestParameterResult" as testResult
 participant "type: TestType" as type

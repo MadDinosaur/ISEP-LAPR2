@@ -2,13 +2,14 @@ package app.ui.console;
 
 import app.controller.App;
 import app.controller.RecordTestResultController;
+import app.mappers.dto.ParamDTO;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class RecordTestResultUI implements Runnable {
     RecordTestResultController recordTestResultController = new RecordTestResultController(App.getInstance().getCompany());
-    List<String> parameters;
+    List<ParamDTO> parameters;
     int selectedParameter;
     List<String> barcodes;
     List<String> paramCodes;
@@ -66,7 +67,7 @@ public class RecordTestResultUI implements Runnable {
         return true;
     }
 
-    private List<String> requestBarcode() {
+    private List<ParamDTO> requestBarcode() {
         System.out.println("Please insert a sample barcode:");
         barcodes.set(selectedParameter, sc.nextLine());
 
@@ -76,7 +77,7 @@ public class RecordTestResultUI implements Runnable {
     private boolean selectParameters() {
         System.out.println("Please select a parameter:");
         int optionNum = 1;
-        for(String parameter: parameters) {
+        for(ParamDTO parameter: parameters) {
             System.out.println(optionNum + " - " + parameter);
             optionNum++;
         }
@@ -96,12 +97,16 @@ public class RecordTestResultUI implements Runnable {
         System.out.println("Insert metric:");
         metrics.set(selectedParameter, sc.nextLine());
 
-        //paramCodes.set(selectedParameter,recordTestResultController.getParamCodeFromString(parameters.get(selectedParameter - 1)));
+        paramCodes.set(selectedParameter, parameters.get(selectedParameter).getCode());
 
         recordTestResultController.createTestParameterResult(paramCodes.get(selectedParameter), results.get(selectedParameter), metrics.get(selectedParameter));
+
+        recordTestResultController.saveTestParameterResult();
     }
 
     private void displayConfirmation() {
-        System.out.printf("Not implemented yet");
+        System.out.println("Checking information...");
+        for (int i = 0; i < barcodes.size(); i++)
+            System.out.printf("Parameter code: %s --> %s%s\n", paramCodes.get(i), results.get(i), metrics.get(i));
     }
 }

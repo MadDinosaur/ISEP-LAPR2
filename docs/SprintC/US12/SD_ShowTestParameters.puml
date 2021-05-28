@@ -3,7 +3,7 @@ participant ":RecordTestResultController" as controller
 participant "testStore: TestStore" as ts
 participant "test: Test" as test
 participant "sampleStore: SampleStore" as ss
-participant "testParamStore: TestParamStore" as tpstore
+participant "testParamList: TestParamList" as tpstore
 participant "param: Parameter" as testParam
 participant ":ParamMapper" as map
 
@@ -14,7 +14,7 @@ ts -> test : getSampleStore()
 ts -> ss : existsSample(barcode)
 end loop
 controller -> ts : params = getTestParameters(test)
-ts -> test : getTestParamStore()
+ts -> test : getTestParamList()
 ts -> tpstore : getParameters()
 loop for each Test Parameter in Store
 tpstore -> testParam : getParameter()
