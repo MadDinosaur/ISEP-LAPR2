@@ -2,6 +2,7 @@ package app.controller;
 
 import app.domain.model.BarcodeTextGenerator;
 import app.domain.model.Company;
+import app.domain.model.Sample;
 import app.domain.model.Test;
 import app.domain.store.TestStore;
 import net.sourceforge.barbecue.Barcode;
@@ -15,6 +16,7 @@ import static net.sourceforge.barbecue.BarcodeFactory.createUPCA;
 public class SampleController {
 
     private Company company;
+    private Sample sample;
     public List<Test> getTestList() { return company.getUnusedTests(); }
 
     public void setTestCode(Test testCode) {
@@ -25,7 +27,9 @@ public class SampleController {
         for (int i = 0; i < n; i++) {
             String barcodeText = BarcodeTextGenerator.generateBarcodeText();
             String barcode = barcodeGenerator(barcodeText);
-            generateEAN13BarcodeImage(barcode);
+            BufferedImage barcodeJPEG = generateEAN13BarcodeImage(barcode);
+
+            Sample sample = new Sample(barcodeText);
         }
     }
 

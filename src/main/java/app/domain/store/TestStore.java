@@ -57,7 +57,7 @@ public class TestStore {
         return validated;
     }
 
-    public Test getTestBySampleBarcode(int barcode) {
+    public Test getTestBySampleBarcode(String barcode) {
         for (Test test : tests)
             if (test.getSampleList().existsSample(barcode))
                 return test;
