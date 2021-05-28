@@ -56,6 +56,10 @@ public class Test {
         this.nhsCode = nhsCode;
     }
 
+    /**
+     * Returns a Test Parameter List
+     * @return TestParamList
+     */
     public TestParamList getTestParamList() {
         return testParamList;
     }
@@ -100,6 +104,10 @@ public class Test {
         return this.testCode;
     }
 
+    /**
+     * Adds a report into the test
+     * @param report Report
+     */
     public void addReport(Report report) {
         this.report = report;
         this.stateOfTest = StateOfTest.REPORT_MADE;
@@ -107,10 +115,18 @@ public class Test {
         this.timeReport = getTime();
     }
 
+    /**
+     * Returns the current date
+     * @return LocalDate
+     */
     public LocalDate getDate() {
         return LocalDate.now();
     }
 
+    /**
+     * Returns the current time
+     * @return LocalTime
+     */
     public LocalTime getTime() {
         return LocalTime.now();
     }

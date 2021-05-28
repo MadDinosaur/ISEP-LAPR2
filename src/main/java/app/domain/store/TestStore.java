@@ -30,6 +30,10 @@ public class TestStore {
         return readyForAnalysis;
     }
 
+    /**
+     * Returns a list of tests which are on the SAMPLES_ANALYZED state
+     * @return List<Test>
+     */
     public List<Test> getTestsListReadyForReport() {
         List<Test> readyForDiagnosis = new ArrayList<>();
         for (Test test : tests)
@@ -73,6 +77,11 @@ public class TestStore {
         return test.getTestParamList().createTestParameterResult(paramCode, result, metric);
     }
 
+    /**
+     * Returns a test by its code
+     * @param testCode Test's code
+     * @return Test
+     */
     public Test getTestByCode(String testCode) {
         Test test1 = null;
         for (Test t : tests) {
@@ -87,6 +96,11 @@ public class TestStore {
         }
     }
 
+    /**
+     * Saves the report in the given test
+     * @param test Test
+     * @param report Report
+     */
     public void saveReport(Test test, Report report) {
         test.addReport(report);
     }

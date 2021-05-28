@@ -35,7 +35,7 @@ public class CreateReportController {
     public List<TestParameterResult> getTestParametersResultsByCode(String testCode) {
         this.test = testStore.getTestByCode(testCode);
         testParamList = test.getTestParamList();
-        return testParamList.getTestParameterResults();
+        return testParamList.getTestParametersResults();
     }
 
     public List<ReferenceValue> getTestParametersReferenceValues() {

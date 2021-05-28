@@ -6,3 +6,4 @@ deletar ou não o create() do sd parcial
 devo criar um mapper na report store?
 criei um mapper no controlador
 fazer os activates
+não sei o que escrever no report mapper

@@ -33,6 +33,11 @@ public class TestParamList {
         return params;
     }
 
+    /**
+     * Returns the reference value for each parameter of the test
+     * @param testParam TestParameter
+     * @return ReferenceValue
+     */
     public ReferenceValue getReferenceValue(TestParameter testParam) {
         return testParam.getReferenceValue();
     }
@@ -44,7 +49,11 @@ public class TestParamList {
         return testParam.createTestParameterResult(result, metric, refValue);
     }
 
-    public List<TestParameterResult> getTestParameterResults() {
+    /**
+     * Returns a list with the test parameters results
+     * @return List<TestParameterResult>
+     */
+    public List<TestParameterResult> getTestParametersResults() {
         List<TestParameterResult> listTestParameterResults = new ArrayList<>();
         for (TestParameter tp : testParameters) {
             listTestParameterResults.add(tp.getResult());

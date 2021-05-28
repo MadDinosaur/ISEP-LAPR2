@@ -106,10 +106,18 @@ public class Company {
 
     public OrgRoleStore getOrgRoleStore() { return this.orgRoleStore;}
 
+    /**
+     * Returns a TestStore
+     * @return TestStore
+     */
     public TestStore getTestStore() { return this.testStore;}
 
     public List<Test> getUnusedTests() { return this.registeredTests; }
 
+    /**
+     * Returns a ReportStore
+     * @return ReportStore
+     */
     public ReportStore getReportStore() {
         return this.reportStore;
     }
