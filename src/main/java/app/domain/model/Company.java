@@ -31,6 +31,7 @@ public class Company {
     private TestStore testStore;
     private TestTypeStore testTypeStore = new TestTypeStore();
     private ReportStore reportStore;
+    private SampleStore sampleList;
 
     private List<Test> registeredTests = testStore.getRegisteredTests();
     private TestTypeStore tts = new TestTypeStore();
@@ -113,7 +114,7 @@ public class Company {
         return this.reportStore;
     }
 
-    public SampleStore getSampleStore() { return this.SampleList; }
+    public SampleStore getSampleStore() { return this.sampleList; }
 
     public boolean saveEmployeeAsUser(Employee e) {
         String pwd = generateUserPassword();

@@ -8,6 +8,8 @@ public class TestMapper {
 
     private List<Test> list;
 
+    private List<TestDTO> listDTO;
+
     public TestMapper(List<Test> list) {
     this.list = list;
     }
@@ -17,17 +19,16 @@ public class TestMapper {
     }
 
     public TestDTO toDTO(Test test){
-        TestDTO testDTO;
-        testDTO.setClient() = test.get;
+        TestDTO testDTO = null;
+
+        return testDTO;
     }
 
     public List<TestDTO> toDtoList(List<Test> list){
         this.list = list;
         Iterator<Test> testIterator = list.iterator();
 
+        return listDTO;
     }
 
-    public List<TestDTO> toDtoList(){
-        
-    }
 }
