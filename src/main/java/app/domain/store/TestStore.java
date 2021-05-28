@@ -88,7 +88,7 @@ public class TestStore {
         }
     }
 
-    public void saveReport(Report report) {
-
+    public void saveReport(Test test, Report report) {
+        test.addReport(report);
     }
 }

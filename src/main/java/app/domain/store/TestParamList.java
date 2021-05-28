@@ -51,4 +51,8 @@ public class TestParamList {
         }
         return listTestParameterResults;
     }
+
+    public List<TestParameter> getTestParameters() {
+        return testParameters;
+    }
 }

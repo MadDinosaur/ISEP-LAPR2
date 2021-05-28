@@ -55,7 +55,7 @@ rep -> rep: validateReport()
 crUI -[dashed]> sd: shows the data and requests confirmation
 sd -> crUI: confirms
 crUI -> crC: saveReport()
-crC -> ts: saveReport(report)
+crC -> ts: saveReport(test, report)
 ts -> t: addReport(report)
 t -> t: test : setStatus(Report Made)
 
