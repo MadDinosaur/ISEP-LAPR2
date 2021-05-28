@@ -60,18 +60,18 @@ public class TestStore {
 
     public Test getTestBySampleBarcode(int barcode) {
         for (Test test : tests)
-            if (test.getSampleStore().existsSample(barcode))
+            if (test.getSampleList().existsSample(barcode))
                 return test;
 
         throw new UnregisteredBarcodeException();
     }
 
     public List<Parameter> getTestParameters(Test test) {
-        return test.getTestParamStore().getParameters();
+        return test.getTestParamList().getParameters();
     }
 
     public boolean createTestParameterResult(Test test, String paramCode, String result, String metric) {
-        return test.getTestParamStore().createTestParameterResult(paramCode, result, metric);
+        return test.getTestParamList().createTestParameterResult(paramCode, result, metric);
     }
 
     public Test getTestByCode(String testCode) {

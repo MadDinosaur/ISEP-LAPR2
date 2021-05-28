@@ -10,6 +10,12 @@ public class CreateReportUI implements Runnable {
     private CreateReportController createReportController;
 
     public void run() {
+        System.out.println("-----Create Report Menu-----");
+        System.out.println("This is the list of tests ready to have a report made for them:");
+        createReportController.getTestsListReadyForReport();
+    }
 
+    public void displayTestsListReadyForReport() {
+        System.out.println(createReportController.getTestsListReadyForReport());
     }
 }

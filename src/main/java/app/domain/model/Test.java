@@ -56,11 +56,11 @@ public class Test {
         this.nhsCode = nhsCode;
     }
 
-    public TestParamList getTestParamStore() {
+    public TestParamList getTestParamList() {
         return testParamList;
     }
 
-    public SampleList getSampleStore() {
+    public SampleList getSampleList() {
         return sampleList;
     }
 
