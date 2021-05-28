@@ -5,7 +5,7 @@ participant ":RecordTestResultController" as controller
 participant ":Company" as company
 participant "testStore: TestStore" as ts
 participant "test: Test" as test
-participant "testParamStore: TestParamStore" as tpstore
+participant "testParamList: TestParamList" as tpstore
 participant "testParam: TestParameter" as testParam
 participant "sampleStore: SampleStore" as ss
 

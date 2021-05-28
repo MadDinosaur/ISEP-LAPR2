@@ -7,7 +7,7 @@ participant CreateReportUI as crUI
 participant CreateReportController as crC
 participant Company as com
 participant "testStore: TestStore" as ts
-participant "testParamStore: TestParamStore" as tps
+participant "testParamList: TestParamList" as tps
 participant TestListReadyForReportMapper as tlrm
 participant "test: Test" as t
 participant "reportStore: ReportStore" as rs
@@ -29,10 +29,11 @@ crUI -[dashed]> sd: shows a list of tests ready to have a report and requests a 
 deactivate crUI
 
 sd -> crUI: types in the test result he wants to see (by its code)
-crUI -> crC: getTestParametersResultsByCode(code)
+crUI -> crC: getTestParametersResultsByCode(testCode)
 crC -> ts: test = getTestByCode(testCode)
 crC -> t: testParamStore = getTestParamStore()
 crC -> tps: getTestParametersResults()
+crUI -> crC: getTestParametersReferenceValues()
 loop for test parameters in test
 crC -> tps: getReferenceValue(testParam)
 end loop
@@ -54,7 +55,7 @@ rep -> rep: validateReport()
 crUI -[dashed]> sd: shows the data and requests confirmation
 sd -> crUI: confirms
 crUI -> crC: saveReport()
-crC -> ts: saveReport(report)
+crC -> ts: saveReport(test, report)
 ts -> t: addReport(report)
 t -> t: test : setStatus(Report Made)
 

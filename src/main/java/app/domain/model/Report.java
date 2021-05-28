@@ -4,13 +4,15 @@ import app.domain.model.Exceptions.InvalidTextReportException;
 
 public class Report {
 
-    private String textReport;
     private String textDiagnosis;
+    private String textReport;
 
-    public Report(String textReport, String textDiagnosis) {
+
+    public Report(String textDiagnosis, String textReport) {
+        this.textDiagnosis = textDiagnosis;
         validateReport(textReport);
         this.textReport = textReport;
-        this.textDiagnosis = textDiagnosis;
+
     }
 
     private boolean validateReport(String textReport) {

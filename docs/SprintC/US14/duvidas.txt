@@ -1,2 +1,8 @@
 Quem é responsável por criar um Report? A report store?
 Tenho um loop no SSD, é preciso representá-lo no SD?
+rever o step 1 da tabela do rationale.
+test mapper criado na classe testreadyforreportmapper
+deletar ou não o create() do sd parcial
+devo criar um mapper na report store?
+criei um mapper no controlador
+fazer os activates

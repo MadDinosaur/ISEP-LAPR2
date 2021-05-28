@@ -7,12 +7,12 @@ import app.domain.model.Exceptions.UnregisteredParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestParamStore {
+public class TestParamList {
     List<TestParameter> testParameters = new ArrayList<>();
 
     TestType testType;
 
-    public TestParamStore(TestType testType) {
+    public TestParamList(TestType testType) {
         this.testType = testType;
     }
 
@@ -42,5 +42,17 @@ public class TestParamStore {
         ExternalModule module = testType.getExternalModule();
         ReferenceValue refValue = module.getReferenceValue(testParam.getParameter());
         return testParam.createTestParameterResult(result, metric, refValue);
+    }
+
+    public List<TestParameterResult> getTestParameterResults() {
+        List<TestParameterResult> listTestParameterResults = new ArrayList<>();
+        for (TestParameter tp : testParameters) {
+            listTestParameterResults.add(tp.getResult());
+        }
+        return listTestParameterResults;
+    }
+
+    public List<TestParameter> getTestParameters() {
+        return testParameters;
     }
 }

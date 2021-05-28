@@ -39,7 +39,10 @@ values.
 > No. No.
 * Q10: Although it was not asked for, should we order the list of tests to be displayed by date of chemical analysis older to newer?
 > Sorting is not required in this sprint.
-* Q11: 
+* Q11: How will the specialist doctor's report be delivered to the client? Through an email per example? If it is the case how will the email be delivered? Through an email API or written to a file?
+> The client must access the application to view those results.
+* Q12: What characterizes a diagnosis? What it needs to have in it to be a valid diagnosis?
+> The report contains the diagnosis. The report is free text and should have no more than 400 words.
 ### 1.3. Acceptance Criteria
 
 * AC1: The report should have a maximum of 400 words.

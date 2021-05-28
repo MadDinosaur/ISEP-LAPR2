@@ -1,6 +1,6 @@
-package app.mapper;
+package app.mappers;
 
-import app.DTO.TestDTO;
+import app.mappers.dto.TestDTO;
 import app.domain.model.*;
 import java.util.*;
 
