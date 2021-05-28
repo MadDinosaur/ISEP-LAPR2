@@ -1,10 +1,10 @@
 package app.ui.console;
 
-import app.controller.RegisterClientController;
 import app.controller.RegisterTestController;
+import app.domain.model.Category;
 import app.domain.model.Client;
+import app.DTO.TestTypeDto;
 import app.domain.model.TestType;
-import app.mappers.dto.TestTypeDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,7 @@ public class RegisterTestUI implements Runnable{
     private RegisterTestController registerTestController = new RegisterTestController();
     private Client client;
     private List<TestTypeDto> testTypeList = new ArrayList<TestTypeDto>();
+    private
 
     Scanner sc = new Scanner(System.in);
 
@@ -27,10 +28,24 @@ public class RegisterTestUI implements Runnable{
         this.client = registerTestController.getClientByCardNumber(clientCardNumber);
         System.out.println("Is this the correct Client? (Type Yes/No)");
         System.out.println("Client name: " + client.getName());
+        System.out.println("Please select a Test Type");
         this.testTypeList = registerTestController.testTypeList();
+        int index = 0;
         for (TestTypeDto testTypeDto : testTypeList) {
-            System.out.println(testTypeDto.getDescription());
+            index++;
+            System.out.println(index + "- " + testTypeDto.getCode());
         }
+        int optionOfTestType = sc.nextInt();
+        TestTypeDto testTypeOfTest = testTypeList.get(optionOfTestType-1);
+        System.out.println("Please select a Test Category");
+        index = 0;
+        for(Category categoryOfTestType : testTypeOfTest.getCategories()){
+            index++;
+            System.out.println(index + "- " + categoryOfTestType.getCategoryName());
+        }
+
+
+
 
     }
 

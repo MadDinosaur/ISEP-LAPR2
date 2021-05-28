@@ -113,6 +113,8 @@ public class Company {
         return this.reportStore;
     }
 
+    public SampleStore getSampleStore() { return this.SampleList; }
+
     public boolean saveEmployeeAsUser(Employee e) {
         String pwd = generateUserPassword();
         if (authFacade.addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId())) {

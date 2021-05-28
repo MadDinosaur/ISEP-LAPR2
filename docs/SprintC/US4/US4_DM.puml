@@ -7,25 +7,10 @@ class Company {
 class Test {
 -testCode
 -nhsCode
--createdAt
--designation
--dateAnalysis
--timeAnalysis
--dateDiagnosis
--timeDiagnosis
--dateValidation
--timeValidation
 }
 class Client {
 -name
 -cardNumber
--birthDate
--sex
--nhsID
--TIF
--phoneNumber
--email
--password
 }
 class TestType {
 -code
@@ -36,26 +21,20 @@ class Parameter {
 -shortName
 -description
 }
-class Client {
--name
--cardNumber
--birthDate
--sex
+class Category {
+-code
+-description
 -nhsID
--TIF
--phoneNumber
--email
--password
 }
 
-
-
+Test "*"--"1..*" Parameter : requests analysis of >
 TestType "1"--"1..*" Parameter : has >
-(Test, Parameter) .. TestParameter
-Test "*"--"1" Client : requested by >
-TestParameter "*"--"1" Test : has <
+Test "*"-left-"1" Client : requested by >
 Test "*"-up-"1" Company : performs <
 Test "*"-right-"1" "TestType" : is of >
-TestParameter "*"--"1" Parameter : associated to >
+Parameter "*"--"1" Category : presented under >
+TestParameter "*"-"1" Parameter : associated to >
+TestParameter "*"--"1" Test : has <
+(Test, Parameter) .. TestParameter
 
 @enduml

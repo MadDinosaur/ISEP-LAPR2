@@ -90,20 +90,24 @@ There is also a dependence with US9 and US10 since the receptionist must select 
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
-| Step 1  		 |							 |             |                              |
-| Step 2  		 |							 |             |                              |
-| Step 3  		 |							 |             |                              |
-| Step 4  		 |							 |             |                              |
-| Step 5  		 |							 |             |                              |
-| Step 6  		 |							 |             |                              |              
+| Step 1  		 start a new test to a client|	instantiating a new test?	| Company | Creator Pattern: Company contains an object from the Test class           |
+| Step 2 		 types in the card number of the client to register the test| saving the input?		 |RegisterTestUI|   Responsible for all the user-system interactions                           |
+| Step 3  		 gets the client by the card number|returning the existing client?|ClientStore|  Information Expert: knows its own data                |
+| Step 4  		 shows a list of all test types and requests a type to be chosen|returning the existing test types? 	| TestTypeStore|     Information Expert: knows its own data                        |
+| Step 5  		 chooses the test type| saving the input? |RegisterTestUI|Responsible for all the user-system interactions                               |
+| Step 6  		 shows a list of all categories and requests a category to be chosen |returning the existing categories? |TestType| Information Expert: knows all categories in that test type                          |
+| Step 7  		 chooses the category wanted | saving the input?|RegisterTestUI| Responsible for all the user-system interactions     |              
+| Step 8  		 shows a list of all parameters and request a parameter to be chosen|returning the existing parameters?|Category|Information Expert: knows all parameters of that category|              
+| Step 9  		 chooses the parameters wanted| saving the input?<br>validating the data locally? |Test|Information Expert: knows its own data   |              
+| Step 10  		 confirms | saving the report?|Company |Information expert: records all the Test objects     |              
+| Step 11  		 shows operation success|informing operation success? | RegisterTestUI|  Responsible for all the user-system interactions                  |              
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * Class1
- * Class2
- * Class3
+ * Test
+ * Company
 
 Other software classes (i.e. Pure Fabrication) identified: 
  * CreateTestUI  

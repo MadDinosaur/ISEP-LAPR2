@@ -33,7 +33,7 @@ create ctrl
 ui -> ctrl : create
 ui -> ctrl : getClientByCardNumber()
 ctrl -> cm : clientStore = getClientStore()
-ctrl -> ct : client = getClient(cardNumber)
+ctrl -> ct : client = getClientByCardNumber(cardNumber)
 ui --> LR : asks client confirmation
 LR -> ui: confirms client
 ui -> ctrl : getTestTypeList()

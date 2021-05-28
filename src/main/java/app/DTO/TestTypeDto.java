@@ -1,4 +1,4 @@
-package app.mappers.dto;
+package app.DTO;
 
 import app.domain.model.Category;
 import app.domain.model.CollectionMethod;
