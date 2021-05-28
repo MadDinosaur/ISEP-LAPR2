@@ -51,4 +51,8 @@ public class TestParamStore {
         }
         return listTestParameterResults;
     }
+
+    public List<TestParameter> getTestParameters() {
+        return testParameters;
+    }
 }
