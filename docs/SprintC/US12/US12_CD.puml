@@ -89,9 +89,21 @@ class RecordTestResultController {
 + createTestParameterResult(paramCode, result, metric)
 + saveTestParameterResult()
 }
+class ParamMapper {
++ toDTO(parameters)
+}
+class ParamDTO {
+- code
+- name
+- description
+}
 
 RecordTestResultUI ..> RecordTestResultController
+RecordTestResultUI ..> ParamDTO
 RecordTestResultController .right.> Company
+RecordTestResultController .left.> ParamMapper
+ParamMapper ..> Parameter
+ParamMapper .left.> ParamDTO
 Company --> TestStore : uses
 TestStore --> Test : contains
 ReferenceValue .right.> ExternalModule
