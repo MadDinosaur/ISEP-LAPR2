@@ -5,7 +5,6 @@ import app.domain.model.Exceptions.TestAlreadyValidatedException;
 import app.domain.store.SampleList;
 import app.domain.store.TestParamList;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -152,7 +151,6 @@ public class Test {
             for (int j = 0; j<listOfParametersOfCategory.size(); j++) {
                 Parameter parameter = listOfParametersOfCategory.get(i);
                 listOfParameters.add(parameter);
-                //a testParamStore não tem metodo de add para a store ainda
             }
         }
     }
@@ -195,6 +193,10 @@ public class Test {
      */
     public LocalTime getTime() {
         return LocalTime.now();
+    }
+
+    public void setStateOfTestToSamplesAnalyzed() {
+        this.stateOfTest = StateOfTest.SAMPLES_ANALYZED;
     }
 
 }

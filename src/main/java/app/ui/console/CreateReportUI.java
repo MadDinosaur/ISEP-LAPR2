@@ -26,7 +26,8 @@ public class CreateReportUI implements Runnable {
     private void displayTestsListReadyForReport() {
         List<TestDTO> testListReadyForReportDTO = createReportController.getTestsListReadyForReport();
         for (TestDTO testDTO : testListReadyForReportDTO) {
-            System.out.printf("%s - %s", testDTO.getTestCode(), testDTO.getClient().getName());
+            System.out.printf("Test's Code - Client's Name\n%s - %s\n"
+                    , testDTO.getTestCode(), testDTO.getClient().getName());
         }
     }
 
