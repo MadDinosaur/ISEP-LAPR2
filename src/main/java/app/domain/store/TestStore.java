@@ -120,6 +120,7 @@ public class TestStore {
                 test.validateTest();
             }
         }
+        return true;
     }
 
 }

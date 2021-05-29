@@ -56,7 +56,7 @@ public class ValidateTestController {
     }
 
     public Boolean validateTest(String nhsCode){
-        
+        return true;
     }
 
 
