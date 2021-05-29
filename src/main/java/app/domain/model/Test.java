@@ -25,6 +25,10 @@ public class Test {
     private Report report;
     private LocalDate dateReport;
     private LocalTime timeReport;
+    private LocalDate dateResults;
+    private LocalTime timeResults;
+    private LocalDate dateValidation;
+    private LocalTime timeValidation;
 
     private enum StateOfTest{
         REGISTERED,
@@ -66,6 +70,58 @@ public class Test {
 
     public SampleList getSampleList() {
         return sampleList;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public List<Category> getListOfCategories() {
+        return listOfCategories;
+    }
+
+    public String getNhsCode() {
+        return nhsCode;
+    }
+
+    public Date getDateOfCreation() {
+        return dateOfCreation;
+    }
+
+    public List<Parameter> getListOfParameters() {
+        return listOfParameters;
+    }
+
+    public StateOfTest getStateOfTest() {
+        return stateOfTest;
+    }
+
+    public Report getReport() {
+        return report;
+    }
+
+    public LocalDate getDateReport() {
+        return dateReport;
+    }
+
+    public LocalTime getTimeReport() {
+        return timeReport;
+    }
+
+    public LocalDate getDateResults() {
+        return dateResults;
+    }
+
+    public LocalTime getTimeResults() {
+        return timeResults;
+    }
+
+    public LocalDate getDateValidation() {
+        return dateValidation;
+    }
+
+    public LocalTime getTimeValidation() {
+        return timeValidation;
     }
 
     public boolean isRegistered() {

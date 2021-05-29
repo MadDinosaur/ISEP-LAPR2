@@ -1,11 +1,11 @@
 package app.mappers.dto;
 
-import app.domain.model.Category;
-import app.domain.model.Client;
-import app.domain.model.Parameter;
+import app.domain.model.*;
 import app.domain.store.SampleList;
 import app.domain.store.TestParamList;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +21,13 @@ public class TestDTO {
     private TestParamList testParamList;
     private SampleList sampleList = new SampleList();
     private TestDTO.StateOfTest stateOfTest;
+    private Report report;
+    private LocalDate dateReport;
+    private LocalTime timeReport;
+    private LocalDate dateResults;
+    private LocalTime timeResults;
+    private LocalDate dateValidation;
+    private LocalTime timeValidation;
 
     private enum StateOfTest{
         REGISTERED,
@@ -30,87 +37,86 @@ public class TestDTO {
         VALIDATED
     }
 
-    public TestDTO() {
-        this.client = null;
-        this.listOfCategories = null;
-        this.testCode = null;
-        this.nhsCode = null;
-        this.dateOfCreation = null;
-        this.listOfParameters = null;
-        this.testParamList = null;
-        this.sampleList = null;
-        this.stateOfTest = null;
+    public TestDTO(Client client, List<Category> listOfCategories, String testCode, String nhsCode, Date dateOfCreation, List<Parameter> listOfParameters, TestParamList testParamList, SampleList sampleList, Report report, LocalDate dateReport, LocalTime timeReport, LocalDate dateResults, LocalTime timeResults, LocalDate dateValidation, LocalTime timeValidation) {
+        this.client = client;
+        this.listOfCategories = listOfCategories;
+        this.testCode = testCode;
+        this.nhsCode = nhsCode;
+        this.dateOfCreation = dateOfCreation;
+        this.listOfParameters = listOfParameters;
+        this.testParamList = testParamList;
+        this.sampleList = sampleList;
+        this.stateOfTest = stateOfTest;
+        this.report = report;
+        this.dateReport = dateReport;
+        this.timeReport = timeReport;
+        this.dateResults = dateResults;
+        this.timeResults = timeResults;
+        this.dateValidation = dateValidation;
+        this.timeValidation = timeValidation;
     }
 
     public Client getClient() {
         return client;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
     public List<Category> getListOfCategories() {
         return listOfCategories;
-    }
-
-    public void setListOfCategories(List<Category> listOfCategories) {
-        this.listOfCategories = listOfCategories;
     }
 
     public String getTestCode() {
         return testCode;
     }
 
-    public void setTestCode(String testCode) {
-        this.testCode = testCode;
-    }
-
     public String getNhsCode() {
         return nhsCode;
-    }
-
-    public void setNhsCode(String nhsCode) {
-        this.nhsCode = nhsCode;
     }
 
     public Date getDateOfCreation() {
         return dateOfCreation;
     }
 
-    public void setDateOfCreation(Date dateOfCreation) {
-        this.dateOfCreation = dateOfCreation;
-    }
-
     public List<Parameter> getListOfParameters() {
         return listOfParameters;
     }
 
-    public void setListOfParameters(List<Parameter> listOfParameters) {
-        this.listOfParameters = listOfParameters;
-    }
-
-    public TestParamList getTestParamStore() {
+    public TestParamList getTestParamList() {
         return testParamList;
     }
 
-    public void setTestParamStore(TestParamList testParamStore) {
-        this.testParamList = testParamStore;
-    }
-
-    public SampleList getSampleStore() {
+    public SampleList getSampleList() {
         return sampleList;
-    }
-
-    public void setSampleStore(SampleList sampleStore) {
-        this.sampleList = sampleStore;
     }
 
     public StateOfTest getStateOfTest() {
         return stateOfTest;
     }
 
-    public void setStateOfTest(StateOfTest stateOfTest) {
-        this.stateOfTest = stateOfTest;
+    public Report getReport() {
+        return report;
+    }
+
+    public LocalDate getDateReport() {
+        return dateReport;
+    }
+
+    public LocalTime getTimeReport() {
+        return timeReport;
+    }
+
+    public LocalDate getDateResults() {
+        return dateResults;
+    }
+
+    public LocalTime getTimeResults() {
+        return timeResults;
+    }
+
+    public LocalDate getDateValidation() {
+        return dateValidation;
+    }
+
+    public LocalTime getTimeValidation() {
+        return timeValidation;
     }
 }

@@ -14,7 +14,7 @@ public class TestListReadyForReportMapper {
     /**
      * Creation of a Test Mapper object
      */
-    private TestMapper testMapper = new TestMapper();
+    private TestMapper testMapper;
 
     /**
      * Transforms the list of tests ready for report into a Data Transfer Object
@@ -22,6 +22,7 @@ public class TestListReadyForReportMapper {
      * @return TestListReadyForReportDTO
      */
     public TestListReadyForReportDTO toDTO(List<Test> testListReadyForReport) {
+        testMapper = new TestMapper(testListReadyForReport);
         TestListReadyForReportDTO testListReadyForReportDTO = new TestListReadyForReportDTO();
         for (int i = 0; i < testListReadyForReport.size(); i++) {
             Test testReadyForReport = testListReadyForReport.get(i);
