@@ -84,4 +84,14 @@ public class TestTypeStore {
         return testTypeList;
     }
 
+    public TestType getTestTypeByCode(String code){
+
+        for (TestType testType : testTypeList){
+            if (testType.getCode().equals(code)){
+                return testType;
+            }
+        }
+        return null;
+    }
+
 }
