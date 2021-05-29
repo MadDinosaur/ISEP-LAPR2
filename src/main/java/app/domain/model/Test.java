@@ -152,7 +152,6 @@ public class Test {
             for (int j = 0; j<listOfParametersOfCategory.size(); j++) {
                 Parameter parameter = listOfParametersOfCategory.get(i);
                 listOfParameters.add(parameter);
-                //a testParamStore não tem metodo de add para a store ainda
             }
         }
     }

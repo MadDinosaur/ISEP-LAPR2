@@ -15,7 +15,7 @@ import static net.sourceforge.barbecue.BarcodeFactory.createUPCA;
 
 public class SampleController {
 
-    private Company company;
+    private Company company = App.getInstance().getCompany();
     private Sample sample;
     private Test test;
 

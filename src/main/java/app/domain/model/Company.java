@@ -32,9 +32,9 @@ public class Company {
     private TestStore testStore = new TestStore();
     private TestTypeStore testTypeStore = new TestTypeStore();
     private ReportStore reportStore;
-    private SampleStore sampleList;
+    private SampleList sampleList;
 
-    private List<Test> registeredTests = testStore.getRegisteredTests();
+    private List<Test> registeredTests;
     private List<Category> parameterCategoryList = new ArrayList<>();
 
     private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
@@ -62,6 +62,8 @@ public class Company {
         testTypeStore.addTestType(testTypeHardCoded);
         Test testTestHardCoded = new Test(clientStore.getClientByCardNumber((long)8765432187654321.0),categoryList,testNumberGenerator(),nhsCodeGenerator());
         testStore.addTest(testTestHardCoded);
+        if(testTestHardCoded.isRegistered())
+            System.out.println("registered");
         //
     }
 
@@ -118,7 +120,10 @@ public class Company {
      */
     public TestStore getTestStore() { return this.testStore;}
 
-    public List<Test> getUnusedTests() { return this.registeredTests; }
+    public List<Test> getUnusedTests() {
+        registeredTests = testStore.getRegisteredTests();
+        return this.registeredTests;
+    }
 
     /**
      * Returns a ReportStore
@@ -128,11 +133,10 @@ public class Company {
         return this.reportStore;
     }
 
-<<<<<<< HEAD
-=======
-    public SampleStore getSampleStore() { return this.sampleList; }
 
->>>>>>> 60bbe8b8599aed66da822ee04036e69cdda3a93b
+    public SampleList getSampleStore() { return this.sampleList; }
+
+
     public boolean saveEmployeeAsUser(Employee e) {
         String pwd = generateUserPassword();
         if (authFacade.addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId())) {
