@@ -1,6 +1,7 @@
 package app.domain.model;
 
 
+import app.domain.model.Exceptions.TestAlreadyValidatedException;
 import app.domain.store.SampleList;
 import app.domain.store.TestParamList;
 
@@ -169,6 +170,15 @@ public class Test {
         this.stateOfTest = StateOfTest.REPORT_MADE;
         this.dateReport = getDate();
         this.timeReport = getTime();
+    }
+
+    public Boolean validateTest(){
+        if(!stateOfTest.equals("VALIDATED")) {
+            this.stateOfTest = StateOfTest.VALIDATED;
+            this.dateValidation = getDate();
+            this.timeValidation = getTime();
+            return true;
+        }else throw new TestAlreadyValidatedException("Test was already validated");
     }
 
     /**
