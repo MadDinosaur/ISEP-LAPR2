@@ -5,6 +5,8 @@ import app.domain.model.Company;
 import app.domain.model.Sample;
 import app.domain.model.Test;
 import app.domain.store.TestStore;
+import app.mappers.TestMapper;
+import app.mappers.dto.TestDTO;
 import net.sourceforge.barbecue.Barcode;
 import net.sourceforge.barbecue.BarcodeException;
 import net.sourceforge.barbecue.BarcodeFactory;
@@ -13,15 +15,19 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import static net.sourceforge.barbecue.BarcodeFactory.createUPCA;
 
+
 public class SampleController {
 
-    private Company company;
+    private Company company = App.getInstance().getCompany();
     private Sample sample;
     private Test test;
 
-    public List<Test> getTestList() { return company.getUnusedTests(); }
+    public List<TestDTO> getTestList() {
+        TestMapper testmapper = new TestMapper(company.getUnusedTests());
+        return testmapper.toDtoList();
+    }
 
-    public void setTestCode(Test testCode) {
+    public void setTestCode(String testCode) {
 
     }
 
