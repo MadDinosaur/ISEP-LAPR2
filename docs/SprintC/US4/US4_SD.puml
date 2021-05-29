@@ -53,11 +53,11 @@ ttMapper --> ctrl : listTestTypeDto
 ctrl --> ui : listTestTypeDto
 ui --> LR : shows list of test types and requests 1
 LR -> ui : chooses test type
-ui -> ctrl : getTestType(chosenTestType)
-ctrl -> tts : testType = getTestType(chosenTestType)
+ui -> ctrl : getTestTypeByCode(chosenTestTypeCode)
+ctrl -> tts : testType = getTestTypeByCode(chosenTestTypeCode)
 loop for each category that in lab order
-ui -> ctrl : getListOfTestCategories(testType)
-ctrl -> tt : listOfTestCategories = getListOfTestCategories(testType)
+ui -> ctrl : getListOfTestCategories()
+ctrl -> tt : listOfTestCategories = getCategories()
 create ltc
 tt -> ltc : create()
 tt --> ctrl : listOfTestCategories

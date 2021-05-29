@@ -8,8 +8,8 @@ public class Sample {
         this.barcodeText = barcodeText;
     }
 
-    public int getBarcode() {
-        return 1;
+    public String getBarcode() {
+        return barcodeText;
     }
 
 }

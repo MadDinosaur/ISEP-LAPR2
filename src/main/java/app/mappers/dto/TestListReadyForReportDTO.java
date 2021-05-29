@@ -11,4 +11,7 @@ public class TestListReadyForReportDTO {
         this.testListReadyForReportDTO.add(testDTO);
     }
 
+    public List<TestDTO> getTestListReadyForReportDTO() {
+        return testListReadyForReportDTO;
+    }
 }

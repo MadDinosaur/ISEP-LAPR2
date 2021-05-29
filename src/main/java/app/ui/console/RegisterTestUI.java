@@ -3,19 +3,24 @@ package app.ui.console;
 import app.controller.RegisterTestController;
 import app.domain.model.Category;
 import app.domain.model.Client;
-import app.DTO.TestTypeDto;
-import app.domain.model.TestType;
+import app.mappers.ParamMapper;
+import app.mappers.dto.ParamDTO;
+import app.mappers.dto.TestCategoryDto;
+import app.mappers.dto.TestTypeDto;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class RegisterTestUI implements Runnable{
+public class RegisterTestUI implements Runnable {
 
     private RegisterTestController registerTestController = new RegisterTestController();
     private Client client;
     private List<TestTypeDto> testTypeList = new ArrayList<TestTypeDto>();
-    private
+    private TestTypeDto testTypeOfTest;
+    private List<TestCategoryDto> testCategoryDtos = new ArrayList<>();
+    private TestCategoryDto testCategory;
+    private List<ParamDTO> parametersDtos = new ArrayList<>();
 
     Scanner sc = new Scanner(System.in);
 
@@ -25,8 +30,9 @@ public class RegisterTestUI implements Runnable{
         System.out.println("######## Test Registration ########");
         System.out.println("Please introduce Client Card Number");
         long clientCardNumber = sc.nextLong();
-        this.client = registerTestController.getClientByCardNumber(clientCardNumber);
-        System.out.println("Is this the correct Client? (Type Yes/No)");
+        registerTestController.setClientByCardNumber(clientCardNumber);
+        System.out.println("Is this the correct Client? (Type Yes/No)");  //resolver AQUI
+        client = registerTestController.getClient();
         System.out.println("Client name: " + client.getName());
         System.out.println("Please select a Test Type");
         this.testTypeList = registerTestController.testTypeList();
@@ -36,17 +42,81 @@ public class RegisterTestUI implements Runnable{
             System.out.println(index + "- " + testTypeDto.getCode());
         }
         int optionOfTestType = sc.nextInt();
-        TestTypeDto testTypeOfTest = testTypeList.get(optionOfTestType-1);
-        System.out.println("Please select a Test Category");
-        index = 0;
-        for(Category categoryOfTestType : testTypeOfTest.getCategories()){
-            index++;
-            System.out.println(index + "- " + categoryOfTestType.getCategoryName());
-        }
+        testTypeOfTest = testTypeList.get(optionOfTestType - 1);
+        //Category
+        boolean repeatCategory = false;
+        do {
+            System.out.println("Please select a Test Category");
+            registerTestController.setTestTypeByCode(testTypeOfTest.getCode());
+            testCategoryDtos = registerTestController.getListOfTestCategories();
+            index = 0;
+            for (TestCategoryDto categoryDto : testCategoryDtos) {
+                index++;
+                System.out.println(index + "- " + categoryDto.getName());
+            }
+            int optioOfTestCategory = sc.nextInt();
+            testCategory = testCategoryDtos.get(optioOfTestCategory - 1);
+            registerTestController.setCategoryByName(testCategory.getName());
+            //Parameter
+            boolean repeatParameter = false;
+            do {
+                System.out.println("Please select a Test Parameter");
+                parametersDtos = registerTestController.getListOfTestParameters();
+                index = 0;
+                for (ParamDTO parameterDTO : parametersDtos) {
+                    index++;
+                    System.out.println(index + "- " + parameterDTO.getName());
+                }
+                int optionOfTestParameter = sc.nextInt();
+                registerTestController.setParameterByName(parametersDtos.get(optionOfTestParameter-1).getName());
+                registerTestController.saveParametersAndCategories();
+                System.out.println("Would you like to add more parameters in that Category? Type Yes/No");
 
 
+                boolean validAwnser;
+                do {
+                    String awnser = sc.next();
+                    if (awnser.equalsIgnoreCase("yes")) {
+                        repeatParameter = true;
+                        validAwnser = true;
+                    } else {
+                        if (awnser.equalsIgnoreCase("no")) {
+                            repeatParameter = false;
+                            validAwnser = true;
+                        } else {
+                            System.out.println("That is not a valid awnser! Please type Yes/No");
+                            validAwnser = false;
+                        }
+                    }
 
+                } while (!validAwnser);
+            } while (repeatParameter);
 
+            System.out.println("Would you like to add more Categories of that Test Type? Type Yes/No");
+
+            boolean validAwnser;
+            do {
+                String awnser = sc.next();
+                if (awnser.equalsIgnoreCase("yes")) {
+                    repeatCategory = true;
+                    validAwnser = true;
+                } else {
+                    if (awnser.equalsIgnoreCase("no")) {
+                        repeatCategory = false;
+                        validAwnser = true;
+                    } else {
+                        System.out.println("That is not a valid awnser! Please type Yes/No");
+                        validAwnser = false;
+                    }
+                }
+            } while (!validAwnser);
+        }while (repeatCategory);
+        String[] codesOfTest = registerTestController.createTest();
+        String generatedTestCode= codesOfTest[0];
+        String generatedNhsCode= codesOfTest[1];
+        System.out.println("The test was registered with the \n" +
+                "Test Code: " + generatedTestCode +"\n"+
+                "Nhs Code: " + generatedNhsCode);
     }
 
 

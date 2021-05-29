@@ -1,11 +1,14 @@
 package app.domain.store;
 
+import app.domain.model.Category;
 import app.domain.model.CollectionMethod;
 import app.domain.model.Exceptions.InvalidTestType;
+import app.domain.model.Parameter;
 import app.domain.model.TestType;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 
 /**
@@ -16,13 +19,15 @@ public class TestTypeStore {
     /**
      * List of test types
      */
-    private ArrayList<TestType> testTypeList = new ArrayList<>(Collections.singleton(new TestType("Blood")));
+    private CollectionMethod collectionMethodTest = new CollectionMethod("test Colection");
+    Category categoryTest = new Category("Hemograma", "pistola", "WBC", "toma");
+    private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(categoryTest));
+    private ArrayList<TestType> testTypeList = new ArrayList<>(Collections.singleton(new TestType("Blood","test Of Test",collectionMethodTest,categoryList)));
 
     /**
      * Empty constructor
      */
     public TestTypeStore() {
-
     }
 
     /**
@@ -30,6 +35,7 @@ public class TestTypeStore {
      * @param testTypeList List of test types
      */
     public TestTypeStore(ArrayList<TestType> testTypeList) {
+
         this.testTypeList = testTypeList;
     }
 
@@ -82,6 +88,16 @@ public class TestTypeStore {
      */
     public ArrayList<TestType> getTestTypeList() {
         return testTypeList;
+    }
+
+    public TestType getTestTypeByCode(String code){
+
+        for (TestType testType : testTypeList){
+            if (testType.getCode().equals(code)){
+                return testType;
+            }
+        }
+        return null;
     }
 
 }

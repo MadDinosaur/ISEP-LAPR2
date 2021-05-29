@@ -1,6 +1,7 @@
 package app.domain.model;
 
 
+import app.domain.model.Exceptions.TestAlreadyValidatedException;
 import app.domain.store.SampleList;
 import app.domain.store.TestParamList;
 
@@ -25,6 +26,10 @@ public class Test {
     private Report report;
     private LocalDate dateReport;
     private LocalTime timeReport;
+    private LocalDate dateResults;
+    private LocalTime timeResults;
+    private LocalDate dateValidation;
+    private LocalTime timeValidation;
 
     private enum StateOfTest{
         REGISTERED,
@@ -56,12 +61,68 @@ public class Test {
         this.nhsCode = nhsCode;
     }
 
+    /**
+     * Returns a Test Parameter List
+     * @return TestParamList
+     */
     public TestParamList getTestParamList() {
         return testParamList;
     }
 
     public SampleList getSampleList() {
         return sampleList;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public List<Category> getListOfCategories() {
+        return listOfCategories;
+    }
+
+    public String getNhsCode() {
+        return nhsCode;
+    }
+
+    public Date getDateOfCreation() {
+        return dateOfCreation;
+    }
+
+    public List<Parameter> getListOfParameters() {
+        return listOfParameters;
+    }
+
+    public StateOfTest getStateOfTest() {
+        return stateOfTest;
+    }
+
+    public Report getReport() {
+        return report;
+    }
+
+    public LocalDate getDateReport() {
+        return dateReport;
+    }
+
+    public LocalTime getTimeReport() {
+        return timeReport;
+    }
+
+    public LocalDate getDateResults() {
+        return dateResults;
+    }
+
+    public LocalTime getTimeResults() {
+        return timeResults;
+    }
+
+    public LocalDate getDateValidation() {
+        return dateValidation;
+    }
+
+    public LocalTime getTimeValidation() {
+        return timeValidation;
     }
 
     public boolean isRegistered() {
@@ -100,6 +161,10 @@ public class Test {
         return this.testCode;
     }
 
+    /**
+     * Adds a report into the test
+     * @param report Report
+     */
     public void addReport(Report report) {
         this.report = report;
         this.stateOfTest = StateOfTest.REPORT_MADE;
@@ -107,10 +172,27 @@ public class Test {
         this.timeReport = getTime();
     }
 
+    public Boolean validateTest(){
+        if(!stateOfTest.equals("VALIDATED")) {
+            this.stateOfTest = StateOfTest.VALIDATED;
+            this.dateValidation = getDate();
+            this.timeValidation = getTime();
+            return true;
+        }else throw new TestAlreadyValidatedException("Test was already validated");
+    }
+
+    /**
+     * Returns the current date
+     * @return LocalDate
+     */
     public LocalDate getDate() {
         return LocalDate.now();
     }
 
+    /**
+     * Returns the current time
+     * @return LocalTime
+     */
     public LocalTime getTime() {
         return LocalTime.now();
     }

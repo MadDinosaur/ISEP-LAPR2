@@ -9,11 +9,14 @@ class ValidateTestController{
 }
 
 class TestStore{
+-List<Test> tests
 
-
++validateTest(nhsCode)
 }
 
 class TestMapper{
+
+
 +toDTO(listTestsWithReport)
 }
 

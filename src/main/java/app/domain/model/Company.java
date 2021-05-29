@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,16 +25,16 @@ public class Company {
     private String designation;
     private AuthFacade authFacade;
     private EmployeeStore employeeStore;
-
+    private int testNumber;
 
     private ClientStore clientStore;
     private OrgRoleStore orgRoleStore;
-    private TestStore testStore;
+    private TestStore testStore = new TestStore();
     private TestTypeStore testTypeStore = new TestTypeStore();
     private ReportStore reportStore;
+    private SampleStore sampleList;
 
     private List<Test> registeredTests = testStore.getRegisteredTests();
-    private TestTypeStore tts = new TestTypeStore();
     private List<Category> parameterCategoryList = new ArrayList<>();
 
     private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
@@ -48,10 +49,20 @@ public class Company {
         this.clientStore = new ClientStore();
         this.orgRoleStore = new OrgRoleStore(authFacade);
         this.testStore = new TestStore();
+        this.testNumber = 1;
         //Para testes
-        clientStore.saveClient(new Client("Joni",(long) 1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512345,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
-        // this.testTypeStore.addTestType(new TestType("123",));
-
+        clientStore.saveClient(new Client("Teste",(long) 8765432187654321.0,1234512347,new DateBirth(24,12,2002),1234512346,(long)12345123457.0,new Email("teste50@gmail.com"),"male"));
+        clientStore.saveClient(new Client("Joni",(long)  1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512345,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
+        CollectionMethod collectionMethodTest = new CollectionMethod("test Colection");
+        Category categoryTest = new Category("Hemograma", "pistola", "WBC", "toma");
+        Parameter parameter = new Parameter("par2345","19045","test f234");
+        categoryTest.saveParameter(parameter);
+        List<Category> categoryList = new ArrayList<Category>(Collections.singleton(categoryTest));
+        TestType testTypeHardCoded = new TestType("TestCorreto","test Of Test",collectionMethodTest,categoryList);
+        testTypeStore.addTestType(testTypeHardCoded);
+        Test testTestHardCoded = new Test(clientStore.getClientByCardNumber((long)8765432187654321.0),categoryList,testNumberGenerator(),nhsCodeGenerator());
+        testStore.addTest(testTestHardCoded);
+        //
     }
 
 
@@ -101,14 +112,27 @@ public class Company {
 
     public OrgRoleStore getOrgRoleStore() { return this.orgRoleStore;}
 
+    /**
+     * Returns a TestStore
+     * @return TestStore
+     */
     public TestStore getTestStore() { return this.testStore;}
 
     public List<Test> getUnusedTests() { return this.registeredTests; }
 
+    /**
+     * Returns a ReportStore
+     * @return ReportStore
+     */
     public ReportStore getReportStore() {
         return this.reportStore;
     }
 
+<<<<<<< HEAD
+=======
+    public SampleStore getSampleStore() { return this.sampleList; }
+
+>>>>>>> 60bbe8b8599aed66da822ee04036e69cdda3a93b
     public boolean saveEmployeeAsUser(Employee e) {
         String pwd = generateUserPassword();
         if (authFacade.addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId())) {
@@ -156,6 +180,39 @@ public class Company {
         } catch (IOException e) {
             System.out.println("An error occurred on file " + file.getName());
         }
+    }
+    public String[] createTestToClient(Client client, List<Category> listOfCategories) {
+        String generatedTestCode = testNumberGenerator();
+        String generatedNhsCode = nhsCodeGenerator();
+        Test testToClient = new Test(client,listOfCategories,generatedTestCode,generatedNhsCode);
+        testStore.addTest(testToClient);
+        String[] codes=  new String[2];
+        codes[0]= generatedTestCode;
+        codes[1]= generatedNhsCode;
+        return codes;
+    }
+
+    public String testNumberGenerator() {
+        StringBuilder generatedTestCode = new StringBuilder();
+        String testCodeString = String.valueOf(testNumber);
+        int lengthTestNumber = 12;
+        while (generatedTestCode.length() + testCodeString.length() < lengthTestNumber) {
+            generatedTestCode.append("0");
+        }
+        generatedTestCode.append(testCodeString);
+        testNumber++;
+        return generatedTestCode.toString();
+    }
+
+    public String nhsCodeGenerator() {
+        StringBuilder generatedNhsCode = new StringBuilder();
+        String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        int lengthNhsCode = 12;
+        while (lengthNhsCode-- != 0) {
+            int character = (int) (Math.random() * ALPHA_NUMERIC_STRING.length());
+            generatedNhsCode.append(ALPHA_NUMERIC_STRING.charAt(character));
+        }
+        return generatedNhsCode.toString();
     }
 
 

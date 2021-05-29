@@ -99,7 +99,7 @@ There is also a dependence with US9 and US10 since the receptionist must select 
 | Step 7  		 chooses the category wanted | saving the input?|RegisterTestUI| Responsible for all the user-system interactions     |              
 | Step 8  		 shows a list of all parameters and request a parameter to be chosen|returning the existing parameters?|Category|Information Expert: knows all parameters of that category|              
 | Step 9  		 chooses the parameters wanted| saving the input?<br>validating the data locally? |Test|Information Expert: knows its own data   |              
-| Step 10  		 confirms | saving the report?|Company |Information expert: records all the Test objects     |              
+| Step 10  		 confirms | saving the test?|Company |Information expert: records all the Test objects     |              
 | Step 11  		 shows operation success|informing operation success? | RegisterTestUI|  Responsible for all the user-system interactions                  |              
 
 ### Systematization ##
