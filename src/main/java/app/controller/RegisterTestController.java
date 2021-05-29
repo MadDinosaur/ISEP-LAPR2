@@ -26,7 +26,6 @@ public class RegisterTestController {
     private Parameter toSaveParameter;
     private List<Category> listOfChosenCategories = new ArrayList<>();
     private List<Parameter> listOfChosenParameters = new ArrayList<>();
-    private Test testToRegister;
 
 
     public RegisterTestController(){
@@ -96,9 +95,8 @@ public class RegisterTestController {
         }
     }
 
-    public void createTest(){
-        company.createTestToClient(client,listOfChosenCategories);
-
+    public String[] createTest(){
+        return company.createTestToClient(client,listOfChosenCategories);
     }
 
 

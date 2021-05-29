@@ -1,5 +1,6 @@
 package app.domain.store;
 
+import app.domain.model.Client;
 import app.domain.model.Exceptions.InvalidTestCodeException;
 import app.domain.model.Exceptions.UnregisteredBarcodeException;
 import app.domain.model.Parameter;
@@ -11,6 +12,10 @@ import java.util.List;
 
 public class TestStore {
     private List<Test> tests = new ArrayList<>();
+
+    public boolean addTest(Test test) {
+        return this.tests.add(test);
+    }
 
     public List<Test> getRegisteredTests() {
         List<Test> readyForCollection = new ArrayList<>();
