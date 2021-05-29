@@ -46,7 +46,7 @@ public class TestMapper {
     public List<TestDTO> toDtoList(){
         Iterator<Test> testIterator = list.iterator();
         while(testIterator.hasNext()){
-            listDTO.add(toDTO((Test) testIterator));
+            listDTO.add(toDTO(testIterator.next()));
         }
         return listDTO;
     }

@@ -5,7 +5,6 @@ import app.domain.model.Exceptions.TestAlreadyValidatedException;
 import app.domain.store.SampleList;
 import app.domain.store.TestParamList;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ public class Test {
     private String nhsCode;
     private Date dateOfCreation;
     private List<Parameter> listOfParameters = new ArrayList<>();
-    private TestParamList testParamList;
+    private TestParamList testParamList = new TestParamList();
     private SampleList sampleList = new SampleList();
     private StateOfTest stateOfTest;
     private Report report;
@@ -195,6 +194,10 @@ public class Test {
      */
     public LocalTime getTime() {
         return LocalTime.now();
+    }
+
+    public void setStateOfTestToSamplesAnalyzed() {
+        this.stateOfTest = StateOfTest.SAMPLES_ANALYZED;
     }
 
 }

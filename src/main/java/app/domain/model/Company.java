@@ -61,6 +61,7 @@ public class Company {
         TestType testTypeHardCoded = new TestType("TestCorreto","test Of Test",collectionMethodTest,categoryList);
         testTypeStore.addTestType(testTypeHardCoded);
         Test testTestHardCoded = new Test(clientStore.getClientByCardNumber((long)8765432187654321.0),categoryList,testNumberGenerator(),nhsCodeGenerator());
+        testTestHardCoded.setStateOfTestToSamplesAnalyzed();
         testStore.addTest(testTestHardCoded);
         //
     }
