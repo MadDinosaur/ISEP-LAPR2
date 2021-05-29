@@ -8,6 +8,7 @@ import app.domain.model.Report;
 import app.domain.model.Test;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class TestStore {
@@ -109,4 +110,17 @@ public class TestStore {
     public void saveReport(Test test, Report report) {
         test.addReport(report);
     }
+
+    public boolean validateTest(String nhsCode){
+        Iterator<Test> testIterator = tests.iterator();
+        Test test;
+        while(testIterator.hasNext()){
+            test = (Test) testIterator;
+            if(test.getNhsCode() == nhsCode){
+                test.validateTest();
+            }
+        }
+        return true;
+    }
+
 }

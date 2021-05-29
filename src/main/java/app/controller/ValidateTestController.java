@@ -52,7 +52,11 @@ public class ValidateTestController {
         if(!listTestsWithReport.equals(null)) {
             TestMapper testMapper = new TestMapper(listTestsWithReport);
             return testMapper.toDtoList();
-        }else throw new EmptyListException();
+        }else throw new EmptyListException("This list is empty!");
+    }
+
+    public Boolean validateTest(String nhsCode){
+        return true;
     }
 
 

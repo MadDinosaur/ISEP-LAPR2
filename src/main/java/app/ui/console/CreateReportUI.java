@@ -5,8 +5,8 @@ import app.domain.model.Exceptions.InvalidTestCodeException;
 import app.domain.model.Exceptions.InvalidTextReportException;
 import app.mappers.dto.ReportDTO;
 import app.mappers.dto.TestDTO;
-import app.mappers.dto.TestListReadyForReportDTO;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class CreateReportUI implements Runnable {
@@ -24,9 +24,9 @@ public class CreateReportUI implements Runnable {
     }
 
     private void displayTestsListReadyForReport() {
-        TestListReadyForReportDTO testListReadyForReportDTO = createReportController.getTestsListReadyForReport();
-        for (TestDTO testDTO : testListReadyForReportDTO.getTestListReadyForReportDTO()) {
-            System.out.printf("- %s", testDTO.getTestCode());
+        List<TestDTO> testListReadyForReportDTO = createReportController.getTestsListReadyForReport();
+        for (TestDTO testDTO : testListReadyForReportDTO) {
+            System.out.printf("%s - %s", testDTO.getTestCode(), testDTO.getClient().getName());
         }
     }
 

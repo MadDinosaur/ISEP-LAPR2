@@ -4,9 +4,9 @@ import app.domain.model.*;
 import app.domain.store.ReportStore;
 import app.domain.store.TestParamList;
 import app.domain.store.TestStore;
-import app.mappers.TestListReadyForReportMapper;
+import app.mappers.TestMapper;
 import app.mappers.dto.ReportDTO;
-import app.mappers.dto.TestListReadyForReportDTO;
+import app.mappers.dto.TestDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +26,10 @@ public class CreateReportController {
         reportStore = company.getReportStore();
     }
 
-    public TestListReadyForReportDTO getTestsListReadyForReport() {
+    public List<TestDTO> getTestsListReadyForReport() {
         List<Test> testListReadyForReport =  company.getTestStore().getTestsListReadyForReport();
-        TestListReadyForReportMapper testListReadyForReportMapper = new TestListReadyForReportMapper();
-        return testListReadyForReportMapper.toDTO(testListReadyForReport);
+        TestMapper testMapper = new TestMapper(testListReadyForReport);
+        return testMapper.toDtoList();
     }
 
     public List<TestParameterResult> getTestParametersResultsByCode(String testCode) {

@@ -19,7 +19,7 @@ public class TestMapper {
     /**
      * Dto of the list of tests
      */
-    private List<TestDTO> listDTO;
+    private List<TestDTO> listDTO = new ArrayList<>();
 
     /**
      * Constructor of the TestMapper class with one parameter

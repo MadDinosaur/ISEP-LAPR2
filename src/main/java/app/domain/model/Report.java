@@ -26,6 +26,7 @@ public class Report {
      * @param textReport    Report's text
      */
     public Report(String textDiagnosis, String textReport) {
+        validateDiagnosis(textDiagnosis);
         this.textDiagnosis = textDiagnosis;
         validateReport(textReport);
         this.textReport = textReport;
@@ -33,13 +34,25 @@ public class Report {
 
     /**
      * Validates the report by checking if it has a maximum of 400 words
+     *
      * @param textReport Report's text
      * @return boolean
      */
     private boolean validateReport(String textReport) {
+        if (textReport == null) {
+            throw new IllegalArgumentException("The report's text cannot be null");
+        }
         String[] listaDePalavras = textReport.split(" ");
         if (listaDePalavras.length > 400) {
             throw new InvalidTextReportException();
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateDiagnosis(String textDiagnosis) {
+        if (textDiagnosis == null) {
+            throw new IllegalArgumentException("The diagnosis cannot be null");
         } else {
             return true;
         }
