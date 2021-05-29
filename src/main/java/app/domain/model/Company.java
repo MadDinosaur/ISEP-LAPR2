@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Random;
 
 /**
- *
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
 public class Company {
@@ -31,6 +30,7 @@ public class Company {
     private TestStore testStore;
     private TestTypeStore testTypeStore = new TestTypeStore();
     private ReportStore reportStore;
+    private int testNumber;
 
     private List<Test> registeredTests = testStore.getRegisteredTests();
     private TestTypeStore tts = new TestTypeStore();
@@ -48,8 +48,9 @@ public class Company {
         this.clientStore = new ClientStore();
         this.orgRoleStore = new OrgRoleStore(authFacade);
         this.testStore = new TestStore();
+        this.testNumber = 0;
         //Para testes
-        clientStore.saveClient(new Client("Joni",(long) 1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512345,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
+        clientStore.saveClient(new Client("Joni", (long) 1234567812345678.0, 1234512345, new DateBirth(24, 12, 2002), 1234512345, (long) 12345123456.0, new Email("teste@gmail.com"), "male"));
         // this.testTypeStore.addTestType(new TestType("123",));
 
     }
@@ -80,7 +81,6 @@ public class Company {
     }
 
     /**
-     *
      * getter used on US8
      */
     public ArrayList<TestType> getTestTypeList() {
@@ -103,11 +103,17 @@ public class Company {
         return clientStore;
     }
 
-    public OrgRoleStore getOrgRoleStore() { return this.orgRoleStore;}
+    public OrgRoleStore getOrgRoleStore() {
+        return this.orgRoleStore;
+    }
 
-    public TestStore getTestStore() { return this.testStore;}
+    public TestStore getTestStore() {
+        return this.testStore;
+    }
 
-    public List<Test> getUnusedTests() { return this.registeredTests; }
+    public List<Test> getUnusedTests() {
+        return this.registeredTests;
+    }
 
     public ReportStore getReportStore() {
         return this.reportStore;
@@ -121,7 +127,8 @@ public class Company {
         }
         return false;
     }
-    public boolean saveClientAsUser(Client client,String email){
+
+    public boolean saveClientAsUser(Client client, String email) {
         String pwd = generateUserPassword();
         if (authFacade.addUserWithRole(client.getName(), email, pwd, client.getOrganizationRole())) {
             clientStore.saveClient(client);
@@ -162,5 +169,35 @@ public class Company {
         }
     }
 
+    public void createTestToClient(Client client, List<Category> listOfCategories) {
+        String generatedTestCode = testNumberGenerator();
+        String generatedNhsCode = nhsCodeGenerator();
+        Test testToClient = new Test(client,listOfCategories,generatedTestCode,generatedNhsCode);
+    }
 
+    public String testNumberGenerator() {
+        StringBuilder generatedTestCode = new StringBuilder();
+        String testCodeString = String.valueOf(testNumber);
+        int lengthTestNumber = 12;
+        while (generatedTestCode.length() + testCodeString.length() < lengthTestNumber) {
+            generatedTestCode.append("0");
+        }
+        generatedTestCode.append(testCodeString);
+        testNumber++;
+        return generatedTestCode.toString();
+    }
+
+    public String nhsCodeGenerator() {
+        StringBuilder generatedNhsCode = new StringBuilder();
+        String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        int lengthNhsCode = 12;
+        while (lengthNhsCode-- != 0) {
+            int character = (int) (Math.random() * ALPHA_NUMERIC_STRING.length());
+            generatedNhsCode.append(ALPHA_NUMERIC_STRING.charAt(character));
+        }
+        return generatedNhsCode.toString();
+    }
 }
+
+
+

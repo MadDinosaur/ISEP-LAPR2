@@ -237,4 +237,13 @@ public class TestType {
         }
         return parameterList;
     }
+
+    public Category getCategoryFromTestTypeByName(String nameOfCategory){
+        for (Category category : categories){
+            if(category.getCategoryName().equals(nameOfCategory)){
+                return category;
+            }
+        }
+        return null;
+    }
 }

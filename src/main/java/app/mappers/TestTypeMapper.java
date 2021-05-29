@@ -1,7 +1,7 @@
-package app.mapper;
+package app.mappers;
 
 import app.domain.model.TestType;
-import app.DTO.TestTypeDto;
+import app.mappers.dto.TestTypeDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 public class TestTypeMapper {
 
     public TestTypeDto toDto(TestType testType){
-        return new TestTypeDto(testType.getCode(), testType.getDescription(), testType.getCollectionMethod(),testType.getCategories());
+        return new TestTypeDto(testType.getCode());
     }
     public List<TestTypeDto> toDto(List<TestType> testTypes){
         List<TestTypeDto> testTypeDtos = new ArrayList<>();

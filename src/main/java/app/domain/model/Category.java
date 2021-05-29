@@ -158,6 +158,14 @@ public class Category {
         return parameterList;
     }
 
+    public String getCategoryCode() {
+        return categoryCode;
+    }
+
+    public String getCategoryNhsId() {
+        return categoryNhsId;
+    }
+
     /**
      * Method that turn the parameter category's name, code and description into a single string
      * @return parameter category's name, code, description
@@ -183,6 +191,15 @@ public class Category {
         if (o == null || getClass() != o.getClass()) return false;
         Category category = (Category) o;
         return Objects.equals(categoryName, category.categoryName) && Objects.equals(categoryCode, category.categoryCode) && Objects.equals(categoryDescription, category.categoryDescription) && Objects.equals(categoryNhsId, category.categoryNhsId) && Objects.equals(parameterList, category.parameterList);
+    }
+
+    public Parameter getParameterByName(String nameOfParameter){
+        for (Parameter parameter : parameterList){
+            if(parameter.getParameterName().equals(nameOfParameter)){
+                return parameter;
+            }
+        }
+        return null;
     }
 
 }
