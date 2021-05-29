@@ -17,6 +17,8 @@ public class SampleController {
 
     private Company company;
     private Sample sample;
+    private Test test;
+
     public List<Test> getTestList() { return company.getUnusedTests(); }
 
     public void setTestCode(Test testCode) {

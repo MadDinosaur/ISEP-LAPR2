@@ -79,10 +79,6 @@ public class Company {
         return this.categoryList.add(pc);
     }
 
-    /**
-     *
-     * getter used on US8
-     */
     public ArrayList<TestType> getTestTypeList() {
         return getTestTypeStore().getTestTypeList();
     }
@@ -112,8 +108,6 @@ public class Company {
     public ReportStore getReportStore() {
         return this.reportStore;
     }
-
-    public SampleStore getSampleStore() { return this.SampleList; }
 
     public boolean saveEmployeeAsUser(Employee e) {
         String pwd = generateUserPassword();
