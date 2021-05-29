@@ -24,7 +24,7 @@ public class Company {
     private String designation;
     private AuthFacade authFacade;
     private EmployeeStore employeeStore;
-
+    private int testNumber;
 
     private ClientStore clientStore;
     private OrgRoleStore orgRoleStore;
@@ -49,6 +49,7 @@ public class Company {
         this.clientStore = new ClientStore();
         this.orgRoleStore = new OrgRoleStore(authFacade);
         this.testStore = new TestStore();
+        this.testNumber = 0;
         //Para testes
         clientStore.saveClient(new Client("Joni",(long) 1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512345,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
         // this.testTypeStore.addTestType(new TestType("123",));
@@ -171,6 +172,34 @@ public class Company {
         } catch (IOException e) {
             System.out.println("An error occurred on file " + file.getName());
         }
+    }
+    public void createTestToClient(Client client, List<Category> listOfCategories) {
+        String generatedTestCode = testNumberGenerator();
+        String generatedNhsCode = nhsCodeGenerator();
+        Test testToClient = new Test(client,listOfCategories,generatedTestCode,generatedNhsCode);
+    }
+
+    public String testNumberGenerator() {
+        StringBuilder generatedTestCode = new StringBuilder();
+        String testCodeString = String.valueOf(testNumber);
+        int lengthTestNumber = 12;
+        while (generatedTestCode.length() + testCodeString.length() < lengthTestNumber) {
+            generatedTestCode.append("0");
+        }
+        generatedTestCode.append(testCodeString);
+        testNumber++;
+        return generatedTestCode.toString();
+    }
+
+    public String nhsCodeGenerator() {
+        StringBuilder generatedNhsCode = new StringBuilder();
+        String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        int lengthNhsCode = 12;
+        while (lengthNhsCode-- != 0) {
+            int character = (int) (Math.random() * ALPHA_NUMERIC_STRING.length());
+            generatedNhsCode.append(ALPHA_NUMERIC_STRING.charAt(character));
+        }
+        return generatedNhsCode.toString();
     }
 
 
