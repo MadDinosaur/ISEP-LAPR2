@@ -1,7 +1,10 @@
 package app.controller;
 
 import app.domain.model.*;
+import app.domain.model.Exceptions.EmptyListException;
 import app.domain.store.*;
+import app.mappers.TestMapper;
+import app.mappers.dto.TestDTO;
 
 import java.util.List;
 
@@ -21,6 +24,8 @@ public class ValidateTestController {
      * List of tests with report currently available
      */
     private List<Test> listTestsWithReport;
+
+    private List<TestDTO> listTestsWithReportDTO;
 
     /**
      * Empty constructor of ValidateTestController
@@ -43,8 +48,11 @@ public class ValidateTestController {
         this.listTestsWithReport = currTestStore.getListTestsWithReport();
     }
 
-    public void toDTO(){
-
+    public List<TestDTO> toDTO(){
+        if(!listTestsWithReport.equals(null)) {
+            TestMapper testMapper = new TestMapper(listTestsWithReport);
+            return testMapper.toDtoList();
+        }else throw new EmptyListException();
     }
 
 

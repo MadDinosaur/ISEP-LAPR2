@@ -31,7 +31,7 @@ deactivate crUI
 sd -> crUI: types in the test result he wants to see (by its code)
 crUI -> crC: getTestParametersResultsByCode(testCode)
 crC -> ts: test = getTestByCode(testCode)
-crC -> t: testParamStore = getTestParamStore()
+crC -> t: testParamList = getTestParamList()
 crC -> tps: getTestParametersResults()
 crUI -> crC: getTestParametersReferenceValues()
 loop for test parameters in test

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestStore {
-    private List<Test> tests;
+    private List<Test> tests = new ArrayList<>();
 
     public List<Test> getRegisteredTests() {
         List<Test> readyForCollection = new ArrayList<>();
@@ -30,6 +30,10 @@ public class TestStore {
         return readyForAnalysis;
     }
 
+    /**
+     * Returns a list of tests which are on the SAMPLES_ANALYZED state
+     * @return List<Test>
+     */
     public List<Test> getTestsListReadyForReport() {
         List<Test> readyForDiagnosis = new ArrayList<>();
         for (Test test : tests)
@@ -57,7 +61,7 @@ public class TestStore {
         return validated;
     }
 
-    public Test getTestBySampleBarcode(int barcode) {
+    public Test getTestBySampleBarcode(String barcode) {
         for (Test test : tests)
             if (test.getSampleList().existsSample(barcode))
                 return test;
@@ -73,6 +77,11 @@ public class TestStore {
         return test.getTestParamList().createTestParameterResult(paramCode, result, metric);
     }
 
+    /**
+     * Returns a test by its code
+     * @param testCode Test's code
+     * @return Test
+     */
     public Test getTestByCode(String testCode) {
         Test test1 = null;
         for (Test t : tests) {
@@ -87,6 +96,11 @@ public class TestStore {
         }
     }
 
+    /**
+     * Saves the report in the given test
+     * @param test Test
+     * @param report Report
+     */
     public void saveReport(Test test, Report report) {
         test.addReport(report);
     }

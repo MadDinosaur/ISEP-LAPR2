@@ -16,9 +16,15 @@ public class CreateReportController {
     private Company company;
     private Test test;
     private Report report;
-    private TestStore testStore = company.getTestStore();
-    private TestParamList testParamList = test.getTestParamList();
-    private ReportStore reportStore = company.getReportStore();
+    private TestStore testStore;
+    private TestParamList testParamList;
+    private ReportStore reportStore;
+
+    public CreateReportController() {
+        this.company = App.getInstance().getCompany();
+        testStore = company.getTestStore();
+        reportStore = company.getReportStore();
+    }
 
     public TestListReadyForReportDTO getTestsListReadyForReport() {
         List<Test> testListReadyForReport =  company.getTestStore().getTestsListReadyForReport();
@@ -28,7 +34,8 @@ public class CreateReportController {
 
     public List<TestParameterResult> getTestParametersResultsByCode(String testCode) {
         this.test = testStore.getTestByCode(testCode);
-        return testParamList.getTestParameterResults();
+        testParamList = test.getTestParamList();
+        return testParamList.getTestParametersResults();
     }
 
     public List<ReferenceValue> getTestParametersReferenceValues() {

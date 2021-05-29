@@ -25,14 +25,7 @@ public class RecordTestResultController {
     }
 
     public List<ParamDTO> getTestParameters(String barcode) {
-        int convertedBarcode;
-
-        try { convertedBarcode = Integer.parseInt(barcode); }
-        catch (NumberFormatException ex) {
-            throw new NumberFormatException("Barcode must be a number!");
-        }
-
-        test = company.getTestStore().getTestBySampleBarcode(convertedBarcode);
+        test = company.getTestStore().getTestBySampleBarcode(barcode);
 
         ParamMapper map = new ParamMapper();
         return map.toDTO(company.getTestStore().getTestParameters(test));

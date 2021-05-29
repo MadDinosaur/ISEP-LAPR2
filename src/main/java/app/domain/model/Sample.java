@@ -1,7 +1,15 @@
 package app.domain.model;
 
 public class Sample {
-    public int getBarcode() {
-        return 1;
+
+    private String barcodeText;
+
+    public Sample (String barcodeText) {
+        this.barcodeText = barcodeText;
     }
+
+    public String getBarcode() {
+        return barcodeText;
+    }
+
 }
