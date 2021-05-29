@@ -32,7 +32,7 @@ public class Company {
     private TestStore testStore = new TestStore();
     private TestTypeStore testTypeStore = new TestTypeStore();
     private ReportStore reportStore;
-    private SampleStore sampleList;
+    private SampleList sampleList;
 
     private List<Test> registeredTests = testStore.getRegisteredTests();
     private List<Category> parameterCategoryList = new ArrayList<>();
@@ -129,11 +129,9 @@ public class Company {
         return this.reportStore;
     }
 
-<<<<<<< HEAD
-=======
-    public SampleStore getSampleStore() { return this.sampleList; }
 
->>>>>>> 60bbe8b8599aed66da822ee04036e69cdda3a93b
+    public SampleList getSampleStore() { return this.sampleList; }
+
     public boolean saveEmployeeAsUser(Employee e) {
         String pwd = generateUserPassword();
         if (authFacade.addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId())) {

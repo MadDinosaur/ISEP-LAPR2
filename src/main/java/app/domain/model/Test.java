@@ -19,7 +19,7 @@ public class Test {
     private String nhsCode;
     private Date dateOfCreation;
     private List<Parameter> listOfParameters = new ArrayList<>();
-    private TestParamList testParamList = new TestParamList();
+    private TestParamList testParamList;
     private SampleList sampleList = new SampleList();
     private StateOfTest stateOfTest;
     private Report report;
