@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author Tomás Cancela <1200985@isep.ipp.pt>
  */
-public class TestListReadyForReportMapper {
+public class TestListReadyForReportMapperDELETELATER {
 
     /**
      * Creation of a Test Mapper object

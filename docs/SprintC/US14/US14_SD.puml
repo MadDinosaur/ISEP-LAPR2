@@ -8,7 +8,7 @@ participant CreateReportController as crC
 participant Company as com
 participant "testStore: TestStore" as ts
 participant "testParamList: TestParamList" as tps
-participant TestListReadyForReportMapper as tlrm
+participant TestMapper as tm
 participant "test: Test" as t
 participant "reportStore: ReportStore" as rs
 participant "reportMapper: ReportMapper" as rm
@@ -23,8 +23,8 @@ sd -> crUI: starts new report
 crUI -> crC: getTestsListReadyForReport()
 crC -> com: testStore = getTestStore()
 crC -> ts: testListReadyForReport = getTestsListReadyForReport()
-crC -> tlrm: toDTO(testListReadyForReport)
-ref over tlrm : SD_TestListReadyForReportToDTO
+crC -> tm: toDTO(testListReadyForReport)
+ref over tm : SD_TestListReadyForReportToDTO
 crUI -[dashed]> sd: shows a list of tests ready to have a report and requests a test to be shown
 deactivate crUI
 
