@@ -107,8 +107,12 @@ public class RegisterTestUI implements Runnable {
                 }
             } while (!validAwnser);
         }while (repeatCategory);
-        registerTestController.createTest();
-
+        String[] codesOfTest = registerTestController.createTest();
+        String generatedTestCode= codesOfTest[0];
+        String generatedNhsCode= codesOfTest[1];
+        System.out.println("The test was registered with the \n" +
+                "Test Code: " + generatedTestCode +"\n"+
+                "Nhs Code: " + generatedNhsCode);
     }
 
 

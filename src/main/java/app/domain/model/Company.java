@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -173,10 +174,15 @@ public class Company {
             System.out.println("An error occurred on file " + file.getName());
         }
     }
-    public void createTestToClient(Client client, List<Category> listOfCategories) {
+    public String[] createTestToClient(Client client, List<Category> listOfCategories) {
         String generatedTestCode = testNumberGenerator();
         String generatedNhsCode = nhsCodeGenerator();
         Test testToClient = new Test(client,listOfCategories,generatedTestCode,generatedNhsCode);
+        testStore.addTest(testToClient);
+        String[] codes=  new String[2];
+        codes[0]= generatedTestCode;
+        codes[1]= generatedNhsCode;
+        return codes;
     }
 
     public String testNumberGenerator() {

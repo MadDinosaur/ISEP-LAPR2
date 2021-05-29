@@ -2,6 +2,9 @@ package app.domain.model;
 import auth.domain.model.Email;
 import auth.domain.model.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Client {
 
     private User clientUser;
@@ -15,6 +18,7 @@ public class Client {
     private String sex;
     private String SEX_POR_OMISSAO = "No sex assigned";
     private final String organizationRole = "cl";
+    private List<Test> tests = new ArrayList<>();
 
     public Client(String name, long cardNumber, long nhsId, DateBirth dateBirth, long TIN, long phoneNumber, Email email, String sex) {
         setName(name);
@@ -68,5 +72,9 @@ public class Client {
     }
     public String getOrganizationRole() {
         return organizationRole;
+    }
+
+    public void addTestToClient(Test test){
+        tests.add(test);
     }
 }
