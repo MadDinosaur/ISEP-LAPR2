@@ -53,6 +53,7 @@ public class Company {
         //Para testes
         clientStore.saveClient(new Client("Teste",(long) 8765432187654321.0,1234512347,new DateBirth(24,12,2002),1234512346,(long)12345123457.0,new Email("teste50@gmail.com"),"male"));
         clientStore.saveClient(new Client("Joni",(long)  1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512345,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
+        clientStore.saveClient(new Client("Joni",(long)  8765432187654322.0,1234512345,new DateBirth(24,12,2002),1234512345,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
         CollectionMethod collectionMethodTest = new CollectionMethod("test Colection");
         Category categoryTest = new Category("Hemograma", "pistola", "WBC", "toma");
         Parameter parameter = new Parameter("par2345","19045","test f234");
@@ -61,10 +62,9 @@ public class Company {
         TestType testTypeHardCoded = new TestType("TestCorreto","test Of Test",collectionMethodTest,categoryList);
         testTypeStore.addTestType(testTypeHardCoded);
         Test testTestHardCoded = new Test(clientStore.getClientByCardNumber((long)8765432187654321.0),categoryList,testNumberGenerator(),nhsCodeGenerator());
+        Test testTestHardCodedRegistered = new Test(clientStore.getClientByCardNumber((long)8765432187654322.0),categoryList,testNumberGenerator(),nhsCodeGenerator());
         testTestHardCoded.setStateOfTestToSamplesAnalyzed();
-        testStore.addTest(testTestHardCoded);
-        if(testTestHardCoded.isRegistered())
-            System.out.println("registered");
+        testStore.addTest(testTestHardCodedRegistered);
         //
     }
 
