@@ -35,7 +35,6 @@ public class Company {
     private SampleStore sampleList;
 
     private List<Test> registeredTests = testStore.getRegisteredTests();
-    private TestTypeStore tts = new TestTypeStore();
     private List<Category> parameterCategoryList = new ArrayList<>();
 
     private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
@@ -50,11 +49,20 @@ public class Company {
         this.clientStore = new ClientStore();
         this.orgRoleStore = new OrgRoleStore(authFacade);
         this.testStore = new TestStore();
-        this.testNumber = 0;
+        this.testNumber = 1;
         //Para testes
-        clientStore.saveClient(new Client("Joni",(long) 1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512345,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
-        // this.testTypeStore.addTestType(new TestType("123",));
-
+        clientStore.saveClient(new Client("Teste",(long) 8765432187654321.0,1234512347,new DateBirth(24,12,2002),1234512346,(long)12345123457.0,new Email("teste50@gmail.com"),"male"));
+        clientStore.saveClient(new Client("Joni",(long)  1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512345,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
+        CollectionMethod collectionMethodTest = new CollectionMethod("test Colection");
+        Category categoryTest = new Category("Hemograma", "pistola", "WBC", "toma");
+        Parameter parameter = new Parameter("par2345","19045","test f234");
+        categoryTest.saveParameter(parameter);
+        List<Category> categoryList = new ArrayList<Category>(Collections.singleton(categoryTest));
+        TestType testTypeHardCoded = new TestType("TestCorreto","test Of Test",collectionMethodTest,categoryList);
+        testTypeStore.addTestType(testTypeHardCoded);
+        Test testTestHardCoded = new Test(clientStore.getClientByCardNumber((long)8765432187654321.0),categoryList,testNumberGenerator(),nhsCodeGenerator());
+        testStore.addTest(testTestHardCoded);
+        //
     }
 
 

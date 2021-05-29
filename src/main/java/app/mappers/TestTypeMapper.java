@@ -13,6 +13,7 @@ public class TestTypeMapper {
     }
     public List<TestTypeDto> toDto(List<TestType> testTypes){
         List<TestTypeDto> testTypeDtos = new ArrayList<>();
+
         for (TestType testType : testTypes){
             testTypeDtos.add(this.toDto(testType));
         }

@@ -2,6 +2,7 @@ package app.domain.model;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -35,6 +36,7 @@ public class Category {
 
     /**
      * Category class constructor with three parameters (Category's name, code and description)
+     *
      * @param categoryName
      * @param categoryCode
      * @param categoryDescription
@@ -47,11 +49,12 @@ public class Category {
         this.categoryCode = categoryCode;
         this.categoryDescription = categoryDescription;
         this.categoryNhsId = null;
-        this.parameterList = null;
+        this.parameterList = new ArrayList<>();
     }
 
     /**
      * Category class constructor with four parameters (Category's name, code, description and NHS id)
+     *
      * @param categoryName
      * @param categoryCode
      * @param categoryDescription
@@ -65,11 +68,12 @@ public class Category {
         this.categoryCode = categoryCode;
         this.categoryDescription = categoryDescription;
         this.categoryNhsId = categoryNhsId;
-        this.parameterList = null;
+        this.parameterList = new ArrayList<>();
     }
 
     /**
      * Getter for parameter category's description
+     *
      * @return parameter category's description
      */
     public String getCategoryDescription() {
@@ -78,6 +82,7 @@ public class Category {
 
     /**
      * Method that checks parameter category's name's compliance with the acceptance criteria
+     *
      * @param categoryName
      */
     private void checkCategoryNameRules(String categoryName) {
@@ -89,20 +94,20 @@ public class Category {
 
     /**
      * Method that checks parameter category's code's compliance with the acceptance criteria
+     *
      * @param categoryCode
      */
     private void checkCategoryCodeRules(String categoryCode) {
         if (StringUtils.isBlank(categoryCode))
             throw new IllegalArgumentException("Code cannot be blank.");
-        if ( (categoryCode.length() < 4) || (categoryCode.length() > 8))
+        if ((categoryCode.length() < 4) || (categoryCode.length() > 8))
             throw new IllegalArgumentException("Code must have 5 characters.");
     }
 
     /**
-     *
      * @param categoryDescription
      */
-    private void checkCategoryDescriptionRules(String categoryDescription){
+    private void checkCategoryDescriptionRules(String categoryDescription) {
         if (StringUtils.isBlank(categoryDescription))
             throw new IllegalArgumentException("Description cannot be blank.");
         if (categoryDescription.length() > 40)
@@ -111,39 +116,41 @@ public class Category {
 
     /**
      * Method that creates a new parameter for the parameter category
+     *
      * @param shortName
      * @param code
      * @param description
      * @return new parameter
      */
-    public Parameter createNewParameter(String shortName, String code, String description){
+    public Parameter createNewParameter(String shortName, String code, String description) {
         return new Parameter(shortName, code, description);
     }
 
     /**
      * Method that saves the parameter after it's validated
+     *
      * @param parameter
      * @return true or false
      */
-    public boolean saveParameter(Parameter parameter){
+    public boolean saveParameter(Parameter parameter) {
         int cont = 0;
-        if(parameterList != null) {
-            Iterator<Parameter> iterator = parameterList.iterator();
-            while (iterator.hasNext()) {
-                Parameter newParameter = iterator.next();
-                if (newParameter.getParameterName().equalsIgnoreCase(parameter.getParameterName()) || newParameter.getParameterCode().equalsIgnoreCase(parameter.getParameterCode()) || newParameter.getParameterDescription().equalsIgnoreCase(parameter.getParameterDescription())) {
-                    cont++;
-                }
-            }
-            if (cont < 1) {
+
+        for (Parameter newParameter : parameterList) {
+            if (newParameter.getParameterName().equalsIgnoreCase(parameter.getParameterName()) || newParameter.getParameterCode().equalsIgnoreCase(parameter.getParameterCode()) || newParameter.getParameterDescription().equalsIgnoreCase(parameter.getParameterDescription())) {
+                cont++;
                 parameterList.add(parameter);
-                return true;
-            } else return false;
-        }else return false;
+            }
+        }
+        if (cont < 1) {
+            parameterList.add(parameter);
+            return true;
+        } else return false;
+
     }
 
     /**
      * Getter for the parameter category's name
+     *
      * @return parameter category's name
      */
     public String getCategoryName() {
@@ -152,9 +159,10 @@ public class Category {
 
     /**
      * Getter for the parameter category's list of parameters
+     *
      * @return parameter list
      */
-    public List<Parameter> getParameterList(){
+    public List<Parameter> getParameterList() {
         return parameterList;
     }
 
@@ -168,12 +176,13 @@ public class Category {
 
     /**
      * Method that turn the parameter category's name, code and description into a single string
+     *
      * @return parameter category's name, code, description
      */
     @Override
     public String toString() {
         return "Category{" +
-                "name: "+ categoryName + "; " +
+                "name: " + categoryName + "; " +
                 "code: " + categoryCode + "; " +
                 "description: " + categoryDescription + "; " +
                 "nhs id: " + categoryNhsId +
@@ -181,7 +190,6 @@ public class Category {
     }
 
     /**
-     *
      * @param o Another object
      * @return True if a category is equal to another category and false otherwise
      */
@@ -193,9 +201,9 @@ public class Category {
         return Objects.equals(categoryName, category.categoryName) && Objects.equals(categoryCode, category.categoryCode) && Objects.equals(categoryDescription, category.categoryDescription) && Objects.equals(categoryNhsId, category.categoryNhsId) && Objects.equals(parameterList, category.parameterList);
     }
 
-    public Parameter getParameterByName(String nameOfParameter){
-        for (Parameter parameter : parameterList){
-            if(parameter.getParameterName().equals(nameOfParameter)){
+    public Parameter getParameterByName(String nameOfParameter) {
+        for (Parameter parameter : parameterList) {
+            if (parameter.getParameterName().equals(nameOfParameter)) {
                 return parameter;
             }
         }

@@ -31,7 +31,8 @@ public class RegisterTestUI implements Runnable {
         System.out.println("Please introduce Client Card Number");
         long clientCardNumber = sc.nextLong();
         registerTestController.setClientByCardNumber(clientCardNumber);
-        System.out.println("Is this the correct Client? (Type Yes/No)");
+        System.out.println("Is this the correct Client? (Type Yes/No)");  //resolver AQUI
+        client = registerTestController.getClient();
         System.out.println("Client name: " + client.getName());
         System.out.println("Please select a Test Type");
         this.testTypeList = registerTestController.testTypeList();
@@ -67,12 +68,14 @@ public class RegisterTestUI implements Runnable {
                     System.out.println(index + "- " + parameterDTO.getName());
                 }
                 int optionOfTestParameter = sc.nextInt();
-                registerTestController.setParameterByName(parametersDtos.get(optionOfTestParameter).getName());
+                registerTestController.setParameterByName(parametersDtos.get(optionOfTestParameter-1).getName());
                 registerTestController.saveParametersAndCategories();
                 System.out.println("Would you like to add more parameters in that Category? Type Yes/No");
-                String awnser = sc.nextLine();
+
+
                 boolean validAwnser;
                 do {
+                    String awnser = sc.next();
                     if (awnser.equalsIgnoreCase("yes")) {
                         repeatParameter = true;
                         validAwnser = true;
@@ -90,9 +93,10 @@ public class RegisterTestUI implements Runnable {
             } while (repeatParameter);
 
             System.out.println("Would you like to add more Categories of that Test Type? Type Yes/No");
-            String awnser = sc.nextLine();
+
             boolean validAwnser;
             do {
+                String awnser = sc.next();
                 if (awnser.equalsIgnoreCase("yes")) {
                     repeatCategory = true;
                     validAwnser = true;
