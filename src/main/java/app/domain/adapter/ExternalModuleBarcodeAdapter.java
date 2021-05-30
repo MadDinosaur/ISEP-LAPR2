@@ -20,6 +20,13 @@ import static net.sourceforge.barbecue.BarcodeFactory.createUPCA;
 
 public class ExternalModuleBarcodeAdapter implements ExternalModuleBarcode {
 
+    /**
+     * creates BufferedImage of the barcode
+     * @param barcodeText barcode digit code
+     * @return barcode
+     * @throws BarcodeException
+     * @throws OutputException
+     */
     @Override
     public BufferedImage barcodeGenerator(String barcodeText) throws BarcodeException, OutputException {
         Barcode barcode = createUPCA(barcodeText);
@@ -27,6 +34,12 @@ public class ExternalModuleBarcodeAdapter implements ExternalModuleBarcode {
         return BarcodeImageHandler.getImage(barcode);
     }
 
+    /**
+     * saves the barcode as a .jpg file in to a specific folder
+     * @param barcodeJPG barcode image
+     * @param barcodeText barcode digit code
+     * @throws IOException
+     */
     @Override
     public void saveBarcode(BufferedImage barcodeJPG, String barcodeText) throws IOException {
         File outputfile = new File("barcodes\\barcode" + barcodeText + ".jpg");
