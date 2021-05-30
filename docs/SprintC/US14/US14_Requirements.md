@@ -22,7 +22,7 @@ values.
 * Q1: Is there a limit of characters for the report and the diagnosis that will be made by the Specialist Doctor?
 > Yes, at most 400 words.
 * Q2: Should the specialist doctor make the diagnosis and report at the same time? Or should he have the possibility to make one of them and, later, the other? (eg.: in case he needs to exit the application but has already worked on one of the two)
->
+> 
 * Q3: Should the application have a specific order for the "documents" to be made by the specialist doctor? Or can he choose which one he wants to make first?
 >
 * Q4: Should the specialist doctor write the diagnosis and report in the application, or should he upload files written in another API?
@@ -45,7 +45,8 @@ values.
 > The report contains the diagnosis. The report is free text and should have no more than 400 words.
 ### 1.3. Acceptance Criteria
 
-* AC1: The report should have a maximum of 400 words.
+* AC1: The Specialist Doctor can only write a report when all previous steps are completed.
+* AC2: The report should have a maximum of 400 words.
 
 ### 1.4. Found out Dependencies
 
@@ -56,13 +57,15 @@ values.
 **Input Data:**
 
 * Typed data:
+    * a test code;
     * a diagnosis;
     * a report.
     
 
 * Selected data:
-    * test results;
-    * test reference values;
+    * test parameters names;
+    * test parameters results;
+    * test parameters reference values;
 
 **Output Data:**
 
@@ -103,7 +106,7 @@ values.
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
-| Step 1: starts a new report |	instantiating a new report?	| Test | Creator Pattern: Test contains an object from the Report class.  |                        
+| Step 1: starts a new report |	instantiating a new report?	| Report | Creator Pattern: Report class is responsible for creating all report objects.  |                        
 | Step 2: shows a list of tests ready to have a report and requests a test to be shown | having the list of tests? | TestStore | Information Expert: knows its own data. |
 | Step 3: types in the test result he wants to see | saving the input? | CreateReportUI | Responsible for all the user-system interactions. |
 | Step 4: shows the test's parameter result and test reference values and requests data (diagnosis, report) | n/a	| n/a | n/a |

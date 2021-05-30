@@ -31,7 +31,7 @@ public class Company {
     private OrgRoleStore orgRoleStore;
     private TestStore testStore = new TestStore();
     private TestTypeStore testTypeStore = new TestTypeStore();
-    private ReportStore reportStore;
+    private ReportStore reportStore = new ReportStore();
     private SampleList sampleList;
 
     private List<Category> parameterCategoryList = new ArrayList<>();
@@ -50,7 +50,7 @@ public class Company {
         this.testStore = new TestStore();
         this.testNumber = 1;
         //Para testes
-        clientStore.saveClient(new Client("Teste",(long) 8765432187654321.0,1234512347,new DateBirth(24,12,2002),1234512346,(long)12345123457.0,new Email("teste50@gmail.com"),"male"));
+        clientStore.saveClient(new Client("Tomás",(long) 8765432187654321.0,1234512347,new DateBirth(24,12,2002),1234512346,(long)12345123457.0,new Email("teste50@gmail.com"),"male"));
         clientStore.saveClient(new Client("Joni",(long)  1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512345,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
         clientStore.saveClient(new Client("Joni",(long)  8765432187654322.0,1234512345,new DateBirth(24,12,2002),1234512345,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
         CollectionMethod collectionMethodTest = new CollectionMethod("test Colection");
@@ -62,7 +62,7 @@ public class Company {
         testTypeStore.addTestType(testTypeHardCoded);
         Test testTestHardCoded = new Test(clientStore.getClientByCardNumber((long)8765432187654321.0),testTypeHardCoded,testNumberGenerator(),nhsCodeGenerator());
         Test testTestHardCodedRegistered = new Test(clientStore.getClientByCardNumber((long)8765432187654322.0),testTypeHardCoded,testNumberGenerator(),nhsCodeGenerator());
-        testTestHardCoded.createTestParameterResult("HB000", "12", "metric");
+        testTestHardCoded.saveTestParameterResult(parameter, testTestHardCoded.createTestParameterResult("HB000", "135", "mg"));
         testTestHardCoded.setStateOfTestToSamplesAnalyzed();
         testStore.addTest(testTestHardCodedRegistered);
         testStore.addTest(testTestHardCoded);

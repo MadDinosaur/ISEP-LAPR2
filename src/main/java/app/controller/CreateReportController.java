@@ -26,15 +26,15 @@ public class CreateReportController {
     }
 
     public List<TestDTO> getTestsListReadyForReport() {
-        List<Test> testListReadyForReport =  company.getTestStore().getTestsListReadyForReport();
+        List<Test> testListReadyForReport = company.getTestStore().getTestsListReadyForReport();
         TestMapper testMapper = new TestMapper(testListReadyForReport);
         return testMapper.toDtoList();
     }
 
-    public List<TestParameterResult> getTestParametersResultsByCode(String testCode) {
+    public List<TestParameter> getTestParametersByCode(String testCode) {
         this.test = testStore.getTestByCode(testCode);
         testParamList = test.getTestParamList();
-        return testParamList.getTestParametersResults();
+        return testParamList.getTestParameters();
     }
 
     public void createReport(ReportDTO reportDTO) {
