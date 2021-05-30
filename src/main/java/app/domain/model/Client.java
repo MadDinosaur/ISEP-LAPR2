@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Client {
 
-    private User clientUser;
     private String name;
     private long cardNumber;
     private long nhsId;

@@ -83,7 +83,7 @@ class ExternalModule3API {
 }
 class RecordTestResultUI
 class RecordTestResultController {
-+ RecordTestResultController()
++ RecordTestResultController(company)
 + getTestsWithCollectedSamples()
 + getTestParameters(barcode)
 + createTestParameterResult(paramCode, result, metric)

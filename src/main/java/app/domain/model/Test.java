@@ -63,6 +63,9 @@ public class Test {
         stateOfTest = StateOfTest.REGISTERED;
     }
 
+    /**
+     * Sets the client and verifies if it is null
+     */
     private void setClient(Client client) {
         if (client==null) {
             throw new IllegalArgumentException("Client is errored");
@@ -87,7 +90,6 @@ public class Test {
      * sets a samples list associated to a test, and then changes test' state to "SAMPLES_COLLECTED"
      * @param sampleList list of collected samples
      */
-
     public void setSampleList(SampleList sampleList) {
         this.sampleList = sampleList;
         stateOfTest = StateOfTest.SAMPLES_COLLECTED;

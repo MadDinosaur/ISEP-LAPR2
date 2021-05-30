@@ -114,7 +114,7 @@ public class Company {
         return clientStore;
     }
 
-    public OrgRoleStore getOrgRoleStore() { return this.orgRoleStore;}
+    public OrgRoleStore getOrgRoleStore() { return this.orgRoleStore; }
 
     /**
      * Returns a TestStore
@@ -132,6 +132,10 @@ public class Company {
 
     public SampleList getSampleStore() { return this.sampleList; }
 
+    /**
+     * Saves the employee as a user
+     * @return (in)success of the operation
+     */
     public boolean saveEmployeeAsUser(Employee e) throws IOException {
         String pwd = generateUserPassword();
         if (authFacade.addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId())) {
@@ -140,12 +144,17 @@ public class Company {
         }
         return false;
     }
+
+    /**
+     * Saves the client as a user
+     * @return (in)success of the operation
+     */
     public boolean saveClientAsUser(Client client,String email) throws IOException {
         String pwd = generateUserPassword();
         if (authFacade.addUserWithRole(client.getName(), email, pwd, client.getOrganizationRole())) {
             clientStore.saveClient(client);
             sendUserPassword(email, pwd);
-            System.out.println("Client has been successfully registered"); //__
+            System.out.println("Client has been successfully registered");
             return true;
         }
         System.out.println("An error has happened during the registration");
@@ -208,6 +217,7 @@ public class Company {
 
         Test testToClient = new Test(client,testType,generatedTestCode,generatedNhsCode);
         testStore.addTest(testToClient);
+        client.addTestToClient(testToClient);
         String[] codes=  new String[2];
         codes[0]= generatedTestCode;
         codes[1]= generatedNhsCode;

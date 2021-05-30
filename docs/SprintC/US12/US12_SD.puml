@@ -6,9 +6,6 @@ participant ":Company" as company
 participant "testStore: TestStore" as ts
 participant "test: Test" as test
 participant "testParamList: TestParamList" as tpstore
-participant "testParam: TestParameter" as testParam
-participant "sampleStore: SampleStore" as ss
-
 
 cct -> ui : starts a new test result registration
 create controller
@@ -29,7 +26,6 @@ ui -> controller : createTestParameterResult(paramCode, result, metric)
 controller -> ts : result = createTestParameterResult(test, paramCode, result, metric)
 ts -> test : createTestParameterResult(paramCode, result, metric)
 ref over test : SD_CreateTestResult
-end loop
 ui --> cct : shows the data and requests confirmation
 cct -> ui : confirms the data
 ui -> controller : saveTestParameterResult()
@@ -38,7 +34,8 @@ test -> tpstore : addTestParameterResult(result)
 tpstore -> tpstore : validateTestParameterResult(result)
 tpstore -> tpstore : addTestParameterResult(result)
 test -> test : setSamplesAnalysedState()
+test -> test: setDateAnalysis()
+test -> test : setTimeAnalysis()
 ui --> cct : informs operation success
-
-
+end loop
 @enduml
