@@ -31,7 +31,7 @@ public class Company {
     private OrgRoleStore orgRoleStore;
     private TestStore testStore = new TestStore();
     private TestTypeStore testTypeStore = new TestTypeStore();
-    private ReportStore reportStore;
+    private ReportStore reportStore = new ReportStore();
     private SampleList sampleList;
 
     private List<Category> parameterCategoryList = new ArrayList<>();
@@ -62,7 +62,7 @@ public class Company {
         testTypeStore.addTestType(testTypeHardCoded);
         Test testTestHardCoded = new Test(clientStore.getClientByCardNumber((long)8765432187654321.0),testTypeHardCoded,testNumberGenerator(),nhsCodeGenerator());
         Test testTestHardCodedRegistered = new Test(clientStore.getClientByCardNumber((long)8765432187654322.0),testTypeHardCoded,testNumberGenerator(),nhsCodeGenerator());
-        testTestHardCoded.createTestParameterResult("HB000", "12", "metric");
+        testTestHardCoded.saveTestParameterResult(parameter, testTestHardCoded.createTestParameterResult("HB000", "135", "mg"));
         testTestHardCoded.setStateOfTestToSamplesAnalyzed();
         testStore.addTest(testTestHardCodedRegistered);
         testStore.addTest(testTestHardCoded);

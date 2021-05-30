@@ -59,8 +59,8 @@ class Report {
 +validateReport()
 }
 
-class TestListReadyForReportMapper {
-+toDTO(testListReadyForReport)
+class TestMapper {
++toDtoList(testListReadyForReport)
 +testReadyForReportDTO toDTO(testReadyForReport)
 }
 
@@ -78,14 +78,14 @@ CreateReportController ..> Company
 Company "1"-down->"1" TestStore: uses >
 Company "1"-down->"1" ReportStore: uses >
 Company "1"-down->"1" TestParamList: uses >
-TestStore "1"->"*" Test: contains >
-Test "1"->"1" Report: contains >
+TestStore "1"-->"*" Test: contains >
+Test "1"-->"1" Report: contains >
 CreateReportController ..> TestStore
 CreateReportController ..> ReportStore
 
 
-CreateReportController ..> TestListReadyForReportMapper
-TestListReadyForReportMapper ..> TestListReadyForReportDTO
+CreateReportController ..> TestMapper
+TestMapper ..> TestListReadyForReportDTO
 
 
 CreateReportController ..> ReportDTO
