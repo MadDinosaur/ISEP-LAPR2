@@ -48,8 +48,8 @@ public class SampleController {
     }
 
     public void createSampleList(int n) throws Exception {
-        SampleList ListOfSamples = setSampleNumber(n);
-        test.setSampleList(ListOfSamples);
+        test.setSampleList(setSampleNumber(n));
+        System.out.println("Successfully created " + n + " sample(s).");
     }
 
 }
