@@ -55,6 +55,7 @@ public class ValidateTestUI implements Runnable{
                 }
                 i++;
             }
+            System.out.println("All selected tests have been validated.");
         }catch(EmptyListException | IOException e){
             System.out.println("There are no tests for validation!");
         }
