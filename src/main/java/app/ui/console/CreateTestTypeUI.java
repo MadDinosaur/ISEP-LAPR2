@@ -32,7 +32,7 @@ public class CreateTestTypeUI implements Runnable {
                 boolean loop = false;
                 System.out.println("Insert the code for the test type: (make sure it is five alphanumeric characters)");
                 String code = sc.nextLine();
-                System.out.printf("This is the code you inserted: \"%s\". Are you sure this is the code you want? (Yes/No)\n", code);
+                System.out.printf("This is the code you inserted: \"%s\". Are you sure this is the code you want? (Yes/No)%n", code);
                 String confirmation = sc.nextLine();
                 while (!loop) {
                     if (confirmation.equalsIgnoreCase("yes")) {
@@ -43,7 +43,7 @@ public class CreateTestTypeUI implements Runnable {
                     } else if (confirmation.equalsIgnoreCase("no")) {
                         System.out.println("Please, type the code you want once again");
                         code = sc.nextLine();
-                        System.out.printf("This is the code you inserted: %s. Are you sure this is the code you want? (Yes/No)\n", code);
+                        System.out.printf("This is the code you inserted: %s. Are you sure this is the code you want? (Yes/No)%n", code);
                         confirmation = sc.nextLine();
                     } else {
                         System.out.println("Please insert either yes or no!");
@@ -63,7 +63,7 @@ public class CreateTestTypeUI implements Runnable {
                 boolean loop = false;
                 System.out.println("Insert the description you want for the collection method of the test type:");
                 String description = sc.nextLine();
-                System.out.printf("This is the description you inserted: \"%s\". Are you sure this is the description you want? (Yes/No)\n", description);
+                System.out.printf("This is the description you inserted: \"%s\". Are you sure this is the description you want? (Yes/No)%n", description);
                 String confirmation = sc.nextLine();
                 while (!loop) {
                     if (confirmation.equalsIgnoreCase("yes")) {
@@ -75,7 +75,7 @@ public class CreateTestTypeUI implements Runnable {
                     } else if (confirmation.equalsIgnoreCase("no")) {
                         System.out.println("Please, type the description you want for the collection method once again.");
                         description = sc.nextLine();
-                        System.out.printf("This is the description you inserted: \"%s\". Are you sure this is the description you want? (Yes/No)\n", description);
+                        System.out.printf("This is the description you inserted: \"%s\". Are you sure this is the description you want? (Yes/No)%n", description);
                         confirmation = sc.nextLine();
                     } else {
                         System.out.println("Please insert either yes or no!");
@@ -92,7 +92,7 @@ public class CreateTestTypeUI implements Runnable {
         boolean noMore = false;
         int counter = 0;
         String confirmation;
-        System.out.println("Here is a list of the categories available:\n");
+        System.out.println("Here is a list of the categories available:%n");
         cttc.displayCategoryList();
         System.out.println();
         System.out.println("One by one, insert the number of the category you want to associate to the test type (If you don't want to insert any more categories, please press ENTER)");
@@ -111,7 +111,7 @@ public class CreateTestTypeUI implements Runnable {
                     cttc.displayCategoryList();
                     indexPedido = sc.nextLine();
                 } else {
-                    System.out.printf("Are you sure this is the category you want? (Yes/No)\n");
+                    System.out.printf("Are you sure this is the category you want? (Yes/No)%n");
                     confirmation = sc.nextLine();
                     while (!loop) {
                         if (confirmation.equalsIgnoreCase("yes")) {
@@ -125,7 +125,7 @@ public class CreateTestTypeUI implements Runnable {
                             System.out.println("Please, choose another category");
                             cttc.displayCategoryList();
                             indexPedido = sc.nextLine();
-                            System.out.printf("Are you sure this is the category you want? (Yes/No)\n");
+                            System.out.printf("Are you sure this is the category you want? (Yes/No)%n");
                             confirmation = sc.nextLine();
                         } else {
                             System.out.println("Please insert either yes or no!");
@@ -148,7 +148,7 @@ public class CreateTestTypeUI implements Runnable {
                 boolean loop = false;
                 System.out.println("Insert the description you want for the test type:");
                 String description = sc.nextLine();
-                System.out.printf("This is the description you inserted: \"%s\". Are you sure this is the description you want? (Yes/No)\n", description);
+                System.out.printf("This is the description you inserted: \"%s\". Are you sure this is the description you want? (Yes/No)%n", description);
                 String confirmation = sc.nextLine();
                 while (!loop) {
                     if (confirmation.equalsIgnoreCase("yes")) {
@@ -159,7 +159,7 @@ public class CreateTestTypeUI implements Runnable {
                     } else if (confirmation.equalsIgnoreCase("no")) {
                         System.out.println("Please, type the description you want once again.\n");
                         description = sc.nextLine();
-                        System.out.printf("This is the description you inserted: \"%s\". Are you sure this is the description you want? (Yes/No)\n", description);
+                        System.out.printf("This is the description you inserted: \"%s\". Are you sure this is the description you want? (Yes/No)%n", description);
                         confirmation = sc.nextLine();
                     } else {
                         System.out.println("Please insert either yes or no!");
