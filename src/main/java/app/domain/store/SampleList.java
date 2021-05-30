@@ -7,23 +7,24 @@ import java.util.List;
 
 public class SampleList {
 
-    private ArrayList<Sample> SampleList = new ArrayList<>();
+    private ArrayList<Sample> sampleList = new ArrayList<>();
 
     private boolean addSample(Sample sample) {
-        return this.SampleList.add(sample);
+        return this.sampleList.add(sample);
     }
 
     public boolean saveSample(Sample sample) { return addSample(sample); }
 
-    public ArrayList<Sample> getSampleList() { return SampleList; }
-
-    List<Sample> samples;
+    public ArrayList<Sample> getSampleList() { return sampleList; }
 
     public boolean existsSample(String barcode) {
-        for(Sample sample: samples)
+        for(Sample sample: sampleList)
             if (sample.getBarcode().equals(barcode))
                 return true;
 
         return false;
+    }
+    public int size() {
+        return sampleList.size();
     }
 }

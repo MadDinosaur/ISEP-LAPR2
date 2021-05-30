@@ -1,11 +1,9 @@
 package app.domain.store;
 
+import app.domain.model.*;
 import app.domain.model.Client;
 import app.domain.model.Exceptions.InvalidTestCodeException;
 import app.domain.model.Exceptions.UnregisteredBarcodeException;
-import app.domain.model.Parameter;
-import app.domain.model.Report;
-import app.domain.model.Test;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -79,8 +77,8 @@ public class TestStore {
         return test.getTestParamList().getParameters();
     }
 
-    public boolean createTestParameterResult(Test test, String paramCode, String result, String metric) {
-        return test.getTestParamList().createTestParameterResult(paramCode, result, metric);
+    public TestParameterResult createTestParameterResult(Test test, String paramCode, String result, String metric) {
+        return test.createTestParameterResult(paramCode, result, metric);
     }
 
     /**

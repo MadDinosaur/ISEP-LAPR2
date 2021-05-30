@@ -2,8 +2,14 @@ package app.ui.console;
 
 import app.controller.App;
 import app.controller.RecordTestResultController;
+import app.controller.RegisterClientController;
+import app.domain.model.*;
+import app.domain.model.Exceptions.UnregisteredBarcodeException;
 import app.mappers.dto.ParamDTO;
+import app.domain.model.Client;
+import auth.domain.model.Email;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,15 +17,17 @@ public class RecordTestResultUI implements Runnable {
     RecordTestResultController recordTestResultController = new RecordTestResultController(App.getInstance().getCompany());
     List<ParamDTO> parameters;
     int selectedParameter;
-    List<String> barcodes;
-    List<String> paramCodes;
-    List<String> results;
-    List<String> metrics;
+    String barcode;
+    String paramCode;
+    String result;
+    String metric;
 
     Scanner sc = new Scanner(System.in);
 
     @Override
     public void run() {
+        loadDemoInfo();
+
         boolean validBarcode = false;
         boolean validAnalysis = false;
 
@@ -28,7 +36,7 @@ public class RecordTestResultUI implements Runnable {
         while (!validBarcode) {
             validBarcode = true;
             try { parameters = requestBarcode(); }
-            catch (Exception ex) {
+            catch (UnregisteredBarcodeException ex) {
                 System.out.println("Invalid Barcode: " + ex.getMessage());
                 validBarcode = false;
             }
@@ -45,10 +53,9 @@ public class RecordTestResultUI implements Runnable {
                     validAnalysis = false;
                 }
             }
-            parameters.remove(selectedParameter);
+            if(displayConfirmation())
+                parameters.remove(selectedParameter - 1);
         }
-
-        displayConfirmation();
     }
 
     private boolean displayTests() {
@@ -69,9 +76,9 @@ public class RecordTestResultUI implements Runnable {
 
     private List<ParamDTO> requestBarcode() {
         System.out.println("Please insert a sample barcode:");
-        barcodes.set(selectedParameter, sc.nextLine());
+        barcode = sc.nextLine();
 
-        return recordTestResultController.getTestParameters(barcodes.get(selectedParameter));
+        return recordTestResultController.getTestParameters(barcode);
     }
 
     private boolean selectParameters() {
@@ -92,21 +99,59 @@ public class RecordTestResultUI implements Runnable {
 
     private void insertParameterAnalysis() {
         System.out.println("Insert result value:");
-        results.set(selectedParameter, sc.nextLine());
+        result =  sc.nextLine();
 
         System.out.println("Insert metric:");
-        metrics.set(selectedParameter, sc.nextLine());
+        metric = sc.nextLine();
 
-        paramCodes.set(selectedParameter, parameters.get(selectedParameter).getCode());
+        paramCode = parameters.get(selectedParameter - 1).getCode();
 
-        recordTestResultController.createTestParameterResult(paramCodes.get(selectedParameter), results.get(selectedParameter), metrics.get(selectedParameter));
-
-        recordTestResultController.saveTestParameterResult();
+        recordTestResultController.createTestParameterResult(paramCode, result, metric);
     }
 
-    private void displayConfirmation() {
+    private boolean displayConfirmation() {
         System.out.println("Checking information...");
-        for (int i = 0; i < barcodes.size(); i++)
-            System.out.printf("Parameter code: %s --> %s%s\n", paramCodes.get(i), results.get(i), metrics.get(i));
+        System.out.printf("Barcode no.: %s\n", barcode);
+        System.out.printf("Parameter code: %s --> %s%s\n", paramCode, result, metric);
+        System.out.println("Confirm? Y/N");
+        String option = sc.nextLine();
+
+        switch (option) {
+            case "Y": case "y":
+                if (recordTestResultController.saveTestParameterResult()) {
+                    System.out.println("Result saved successfully!");
+                    return true;
+                }
+                else {
+                    System.out.println("Error saving result. Please try again.");
+                    return false;
+                }
+            case "N": case "n":
+                return false;
+        }
+        return false;
+    }
+
+    private void loadDemoInfo() {
+        Company company = App.getInstance().getCompany();
+        //Client
+        Client client = new Client("Default Name", 1234567887654321L, 1098765432L, new DateBirth(01,01,2000), 1098765432L, 12345678901L, new Email("client@org.com"), "No sex assigned");
+        company.getClientStore().saveClient(client);
+        //TestType
+        List<Category> categories = new ArrayList<>();
+        categories.add(new Category("Hemogram", "HEM00", "Hemogram Description"));
+        TestType testType = new TestType("Blood", "Blood Test Description", new CollectionMethod("Swab"), categories);
+        //Parameters
+        Category category = categories.get(0);
+        category.saveParameter(category.createNewParameter("HB", "HB000", "Haemoglobin"));
+        category.saveParameter(category.createNewParameter("WBC","WBC00",  "White Cell Count"));
+        //Test
+        Test test = new Test(client, testType, "test1234", "nhs1234");
+        company.getTestStore().addTest(test);
+        //Samples
+        test.getSampleList().saveSample(new Sample("1234"));
+        //Status
+        test.setStateOfTestToSamplesCollected();
+
     }
 }
