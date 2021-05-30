@@ -17,25 +17,17 @@ public class SampleUI implements Runnable {
     public void run() {
 
         List<TestDTO> TestList = SC.getTestList();
-        String testCode = TestCodeSelection(TestList);
-        SC.setTestCode(testCode);
+        TestCodeSelection(TestList);
 
-        int n = 0;
         try {
             System.out.println("Insert number of samples:");
-            n = setSampleNumber();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try {
-            SC.createSampleList(n);
+            setSampleNumber();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public String TestCodeSelection(List<TestDTO> testList) {
+    public void TestCodeSelection(List<TestDTO> testList) {
         int index = 0;
         for (TestDTO testDTO : testList) {
             System.out.print(index + ": ");
@@ -55,21 +47,22 @@ public class SampleUI implements Runnable {
                 verifier = true;
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("Invalid number. Please insert a valid number.");
+            } catch (InputMismatchException e) {
+                System.out.println("insert number pleas");
+                input.next();
             }
-
-            // nao
         }
 
         boolean confirm = confirmation();
         if(confirm) {
-            return testList.get(k).getTestCode();
+            SC.setTestCode(testList.get(k).getTestCode());
         } else {
             TestCodeSelection(testList);
         }
-        return null;
+
     }
 
-    public int setSampleNumber() throws Exception {
+    public void setSampleNumber() throws Exception {
         int n = input.nextInt();
         input.nextLine();
 
@@ -78,12 +71,11 @@ public class SampleUI implements Runnable {
 
         boolean confirm = confirmation();
         if (confirm) {
-            return n;
+            SC.createSampleList(n);
         } else {
             System.out.println("Enter the correct number of samples:");
             setSampleNumber();
         }
-        return 0;
     }
 
 

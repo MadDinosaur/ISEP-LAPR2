@@ -4,20 +4,68 @@
 class ValidateTestUI
 
 class ValidateTestController{
-+getListTestsWithReport()
+-Company company
+-TestStore currTestStore
+-List<Test> listTestsWithReport
 
++getListTestsWithReport()
++validateTest(nhsCode)
++toDTO(listTestsWithReport)
++sendNotification(client)
 }
 
 class TestStore{
 -List<Test> tests
 
++getListTestsWithReport()
 +validateTest(nhsCode)
+}
+
+class Test{
+-Client client
+-List<Category> listOfCategories
+-TestType testType
+-String testCode
+-String nhsCode
+-Date dateOfCreation
+-List<Parameter> listOfParameters
+-TestParamList testParamList
+-SampleList sampleList
+-StateOfTest stateOfTest
+-Report report
+-LocalDate dateReport
+-LocalTime timeReport
+-LocalDate dateResults
+-LocalTime timeResults
+-LocalDate dateValidation
+-LocalTime timeValidation
 }
 
 class TestMapper{
 
 
-+toDTO(listTestsWithReport)
++toDTOListValidation(listTestsWithReport)
++toDTOValidation(test)
+}
+
+class TestDTO{
+-Client client
+-List<Category> listOfCategories
+-TestType testType
+-String testCode
+-String nhsCode
+-Date dateOfCreation
+-List<Parameter> listOfParameters
+-TestParamList testParamList
+-SampleList sampleList
+-StateOfTest stateOfTest
+-Report report
+-LocalDate dateReport
+-LocalTime timeReport
+-LocalDate dateResults
+-LocalTime timeResults
+-LocalDate dateValidation
+-LocalTime timeValidation
 }
 
 class Company{
@@ -29,6 +77,9 @@ class Company{
 ValidateTestUI ..> ValidateTestController
 ValidateTestController ..> Company
 ValidateTestController ..> TestMapper
-Company --> TestStore
+TestMapper ..> TestDTO
+Company "1"-down-"1" TestStore: uses >
+TestStore "1"->"*" Test: contains >
+Company --> Test: performs >
 
 @enduml

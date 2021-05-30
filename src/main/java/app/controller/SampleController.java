@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.domain.adapter.ExternalModuleBarcode;
 import app.domain.adapter.ExternalModuleBarcodeAdapter;
 import app.domain.model.Company;
 import app.domain.model.Sample;
@@ -8,11 +9,9 @@ import app.domain.store.SampleList;
 import app.mappers.TestMapper;
 import app.mappers.dto.TestDTO;
 
-
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class SampleController {
 
@@ -20,7 +19,7 @@ public class SampleController {
     private Sample sample;
     private ArrayList<Sample> ListOfSamples;
     private Test test;
-    private ExternalModuleBarcodeAdapter adapterBarcode = new ExternalModuleBarcodeAdapter();
+    private ExternalModuleBarcode adapterBarcode = new ExternalModuleBarcodeAdapter();
 
     public List<TestDTO> getTestList() {
         TestMapper testmapper = new TestMapper(company.getTestStore().getRegisteredTests());
@@ -47,8 +46,8 @@ public class SampleController {
     }
 
     public void createSampleList(int n) throws Exception {
-        SampleList ListOfSamples = setSampleNumber(n);
-        test.setSampleList(ListOfSamples);
+        test.setSampleList(setSampleNumber(n));
+        System.out.println("Successfully created " + n + " sample(s).");
     }
 
 }

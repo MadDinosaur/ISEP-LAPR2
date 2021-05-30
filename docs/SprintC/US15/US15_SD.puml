@@ -6,7 +6,8 @@ actor LaboratoryCoordinator as LABCO
 participant ":ValidateTestUI" as UI
 participant ":ValidateTestController" as CTRL
 participant ":Company" as CMP
-participant ":TestStore" as STORE
+participant "currTestStore : TestStore" as STORE
+participant ":Test" as TEST
 participant ":TestMapper" as MAP
 participant "listTestsWithReport : List <Test>" as testList
 participant "listTestsWithReportDTO: List <TestDTO>" as testListDTO
@@ -17,9 +18,12 @@ LABCO -> UI: Requests tests to validate
 activate UI
 UI -> CTRL: getListTestsWithReport()
 activate CTRL
-CTRL -> CMP: listTestsWithReport = getListTestsWithReport()
+CTRL -> CMP: currTestStore = getTestStore()
 activate CMP
 deactivate CMP
+CTRL -> STORE: listTestsWithReport = getListTestsWithReport()
+activate STORE
+deactivate STORE
 
 CTRL -> MAP: listTestswithReportDto = toDTO(listTestsWithReport)
 activate MAP
@@ -39,12 +43,12 @@ UI -> CTRL: validateTest()
 activate CTRL
 CTRL -> STORE: validateTest(internalCode)
 activate STORE
-STORE -> STORE: validateTest(internalCode)
-activate STORE
+STORE -> TEST: validateTest(internalCode)
+activate TEST
 deactivate STORE
-deactivate STORE
-CTRL -> CMP: sendNotification(nhsCode)
+CTRL -> CMP: sendNotification(client)
 activate CMP
+deactivate TEST
 deactivate CMP
 deactivate CTRL
 UI --> LABCO: Informs that the client was notified

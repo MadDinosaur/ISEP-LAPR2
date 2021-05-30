@@ -28,16 +28,16 @@ public class RegisterTestUI implements Runnable {
     public void run() {
         System.out.println("\n");
         System.out.println("######## Test Registration ########");
-        System.out.println("Please introduce Client Card Number  (To leave type exit)");
+        System.out.println("Please introduce Client Tax Identification Number (To leave type exit)");
         boolean clientIsCorrect = false;
         do {
             boolean clientExists;
             do {
-                long clientCardNumber = sc.nextLong();
-                registerTestController.setClientByCardNumber(clientCardNumber);
+                long taxNumber = sc.nextLong();
+                registerTestController.setClientByTIN(taxNumber);
                 client = registerTestController.getClient();
                 if (client == null) {
-                    System.out.println("This client does not exist, please introduce a valid Card Number");
+                    System.out.println("This client does not exist, please introduce a valid Tax Identification Number");
                     clientExists = false;
                 } else {
                     clientExists = true;

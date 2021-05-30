@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class TestParameterResult {
     private Date createdAt;
-    private int value;
+    private Double value;
     private String metric;
     private ReferenceValue refValue;
 
@@ -21,11 +21,11 @@ public class TestParameterResult {
         this.createdAt = new Date();
     }
 
-    private int validateValue(String value) {
-        int parsedValue;
+    private Double validateValue(String value) {
+        Double parsedValue;
 
         try {
-            parsedValue = Integer.parseInt(value);
+            parsedValue = Double.parseDouble(value);
         } catch (NumberFormatException ex) {
             throw new InvalidSampleValueException("Result must be a number!");
         }
@@ -46,7 +46,7 @@ public class TestParameterResult {
         return createdAt;
     }
 
-    public int getValue() {
+    public Double getValue() {
         return value;
     }
 
