@@ -73,6 +73,9 @@ public class Client {
     public String getOrganizationRole() {
         return organizationRole;
     }
+    public long getTIN() {
+        return TIN;
+    }
 
     public void addTestToClient(Test test){
         tests.add(test);

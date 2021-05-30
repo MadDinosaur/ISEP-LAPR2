@@ -26,5 +26,14 @@ public class ClientStore {
         System.out.println("There is no Client with that Card Number");
         return null;
     }
+    public Client getClientByTINumber(long taxNumber){
+        for (Client client : clientList) {
+            if (client.getTIN() == taxNumber) {
+                return client;
+            }
+        }
+        System.out.println("There is no Client with that Card Number");
+        return null;
+    }
 
 }
