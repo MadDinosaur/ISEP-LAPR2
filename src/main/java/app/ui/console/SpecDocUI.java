@@ -18,7 +18,7 @@ public class SpecDocUI implements Runnable{
     public void run()
     {
         List<MenuItem> options = new ArrayList<MenuItem>();
-        options.add(new MenuItem("Option A",new ShowTextUI("No options implemented yet.")));
+        options.add(new MenuItem("Write a report for a test",new CreateReportUI()));
 
         int option = 0;
         do

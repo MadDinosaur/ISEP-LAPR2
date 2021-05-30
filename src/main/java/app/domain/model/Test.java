@@ -60,6 +60,8 @@ public class Test {
         setListOfCategories(testType.getCategories());
         getParametersFromCategoriesToStore();
         stateOfTest = StateOfTest.REGISTERED;
+
+        testParamList = new TestParamList(testType);
     }
 
     private void setClient(Client client) {
