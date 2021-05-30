@@ -6,6 +6,7 @@ import app.domain.store.*;
 import app.mappers.TestMapper;
 import app.mappers.dto.TestDTO;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ValidateTestController {
@@ -63,7 +64,7 @@ public class ValidateTestController {
         return currTestStore.validateTest(nhsCode);
     }
 
-    public void sendNotification(String nhsCode){
+    public void sendNotification(String nhsCode) throws IOException {
         company.sendNotification(currTestStore.findTestThroughNhsCode(nhsCode).getClient(), "Your results are now available in the " + company.getDesignation() + "'s applications.");
     }
 

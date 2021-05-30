@@ -136,10 +136,10 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 **Test 1:** Check that it is not possible to create an instance of the Example class with null values. 
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Exemplo instance = new Exemplo(null, null);
-	}
+	 @org.junit.Test(expected = IllegalArgumentException.class)
+        public void ensureNullIsNotAllowed() {
+            Test test = new Test(null, null,null,null);
+        }
 
 *It is also recommended to organize this content by subsections.* 
 

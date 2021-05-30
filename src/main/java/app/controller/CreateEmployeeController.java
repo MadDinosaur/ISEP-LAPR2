@@ -3,6 +3,7 @@ package app.controller;
 import app.domain.model.Company;
 import app.domain.model.Employee;
 
+import java.io.IOException;
 import java.util.List;
 
 public class CreateEmployeeController {
@@ -27,7 +28,7 @@ public class CreateEmployeeController {
         employee = company.getOrgRoleStore().createEmployee(role, id, name, address, phoneNumber, email, soc, DIN);
     }
 
-    public boolean saveEmployee() {
+    public boolean saveEmployee() throws IOException {
         return company.getEmployeeStore().saveEmployee(employee) && company.saveEmployeeAsUser(employee);
     }
 }

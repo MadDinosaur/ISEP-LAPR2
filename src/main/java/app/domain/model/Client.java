@@ -16,7 +16,6 @@ public class Client {
     private long phoneNumber;
     private Email email;
     private String sex;
-    private String SEX_POR_OMISSAO = "No sex assigned";
     private final String organizationRole = "cl";
     private List<Test> tests = new ArrayList<>();
 
