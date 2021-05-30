@@ -69,11 +69,11 @@ SampleController ..> Sample
 SampleController ..> ExternalModuleBarcode
 SampleController ..> SampleList
 SampleController ...> Test
-Company --> TestStore : uses
-Test --> Sample : collects
-TestStore -> Test : contains
-Sample <- SampleList : contains
-Test -> SampleList : uses
+Company "1"-->"1 " TestStore : uses >
+Test " 1   "-->"*" Sample : collects >
+TestStore "        1"->"  *     " Test : contains >
+Sample " *   "<-"   1" SampleList : contains >
+Test "1"->"1   " SampleList : uses >
 SampleUI ..> TestDTO
 
 @enduml
