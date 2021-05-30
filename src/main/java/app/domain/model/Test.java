@@ -64,8 +64,12 @@ public class Test {
     }
 
     private void setClient(Client client) {
+        if (client==null) {
+            throw new IllegalArgumentException("Client is errored");
+        }
         this.client = client;
     }
+
     private void setListOfCategories(List<Category> listOfCategories) {
         this.listOfCategories = listOfCategories;
     }
