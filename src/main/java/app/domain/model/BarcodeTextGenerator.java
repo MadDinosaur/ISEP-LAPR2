@@ -7,7 +7,7 @@ public class BarcodeTextGenerator {
     public static String generateBarcodeText(){
 
         Random r = new Random();
-        long barcode = 10000000000L + (long) (r.nextDouble() * 89999999999L);
+        long barcode = 100000000000L + (long) (r.nextDouble() * 899999999999L);
 
         return String.valueOf(barcode);
 
