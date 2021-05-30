@@ -56,7 +56,7 @@ sd -> crUI: confirms
 crUI -> crC: saveReport()
 crC -> ts: saveReport(test, report)
 ts -> t: addReport(report)
-t -> t: test : setStatus(Report Made)
+t -> t: StateOfTest.REPORT_MADE
 
 
 crUI -[dashed]> sd: informs operation success

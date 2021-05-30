@@ -15,7 +15,7 @@ tm -> tlrfr: testReadyForReport = get(i)
 activate tm
 tm -> tm: testReadyForReportDTO = toDTO(testReadyForReport)
 create tdto
-tm -> tdto: create() não sei que parâmetros passar
+tm -> tdto: create()
 deactivate tm
 tm -> tlrdto: add(testReadyForReportDTO)
 activate tlrdto
