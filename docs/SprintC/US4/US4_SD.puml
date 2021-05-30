@@ -27,13 +27,13 @@ participant ":ClientTest" as clientTest
 
 
 LR -> ui : requests test registration
-ui --> LR : requests client data(cardNumber)
+ui --> LR : requests client data()
 LR -> ui : types requested data
 create ctrl
 ui -> ctrl : create
-ui -> ctrl : getClientByCardNumber()
+ui -> ctrl : setClientByTiNumber()
 ctrl -> cm : clientStore = getClientStore()
-ctrl -> ct : client = getClientByCardNumber(cardNumber)
+ctrl -> ct : client = getClientByTiNumber(tiNumber)
 ui --> LR : asks client confirmation
 LR -> ui: confirms client
 ui -> ctrl : getTestTypeList()
