@@ -78,6 +78,12 @@ public class Test {
     private void setTestType(TestType testType) {
         this.testType = testType;
     }
+
+    /**
+     * sets a samples list associated to a test, and then changes test' state to "SAMPLES_COLLECTED"
+     * @param sampleList list of collected samples
+     */
+
     public void setSampleList(SampleList sampleList) {
         this.sampleList = sampleList;
         stateOfTest = StateOfTest.SAMPLES_COLLECTED;

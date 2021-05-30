@@ -13,6 +13,11 @@ import java.nio.Buffer;
 
 import static net.sourceforge.barbecue.BarcodeFactory.createUPCA;
 
+/**
+ *
+ * @author Luis Moreira <1200973@isep.ipp.pt>
+ */
+
 public class ExternalModuleBarcodeAdapter implements ExternalModuleBarcode {
 
     @Override
