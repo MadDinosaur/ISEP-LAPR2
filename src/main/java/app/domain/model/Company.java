@@ -64,6 +64,8 @@ public class Company {
         Test testTestHardCodedRegistered = new Test(clientStore.getClientByCardNumber((long)8765432187654322.0),testTypeHardCoded,testNumberGenerator(),nhsCodeGenerator());
         testTestHardCoded.setStateOfTestToSamplesAnalyzed();
         testStore.addTest(testTestHardCodedRegistered);
+        testStore.addTest(testTestHardCoded);
+        testTestHardCoded.getTestParamList().createTestParameterResult("19045", "result", "metric");
     }
 
 

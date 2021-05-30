@@ -89,17 +89,12 @@ public class TestStore {
      * @return Test
      */
     public Test getTestByCode(String testCode) {
-        Test test1 = null;
         for (Test t : tests) {
             if (t.getTestCode().equals(testCode)) {
-                test1 = t;
+                return t;
             }
         }
-        if (test1 != null) {
-            return test1;
-        } else {
-            throw new InvalidTestCodeException();
-        }
+        throw new InvalidTestCodeException();
     }
 
     /**

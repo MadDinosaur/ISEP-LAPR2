@@ -22,8 +22,8 @@ public class CreateReportController {
 
     public CreateReportController() {
         this.company = App.getInstance().getCompany();
-        testStore = company.getTestStore();
-        reportStore = company.getReportStore();
+        this.testStore = company.getTestStore();
+        this.reportStore = company.getReportStore();
     }
 
     public List<TestDTO> getTestsListReadyForReport() {

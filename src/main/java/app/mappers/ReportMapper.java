@@ -23,6 +23,6 @@ public class ReportMapper {
     public Report toModel(ReportDTO reportDTO) {
         this.textDiagnosis = reportDTO.getTextDiagnosis();
         this.textReport = reportDTO.getTextReport();
-        return new Report(textReport, textDiagnosis);
+        return new Report(textDiagnosis, textReport);
     }
 }
