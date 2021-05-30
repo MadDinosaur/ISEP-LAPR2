@@ -10,7 +10,7 @@ import java.util.Random;
 public class Sample {
 
     private String barcodeText;
-    private Random r = new Random();
+    private final Random r = new Random();
 
     /**
      * sets barcode text

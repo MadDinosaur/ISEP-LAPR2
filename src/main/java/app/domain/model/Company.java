@@ -214,8 +214,6 @@ public class Company {
         return codes;
     }
 
-
-
     private String testNumberGenerator() {
         StringBuilder generatedTestCode = new StringBuilder();
         String testCodeString = String.valueOf(testNumber);
