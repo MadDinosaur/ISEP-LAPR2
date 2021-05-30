@@ -114,16 +114,16 @@ defined by configuration.
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
-| Step 1 - Request to record new collected sample(s) | instantiating a new collected sample? | Sample |                              |
-| Step 2 - Shows list of tests | storing the available tests? | TestStore |                              |
-| Step 3 - Select test | choose the performed test? | Medical Lab Technician |                              |
+| Step 1 - Request to record new collected sample(s) | instantiating a new collected sample? | Sample | Creator Pattern: Report class is responsible for creating all report objects. |
+| Step 2 - Shows list of tests | having a list of the available tests? | TestStore | IE: knows its own data. |
+| Step 3 - Select test | saving the input? | SampleUI | Responsible for all the user-system interactions. |
 | Step 4 - Request confirmation | n/a | n/a | n/a |
 | Step 5 - Give confirmation | n/a | n/a | n/a |
-| Step 6 - Request number of samples to record | creating barcodes for each sample? |   |                              |
-| Step 7 - Give number of samples to record | storing the barcodes? | SampleList |                              |
+| Step 6 - Request number of samples to record |  |   |                              |
+| Step 7 - Give number of samples to record | storing the barcodes? | SampleList | IE: records all the Sample objects. |
 | Step 8 - Request confirmation | n/a | n/a | n/a |              
 | Step 9 - Give confirmation | n/a | n/a | n/a |              
-| Step 10 - Show (in)success of operation |	informing operation success? | UI | IE: responsible for user interaction |              
+| Step 10 - Show (in)success of operation |	informing operation success? | SampleUI | IE: responsible for user interaction |              
 
 ### Systematization ##
 
@@ -145,21 +145,9 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 ![US5_CD](US5_CD.svg)
 
-# 4. Tests 
-*In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.* 
+# 4. Tests
 
-**_DO NOT COPY ALL DEVELOPED TESTS HERE_**
-
-**Test 1:** Check that it is not possible to create an instance of the Example class with null values. 
-
-	@Test
-    public void testBarcodeText() {
-        String barcodeText = "123456789012";
-        Sample sample = new Sample(barcodeText);
-        String barcode = sample.getBarcode();
-
-        Assert.assertEquals(barcode, "123456789012");
-    }
+**Test 1:** Check if the generated barcode text by the class Sample is a 11 digit number.
 
     @Test
     public void barcodeTextLength() {
@@ -169,7 +157,6 @@ Other software classes (i.e. Pure Fabrication) identified:
         Assert.assertEquals(length, 11);
     }
 
-*It is also recommended to organize this content by subsections.* 
 
 # 5. Construction (Implementation)
 
@@ -177,10 +164,43 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 *It is also recommended to organize this content by subsections.* 
 
+    public List<TestDTO> getTestList() {
+      TestMapper testmapper = new TestMapper(company.getTestStore().getRegisteredTests());
+      return testmapper.toDtoList();
+    }
+
+    public void setTestCode(String testCode) { test = company.getTestStore().getTestByCode(testCode); }
+
+    public SampleList setSampleNumber(int n) throws Exception {
+
+        SampleList sampleList = test.getSampleList();
+
+        File theDir = new File("barcodes");
+        if (!theDir.exists()){ theDir.mkdirs(); }
+
+        for (int i = 0; i < n; i++) {
+            String barcodeText = sample.generateBarcodeUPC();
+            BufferedImage barcode = adapterBarcode.barcodeGenerator(barcodeText);
+
+            adapterBarcode.saveBarcode(barcode, barcodeText);
+
+            Sample sample = new Sample(barcodeText);
+            sampleList.saveSample(sample);
+        }
+
+       return sampleList;
+    }
+
+    public void createSampleList(int n) throws Exception {
+        test.setSampleList(setSampleNumber(n));
+        System.out.println("Successfully created " + n + " sample(s).");
+    }
+
 # 6. Integration and Demo 
 
-*In this section, it is suggested to describe the efforts made to integrate this functionality with the other features of the system.*
+*This system was developed using OOP (Object Oriented Programming) in order to make the software easy to maintain.*
 
 # 7. Observations
 
-*In this section, it is suggested to present a critical perspective on the developed work, pointing, for example, to other alternatives and or future related work.*
+Even though the User Story code seems to work just fine, the adopted methodology to create it wasn't the best one. It feels like the work could have been way easier and smoother.
+In this sprint we were also careful to keep our user story's interface similar to each other's work, something that didn't really happen in sprint B.
