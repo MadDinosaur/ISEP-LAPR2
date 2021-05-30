@@ -10,7 +10,13 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ *
+ * @author Luis Moreira <1200973@isep.ipp.pt>
+ */
+
 public class SampleUI implements Runnable {
+
     static Scanner input = new Scanner(System.in);
     private SampleController SC = new SampleController();
 
@@ -79,6 +85,10 @@ public class SampleUI implements Runnable {
     }
 
 
+    /**
+     *
+     * @return
+     */
     public boolean confirmation() {
         String confirmation = input.nextLine();
         while(true) {

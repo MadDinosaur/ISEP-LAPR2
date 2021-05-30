@@ -9,13 +9,28 @@ public class SampleList {
 
     private ArrayList<Sample> sampleList = new ArrayList<>();
 
+    /**
+     * adds a sample to the sample list
+     * @param sample same which will be used
+     * @return success of operation
+     */
     private boolean addSample(Sample sample) {
         return this.sampleList.add(sample);
     }
 
+    /**
+     * saves a sample to the sample list
+     * @param sample sample which will be saved
+     * @return success of operation
+     */
     public boolean saveSample(Sample sample) { return addSample(sample); }
 
+    /**
+     * return list of samples
+     * @return sampleList
+     */
     public ArrayList<Sample> getSampleList() { return sampleList; }
+
 
     public boolean existsSample(String barcode) {
         for(Sample sample: sampleList)
@@ -24,7 +39,10 @@ public class SampleList {
 
         return false;
     }
-    public int size() {
-        return sampleList.size();
-    }
+
+    /**
+     * returns sample list size
+     * @return size
+     */
+    public int size() { return sampleList.size(); }
 }
