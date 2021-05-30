@@ -31,10 +31,10 @@ public class CreateReportUI implements Runnable {
             boolean confirm = false;
             while (!confirm) {
                 String confirmation = sc.nextLine();
-                if (confirmation.toLowerCase().equals("no")) {
+                if (confirmation.equalsIgnoreCase("no")) {
                     loop = false;
                     confirm = true;
-                } else if (confirmation.toLowerCase().equals("yes")) {
+                } else if (confirmation.equalsIgnoreCase("yes")) {
                     if (createReportController.getTestsListReadyForReport().isEmpty()) {
                         System.out.println("There are no more tests ready for a report!");
                         loop = false;
