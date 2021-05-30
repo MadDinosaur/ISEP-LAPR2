@@ -54,7 +54,7 @@ public class SampleUI implements Runnable {
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("Invalid number. Please insert a valid number.");
             } catch (InputMismatchException e) {
-                System.out.println("insert number pleas");
+                System.out.println("Insert a number.");
                 input.next();
             }
         }
