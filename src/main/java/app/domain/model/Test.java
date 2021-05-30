@@ -13,8 +13,12 @@ import java.util.List;
 
 public class Test {
 
+    /**
+     * Instance of current client
+     */
     private Client client;
     private List<Category> listOfCategories;
+    private TestType testType;
     private String testCode;
     private String nhsCode;
     private Date dateOfCreation;
@@ -30,6 +34,9 @@ public class Test {
     private LocalDate dateValidation;
     private LocalTime timeValidation;
 
+    /**
+     * State of the test
+     */
     private enum StateOfTest{
         REGISTERED,
         SAMPLES_COLLECTED,
@@ -38,11 +45,19 @@ public class Test {
         VALIDATED
     }
 
-    public Test(Client client, List<Category> listOfCategories,String testCode, String nhsCode){
+    /**
+     * Creates a new instance of test
+     * @param client Client to register test
+     * @param testType Categories of tests to register
+     * @param testCode Test Code of the Test
+     * @param nhsCode Nhs Code of the Test
+     */
+    public Test(Client client, TestType testType,String testCode, String nhsCode){
         setClient(client);
-        setListOfCategories(listOfCategories);
+        setTestType(testType);
         setTestCode(testCode);
         setNhsCode(nhsCode);
+        setListOfCategories(testType.getCategories());
         getParametersFromCategoriesToStore();
         stateOfTest = StateOfTest.REGISTERED;
     }
@@ -58,6 +73,9 @@ public class Test {
     }
     private void setNhsCode(String nhsCode) {
         this.nhsCode = nhsCode;
+    }
+    public void setTestType(TestType testType) {
+        this.testType = testType;
     }
 
     /**

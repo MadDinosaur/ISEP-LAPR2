@@ -22,6 +22,7 @@ public class RegisterTestController {
     private List<Category> categoriesOfTestType = new ArrayList<>();
     private List<Parameter> parametersOfCategory= new ArrayList<>();
     private Parameter parameterOfCategory;
+    private TestType toSaveTestType;
     private Category toSaveCategory;
     private Parameter toSaveParameter;
     private List<Category> listOfChosenCategories = new ArrayList<>();
@@ -102,7 +103,8 @@ public class RegisterTestController {
     }
 
     public String[] createTest(){
-        return company.createTestToClient(client,listOfChosenCategories);
+        toSaveTestType = new TestType(testTypeChosen.getCode(),testTypeChosen.getDescription(), testTypeChosen.getCollectionMethod(), listOfChosenCategories);
+        return company.createTestToClient(client,toSaveTestType);
     }
 
 

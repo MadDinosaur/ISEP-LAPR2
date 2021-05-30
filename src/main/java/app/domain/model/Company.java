@@ -34,7 +34,8 @@ public class Company {
     private ReportStore reportStore;
     private SampleList sampleList;
 
-    private List<Test> registeredTests;
+    private List<Test> registeredTests = testStore.getRegisteredTests();
+
     private List<Category> parameterCategoryList = new ArrayList<>();
 
     private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
@@ -61,11 +62,10 @@ public class Company {
         List<Category> categoryList = new ArrayList<Category>(Collections.singleton(categoryTest));
         TestType testTypeHardCoded = new TestType("TestCorreto","test Of Test",collectionMethodTest,categoryList);
         testTypeStore.addTestType(testTypeHardCoded);
-        Test testTestHardCoded = new Test(clientStore.getClientByCardNumber((long)8765432187654321.0),categoryList,testNumberGenerator(),nhsCodeGenerator());
-        Test testTestHardCodedRegistered = new Test(clientStore.getClientByCardNumber((long)8765432187654322.0),categoryList,testNumberGenerator(),nhsCodeGenerator());
+        Test testTestHardCoded = new Test(clientStore.getClientByCardNumber((long)8765432187654321.0),testTypeHardCoded,testNumberGenerator(),nhsCodeGenerator());
+        Test testTestHardCodedRegistered = new Test(clientStore.getClientByCardNumber((long)8765432187654322.0),testTypeHardCoded,testNumberGenerator(),nhsCodeGenerator());
         testTestHardCoded.setStateOfTestToSamplesAnalyzed();
         testStore.addTest(testTestHardCodedRegistered);
-        //
     }
 
 
@@ -122,7 +122,6 @@ public class Company {
     public TestStore getTestStore() { return this.testStore;}
 
     public List<Test> getUnusedTests() {
-        registeredTests = testStore.getRegisteredTests();
         return this.registeredTests;
     }
 
@@ -185,10 +184,10 @@ public class Company {
             System.out.println("An error occurred on file " + file.getName());
         }
     }
-    public String[] createTestToClient(Client client, List<Category> listOfCategories) {
+    public String[] createTestToClient(Client client, TestType testType) {
         String generatedTestCode = testNumberGenerator();
         String generatedNhsCode = nhsCodeGenerator();
-        Test testToClient = new Test(client,listOfCategories,generatedTestCode,generatedNhsCode);
+        Test testToClient = new Test(client,testType,generatedTestCode,generatedNhsCode);
         testStore.addTest(testToClient);
         String[] codes=  new String[2];
         codes[0]= generatedTestCode;
