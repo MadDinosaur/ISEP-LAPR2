@@ -114,7 +114,7 @@ public class Company {
         return clientStore;
     }
 
-    public OrgRoleStore getOrgRoleStore() { return this.orgRoleStore;}
+    public OrgRoleStore getOrgRoleStore() { return this.orgRoleStore; }
 
     /**
      * Returns a TestStore

@@ -8,10 +8,7 @@ class RegisterTestController {
 -testType
 -testCategory
 -testParameter
-
-
 +getClientByCardNumber(cardNumber)
-
 }
 
 
@@ -58,6 +55,9 @@ class TestParametersDTO
 class TestParametersMapper{
 toDto(testParameterList)
 }
+class ClientStore
+class TestTypeStore
+
 
 Test "*"--"1..*" Parameter : requests analysis of >
 TestType "1"--"1..*" Parameter : has >
@@ -88,5 +88,8 @@ RegisterTestController ..> TestParametersMapper
 (Test, Parameter) .. TestParameter
 TestParameter "*"-"1" Parameter : associated to >
 TestParameter "*"--"1" Test : has <
+Company "*"--"1" ClientStore : uses >
+Company "*"--"1" TestTypeStore : uses <
+
 
 @enduml

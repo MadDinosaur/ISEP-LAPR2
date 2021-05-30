@@ -32,8 +32,8 @@ be performed to that client.
 
 •	Test code : Sequential number with 12 digits. The code is automatically generated.
                       
-•	NHS code: 12 alphanumeric characters. //AC ----
-  
+•	NHS code: 12 alphanumeric characters. 
+
 •	**Q3**: When the receptionist chooses the test type, should the categories appear, and then when selecting the category, the receptionist can choose the parameters for the test? Or when the Receptionist chooses the test type, should appear all the parameters that it includes immediately?
 
 **Answer:**  Firstly, the receptionist should choose a test type. Then choose a category from a set of categories. Last, the receptionist should choose a parameter.
@@ -53,11 +53,15 @@ be performed to that client.
         
 **AC2** The receptionist must select the categories of the parameters to be chosen must be chosen from all possible categories for that test type 
 
+**AC3** NHS code must have 12 alphanumeric characters.
+
+**AC4** Test code must be a sequencial number with 12 digits.
+
 ### 1.4. Found out Dependencies
 
 A receptionist must be already registered, revealing a dependence with US7.
 There is a dependence with US3 as a Client must be already registered.
-There is also a dependence with US9 and US10 since the receptionist must select the parameters available for a test.
+There is also a dependence with US9, US10 and US11 since the receptionist must select the parameters available for a test.
 
 ### 1.5 Input and Output Data
 
