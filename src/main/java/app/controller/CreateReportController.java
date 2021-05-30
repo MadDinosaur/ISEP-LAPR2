@@ -38,14 +38,6 @@ public class CreateReportController {
         return testParamList.getTestParametersResults();
     }
 
-    public List<ReferenceValue> getTestParametersReferenceValues() {
-        List<ReferenceValue> referenceValueList = new ArrayList<>();
-        for (TestParameter testParameter : testParamList.getTestParameters()) {
-            referenceValueList.add(testParameter.getReferenceValue());
-        }
-        return referenceValueList;
-    }
-
     public void createReport(ReportDTO reportDTO) {
         this.report = reportStore.createReport(reportDTO);
     }

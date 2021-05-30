@@ -3,6 +3,7 @@ package app.ui.console;
 import app.controller.CreateReportController;
 import app.domain.model.Exceptions.InvalidTestCodeException;
 import app.domain.model.Exceptions.InvalidTextReportException;
+import app.domain.model.TestParameterResult;
 import app.mappers.dto.ReportDTO;
 import app.mappers.dto.TestDTO;
 
@@ -25,9 +26,13 @@ public class CreateReportUI implements Runnable {
 
     private void displayTestsListReadyForReport() {
         List<TestDTO> testListReadyForReportDTO = createReportController.getTestsListReadyForReport();
-        for (TestDTO testDTO : testListReadyForReportDTO) {
-            System.out.printf("Test's Code - Client's Name\n%s - %s\n"
-                    , testDTO.getTestCode(), testDTO.getClient().getName());
+        if (testListReadyForReportDTO.isEmpty()) {
+            System.out.println("There are no tests ready for a report");
+        } else {
+            for (TestDTO testDTO : testListReadyForReportDTO) {
+                System.out.printf("Test's Code - Client's Name\n%s - %s\n"
+                        , testDTO.getTestCode(), testDTO.getClient().getName());
+            }
         }
     }
 
@@ -37,8 +42,9 @@ public class CreateReportUI implements Runnable {
         while (!valid) {
             try {
                 String testCode = sc.nextLine();
-                createReportController.getTestParametersResultsByCode(testCode);
-                createReportController.getTestParametersReferenceValues();
+                for (TestParameterResult testParameterResult : createReportController.getTestParametersResultsByCode(testCode)) {
+                    System.out.printf("%s - %s\n", testParameterResult, testParameterResult.getRefValue());
+                }
                 valid = true;
             } catch (InvalidTestCodeException e) {
                 System.out.println(e.getMessage());
