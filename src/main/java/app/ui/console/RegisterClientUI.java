@@ -1,7 +1,6 @@
 package app.ui.console;
 
 import app.controller.RegisterClientController;
-import app.domain.model.Client;
 import app.domain.model.Exceptions.*;
 
 import java.io.IOException;

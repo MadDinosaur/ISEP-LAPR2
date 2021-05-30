@@ -1,6 +1,5 @@
 package app.domain.model;
 
-import app.domain.shared.Constants;
 import app.domain.store.*;
 import auth.AuthFacade;
 import auth.domain.model.Email;
@@ -10,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
