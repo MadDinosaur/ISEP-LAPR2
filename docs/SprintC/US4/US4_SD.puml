@@ -43,11 +43,11 @@ ctrl -> ttMapper : toDto(testTypeList)
 create ttDto
 ttMapper -> ttDto : create()
 loop for each object in list testTypeList
-ttMapper -> ttMapper : obj = testTypeList(i)
-ttMapper -> ttMapper : objDto = toDTO(obj)
+ttMapper -> ttMapper : testType = testTypeList(i)
+ttMapper -> ttMapper : testTypeDto = toDTO(testType)
 create TTobjDto
-ttMapper -> TTobjDto : create()
-ttMapper -> ttDto : add(objDto)
+ttMapper -> TTobjDto : create(testType.getCode())
+ttMapper -> ttDto : add(testTypeDto)
 end loop
 ttMapper --> ctrl : listTestTypeDto
 ctrl --> ui : listTestTypeDto
@@ -65,11 +65,11 @@ ctrl -> tcm : toDTO(listOfTestCategories)
 create ltcDto
 tcm -> ltcDto : create()
 loop for each Category in listTestCategory
-tcm ->  ltc :  obj = get(i)
-tcm -> tcm : objDto = toDTO(obj)
+tcm ->  ltc :  category = get(i)
+tcm -> tcm : categoryDto = toDTO(category)
 create tcdto
-tcm -> tcdto : create()
-tcm -> ltcDto : add(objDto)
+tcm -> tcdto : create(category.getName())
+tcm -> ltcDto : add(categoryDto)
 end loop
 tcm --> ctrl : listTestCategoriesDto
 ctrl --> ui : listTestCategoriesDto
@@ -87,11 +87,11 @@ ctrl -> parM : toDTO(listOfTestParameters)
 create listParDto
 parM -> listParDto : create()
 loop for each parameter in listOfTestParameters
-parM -> listPar : obj = get(i)
-parM -> parM : objDto = toDTO(obj)
+parM -> listPar : parameter = get(i)
+parM -> parM : parameterDto = toDTO(parameter)
 create parDto
-parM -> parDto : create()
-parM -> listParDto : add(objDto)
+parM -> parDto : create(parameter.getName())
+parM -> listParDto : add(parameterDto)
 end loop
 parM --> ctrl : listOfTestParametersDto
 ctrl --> ui : listOfTestParametersDto
@@ -110,6 +110,7 @@ end loop
 ctrl -> cm : createTest(client, listOfTestCategories)
 cm -> cm : testCode = testCodeGenerator()
 cm -> cm : nhsCode = nhsCodeGenerator()
+cm -> "testStore :TestStore" : validateNhsCode(nhsCode)
 cm -> "testStore :TestStore" : create(client,listOfTestCategories,testCode,nhsCode)
 ui --> LR : shows data and requests confirmation
 ui -> ctrl : getTestStore()
@@ -117,12 +118,8 @@ ctrl -> cm : testStore = getTestStore()
 ui -> ctrl : saveTest()
 ctrl -> cm : registerTestToUser(test)
 ctrl -> cm : saveTest(test)
-cm -> cm : generateTestCode()
-cm -> cm : generateNhsCode()
-cm -> "testStore :TestStore" : addTest(test,)
+cm -> "testStore :TestStore" : addTest(test)
+"testStore :TestStore" -> "testStore :TestStore" : validateTest()
 ui --> LR : informs operation success
-
-
-
 
 @enduml

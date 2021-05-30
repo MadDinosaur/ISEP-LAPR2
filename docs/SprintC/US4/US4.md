@@ -42,11 +42,16 @@ be performed to that client.
 
 **Answer:** Yes.
 
+•	Q4: Should we show the list of all clients available or just introduce the client's CCN ?
+**Answer:**  The TIN number should be used to find a client and associate the client with the test.
+
 
 ### 1.3. Acceptance Criteria
 
 **AC1** The receptionist must select the parameters to be analysed from
         all possible parameters in accordance with the test type.
+        
+**AC2** The receptionist must select the categories of the parameters to be chosen must be chosen from all possible categories for that test type 
 
 ### 1.4. Found out Dependencies
 
@@ -115,7 +120,6 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 ## 3.2. Sequence Diagram (SD)
 
-*In this section, it is suggested to present an UML dynamic view stating the sequence of domain related software objects' interactions that allows to fulfill the requirement.* 
 
 ![US4_SD](US4_SD.svg)
 
@@ -123,7 +127,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 *In this section, it is suggested to present an UML static view representing the main domain related software classes that are involved in fulfilling the requirement as well as and their relations, attributes and methods.*
 
-![USXX-CD](USXX-CD.svg)
+![US4_CD](US4_CD.svg)
 
 # 4. Tests 
 *In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.* 
