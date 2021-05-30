@@ -13,7 +13,7 @@ public class CollectionMethod {
     /**
      * Collection Method's description
      */
-    private String description;
+    private String descriptionCollectionMethod;
 
     /**
      * Empty constructor
@@ -27,26 +27,26 @@ public class CollectionMethod {
      * @param description Collection Method's description
      */
     public CollectionMethod(String description) {
-        this.description = description;
+        this.descriptionCollectionMethod = description;
     }
 
     /**
      * Description getter
      * @return description
      */
-    public String getDescription() {
-        return description;
+    public String getDescriptionCollectionMethod() {
+        return descriptionCollectionMethod;
     }
 
     /**
      * Description setter
-     * @param description 20 or less characters
+     * @param descriptionCollectionMethod 20 or less characters
      */
-    public void setDescription(String description) {
-        if (!validateDescription(description)) {
+    public void setDescriptionCollectionMethod(String descriptionCollectionMethod) {
+        if (!validateDescriptionCollectionMethod(descriptionCollectionMethod)) {
             throw new InvalidDescriptionException();
         } else {
-            this.description = description;
+            this.descriptionCollectionMethod = descriptionCollectionMethod;
         }
     }
 
@@ -55,7 +55,7 @@ public class CollectionMethod {
      * @param description Collection method's description
      * @return True if it's valid and false if it's invalid
      */
-    public boolean validateDescription(String description) {
+    public boolean validateDescriptionCollectionMethod(String description) {
         if (description.equals("") || description.length() > 20) {
             return false;
         } else {
@@ -65,15 +65,15 @@ public class CollectionMethod {
 
     /**
      *
-     * @param o Another object
+     * @param otherObject Another object
      * @return True if a collection method has the same description as another collection method
      */
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CollectionMethod that = (CollectionMethod) o;
-        return Objects.equals(description, that.description);
+    public boolean equals(Object otherObject) {
+        if (this == otherObject) return true;
+        if (getClass() != otherObject.getClass()) return false;
+        CollectionMethod that = (CollectionMethod) otherObject;
+        return Objects.equals(descriptionCollectionMethod, that.descriptionCollectionMethod);
     }
 
 }
