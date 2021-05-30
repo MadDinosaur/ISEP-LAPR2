@@ -8,7 +8,6 @@ import app.mappers.TestMapper;
 import app.mappers.dto.ReportDTO;
 import app.mappers.dto.TestDTO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CreateReportController {
