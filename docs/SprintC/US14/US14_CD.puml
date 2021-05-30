@@ -59,33 +59,30 @@ class Report {
 +validateReport()
 }
 
-class TestListReadyForReportMapper {
-+toDTO(testListReadyForReport)
-+testReadyForReportDTO toDTO(testReadyForReport)
-}
-
-class TestListReadyForReportDTO {
-+add(TestReadyForReportDTO)
+class TestMapper {
++testListDTO toDTOList(testListReadyForReport)
++testDTO toDTO(testReadyForReport)
 }
 
 class TestParamList {
-+getTestParameterResults()
++getTestParameters()
 +getReferenceValue(testParam)
 }
 
 CreateReportUI ..> CreateReportController
+CreateReportUI ..> TestDTO
 CreateReportController ..> Company
 Company "1"-down->"1" TestStore: uses >
 Company "1"-down->"1" ReportStore: uses >
 Company "1"-down->"1" TestParamList: uses >
-TestStore "1"->"*" Test: contains >
-Test "1"->"1" Report: contains >
+TestStore "1"-->"*" Test: contains >
+Test "1"-->"1" Report: contains >
 CreateReportController ..> TestStore
 CreateReportController ..> ReportStore
+TestMapper ..> TestDTO
 
 
-CreateReportController ..> TestListReadyForReportMapper
-TestListReadyForReportMapper ..> TestListReadyForReportDTO
+CreateReportController ..> TestMapper
 
 
 CreateReportController ..> ReportDTO
@@ -96,5 +93,4 @@ ReportStore "1"-->"1" Report: contains >
 
 CreateReportController ..> TestParamList
 
-CreateReportUI ..> TestListReadyForReportDTO
 @enduml

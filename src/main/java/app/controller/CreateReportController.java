@@ -19,28 +19,45 @@ public class CreateReportController {
     private TestParamList testParamList;
     private ReportStore reportStore;
 
+
     public CreateReportController() {
         this.company = App.getInstance().getCompany();
         this.testStore = company.getTestStore();
         this.reportStore = company.getReportStore();
     }
 
+    /**
+     * Returns the list of tests ready for a report
+     * @return List<TestDTO>
+     */
     public List<TestDTO> getTestsListReadyForReport() {
-        List<Test> testListReadyForReport =  company.getTestStore().getTestsListReadyForReport();
+        List<Test> testListReadyForReport = company.getTestStore().getTestsListReadyForReport();
         TestMapper testMapper = new TestMapper(testListReadyForReport);
         return testMapper.toDtoList();
     }
 
-    public List<TestParameterResult> getTestParametersResultsByCode(String testCode) {
+    /**
+     * Returns a list of parameters associated to the respective test
+     * @param testCode Test's code
+     * @return List<TestParameter>
+     */
+    public List<TestParameter> getTestParametersByCode(String testCode) {
         this.test = testStore.getTestByCode(testCode);
         testParamList = test.getTestParamList();
-        return testParamList.getTestParametersResults();
+        return testParamList.getTestParameters();
     }
 
+    /**
+     * Creates a report with a report DTO
+     * @param reportDTO reportDTO
+     */
     public void createReport(ReportDTO reportDTO) {
         this.report = reportStore.createReport(reportDTO);
     }
 
+    /**
+     * Saves the report to the test
+     */
     public void saveReport() {
         this.testStore.saveReport(this.test, this.report);
     }

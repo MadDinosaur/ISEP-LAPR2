@@ -8,7 +8,7 @@ participant CreateReportController as crC
 participant Company as com
 participant "testStore: TestStore" as ts
 participant "testParamList: TestParamList" as tps
-participant TestMapper as tm
+participant "testMapper: TestMapper" as tm
 participant "test: Test" as t
 participant "reportStore: ReportStore" as rs
 participant "reportMapper: ReportMapper" as rm
@@ -20,6 +20,7 @@ participant "reportDTO: ReportDTO" as rdto
 
 activate sd
 sd -> crUI: starts new report
+loop Until the Specialist Doctor doesn't want to write more reports
 crUI -> crC: getTestsListReadyForReport()
 crC -> com: testStore = getTestStore()
 crC -> ts: testListReadyForReport = getTestsListReadyForReport()
@@ -29,10 +30,10 @@ crUI -[dashed]> sd: shows a list of tests ready to have a report and requests a 
 deactivate crUI
 
 sd -> crUI: types in the test result he wants to see (by its code)
-crUI -> crC: getTestParametersResultsByCode(testCode)
+crUI -> crC: getTestParametersByCode(testCode)
 crC -> ts: test = getTestByCode(testCode)
 crC -> t: testParamList = getTestParamList()
-crC -> tps: getTestParametersResults()
+crC -> tps: getTestParameters()
 loop for test parameters results in test
 crC -> tps: getReferenceValue(testParam)
 end loop
@@ -56,9 +57,10 @@ sd -> crUI: confirms
 crUI -> crC: saveReport()
 crC -> ts: saveReport(test, report)
 ts -> t: addReport(report)
-t -> t: test : setStatus(Report Made)
+t -> t: StateOfTest.REPORT_MADE
 
 
 crUI -[dashed]> sd: informs operation success
+end loop
 
 @enduml

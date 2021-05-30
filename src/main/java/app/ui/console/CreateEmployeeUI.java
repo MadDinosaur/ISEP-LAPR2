@@ -5,6 +5,7 @@ import app.controller.CreateEmployeeController;
 import app.domain.model.Exceptions.InvalidEmployeeException;
 import app.domain.model.Exceptions.UnregisteredOrgRolesException;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -32,7 +33,7 @@ public class CreateEmployeeUI implements Runnable {
             return;
         }
         displayInfo();
-        try {saveInfo();} catch (InvalidEmployeeException ex) {
+        try {saveInfo();} catch (InvalidEmployeeException | IOException ex) {
             System.out.println(ex.getMessage());
         }
     }
@@ -87,7 +88,7 @@ public class CreateEmployeeUI implements Runnable {
             System.out.printf("DIN: %s\n", din);
     }
 
-    private boolean saveInfo() {
+    private boolean saveInfo() throws IOException {
         System.out.println("Do you wish to save? Y/N");
         switch (sc.nextLine()) {
             case "Y":

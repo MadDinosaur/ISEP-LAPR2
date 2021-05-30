@@ -6,6 +6,7 @@ import app.domain.store.*;
 import app.mappers.TestMapper;
 import app.mappers.dto.TestDTO;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ValidateTestController {
@@ -25,14 +26,11 @@ public class ValidateTestController {
      */
     private List<Test> listTestsWithReport;
 
-    private List<TestDTO> listTestsWithReportDTO;
-
     /**
      * Empty constructor of ValidateTestController
      */
     public ValidateTestController() {
         this.company = (App.getInstance().getCompany());
-        this.currTestStore = this.company.getTestStore();
     }
 
     /**
@@ -41,23 +39,33 @@ public class ValidateTestController {
      */
     public ValidateTestController(Company company) {
         this.company = company;
-        this.currTestStore = company.getTestStore();
     }
 
+    /**
+     * Method that gets the list of test that are ready to validate
+     */
     public void getListTestsWithReport(){
+        this.currTestStore = company.getTestStore();
         this.listTestsWithReport = currTestStore.getListTestsWithReport();
     }
 
+    /**
+     *
+     * @return
+     */
     public List<TestDTO> toDTO(){
         if(!listTestsWithReport.equals(null)) {
             TestMapper testMapper = new TestMapper(listTestsWithReport);
-            return testMapper.toDtoList();
+            return testMapper.toDtoListValidation();
         }else throw new EmptyListException("This list is empty!");
     }
 
-    public Boolean validateTest(String nhsCode){
-        return true;
+    public void validateTest(String nhsCode){
+        currTestStore.validateTest(nhsCode);
     }
 
+    public void sendNotification(String nhsCode) throws IOException {
+        company.sendNotification(currTestStore.findTestThroughNhsCode(nhsCode).getClient(), "Your results are now available in the " + company.getDesignation() + "'s applications.");
+    }
 
 }

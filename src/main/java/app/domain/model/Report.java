@@ -1,6 +1,7 @@
 package app.domain.model;
 
 import app.domain.model.Exceptions.InvalidTextReportException;
+import app.domain.shared.Constants;
 
 
 /**
@@ -43,7 +44,7 @@ public class Report {
             throw new IllegalArgumentException("The report's text cannot be null");
         }
         String[] listaDePalavras = textReport.split(" ");
-        if (listaDePalavras.length > 400) {
+        if (listaDePalavras.length > Constants.REPORT_MAX_WORDS) {
             throw new InvalidTextReportException();
         } else {
             return true;

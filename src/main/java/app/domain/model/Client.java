@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Client {
 
-    private User clientUser;
     private String name;
     private long cardNumber;
     private long nhsId;
@@ -16,7 +15,6 @@ public class Client {
     private long phoneNumber;
     private Email email;
     private String sex;
-    private String SEX_POR_OMISSAO = "No sex assigned";
     private final String organizationRole = "cl";
     private List<Test> tests = new ArrayList<>();
 
@@ -72,6 +70,9 @@ public class Client {
     }
     public String getOrganizationRole() {
         return organizationRole;
+    }
+    public long getTIN() {
+        return TIN;
     }
 
     public void addTestToClient(Test test){

@@ -63,9 +63,16 @@ public class Test {
         stateOfTest = StateOfTest.REGISTERED;
     }
 
+    /**
+     * Sets the client and verifies if it is null
+     */
     private void setClient(Client client) {
+        if (client==null) {
+            throw new IllegalArgumentException("Client is errored");
+        }
         this.client = client;
     }
+
     private void setListOfCategories(List<Category> listOfCategories) {
         this.listOfCategories = listOfCategories;
     }
@@ -78,6 +85,11 @@ public class Test {
     private void setTestType(TestType testType) {
         this.testType = testType;
     }
+
+    /**
+     * sets a samples list associated to a test, and then changes test' state to "SAMPLES_COLLECTED"
+     * @param sampleList list of collected samples
+     */
     public void setSampleList(SampleList sampleList) {
         this.sampleList = sampleList;
         stateOfTest = StateOfTest.SAMPLES_COLLECTED;
@@ -208,12 +220,11 @@ public class Test {
         this.timeReport = getTime();
     }
 
-    public Boolean validateTest(){
+    public void validateTest(){
         if(!stateOfTest.equals("VALIDATED")) {
             this.stateOfTest = StateOfTest.VALIDATED;
             this.dateValidation = getDate();
             this.timeValidation = getTime();
-            return true;
         }else throw new TestAlreadyValidatedException("Test was already validated");
     }
 

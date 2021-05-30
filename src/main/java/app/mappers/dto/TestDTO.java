@@ -46,7 +46,6 @@ public class TestDTO {
         this.listOfParameters = listOfParameters;
         this.testParamList = testParamList;
         this.sampleList = sampleList;
-        this.stateOfTest = stateOfTest;
         this.report = report;
         this.dateReport = dateReport;
         this.timeReport = timeReport;
@@ -54,6 +53,15 @@ public class TestDTO {
         this.timeResults = timeResults;
         this.dateValidation = dateValidation;
         this.timeValidation = timeValidation;
+    }
+
+    public TestDTO(String nhsCode, Date dateOfCreation, LocalDate dateReport, LocalTime timeReport, LocalDate dateResults, LocalTime timeResults) {
+        this.nhsCode = nhsCode;
+        this.dateOfCreation = dateOfCreation;
+        this.dateReport = dateReport;
+        this.timeReport = timeReport;
+        this.dateResults = dateResults;
+        this.timeResults = timeResults;
     }
 
     public Client getClient() {

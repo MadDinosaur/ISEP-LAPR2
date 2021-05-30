@@ -3,6 +3,7 @@ package app.ui.console;
 import app.controller.RegisterTestController;
 import app.domain.model.Category;
 import app.domain.model.Client;
+import app.domain.model.Parameter;
 import app.mappers.ParamMapper;
 import app.mappers.dto.ParamDTO;
 import app.mappers.dto.TestCategoryDto;
@@ -28,16 +29,16 @@ public class RegisterTestUI implements Runnable {
     public void run() {
         System.out.println("\n");
         System.out.println("######## Test Registration ########");
-        System.out.println("Please introduce Client Card Number  (To leave type exit)");
+        System.out.println("Please introduce Client Tax Identification Number (To leave type exit)");
         boolean clientIsCorrect = false;
         do {
             boolean clientExists;
             do {
-                long clientCardNumber = sc.nextLong();
-                registerTestController.setClientByCardNumber(clientCardNumber);
+                long taxNumber = sc.nextLong();
+                registerTestController.setClientByTIN(taxNumber);
                 client = registerTestController.getClient();
                 if (client == null) {
-                    System.out.println("This client does not exist, please introduce a valid Card Number");
+                    System.out.println("This client does not exist, please introduce a valid Tax Identification Number");
                     clientExists = false;
                 } else {
                     clientExists = true;
@@ -141,17 +142,44 @@ public class RegisterTestUI implements Runnable {
             } while (!validAwnser);
         }while (repeatCategory);
 
-        System.out.println("Please confirm the Test information");
+        System.out.println("Please confirm the Test information! Is the Data Correct (Type Yes/No)");
         String[] codesOfTest = registerTestController.createTest();
-        System.out.println(registerTestController.getToSaveTestType().getCode());
-        System.out.println(registerTestController.getToSaveTestType().getCategories().get(0).getCategoryName());
-        System.out.println(registerTestController.getToSaveTestType().getCategories().get(0).getParameterList().get(0).getParameterName());
+
+        System.out.println("Test Type: " + registerTestController.getToSaveTestType().getCode());
+
+        for(Category category : registerTestController.getToSaveTestType().getCategories()){
+            System.out.println("Category :" + category.getCategoryName());
+            for(Parameter parameter : category.getParameterList()){
+                System.out.println("Parameter " + parameter);
+            }
+        }
+        boolean validAwnser;
+        do{
+            String awnser = sc.nextLine();
+            if(awnser.equalsIgnoreCase("yes")){
+                break;
+            }else{
+                if(awnser.equalsIgnoreCase("no")){
+                    System.out.println("The test will be canceled. Type any key to continue");
+                    validAwnser = true;
+                    sc.next();
+                    new ReceptionistUI().run();
+                }else {
+                    System.out.println("Invalid awnser!");
+                    System.out.println("Please confirm the Test information! Is the Data Correct (Type Yes/No)");
+                    validAwnser = false;
+                }
+            }
+        }while (!validAwnser);
 
         String generatedTestCode= codesOfTest[0];
         String generatedNhsCode= codesOfTest[1];
         System.out.println("The test was registered with the \n" +
                 "Test Code: " + generatedTestCode +"\n"+
                 "Nhs Code: " + generatedNhsCode);
+
+        System.out.println("Press any key to continue");
+        sc.next();
     }
 
 

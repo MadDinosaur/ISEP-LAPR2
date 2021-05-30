@@ -21,10 +21,18 @@ class Report {
 -textBody
 }
 
-Test "1"-down-"1" TestParameterResult: has a >
+class TestParameterResult {
+-createdAt
+-value
+-metric
+}
+
+
+Test "1"-down-"1" TestParameter: has a >
+TestParameter "1"-down-"1" TestParameterResult: contains >
 Test "1"-"1" Report: associated to >
 Report "1"-"1" Diagnosis: contains >
 TestParameterResult -left- ReferenceValue: records >
-ReferenceValue -down- ExternalModule: provided by >
+ReferenceValue -down- ReferenceValueModule: provided by >
 
 @enduml

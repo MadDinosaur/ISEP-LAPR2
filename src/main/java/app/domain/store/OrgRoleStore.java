@@ -1,6 +1,5 @@
 package app.domain.store;
 
-import app.domain.model.Company;
 import app.domain.model.Employee;
 import app.domain.model.Exceptions.UnregisteredOrgRolesException;
 import app.domain.model.OrganizationRole;

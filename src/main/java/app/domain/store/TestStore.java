@@ -1,8 +1,8 @@
 package app.domain.store;
 
 import app.domain.model.*;
-import app.domain.model.Client;
 import app.domain.model.Exceptions.InvalidTestCodeException;
+import app.domain.model.Exceptions.TestDoesntExistException;
 import app.domain.model.Exceptions.UnregisteredBarcodeException;
 
 import java.util.ArrayList;
@@ -104,16 +104,32 @@ public class TestStore {
         test.addReport(report);
     }
 
-    public boolean validateTest(String nhsCode){
+    public void validateTest(String nhsCode){
         Iterator<Test> testIterator = tests.iterator();
         Test test;
         while(testIterator.hasNext()){
             test = (Test) testIterator;
-            if(test.getNhsCode() == nhsCode){
+            if(test.getNhsCode().equals(nhsCode)){
                 test.validateTest();
             }
         }
+    }
+    public boolean validadeTestCode(String code){
+        for (Test test : tests){
+            if (test.getNhsCode().equals(code)){
+                return false;
+            }
+        }
         return true;
+    }
+
+    public Test findTestThroughNhsCode(String nhsCode){
+        Iterator<Test> testIterator = tests.iterator();
+        while(testIterator.hasNext()){
+            if(testIterator.next().getNhsCode().equals(nhsCode)){
+                return testIterator.next();
+            }
+        } throw new TestDoesntExistException();
     }
 
 }

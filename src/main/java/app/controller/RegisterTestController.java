@@ -34,8 +34,8 @@ public class RegisterTestController {
         this.testTypeStore = App.getInstance().getCompany().getTestTypeStore();
     }
 
-    public void setClientByCardNumber(long cardNumber){
-        client = company.getClientStore().getClientByCardNumber(cardNumber);
+    public void setClientByTIN(long tiNumber){
+        client = company.getClientStore().getClientByTINumber(tiNumber);
     }
 
     public Client getClient() {
