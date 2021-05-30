@@ -3,6 +3,7 @@ package app.ui.console;
 import app.controller.CreateReportController;
 import app.domain.model.Exceptions.InvalidTestCodeException;
 import app.domain.model.Exceptions.InvalidTextReportException;
+import app.domain.model.TestParameterResult;
 import app.mappers.dto.ReportDTO;
 import app.mappers.dto.TestDTO;
 
@@ -19,15 +20,19 @@ public class CreateReportUI implements Runnable {
         System.out.println("This is the list of tests ready to have a report made for them:");
         displayTestsListReadyForReport();
         getTestParameterResultsAndReferenceValues();
-        createReport();
+        createAndSaveReport();
 
     }
 
     private void displayTestsListReadyForReport() {
         List<TestDTO> testListReadyForReportDTO = createReportController.getTestsListReadyForReport();
-        for (TestDTO testDTO : testListReadyForReportDTO) {
-            System.out.printf("Test's Code - Client's Name\n%s - %s\n"
-                    , testDTO.getTestCode(), testDTO.getClient().getName());
+        if (testListReadyForReportDTO.isEmpty()) {
+            System.out.println("There are no tests ready for a report");
+        } else {
+            for (TestDTO testDTO : testListReadyForReportDTO) {
+                System.out.printf("Test's Code - Client's Name\n%s - %s\n"
+                        , testDTO.getTestCode(), testDTO.getClient().getName());
+            }
         }
     }
 
@@ -37,8 +42,9 @@ public class CreateReportUI implements Runnable {
         while (!valid) {
             try {
                 String testCode = sc.nextLine();
-                createReportController.getTestParametersResultsByCode(testCode);
-                createReportController.getTestParametersReferenceValues();
+                for (TestParameterResult testParameterResult : createReportController.getTestParametersResultsByCode(testCode)) {
+                    System.out.printf("%s - %s\n", testParameterResult, testParameterResult.getRefValue());
+                }
                 valid = true;
             } catch (InvalidTestCodeException e) {
                 System.out.println(e.getMessage());
@@ -47,16 +53,29 @@ public class CreateReportUI implements Runnable {
         }
     }
 
-    private void createReport() {
+    private void createAndSaveReport() {
         boolean valid = false;
+        boolean loop = false;
         System.out.println("Please type in your diagnosis");
         String textDiagnosis = sc.nextLine();
         while (!valid) {
             try {
                 System.out.println("Please type in your report (400 words)");
                 String textReport = sc.nextLine();
-                createReportController.createReport(new ReportDTO(textDiagnosis, textReport));
-                valid = true;
+                while (!loop) {
+                    System.out.println("Are you sure this is the report you want? (Y/N)");
+                    String confirmation = sc.nextLine();
+                    if (confirmation.toLowerCase().equals("y")) {
+                        loop = true;
+                        createReportController.createReport(new ReportDTO(textDiagnosis, textReport));
+                        createReportController.saveReport();
+                        valid = true;
+                    } else if (confirmation.toLowerCase().equals("n")) {
+                        createAndSaveReport();
+                    } else {
+                        System.out.println("Please type a valid confirmation");
+                    }
+                }
             } catch (InvalidTextReportException e) {
                 System.out.println(e.getMessage());
             }

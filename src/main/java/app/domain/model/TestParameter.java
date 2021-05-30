@@ -34,7 +34,7 @@ public class TestParameter {
     }
 
     public TestParameterResult getResult() {
-        if (result == null) throw new InvalidTestResultException("Test results hasn't been registered yet");
+        if (result == null) throw new InvalidTestResultException("Test results haven't been registered yet");
         return result;
     }
 }

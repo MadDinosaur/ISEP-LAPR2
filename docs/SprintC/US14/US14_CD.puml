@@ -13,7 +13,6 @@ class CreateReportController {
 
 +testListReadyForReport<Test> getTestsListReadyForReport()
 +getTestParametersResultsByCode(code)
-+getTestParametersReferenceValues()
 +report createReport(reportDTO)
 +saveReport()
 }

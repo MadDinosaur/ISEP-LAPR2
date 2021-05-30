@@ -7,7 +7,7 @@ participant "testDTO: TestDTO" as tdto
 
 
 
-[o-> tm: toDTO(testListReadyForReport)
+[o-> tm: toDtoList(testListReadyForReport)
 create tlrdto
 tm -> tlrdto: create()
 loop for every single object inside the testListReadyForReport
