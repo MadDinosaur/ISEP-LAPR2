@@ -20,7 +20,7 @@ public class ParamMapper {
         List<ParamDTO> paramDTOList = new ArrayList<>();
 
         for(Parameter param : params) {
-            System.out.println("chega aqui2");
+
             String code = param.getParameterCode();
             String description = param.getParameterDescription();
             String name = param.getParameterName();

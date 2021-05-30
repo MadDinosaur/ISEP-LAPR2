@@ -7,7 +7,7 @@ import app.domain.model.TestType;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class RegisterNewLabUI implements Runnable {
+public class    RegisterNewLabUI implements Runnable {
     static Scanner input = new Scanner(System.in);
     private RegisterNewLabController CNLC = new RegisterNewLabController();
 
