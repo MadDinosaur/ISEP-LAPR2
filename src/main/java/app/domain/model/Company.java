@@ -34,8 +34,6 @@ public class Company {
     private ReportStore reportStore;
     private SampleList sampleList;
 
-    private List<Test> registeredTests = testStore.getRegisteredTests();
-
     private List<Category> parameterCategoryList = new ArrayList<>();
 
     private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
@@ -120,10 +118,6 @@ public class Company {
      * @return TestStore
      */
     public TestStore getTestStore() { return this.testStore;}
-
-    public List<Test> getUnusedTests() {
-        return this.registeredTests;
-    }
 
     /**
      * Returns a ReportStore

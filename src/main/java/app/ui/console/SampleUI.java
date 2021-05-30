@@ -1,9 +1,11 @@
 package app.ui.console;
 
 import app.controller.SampleController;
-import app.domain.model.Test;
+import app.domain.model.Sample;
+import app.domain.store.SampleList;
 import app.mappers.dto.TestDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,18 +16,20 @@ public class SampleUI implements Runnable {
     public void run() {
 
         List<TestDTO> TestList = SC.getTestList();
-        TestCodeSelection(TestList);
+        String testCode = TestCodeSelection(TestList);
 
-        System.out.println("Insert number of samples:");
+        SampleList sampleList = null;
         try {
-            setSampleNumber();
+            System.out.println("Insert number of samples:");
+            sampleList = setSampleNumber();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        SC.criar(testCode, sampleList);
     }
 
-    public void TestCodeSelection(List<TestDTO> testList) {
+    public String TestCodeSelection(List<TestDTO> testList) {
         int index = 0;
         for (TestDTO testDTO : testList) {
             System.out.println(index + ":");
@@ -33,31 +37,37 @@ public class SampleUI implements Runnable {
             index++;
         }
 
+        System.out.println();
         System.out.println("Choose a test code by inserting its index:");
         int k = input.nextInt();
+        input.nextLine();
 
-        System.out.println("Is the test code" + testList.get(k).getTestCode() + "?");
+        System.out.println("Is the test code " + testList.get(k).getTestCode() + "? (yes/no)");
 
-        if(confirmation()) {
-            SC.setTestCode(testList.get(k).getTestCode());
+        boolean confirm = confirmation();
+        if(confirm) {
+            return testList.get(k).getTestCode();
         } else {
             TestCodeSelection(testList);
         }
+        return null;
     }
 
-    public void setSampleNumber() throws Exception {
+    public SampleList setSampleNumber() throws Exception {
         int n = input.nextInt();
+        input.nextLine();
 
         System.out.println("Number of samples:" + n);
         System.out.println("Is this information correct? (type yes/no)");
 
         boolean confirm = confirmation();
         if (confirm) {
-            SC.setSampleNumber(n);
+            return SC.setSampleNumber(n);
         } else {
             System.out.println("Enter the correct number of samples:");
             setSampleNumber();
         }
+        return null;
     }
 
 
