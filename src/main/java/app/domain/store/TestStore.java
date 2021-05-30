@@ -1,7 +1,6 @@
 package app.domain.store;
 
 import app.domain.model.*;
-import app.domain.model.Client;
 import app.domain.model.Exceptions.InvalidTestCodeException;
 import app.domain.model.Exceptions.TestDoesntExistException;
 import app.domain.model.Exceptions.UnregisteredBarcodeException;
