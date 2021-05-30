@@ -2,7 +2,6 @@ package app.domain.store;
 
 import app.domain.model.*;
 import auth.domain.model.Email;
-import junit.framework.TestCase;
 import org.junit.Assert;
 
 import java.util.ArrayList;
@@ -24,5 +23,4 @@ public class TestStoreTest {
         boolean actual = testStore.validadeTestCode("123456789012");
         Assert.assertFalse(actual);
     }
-
 }
