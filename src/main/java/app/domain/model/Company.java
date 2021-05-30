@@ -214,6 +214,8 @@ public class Company {
         return codes;
     }
 
+
+
     private String testNumberGenerator() {
         StringBuilder generatedTestCode = new StringBuilder();
         String testCodeString = String.valueOf(testNumber);
@@ -240,4 +242,10 @@ public class Company {
     private boolean validateNhsNumber(String nhsCode){
         return testStore.validadeTestCode(nhsCode);
     }
+
+    public String generateNumberTest(){
+        return testNumberGenerator();
+    }
+
+    public String generateNhsCodeGenerator(){return  nhsCodeGenerator();}
 }
