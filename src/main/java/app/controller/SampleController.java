@@ -53,7 +53,7 @@ public class SampleController {
 
         SampleList sampleList = test.getSampleList();
 
-        File theDir = new File("/path/directory");
+        File theDir = new File("barcodes");
         if (!theDir.exists()){ theDir.mkdirs(); }
 
         for (int i = 0; i < n; i++) {
