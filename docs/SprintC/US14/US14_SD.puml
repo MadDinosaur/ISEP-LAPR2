@@ -23,7 +23,7 @@ sd -> crUI: starts new report
 crUI -> crC: getTestsListReadyForReport()
 crC -> com: testStore = getTestStore()
 crC -> ts: testListReadyForReport = getTestsListReadyForReport()
-crC -> tm: toDTO(testListReadyForReport)
+crC -> tm: toDtoList(testListReadyForReport)
 ref over tm : SD_TestListReadyForReportToDTO
 crUI -[dashed]> sd: shows a list of tests ready to have a report and requests a test to be shown
 deactivate crUI
@@ -33,8 +33,7 @@ crUI -> crC: getTestParametersResultsByCode(testCode)
 crC -> ts: test = getTestByCode(testCode)
 crC -> t: testParamList = getTestParamList()
 crC -> tps: getTestParametersResults()
-crUI -> crC: getTestParametersReferenceValues()
-loop for test parameters in test
+loop for test parameters results in test
 crC -> tps: getReferenceValue(testParam)
 end loop
 

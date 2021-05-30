@@ -55,13 +55,12 @@ public class Test {
     public Test(Client client, TestType testType,String testCode, String nhsCode){
         setClient(client);
         setTestType(testType);
+        setTestParameters();
         setTestCode(testCode);
         setNhsCode(nhsCode);
         setListOfCategories(testType.getCategories());
         getParametersFromCategoriesToStore();
         stateOfTest = StateOfTest.REGISTERED;
-
-        testParamList = new TestParamList(testType);
     }
 
     private void setClient(Client client) {
@@ -76,7 +75,7 @@ public class Test {
     private void setNhsCode(String nhsCode) {
         this.nhsCode = nhsCode;
     }
-    public void setTestType(TestType testType) {
+    private void setTestType(TestType testType) {
         this.testType = testType;
     }
     public void setSampleList(SampleList sampleList) {
@@ -103,6 +102,8 @@ public class Test {
     public List<Category> getListOfCategories() {
         return listOfCategories;
     }
+
+    public TestType getTestType() { return testType; }
 
     public String getNhsCode() {
         return nhsCode;
@@ -179,8 +180,21 @@ public class Test {
         }
     }
 
+    public Parameter getParameter(String paramCode) {
+        for (Parameter param: listOfParameters)
+            if (param.getParameterCode().equalsIgnoreCase(paramCode))
+                return param;
+
+        return null;
+    }
+
     public String getTestCode() {
         return this.testCode;
+    }
+    private void setTestParameters() {
+        this.testParamList = new TestParamList(testType);
+        for(Parameter parameter: testType.getParameters())
+            testParamList.createTestParam(parameter);
     }
 
     /**
@@ -223,5 +237,35 @@ public class Test {
         this.stateOfTest = StateOfTest.SAMPLES_ANALYZED;
     }
 
+    public void setStateOfTestToSamplesCollected() {
+        this.stateOfTest = StateOfTest.SAMPLES_COLLECTED;
+    }
+
+    public TestParameterResult createTestParameterResult(String paramCode, String result, String metric) {
+        return testParamList.createTestParameterResult(paramCode, result, metric);
+    }
+
+    public boolean saveTestParameterResult(Parameter param, TestParameterResult result) {
+        if (!testParamList.addTestParameterResult(param, result))
+            return false;
+
+        if(testParamList.size() == sampleList.size())
+            this.stateOfTest = StateOfTest.SAMPLES_ANALYZED;
+
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Test no. %s of type %s | Client: %s | Status %s\n", testCode, testType.getCode(), client.getName(), stateOfTest.toString());
+    }
+
+    public String toStringWithSamples() {
+        StringBuilder samplesToString = new StringBuilder();
+        for (Sample sample: getSampleList().getSampleList())
+            samplesToString.append(sample + "    ");
+
+        return String.format("%sSamples Collected no.: %s\n" , toString(), samplesToString.toString());
+    }
 }
 

@@ -20,4 +20,8 @@ public class Sample {
         return barcodeText;
     }
 
+    @Override
+    public String toString() {
+        return barcodeText;
+    }
 }
