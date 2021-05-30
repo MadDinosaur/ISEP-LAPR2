@@ -18,46 +18,38 @@ public class ValidateTestUI implements Runnable{
 
     @Override
     public void run() {
-        vtctrl.getListTestsWithReport();
-        try {
-            System.out.println("These are the tests ready to be validated:");
-            List<TestDTO> listTestsWithReportDTO = vtctrl.toDTO();
-            int i = 0;
-            Iterator<TestDTO> testDTOIterator = listTestsWithReportDTO.iterator();
-            List<String> nhsCodes = null;
-            while(testDTOIterator.hasNext()){
-                System.out.println("Test#"+ i + "(" + "Registration date and time:" + testDTOIterator.next().getDateOfCreation() + "; Results date and time:" + testDTOIterator.next().getDateResults() + " at " +testDTOIterator.next().getTimeResults() + "; Report date and time:" + testDTOIterator.next().getDateReport() + " at " +testDTOIterator.next().getTimeReport() + ")");
-                nhsCodes.add(testDTOIterator.next().getNhsCode());
-                i++;
-            }
-            i = 0;
-            System.out.println("Please write the number of the tests you wish to validate (write -1 to finish).");
-            int testNumber = 0;
-            List<Integer> testNumbers = null;
-            while(testNumber != -1) {
-                testNumber = sc.nextInt();
-                testNumbers.add(testNumber);
-            }
-            Iterator<String> nhsCodesIterator = nhsCodes.iterator();
-            Iterator<Integer> testNumbersIterator = testNumbers.iterator();
-            while(nhsCodesIterator.hasNext()){
-                while(testNumbersIterator.hasNext()){
-                    if(i == testNumbersIterator.next()){
-                        System.out.println("Test#"+ i + "(" + "Registration date and time:" + testDTOIterator.next().getDateOfCreation() + "; Results date and time:" + testDTOIterator.next().getDateResults() + " at " +testDTOIterator.next().getTimeResults() + "; Report date and time:" + testDTOIterator.next().getDateReport() + " at " +testDTOIterator.next().getTimeReport() + ")");
-                        System.out.println("Do you want to validate this test (Yes/No)?");
-                        String confirmation = sc.nextLine();
-                        if(confirmation.equalsIgnoreCase("yes")){
-                            vtctrl.validateTest(nhsCodesIterator.next());
-                            vtctrl.sendNotification(nhsCodesIterator.next());
-                            System.out.println("The client has been notified.");
-                        }
-                    }
-                }
-                i++;
-            }
-            System.out.println("All selected tests have been validated.");
-        }catch(EmptyListException | IOException e){
-            System.out.println("There are no tests for validation!");
+      vtctrl.getListTestsWithReport();
+      if(vtctrl.toDTO() != null) {
+          System.out.println("These are the available tests:");
+          Iterator<TestDTO> testDTOIterator = vtctrl.toDTO().iterator();
+          int i = 0;
+          List<String> nhscodes = null;
+          while(testDTOIterator.hasNext()) {
+              System.out.println("Test#" + i + ": " + testDTOIterator.next());
+              nhscodes.add(testDTOIterator.next().getNhsCode());
+              i++;
+          }
+          System.out.println("Please select the tests you wish to validate by their number (write -1 when you have finished).");
+          int tests = sc.nextInt();
+          i = 0;
+          while(tests != -1){
+              Iterator<String> nhscodesIterator = nhscodes.iterator();
+              while(nhscodesIterator.hasNext()){
+                  if(i == tests){
+                      vtctrl.validateTest(nhscodesIterator.next());
+                      try {
+                          vtctrl.sendNotification(nhscodesIterator.next());
+                      } catch (IOException e) {
+                          e.printStackTrace();
+                      }
+                      System.out.println("The client has been notified.");
+                  }
+                  i++;
+              }
+              tests = sc.nextInt();
+          }
+          System.out.println("All test have been validated.");
         }
+
     }
 }

@@ -127,4 +127,16 @@ public class TestDTO {
     public LocalTime getTimeValidation() {
         return timeValidation;
     }
+
+    @Override
+    public String toString() {
+        return "dateOfCreation=" + dateOfCreation +
+                ", dateReport=" + dateReport +
+                ", timeReport=" + timeReport +
+                ", dateResults=" + dateResults +
+                ", timeResults=" + timeResults +
+                ", dateValidation=" + dateValidation +
+                ", timeValidation=" + timeValidation +
+                '}';
+    }
 }

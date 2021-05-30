@@ -54,10 +54,8 @@ public class ValidateTestController {
      * @return
      */
     public List<TestDTO> toDTO(){
-        if(!listTestsWithReport.equals(null)) {
-            TestMapper testMapper = new TestMapper(listTestsWithReport);
-            return testMapper.toDtoListValidation();
-        }else throw new EmptyListException("This list is empty!");
+        TestMapper testMapper = new TestMapper(listTestsWithReport);
+        return testMapper.toDtoListValidation();
     }
 
     public void validateTest(String nhsCode){

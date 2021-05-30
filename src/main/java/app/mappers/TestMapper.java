@@ -67,9 +67,13 @@ public class TestMapper {
     }
 
     public List<TestDTO> toDtoListValidation(){
-        Iterator<Test> testIterator = list.iterator();
-        while(testIterator.hasNext()){
-            this.listDTO.add(toDTOValidation(testIterator.next().getNhsCode(), testIterator.next().getDateOfCreation(), testIterator.next().getDateReport(), testIterator.next().getTimeReport(), testIterator.next().getDateResults(), testIterator.next().getTimeResults()));
+        try {
+            Iterator<Test> testIterator = list.iterator();
+            while(testIterator.hasNext()){
+                this.listDTO.add(toDTOValidation(testIterator.next().getNhsCode(), testIterator.next().getDateOfCreation(), testIterator.next().getDateReport(), testIterator.next().getTimeReport(), testIterator.next().getDateResults(), testIterator.next().getTimeResults()));
+            }
+        }catch (NoSuchElementException e){
+            System.out.println("No such element");
         }
         return listDTO;
     }
