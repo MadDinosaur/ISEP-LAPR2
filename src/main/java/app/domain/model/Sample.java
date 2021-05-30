@@ -10,7 +10,7 @@ import java.util.Random;
 public class Sample {
 
     private String barcodeText;
-
+    private Random r = new Random();
 
     /**
      * sets barcode text
@@ -30,7 +30,6 @@ public class Sample {
      */
 
     public String generateBarcodeUPC() {
-        Random r = new Random();
         long barcode = 10000000000L + (long) (r.nextDouble() * 89999999999L);
         return String.valueOf(barcode);
     }
