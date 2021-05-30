@@ -8,7 +8,6 @@ import app.mappers.TestMapper;
 import app.mappers.dto.ReportDTO;
 import app.mappers.dto.TestDTO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CreateReportController {
@@ -22,8 +21,8 @@ public class CreateReportController {
 
     public CreateReportController() {
         this.company = App.getInstance().getCompany();
-        testStore = company.getTestStore();
-        reportStore = company.getReportStore();
+        this.testStore = company.getTestStore();
+        this.reportStore = company.getReportStore();
     }
 
     public List<TestDTO> getTestsListReadyForReport() {
@@ -36,14 +35,6 @@ public class CreateReportController {
         this.test = testStore.getTestByCode(testCode);
         testParamList = test.getTestParamList();
         return testParamList.getTestParametersResults();
-    }
-
-    public List<ReferenceValue> getTestParametersReferenceValues() {
-        List<ReferenceValue> referenceValueList = new ArrayList<>();
-        for (TestParameter testParameter : testParamList.getTestParameters()) {
-            referenceValueList.add(testParameter.getReferenceValue());
-        }
-        return referenceValueList;
     }
 
     public void createReport(ReportDTO reportDTO) {

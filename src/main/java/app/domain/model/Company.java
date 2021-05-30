@@ -54,16 +54,18 @@ public class Company {
         clientStore.saveClient(new Client("Joni",(long)  1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512346,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
         clientStore.saveClient(new Client("Joni",(long)  8765432187654322.0,1234512345,new DateBirth(24,12,2002),1234512347,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
         CollectionMethod collectionMethodTest = new CollectionMethod("test Colection");
-        Category categoryTest = new Category("Hemograma", "pistola", "WBC", "toma");
-        Parameter parameter = new Parameter("par2345","19045","test f234");
+        Category categoryTest = new Category("Hemogram", "HEM00", "Hemogram Description", "toma");
+        Parameter parameter = new Parameter("par2345","HB000","test f234");
         categoryTest.saveParameter(parameter);
         List<Category> categoryList = new ArrayList<Category>(Collections.singleton(categoryTest));
-        TestType testTypeHardCoded = new TestType("TestCorreto","test Of Test",collectionMethodTest,categoryList);
+        TestType testTypeHardCoded = new TestType("Blood","test Of Test",collectionMethodTest,categoryList);
         testTypeStore.addTestType(testTypeHardCoded);
         Test testTestHardCoded = new Test(clientStore.getClientByCardNumber((long)8765432187654321.0),testTypeHardCoded,testNumberGenerator(),nhsCodeGenerator());
         Test testTestHardCodedRegistered = new Test(clientStore.getClientByCardNumber((long)8765432187654322.0),testTypeHardCoded,testNumberGenerator(),nhsCodeGenerator());
+        testTestHardCoded.createTestParameterResult("HB000", "12", "metric");
         testTestHardCoded.setStateOfTestToSamplesAnalyzed();
         testStore.addTest(testTestHardCodedRegistered);
+        testStore.addTest(testTestHardCoded);
     }
 
 

@@ -5,7 +5,7 @@
 ### 1.1. User Story Description
 
 _As a **medical lab technician**, I want to **record the samples collected in
-the scope of a given test.**
+the scope of a given test.**_
 
 ### 1.2. Customer Specifications and Clarifications 
 
@@ -67,13 +67,12 @@ the scope of a given test.**
 * **Q11**: Should there be a validation of the number of samples?
   * **A**: No.
   
-
 ### 1.3. Acceptance Criteria
 
 * **AC1**: The system should support several barcode APIs. The API to use is
 defined by configuration.
 * **AC2**: One test can have more than a sample.
-* **AC3**: Each barcode generated must be saved in a folder as a .jpeg file. 
+* **AC3**: Each barcode generated must be saved in a folder as a .jpg file. 
 
 ### 1.4. Found out Dependencies
 
