@@ -22,10 +22,13 @@ public class ValidateTestUI implements Runnable{
             List<TestDTO> listTestsWithReportDTO = vtctrl.toDTO();
             int i = 0;
             Iterator<TestDTO> testDTOIterator = listTestsWithReportDTO.iterator();
+            List<String> nhsCodes = null;
             while(testDTOIterator.hasNext()){
                 System.out.println("Test#"+ i + "(" + "Registration date and time:" + testDTOIterator.next().getDateOfCreation() + "; Results date and time:" + testDTOIterator.next().getDateResults() + " at " +testDTOIterator.next().getTimeResults() + "; Report date and time:" + testDTOIterator.next().getDateReport() + " at " +testDTOIterator.next().getTimeReport() + ")");
+                nhsCodes.add(testDTOIterator.next().getNhsCode());
                 i++;
             }
+            i = 0;
             System.out.println("Please write the number of the tests you wish to validate (write -1 to finish).");
             int testNumber = 0;
             List<Integer> testNumbers = null;
@@ -33,7 +36,23 @@ public class ValidateTestUI implements Runnable{
                 testNumber = sc.nextInt();
                 testNumbers.add(testNumber);
             }
-
+            Iterator<String> nhsCodesIterator = nhsCodes.iterator();
+            Iterator<Integer> testNumbersIterator = testNumbers.iterator();
+            while(nhsCodesIterator.hasNext()){
+                while(testNumbersIterator.hasNext()){
+                    if(i == testNumbersIterator.next()){
+                        System.out.println("Test#"+ i + "(" + "Registration date and time:" + testDTOIterator.next().getDateOfCreation() + "; Results date and time:" + testDTOIterator.next().getDateResults() + " at " +testDTOIterator.next().getTimeResults() + "; Report date and time:" + testDTOIterator.next().getDateReport() + " at " +testDTOIterator.next().getTimeReport() + ")");
+                        System.out.println("Do you want to validate this test (Yes/No)?");
+                        String confirmation = sc.nextLine();
+                        if(confirmation.equalsIgnoreCase("yes")){
+                            vtctrl.validateTest(nhsCodesIterator.next());
+                            vtctrl.sendNotification(nhsCodesIterator.next());
+                            System.out.println("The client has been notified.");
+                        }
+                    }
+                }
+                i++;
+            }
         }catch(EmptyListException e){
             System.out.println("There are no tests for validation!");
         }

@@ -105,7 +105,7 @@ public class TestStore {
         test.addReport(report);
     }
 
-    public boolean validateTest(String nhsCode){
+    public void validateTest(String nhsCode){
         Iterator<Test> testIterator = tests.iterator();
         Test test;
         while(testIterator.hasNext()){
@@ -114,7 +114,6 @@ public class TestStore {
                 test.validateTest();
             }
         }
-        return true;
     }
     public boolean validadeTestCode(String code){
         for (Test test : tests){

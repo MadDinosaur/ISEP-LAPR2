@@ -60,8 +60,8 @@ public class ValidateTestController {
         }else throw new EmptyListException("This list is empty!");
     }
 
-    public Boolean validateTest(String nhsCode){
-        return currTestStore.validateTest(nhsCode);
+    public void validateTest(String nhsCode){
+        currTestStore.validateTest(nhsCode);
     }
 
     public void sendNotification(String nhsCode) throws IOException {

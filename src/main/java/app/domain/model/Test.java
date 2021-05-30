@@ -218,12 +218,11 @@ public class Test {
         this.timeReport = getTime();
     }
 
-    public Boolean validateTest(){
+    public void validateTest(){
         if(!stateOfTest.equals("VALIDATED")) {
             this.stateOfTest = StateOfTest.VALIDATED;
             this.dateValidation = getDate();
             this.timeValidation = getTime();
-            return true;
         }else throw new TestAlreadyValidatedException("Test was already validated");
     }
 

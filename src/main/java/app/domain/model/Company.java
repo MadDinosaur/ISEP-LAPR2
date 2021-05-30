@@ -236,12 +236,7 @@ public class Company {
         return generatedNhsCode.toString();
     }
 
-
     private boolean validateNhsNumber(String nhsCode){
         return testStore.validateTest(nhsCode);
     }
-
-
-
-
 }
