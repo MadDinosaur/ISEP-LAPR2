@@ -62,8 +62,6 @@ public class TestDTO {
         this.timeReport = timeReport;
         this.dateResults = dateResults;
         this.timeResults = timeResults;
-        this.dateValidation = dateValidation;
-        this.timeValidation = timeValidation;
     }
 
     public Client getClient() {
