@@ -65,8 +65,11 @@ There is also a dependence with US9, US10 and US11 since the receptionist must s
 
 ### 1.5 Input and Output Data
 
-*Identity here the data to be inputted by the system actor as well as the output data that the system have/needs to present in order to properly support the actor actions. Regarding the inputted data, it is suggested to distinguish between typed data and selected data (e.g. from a list)*
+Input Data:
 
+•	Typed Data: client tax identification number
+
+•	Selected Data: test type, categories, parameter
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -75,20 +78,17 @@ There is also a dependence with US9, US10 and US11 since the receptionist must s
 
 ### 1.7 Other Relevant Remarks
 
-*Use this section to capture other relevant information that is related with this US such as (i) special requirements ; (ii) data and/or technology variations; (iii) how often this US is held.* 
-
+No relevant information.
 
 ## 2. OO Analysis
 
 ### 2.1. Relevant Domain Model Excerpt 
-*In this section, it is suggested to present an excerpt of the domain model that is seen as relevant to fulfill this requirement.* 
 
 ![US4_DM](US4_DM.svg)
 
 ### 2.2. Other Remarks
 
-*Use this section to capture some aditional notes/remarks that must be taken into consideration into the design activity. In some case, it might be usefull to add other analysis artifacts (e.g. activity or state diagrams).* 
-
+There are no other remarks
 
 
 ## 3. Design - User Story Realization 
@@ -129,14 +129,11 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 ## 3.3. Class Diagram (CD)
 
-*In this section, it is suggested to present an UML static view representing the main domain related software classes that are involved in fulfilling the requirement as well as and their relations, attributes and methods.*
 
 ![US4_CD](US4_CD.svg)
 
 # 4. Tests 
-*In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.* 
 
-**_DO NOT COPY ALL DEVELOPED TESTS HERE_**
 
 **Test 1:** Check that it is not possible to create an instance of the Example class with null values. 
 
@@ -145,13 +142,14 @@ Other software classes (i.e. Pure Fabrication) identified:
             Test test = new Test(null, null,null,null);
         }
 
-*It is also recommended to organize this content by subsections.* 
 
 # 5. Construction (Implementation)
 
-*In this section, it is suggested to provide, if necessary, some evidence that the construction/implementation is in accordance with the previously carried out design. Furthermore, it is recommeded to mention/describe the existence of other relevant (e.g. configuration) files and highlight relevant commits.*
+##Class RegisterTestController 
 
-*It is also recommended to organize this content by subsections.* 
+    public void setClientByTIN(long tiNumber){
+        client = company.getClientStore().getClientByTINumber(tiNumber);
+    } 
 
 # 6. Integration and Demo 
 

@@ -69,7 +69,7 @@ public class TestMapper {
     public List<TestDTO> toDtoListValidation(){
         Iterator<Test> testIterator = list.iterator();
         while(testIterator.hasNext()){
-            listDTO.add(toDTOValidation(testIterator.next().getNhsCode(), testIterator.next().getDateOfCreation(), testIterator.next().getDateReport(), testIterator.next().getTimeReport(), testIterator.next().getDateResults(), testIterator.next().getTimeResults()));
+            this.listDTO.add(toDTOValidation(testIterator.next().getNhsCode(), testIterator.next().getDateOfCreation(), testIterator.next().getDateReport(), testIterator.next().getTimeReport(), testIterator.next().getDateResults(), testIterator.next().getTimeResults()));
         }
         return listDTO;
     }
