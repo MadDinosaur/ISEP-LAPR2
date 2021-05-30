@@ -19,6 +19,7 @@ class Company {
 -designation
 +getTestStore()
 +getTestTypeStore()
++private validateNhsCode()
 }
 class TestStore
 class Test {
