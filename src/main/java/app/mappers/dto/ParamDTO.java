@@ -14,7 +14,7 @@ public class ParamDTO {
 
     @Override
     public String toString() {
-        return String.format("Parameter %s - %s - %s\n", getCode(), getName(), getDescription());
+        return String.format("Parameter %s - %s - %s", getCode(), getName(), getDescription());
     }
 
     public String getCode() {

@@ -26,16 +26,18 @@ cct -> ui : selects requested data
 ui --> cct : requests result value and metric
 cct -> ui : types requested data
 ui -> controller : createTestParameterResult(paramCode, result, metric)
-controller -> ts : createTestParameterResult(test, paramCode, result, metric)
+controller -> ts : result = createTestParameterResult(test, paramCode, result, metric)
 ts -> test : createTestParameterResult(paramCode, result, metric)
 ref over test : SD_CreateTestResult
 end loop
 ui --> cct : shows the data and requests confirmation
 cct -> ui : confirms the data
 ui -> controller : saveTestParameterResult()
-controller -> ts : saveTestParameterResult()
-ts -> test : addTestParameterResult()
-test -> test : setStatus("Samples Analysed")
+controller -> test : saveTestParameterResult(result)
+test -> tpstore : addTestParameterResult(result)
+tpstore -> tpstore : validateTestParameterResult(result)
+tpstore -> tpstore : addTestParameterResult(result)
+test -> test : setSamplesAnalysedState()
 ui --> cct : informs operation success
 
 
