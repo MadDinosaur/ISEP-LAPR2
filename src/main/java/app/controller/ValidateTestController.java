@@ -6,6 +6,7 @@ import app.domain.store.*;
 import app.mappers.TestMapper;
 import app.mappers.dto.TestDTO;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ValidateTestController {
@@ -59,11 +60,11 @@ public class ValidateTestController {
         }else throw new EmptyListException("This list is empty!");
     }
 
-    public Boolean validateTest(String nhsCode){
-        return currTestStore.validateTest(nhsCode);
+    public void validateTest(String nhsCode){
+        currTestStore.validateTest(nhsCode);
     }
 
-    public void sendNotification(String nhsCode){
+    public void sendNotification(String nhsCode) throws IOException {
         company.sendNotification(currTestStore.findTestThroughNhsCode(nhsCode).getClient(), "Your results are now available in the " + company.getDesignation() + "'s applications.");
     }
 

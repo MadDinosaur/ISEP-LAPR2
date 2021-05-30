@@ -4,6 +4,7 @@ import app.controller.RegisterClientController;
 import app.domain.model.Client;
 import app.domain.model.Exceptions.*;
 
+import java.io.IOException;
 import java.util.*;
 
 public class RegisterClientUI implements Runnable {
@@ -175,7 +176,11 @@ public class RegisterClientUI implements Runnable {
         System.out.println("Type Yes/No/Cancel");
         String awnser = sc.nextLine();
         if (awnser.equalsIgnoreCase("yes")){
-            clientController.saveClient();
+            try {
+                clientController.saveClient();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }if(awnser.equalsIgnoreCase("no")){
             System.out.println("Press any Key to restart Client Registration");
             new RegisterClientUI().run();

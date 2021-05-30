@@ -4,6 +4,7 @@ import app.domain.model.Client;
 import app.domain.model.Company;
 import app.domain.model.DateBirth;
 import app.domain.model.Exceptions.*;
+import app.domain.shared.Constants;
 import auth.domain.model.Email;
 import auth.domain.model.UserRole;
 
@@ -21,7 +22,6 @@ public class RegisterClientController {
     private  long phoneNumber; //-
     private  Email email; //-
     private  String sex; //-
-    private  final String SEX_POR_OMISSAO = "No sex assigned";
     private  Client newClient;
     private final Company company;
     private  String pass;
@@ -37,7 +37,7 @@ public class RegisterClientController {
             sex = "Female";
         }
         if (opcao == 3) {
-            sex = SEX_POR_OMISSAO;
+            sex = Constants.SEX_BY_DEFAULT;
         }
     }
 
@@ -124,7 +124,7 @@ public class RegisterClientController {
     }
 
 
-    public boolean saveClient() {
+    public boolean saveClient() throws IOException {
         this.newClient = new Client(this.name, this.cardNumber, this.nhsId, this.dateBirth, this.TIN,this.phoneNumber,this.email,this.sex);
         this.pass = passGen();
 

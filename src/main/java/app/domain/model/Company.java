@@ -131,7 +131,7 @@ public class Company {
 
     public SampleList getSampleStore() { return this.sampleList; }
 
-    public boolean saveEmployeeAsUser(Employee e) {
+    public boolean saveEmployeeAsUser(Employee e) throws IOException {
         String pwd = generateUserPassword();
         if (authFacade.addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId())) {
             sendUserPassword(e.getEmail(), pwd);
@@ -139,7 +139,7 @@ public class Company {
         }
         return false;
     }
-    public boolean saveClientAsUser(Client client,String email){
+    public boolean saveClientAsUser(Client client,String email) throws IOException {
         String pwd = generateUserPassword();
         if (authFacade.addUserWithRole(client.getName(), email, pwd, client.getOrganizationRole())) {
             clientStore.saveClient(client);
@@ -166,30 +166,33 @@ public class Company {
         return generatedString;
     }
 
-    private void sendUserPassword(String email, String pwd) {
+    private void sendUserPassword(String email, String pwd) throws IOException {
         File file = null;
+        FileWriter myWriter = null;
         try {
             file = new File("SMS-Emails\\Register_" + email + ".txt");
 
-            FileWriter myWriter = new FileWriter("SMS-Emails\\Register" + email + ".txt");
+            myWriter = new FileWriter("SMS-Emails\\Register" + email + ".txt");
             myWriter.write("You are now registered in " + getDesignation() + "'s application. " +
                     "Your password is: " + pwd);
-            myWriter.close();
         } catch (IOException e) {
             System.out.println("An error occurred on file " + file.getName());
+        } finally {
+            myWriter.close();
         }
     }
 
-    public void sendNotification(Client client, String msg){
+    public void sendNotification(Client client, String msg) throws IOException {
         File file = null;
+        FileWriter myWriter = null;
         try {
             file = new File("SMS-Emails\\TestResultsDiagnosis_" + client.getEmail() + ".txt");
-
-            FileWriter myWriter = new FileWriter("SMS-Emails\\TestResultsDiagnosis_" + client.getEmail() + ".txt");
+            myWriter = new FileWriter("SMS-Emails\\TestResultsDiagnosis_" + client.getEmail() + ".txt");
             myWriter.write(msg);
-            myWriter.close();
         } catch (IOException e) {
             System.out.println("An error occurred on file " + file.getName());
+        }finally {
+            myWriter.close();
         }
     }
 
@@ -233,12 +236,7 @@ public class Company {
         return generatedNhsCode.toString();
     }
 
-
     private boolean validateNhsNumber(String nhsCode){
-        return testStore.validateTest(nhsCode);
+        return testStore.validadeTestCode(nhsCode);
     }
-
-
-
-
 }
