@@ -1,5 +1,7 @@
 @startuml
 
+skinparam classAttributeIconSize 0
+
 class SampleUI {
 +TestCodeSelection(testList)
 +setSampleNumber()
@@ -12,37 +14,66 @@ class SampleController {
 +createSampleList(n)
 }
 
-class ExternalModuleBarcodeAdapter {
+interface ExternalModuleBarcode {
++BufferedImage barcodeGenerator(String barcodeText)
++saveBarcode(BufferedImage barcodeJPG, String barcodeText)
 }
 
-interface ExternalModuleBarcode {
+class ExternalModuleBarcodeAdapter {
++barcodeGenerator(barcodeText)
++saveBarcode(barcodeJPG, barcodeText)
+}
+
+class Barbecue {
++Barcode createUPCA(java.lang.String data)
 }
 
 class Company {
++getTestStore()
+}
+
+
+class TestMapper {
++toDTOList()
+}
+
+class TestDTO {
 }
 
 class Sample {
 -barcodeText
-+generateBarcodeUCP()
++generateBarcodeUPC()
 }
 
 class SampleList {
++saveSample(sample);
 }
 
 class TestStore {
-}
-
-class BarcodeAPI {
-}
-
-class Client {
++getRegisteredTests()
++getTestByCode(testCode)
 }
 
 class Test {
+-sampleList
++setSampleList(sampleList)
 }
 
-Sample "1"--"1 " BarcodeAPI : identified by >
-Sample "*"--"1  " Client : associated to >
-Test "1  "--"*" Sample : collects >
+SampleUI ..> SampleController
+ExternalModuleBarcode <|.. ExternalModuleBarcodeAdapter
+ExternalModuleBarcodeAdapter --> Barbecue
+SampleController ..> Company
+SampleController .> TestMapper
+TestMapper .> TestDTO
+SampleController ..> Sample
+SampleController ..> ExternalModuleBarcode
+SampleController ..> SampleList
+SampleController ...> Test
+Company --> TestStore : uses
+Test --> Sample : collects
+TestStore -> Test : contains
+Sample <- SampleList : contains
+Test -> SampleList : uses
+SampleUI ..> TestDTO
 
 @enduml

@@ -22,7 +22,7 @@ import java.util.List;
 public class SampleController {
 
     private Company company = App.getInstance().getCompany();
-    private Sample sample;
+    private Sample sample = new Sample();
     private ArrayList<Sample> ListOfSamples;
     private Test test;
     private ExternalModuleBarcode adapterBarcode = new ExternalModuleBarcodeAdapter();
@@ -57,7 +57,7 @@ public class SampleController {
         if (!theDir.exists()){ theDir.mkdirs(); }
 
         for (int i = 0; i < n; i++) {
-            String barcodeText = sample.generateBarcodeUCP();
+            String barcodeText = sample.generateBarcodeUPC();
             BufferedImage barcode = adapterBarcode.barcodeGenerator(barcodeText);
 
             adapterBarcode.saveBarcode(barcode, barcodeText);
