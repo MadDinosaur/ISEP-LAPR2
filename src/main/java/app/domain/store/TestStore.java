@@ -19,12 +19,12 @@ public class TestStore {
     }
 
     public List<Test> getRegisteredTests() {
-        List<Test> readyForCollection = new ArrayList<>();
-        for (Test test : tests)
-            if (test.isRegistered())
-                readyForCollection.add(test);
+            List<Test> readyForCollection = new ArrayList<>();
+            for (Test test : tests)
+                if (test.isRegistered())
+                    readyForCollection.add(test);
 
-        return readyForCollection;
+            return readyForCollection;
     }
 
     public List<Test> getTestsWithCollectedSamples() {
