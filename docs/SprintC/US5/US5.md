@@ -102,10 +102,6 @@ defined by configuration.
 
 ![US5_DM](US5_DM.svg)
 
-### 2.2. Other Remarks
-
-*Use this section to capture some aditional notes/remarks that must be taken into consideration into the design activity. In some case, it might be usefull to add other analysis artifacts (e.g. activity or state diagrams).* 
-
 ## 3. Design - User Story Realization 
 
 ### 3.1. Rationale
@@ -116,10 +112,10 @@ defined by configuration.
 |:-------------  |:--------------------- |:------------|:---------------------------- |
 | Step 1 - Request to record new collected sample(s) | instantiating a new collected sample? | Sample | Creator Pattern: Report class is responsible for creating all report objects. |
 | Step 2 - Shows list of tests | having a list of the available tests? | TestStore | IE: knows its own data. |
-| Step 3 - Select test | saving the input? | SampleUI | Responsible for all the user-system interactions. |
+| Step 3 - Select test | saving the chosen test? | SampleUI | Responsible for all the user-system interactions. |
 | Step 4 - Request confirmation | n/a | n/a | n/a |
 | Step 5 - Give confirmation | n/a | n/a | n/a |
-| Step 6 - Request number of samples to record |  |   |                              |
+| Step 6 - Request number of samples to record | n/a | n/a | n/a |
 | Step 7 - Give number of samples to record | storing the barcodes? | SampleList | IE: records all the Sample objects. |
 | Step 8 - Request confirmation | n/a | n/a | n/a |              
 | Step 9 - Give confirmation | n/a | n/a | n/a |              
@@ -159,10 +155,6 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 
 # 5. Construction (Implementation)
-
-*In this section, it is suggested to provide, if necessary, some evidence that the construction/implementation is in accordance with the previously carried out design. Furthermore, it is recommeded to mention/describe the existence of other relevant (e.g. configuration) files and highlight relevant commits.*
-
-*It is also recommended to organize this content by subsections.* 
 
     public List<TestDTO> getTestList() {
       TestMapper testmapper = new TestMapper(company.getTestStore().getRegisteredTests());
