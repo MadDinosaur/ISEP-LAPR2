@@ -9,20 +9,20 @@ public class CollectionMethodTest {
     @Test(expected = InvalidDescriptionException.class)
     public void testEmptyCollectionMethod() {
         CollectionMethod test = new CollectionMethod();
-        test.setDescription("");
+        test.setDescriptionCollectionMethod("");
     }
 
     @Test(expected = InvalidDescriptionException.class)
     public void testCollectionMethodWithMoreThan20Characters() {
         CollectionMethod test = new CollectionMethod();
-        test.setDescription("123456789123456789012");
+        test.setDescriptionCollectionMethod("123456789123456789012");
     }
 
     @Test
     public void testIfDescriptionsAreEqual() {
         CollectionMethod cmR = new CollectionMethod("asdasd");
         CollectionMethod cmE = new CollectionMethod();
-        cmE.setDescription("asdasd");
-        Assert.assertEquals(cmE.getDescription(), cmR.getDescription());
+        cmE.setDescriptionCollectionMethod("asdasd");
+        Assert.assertEquals(cmE.getDescriptionCollectionMethod(), cmR.getDescriptionCollectionMethod());
     }
 }

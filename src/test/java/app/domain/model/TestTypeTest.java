@@ -48,7 +48,7 @@ public class TestTypeTest {
     public void testSetCollectionMethod() {
         TestType tt1 = new TestType();
         tt1.setCollectionMethod(new CollectionMethod("isso"));
-        Assert.assertEquals(tt1.getCollectionMethod().getDescription(), tt.getCollectionMethod().getDescription());
+        Assert.assertEquals(tt1.getCollectionMethod().getDescriptionCollectionMethod(), tt.getCollectionMethod().getDescriptionCollectionMethod());
     }
 
     @Test(expected = InvalidCategoryException.class)
