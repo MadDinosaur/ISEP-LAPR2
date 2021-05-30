@@ -50,7 +50,8 @@ public class Company {
         this.orgRoleStore = new OrgRoleStore(authFacade);
         this.testStore = new TestStore();
         this.testNumber = 1;
-        //Para testes
+
+        //HARDCODED THINGS FOR TESTES
         clientStore.saveClient(new Client("Teste",(long) 8765432187654321.0,1234512347,new DateBirth(24,12,2002),1234512345,(long)12345123457.0,new Email("teste50@gmail.com"),"male"));
         clientStore.saveClient(new Client("Joni",(long)  1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512346,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
         clientStore.saveClient(new Client("Joni",(long)  8765432187654322.0,1234512345,new DateBirth(24,12,2002),1234512347,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
@@ -67,6 +68,7 @@ public class Company {
         testTestHardCoded.setStateOfTestToSamplesAnalyzed();
         testStore.addTest(testTestHardCodedRegistered);
         testStore.addTest(testTestHardCoded);
+
     }
 
 
