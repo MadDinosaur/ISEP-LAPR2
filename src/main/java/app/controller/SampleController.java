@@ -57,7 +57,7 @@ public class SampleController {
         if (!theDir.exists()){ theDir.mkdirs(); }
 
         for (int i = 0; i < n; i++) {
-            String barcodeText = sample.generateBarcodeUCP();
+            String barcodeText = sample.generateBarcodeUPC();
             BufferedImage barcode = adapterBarcode.barcodeGenerator(barcodeText);
 
             adapterBarcode.saveBarcode(barcode, barcodeText);

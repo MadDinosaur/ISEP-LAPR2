@@ -23,7 +23,7 @@ public class Sample {
      * generator a 12 digit number which will be used to create a barcode
      * @return barcode
      */
-    public static String generateBarcodeUCP() {
+    public String generateBarcodeUPC() {
         Random r = new Random();
         long barcode = 10000000000L + (long) (r.nextDouble() * 89999999999L);
         return String.valueOf(barcode);

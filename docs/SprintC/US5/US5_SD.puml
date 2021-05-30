@@ -9,11 +9,10 @@ participant Company
 participant Test
 participant TestStore
 participant TestMapper
-participant Barbecue as API
 participant Sample
 participant ExternalModuleBarcode as emb
 participant ExternalModuleBarcodeAdapter as emba
-participant SampleStore
+participant SampleList
 
 activate mlt
 mlt -> UI: requests to record new collected sample(s)
@@ -62,13 +61,16 @@ activate UI
 UI -> Controller: setSampleNumber()
 activate Controller
 loop loop for n times, n being number of samples requested
-Controller -> Sample: barcodeText = generateBarcode()
+Controller -> Sample: barcodeText = generateBarcodeUPC()
 Controller -> emb: barcode = barcodeGenerator(barcodeText)
 activate emb
+emb -> emba: barcodeGenerator(barcodeText)
+activate emba
 emb -> emba: saveBarcode(barcodeJPG, barcodeText)
+deactivate emba
 deactivate emb
 Controller -> Sample: sample = Sample(barcodeText)
-Controller -> SampleStore: saveSample(sample)
+Controller -> SampleList: saveSample(sample)
 end loop
 Controller -> Test: setSampleList(sampleList)
 deactivate Controller
