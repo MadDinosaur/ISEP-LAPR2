@@ -1,14 +1,16 @@
 @startuml
 
-class Sample {
--barcode
+skinparam classAttributeIconSize 0
+
+class Company {
+-designation
 }
-class BarcodeAPI
-class Client
+class Sample {
+-barcodeText
+}
 class Test
 
-Sample "1"--"1 " BarcodeAPI : identified by >
-Sample "*"--"1  " Client : associated to >
-Test "1  "--"*" Sample : collects >
+Company " 1 "--" * " Test : performs >
+Test "1 "--" * " Sample : collects >
 
 @enduml

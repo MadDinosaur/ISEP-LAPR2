@@ -114,22 +114,24 @@ defined by configuration.
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
-| Step 1 - Request to record new collected sample(s) | instantiating a new collected sample? | Medical Lab Technician|                              |
-| Step 2 - Shows list of tests| storing the available tests? | TestStore |                              |
-| Step 3 - Select test| choose the performed test? | Medical Lab Technician |                              |
-| Step 4 - Request number of samples to record |  |             |                              |
-| Step 5 - Give number of samples to record |							 |             |                              |
-| Step 6 - Request confirmation |							 |             |                              |              
-| Step 7 - Give confirmation |							 |             |                              |              
-| Step 8 - Show (in)success of operation |							 |             |                              |              
+| Step 1 - Request to record new collected sample(s) | instantiating a new collected sample? | Sample |                              |
+| Step 2 - Shows list of tests | storing the available tests? | TestStore |                              |
+| Step 3 - Select test | choose the performed test? | Medical Lab Technician |                              |
+| Step 4 - Request confirmation | n/a | n/a | n/a |
+| Step 5 - Give confirmation | n/a | n/a | n/a |
+| Step 6 - Request number of samples to record | creating barcodes for each sample? |   |                              |
+| Step 7 - Give number of samples to record | storing the barcodes? | SampleList |                              |
+| Step 8 - Request confirmation | n/a | n/a | n/a |              
+| Step 9 - Give confirmation | n/a | n/a | n/a |              
+| Step 10 - Show (in)success of operation |	informing operation success? | UI | IE: responsible for user interaction |              
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * Class1
- * Class2
- * Class3
+ * Sample
+ * SampleList
+ * TestStore
 
 Other software classes (i.e. Pure Fabrication) identified: 
  * SampleUI  
@@ -150,10 +152,22 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 **Test 1:** Check that it is not possible to create an instance of the Example class with null values. 
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Exemplo instance = new Exemplo(null, null);
-	}
+	@Test
+    public void testBarcodeText() {
+        String barcodeText = "123456789012";
+        Sample sample = new Sample(barcodeText);
+        String barcode = sample.getBarcode();
+
+        Assert.assertEquals(barcode, "123456789012");
+    }
+
+    @Test
+    public void barcodeTextLength() {
+        Sample sample = new Sample();
+        String barcodeText = sample.generateBarcodeUPC();
+        int length = barcodeText.length();
+        Assert.assertEquals(length, 11);
+    }
 
 *It is also recommended to organize this content by subsections.* 
 
