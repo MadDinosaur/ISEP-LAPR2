@@ -28,12 +28,41 @@ public class RegisterTestUI implements Runnable {
     public void run() {
         System.out.println("\n");
         System.out.println("######## Test Registration ########");
-        System.out.println("Please introduce Client Card Number");
-        long clientCardNumber = sc.nextLong();
-        registerTestController.setClientByCardNumber(clientCardNumber);
-        System.out.println("Is this the correct Client? (Type Yes/No)");  //resolver AQUI
-        client = registerTestController.getClient();
-        System.out.println("Client name: " + client.getName());
+        System.out.println("Please introduce Client Card Number  (To leave type exit)");
+        boolean clientIsCorrect = false;
+        do {
+            boolean clientExists;
+            do {
+                long clientCardNumber = sc.nextLong();
+                registerTestController.setClientByCardNumber(clientCardNumber);
+                client = registerTestController.getClient();
+                if (client == null) {
+                    System.out.println("This client does not exist, please introduce a valid Card Number");
+                    clientExists = false;
+                } else {
+                    clientExists = true;
+                }
+            } while (!clientExists);
+            System.out.println("Is this the correct Client? (Type Yes/No)");  //resolver AQUI
+            System.out.println("Client name: " + client.getName());
+            boolean validAwnser;
+            do {
+            String clientIsCorrectAnswer = sc.next();
+                if (clientIsCorrectAnswer.equalsIgnoreCase("yes")) {
+                    System.out.println("chehou aqui");
+                    clientIsCorrect = true;
+                    validAwnser = true;
+                } else {
+                    if (clientIsCorrectAnswer.equalsIgnoreCase("no")) {
+                        clientIsCorrect = false;
+                        validAwnser = true;
+                    } else {
+                        System.out.println("Please introduce the a valid awnser (Yes/No)");
+                        validAwnser = false;
+                    }
+                }
+            }while (!validAwnser);
+        }while (!clientIsCorrect);
         System.out.println("Please select a Test Type");
         this.testTypeList = registerTestController.testTypeList();
         int index = 0;
@@ -111,7 +140,13 @@ public class RegisterTestUI implements Runnable {
                 }
             } while (!validAwnser);
         }while (repeatCategory);
+
+        System.out.println("Please confirm the Test information");
         String[] codesOfTest = registerTestController.createTest();
+        System.out.println(registerTestController.getToSaveTestType().getCode());
+        System.out.println(registerTestController.getToSaveTestType().getCategories().get(0).getCategoryName());
+        System.out.println(registerTestController.getToSaveTestType().getCategories().get(0).getParameterList().get(0).getParameterName());
+
         String generatedTestCode= codesOfTest[0];
         String generatedNhsCode= codesOfTest[1];
         System.out.println("The test was registered with the \n" +

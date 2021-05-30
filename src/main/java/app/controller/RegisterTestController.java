@@ -42,6 +42,10 @@ public class RegisterTestController {
         return client;
     }
 
+    public TestType getToSaveTestType(){
+        return toSaveTestType;
+    }
+
     public List<TestTypeDto> testTypeList(){
         this.testTypeStore = company.getTestTypeStore();
         List<TestType> testTypes = testTypeStore.getTestTypeList();
@@ -66,8 +70,6 @@ public class RegisterTestController {
     public List<ParamDTO> getListOfTestParameters(){
         parametersOfCategory = categoryOfTestType.getParameterList();
         ParamMapper paramMapper = new ParamMapper();
-        System.out.println(categoryOfTestType);
-        System.out.println(parametersOfCategory.get(0));
         return paramMapper.toDTO(parametersOfCategory);
     }
     public void setParameterByName(String nameOfParameter){
