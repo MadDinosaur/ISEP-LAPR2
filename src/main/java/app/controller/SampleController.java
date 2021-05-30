@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.domain.adapter.ExternalModuleBarcode;
 import app.domain.adapter.ExternalModuleBarcodeAdapter;
 import app.domain.model.Company;
 import app.domain.model.Sample;
@@ -20,7 +21,7 @@ public class SampleController {
     private Sample sample;
     private ArrayList<Sample> ListOfSamples;
     private Test test;
-    private ExternalModuleBarcodeAdapter adapterBarcode = new ExternalModuleBarcodeAdapter();
+    private ExternalModuleBarcode adapterBarcode = new ExternalModuleBarcodeAdapter();
 
     public List<TestDTO> getTestList() {
         TestMapper testmapper = new TestMapper(company.getTestStore().getRegisteredTests());

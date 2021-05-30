@@ -78,7 +78,10 @@ public class Test {
     private void setTestType(TestType testType) {
         this.testType = testType;
     }
-    public void setSampleList(SampleList sampleList) { this.sampleList = sampleList; }
+    public void setSampleList(SampleList sampleList) {
+        this.sampleList = sampleList;
+        stateOfTest = StateOfTest.SAMPLES_COLLECTED;
+    }
 
     /**
      * Returns a Test Parameter List
