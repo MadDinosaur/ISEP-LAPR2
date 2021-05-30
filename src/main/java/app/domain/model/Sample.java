@@ -11,6 +11,7 @@ public class Sample {
 
     private String barcodeText;
 
+
     /**
      * sets barcode text
      * @param barcodeText
@@ -24,8 +25,8 @@ public class Sample {
      * @return barcode
      */
     public static String generateBarcodeUCP() {
-        Random r = new Random();
-        long barcode = 10000000000L + (long) (r.nextDouble() * 89999999999L);
+        Random random = new Random();
+        long barcode = 10000000000L + (long) (random.nextDouble() * 89999999999L);
         return String.valueOf(barcode);
     }
 
