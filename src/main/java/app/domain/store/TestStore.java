@@ -127,7 +127,7 @@ public class TestStore {
     public Test findTestThroughNhsCode(String nhsCode){
         Iterator<Test> testIterator = tests.iterator();
         while(testIterator.hasNext()){
-            if(testIterator.next().getNhsCode() == nhsCode){
+            if(testIterator.next().getNhsCode().equals(nhsCode)){
                 return testIterator.next();
             }
         } throw new TestDoesntExistException();

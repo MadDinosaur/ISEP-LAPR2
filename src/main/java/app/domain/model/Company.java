@@ -33,6 +33,7 @@ public class Company {
     private TestTypeStore testTypeStore = new TestTypeStore();
     private ReportStore reportStore = new ReportStore();
     private SampleList sampleList;
+    private Random random = new Random();
 
     private List<Category> parameterCategoryList = new ArrayList<>();
 
@@ -155,7 +156,7 @@ public class Company {
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'
         int targetStringLength = 10;
-        Random random = new Random();
+
 
         String generatedString = random.ints(leftLimit, rightLimit + 1)
                 .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
@@ -237,6 +238,6 @@ public class Company {
     }
 
     private boolean validateNhsNumber(String nhsCode){
-        return testStore.validateTest(nhsCode);
+        return testStore.validadeTestCode(nhsCode);
     }
 }

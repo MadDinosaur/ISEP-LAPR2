@@ -5,6 +5,8 @@ import app.controller.ValidateTestController;
 import app.domain.model.Exceptions.EmptyListException;
 import app.domain.model.Exceptions.TestDoesntExistException;
 import app.mappers.dto.TestDTO;
+
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -53,7 +55,7 @@ public class ValidateTestUI implements Runnable{
                 }
                 i++;
             }
-        }catch(EmptyListException e){
+        }catch(EmptyListException | IOException e){
             System.out.println("There are no tests for validation!");
         }
     }

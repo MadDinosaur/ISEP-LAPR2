@@ -60,12 +60,8 @@ class Report {
 }
 
 class TestMapper {
-+toDtoList(testListReadyForReport)
-+testReadyForReportDTO toDTO(testReadyForReport)
-}
-
-class TestListReadyForReportDTO {
-+add(TestReadyForReportDTO)
++testListDTO toDTOList(testListReadyForReport)
++testDTO toDTO(testReadyForReport)
 }
 
 class TestParamList {
@@ -85,7 +81,6 @@ CreateReportController ..> ReportStore
 
 
 CreateReportController ..> TestMapper
-TestMapper ..> TestListReadyForReportDTO
 
 
 CreateReportController ..> ReportDTO
@@ -96,5 +91,4 @@ ReportStore "1"-->"1" Report: contains >
 
 CreateReportController ..> TestParamList
 
-CreateReportUI ..> TestListReadyForReportDTO
 @enduml
