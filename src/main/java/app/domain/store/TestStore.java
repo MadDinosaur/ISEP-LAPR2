@@ -116,11 +116,20 @@ public class TestStore {
         Test test;
         while(testIterator.hasNext()){
             test = (Test) testIterator;
-            if(test.getNhsCode() == nhsCode){
+            if(test.getNhsCode().equals(nhsCode)){
                 test.validateTest();
             }
         }
         return true;
     }
+    public boolean validadeTestCode(String code){
+        for (Test test : tests){
+            if (test.getNhsCode().equals(code)){
+                return false;
+            }
+        }
+        return true;
+    }
+
 
 }

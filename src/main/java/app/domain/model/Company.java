@@ -50,9 +50,9 @@ public class Company {
         this.testStore = new TestStore();
         this.testNumber = 1;
         //Para testes
-        clientStore.saveClient(new Client("Teste",(long) 8765432187654321.0,1234512347,new DateBirth(24,12,2002),1234512346,(long)12345123457.0,new Email("teste50@gmail.com"),"male"));
-        clientStore.saveClient(new Client("Joni",(long)  1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512345,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
-        clientStore.saveClient(new Client("Joni",(long)  8765432187654322.0,1234512345,new DateBirth(24,12,2002),1234512345,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
+        clientStore.saveClient(new Client("Teste",(long) 8765432187654321.0,1234512347,new DateBirth(24,12,2002),1234512345,(long)12345123457.0,new Email("teste50@gmail.com"),"male"));
+        clientStore.saveClient(new Client("Joni",(long)  1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512346,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
+        clientStore.saveClient(new Client("Joni",(long)  8765432187654322.0,1234512345,new DateBirth(24,12,2002),1234512347,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
         CollectionMethod collectionMethodTest = new CollectionMethod("test Colection");
         Category categoryTest = new Category("Hemograma", "pistola", "WBC", "toma");
         Parameter parameter = new Parameter("par2345","19045","test f234");
@@ -179,7 +179,13 @@ public class Company {
     }
     public String[] createTestToClient(Client client, TestType testType) {
         String generatedTestCode = testNumberGenerator();
-        String generatedNhsCode = nhsCodeGenerator();
+        boolean nhsCodeIsValidated;
+        String generatedNhsCode;
+        do {
+            generatedNhsCode = nhsCodeGenerator();
+            nhsCodeIsValidated = validateNhsNumber(generatedNhsCode);
+        }while (!nhsCodeIsValidated);
+
         Test testToClient = new Test(client,testType,generatedTestCode,generatedNhsCode);
         testStore.addTest(testToClient);
         String[] codes=  new String[2];
@@ -188,7 +194,7 @@ public class Company {
         return codes;
     }
 
-    public String testNumberGenerator() {
+    private String testNumberGenerator() {
         StringBuilder generatedTestCode = new StringBuilder();
         String testCodeString = String.valueOf(testNumber);
         int lengthTestNumber = 12;
@@ -200,7 +206,7 @@ public class Company {
         return generatedTestCode.toString();
     }
 
-    public String nhsCodeGenerator() {
+    private String nhsCodeGenerator() {
         StringBuilder generatedNhsCode = new StringBuilder();
         String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         int lengthNhsCode = 12;
@@ -210,6 +216,13 @@ public class Company {
         }
         return generatedNhsCode.toString();
     }
+
+
+    private boolean validateNhsNumber(String nhsCode){
+        return testStore.validateTest(nhsCode);
+    }
+
+
 
 
 }
