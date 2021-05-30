@@ -22,8 +22,6 @@ public class MainMenuUI {
         List<MenuItem> options = new ArrayList<MenuItem>();
         options.add(new MenuItem("Do Login", new AuthUI()));
         options.add(new MenuItem("Know the Development Team",new DevTeamUI()));
-        options.add(new MenuItem("Test RegisterTest",new RegisterTestUI()));
-        options.add(new MenuItem("Test create report (deletar depois)", new CreateReportUI()));
         int option = 0;
         do
         {
