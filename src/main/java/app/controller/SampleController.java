@@ -9,11 +9,9 @@ import app.domain.store.SampleList;
 import app.mappers.TestMapper;
 import app.mappers.dto.TestDTO;
 
-
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class SampleController {
 

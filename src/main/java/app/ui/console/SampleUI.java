@@ -47,9 +47,10 @@ public class SampleUI implements Runnable {
                 verifier = true;
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("Invalid number. Please insert a valid number.");
+            } catch (InputMismatchException e) {
+                System.out.println("insert number pleas");
+                input.next();
             }
-
-            // nao
         }
 
         boolean confirm = confirmation();
