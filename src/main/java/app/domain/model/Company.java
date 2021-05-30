@@ -179,6 +179,20 @@ public class Company {
             System.out.println("An error occurred on file " + file.getName());
         }
     }
+
+    public void sendNotification(Client client, String msg){
+        File file = null;
+        try {
+            file = new File("SMS-Emails\\TestResultsDiagnosis_" + client.getEmail() + ".txt");
+
+            FileWriter myWriter = new FileWriter("SMS-Emails\\TestResultsDiagnosis_" + client.getEmail() + ".txt");
+            myWriter.write(msg);
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred on file " + file.getName());
+        }
+    }
+
     public String[] createTestToClient(Client client, TestType testType) {
         String generatedTestCode = testNumberGenerator();
         boolean nhsCodeIsValidated;

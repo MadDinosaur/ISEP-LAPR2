@@ -3,6 +3,7 @@ package app.domain.store;
 import app.domain.model.*;
 import app.domain.model.Client;
 import app.domain.model.Exceptions.InvalidTestCodeException;
+import app.domain.model.Exceptions.TestDoesntExistException;
 import app.domain.model.Exceptions.UnregisteredBarcodeException;
 
 import java.util.ArrayList;
@@ -124,5 +125,13 @@ public class TestStore {
         return true;
     }
 
+    public Test findTestThroughNhsCode(String nhsCode){
+        Iterator<Test> testIterator = tests.iterator();
+        while(testIterator.hasNext()){
+            if(testIterator.next().getNhsCode() == nhsCode){
+                return testIterator.next();
+            }
+        } throw new TestDoesntExistException();
+    }
 
 }
