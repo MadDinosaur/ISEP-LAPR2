@@ -70,6 +70,7 @@ class TestParamList {
 }
 
 CreateReportUI ..> CreateReportController
+CreateReportUI ..> TestDTO
 CreateReportController ..> Company
 Company "1"-down->"1" TestStore: uses >
 Company "1"-down->"1" ReportStore: uses >
@@ -78,6 +79,7 @@ TestStore "1"-->"*" Test: contains >
 Test "1"-->"1" Report: contains >
 CreateReportController ..> TestStore
 CreateReportController ..> ReportStore
+TestMapper ..> TestDTO
 
 
 CreateReportController ..> TestMapper

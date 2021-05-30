@@ -12,6 +12,9 @@ import java.util.List;
 
 public class CreateReportController {
 
+    /**
+     *
+     */
     private Company company;
     private Test test;
     private Report report;
