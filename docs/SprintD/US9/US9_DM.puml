@@ -1,0 +1,29 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Company {
+-designation
+}
+
+class Administrator
+
+class CollectionMethod {
+-description
+}
+
+class TestType {
+-code
+-description
+}
+
+class Category {
+-code
+-description
+-nhsID
+}
+
+Administrator "*"-down-"1" TestType : creates >
+TestType "1..*"-down-"1" Category : associated to >
+TestType "1"--"1" CollectionMethod : has a  >
+Company "1"-down-"*" TestType : conducts >
+@enduml

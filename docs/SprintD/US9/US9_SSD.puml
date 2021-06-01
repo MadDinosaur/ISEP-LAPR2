@@ -1,0 +1,28 @@
+@startuml
+
+autonumber
+
+actor Administrator
+
+Administrator -> ":System": starts new test type
+":System" -> Administrator: requests the code of the test
+Administrator -> ":System": types the requested code
+":System" -> Administrator: shows the code and requests a confirmation
+Administrator -> ":System": confirms the code
+":System" -> Administrator: requests a description of the test type
+Administrator -> ":System": types the requested description
+":System" -> Administrator: shows the description and requests a confirmation
+Administrator -> ":System": confirms the description
+":System" -> Administrator: requests a description of the collection method
+Administrator -> ":System": types the requested description
+":System" -> Administrator: shows the description and requests a confirmation
+Administrator -> ":System": confirms the description
+loop until the administrator doesn't want to select more categories
+":System" -> Administrator: shows a list of categories
+Administrator -> ":System": chooses a category within the list to be associated to the new test type
+":System" -> Administrator: requests confirmation
+Administrator -> ":System": confirms
+end loop
+":System" -> Administrator: informs operation success
+
+@enduml

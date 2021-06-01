@@ -1,0 +1,40 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Company {
+-designation
+}
+class Test {
+-testCode
+-nhsCode
+}
+class Client {
+-name
+-cardNumber
+}
+class TestType {
+-code
+-description
+}
+class Parameter {
+-code
+-shortName
+-description
+}
+class Category {
+-code
+-description
+-nhsID
+}
+
+Test "*"--"1..*" Parameter : requests analysis of >
+TestType "1"--"1..*" Parameter : has >
+Test "*"-left-"1" Client : requested by >
+Test "*"-up-"1" Company : performs <
+Test "*"-right-"1" "TestType" : is of >
+Parameter "*"--"1" Category : presented under >
+TestParameter "*"-"1" Parameter : associated to >
+TestParameter "*"--"1" Test : has <
+(Test, Parameter) .. TestParameter
+
+@enduml

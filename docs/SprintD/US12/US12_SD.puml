@@ -1,0 +1,41 @@
+@startuml
+actor CCT as cct
+participant ":RecordTestResultUI" as ui
+participant ":RecordTestResultController" as controller
+participant ":Company" as company
+participant "testStore: TestStore" as ts
+participant "test: Test" as test
+participant "testParamList: TestParamList" as tpstore
+
+cct -> ui : starts a new test result registration
+create controller
+ui -> controller : create()
+ui -> controller : getTestsWithCollectedSamples()
+controller -> company : getTestStore()
+controller -> ts : getTestsWithCollectedSamples()
+ui --> cct : requests sample barcode
+cct -> ui : types requested data
+ui -> controller : getTestParameters(barcode)
+ref over controller : SD_ShowTestParameters
+loop for each test parameter being analysed
+ui --> cct : requests parameter
+cct -> ui : selects requested data
+ui --> cct : requests result value and metric
+cct -> ui : types requested data
+ui -> controller : createTestParameterResult(paramCode, result, metric)
+controller -> ts : result = createTestParameterResult(test, paramCode, result, metric)
+ts -> test : createTestParameterResult(paramCode, result, metric)
+ref over test : SD_CreateTestResult
+ui --> cct : shows the data and requests confirmation
+cct -> ui : confirms the data
+ui -> controller : saveTestParameterResult()
+controller -> test : saveTestParameterResult(result)
+test -> tpstore : addTestParameterResult(result)
+tpstore -> tpstore : validateTestParameterResult(result)
+tpstore -> tpstore : addTestParameterResult(result)
+test -> test : setSamplesAnalysedState()
+test -> test: setDateAnalysis()
+test -> test : setTimeAnalysis()
+ui --> cct : informs operation success
+end loop
+@enduml

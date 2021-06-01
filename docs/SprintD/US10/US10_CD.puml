@@ -1,0 +1,55 @@
+@startuml
+
+
+class Parameter {
+-int code
+-String shortName
+-String description
+-double upperReferenceValue
+-double lowerReferenceValue
+
++Parameter(shortName, code, description)
+}
+
+class CreateNewParameterUI{
+}
+
+class CreateNewParameterController{
+
++getCategoryList()
++createNewParameter()
++saveParameter(category)
+}
+
+class Company{
+-String designation
+-List<Category> parameterCategoryList
+
++getCategoryList()
+}
+
+class Category {
+-String code
+-String description
+-int nhsID
+-List<Parameter> parameterList
+
+}
+
+class CategoryStore{
+}
+
+class ParameterStore{
++saveParameter(parameter)
++validateParameter(parameter)
++addParameter(parameter)
+}
+
+CreateNewParameterUI ...> CreateNewParameterController
+CreateNewParameterController ...> CategoryStore
+Category "*"--"1" ParameterStore : presented under <
+CategoryStore "*"--"1" Category : contains >
+Company "*"-- CategoryStore : uses >
+ParameterStore "*"-- Parameter : contains >
+
+@enduml

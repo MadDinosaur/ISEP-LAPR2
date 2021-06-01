@@ -1,0 +1,81 @@
+@startuml
+
+autonumber
+
+actor MedicalLabTechnician as mlt
+participant SampleUI as UI
+participant SampleController as Controller
+participant Company
+participant Test
+participant TestStore
+participant TestMapper
+participant Sample
+participant ExternalModuleBarcode as emb
+participant ExternalModuleBarcodeAdapter as emba
+participant SampleList
+
+activate mlt
+mlt -> UI: requests to record new collected sample(s)
+activate UI
+UI -> Controller: Test = SampleController.getTestList()
+activate Controller
+Controller -> Company: testmapper = getTestList()
+activate Company
+Company -> TestStore: getTestStore()
+deactivate Company
+activate TestStore
+TestStore -> TestStore: getRegisteredTests()
+deactivate TestStore
+Controller -> TestMapper: toDTOList()
+deactivate Controller
+activate TestMapper
+TestMapper -> TestMapper: listDTO
+deactivate TestMapper
+deactivate Company
+UI --> mlt: shows list of tests
+deactivate UI
+mlt -> UI: selects test
+activate UI
+UI -> mlt: request confirmation
+deactivate UI
+mlt -> UI: gives confirmation
+activate UI
+UI -> Controller: TestCodeSelection()
+activate Controller
+Controller -> Company: setTestCode(testCode)
+deactivate Controller
+activate Company
+Company -> TestStore: getTestStore()
+deactivate Company
+activate TestStore
+TestStore -> TestStore: getTestByCode(testCode)
+deactivate TestStore
+UI --> mlt: requests number of samples to record
+deactivate UI
+mlt -> UI: gives number of samples to record
+activate UI
+UI --> mlt: request confirmation
+deactivate UI
+mlt -> UI: gives confirmation
+activate UI
+UI -> Controller: setSampleNumber()
+activate Controller
+loop loop for n times, n being number of samples requested
+Controller -> Sample: barcodeText = generateBarcodeUPC()
+Controller -> emb: barcode = barcodeGenerator(barcodeText)
+activate emb
+emb -> emba: barcodeGenerator(barcodeText)
+activate emba
+emb -> emba: saveBarcode(barcodeJPG, barcodeText)
+deactivate emba
+deactivate emb
+Controller -> Sample: sample = Sample(barcodeText)
+Controller -> SampleList: saveSample(sample)
+end loop
+Controller -> Test: setSampleList(sampleList)
+deactivate Controller
+UI --> mlt: shows (in)success of operation
+deactivate UI
+deactivate mlt
+
+@enduml

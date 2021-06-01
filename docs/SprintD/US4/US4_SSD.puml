@@ -1,0 +1,23 @@
+@startuml
+autonumber
+
+Receptionist -> ":System" : starts to register a test
+":System" --> Receptionist : requests client data(cardNumber)
+Receptionist -> ":System" : types requested data
+":System" --> Receptionist : asks test type
+Receptionist -> ":System" : chooses test type
+":System" --> Receptionist : asks category
+loop until receptionist types all categories in lab order
+Receptionist -> ":System" : chooses category
+loop unlit types all parameters in lab order in that category
+":System" --> Receptionist : shows all possible parameters of the typed test and asks \n which to be selected
+Receptionist -> ":System" : chooses wanted parameters
+end loop
+end loop
+":System" --> Receptionist : shows all data and requests confirmation
+Receptionist -> ":System" : confirms data
+":System" --> Receptionist : informs operation success
+
+
+
+@enduml

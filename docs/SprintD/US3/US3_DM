@@ -1,0 +1,22 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Client {
+-name
+-cardNumber
+-birthDate
+-sex
+-nhsID
+-TIN
+-phoneNumber
+-email
+}
+class Company{
+-designation
+}
+
+Company "1"--"1..*" Client : has >
+
+
+@enduml

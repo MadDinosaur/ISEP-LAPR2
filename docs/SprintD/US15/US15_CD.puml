@@ -1,0 +1,85 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class ValidateTestUI
+
+class ValidateTestController{
+-Company company
+-TestStore currTestStore
+-List<Test> listTestsWithReport
+
++getListTestsWithReport()
++validateTest(nhsCode)
++toDTO(listTestsWithReport)
++sendNotification(client)
+}
+
+class TestStore{
+-List<Test> tests
+
++getListTestsWithReport()
++validateTest(nhsCode)
+}
+
+class Test{
+-Client client
+-List<Category> listOfCategories
+-TestType testType
+-String testCode
+-String nhsCode
+-Date dateOfCreation
+-List<Parameter> listOfParameters
+-TestParamList testParamList
+-SampleList sampleList
+-StateOfTest stateOfTest
+-Report report
+-LocalDate dateReport
+-LocalTime timeReport
+-LocalDate dateResults
+-LocalTime timeResults
+-LocalDate dateValidation
+-LocalTime timeValidation
+}
+
+class TestMapper{
+
+
++toDTOListValidation(listTestsWithReport)
++toDTOValidation(test)
+}
+
+class TestDTO{
+-Client client
+-List<Category> listOfCategories
+-TestType testType
+-String testCode
+-String nhsCode
+-Date dateOfCreation
+-List<Parameter> listOfParameters
+-TestParamList testParamList
+-SampleList sampleList
+-StateOfTest stateOfTest
+-Report report
+-LocalDate dateReport
+-LocalTime timeReport
+-LocalDate dateResults
+-LocalTime timeResults
+-LocalDate dateValidation
+-LocalTime timeValidation
+}
+
+class Company{
+-TestStore testStore
+
++getListTestsWithReport()
+}
+
+ValidateTestUI ..> ValidateTestController
+ValidateTestController ..> Company
+ValidateTestController ..> TestMapper
+TestMapper ..> TestDTO
+Company "1"-down-"1" TestStore: uses >
+TestStore "1"->"*" Test: contains >
+Company --> Test: performs >
+
+@enduml

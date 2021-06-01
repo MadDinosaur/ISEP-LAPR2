@@ -1,0 +1,96 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class CreateReportUI
+
+class CreateReportController {
+-test
+-reportStore
+-testStore
+-testParamList
+
+
++testListReadyForReport<Test> getTestsListReadyForReport()
++getTestParametersResultsByCode(code)
++report createReport(reportDTO)
++saveReport()
+}
+
+class Company {
++getTestStore()
++getReportStore()
+}
+
+class TestStore {
++getTestsListReadyForReport()
++getTestByCode(testCode)
++saveReport(test, report)
+}
+
+class Test {
+-testCode
+-dateReport
+-timeReport
+
++addReport(report)
++setStatus(Report Made)
++testParamList getTestParamList()
+}
+
+class ReportStore {
++createReport(reportDTO)
+}
+
+class ReportMapper {
++toModel(reportDTO)
+}
+
+class ReportDTO {
++getTextReport()
++getTextDiagnosis()
+}
+
+class Report {
+-textReport
+-textDiagnosis
+
++create(textReport, textDiagnosis)
++validateReport()
+}
+
+class TestMapper {
++testListDTO toDTOList(testListReadyForReport)
++testDTO toDTO(testReadyForReport)
+}
+
+class TestParamList {
++getTestParameters()
++getReferenceValue(testParam)
+}
+
+CreateReportUI ..> CreateReportController
+CreateReportUI ..> TestDTO
+CreateReportController ..> Company
+Company "1"-down->"1" TestStore: uses >
+Company "1"-down->"1" ReportStore: uses >
+Company "1"-down->"1" TestParamList: uses >
+TestStore "1"-->"*" Test: contains >
+Test "1"-->"1" Report: contains >
+CreateReportController ..> TestStore
+CreateReportController ..> ReportStore
+TestMapper ..> TestDTO
+
+
+CreateReportController ..> TestMapper
+
+
+CreateReportController ..> ReportDTO
+CreateReportController ..> ReportMapper
+ReportMapper ..> ReportDTO
+ReportMapper ..> Report
+ReportStore "1"-->"1" Report: contains >
+
+CreateReportController ..> TestParamList
+
+@enduml

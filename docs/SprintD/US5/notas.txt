@@ -1,0 +1,4 @@
+DM.puml na class Sample tem 3 atributos mas so existe o barcode!
+class Sample tem de tambem estar associada à class TestType
+
+dm "Test "*"--"1" Client : requested by >" line 137

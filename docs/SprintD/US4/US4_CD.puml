@@ -1,0 +1,95 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class RegisterTestUI
+class RegisterTestController {
+-client
+-testType
+-testCategory
+-testParameter
++getClientByCardNumber(cardNumber)
+}
+
+
+class Company {
+-designation
++getTestStore()
++getTestTypeStore()
++private validateNhsCode()
+}
+class TestStore
+class Test {
+-testCode
+-nhsCode
+}
+class Client {
+-name
+-cardNumber
+}
+class TestType {
+-code
+-description
++getCategoryStore()
+}
+class Parameter {
+-code
+-shortName
+-description
+}
+class Category {
+-code
+-description
+-nhsID
++getParameterStore()
+}
+class TestTypeListDTO
+class TestTypeListMapper{
+toDto(testTypeList)
+}
+class TestCategoryListDTO
+class TestCategoryListMapper{
+toDto(testCategoryList)
+}
+class TestParametersDTO
+class TestParametersMapper{
+toDto(testParameterList)
+}
+class ClientStore
+class TestTypeStore
+
+
+Test "*"--"1..*" Parameter : requests analysis of >
+TestType "1"--"1..*" Parameter : has >
+Test "*"--"1" Client : requested by >
+Test "*"-up-"1" Company : performs <
+Test "*"-right-"1" "TestType" : is of >
+Parameter "*"--"1" Category : presented under >
+RegisterTestUI ..> RegisterTestController
+RegisterTestController ..> Company
+RegisterTestController ..> TestStore
+TestStore "*"--"1" "Test" : contains >
+RegisterTestController ..> TestType
+RegisterTestController ..> Parameter
+RegisterTestController ..> Category
+RegisterTestController ..> Client
+RegisterTestUI .right.> TestTypeListDTO
+TestTypeListDTO .down.> TestTypeListMapper
+TestTypeListMapper ..> TestType
+RegisterTestController ..> TestTypeListMapper
+RegisterTestUI .right.> TestCategoryListDTO
+TestCategoryListDTO .down.> TestCategoryListMapper
+TestCategoryListMapper ..> Category
+RegisterTestController ..> TestCategoryListMapper
+RegisterTestUI .right.> TestParametersDTO
+TestParametersDTO .down.> TestParametersMapper
+TestParametersMapper ..> Parameter
+RegisterTestController ..> TestParametersMapper
+(Test, Parameter) .. TestParameter
+TestParameter "*"-"1" Parameter : associated to >
+TestParameter "*"--"1" Test : has <
+Company "*"--"1" ClientStore : uses >
+Company "*"--"1" TestTypeStore : uses <
+
+
+@enduml

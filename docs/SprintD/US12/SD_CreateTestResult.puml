@@ -1,0 +1,21 @@
+@startuml
+participant "test: Test" as test
+participant "testParamList: TestParamList" as tpstore
+participant "testParam: TestParameter" as testParam
+participant "testResult: TestParameterResult" as testResult
+participant "type: TestType" as type
+participant "em: ExternalModule" as em
+
+[o-> test : createTestParameterResult(paramCode, value, metric)
+test -> tpstore: createTestParameterResult(paramCode, value, metric)
+tpstore -> tpstore : getTestParameter(paramCode)
+tpstore -> testParam : param = getParameter()
+tpstore -> type : em = getExternalModule()
+tpstore -> em : getReferenceValue(param)
+tpstore -> testParam : createTestParameterResult(value, metric, refValue)
+create testResult
+testParam -> testResult : create(value, metric, refValue)
+testResult -> testResult : validateValue(value)
+testResult -> testResult : validateMetric(metric)
+testResult -> testResult : validateRefValue(refValue)
+@enduml

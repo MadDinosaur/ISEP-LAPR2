@@ -1,0 +1,89 @@
+@startuml
+
+autonumber
+
+actor Administrator as admin
+participant ":CreateNewParameterUI" as UI
+participant ":CreateNewParameterController" as CTRL
+participant ":Company" as CMP
+participant "parameterStore: Parameter\nStore" as paramStore
+participant "categoryStore: Category\nStore" as catStore
+participant "categoryMapper: CategoryMapper" as catMap
+participant ":Parameter" as param
+participant "parameterCategory: Category" as cat
+participant "categoryList: List<Category>" as catList
+participant "categoryListDto: List<CategoryDto>" as catListDto
+
+
+
+activate admin
+admin -> UI: starts parameter specification
+loop until the administrator doesn't want to add more parameters
+activate UI
+UI -> CTRL: categoryList = getCategoryList()
+activate CTRL
+CTRL -> CMP: categoryStore = getCategoryStore()
+activate CMP
+deactivate CMP
+
+CTRL -> catStore: categoryList = getCategories()
+activate catStore
+deactivate catStore
+CTRL -> catMap: categoryListDto = toDto(categoryList)
+activate catMap
+deactivate catMap
+deactivate CTRL
+
+UI --> admin: shows parameter category list and asks to pick the one that the new parameter falls under
+deactivate UI
+admin -> UI: picks the wanted parameter category
+activate UI
+UI --> admin: requests the parameter information
+deactivate UI
+admin -> UI: types in requested data
+activate UI
+UI -> CTRL: createNewParameter(shortName, code, description, categoryCode)
+activate CTRL
+CTRL -> CMP: parameterStore = getParameterStore()
+activate CMP
+deactivate CMP
+
+CTRL -> paramStore : parameter = createParameter(code, shortName, description, pcId)
+activate paramStore
+
+paramStore -> catStore: parameterCategory = getParameterCategory(categoryCode)
+activate catStore
+deactivate catStore
+
+create param
+paramStore --> param: create(code, shortName, description, pc)
+deactivate paramStore
+
+CTRL -> paramStore: validateParameter(parameter)
+activate paramStore
+deactivate paramStore
+deactivate CTRL
+
+
+UI --> admin: shows typed data and asks for confirmation
+deactivate UI
+admin -> UI: confirms the information
+activate UI
+UI -> CTRL: saveParameter()
+activate CTRL
+CTRL -> paramStore: saveParameter(parameter)
+activate paramStore
+paramStore -> paramStore: validateParameter(parameter)
+activate paramStore
+deactivate paramStore
+paramStore -> paramStore: addParameter(parameter)
+activate paramStore
+deactivate paramStore
+deactivate CTRL
+
+end loop
+UI --> admin: informs operation's success
+deactivate UI
+deactivate admin
+
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Client {
+-String name
+-int cardNumber
+-Date birthDate
+-String sex
+-int nhsID
+-int TIN
+-int phoneNumber
+-Email email
++validate(name, cardNumber, nhsId, birthDate, \n sex, TIN, phoneNumber, email)
+}
+class Company{
+-String designation
++saveClient()
++sendEmail()
+}
+class CreateClientUI{
++setData(name, cardNumber, nhsId, birthDate, \n sex, TIN, phoneNumber, email)
+}
+class CreateClientController{
++create(name, cardNumber, nhsId, birthDate, \n sex, TIN, phoneNumber, email)
+}
+
+CreateClientUI ..> CreateClientController
+CreateClientController ..> Client
+Receptionist "1"--"*" Client : registers >
+Company "1"--"1..*" Client : has >
+
+
+
+@enduml

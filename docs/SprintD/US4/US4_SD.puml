@@ -1,0 +1,125 @@
+@startuml
+autonumber
+actor "Laboratory Receptionist" as LR
+participant ":CreateTestUI" as ui
+participant ":CreateTestController" as ctrl
+participant ":Company" as cm
+participant ":ClientStore" as ct
+participant "client : Client" as client
+participant ":TestTypeStore" as tts
+participant ":TestTypeMapper" as ttMapper
+participant ":listTestTypeDto : List<TestTypeDto>" as ttDto
+participant "objDto : TestTypeDto" as TTobjDto
+participant "testType :TestType" as tt
+participant "TestCategoriesMapper" as tcm
+participant "listTestCategories : List<Category>" as ltc
+participant "listTestCategoriesDTO \n :List<TestCategoriesDTO>" as ltcDto
+participant "objDto : TestCategoriesDto" as tcdto
+participant "testCategory : Category" as cat
+participant ":ParameterMapper" as parM
+participant "listTestParameters : List<Parameter>" as listPar
+participant "listOfTestParametersDto : List<ParameterDto>" as listParDto
+participant "objDto : TestParametersDto" as parDto
+participant "listParametersOfCategory : List<Parameter>" as listPar2
+participant "listCategoriesOfTest : List<Category>" as listCategories
+participant ":ClientTest" as clientTest
+
+
+
+LR -> ui : requests test registration
+ui --> LR : requests client data()
+LR -> ui : types requested data
+create ctrl
+ui -> ctrl : create
+ui -> ctrl : setClientByTiNumber()
+ctrl -> cm : clientStore = getClientStore()
+ctrl -> ct : client = getClientByTiNumber(tiNumber)
+ui --> LR : asks client confirmation
+LR -> ui: confirms client
+ui -> ctrl : getTestTypeList()
+ctrl -> cm : testTypeStore = getTestTypeStore()
+ctrl -> tts : testTypeList = getTestTypes()
+ctrl -> ttMapper : toDto(testTypeList)
+create ttDto
+ttMapper -> ttDto : create()
+loop for each object in list testTypeList
+ttMapper -> ttMapper : testType = testTypeList(i)
+ttMapper -> ttMapper : testTypeDto = toDTO(testType)
+create TTobjDto
+ttMapper -> TTobjDto : create(testType.getCode())
+ttMapper -> ttDto : add(testTypeDto)
+end loop
+ttMapper --> ctrl : listTestTypeDto
+ctrl --> ui : listTestTypeDto
+ui --> LR : shows list of test types and requests 1
+LR -> ui : chooses test type
+ui -> ctrl : getTestTypeByCode(chosenTestTypeCode)
+ctrl -> tts : testType = getTestTypeByCode(chosenTestTypeCode)
+loop for each category that in lab order
+ui -> ctrl : getListOfTestCategories()
+ctrl -> tt : listOfTestCategories = getCategories()
+create ltc
+tt -> ltc : create()
+tt --> ctrl : listOfTestCategories
+ctrl -> tcm : toDTO(listOfTestCategories)
+create ltcDto
+tcm -> ltcDto : create()
+loop for each Category in listTestCategory
+tcm ->  ltc :  category = get(i)
+tcm -> tcm : categoryDto = toDTO(category)
+create tcdto
+tcm -> tcdto : create(category.getName())
+tcm -> ltcDto : add(categoryDto)
+end loop
+tcm --> ctrl : listTestCategoriesDto
+ctrl --> ui : listTestCategoriesDto
+ui --> LR : shows list of test categories and requests 1
+LR -> ui : chooses category
+ui-> ctrl : getCategory(chosenCategory)
+ctrl -> tt : testCategory = getCategory(chosenCategory)
+loop for each parameter in lab order of that category
+ui-> ctrl : getListOfTestParameters
+ctrl -> cat : listOfTestParameters = getListOfTestParameters(testCategory)
+create listPar
+cat --> listPar : create()
+cat --> ctrl : listOfTestParameters
+ctrl -> parM : toDTO(listOfTestParameters)
+create listParDto
+parM -> listParDto : create()
+loop for each parameter in listOfTestParameters
+parM -> listPar : parameter = get(i)
+parM -> parM : parameterDto = toDTO(parameter)
+create parDto
+parM -> parDto : create(parameter.getName())
+parM -> listParDto : add(parameterDto)
+end loop
+parM --> ctrl : listOfTestParametersDto
+ctrl --> ui : listOfTestParametersDto
+ui --> LR : shows a list of parameters and asks wanted \n parameter
+LR -> ui : chooses parameter wanted
+ui -> ctrl : createParameterList(chosenParameter)
+ctrl -> cat : createParameterList()
+create listPar2
+cat-> listPar2 :create()
+ctrl -> listPar2 : add(chosenParameter)
+end loop
+ui -> ctrl : createCategory(chosenCategory)
+ctrl -> listCategories : create()
+ctrl -> listCategories : add(chosenCategory)
+end loop
+ctrl -> cm : createTest(client, listOfTestCategories)
+cm -> cm : testCode = testCodeGenerator()
+cm -> cm : nhsCode = nhsCodeGenerator()
+cm -> "testStore :TestStore" : validateNhsCode(nhsCode)
+cm -> "testStore :TestStore" : create(client,listOfTestCategories,testCode,nhsCode)
+ui --> LR : shows data and requests confirmation
+ui -> ctrl : getTestStore()
+ctrl -> cm : testStore = getTestStore()
+ui -> ctrl : saveTest()
+ctrl -> cm : registerTestToUser(test)
+ctrl -> cm : saveTest(test)
+cm -> "testStore :TestStore" : addTest(test)
+"testStore :TestStore" -> "testStore :TestStore" : validateTest()
+ui --> LR : informs operation success
+
+@enduml

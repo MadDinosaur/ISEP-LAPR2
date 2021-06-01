@@ -1,0 +1,61 @@
+@startuml
+
+autonumber
+
+actor LaboratoryCoordinator as LABCO
+participant ":ValidateTestUI" as UI
+participant ":ValidateTestController" as CTRL
+participant ":Company" as CMP
+participant "currTestStore : TestStore" as STORE
+participant ":Test" as TEST
+participant ":TestMapper" as MAP
+participant "listTestsWithReport : List <Test>" as testList
+participant "listTestsWithReportDTO: List <TestDTO>" as testListDTO
+
+
+activate LABCO
+LABCO -> UI: Requests tests to validate
+activate UI
+UI -> CTRL: getListTestsWithReport()
+activate CTRL
+CTRL -> CMP: currTestStore = getTestStore()
+activate CMP
+deactivate CMP
+CTRL -> STORE: listTestsWithReport = getListTestsWithReport()
+activate STORE
+deactivate STORE
+
+CTRL -> MAP: listTestswithReportDto = toDTO(listTestsWithReport)
+activate MAP
+deactivate MAP
+
+deactivate CTRL
+UI --> LABCO: Shows list of tests ready to be validated
+deactivate UI
+LABCO -> UI: picks the tests to validate
+loop until all the tests are validated
+activate UI
+UI --> LABCO: shows test's information (test registration date, chemical analysis date, diagnosis date)
+deactivate UI
+LABCO -> UI: analyses the test dates and writes if it's valid or not
+activate UI
+UI -> CTRL: validateTest()
+activate CTRL
+CTRL -> STORE: validateTest(internalCode)
+activate STORE
+STORE -> TEST: validateTest(internalCode)
+activate TEST
+deactivate STORE
+CTRL -> CMP: sendNotification(client)
+activate CMP
+deactivate TEST
+deactivate CMP
+deactivate CTRL
+UI --> LABCO: Informs that the client was notified
+deactivate UI
+end loop
+UI --> LABCO: Informs operation's success
+deactivate LABCO
+
+
+@enduml

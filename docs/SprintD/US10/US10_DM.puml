@@ -1,0 +1,29 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Parameter {
+-code
+-shortName
+-description
+-upperReferenceValue
+-lowerReferenceValue
+}
+
+class Category {
+-name
+-code
+-description
+-nhsID
+}
+
+class Company{
+-designation
+}
+
+Company "1"--"*" Parameter : capable of analysing >
+Company "1"--"*" Category: adopts >
+Category "1"--"*" Parameter : presented under <
+
+
+@enduml

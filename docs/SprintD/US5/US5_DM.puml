@@ -1,0 +1,16 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Company {
+-designation
+}
+class Sample {
+-barcodeText
+}
+class Test
+
+Company " 1 "--" * " Test : performs >
+Test "1 "--" * " Sample : collects >
+
+@enduml

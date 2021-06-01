@@ -1,0 +1,64 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+
+class Client {
+-name
+-cardNumber
+-birthDate
+-sex
+-nhsID
+-TIF
+-phoneNumber
+-email
+-password
+}
+
+class ClinicalChemistryTechnologist
+
+class Diagnosis
+
+class LaboratoryCoordinator
+
+class SpecialistDoctor {
+-doctorIndexNumber
+}
+
+class Report {
+-textBody
+}
+
+class Diagnosis
+
+class Test {
+-internalCode
+-nhsCode
+-createdAt
+-designation
+-dateAnalysis
+-timeAnalysis
+-dateDiagnosis
+-timeDiagnosis
+-dateValidation
+-timeValidation
+}
+
+class TestParameterResult {
+-createdAt
+-value
+-metric
+}
+
+TestParameter "*"--"1" Test : has <
+TestParameter "1"-right- "0..1" TestParameterResult : contains >
+TestParameterResult "*"-right-"1" ClinicalChemistryTechnologist : generates <
+TestParameterResult "1"--"1" Parameter : associated to >
+TestParameterResult "1"-up-"1" ReferenceValue : records >
+TestParameterResult "*"--"1" LaboratoryCoordinator : validated by >
+TestParameterResult "*"--"1" SpecialistDoctor : analysed by >
+Test "*"--"1" Client : requested by >
+SpecialistDoctor "1"--"*" Report : generates >
+Diagnosis "*"--"1" LaboratoryCoordinator : validated by >
+Diagnosis "*"--"1" SpecialistDoctor : generates <
+Report "1"--"1" Diagnosis : contains >
+@enduml
