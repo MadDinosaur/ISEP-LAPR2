@@ -49,8 +49,10 @@ public class Company {
         this.testStore = new TestStore();
         this.testNumber = 1;
 
-        //HARDCODED THINGS FOR TESTES
-        clientStore.saveClient(new Client("Teste",(long) 8765432187654321.0,1234512347,new DateBirth(24,12,2002),1234512345,(long)12345123457.0,new Email("teste50@gmail.com"),"male"));
+        //HARDCODED THINGS FOR TESTS
+        Employee testEmployee = new Employee("testEmployee",orgRoleStore.getOrganizationRole("Receptionist"),"nameEmployee","house","testEmployee@gmail.com","123456789","1234");
+        Client testClient = new Client("testClient",(long) 8765432187654321.0,1234512347,new DateBirth(24,12,2002),1234512345,(long)12345123457.0,new Email("teste50@gmail.com"),"male");
+        clientStore.saveClient(testClient);
         clientStore.saveClient(new Client("Joni",(long)  1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512346,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
         clientStore.saveClient(new Client("Joni",(long)  8765432187654322.0,1234512345,new DateBirth(24,12,2002),1234512347,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
         CollectionMethod collectionMethodTest = new CollectionMethod("test Colection");
@@ -66,6 +68,10 @@ public class Company {
         testTestHardCoded.setStateOfTestToSamplesAnalyzed();
         testStore.addTest(testTestHardCodedRegistered);
         testStore.addTest(testTestHardCoded);
+        //add client as a user
+        saveClientAsUser(testClient,"testClient@gmail.com");
+        saveEmployeeAsUser(testEmployee);
+        //END OF HARDCODED THINGS FOR TESTS
 
     }
 
@@ -136,7 +142,7 @@ public class Company {
      * Saves the employee as a user
      * @return (in)success of the operation
      */
-    public boolean saveEmployeeAsUser(Employee e) throws IOException {
+    public boolean saveEmployeeAsUser(Employee e) {
         String pwd = generateUserPassword();
         if (authFacade.addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId())) {
             sendUserPassword(e.getEmail(), pwd);
@@ -149,7 +155,7 @@ public class Company {
      * Saves the client as a user
      * @return (in)success of the operation
      */
-    public boolean saveClientAsUser(Client client,String email) throws IOException {
+    public boolean saveClientAsUser(Client client,String email) {
         String pwd = generateUserPassword();
         if (authFacade.addUserWithRole(client.getName(), email, pwd, client.getOrganizationRole())) {
             clientStore.saveClient(client);
@@ -176,23 +182,28 @@ public class Company {
         return generatedString;
     }
 
-    private void sendUserPassword(String email, String pwd) throws IOException {
+    private void sendUserPassword(String email, String pwd){
         File file = null;
         FileWriter myWriter = null;
         try {
             file = new File("SMS-Emails\\Register_" + email + ".txt");
 
-            myWriter = new FileWriter("SMS-Emails\\Register" + email + ".txt");
+            myWriter = new FileWriter("SMS-Emails\\Register_" + email + ".txt");
             myWriter.write("You are now registered in " + getDesignation() + "'s application. " +
                     "Your password is: " + pwd);
         } catch (IOException e) {
             System.out.println("An error occurred on file " + file.getName());
         } finally {
-            myWriter.close();
+            try {
+                assert myWriter != null;
+                myWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public void sendNotification(Client client, String msg) throws IOException {
+    public void sendNotification(Client client, String msg){
         File file = null;
         FileWriter myWriter = null;
         try {
@@ -202,7 +213,12 @@ public class Company {
         } catch (IOException e) {
             System.out.println("An error occurred on file " + file.getName());
         }finally {
-            myWriter.close();
+            try {
+                assert myWriter != null;
+                myWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

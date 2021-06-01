@@ -150,12 +150,12 @@ public class RegisterTestUI implements Runnable {
         for(Category category : registerTestController.getToSaveTestType().getCategories()){
             System.out.println("Category :" + category.getCategoryName());
             for(Parameter parameter : category.getParameterList()){
-                System.out.println("Parameter " + parameter);
+                System.out.println("Parameter " + parameter.getParameterName());
             }
         }
         boolean validAwnser;
         do{
-            String awnser = sc.nextLine();
+            String awnser = sc.next();
             if(awnser.equalsIgnoreCase("yes")){
                 break;
             }else{
@@ -180,6 +180,7 @@ public class RegisterTestUI implements Runnable {
 
         System.out.println("Press any key to continue");
         sc.next();
+        new ReceptionistUI().run();
     }
 
 

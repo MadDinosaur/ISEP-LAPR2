@@ -22,7 +22,7 @@ public class TestTypeStore {
     private CollectionMethod collectionMethodTest = new CollectionMethod("test Colection");
     Category categoryTest = new Category("Hemograma", "pistola", "WBC", "toma");
     private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(categoryTest));
-    private ArrayList<TestType> testTypeList = new ArrayList<>(Collections.singleton(new TestType("Blood","test Of Test",collectionMethodTest,categoryList)));
+    private ArrayList<TestType> testTypeList = new ArrayList<>();
 
     /**
      * Empty constructor

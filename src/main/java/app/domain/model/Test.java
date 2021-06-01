@@ -18,11 +18,11 @@ public class Test {
      */
     private Client client;
     private List<Category> listOfCategories;
+    private final List<Parameter> listOfParameters = new ArrayList<>();
     private TestType testType;
     private String testCode;
     private String nhsCode;
     private Date dateOfCreation;
-    private List<Parameter> listOfParameters = new ArrayList<>();
     private TestParamList testParamList;
     private SampleList sampleList = new SampleList();
     private StateOfTest stateOfTest;
@@ -221,7 +221,7 @@ public class Test {
     }
 
     public void validateTest(){
-        if(!stateOfTest.equals("VALIDATED")) {
+        if(!stateOfTest.equals(StateOfTest.VALIDATED)) {
             this.stateOfTest = StateOfTest.VALIDATED;
             this.dateValidation = getDate();
             this.timeValidation = getTime();
@@ -250,6 +250,10 @@ public class Test {
 
     public void setStateOfTestToSamplesCollected() {
         this.stateOfTest = StateOfTest.SAMPLES_COLLECTED;
+    }
+
+    public void setStateOfTestToValidated(){
+        this.stateOfTest = StateOfTest.VALIDATED;
     }
 
     public TestParameterResult createTestParameterResult(String paramCode, String result, String metric) {
