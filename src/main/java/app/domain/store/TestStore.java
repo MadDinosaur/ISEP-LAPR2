@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class TestStore {
-    private List<Test> tests = new ArrayList<>();
+    private final List<Test> tests = new ArrayList<>();
 
     public boolean addTest(Test test) {
         return this.tests.add(test);
