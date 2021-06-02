@@ -7,6 +7,7 @@ import app.mappers.TestMapper;
 import app.mappers.dto.TestDTO;
 
 import java.io.IOException;
+import java.util.EmptyStackException;
 import java.util.List;
 
 public class ValidateTestController {
@@ -43,19 +44,25 @@ public class ValidateTestController {
 
     /**
      * Method that gets the list of test that are ready to validate
+     * @return
      */
-    public void getListTestsWithReport(){
+    public List<Test> getListTestsWithReport(){
         this.currTestStore = company.getTestStore();
-        this.listTestsWithReport = currTestStore.getListTestsWithReport();
+        if(!currTestStore.getListTestsWithReport().isEmpty()) {
+            return currTestStore.getListTestsWithReport();
+        }else throw new EmptyListException();
     }
 
     /**
      *
      * @return
      */
-    public List<TestDTO> toDTO(){
-        TestMapper testMapper = new TestMapper(listTestsWithReport);
-        return testMapper.toDtoListValidation();
+    public List<TestDTO> toDTO() {
+        if (listTestsWithReport != null){
+            TestMapper testMapper = new TestMapper(listTestsWithReport);
+            return testMapper.toDtoListValidation();
+        }else throw new EmptyListException("This list is empty!");
+
     }
 
     public void validateTest(String nhsCode){

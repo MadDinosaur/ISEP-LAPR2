@@ -55,6 +55,7 @@ public class Company {
         clientStore.saveClient(testClient);
         clientStore.saveClient(new Client("Joni",(long)  1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512346,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
         clientStore.saveClient(new Client("Joni",(long)  8765432187654322.0,1234512345,new DateBirth(24,12,2002),1234512347,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
+        clientStore.saveClient(new Client("Pedro",(long)  8765432187654323.0,1234512346,new DateBirth(11,9,2001),1234512348,(long)12345123457.0,new Email("teste3@gmail.com"),"male"));
         CollectionMethod collectionMethodTest = new CollectionMethod("test Colection");
         Category categoryTest = new Category("Hemogram", "HEM00", "Hemogram Description", "toma");
         Parameter parameter = new Parameter("par2345","HB000","test f234");
@@ -64,8 +65,13 @@ public class Company {
         testTypeStore.addTestType(testTypeHardCoded);
         Test testTestHardCoded = new Test(clientStore.getClientByCardNumber((long)8765432187654321.0),testTypeHardCoded,testNumberGenerator(),nhsCodeGenerator());
         Test testTestHardCodedRegistered = new Test(clientStore.getClientByCardNumber((long)8765432187654322.0),testTypeHardCoded,testNumberGenerator(),nhsCodeGenerator());
+        Test testTestHardCodedDiagnosed = new Test(clientStore.getClientByCardNumber((long)8765432187654323.0),testTypeHardCoded,testNumberGenerator(),nhsCodeGenerator());
         testTestHardCoded.saveTestParameterResult(parameter, testTestHardCoded.createTestParameterResult("HB000", "135", "mg"));
+        testTestHardCodedDiagnosed.saveTestParameterResult(parameter, testTestHardCodedDiagnosed.createTestParameterResult("HB000", "135", "mg"));
         testTestHardCoded.setStateOfTestToSamplesAnalyzed();
+        testTestHardCodedDiagnosed.setStateOfTestToSamplesAnalyzed();
+        testTestHardCodedDiagnosed.addReport(new Report("diagnosis", "Report is complete"));
+        testStore.addTest(testTestHardCodedDiagnosed);
         testStore.addTest(testTestHardCodedRegistered);
         testStore.addTest(testTestHardCoded);
         //add client as a user

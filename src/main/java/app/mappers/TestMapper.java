@@ -49,7 +49,7 @@ public class TestMapper {
      * @param timeResults
      * @return dto of a test with the dates
      */
-    public TestDTO toDTOValidation(String nhsCode, Date dateOfCreation, LocalDate dateReport, LocalTime timeReport, LocalDate dateResults, LocalTime timeResults){
+    public TestDTO toDTOValidation(String nhsCode, LocalDate dateOfCreation, LocalDate dateReport, LocalTime timeReport, LocalDate dateResults, LocalTime timeResults){
         TestDTO testDTO = new TestDTO(nhsCode, dateOfCreation, dateReport, timeReport, dateResults, timeResults);
         return testDTO;
     }

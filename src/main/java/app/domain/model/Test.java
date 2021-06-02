@@ -22,7 +22,7 @@ public class Test {
     private TestType testType;
     private String testCode;
     private String nhsCode;
-    private Date dateOfCreation;
+    private LocalDate dateOfCreation;
     private TestParamList testParamList;
     private SampleList sampleList = new SampleList();
     private StateOfTest stateOfTest;
@@ -61,6 +61,7 @@ public class Test {
         setListOfCategories(testType.getCategories());
         getParametersFromCategoriesToStore();
         stateOfTest = StateOfTest.REGISTERED;
+        dateOfCreation = getDate();
     }
 
     /**
@@ -121,7 +122,7 @@ public class Test {
         return nhsCode;
     }
 
-    public Date getDateOfCreation() {
+    public LocalDate getDateOfCreation() {
         return dateOfCreation;
     }
 
@@ -220,6 +221,9 @@ public class Test {
         this.timeReport = getTime();
     }
 
+    /**
+     * Validates test
+     */
     public void validateTest(){
         if(!stateOfTest.equals(StateOfTest.VALIDATED)) {
             this.stateOfTest = StateOfTest.VALIDATED;
@@ -246,6 +250,8 @@ public class Test {
 
     public void setStateOfTestToSamplesAnalyzed() {
         this.stateOfTest = StateOfTest.SAMPLES_ANALYZED;
+        this.timeResults = getTime();
+        this.dateResults = getDate();
     }
 
     public void setStateOfTestToSamplesCollected() {
@@ -282,5 +288,13 @@ public class Test {
 
         return String.format("%sSamples Collected no.: %s\n" , toString(), samplesToString.toString());
     }
+
+    public String toStringWithDates(){
+        return String.format("registration date: " + dateOfCreation + "; results date: " + dateResults + "/" + timeResults + "; diagnosis date: " + dateReport + "/" + timeReport + ".");
+    }
+
+
 }
+
+
 

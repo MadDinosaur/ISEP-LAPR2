@@ -25,6 +25,7 @@ public class Client {
         setDateBirth(dateBirth);
         setTIN(TIN);
         setPhoneNumber(phoneNumber);
+        setEmail(email);
         setSex(sex);
     }
 

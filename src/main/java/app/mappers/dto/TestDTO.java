@@ -16,7 +16,7 @@ public class TestDTO {
     private List<Category> listOfCategories;
     private String testCode;
     private String nhsCode;
-    private Date dateOfCreation;
+    private LocalDate dateOfCreation;
     private List<Parameter> listOfParameters = new ArrayList<>();
     private TestParamList testParamList;
     private SampleList sampleList = new SampleList();
@@ -37,7 +37,7 @@ public class TestDTO {
         VALIDATED
     }
 
-    public TestDTO(Client client, List<Category> listOfCategories, String testCode, String nhsCode, Date dateOfCreation, List<Parameter> listOfParameters, TestParamList testParamList, SampleList sampleList, Report report, LocalDate dateReport, LocalTime timeReport, LocalDate dateResults, LocalTime timeResults, LocalDate dateValidation, LocalTime timeValidation) {
+    public TestDTO(Client client, List<Category> listOfCategories, String testCode, String nhsCode, LocalDate dateOfCreation, List<Parameter> listOfParameters, TestParamList testParamList, SampleList sampleList, Report report, LocalDate dateReport, LocalTime timeReport, LocalDate dateResults, LocalTime timeResults, LocalDate dateValidation, LocalTime timeValidation) {
         this.client = client;
         this.listOfCategories = listOfCategories;
         this.testCode = testCode;
@@ -55,7 +55,7 @@ public class TestDTO {
         this.timeValidation = timeValidation;
     }
 
-    public TestDTO(String nhsCode, Date dateOfCreation, LocalDate dateReport, LocalTime timeReport, LocalDate dateResults, LocalTime timeResults) {
+    public TestDTO(String nhsCode, LocalDate dateOfCreation, LocalDate dateReport, LocalTime timeReport, LocalDate dateResults, LocalTime timeResults) {
         this.nhsCode = nhsCode;
         this.dateOfCreation = dateOfCreation;
         this.dateReport = dateReport;
@@ -80,7 +80,7 @@ public class TestDTO {
         return nhsCode;
     }
 
-    public Date getDateOfCreation() {
+    public LocalDate getDateOfCreation() {
         return dateOfCreation;
     }
 

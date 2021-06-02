@@ -105,15 +105,13 @@ public class TestStore {
     }
 
     public void validateTest(String nhsCode){
-        Iterator<Test> testIterator = tests.iterator();
-        Test test;
-        while(testIterator.hasNext()){
-            test = (Test) testIterator;
-            if(test.getNhsCode().equals(nhsCode)){
+        for(Test test: tests){
+            if (test.getNhsCode().equals(nhsCode)) {
                 test.validateTest();
             }
         }
     }
+
     public boolean validadeTestCode(String code){
         for (Test test : tests){
             if (test.getNhsCode().equals(code)){
@@ -124,10 +122,9 @@ public class TestStore {
     }
 
     public Test findTestThroughNhsCode(String nhsCode){
-        Iterator<Test> testIterator = tests.iterator();
-        while(testIterator.hasNext()){
-            if(testIterator.next().getNhsCode().equals(nhsCode)){
-                return testIterator.next();
+        for(Test test: tests){
+            if(test.getNhsCode().equals(nhsCode)){
+                return test;
             }
         } throw new TestDoesntExistException();
     }
