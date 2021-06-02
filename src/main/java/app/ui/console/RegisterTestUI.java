@@ -180,7 +180,6 @@ public class RegisterTestUI implements Runnable {
 
         System.out.println("Press any key to continue");
         sc.next();
-        new ReceptionistUI().run();
     }
 
 
