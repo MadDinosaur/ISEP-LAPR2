@@ -113,11 +113,11 @@ public class RecordTestResultUI implements Runnable {
         System.out.println("Checking information...");
         System.out.printf("Barcode no.: %s\n", barcode);
         System.out.printf("Parameter code: %s --> %s%s\n", paramCode, result, metric);
-        System.out.println("Confirm? Y/N");
+        System.out.println("Confirm? Yes/No");
         String option = sc.nextLine();
 
-        switch (option) {
-            case "Y": case "y":
+        switch (option.toLowerCase()) {
+            case "yes":
                 if (recordTestResultController.saveTestParameterResult()) {
                     System.out.println("Result saved successfully!");
                     return true;
@@ -126,7 +126,7 @@ public class RecordTestResultUI implements Runnable {
                     System.out.println("Error saving result. Please try again.");
                     return false;
                 }
-            case "N": case "n":
+            case "no":
                 return false;
         }
         return false;
