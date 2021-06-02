@@ -48,11 +48,11 @@ public class ValidateTestUI implements Runnable{
                         }
                         i++;
                     }
-                    i = 0;
+                    i = -1;
                     tests = sc.nextInt();
                 }
             }
-            System.out.println("All test have been validated.");
+            System.out.println("All selected tests have been validated.");
         }catch (EmptyListException e){
             System.out.println("There are no more tests ready for validation.");
         }
