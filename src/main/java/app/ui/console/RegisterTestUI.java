@@ -170,6 +170,7 @@ public class RegisterTestUI implements Runnable {
                 }
             }
         }while (!validAwnser);
+        sc.nextLine();
 
         String generatedTestCode= codesOfTest[0];
         String generatedNhsCode= codesOfTest[1];
@@ -177,8 +178,6 @@ public class RegisterTestUI implements Runnable {
                 "Test Code: " + generatedTestCode +"\n"+
                 "Nhs Code: " + generatedNhsCode);
 
-        System.out.println("Press any key to continue");
-        sc.next();
         new ReceptionistUI().run();
     }
 
