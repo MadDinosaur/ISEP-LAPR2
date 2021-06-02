@@ -270,8 +270,7 @@ public class Test {
         if (!testParamList.addTestParameterResult(param, result))
             return false;
 
-        if(testParamList.size() == sampleList.size())
-            this.stateOfTest = StateOfTest.SAMPLES_ANALYZED;
+        this.stateOfTest = StateOfTest.SAMPLES_ANALYZED;
 
         return true;
     }
