@@ -35,8 +35,9 @@ public class ValidateTestUI implements Runnable{
                 System.out.println("Please select the tests you wish to validate by their number. Write -1 to exit.");
                 int tests = sc.nextInt();
                 i = 0;
+                List<Test> testList = vtctrl.getListTestsWithReport();
                 while (tests != -1) {
-                    for(Test test: vtctrl.getListTestsWithReport()) {
+                    for(Test test: testList) {
                         if (i == tests) {
                             vtctrl.validateTest(test.getNhsCode());
                             try {
@@ -50,6 +51,7 @@ public class ValidateTestUI implements Runnable{
                     }
                     i = -1;
                     tests = sc.nextInt();
+                    tests = tests-1;
                 }
             }
             System.out.println("All selected tests have been validated.");
