@@ -36,7 +36,7 @@ public class CompanyTest {
     @Test
     public void testNhsNumberGeneretor(){
         String testCode = company.generateNumberTest();
-        Assert.assertEquals(testCode,"000000000003");
+        Assert.assertEquals(testCode,"000000000004");
     }
 
 

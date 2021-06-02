@@ -1,0 +1,61 @@
+// This file is an example of a report that should be sent to the NHS
+// in US18 (for US19 the report is the same but the configurations are all defined
+// in a configuration file and the report is sent automatically everyday at 6h00PM).
+//
+// If the administrator selects:
+//       1. The current day to be 31/05/2021;
+//       2. To send day data to the NHS;
+//       3. Defines the number of historical day points that should be sent to the NHS equal to 15 points;
+//       4. Defines the dates interval to fit the model equal to: begin at 17/05/2021 and end at 22/05/2021
+//       5. Sets that a simple linear regression model should be fitted using data from the interval defined in 4.
+//       6. Sets the number of day tests as independent variable.
+// Then the data bellow should be sent to the NHS. The values (the number of positive cases) presented here are virtual and are not related with the presented model or the data made available in moodle
+// A positive Covid case is a test where the patient has an IgGAN parameter value higher than 1.4 (IgGAN > 1.4)
+
+
+
+The regression model fitted using data from the interval
+^y=âx+^b
+//
+Other statistics
+R2 = ....
+R2adjusted= ....
+R = ...
+//
+Hypothesis tests for regression coefficients
+HO:b=0 (a=0) H1: b<>0 (a<>0)
+t_obs=....
+Decision:
+Reject H0/ No reject H0
+//
+
+Significance model with Anova
+H0: b=0  H1:b<>0
+		df	SS		MS		F
+Regression	2	1347.4754	673.7377	28,7538
+Residual	15	 351.4699	 23.4313
+Total		17	1698,9444
+
+Decision: f
+0 > f0.05,(2.15)=3.682
+Reject H0
+The regression model is significant.
+
+// Prediction values
+
+Date           Number of OBSERVED positive cases        Number of ESTIMATED/EXPECTED positive cases 		95% intervals
+29/05/2021                    21                                      22.32					13.16-23.48
+28/05/2021                    20                                      21.32					19.16-23.48
+27/05/2021                    14                                      14.33					12.17-16.49
+26/05/2021                    23                                      22.35					20.19-24.51
+25/05/2021                    12                                      11.47					 9.31-13.63
+24/05/2021                    22                                      23.01					20.85-25.17
+22/05/2021                    20                                      22.02					19.86-24.18
+21/05/2021                    20                                      22.02					19.86-24.18
+20/05/2021                    14                                      13.97					11.81-16.13
+19/05/2021                    23                                      21.95					19.79-24.11
+18/05/2021                    12                                      11.98					 9.82-14.14
+17/05/2021                    22                                      23.01					20.85-25.17
+15/05/2021                    20                                      21.02					18.86-23.18
+14/05/2021                    20                                      21.02					18.86-23.18
+13/05/2021                    14                                      15.03					12.87-17.19
