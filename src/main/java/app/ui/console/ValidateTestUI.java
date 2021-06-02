@@ -32,7 +32,7 @@ public class ValidateTestUI implements Runnable{
                 } catch (EmptyListException e) {
                     System.out.println("There are no tests ready for validation.");
                 }
-                System.out.println("Please select the tests you wish to validate by their number.");
+                System.out.println("Please select the tests you wish to validate by their number. Write -1 to exit.");
                 int tests = sc.nextInt();
                 i = 0;
                 while (tests != -1) {
@@ -48,8 +48,9 @@ public class ValidateTestUI implements Runnable{
                         }
                         i++;
                     }
+                    i = 0;
+                    tests = sc.nextInt();
                 }
-                tests = sc.nextInt();
             }
             System.out.println("All test have been validated.");
         }catch (EmptyListException e){
