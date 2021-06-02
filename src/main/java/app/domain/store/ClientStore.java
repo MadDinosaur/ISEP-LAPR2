@@ -4,6 +4,7 @@ package app.domain.store;
 import app.domain.model.Client;
 import app.domain.model.Employee;
 import app.domain.model.Exceptions.InvalidEmployeeException;
+import auth.domain.model.Email;
 
 import java.util.ArrayList;
 
@@ -17,15 +18,7 @@ public class ClientStore {
         return addClient(client);
     }
 
-    public Client getClientByCardNumber(long cardNumber){
-        for (Client client : clientList) {
-            if (client.getCardNumber() == cardNumber) {
-                return client;
-            }
-        }
-        System.out.println("There is no Client with that Card Number");
-        return null;
-    }
+
     public Client getClientByTINumber(long taxNumber){
         for (Client client : clientList) {
             if (client.getTIN() == taxNumber) {
@@ -35,5 +28,26 @@ public class ClientStore {
         System.out.println("There is no Client with that Card Number");
         return null;
     }
+
+    public Client getClientById(Email email){
+        for (Client client : clientList) {
+            if (client.getEmail().toString().equals(email.toString())) {
+                return client;
+            }
+        }
+        return null;
+    }
+
+    public Client getClientByCardNumber(long cardNumber){
+        for (Client client : clientList) {
+            if (client.getCardNumber() == cardNumber) {
+                return client;
+            }
+        }
+        System.out.println("There is no Client with that Card Number");
+        return null;
+    }
+
+
 
 }
