@@ -20,22 +20,19 @@ import java.util.Random;
  */
 public class Company {
 
-    private String designation;
-    private AuthFacade authFacade;
-    private EmployeeStore employeeStore;
+    private final String designation;
+    private final AuthFacade authFacade;
+    private final EmployeeStore employeeStore;
+    private final ClientStore clientStore;
+    private final OrgRoleStore orgRoleStore;
+    private final TestStore testStore;
+    private final TestTypeStore testTypeStore = new TestTypeStore();
+    private final ReportStore reportStore = new ReportStore();
+    private final Random random = new Random();
+    private SampleList sampleList;
     private int testNumber;
 
-    private ClientStore clientStore;
-    private OrgRoleStore orgRoleStore;
-    private TestStore testStore = new TestStore();
-    private TestTypeStore testTypeStore = new TestTypeStore();
-    private ReportStore reportStore = new ReportStore();
-    private SampleList sampleList;
-    private Random random = new Random();
-
-    private List<Category> parameterCategoryList = new ArrayList<>();
-
-    private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
+    private final List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
 
     public Company(String designation) {
         if (StringUtils.isBlank(designation))
