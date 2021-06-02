@@ -7,8 +7,8 @@ import app.domain.store.TestParamList;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Test {
@@ -22,17 +22,17 @@ public class Test {
     private TestType testType;
     private String testCode;
     private String nhsCode;
-    private LocalDate dateOfCreation;
+    private String dateOfCreation;
     private TestParamList testParamList;
     private SampleList sampleList = new SampleList();
     private StateOfTest stateOfTest;
     private Report report;
-    private LocalDate dateReport;
-    private LocalTime timeReport;
-    private LocalDate dateResults;
-    private LocalTime timeResults;
-    private LocalDate dateValidation;
-    private LocalTime timeValidation;
+    private String dateReport;
+    private String timeReport;
+    private String dateResults;
+    private String timeResults;
+    private String dateValidation;
+    private String timeValidation;
 
     /**
      * State of the test
@@ -122,7 +122,7 @@ public class Test {
         return nhsCode;
     }
 
-    public LocalDate getDateOfCreation() {
+    public String getDateOfCreation() {
         return dateOfCreation;
     }
 
@@ -138,27 +138,27 @@ public class Test {
         return report;
     }
 
-    public LocalDate getDateReport() {
+    public String getDateReport() {
         return dateReport;
     }
 
-    public LocalTime getTimeReport() {
+    public String getTimeReport() {
         return timeReport;
     }
 
-    public LocalDate getDateResults() {
+    public String getDateResults() {
         return dateResults;
     }
 
-    public LocalTime getTimeResults() {
+    public String getTimeResults() {
         return timeResults;
     }
 
-    public LocalDate getDateValidation() {
+    public String getDateValidation() {
         return dateValidation;
     }
 
-    public LocalTime getTimeValidation() {
+    public String getTimeValidation() {
         return timeValidation;
     }
 
@@ -236,16 +236,18 @@ public class Test {
      * Returns the current date
      * @return LocalDate
      */
-    public LocalDate getDate() {
-        return LocalDate.now();
+    public String getDate() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        return LocalDate.now().format(dtf);
     }
 
     /**
      * Returns the current time
      * @return LocalTime
      */
-    public LocalTime getTime() {
-        return LocalTime.now();
+    public String getTime() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
+        return LocalTime.now().format(dtf);
     }
 
     public void setStateOfTestToSamplesAnalyzed() {
