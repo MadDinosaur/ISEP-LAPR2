@@ -4,31 +4,20 @@
 
 ### 1.1. User Story Description
 
-As an administrator, I want to specify a new parameter and categorize it.
+As a clinical chemistry technologist, I intend to consult the historical tests performed by a particular client and to be able to check tests details/results.
 
 ### 1.2. Customer Specifications and Clarifications
 
 ####From the specifications document
 
-* "Blood tests are frequently characterized by measuring several parameters which for presentation/reporting purposes are organized by categories. For example, parameters such as the number of Red Blood cells (RBC), White Blood Cells (WBC) and Platelets (PLT) are usually presented under the blood count (Hemogram) category,"
-* "Covid tests are characterized by measuring a single parameter stating whether it is a positive or a negative result."
-* "Regardless, such tests rely on measuring one or more parameters that can be grouped/organized by categories."
+* "To facilitate the access to the results, the application must allow ordering the clients by TIF and by name. The ordering algorithm to be used by the application must be defined through a configuration file. It is intended that the choice of the ordering algorithm is based on the algorithm complexity (mainly the execution time). Therefore, at least two sorting algorithms should be evaluated and documented in the application user manual (in the annexes) that must be delivered with the application."
 
 ####From the client clarifications
 
-* **Question**: "Which information will the client provide for the addition of a new parameter and its categorization?" **Answer**: "Each parameter is associated with one category. Each parameter has a Code, a Short Name and a Description. The Code are five alphanumeric characters. The Short Name is a String with no more than 8 characters. The Description is a String with no more than 20 characters."
-
-* **Question**: "Does the client want to specify more than one new parameter at a time?" **Answer**: "Yes."
-
-* **Question**: "What are the acceptance criteria for a new parameter category?" **Answer**: "In my previous posts you can find other requirements that must be met in order to mark US11 as complete."
-
-* **Question**: "When a new parameter is specified, should there always be a category it falls under prior to its specification and subsequent categorization?" **Answer**: "Each parameter is associated with one category."
 
 ### 1.3. Acceptance Criteria
 
-* AC1: The code introduced should have 5 alphanumerical charaters.
-* AC2: The name for the new parameter should be a string with no more than 8 characters.
-* AC3: The description should be a string with less than 20 characters.
+* AC1: The application must allow ordering the clients by TIN and by name to help the clinical chemistry technologist choose the target client. The ordering algorithm to be used by the application must be defined through a configuration file. At least two sorting algorithms should be available.
 
 ### 1.4. Found out Dependencies
 
