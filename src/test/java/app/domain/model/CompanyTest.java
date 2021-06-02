@@ -51,7 +51,7 @@ public class CompanyTest {
         new Company(" ");
     }
 
-    
+
 
 
 
