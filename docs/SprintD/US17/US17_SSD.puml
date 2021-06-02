@@ -1,0 +1,13 @@
+@startuml
+
+autonumber
+
+actor "Laboratory Coordinator" as lc
+
+
+lc -> System: starts the importation
+System -> lc: requests the name of the file
+lc -> System: types in the requested data
+System -> lc: informs operation success
+
+@enduml

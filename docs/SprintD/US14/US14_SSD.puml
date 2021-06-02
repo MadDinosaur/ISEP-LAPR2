@@ -2,6 +2,8 @@
 
 autonumber
 
+actor "Specialist Doctor"
+
 "Specialist Doctor" -> ":System": starts a new report
 loop Until the Specialist Doctor doesn't want to write more reports
 ":System" -> "Specialist Doctor": shows a list of tests ready to have a report and requests a test to be shown

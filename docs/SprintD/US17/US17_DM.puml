@@ -1,0 +1,63 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Test {
+-testCode
+-nhsCode
+-createdAt
+-designation
+-dateAnalysis
+-timeAnalysis
+-dateReport
+-timeReport
+-dateValidation
+-timeValidation
+}
+
+class ClinicalAnalysisLaboratory {
+-name
+-address
+-phoneNumber
+-TIN
+-laboratoryID
+}
+
+class Client {
+-name
+-cardNumber
+-birthDate
+-sex
+-nhsID
+-TIF
+-phoneNumber
+-email
+-password
+}
+
+class TestType {
+-code
+-description
+}
+
+class Category {
+-code
+-description
+-nhsID
+}
+
+class Parameter {
+-code
+-shortName
+-description
+}
+
+Test "*"--"1" Client : requested by >
+Test "*"-right-"1" "TestType" : is of >
+Parameter "*"--"1" Category : presented under >
+ClinicalAnalysisLaboratory "1"--"*" TestType : performs >
+TestType "1"--"1..*" Parameter : has >
+
+
+
+@enduml
