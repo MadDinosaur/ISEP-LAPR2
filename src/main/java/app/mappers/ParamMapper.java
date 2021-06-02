@@ -16,7 +16,7 @@ public class ParamMapper {
         return new ParamDTO(parameter.getParameterCode(),parameter.getParameterName(),parameter.getParameterDescription());
     }
 
-    public List<ParamDTO> toDTO(List<Parameter> params) {
+    public List<ParamDTO> toDto(List<Parameter> params) {
         List<ParamDTO> paramDTOList = new ArrayList<>();
 
         for(Parameter param : params) {
