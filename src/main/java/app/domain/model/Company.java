@@ -20,22 +20,19 @@ import java.util.Random;
  */
 public class Company {
 
-    private String designation;
-    private AuthFacade authFacade;
-    private EmployeeStore employeeStore;
+    private final String designation;
+    private final AuthFacade authFacade;
+    private final EmployeeStore employeeStore;
+    private final ClientStore clientStore;
+    private final OrgRoleStore orgRoleStore;
+    private final TestStore testStore;
+    private final TestTypeStore testTypeStore = new TestTypeStore();
+    private final ReportStore reportStore = new ReportStore();
+    private final Random random = new Random();
+    private SampleList sampleList;
     private int testNumber;
 
-    private ClientStore clientStore;
-    private OrgRoleStore orgRoleStore;
-    private TestStore testStore = new TestStore();
-    private TestTypeStore testTypeStore = new TestTypeStore();
-    private ReportStore reportStore = new ReportStore();
-    private SampleList sampleList;
-    private Random random = new Random();
-
-    private List<Category> parameterCategoryList = new ArrayList<>();
-
-    private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
+    private final List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
 
     public Company(String designation) {
         if (StringUtils.isBlank(designation))
@@ -51,10 +48,13 @@ public class Company {
 
         //HARDCODED THINGS FOR TESTS
         Employee testEmployee = new Employee("testEmployee",orgRoleStore.getOrganizationRole("Receptionist"),"nameEmployee","house","testEmployee@gmail.com","123456789","1234");
-        Client testClient = new Client("testClient",(long) 8765432187654321.0,1234512347,new DateBirth(24,12,2002),1234512345,(long)12345123457.0,new Email("teste50@gmail.com"),"male");
-        clientStore.saveClient(testClient);
-        clientStore.saveClient(new Client("Joni",(long)  1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512346,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
-        clientStore.saveClient(new Client("Joni",(long)  8765432187654322.0,1234512345,new DateBirth(24,12,2002),1234512347,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
+        Client testClient = new Client("testClient",(long) 8765432187654321.0,1234512347,new DateBirth(24,12,2002),1234512345,(long)12345123457.0,new Email("testClient@gmail.com"),"male");
+        //add client and Receptionist as a user
+        saveClientAsUser(testClient,testClient.getEmail().toString());
+        saveEmployeeAsUser(testEmployee);
+        //
+        clientStore.saveClient(new Client("Maria",(long)  1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512346,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
+        clientStore.saveClient(new Client("João",(long)  8765432187654322.0,1234512345,new DateBirth(24,12,2002),1234512347,(long)12345123456.0,new Email("teste2@gmail.com"),"male"));
         clientStore.saveClient(new Client("Pedro",(long)  8765432187654323.0,1234512346,new DateBirth(11,9,2001),1234512348,(long)12345123457.0,new Email("teste3@gmail.com"),"male"));
         CollectionMethod collectionMethodTest = new CollectionMethod("test Colection");
         Category categoryTest = new Category("Hemogram", "HEM00", "Hemogram Description", "toma");
@@ -74,9 +74,6 @@ public class Company {
         testStore.addTest(testTestHardCodedDiagnosed);
         testStore.addTest(testTestHardCodedRegistered);
         testStore.addTest(testTestHardCoded);
-        //add client as a user
-        saveClientAsUser(testClient,"testClient@gmail.com");
-        saveEmployeeAsUser(testEmployee);
         //END OF HARDCODED THINGS FOR TESTS
 
     }

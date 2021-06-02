@@ -28,7 +28,7 @@ public class RecordTestResultController {
         test = company.getTestStore().getTestBySampleBarcode(barcode);
 
         ParamMapper map = new ParamMapper();
-        return map.toDTO(company.getTestStore().getTestParameters(test));
+        return map.toDto(company.getTestStore().getTestParameters(test));
     }
 
     public void createTestParameterResult(String paramCode, String result, String metric) {

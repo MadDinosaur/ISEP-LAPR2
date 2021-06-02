@@ -21,13 +21,11 @@ As a clinical chemistry technologist, I intend to consult the historical tests p
 
 ### 1.4. Found out Dependencies
 
-* User story 10 is dependent on User story 11 considering the fact that the categorization of a new parameter requires the existance of a parameter category to include it in.
+
 
 ### 1.5 Input and Output Data
 
-* **Typed data:** New parameter name; Code; Short description.
-* **Selected data:** Parameter category.
-* **Output data:** Information of operation's success
+
 
 ### 1.6. System Sequence Diagram (SSD)
 

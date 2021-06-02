@@ -50,7 +50,6 @@ public class RegisterTestUI implements Runnable {
             do {
             String clientIsCorrectAnswer = sc.next();
                 if (clientIsCorrectAnswer.equalsIgnoreCase("yes")) {
-                    System.out.println("chehou aqui");
                     clientIsCorrect = true;
                     validAwnser = true;
                 } else {
@@ -150,7 +149,7 @@ public class RegisterTestUI implements Runnable {
         for(Category category : registerTestController.getToSaveTestType().getCategories()){
             System.out.println("Category :" + category.getCategoryName());
             for(Parameter parameter : category.getParameterList()){
-                System.out.println("Parameter " + parameter.getParameterName());
+                System.out.println("Parameter :" + parameter.getParameterName());
             }
         }
         boolean validAwnser;
@@ -171,6 +170,7 @@ public class RegisterTestUI implements Runnable {
                 }
             }
         }while (!validAwnser);
+        sc.nextLine();
 
         String generatedTestCode= codesOfTest[0];
         String generatedNhsCode= codesOfTest[1];
@@ -178,8 +178,7 @@ public class RegisterTestUI implements Runnable {
                 "Test Code: " + generatedTestCode +"\n"+
                 "Nhs Code: " + generatedNhsCode);
 
-        System.out.println("Press any key to continue");
-        sc.next();
+        new ReceptionistUI().run();
     }
 
 

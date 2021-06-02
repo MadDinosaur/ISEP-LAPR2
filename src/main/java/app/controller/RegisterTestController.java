@@ -70,7 +70,7 @@ public class RegisterTestController {
     public List<ParamDTO> getListOfTestParameters(){
         parametersOfCategory = categoryOfTestType.getParameterList();
         ParamMapper paramMapper = new ParamMapper();
-        return paramMapper.toDTO(parametersOfCategory);
+        return paramMapper.toDto(parametersOfCategory);
     }
     public void setParameterByName(String nameOfParameter){
         parameterOfCategory = categoryOfTestType.getParameterByName(nameOfParameter);
