@@ -69,12 +69,28 @@ public class SampleUI implements Runnable {
     }
 
     public void setSampleNumber() throws Exception {
-        int n = input.nextInt();
-        input.nextLine();
+        int n = 0;
+
+        boolean loop = true;
+        while(loop) {
+            try {
+                n = input.nextInt();
+
+                while (n <= 0) {
+                    System.out.println("Please insert a valid number.");
+                    n = input.nextInt();
+                }
+                loop = false;
+            } catch (InputMismatchException e) {
+                System.out.println("Please insert a number.");
+                input.next();
+            }
+        }
 
         System.out.println("Number of samples: " + n);
         System.out.println("Is this information correct? (type yes/no)");
 
+        input.nextLine();
         boolean confirm = confirmation();
         if (confirm) {
             SC.createSampleList(n);
