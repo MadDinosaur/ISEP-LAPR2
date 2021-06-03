@@ -32,12 +32,11 @@ public class ValidateTestUI implements Runnable{
                 } catch (EmptyListException e) {
                     System.out.println("There are no tests ready for validation.");
                 }
-                System.out.println("Please select the tests you wish to validate by their number. Write -1 to exit.");
+                System.out.println("Please select the tests you wish to validate by their number.");
                 int tests = sc.nextInt();
                 i = 0;
-                List<Test> testList = vtctrl.getListTestsWithReport();
-                while (tests < 0) {
-                    for(Test test: testList) {
+                while (tests != -1) {
+                    for(Test test: vtctrl.getListTestsWithReport()) {
                         if (i == tests) {
                             vtctrl.validateTest(test.getNhsCode());
                             try {
@@ -49,12 +48,10 @@ public class ValidateTestUI implements Runnable{
                         }
                         i++;
                     }
-                    i = -1;
-                    tests = sc.nextInt();
-                    tests = tests - 1;
                 }
+                tests = sc.nextInt();
             }
-            System.out.println("All selected tests have been validated.");
+            System.out.println("All test have been validated.");
         }catch (EmptyListException e){
             System.out.println("There are no more tests ready for validation.");
         }
