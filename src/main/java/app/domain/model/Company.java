@@ -59,7 +59,9 @@ public class Company {
         CollectionMethod collectionMethodTest = new CollectionMethod("test Colection");
         Category categoryTest = new Category("Hemogram", "HEM00", "Hemogram Description", "toma");
         Parameter parameter = new Parameter("par2345","HB000","test f234");
+        Parameter parameter2 = new Parameter("par2346","HB001","test f235");
         categoryTest.saveParameter(parameter);
+        categoryTest.saveParameter(parameter2);
         List<Category> categoryList = new ArrayList<Category>(Collections.singleton(categoryTest));
         TestType testTypeHardCoded = new TestType("Blood","test Of Test",collectionMethodTest,categoryList);
         testTypeStore.addTestType(testTypeHardCoded);
