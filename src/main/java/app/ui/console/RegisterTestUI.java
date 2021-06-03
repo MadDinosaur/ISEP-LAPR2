@@ -88,9 +88,9 @@ public class RegisterTestUI implements Runnable {
             registerTestController.setCategoryByName(testCategory.getName());
             //Parameter
             boolean repeatParameter = false;
+            parametersDtos = registerTestController.getListOfTestParameters();
             do {
                 System.out.println("Please select a Test Parameter");
-                parametersDtos = registerTestController.getListOfTestParameters();
                 index = 0;
                 for (ParamDTO parameterDTO : parametersDtos) {
                     index++;
@@ -101,11 +101,13 @@ public class RegisterTestUI implements Runnable {
                 registerTestController.saveParametersAndCategories();
                 System.out.println("Would you like to add more parameters in that Category? Type Yes/No");
 
-
                 boolean validAwnser;
                 do {
                     String awnser = sc.next();
                     if (awnser.equalsIgnoreCase("yes")) {
+                        for (ParamDTO parameterDTO : parametersDtos) {
+                         parametersDtos.remove(optionOfTestParameter-1);
+                        }
                         repeatParameter = true;
                         validAwnser = true;
                     } else {
