@@ -36,7 +36,7 @@ public class ValidateTestUI implements Runnable{
                 int tests = sc.nextInt();
                 i = 0;
                 List<Test> testList = vtctrl.getListTestsWithReport();
-                while (tests != -1) {
+                while (tests < 0) {
                     for(Test test: testList) {
                         if (i == tests) {
                             vtctrl.validateTest(test.getNhsCode());
@@ -51,7 +51,7 @@ public class ValidateTestUI implements Runnable{
                     }
                     i = -1;
                     tests = sc.nextInt();
-                    tests = tests-1;
+                    tests = tests - 1;
                 }
             }
             System.out.println("All selected tests have been validated.");
