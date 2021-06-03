@@ -85,8 +85,9 @@ class SpecialistDoctor {
 class Test {
 -testCode
 -nhsCode
--createdAt
 -designation
+-dateRegister
+-timeRegister
 -dateAnalysis
 -timeAnalysis
 -dateReport
@@ -160,6 +161,6 @@ TestParameterResult "*"--"1" SpecialistDoctor : analysed by >
 TestType "*"--"1" Administrator : created by >
 TestType "*"-right-"1" ReferenceValueModule : makes use of >
 TestType "1"--"1" CollectionMethod : has a  >
-TestType "1"--"1..*" Parameter : has >
+TestType "1"--"1..*" Category : has >
 Report "1"--"1" Diagnosis: contains >
 @enduml

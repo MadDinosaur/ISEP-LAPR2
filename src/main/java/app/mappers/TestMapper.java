@@ -1,12 +1,8 @@
 package app.mappers;
 
-import app.domain.store.SampleList;
-import app.domain.store.TestParamList;
 import app.mappers.dto.TestDTO;
 import app.domain.model.*;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.*;
 
 public class TestMapper {
@@ -49,7 +45,7 @@ public class TestMapper {
      * @param timeResults
      * @return dto of a test with the dates
      */
-    public TestDTO toDTOValidation(String nhsCode, LocalDate dateOfCreation, LocalDate dateReport, LocalTime timeReport, LocalDate dateResults, LocalTime timeResults){
+    public TestDTO toDTOValidation(String nhsCode, String dateOfCreation, String dateReport, String timeReport, String dateResults, String timeResults){
         TestDTO testDTO = new TestDTO(nhsCode, dateOfCreation, dateReport, timeReport, dateResults, timeResults);
         return testDTO;
     }
