@@ -70,7 +70,7 @@ As a laboratory coordinator, I want to validate the work done by the clinical ch
 | Step 3: Chooses tests to validate | N/A |  |  |
 | Step 4: Shows test info, results and report | ...getting the tests? | TestMapper | Low coupling: reduces dependency between classes |
 | Step 5: Reviews and validates test results and report | ... saving the test results and report's state? | Test | IE: knows its own state |
-| Step 6: Confirms validation and (if results are valid) that the client has been sent a notification that their results are available | ... sending the notification to the client? |  |  |
+| Step 6: Confirms validation and (if results are valid) that the client has been sent a notification that their results are available | ... sending the notification to the client? | Company | IE: responsible for notifications |
 | Step 7: Informs operation's success | N/A |  |  |
 
 

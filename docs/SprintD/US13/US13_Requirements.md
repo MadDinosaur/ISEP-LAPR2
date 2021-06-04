@@ -29,7 +29,7 @@ As a clinical chemistry technologist, I intend to consult the historical tests p
 
 ### 1.6. System Sequence Diagram (SSD)
 
-![US10-SSD](US10_SSD.svg)
+![US13-SSD](US13_SSD.svg)
 
 ### 1.7 Other Relevant Remarks
 
@@ -41,7 +41,7 @@ As a clinical chemistry technologist, I intend to consult the historical tests p
 
 ### 2.1. Relevant Domain Model Excerpt
 
-![US10-DM](US10_DM.svg)
+![US13-DM](US13_DM.svg)
 
 ## 3. Design - User Story Realization
 
@@ -75,11 +75,11 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 ## 3.2. Sequence Diagram (SD)
 
-![US10-SD](US10_SD.svg)
+![US13-SD](US13_SD.svg)
 
 ## 3.3. Class Diagram (CD)
 
-![US10-CD](US10_CD.svg)
+![US13-CD](US13_CD.svg)
 
 # 4. Tests
 
