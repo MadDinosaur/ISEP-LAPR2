@@ -1,5 +1,4 @@
 @startuml
-'https://plantuml.com/use-case-diagram
 
 left to right direction
 skinparam packageStyle rectangle
@@ -19,6 +18,7 @@ package System {
     (US12: Register test results) as US12
     (US14: Generate diagnosis) as US14
     (US1: Generate NHS report) as US1
+    (US19: Send daily report to NHS) as US19
     (US15: Validate the clinical analysis) as US15
     (US2: View results) as US2
     (US13: Check results) as US13
@@ -50,4 +50,5 @@ Administrator -- US10
 Administrator -- US11
 US6 -- LC
 Clock -- US1
+Clock -- US19
 @enduml

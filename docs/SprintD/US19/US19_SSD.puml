@@ -1,0 +1,14 @@
+@startuml
+
+autonumber
+
+actor ":System\n Clock:" as Clock
+participant ":System" as sys
+
+Clock -> sys: Authentication Request
+sys --> Clock: Authentication Response
+
+Clock -> sys: Another authentication Request
+Clock <-- sys: another authentication Response
+
+@enduml

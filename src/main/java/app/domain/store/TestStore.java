@@ -6,7 +6,6 @@ import app.domain.model.Exceptions.TestDoesntExistException;
 import app.domain.model.Exceptions.UnregisteredBarcodeException;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class TestStore {
