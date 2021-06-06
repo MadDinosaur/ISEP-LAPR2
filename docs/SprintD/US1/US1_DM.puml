@@ -1,0 +1,51 @@
+@startuml
+class Company {
+-designation
+}
+
+class Client {
+-name
+-cardNumber
+-birthDate
+-sex
+-nhsID
+-TIF
+-phoneNumber
+-email
+-password
+}
+
+class Test {
+-testCode
+-nhsCode
+-createdAt
+-designation
+-dateAnalysis
+-timeAnalysis
+-dateReport
+-timeReport
+-dateValidation
+-timeValidation
+}
+
+class TestParameterResult {
+-createdAt
+-value
+-metric
+}
+
+class Parameter {
+-code
+-shortName
+-description
+}
+
+(Test, Parameter) .. TestParameter
+Company "1"--"1..*" Client : has >
+Test "*"-left-"1" Client : requested by >
+Test "*"--"1..*" Parameter : requests analysis of >
+Test "*"-up-"1" Company : performs <
+TestParameter "*"--"1" Parameter : associated to >
+TestParameter "*"--"1" Test : has <
+TestParameter "1"-right- "0..1" TestParameterResult : contains >
+@enduml

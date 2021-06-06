@@ -1,0 +1,66 @@
+@startuml
+autonumber
+
+actor Client as cli
+participant ":ShowTestResultsUI" as ui
+participant ":ShowTestResultsController" as controller
+participant ":Company" as company
+participant "clientStore: ClientStore" as cstore
+participant "testStore:TestStore" as tstore
+participant "test:Test" as test
+participant "testParamList:TestParamList" as testparamls
+participant "testParam:TestParameter" as testparam
+participant "testParamResult:TestParameterResult" as testparamres
+
+activate cli
+cli -> ui : accesses application to view results
+activate ui
+create controller
+ui -> controller : create()
+ui -> controller : displayClientTests(email)
+activate controller
+controller -> company : getClientStore()
+activate company
+|||
+deactivate company
+controller -> cstore : client = getClient(email)
+activate cstore
+|||
+deactivate cstore
+controller -> company : getTestStore()
+activate company
+|||
+deactivate company
+controller -> tstore : getTestsByClient(client)
+activate tstore
+|||
+deactivate tstore
+deactivate controller
+ui --> cli : displays client tests
+deactivate ui
+cli -> ui : selects a test
+activate ui
+ui -> controller : displayTestResults(testCode)
+activate controller
+controller -> tstore : test = getTest(testCode)
+activate tstore
+|||
+deactivate tstore
+controller -> test : getTestParamResults()
+activate test
+deactivate controller
+test -> testparamls : getTestParamResults()
+activate testparamls
+deactivate test
+loop for each TestParameter
+testparamls -> testparam : getTestParamResult()
+activate testparam
+deactivate testparamls
+testparam -> testparamres : get()
+deactivate testparam
+activate testparamres
+deactivate testparamres
+end loop
+ui --> cli : displays test results
+deactivate ui
+@enduml

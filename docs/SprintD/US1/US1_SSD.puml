@@ -1,0 +1,9 @@
+@startuml
+actor Client as admin
+participant ":System" as sys
+
+admin -> sys : **1** accesses application to view results
+sys --> admin : **2** displays client tests
+admin -> sys : **3** selects a test
+sys --> admin : **4** displays test results
+@enduml
