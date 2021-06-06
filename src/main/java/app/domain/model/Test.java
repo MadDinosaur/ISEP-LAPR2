@@ -201,6 +201,10 @@ public class Test {
         return null;
     }
 
+    public List<TestParameterResult> getTestParamResults() {
+        return testParamList.getTestParametersResults();
+    }
+
     public String getTestCode() {
         return this.testCode;
     }

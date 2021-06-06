@@ -3,6 +3,7 @@ package app.domain.store;
 
 import app.domain.model.Client;
 import app.domain.model.Employee;
+import app.domain.model.Exceptions.InvalidEmailException;
 import app.domain.model.Exceptions.InvalidEmployeeException;
 import auth.domain.model.Email;
 
@@ -49,5 +50,11 @@ public class ClientStore {
     }
 
 
-
+    public Client getClientByEmail(String email) {
+        for (Client client : clientList)
+            if (client.getEmail().toString().equalsIgnoreCase(email))
+                return client;
+        throw new InvalidEmailException("Unable to find client with e-mail " + email);
+        return null;
+    }
 }

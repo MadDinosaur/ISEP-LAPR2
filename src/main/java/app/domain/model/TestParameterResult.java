@@ -57,4 +57,9 @@ public class TestParameterResult {
     public ReferenceValue getRefValue() {
         return refValue;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Result: %.2f%s    Min. Ref. Value: %.2f%s    Max. Ref. Value: %.2f%s", value, metric, refValue.getMinValue(), refValue.getMetric(), refValue.getMaxValue(), refValue.getMaxValue());
+    }
 }

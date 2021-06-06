@@ -83,4 +83,22 @@ public class Client {
         clientTests.add(test);
     }
 
+    @Override
+        public boolean equals(Object o) {
+            // Inspired in https://www.sitepoint.com/implement-javas-equals-method-correctly/
+
+            // self check
+            if (this == o)
+                return true;
+            // null check
+            if (o == null)
+                return false;
+            // type check and cast
+            if (getClass() != o.getClass())
+                return false;
+            // field comparison
+            Client obj = (Client) o;
+            return Objects.equals(this.email, obj.email);
+        }
+
 }

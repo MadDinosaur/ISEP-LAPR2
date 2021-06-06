@@ -18,4 +18,6 @@ public class ReferenceValue {
     public Double getMaxValue() {
         return maxValue;
     }
+
+    public String getMetric() { return metric; }
 }

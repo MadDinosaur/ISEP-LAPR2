@@ -128,4 +128,19 @@ public class TestStore {
         } throw new TestDoesntExistException();
     }
 
+    public List<Test> getTestsByClient(Client client) {
+        List<Test> clientTests = new ArrayList<>();
+        for (Test test : tests)
+            if(test.getClient().equals(client))
+                clientTests.add(test);
+        return clientTests;
+    }
+
+    public List<Test> getValidatedTestsByClient(Client client) {
+        List<Test> clientTests = new ArrayList<>();
+        for (Test test : tests)
+            if(test.getClient().equals(client) && test.isValidated())
+                clientTests.add(test);
+        return clientTests;
+    }
 }
