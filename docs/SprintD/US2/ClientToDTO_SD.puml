@@ -1,0 +1,19 @@
+@startuml
+participant ":ClientMapper" as map
+participant "client: Client" as client
+participant "clientDto: ClientDTO" as dto
+
+
+[o-> map : toDTO(client)
+map -> client : name = getName()
+map -> client : cardNumber = getCardNumber()
+map -> client : birthDate = getBirthDate()
+map -> client : sex = getSex()
+map -> client : nhsID = getNhsID()
+map -> client : TIN = getTIN()
+map -> client : phoneNumber = getPhoneNumber()
+map -> client : email = getEmail()
+map -> client : password = getPassword()
+create dto
+map -> dto : dto = create(name, cardNumber, birthDate, sex, nhsID, TIN, phoneNumber, email, password)
+@enduml

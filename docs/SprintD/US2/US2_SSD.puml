@@ -1,0 +1,15 @@
+@startuml
+actor Client as admin
+participant ":System" as sys
+
+admin -> sys : **1** starts personal data update
+sys --> admin : **2** displays client data
+loop until client finishes editing
+admin -> sys : **3** selects data to edit
+sys --> admin : **4** requests new data
+admin -> sys : **5** types requested data
+end loop
+sys --> admin : **6** shows the data and requests confirmation
+admin -> sys : **7** confirms the data
+sys --> admin : **8** informs operation success
+@enduml

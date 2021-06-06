@@ -1,0 +1,19 @@
+@startuml
+class Client {
+-name
+-cardNumber
+-birthDate
+-sex
+-nhsID
+-TIF
+-phoneNumber
+-email
+-password
+}
+
+class Company {
+-designation
+}
+
+Company "1"--"1..*" Client : has >
+@enduml

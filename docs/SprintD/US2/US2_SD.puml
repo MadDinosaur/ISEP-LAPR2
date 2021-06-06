@@ -1,0 +1,48 @@
+@startuml
+autonumber
+
+actor Client as cli
+participant ":UpdateClientDataUI" as ui
+participant ":UpdateClientDataController" as controller
+participant ":Company" as company
+participant "clientStore: ClientStore" as cstore
+participant "clientMapper: ClientMapper" as cmapper
+
+activate cli
+cli -> ui : starts personal data update
+activate ui
+ui -> controller : getClient(email)
+activate controller
+controller -> company : getClientStore()
+activate company
+|||
+deactivate company
+controller -> cstore : client = getClientByEmail(email)
+activate cstore
+|||
+deactivate cstore
+controller -> cmapper : toDTO(client)
+deactivate controller
+ref over cmapper : ClientToDTO_SD
+ui --> cli : displays client data
+deactivate ui
+loop until client finishes editing
+cli -> ui :  selects data to edit
+activate ui
+ui --> cli : requests new data
+deactivate ui
+cli -> ui :  types requested data
+activate ui
+end loop
+activate ui
+ui --> cli : shows the data and requests confirmation
+deactivate ui
+cli -> ui :  confirms the data
+activate ui
+ui -> cmapper: dto = toDTO(...)
+ui -> controller: updateClientData(dto)
+controller -> cstore: updateClientData(client, dto)
+ref over cstore: UpdateClientData_SD
+ui --> cli : informs operation success
+deactivate ui
+@enduml
