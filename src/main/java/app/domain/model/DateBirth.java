@@ -3,11 +3,23 @@ package app.domain.model;
 import app.domain.model.Exceptions.InvalidDateException;
 
 import javax.sound.midi.InvalidMidiDataException;
+import java.util.Date;
 
 public class DateBirth {
     private int year;
     private int month;
     private int day;
+
+    public static DateBirth parse(String date) {
+        try {
+            String[] dateComponents = date.split("/");
+            return new DateBirth(Integer.parseInt(dateComponents[0]),
+                    Integer.parseInt(dateComponents[1]),
+                    Integer.parseInt(dateComponents[2]));
+        } catch (NumberFormatException | IndexOutOfBoundsException ex) {
+            throw new InvalidDateException();
+        }
+    }
 
     public DateBirth(int day, int month, int year ){
         setDay(day);

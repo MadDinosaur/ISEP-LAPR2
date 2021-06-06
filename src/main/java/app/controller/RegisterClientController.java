@@ -31,10 +31,10 @@ public class RegisterClientController {
     }
     public  void setSexOpcao(int opcao) {
         if (opcao == 1) {
-            sex = "Male";
+            sex = Constants.SEX_OPTION_1;
         }
         if (opcao == 2) {
-            sex = "Female";
+            sex = Constants.SEX_OPTION_2;
         }
         if (opcao == 3) {
             sex = Constants.SEX_BY_DEFAULT;

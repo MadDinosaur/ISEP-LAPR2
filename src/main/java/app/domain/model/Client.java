@@ -1,4 +1,6 @@
 package app.domain.model;
+
+import app.mappers.dto.ClientDTO;
 import auth.domain.model.Email;
 import auth.domain.model.User;
 
@@ -33,29 +35,36 @@ public class Client {
     public void setName(String name) {
         this.name = name;
     }
+
     public void setCardNumber(long cardNumber) {
 
         this.cardNumber = cardNumber;
     }
+
     public void setNhsId(long nhsId) {
         this.nhsId = nhsId;
 
     }
+
     public void setDateBirth(DateBirth dateBirth) {
         this.dateBirth = dateBirth;
     }
+
     public void setTIN(long TIN) {
 
         this.TIN = TIN;
 
     }
+
     public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
 
     }
+
     public void setSex(String sex) {
         this.sex = sex;
     }
+
     public void setEmail(Email email) {
 
         this.email = email;
@@ -64,42 +73,73 @@ public class Client {
     public Email getEmail() {
         return email;
     }
+
     public String getName() {
         return name;
     }
+
     public long getCardNumber() {
         return cardNumber;
     }
+
     public String getOrganizationRole() {
         return organizationRole;
     }
+
     public long getTIN() {
         return TIN;
     }
+
     public List<Test> getClientTests() {
         return clientTests;
     }
 
-    public void addTestToClient(Test test){
+    public DateBirth getDateBirth() {
+        return dateBirth;
+    }
+
+    public long getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public long getNhsId() {
+        return nhsId;
+    }
+
+    public void addTestToClient(Test test) {
         clientTests.add(test);
     }
 
     @Override
-        public boolean equals(Object o) {
-            // Inspired in https://www.sitepoint.com/implement-javas-equals-method-correctly/
+    public boolean equals(Object o) {
+        // Inspired in https://www.sitepoint.com/implement-javas-equals-method-correctly/
 
-            // self check
-            if (this == o)
-                return true;
-            // null check
-            if (o == null)
-                return false;
-            // type check and cast
-            if (getClass() != o.getClass())
-                return false;
-            // field comparison
-            Client obj = (Client) o;
-            return Objects.equals(this.email, obj.email);
-        }
+        // self check
+        if (this == o)
+            return true;
+        // null check
+        if (o == null)
+            return false;
+        // type check and cast
+        if (getClass() != o.getClass())
+            return false;
+        // field comparison
+        Client obj = (Client) o;
+        return Objects.equals(this.email, obj.email);
+    }
 
+    public void updateData(ClientDTO clientData) {
+        setName(clientData.getName());
+        setCardNumber(Long.parseLong(clientData.getCardNumber()));
+        setNhsId(Long.parseLong(clientData.getNhsId()));
+        setDateBirth(DateBirth.parse(clientData.getDateBirth()));
+        setTIN(Long.parseLong(clientData.getTIN()));
+        setPhoneNumber(Long.parseLong(clientData.getPhoneNumber()));
+        setEmail(new Email(clientData.getEmail()));
+        setSex(clientData.getSex());
+    }
 }

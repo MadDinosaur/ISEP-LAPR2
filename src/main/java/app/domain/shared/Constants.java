@@ -13,5 +13,7 @@ public class Constants {
 
     public static final int REPORT_MAX_WORDS = 400;
 
-    public static final String SEX_BY_DEFAULT = "No sex assigned";
+    public static final String SEX_BY_DEFAULT = "None";
+    public static final String SEX_OPTION_1 = "Male";
+    public static final String SEX_OPTION_2 = "Female";
 }

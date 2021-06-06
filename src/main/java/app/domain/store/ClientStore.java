@@ -5,6 +5,7 @@ import app.domain.model.Client;
 import app.domain.model.Employee;
 import app.domain.model.Exceptions.InvalidEmailException;
 import app.domain.model.Exceptions.InvalidEmployeeException;
+import app.mappers.dto.ClientDTO;
 import auth.domain.model.Email;
 
 import java.util.ArrayList;
@@ -55,5 +56,9 @@ public class ClientStore {
             if (client.getEmail().toString().equalsIgnoreCase(email))
                 return client;
         throw new InvalidEmailException("Unable to find client with e-mail " + email);
+    }
+
+    public void updateClientData(Client client, ClientDTO clientData) {
+        client.updateData(clientData);
     }
 }

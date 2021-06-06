@@ -58,7 +58,14 @@ public class ClientMenuUI implements Initializable {
 
     @FXML
     void toUpdateInfoScene(ActionEvent event) {
-
+        try {
+            UpdateClientDataUI updateClientDataUI =
+                    (UpdateClientDataUI) this.mainApp.replaceSceneContent("/fxml/UpdateClientInfo.fxml");
+            updateClientDataUI.setMainApp(this.mainApp);
+            updateClientDataUI.setParent(this);
+        } catch (Exception ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void toClientMenu() {
