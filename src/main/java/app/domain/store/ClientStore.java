@@ -55,6 +55,5 @@ public class ClientStore {
             if (client.getEmail().toString().equalsIgnoreCase(email))
                 return client;
         throw new InvalidEmailException("Unable to find client with e-mail " + email);
-        return null;
     }
 }

@@ -2,6 +2,7 @@ package app.controller;
 
 import app.domain.model.Company;
 import app.domain.model.Test;
+import app.domain.model.Client;
 import app.domain.model.TestParameterResult;
 import app.mappers.TestMapper;
 import app.mappers.dto.TestDTO;
