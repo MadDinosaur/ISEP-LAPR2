@@ -17,11 +17,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class ShowTestResultsScene2UI implements Initializable {
+    private App mainApp;
+    private ShowTestResultsScene1UI parent;
     private TestDTO testDto;
-
-    public ShowTestResultsScene2UI(TestDTO test) {
-        this.testDto = test;
-    }
 
     @FXML
     private Button btnBack;
@@ -56,9 +54,21 @@ public class ShowTestResultsScene2UI implements Initializable {
     @FXML
     private TableColumn<TestParameter, String> tColRefValue;
 
+    public void setParent(ShowTestResultsScene1UI parent) {
+        this.parent = parent;
+    }
+
+    public void setTest(TestDTO test) {
+        this.testDto = test;
+    }
+
+    public void setMainApp(App mainApp) {
+        this.mainApp = mainApp;
+    }
+
     @FXML
     void btnBack(ActionEvent event) {
-
+        this.parent.toScene1();
     }
 
     @Override

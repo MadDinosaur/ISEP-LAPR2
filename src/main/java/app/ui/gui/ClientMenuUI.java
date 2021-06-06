@@ -1,5 +1,6 @@
 package app.ui.gui;
 
+import app.controller.RegisterClientController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,7 +49,8 @@ public class ClientMenuUI implements Initializable {
             ShowTestResultsScene1UI showTestResultsScene1UI =
                     (ShowTestResultsScene1UI) this.mainApp.
                             replaceSceneContent("/fxml/ShowTestResultsScene1.fxml");
-            showTestResultsScene1UI.setClientMenuUI(this);
+            showTestResultsScene1UI.setMainApp(this.mainApp);
+            showTestResultsScene1UI.setParent(this);
         } catch (Exception ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -59,24 +61,24 @@ public class ClientMenuUI implements Initializable {
 
     }
 
+    public void toClientMenu() {
+        try {
+            ClientMenuUI clientMenuUI= (ClientMenuUI) mainApp.replaceSceneContent("/fxml/Client.fxml");
+            clientMenuUI.setMainApp(this.mainApp);
+        } catch (Exception ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         displayClientName();
-        displayClientIcon();
     }
 
     private void displayClientName() {
-        lbClientName.setText(app.controller.App.getInstance().getCurrentUserSession().getUserName());
-    }
+        String clientEmail = app.controller.App.getInstance().getCurrentUserSession().getUserId().toString();
+        String clientName = app.controller.App.getInstance().getCompany().getClientStore().getClientByEmail(clientEmail).getName();
 
-    private void displayClientIcon() {
-        FileInputStream input = null;
-        try {
-            input = new FileInputStream("src/main/resources/images/user_icon.png");
-            Image image = new Image(input);
-            iconUser = new ImageView(image);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        lbClientName.setText(clientName);
     }
 }
