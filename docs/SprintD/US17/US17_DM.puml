@@ -5,8 +5,9 @@ skinparam classAttributeIconSize 0
 class Test {
 -testCode
 -nhsCode
--createdAt
 -designation
+-dateRegister
+-timeRegister
 -dateAnalysis
 -timeAnalysis
 -dateReport
@@ -56,7 +57,7 @@ Test "*"--"1" Client : requested by >
 Test "*"-right-"1" "TestType" : is of >
 Parameter "*"--"1" Category : presented under >
 ClinicalAnalysisLaboratory "1"--"*" TestType : performs >
-TestType "1"--"1..*" Parameter : has >
+TestType "1"--"1..*" Category : has >
 
 
 

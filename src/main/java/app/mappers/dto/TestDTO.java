@@ -4,10 +4,7 @@ import app.domain.model.*;
 import app.domain.store.SampleList;
 import app.domain.store.TestParamList;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class TestDTO {
@@ -16,18 +13,18 @@ public class TestDTO {
     private List<Category> listOfCategories;
     private String testCode;
     private String nhsCode;
-    private LocalDate dateOfCreation;
+    private String dateOfCreation;
     private List<Parameter> listOfParameters = new ArrayList<>();
     private TestParamList testParamList;
     private SampleList sampleList = new SampleList();
     private TestDTO.StateOfTest stateOfTest;
     private Report report;
-    private LocalDate dateReport;
-    private LocalTime timeReport;
-    private LocalDate dateResults;
-    private LocalTime timeResults;
-    private LocalDate dateValidation;
-    private LocalTime timeValidation;
+    private String dateReport;
+    private String timeReport;
+    private String dateResults;
+    private String timeResults;
+    private String dateValidation;
+    private String timeValidation;
 
     private enum StateOfTest{
         REGISTERED,
@@ -37,7 +34,7 @@ public class TestDTO {
         VALIDATED
     }
 
-    public TestDTO(Client client, List<Category> listOfCategories, String testCode, String nhsCode, LocalDate dateOfCreation, List<Parameter> listOfParameters, TestParamList testParamList, SampleList sampleList, Report report, LocalDate dateReport, LocalTime timeReport, LocalDate dateResults, LocalTime timeResults, LocalDate dateValidation, LocalTime timeValidation) {
+    public TestDTO(Client client, List<Category> listOfCategories, String testCode, String nhsCode, String dateOfCreation, List<Parameter> listOfParameters, TestParamList testParamList, SampleList sampleList, Report report, String dateReport, String timeReport, String dateResults, String timeResults, String dateValidation, String timeValidation) {
         this.client = client;
         this.listOfCategories = listOfCategories;
         this.testCode = testCode;
@@ -55,7 +52,7 @@ public class TestDTO {
         this.timeValidation = timeValidation;
     }
 
-    public TestDTO(String nhsCode, LocalDate dateOfCreation, LocalDate dateReport, LocalTime timeReport, LocalDate dateResults, LocalTime timeResults) {
+    public TestDTO(String nhsCode, String dateOfCreation, String dateReport, String timeReport, String dateResults, String timeResults) {
         this.nhsCode = nhsCode;
         this.dateOfCreation = dateOfCreation;
         this.dateReport = dateReport;
@@ -80,7 +77,7 @@ public class TestDTO {
         return nhsCode;
     }
 
-    public LocalDate getDateOfCreation() {
+    public String getDateOfCreation() {
         return dateOfCreation;
     }
 
@@ -104,27 +101,27 @@ public class TestDTO {
         return report;
     }
 
-    public LocalDate getDateReport() {
+    public String getDateReport() {
         return dateReport;
     }
 
-    public LocalTime getTimeReport() {
+    public String getTimeReport() {
         return timeReport;
     }
 
-    public LocalDate getDateResults() {
+    public String getDateResults() {
         return dateResults;
     }
 
-    public LocalTime getTimeResults() {
+    public String getTimeResults() {
         return timeResults;
     }
 
-    public LocalDate getDateValidation() {
+    public String getDateValidation() {
         return dateValidation;
     }
 
-    public LocalTime getTimeValidation() {
+    public String getTimeValidation() {
         return timeValidation;
     }
 

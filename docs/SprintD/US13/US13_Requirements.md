@@ -14,6 +14,10 @@ As a clinical chemistry technologist, I intend to consult the historical tests p
 
 ####From the client clarifications
 
+* **Q1**: "What information does the clinical chemistry technologist have access to?" **A**: ""
+
+* **Q2**: "Can the clinical chemistry technologist alter any of the test details/results?" **A**: ""
+
 
 ### 1.3. Acceptance Criteria
 
@@ -21,29 +25,28 @@ As a clinical chemistry technologist, I intend to consult the historical tests p
 
 ### 1.4. Found out Dependencies
 
-* User story 10 is dependent on User story 11 considering the fact that the categorization of a new parameter requires the existance of a parameter category to include it in.
+
 
 ### 1.5 Input and Output Data
 
-* **Typed data:** New parameter name; Code; Short description.
-* **Selected data:** Parameter category.
-* **Output data:** Information of operation's success
+* **Input data** - Typed data: N/A ; Selected Data: Client
+* **Output data** - All clients in the system, Client's test history
 
 ### 1.6. System Sequence Diagram (SSD)
 
-![US10-SSD](US10_SSD.svg)
+![US13-SSD](US13_SSD.svg)
 
 ### 1.7 Other Relevant Remarks
 
 * **Special requirements**: None;
 * **Data and/or technology variations**: None
-* **Frequency**: This US will happen mostly in the application's setup but being possible to happen further along the line if needed.
+* **Frequency**: This US will happen sporadically during the application's lifetime.
 
 ## 2. OO Analysis
 
 ### 2.1. Relevant Domain Model Excerpt
 
-![US10-DM](US10_DM.svg)
+![US13-DM](US13_DM.svg)
 
 ## 3. Design - User Story Realization
 
@@ -53,35 +56,32 @@ As a clinical chemistry technologist, I intend to consult the historical tests p
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:---------------------|:------------|:---------------------------- |
-| Step 1: Start parameter specification | N/A |  |  |
-| Step 2: Shows list of parameter categories and asks to choose the one the new parameter falls under | ... getting the list of parameter categories available? | CategoryStore | High cohesion: knows all the parameter categories |
-| Step 3: selects the parameter's category | ... setting the category? | CreateNewParameterController | Controller: saves instance of category |
-| Step 4: Requests the data for the new parameter  | ... requesting the parameter data? | CreateNewParameterUI | Pure Fabrication: responsible for user interaction |
-| Step 5: Types in requested data | ... saving the typed data? |  |  |
-| Step 6: Shows the data and asks for confirmation | N/A |  |  |
-| Step 7: Confirms typed data | ... validating and saving the new parameter? | Category | IE: knows its own parameters |
-| Step 8: informs the operation's success | N/A |  |  |
+| Step 1: Starts client's test verification function | N/A |  |  |
+| Step 2: Asks if the clients should be ordered by TIN or by name | N/A |  |  |
+| Step 3: Chooses which way to order the clients | ... sorting the clients by the selected parameter? |  |  |
+| Step 4: Shows the list of clients ordered in the specified manner and asks which they would like to pick  | ... showing the list of clients? | TestConsultationUI |  |
+| Step 5: Picks the desired client | ... getting the client's test ? |  |  |
+| Step 6: Shows the selected client's test history |  |  |  |
+| Step 7: Consults client's test details/results and exits | ... ? |  |  |
 
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are:
 
-* **CategoryStore**
-* **Category**
-* **Parameter**
+* 
 
 Other software classes (i.e. Pure Fabrication) identified:
-* CreateNewParameterUI
-* CreateNewParameterController
+* 
+* 
 
 ## 3.2. Sequence Diagram (SD)
 
-![US10-SD](US10_SD.svg)
+![US13-SD](US13_SD.svg)
 
 ## 3.3. Class Diagram (CD)
 
-![US10-CD](US10_CD.svg)
+![US13-CD](US13_CD.svg)
 
 # 4. Tests
 

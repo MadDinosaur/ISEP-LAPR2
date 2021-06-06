@@ -5,9 +5,9 @@ autonumber
 actor "Laboratory Coordinator" as lc
 
 
-lc -> System: starts the importation
-System -> lc: requests the name of the file
-lc -> System: types in the requested data
-System -> lc: informs operation success
+lc -> System: clicks the import file menu
+System -> lc: requests the file
+lc -> System: selects the CSV file
+System -> lc: informs operation (in)success
 
 @enduml

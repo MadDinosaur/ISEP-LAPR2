@@ -1,0 +1,39 @@
+@startuml
+
+class Company {
+-designation
+}
+
+class Client {
+-name
+-cardNumber
+-birthDate
+-sex
+-nhsID
+-TIF
+-phoneNumber
+-email
+-password
+}
+
+class Test {
+-testCode
+-nhsCode
+-designation
+-dateRegister
+-timeRegister
+-dateAnalysis
+-timeAnalysis
+-dateReport
+-timeReport
+-dateValidation
+-timeValidation
+}
+
+
+Test "*"-up-"1" Company : performs <
+Company "1"--"1..*" Client : has >
+Test "*"--"1" Client : requested by >
+
+
+@enduml
