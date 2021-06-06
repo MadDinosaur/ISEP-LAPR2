@@ -41,7 +41,7 @@ public class AuthUI implements Initializable {
             List<UserRoleDTO> roles = this.ctrl.getUserRoles();
             if ((roles == null) || (roles.isEmpty()) )
             {
-                AlertDialog.throwError("No Role!", "User has not any role assigned");
+                AlertDialog.throwError( "No Role!", "User has not any role assigned");
             }
             else
             {
@@ -53,7 +53,7 @@ public class AuthUI implements Initializable {
                 }
                 else
                 {
-                    AlertDialog.throwError("No Role!", "User did not select a role.");
+                    AlertDialog.throwError( "No Role!", "User did not select a role.");
                 }
             }
         }

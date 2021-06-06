@@ -64,7 +64,14 @@ public class UpdateClientDataUI implements Initializable {
                 txtEmail.getText(),
                 cmbBoxSex.getSelectionModel().getSelectedItem());
 
-        controller.updateClientData(clientDTO);
+        try {
+            if (AlertDialog.requestConfirmation( "Save Changes?", "Please confirm if you wish to alter your personal data.")) {
+                controller.updateClientData(clientDTO);
+                AlertDialog.success("Changed saved!", "Your information has been updated.");
+            }
+        } catch (Exception ex) {
+            AlertDialog.throwError( "Invalid Data!", ex.getMessage());
+        }
     }
 
     public void setMainApp(App mainApp) {
