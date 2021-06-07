@@ -1,0 +1,43 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Client {
+- name
+- cardNumber
+- nhsId
+- dateBirth
+- TIN
+- phoneNumber
+- email
+- sex
+}
+class UpdateClientDataUI
+class UpdateClientDataController
+class Company {
+- designation
+}
+class ClientStore {
++ getClientByEmail(email)
+}
+class ClientMapper {
++ toDTO(client)
+}
+class ClientDTO {
+- name
+- cardNumber
+- nhsId
+- dateBirth
+- TIN
+- phoneNumber
+- email
+- sex
+}
+
+UpdateClientDataUI ..> UpdateClientDataController
+UpdateClientDataUI ..> ClientDTO
+UpdateClientDataController ..> ClientMapper
+ClientMapper .right.> ClientDTO
+UpdateClientDataController ..> Company
+Company --> ClientStore : uses
+ClientStore --> Client : contains
+@enduml

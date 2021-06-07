@@ -1,0 +1,66 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Client {
+- name
+- cardNumber
+- nhsId
+- dateBirth
+- TIN
+- phoneNumber
+- email
+- sex
+}
+class ShowTestResultsUI
+class ShowTestResultsController
+class Company {
+- designation
+}
+class ClientStore {
++ getClientByEmail(email)
+}
+class TestStore {
++ getValidatedTestsByClient(client)
++ getTestByCode(testCode)
+}
+class Test {
+- testCode
+- nhsCode
+- dateOfCreation
+- dateReport
+- timeReport
+- dateResults
+- timeResults
+- dateValidation
+- timeValidation
++ getTestParamResults()
+}
+class TestMapper {
++ toDtoList(tests)
+}
+class TestParamList {
++ getTestParamResults()
+}
+class TestParameter {
++ getTestParamResult()
+}
+class TestParameterResult {
+- value
+- metric
+- refValue
+}
+
+ShowTestResultsUI ..> ShowTestResultsController
+ShowTestResultsUI ..> TestDTO
+ShowTestResultsController ..> TestMapper
+TestMapper .right.> TestDTO
+ShowTestResultsController ..> Company
+Company --> ClientStore : uses
+ClientStore --> Client : contains
+Company --> TestStore : uses
+TestStore --> Test : contains
+Test --> TestParamList : uses
+TestParamList --> TestParameter : contains
+TestParameter --> TestParameterResult : contains
+
+@enduml
