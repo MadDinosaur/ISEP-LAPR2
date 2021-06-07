@@ -42,7 +42,7 @@ activate ui
 ui -> cmapper: dto = toDTO(name, cardNumber, TIN, etc.)
 ui -> controller: updateClientData(dto)
 controller -> cstore: updateClientData(client, dto)
-cstore -> client : updateClientDate(dto)
+cstore -> client : updateClientData(dto)
 client -> client : validateData()
 client -> client : setData()
 ui --> cli : informs operation success
