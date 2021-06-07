@@ -1,0 +1,91 @@
+@startuml
+
+autonumber
+
+actor "Laboratory Coordinator" as lc
+
+participant ImportCSVFileUI as icfu
+participant ImportCSVFileController as icfc
+participant RegisterTestController as rtc
+participant "categories: List<Category>" as categories
+participant "testParamList: TestParamList" as tpl
+participant "testTypeStore: TestTypeStore" as tts
+participant Company
+participant "testStore: TestStore" as ts
+participant "test: Test" as Test
+participant "testType: TestType" as tt
+participant "result: TestParameterResult"
+activate lc
+
+
+lc -> icfu: clicks the import file menu
+activate icfu
+
+
+icfu -[dotted]> lc: requests the file
+deactivate icfu
+
+
+lc -> icfu: selects the CSV file
+activate icfu
+
+icfu -> icfc: validateFile(file)
+activate icfc
+deactivate icfc
+icfu -> icfc: readFile(file)
+activate icfc
+icfc -> rtc: getTestTypeByCode(testTypeCode)
+activate rtc
+rtc -> Company: testTypeStore = getTestTypeStore()
+activate Company
+deactivate Company
+
+rtc -> tts: testType = getTestTypeByCode(testTypeCode)
+activate tts
+deactivate tts
+
+create categories
+rtc -> categories: create()
+loop for each category
+icfc -> rtc: getCategoryByName(categoryName)
+rtc -> tt: category = getCategoryFromTestTypeByName(categoryName)
+activate tt
+deactivate tt
+
+rtc -> categories: add(category)
+activate categories
+deactivate categories
+end loop
+
+create tpl
+rtc -> tpl: create()
+loop for each parameter
+icfc -> rtc: getParameterByName(parameterName)
+rtc -> categories: parameter = getParameterByName(parameterName)
+activate categories
+deactivate categories
+rtc -> tpl: addTestParameterResult(parameter, result)
+activate tpl
+deactivate tpl
+end loop
+icfc -> rtc: test = createTestFromCSV(testCode, nhsCode, testType, categories, testParamList, dateRegistered, timeRegistered, dateResults, timeResults,  dateReport, timeReport,  dateValidation, timeValidation)
+
+rtc -> Company: testStore = getTestStore()
+activate Company
+deactivate Company
+
+
+rtc -> ts: validate(test)
+activate ts
+deactivate ts
+
+deactivate icfc
+deactivate rtc
+
+
+icfu -[dotted]> lc: informs operation (in)success
+deactivate icfu
+
+
+
+@enduml
