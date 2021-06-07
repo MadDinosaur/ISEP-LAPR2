@@ -16,4 +16,5 @@ class Company {
 }
 
 Company "1"--"1..*" Client : has >
+Client "1"-right-"1" User : relates to >
 @enduml

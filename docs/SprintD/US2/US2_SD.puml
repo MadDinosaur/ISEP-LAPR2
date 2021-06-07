@@ -7,7 +7,9 @@ participant ":UpdateClientDataController" as controller
 participant ":Company" as company
 participant "clientStore: ClientStore" as cstore
 participant "clientMapper: ClientMapper" as cmapper
+participant "clientDTO: ClientDTO" as dto
 participant "client: Client" as client
+
 
 activate cli
 cli -> ui : starts personal data update
@@ -23,6 +25,11 @@ activate cstore
 |||
 deactivate cstore
 controller -> cmapper : toDTO(client)
+activate cmapper
+cmapper -> dto : create(name, cardNumber, TIN, etc.)
+activate dto
+deactivate dto
+deactivate cmapper
 deactivate controller
 ui --> cli : displays client data
 deactivate ui
@@ -39,12 +46,20 @@ ui --> cli : shows the data and requests confirmation
 deactivate ui
 cli -> ui :  confirms the data
 activate ui
-ui -> cmapper: dto = toDTO(name, cardNumber, TIN, etc.)
+ui -> dto: dto = create(name, cardNumber, TIN, etc.)
+activate dto
+deactivate dto
 ui -> controller: updateClientData(dto)
+activate controller
 controller -> cstore: updateClientData(client, dto)
-cstore -> client : updateClientDate(dto)
+deactivate controller
+activate cstore
+cstore -> client : updateClientData(dto)
+deactivate cstore
+activate client
 client -> client : validateData()
 client -> client : setData()
 ui --> cli : informs operation success
+deactivate client
 deactivate ui
 @enduml
