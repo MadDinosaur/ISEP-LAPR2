@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="690.3px" preserveAspectRatio="none" style="width:513px;height:690px;" version="1.1" viewBox="0 0 513 690" width="513.5px" zoomAndPan="magnify"><defs><filter height="300%" id="f17rcrs86zkkho" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.6"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="5.2" dy="5.2" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" filter="url(#f17rcrs86zkkho)" height="102.7711" style="stroke:#000000;stroke-width:2.6;" width="482.95" x="13" y="414.7914"/><line style="stroke:#A80036;stroke-width:1.3;stroke-dasharray:5.0,5.0;" x1="83.2" x2="83.2" y1="116.4922" y2="579.1195"/><line style="stroke:#A80036;stroke-width:1.3;stroke-dasharray:5.0,5.0;" x1="438.75" x2="438.75" y1="116.4922" y2="579.1195"/><text fill="#000000" font-family="sans-serif" font-size="18.2" lengthAdjust="spacing" textLength="107.9" x="26" y="112.4932">Administrator</text><ellipse cx="83.85" cy="19.5" fill="#FEFECE" filter="url(#f17rcrs86zkkho)" rx="10.4" ry="10.4" style="stroke:#A80036;stroke-width:2.6;"/><path d="M83.85,29.9 L83.85,65 M66.95,40.3 L100.75,40.3 M83.85,65 L66.95,84.5 M83.85,65 L100.75,84.5 " fill="none" filter="url(#f17rcrs86zkkho)" style="stroke:#A80036;stroke-width:2.6;"/><text fill="#000000" font-family="sans-serif" font-size="18.2" lengthAdjust="spacing" textLength="107.9" x="26" y="596.7127">Administrator</text><ellipse cx="83.85" cy="613.7117" fill="#FEFECE" filter="url(#f17rcrs86zkkho)" rx="10.4" ry="10.4" style="stroke:#A80036;stroke-width:2.6;"/><path d="M83.85,624.1117 L83.85,659.2117 M66.95,634.5117 L100.75,634.5117 M83.85,659.2117 L66.95,678.7117 M83.85,659.2117 L100.75,678.7117 " fill="none" filter="url(#f17rcrs86zkkho)" style="stroke:#A80036;stroke-width:2.6;"/><rect fill="#FEFECE" filter="url(#f17rcrs86zkkho)" height="41.0922" style="stroke:#A80036;stroke-width:1.9500000000000002;" width="83.2" x="394.55" y="68.9"/><text fill="#000000" font-family="sans-serif" font-size="18.2" lengthAdjust="spacing" textLength="65" x="403.65" y="96.8932">:System</text><rect fill="#FEFECE" filter="url(#f17rcrs86zkkho)" height="41.0922" style="stroke:#A80036;stroke-width:1.9500000000000002;" width="83.2" x="394.55" y="577.8195"/><text fill="#000000" font-family="sans-serif" font-size="18.2" lengthAdjust="spacing" textLength="65" x="403.65" y="605.8127">:System</text><polygon fill="#A80036" points="423.15,153.3492,436.15,158.5492,423.15,163.7492,428.35,158.5492" style="stroke:#A80036;stroke-width:1.3;"/><line style="stroke:#A80036;stroke-width:1.3;" x1="83.85" x2="430.95" y1="158.5492" y2="158.5492"/><text fill="#000000" font-family="sans-serif" font-size="16.9" font-weight="bold" lengthAdjust="spacing" textLength="9.1" x="92.95" y="152.2358">1</text><text fill="#000000" font-family="sans-serif" font-size="16.9" lengthAdjust="spacing" textLength="126.1" x="107.25" y="152.2358">starts new report</text><polygon fill="#A80036" points="98.15,192.8063,85.15,198.0063,98.15,203.2063,92.95,198.0063" style="stroke:#A80036;stroke-width:1.3;"/><line style="stroke:#A80036;stroke-width:1.3;stroke-dasharray:2.0,2.0;" x1="90.35" x2="437.45" y1="198.0063" y2="198.0063"/><text fill="#000000" font-family="sans-serif" font-size="16.9" font-weight="bold" lengthAdjust="spacing" textLength="9.1" x="105.95" y="191.6929">2</text><text fill="#000000" font-family="sans-serif" font-size="16.9" lengthAdjust="spacing" textLength="185.9" x="120.25" y="191.6929">asks initial and final date</text><polygon fill="#A80036" points="423.15,232.2633,436.15,237.4633,423.15,242.6633,428.35,237.4633" style="stroke:#A80036;stroke-width:1.3;"/><line style="stroke:#A80036;stroke-width:1.3;" x1="83.85" x2="430.95" y1="237.4633" y2="237.4633"/><text fill="#000000" font-family="sans-serif" font-size="16.9" font-weight="bold" lengthAdjust="spacing" textLength="9.1" x="92.95" y="231.1499">3</text><text fill="#000000" font-family="sans-serif" font-size="16.9" lengthAdjust="spacing" textLength="158.6" x="107.25" y="231.1499">types requested data</text><polygon fill="#A80036" points="98.15,271.7203,85.15,276.9203,98.15,282.1203,92.95,276.9203" style="stroke:#A80036;stroke-width:1.3;"/><line style="stroke:#A80036;stroke-width:1.3;stroke-dasharray:2.0,2.0;" x1="90.35" x2="437.45" y1="276.9203" y2="276.9203"/><text fill="#000000" font-family="sans-serif" font-size="16.9" font-weight="bold" lengthAdjust="spacing" textLength="9.1" x="105.95" y="270.6069">4</text><text fill="#000000" font-family="sans-serif" font-size="16.9" lengthAdjust="spacing" textLength="309.4" x="120.25" y="270.6069">asks number and type of historical points</text><polygon fill="#A80036" points="423.15,311.1773,436.15,316.3773,423.15,321.5773,428.35,316.3773" style="stroke:#A80036;stroke-width:1.3;"/><line style="stroke:#A80036;stroke-width:1.3;" x1="83.85" x2="430.95" y1="316.3773" y2="316.3773"/><text fill="#000000" font-family="sans-serif" font-size="16.9" font-weight="bold" lengthAdjust="spacing" textLength="9.1" x="92.95" y="310.064">5</text><text fill="#000000" font-family="sans-serif" font-size="16.9" lengthAdjust="spacing" textLength="158.6" x="107.25" y="310.064">types requested data</text><polygon fill="#A80036" points="98.15,350.6344,85.15,355.8344,98.15,361.0344,92.95,355.8344" style="stroke:#A80036;stroke-width:1.3;"/><line style="stroke:#A80036;stroke-width:1.3;stroke-dasharray:2.0,2.0;" x1="90.35" x2="437.45" y1="355.8344" y2="355.8344"/><text fill="#000000" font-family="sans-serif" font-size="16.9" font-weight="bold" lengthAdjust="spacing" textLength="9.1" x="105.95" y="349.521">6</text><text fill="#000000" font-family="sans-serif" font-size="16.9" lengthAdjust="spacing" textLength="198.9" x="120.25" y="349.521">requests regression model</text><polygon fill="#A80036" points="423.15,390.0914,436.15,395.2914,423.15,400.4914,428.35,395.2914" style="stroke:#A80036;stroke-width:1.3;"/><line style="stroke:#A80036;stroke-width:1.3;" x1="83.85" x2="430.95" y1="395.2914" y2="395.2914"/><text fill="#000000" font-family="sans-serif" font-size="16.9" font-weight="bold" lengthAdjust="spacing" textLength="9.1" x="92.95" y="388.978">7</text><text fill="#000000" font-family="sans-serif" font-size="16.9" lengthAdjust="spacing" textLength="146.9" x="107.25" y="388.978">chooses regression</text><path d="M13,414.7914 L92.3,414.7914 L92.3,425.1914 L79.3,438.1914 L13,438.1914 L13,414.7914 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.3;"/><rect fill="none" height="102.7711" style="stroke:#000000;stroke-width:2.6;" width="482.95" x="13" y="414.7914"/><text fill="#000000" font-family="sans-serif" font-size="16.9" font-weight="bold" lengthAdjust="spacing" textLength="20.8" x="32.5" y="433.6351">alt</text><text fill="#000000" font-family="sans-serif" font-size="14.3" font-weight="bold" lengthAdjust="spacing" textLength="339.3" x="111.8" y="432.236">[regression model is simple linear regression]</text><polygon fill="#A80036" points="98.15,462.5055,85.15,467.7055,98.15,472.9055,92.95,467.7055" style="stroke:#A80036;stroke-width:1.3;"/><line style="stroke:#A80036;stroke-width:1.3;stroke-dasharray:2.0,2.0;" x1="90.35" x2="437.45" y1="467.7055" y2="467.7055"/><text fill="#000000" font-family="sans-serif" font-size="16.9" font-weight="bold" lengthAdjust="spacing" textLength="9.1" x="105.95" y="461.3921">8</text><text fill="#000000" font-family="sans-serif" font-size="16.9" lengthAdjust="spacing" textLength="222.3" x="120.25" y="461.3921">requests independent variable</text><polygon fill="#A80036" points="423.15,501.9625,436.15,507.1625,423.15,512.3625,428.35,507.1625" style="stroke:#A80036;stroke-width:1.3;"/><line style="stroke:#A80036;stroke-width:1.3;" x1="83.85" x2="430.95" y1="507.1625" y2="507.1625"/><text fill="#000000" font-family="sans-serif" font-size="16.9" font-weight="bold" lengthAdjust="spacing" textLength="9.1" x="92.95" y="500.8491">9</text><text fill="#000000" font-family="sans-serif" font-size="16.9" lengthAdjust="spacing" textLength="221" x="107.25" y="500.8491">chooses independent variable</text><polygon fill="#A80036" points="98.15,550.5195,85.15,555.7195,98.15,560.9195,92.95,555.7195" style="stroke:#A80036;stroke-width:1.3;"/><line style="stroke:#A80036;stroke-width:1.3;" x1="90.35" x2="437.45" y1="555.7195" y2="555.7195"/><text fill="#000000" font-family="sans-serif" font-size="16.9" font-weight="bold" lengthAdjust="spacing" textLength="18.2" x="105.95" y="549.4062">10</text><text fill="#000000" font-family="sans-serif" font-size="16.9" lengthAdjust="spacing" textLength="197.6" x="129.35" y="549.4062">informs operation success</text><!--MD5=[27eea24d3f094e962ab8361dd1b227c4]
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Administrator" as admin
+participant ":System" as sys
+
+admin -> sys: starts new report
+sys - ->admin :  asks initial and final date
+admin -> sys : types requested data
+sys - -> admin : asks number and type of historical points
+admin -> sys : types requested data
+sys - -> admin : requests regression model
+admin -> sys : chooses regression
+alt regression model is simple linear regression
+sys - -> admin : requests independent variable
+admin -> sys : chooses independent variable
+end
+sys -> admin: informs operation success
+
+
+
+@enduml
+
+@startuml
+
+autonumber
+
+actor "Administrator" as admin
+participant ":System" as sys
+
+admin -> sys: starts new report
+sys - ->admin :  asks initial and final date
+admin -> sys : types requested data
+sys - -> admin : asks number and type of historical points
+admin -> sys : types requested data
+sys - -> admin : requests regression model
+admin -> sys : chooses regression
+alt regression model is simple linear regression
+sys - -> admin : requests independent variable
+admin -> sys : chooses independent variable
+end
+sys -> admin: informs operation success
+
+
+
+@enduml
+
+PlantUML version 1.2021.00(Sun Jan 10 10:25:05 GMT 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>

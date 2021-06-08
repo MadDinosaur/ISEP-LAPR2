@@ -125,6 +125,10 @@ public class Company {
         return clientStore;
     }
 
+    /**
+     * Returns the Company Org Role Store
+     * @return OrgRoleStore
+     */
     public OrgRoleStore getOrgRoleStore() { return this.orgRoleStore; }
 
     /**
