@@ -1,0 +1,10 @@
+@startuml
+
+autonumber
+
+actor ":System\n Clock:" as Clock
+
+
+ref over Controller : SD_Timer
+
+@enduml
