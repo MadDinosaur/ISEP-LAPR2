@@ -87,28 +87,14 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 **_DO NOT COPY ALL DEVELOPED TESTS HERE_**
 
-**Test 1:** Check that it is not possible to create an instance of the Example class with null values.
 
-	@Test(expected = InvalidNameException.class)
-    public void testNullName(){
-        String name = "";
-        String code = "12345";
-        String description = "Red blood cells";
-
-        Parameter par = new Parameter(name, code, description);
-    }
 
 # 5. Construction (Implementation)
 
-## Class CreateNewParameterController
 
-    public void createNewParameter(String shortName, String code, String description) {
-    this.par = this.pc.createNewParameter(shortName, code, description);
-    }
 
 
 # 6. Integration and Demo
-
 
 
 

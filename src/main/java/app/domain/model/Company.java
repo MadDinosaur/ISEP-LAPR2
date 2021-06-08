@@ -277,4 +277,24 @@ public class Company {
     }
 
     public String generateNhsCodeGenerator(){return  nhsCodeGenerator();}
+
+    public void bubbleSort(int[] a){
+        /**
+         * https://stackabuse.com/sorting-algorithms-in-java#bubblesort
+         */
+        boolean sorted = false;
+        int temp;
+        while(!sorted) {
+            sorted = true;
+            for (int i = 0; i < a.length - 1; i++) {
+                if (a[i] > a[i+1]) {
+                    temp = a[i];
+                    a[i] = a[i+1];
+                    a[i+1] = temp;
+                    sorted = false;
+                }
+            }
+        }
+
+    }
 }

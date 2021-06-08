@@ -20,6 +20,9 @@ public class ClientStore {
         return addClient(client);
     }
 
+    public ArrayList<Client> getClientList(){
+        return this.clientList;
+    }
 
     public Client getClientByTINumber(long taxNumber){
         for (Client client : clientList) {
