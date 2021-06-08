@@ -1,0 +1,94 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class ImportCSVFileUI
+
+class ImportCSVFileController {
+-test
+
++validateFile(file)
++readFile(file)
++createTest()
++saveTest()
+}
+
+class RegisterTestController {
+-testTypeStore
+-testType
+-clientStore
+-testStore
+
++getTestTypeByCode(testTypeCode)
++getCategoryByName(categoryName)
++getParameterByName(parameterName)
++test createTestFromCSV(testCode, nhsCode, dateRegister, timeRegister, dateResults, timeResults,  dateReport, timeReport,  dateValidation, timeValidation)
+
+}
+
+class Company {
++testTypeStore getTestTypeStore()
++testStore getTestStore()
++clientStore getClientStore()
+}
+
+class TestTypeStore {
++testType getTestTypeByCode(testTypeCode)
+}
+
+class TestStore {
++validate(test)
++add(test)
+}
+
+class Test {
++validate()
+}
+
+class TestType {
++category getCategoryFromTestTypeByName(categoryName)
+}
+
+class TestParameterResult
+
+class TestParamList {
++addTestParameterResult(parameter, result)
+}
+
+class Category {
++parameter getParameterByName(parameterName)
+}
+
+class TestParameter
+
+class ClientStore {
++client getClientNyNhsID()
+}
+
+
+ImportCSVFileUI ..> ImportCSVFileController
+ImportCSVFileController ..> RegisterTestController
+
+Company -down-> TestStore: uses >
+Company -down-> TestTypeStore: uses >
+
+TestStore -down-> Test: contains >
+TestTypeStore -down-> TestType: contains >
+
+TestType -down-> Category: has >
+
+TestParameter -down-> TestParameterResult: contains >
+
+Test -down-> TestParamList: uses >
+
+TestParamList -down-> TestParameter: has >
+
+RegisterTestController ..> TestStore
+RegisterTestController ..> TestTypeStore
+RegisterTestController ..> TestParamList
+RegisterTestController ..> Test
+RegisterTestController ..> Company
+RegisterTestController ..> TestType
+RegisterTestController ..> Category
+
+@enduml

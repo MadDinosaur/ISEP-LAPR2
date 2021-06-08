@@ -9,12 +9,13 @@ participant ImportCSVFileController as icfc
 participant RegisterTestController as rtc
 participant "categories: List<Category>" as categories
 participant "testParamList: TestParamList" as tpl
-participant "testTypeStore: TestTypeStore" as tts
 participant Company
+participant "testTypeStore: TestTypeStore" as tts
 participant "testStore: TestStore" as ts
-participant "test: Test" as Test
 participant "testType: TestType" as tt
+participant "test: Test" as Test
 participant "result: TestParameterResult"
+participant "clientStore: ClientStore" as cs
 activate lc
 
 
@@ -68,7 +69,24 @@ rtc -> tpl: addTestParameterResult(parameter, result)
 activate tpl
 deactivate tpl
 end loop
-icfc -> rtc: test = createTestFromCSV(testCode, nhsCode, testType, categories, testParamList, dateRegistered, timeRegistered, dateResults, timeResults,  dateReport, timeReport,  dateValidation, timeValidation)
+icfc -> rtc: getClientByNHSId(nhsID)
+rtc -> Company: clientStore = getClientStore()
+activate Company
+deactivate Company
+rtc -> cs: client = getClientByNhsId(nhsID)
+activate cs
+deactivate cs
+
+
+icfu -> icfc: createTest()
+icfc -> rtc: test = createTestFromCSV(testCode, nhsCode, dateRegister, timeRegister, dateResults, timeResults,  dateReport, timeReport,  dateValidation, timeValidation)
+
+create Test
+rtc -> Test: create(client, testCode, nhsCode, testType, categories, testParamList, dateRegister, timeRegister, dateResults, timeResults,  dateReport, timeReport,  dateValidation, timeValidation)
+Test -> Test: validate()
+
+icfu -> icfc: saveTest()
+icfc -> rtc: saveTest(test)
 
 rtc -> Company: testStore = getTestStore()
 activate Company
@@ -77,6 +95,7 @@ deactivate Company
 
 rtc -> ts: validate(test)
 activate ts
+rtc -> ts: add(test)
 deactivate ts
 
 deactivate icfc

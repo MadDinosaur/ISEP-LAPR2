@@ -27,8 +27,8 @@ public class Test {
     private SampleList sampleList = new SampleList();
     private StateOfTest stateOfTest;
     private Report report;
-    private String dateRegistered;
-    private String timeRegistered;
+    private String dateRegister;
+    private String timeRegister;
     private String dateReport;
     private String timeReport;
     private String dateResults;
