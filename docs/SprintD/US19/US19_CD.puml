@@ -1,0 +1,65 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Controller
+
+interface Runnable {
++run()
+}
+
+abstract TimerTask {
++run()
++cancel()
++scheduleExecutionTime()
+}
+
+class DailyReport {
++DailyReport(delay, interval)
++run()
+}
+
+class Timer {
++Timer()
++schedule(...)
++scheduleAtFixedRate(...)
+}
+
+class LinearRegression {
+-intercept
+-slope
+-r2
+-svar0
+-svar1
++LinearRegression(x, y)
++intercept()
++slope()
++R2()
++interceptStdErr()
++slopeStdErr()
++predict(x)
++toString()
+}
+
+class WriteReport
+
+interface ExternalModuleNHSReport
+
+class ExternalModuleNHSReportAdapter
+
+class Report2NHS
+
+Controller -> DailyReport
+Controller --> LinearRegression
+
+Runnable <|.. TimerTask
+TimerTask <|-- DailyReport
+Timer --> DailyReport
+DailyReport --> WriteReport
+
+DailyReport -> ExternalModuleNHSReport
+
+ExternalModuleNHSReport <|.. ExternalModuleNHSReportAdapter
+ExternalModuleNHSReportAdapter --> Report2NHS
+
+@enduml
