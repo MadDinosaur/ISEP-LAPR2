@@ -59,7 +59,7 @@ As a clinical chemistry technologist, I intend to consult the historical tests p
 | Step 1: Starts client's test verification function | N/A |  |  |
 | Step 2: Asks if the clients should be ordered by TIN or by name | N/A |  |  |
 | Step 3: Chooses which way to order the clients | ... sorting the clients by the selected parameter? | SortingAlgorithm |  |
-| Step 4: Shows the list of clients ordered in the specified manner and asks which they would like to pick  | ... showing the list of clients? | TestConsultationUI |  |
+| Step 4: Shows the list of clients ordered in the specified manner and asks which they would like to pick  | ... showing the list of clients? | TestConsultationUI | Pure Fabrication |
 | Step 5: Picks the desired client | ... getting the client's test ? | TestStore | High cohesion/Low coupling |
 | Step 6: Shows the selected client's test history |  |  |  |
 | Step 7: Consults client's test details/results and exits | ... ? |  |  |
