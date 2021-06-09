@@ -7,7 +7,6 @@ import auth.mappers.dto.UserRoleDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
@@ -66,7 +65,7 @@ public class AuthUI implements Initializable {
         rolesUI.add(new MenuItem("Receptionist", new ReceptionistUI()));
         rolesUI.add(new MenuItem("Medical Lab Technician", new MedLabTechUI()));
         rolesUI.add(new MenuItem("Clinical Chemistry Technologist", new CliChemTechUI()));
-        rolesUI.add(new MenuItem("Laboratory Coordinator", new LabCoordUI()));
+        rolesUI.add(new MenuItem("Laboratory Coordinator", new LabCoordMenuUI()));
         rolesUI.add(new MenuItem("Specialist Doctor", new SpecDocUI()));
         rolesUI.add(new MenuItem("Client", new ClientUI(mainApp)));
         return rolesUI;

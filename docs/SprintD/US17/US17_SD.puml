@@ -31,7 +31,8 @@ deactivate icfu
 lc -> icfu: selects the CSV file
 activate icfu
 
-icfu -> icfc: validateFile()
+icfu -> icfc: file = setFile(fileDirectory)
+icfu -> icfc: validateFile(fileDirectory)
 activate icfc
 deactivate icfc
 

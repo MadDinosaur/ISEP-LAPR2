@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.domain.model.Exceptions.InvalidFileException;
 import app.domain.model.Test;
 
 import java.io.File;
@@ -13,9 +14,6 @@ public class ImportCSVFileController {
 
     private RegisterTestController registerTestController = new RegisterTestController();
 
-    private List<String> categoryNameLst = new ArrayList<>();
-    private List<String> parameterCodeLst = new ArrayList<>();
-    private List<String> resultLst = new ArrayList<>();
     private String[] titulos;
     private String[] valores;
     private String testCode;
@@ -25,13 +23,31 @@ public class ImportCSVFileController {
     private String dateTimeReport;
     private String dateTimeValidation;
     private Test test;
+    private File file;
 
-    private static Scanner sc;
+    private Scanner sc = new Scanner(file);
 
     public ImportCSVFileController() throws FileNotFoundException {
-        sc = new Scanner(new File("C:\\Users\\tomas\\Desktop\\teste.csv"));
+
+    }
+
+    public File getFile() {
+        return this.file;
+    }
+
+    public void setFile(File file) {
+        validateFile(file);
+        this.file = file;
         this.titulos = sc.nextLine().split(";");
         this.valores = sc.nextLine().split(";");
+    }
+
+    private boolean validateFile(File file) {
+        if (file.getName().contains(".csv")) {
+            return true;
+        } else {
+            throw new InvalidFileException();
+        }
     }
 
     public void readTestTypeCode() {
