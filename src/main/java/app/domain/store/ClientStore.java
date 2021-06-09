@@ -3,6 +3,7 @@ package app.domain.store;
 
 import app.domain.model.Client;
 import app.domain.model.Employee;
+import app.domain.model.Exceptions.InvalidClientException;
 import app.domain.model.Exceptions.InvalidEmailException;
 import app.domain.model.Exceptions.InvalidEmployeeException;
 import app.mappers.dto.ClientDTO;
@@ -60,5 +61,14 @@ public class ClientStore {
 
     public void updateClientData(Client client, ClientDTO clientData) {
         client.updateData(clientData);
+    }
+
+    public Client getClientByNhsID(Long nhsID) {
+        for (Client client : clientList) {
+            if (client.getNhsId() == nhsID) {
+                return client;
+            }
+        }
+        throw new InvalidClientException();
     }
 }

@@ -31,22 +31,20 @@ public class TestMapper {
      * @return dto of a test
      */
     public TestDTO toDTO(Test test){
-        TestDTO testDTO = new TestDTO(test.getClient(), test.getListOfCategories(), test.getTestCode(), test.getNhsCode(), test.getDateOfCreation(), test.getListOfParameters(), test.getTestParamList(), test.getSampleList(), test.getReport(), test.getDateReport(), test.getTimeReport(), test.getDateResults(), test.getTimeResults(), test.getDateValidation(), test.getTimeValidation());
+        TestDTO testDTO = new TestDTO(test.getClient(), test.getListOfCategories(), test.getTestCode(), test.getNhsCode(), test.getDateTimeRegister(), test.getListOfParameters(), test.getTestParamList(), test.getSampleList(), test.getReport(), test.getDateTimeReport(), test.getDateTimeResults(), test.getDateTimeValidation());
         return testDTO;
     }
 
     /**
      * Method that turns a test into a test dto for validation
      * @param nhsCode
-     * @param dateOfCreation
-     * @param dateReport
-     * @param timeReport
-     * @param dateResults
-     * @param timeResults
+     * @param dateTimeRegister
+     * @param dateTimeReport
+     * @param dateTimeResults
      * @return dto of a test with the dates
      */
-    public TestDTO toDTOValidation(String nhsCode, String dateOfCreation, String dateReport, String timeReport, String dateResults, String timeResults){
-        TestDTO testDTO = new TestDTO(nhsCode, dateOfCreation, dateReport, timeReport, dateResults, timeResults);
+    public TestDTO toDTOValidation(String nhsCode, String dateTimeRegister, String dateTimeReport, String dateTimeResults){
+        TestDTO testDTO = new TestDTO(nhsCode, dateTimeRegister, dateTimeReport, dateTimeResults);
         return testDTO;
     }
 
@@ -66,7 +64,7 @@ public class TestMapper {
         try {
             Iterator<Test> testIterator = list.iterator();
             while(testIterator.hasNext()){
-                this.listDTO.add(toDTOValidation(testIterator.next().getNhsCode(), testIterator.next().getDateOfCreation(), testIterator.next().getDateReport(), testIterator.next().getTimeReport(), testIterator.next().getDateResults(), testIterator.next().getTimeResults()));
+                this.listDTO.add(toDTOValidation(testIterator.next().getNhsCode(), testIterator.next().getDateTimeRegister(), testIterator.next().getDateTimeReport(), testIterator.next().getDateTimeResults()));
             }
         }catch (NoSuchElementException e){
             System.out.println("No such element");

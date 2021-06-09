@@ -16,6 +16,7 @@ participant "testType: TestType" as tt
 participant "test: Test" as Test
 participant "result: TestParameterResult"
 participant "clientStore: ClientStore" as cs
+participant "client: Client"
 activate lc
 
 
@@ -30,12 +31,14 @@ deactivate icfu
 lc -> icfu: selects the CSV file
 activate icfu
 
-icfu -> icfc: validateFile(file)
+icfu -> icfc: validateFile()
 activate icfc
 deactivate icfc
-icfu -> icfc: readFile(file)
+
+loop while there are lines to read
+icfu -> icfc: testTypeCode = readTestTypeCode()
 activate icfc
-icfc -> rtc: getTestTypeByCode(testTypeCode)
+icfc -> rtc: setTestTypeByCode(testTypeCode)
 activate rtc
 rtc -> Company: testTypeStore = getTestTypeStore()
 activate Company
@@ -47,8 +50,10 @@ deactivate tts
 
 create categories
 rtc -> categories: create()
+
 loop for each category
-icfc -> rtc: getCategoryByName(categoryName)
+icfu -> icfc: categoryName = readCategoryName()
+icfc -> rtc: setCategoryByName(categoryName)
 rtc -> tt: category = getCategoryFromTestTypeByName(categoryName)
 activate tt
 deactivate tt
@@ -60,16 +65,20 @@ end loop
 
 create tpl
 rtc -> tpl: create()
+
+
 loop for each parameter
-icfc -> rtc: getParameterByName(parameterName)
-rtc -> categories: parameter = getParameterByName(parameterName)
+icfu -> icfc: parameterCode = readParameterCodeAndResult()
+icfu -> icfc: value = readParameterCodeAndResult()
+icfc -> rtc: setTestParameterByParameterCodeAndResult(parameterCode, value)
+rtc -> categories: parameter = getParameterByCode(parameterCode)
 activate categories
 deactivate categories
-rtc -> tpl: addTestParameterResult(parameter, result)
+rtc -> tpl: addTestParameterResult(parameter, value)
 activate tpl
 deactivate tpl
 end loop
-icfc -> rtc: getClientByNHSId(nhsID)
+icfc -> rtc: setClientByNHSId(nhsID)
 rtc -> Company: clientStore = getClientStore()
 activate Company
 deactivate Company
@@ -77,12 +86,17 @@ rtc -> cs: client = getClientByNhsId(nhsID)
 activate cs
 deactivate cs
 
-
+icfu -> icfc: testCode = readTestCode()
+icfu -> icfc: nhsCode = readNhsCode()
+icfu -> icfc: dateTimeRegister = readDateTimeRegister()
+icfu -> icfc: dateTimeResults = readDateTimeResults()
+icfu -> icfc: dateTimeReport = readDateTimeReport()
+icfu -> icfc: dateTimeValidation = readDateTimeValidation()
 icfu -> icfc: createTest()
-icfc -> rtc: test = createTestFromCSV(testCode, nhsCode, dateRegister, timeRegister, dateResults, timeResults,  dateReport, timeReport,  dateValidation, timeValidation)
+icfc -> rtc: test = createTestFromCSV(testCode, nhsCode, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation)
 
 create Test
-rtc -> Test: create(client, testCode, nhsCode, testType, categories, testParamList, dateRegister, timeRegister, dateResults, timeResults,  dateReport, timeReport,  dateValidation, timeValidation)
+rtc -> Test: create(client, testCode, nhsCode, testType, categories, testParamList, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation)
 Test -> Test: validate()
 
 icfu -> icfc: saveTest()
@@ -102,9 +116,10 @@ deactivate icfc
 deactivate rtc
 
 
+end loop
+
 icfu -[dotted]> lc: informs operation (in)success
 deactivate icfu
-
 
 
 @enduml

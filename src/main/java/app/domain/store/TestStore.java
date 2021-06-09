@@ -2,6 +2,7 @@ package app.domain.store;
 
 import app.domain.model.*;
 import app.domain.model.Exceptions.InvalidTestCodeException;
+import app.domain.model.Exceptions.InvalidTestException;
 import app.domain.model.Exceptions.TestDoesntExistException;
 import app.domain.model.Exceptions.UnregisteredBarcodeException;
 
@@ -12,7 +13,17 @@ public class TestStore {
     private final List<Test> tests = new ArrayList<>();
 
     public boolean addTest(Test test) {
+        validateTest(test);
         return this.tests.add(test);
+    }
+
+    public boolean validateTest(Test test1) {
+        for (Test test2 : tests) {
+            if (test1.equals(test2)) {
+                throw new InvalidTestException();
+            }
+        }
+            return true;
     }
 
     public List<Test> getRegisteredTests() {

@@ -13,18 +13,15 @@ public class TestDTO {
     private List<Category> listOfCategories;
     private String testCode;
     private String nhsCode;
-    private String dateOfCreation;
+    private String dateTimeRegister;
     private List<Parameter> listOfParameters = new ArrayList<>();
     private TestParamList testParamList;
     private SampleList sampleList = new SampleList();
     private TestDTO.StateOfTest stateOfTest;
     private Report report;
-    private String dateReport;
-    private String timeReport;
-    private String dateResults;
-    private String timeResults;
-    private String dateValidation;
-    private String timeValidation;
+    private String dateTimeReport;
+    private String dateTimeResults;
+    private String dateTimeValidation;
 
     private enum StateOfTest{
         REGISTERED,
@@ -34,31 +31,26 @@ public class TestDTO {
         VALIDATED
     }
 
-    public TestDTO(Client client, List<Category> listOfCategories, String testCode, String nhsCode, String dateOfCreation, List<Parameter> listOfParameters, TestParamList testParamList, SampleList sampleList, Report report, String dateReport, String timeReport, String dateResults, String timeResults, String dateValidation, String timeValidation) {
+    public TestDTO(Client client, List<Category> listOfCategories, String testCode, String nhsCode, String dateTimeRegister, List<Parameter> listOfParameters, TestParamList testParamList, SampleList sampleList, Report report, String dateTimeReport, String dateTimeResults, String dateTimeValidation) {
         this.client = client;
         this.listOfCategories = listOfCategories;
         this.testCode = testCode;
         this.nhsCode = nhsCode;
-        this.dateOfCreation = dateOfCreation;
+        this.dateTimeRegister = dateTimeRegister;
         this.listOfParameters = listOfParameters;
         this.testParamList = testParamList;
         this.sampleList = sampleList;
         this.report = report;
-        this.dateReport = dateReport;
-        this.timeReport = timeReport;
-        this.dateResults = dateResults;
-        this.timeResults = timeResults;
-        this.dateValidation = dateValidation;
-        this.timeValidation = timeValidation;
+        this.dateTimeReport = dateTimeReport;
+        this.dateTimeResults = dateTimeResults;
+        this.dateTimeValidation = dateTimeValidation;
     }
 
-    public TestDTO(String nhsCode, String dateOfCreation, String dateReport, String timeReport, String dateResults, String timeResults) {
+    public TestDTO(String nhsCode, String dateTimeRegister, String dateTimeReport, String dateTimeResults) {
         this.nhsCode = nhsCode;
-        this.dateOfCreation = dateOfCreation;
-        this.dateReport = dateReport;
-        this.timeReport = timeReport;
-        this.dateResults = dateResults;
-        this.timeResults = timeResults;
+        this.dateTimeRegister = dateTimeRegister;
+        this.dateTimeReport = dateTimeReport;
+        this.dateTimeResults = dateTimeResults;
     }
 
     public Client getClient() {
@@ -77,8 +69,8 @@ public class TestDTO {
         return nhsCode;
     }
 
-    public String getDateOfCreation() {
-        return dateOfCreation;
+    public String getDateTimeRegister() {
+        return dateTimeRegister;
     }
 
     public List<Parameter> getListOfParameters() {
@@ -101,39 +93,24 @@ public class TestDTO {
         return report;
     }
 
-    public String getDateReport() {
-        return dateReport;
+    public String getDateTimeReport() {
+        return dateTimeReport;
     }
 
-    public String getTimeReport() {
-        return timeReport;
+    public String getDateTimeResults() {
+        return dateTimeResults;
     }
 
-    public String getDateResults() {
-        return dateResults;
-    }
-
-    public String getTimeResults() {
-        return timeResults;
-    }
-
-    public String getDateValidation() {
-        return dateValidation;
-    }
-
-    public String getTimeValidation() {
-        return timeValidation;
+    public String getDateTimeValidation() {
+        return dateTimeValidation;
     }
 
     @Override
     public String toString() {
-        return "dateOfCreation=" + dateOfCreation +
-                ", dateReport=" + dateReport +
-                ", timeReport=" + timeReport +
-                ", dateResults=" + dateResults +
-                ", timeResults=" + timeResults +
-                ", dateValidation=" + dateValidation +
-                ", timeValidation=" + timeValidation +
+        return "dateOfCreation=" + dateTimeRegister +
+                ", dateTimeReport=" + dateTimeReport +
+                ", dateTimeResults=" + dateTimeResults +
+                ", dateTimeValidation=" + dateTimeValidation +
                 '}';
     }
 }

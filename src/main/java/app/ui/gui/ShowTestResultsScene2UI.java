@@ -80,8 +80,8 @@ public class ShowTestResultsScene2UI implements Initializable {
     private void displayTestInfo() {
         lbTestCode.setText(testDto.getTestCode());
         lbNhsCode.setText(testDto.getNhsCode());
-        lbDateRegistration.setText(testDto.getDateOfCreation());
-        lbDateValidation.setText(testDto.getDateValidation());
+        lbDateRegistration.setText(testDto.getDateTimeRegister());
+        lbDateValidation.setText(testDto.getDateTimeValidation());
     }
 
     private void displayTestResultInfo() {

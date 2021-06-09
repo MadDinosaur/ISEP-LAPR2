@@ -6,6 +6,7 @@ import app.domain.store.SampleList;
 import app.domain.store.TestParamList;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -22,19 +23,14 @@ public class Test {
     private TestType testType;
     private String testCode;
     private String nhsCode;
-    private String dateOfCreation;
     private TestParamList testParamList;
     private SampleList sampleList = new SampleList();
     private StateOfTest stateOfTest;
     private Report report;
-    private String dateRegister;
-    private String timeRegister;
-    private String dateReport;
-    private String timeReport;
-    private String dateResults;
-    private String timeResults;
-    private String dateValidation;
-    private String timeValidation;
+    private String dateTimeRegister;
+    private String dateTimeReport;
+    private String dateTimeResults;
+    private String dateTimeValidation;
 
     /**
      * State of the test
@@ -63,7 +59,20 @@ public class Test {
         setListOfCategories(testType.getCategories());
         getParametersFromCategoriesToStore();
         stateOfTest = StateOfTest.REGISTERED;
-        dateOfCreation = getDate();
+        dateTimeRegister = getDateTime();
+    }
+
+    public Test(Client client, String testCode, String nhsCode, TestType testType, List<Category> categoryList, TestParamList testParamList, String dateTimeRegister, String dateTimeResults, String dateTimeReport, String dateTimeValidation) {
+        this.client = client;
+        this.testCode = testCode;
+        this.nhsCode = nhsCode;
+        this.testType = testType;
+        this.listOfCategories = categoryList;
+        this.testParamList = testParamList;
+        this.dateTimeRegister = dateTimeRegister;
+        this.dateTimeResults = dateTimeResults;
+        this.dateTimeReport = dateTimeReport;
+        this.dateTimeValidation = dateTimeValidation;
     }
 
     /**
@@ -124,8 +133,8 @@ public class Test {
         return nhsCode;
     }
 
-    public String getDateOfCreation() {
-        return dateOfCreation;
+    public String getDateTimeRegister() {
+        return dateTimeRegister;
     }
 
     public List<Parameter> getListOfParameters() {
@@ -140,28 +149,17 @@ public class Test {
         return report;
     }
 
-    public String getDateReport() {
-        return dateReport;
+    public String getDateTimeReport() {
+        return dateTimeReport;
     }
 
-    public String getTimeReport() {
-        return timeReport;
+    public String getDateTimeResults() {
+        return dateTimeResults;
     }
 
-    public String getDateResults() {
-        return dateResults;
-    }
 
-    public String getTimeResults() {
-        return timeResults;
-    }
-
-    public String getDateValidation() {
-        return dateValidation;
-    }
-
-    public String getTimeValidation() {
-        return timeValidation;
+    public String getDateTimeValidation() {
+        return dateTimeValidation;
     }
 
     public boolean isRegistered() {
@@ -223,8 +221,7 @@ public class Test {
     public void addReport(Report report) {
         this.report = report;
         this.stateOfTest = StateOfTest.REPORT_MADE;
-        this.dateReport = getDate();
-        this.timeReport = getTime();
+        this.dateTimeReport = getDateTime();
     }
 
     /**
@@ -233,8 +230,7 @@ public class Test {
     public void validateTest(){
         if(!stateOfTest.equals(StateOfTest.VALIDATED)) {
             this.stateOfTest = StateOfTest.VALIDATED;
-            this.dateValidation = getDate();
-            this.timeValidation = getTime();
+            this.dateTimeValidation = getDateTime();
         }else throw new TestAlreadyValidatedException("Test was already validated");
     }
 
@@ -242,24 +238,19 @@ public class Test {
      * Returns the current date
      * @return LocalDate
      */
-    public String getDate() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        return LocalDate.now().format(dtf);
+    public static String getDateTime() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        return LocalDateTime.now().format(dtf);
     }
 
     /**
      * Returns the current time
      * @return LocalTime
      */
-    public String getTime() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
-        return LocalTime.now().format(dtf);
-    }
 
     public void setStateOfTestToSamplesAnalyzed() {
         this.stateOfTest = StateOfTest.SAMPLES_ANALYZED;
-        this.timeResults = getTime();
-        this.dateResults = getDate();
+        this.dateTimeResults = getDateTime();
     }
 
     public void setStateOfTestToSamplesCollected() {
@@ -297,7 +288,7 @@ public class Test {
     }
 
     public String toStringWithDates(){
-        return String.format("registration date: " + dateOfCreation + "; results date: " + dateResults + "/" + timeResults + "; diagnosis date: " + dateReport + "/" + timeReport + ".");
+        return String.format("registration date: " + dateTimeRegister + "; results date: " + dateTimeResults + "; diagnosis date: " + dateTimeReport + ".");
     }
 
 

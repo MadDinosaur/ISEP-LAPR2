@@ -1,5 +1,6 @@
 package app.domain.model;
 
+import app.domain.shared.Constants;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -88,8 +89,8 @@ public class Category {
     private void checkCategoryNameRules(String categoryName) {
         if (StringUtils.isBlank(categoryName))
             throw new IllegalArgumentException("Name cannot be blank.");
-        if (categoryName.length() > 10)
-            throw new IllegalArgumentException("Name must have less than 10 characters.");
+        if (categoryName.length() > Constants.CATEGORY_NAME_MAX_CHARS)
+            throw new IllegalArgumentException("Name must have less than " + Constants.CATEGORY_NAME_MAX_CHARS + " characters.");
     }
 
     /**
@@ -204,6 +205,15 @@ public class Category {
     public Parameter getParameterByName(String nameOfParameter) {
         for (Parameter parameter : parameterList) {
             if (parameter.getParameterName().equals(nameOfParameter)) {
+                return parameter;
+            }
+        }
+        return null;
+    }
+
+    public Parameter getParameterByCode(String parameterCode) {
+        for (Parameter parameter : parameterList) {
+            if (parameter.getParameterCode().equals(parameterCode)) {
                 return parameter;
             }
         }

@@ -7,8 +7,8 @@ class ImportCSVFileUI
 class ImportCSVFileController {
 -test
 
-+validateFile(file)
-+readFile(file)
++validateFile()
++readLine()
 +createTest()
 +saveTest()
 }
@@ -21,7 +21,7 @@ class RegisterTestController {
 
 +getTestTypeByCode(testTypeCode)
 +getCategoryByName(categoryName)
-+getParameterByName(parameterName)
++getParameterByCode(parameterCode)
 +test createTestFromCSV(testCode, nhsCode, dateRegister, timeRegister, dateResults, timeResults,  dateReport, timeReport,  dateValidation, timeValidation)
 
 }
@@ -56,7 +56,7 @@ class TestParamList {
 }
 
 class Category {
-+parameter getParameterByName(parameterName)
++parameter getParameterByCode(parameterCode)
 }
 
 class TestParameter
