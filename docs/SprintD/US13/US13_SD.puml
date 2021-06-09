@@ -3,9 +3,20 @@
 
 autonumber
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+actor ClinicalChemistryTechnologist as CCT
+participant ":TestConsultationUI" as UI
+participant ":TestConsultationController" as CTRL
+participant ":Company" as CMP
+participant "cltStr: ClientStore" as STORE
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+activate CCT
+CCT -> UI: Starts client's test verification function
+activate UI
+UI --> CCT: Asks if the clients should be ordered by TIN or by name
+deactivate UI
+CCT -> UI: Chooses which way to order the clients
+activate UI
+UI -> CTRL:
+
+
 @enduml
