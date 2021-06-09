@@ -65,7 +65,7 @@ public class AuthUI implements Initializable {
         rolesUI.add(new MenuItem("Receptionist", new ReceptionistUI()));
         rolesUI.add(new MenuItem("Medical Lab Technician", new MedLabTechUI()));
         rolesUI.add(new MenuItem("Clinical Chemistry Technologist", new CliChemTechUI()));
-        rolesUI.add(new MenuItem("Laboratory Coordinator", new LabCoordMenuUI()));
+        rolesUI.add(new MenuItem("Laboratory Coordinator", new LabCoordUI()));
         rolesUI.add(new MenuItem("Specialist Doctor", new SpecDocUI()));
         rolesUI.add(new MenuItem("Client", new ClientUI(mainApp)));
         return rolesUI;
