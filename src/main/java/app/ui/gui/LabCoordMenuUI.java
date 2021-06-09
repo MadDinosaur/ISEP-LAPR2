@@ -1,6 +1,5 @@
 package app.ui.gui;
 
-import com.sun.org.apache.xml.internal.security.Init;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
