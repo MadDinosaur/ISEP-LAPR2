@@ -1,0 +1,39 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Company {
+-designation
+}
+class Test {
+-testCode
+-nhsCode
+-designation
+-dateRegister
+-timeRegister
+-dateAnalysis
+-timeAnalysis
+-dateReport
+-timeReport
+-dateValidation
+-timeValidation
+}
+class Client {
+-name
+-cardNumber
+-birthDate
+-sex
+-nhsID
+-TIF
+-phoneNumber
+-email
+-password
+}
+
+"NHS API" "1"-left-"*" NHSReportType : sent via <
+"NHS API" -right- NHS : owned by >
+NHSReportType "*"--"1" Company : generates <
+Test "*"-up-"1" Company : performs <
+Test "*"--"1" Client : requested by >
+
+@enduml
