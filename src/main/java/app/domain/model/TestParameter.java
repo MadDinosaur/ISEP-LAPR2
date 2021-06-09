@@ -6,7 +6,6 @@ import app.domain.model.Exceptions.InvalidTestResultException;
 public class TestParameter {
     private Parameter param;
     private TestParameterResult result;
-    private ReferenceValue refValue;
 
     public TestParameter(Parameter param) {
         this.param = param;
@@ -24,8 +23,7 @@ public class TestParameter {
     }
 
     public ReferenceValue getReferenceValue() {
-        if (refValue == null) throw new InvalidReferenceValueException("Reference value is not defined yet");
-        return refValue;
+        return result.getRefValue();
     }
 
     public Parameter getParameter() {

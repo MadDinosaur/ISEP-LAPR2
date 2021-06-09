@@ -16,22 +16,6 @@ import java.util.logging.Logger;
 public class ClientUI implements Runnable {
     private App mainApp;
 
-    @FXML
-    private ImageView iconUser;
-
-    @FXML
-    private Label lbClientName;
-
-    @FXML
-    private Button btnUpdateInfo;
-
-    @FXML
-    private Button btnBack;
-
-    @FXML
-    private Button btnTestResults;
-
-
     public ClientUI(App app) {
         this.mainApp = app;
     }
