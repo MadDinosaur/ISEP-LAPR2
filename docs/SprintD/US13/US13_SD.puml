@@ -8,6 +8,8 @@ participant ":TestConsultationUI" as UI
 participant ":TestConsultationController" as CTRL
 participant ":Company" as CMP
 participant "cltStr: ClientStore" as STORE
+participant "cltLst: List<Client>" as LST
+participant "cltMapper: ClientMapper" as MAP
 
 activate CCT
 CCT -> UI: Starts client's test verification function
@@ -16,7 +18,28 @@ UI --> CCT: Asks if the clients should be ordered by TIN or by name
 deactivate UI
 CCT -> UI: Chooses which way to order the clients
 activate UI
-UI -> CTRL:
 
+alt by TIN
+
+create CTRL
+UI -> CTRL: create()
+
+UI -> CTRL: getCltLstTIN()
+activate CTRL
+
+CTRL -> CMP: cltStr = getClientStore()
+activate CMP
+deactivate CMP
+
+CTRL -> STORE: cltLst =
+activate STORE
+deactivate STORE
+
+CTRL -> MAP: toDTO(cltLst)
+ref over MAP: SD_ClientMapper_toDTO
+
+deactivate CTRL
+
+else by Name
 
 @enduml
