@@ -40,6 +40,9 @@ public class UpdateClientDataUI implements Initializable {
     private TextField txtEmail;
 
     @FXML
+    private TextField txtPassword;
+
+    @FXML
     private ComboBox<String> cmbBoxSex;
 
     @FXML
@@ -62,6 +65,7 @@ public class UpdateClientDataUI implements Initializable {
                 txtTIN.getText(),
                 txtPhoneNumber.getText(),
                 txtEmail.getText(),
+                txtPassword.getText(),
                 cmbBoxSex.getSelectionModel().getSelectedItem());
 
         try {

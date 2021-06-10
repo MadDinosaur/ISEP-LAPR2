@@ -82,6 +82,14 @@ public class User {
         return Collections.unmodifiableList(list);
     }
 
+    public void setPassword(Password pwd) {
+        this.password = pwd;
+    }
+
+    public void setEmail(Email email) {
+        this.id = email;
+    }
+
     @Override
     public int hashCode()
     {
@@ -113,4 +121,6 @@ public class User {
     {
         return String.format("%s - %s", this.id.toString(), this.name);
     }
+
+
 }

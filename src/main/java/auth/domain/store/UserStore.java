@@ -68,4 +68,16 @@ public class UserStore {
     {
         return this.store.contains(user);
     }
+
+    public boolean changePassword(User user, String newPwd) {
+        Password pwd = new Password(newPwd);
+        user.setPassword(pwd);
+        return true;
+    }
+
+    public boolean changeEmail(User user, String newEmail) {
+        Email email = new Email(newEmail);
+        user.setEmail(email);
+        return true;
+    }
 }

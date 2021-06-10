@@ -1,10 +1,7 @@
 package app.controller;
 
 import app.domain.model.Company;
-import app.domain.model.Exceptions.InvalidCardNumberException;
-import app.domain.model.Exceptions.InvalidNhsIdException;
-import app.domain.model.Exceptions.InvalidPhoneNumberException;
-import app.domain.model.Exceptions.InvalidTINException;
+import app.domain.model.Exceptions.*;
 import app.mappers.ClientMapper;
 import app.mappers.dto.ClientDTO;
 import app.domain.model.Client;
@@ -34,6 +31,10 @@ public class UpdateClientDataController {
         } catch (NumberFormatException ex) { throw new InvalidPhoneNumberException("Phone number must be a number!");}
         registerClientController.setEmail(clientData.getEmail());
 
+        if (!company.getAuthFacade().changeUserEmail(client.getEmail().toString(), clientData.getEmail()))
+            throw new InvalidClientException("Unable to change client e-mail!");
+        if (!company.getAuthFacade().changeUserPwd(client.getEmail().toString(), clientData.getPassword()))
+            throw new InvalidClientException("Unable to change password!");
         company.getClientStore().updateClientData(client, clientData);
     }
 }

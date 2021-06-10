@@ -89,4 +89,21 @@ public class AuthFacade {
         return this.userSession;
     }
 
+    public boolean changeUserPwd(String email, String pwd) {
+        if (!this.users.exists(email))
+            return false;
+
+        User user = users.getById(email).get();
+        return this.users.changePassword(user, pwd);
+    }
+
+    public boolean changeUserEmail(String oldEmail, String newEmail) {
+        if (oldEmail.equalsIgnoreCase(newEmail))
+            return true;
+        if (!this.users.exists(oldEmail) || this.users.exists(newEmail))
+            return false;
+        User user = users.getById(oldEmail).get();
+        return this.users.changeEmail(user, newEmail);
+    }
+
 }

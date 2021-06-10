@@ -9,6 +9,7 @@ participant "clientStore: ClientStore" as cstore
 participant "clientMapper: ClientMapper" as cmapper
 participant "clientDTO: ClientDTO" as dto
 participant "client: Client" as client
+participant "auth: AuthFacade" as auth
 
 
 activate cli
@@ -51,9 +52,18 @@ activate dto
 deactivate dto
 ui -> controller: updateClientData(dto)
 activate controller
+controller -> company: getAuthFacade()
+activate company
+|||
+deactivate company
+controller -> auth: changeUserEmail(oldEmail, newEmail)
+activate auth
+controller -> auth: changeUserPassword(email, pwd)
+deactivate auth
 controller -> cstore: updateClientData(client, dto)
 deactivate controller
 activate cstore
+cstore -> cstore : validateData(client, dto)
 cstore -> client : updateClientData(dto)
 deactivate cstore
 activate client

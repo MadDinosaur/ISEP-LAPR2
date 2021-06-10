@@ -16,7 +16,7 @@ public class Password {
     public Password(String password)
     {
         if (!validate(password))
-            throw new IllegalArgumentException("Invalid Email Address.");
+            throw new IllegalArgumentException("Invalid Password.");
         this.password = createHash(password);
     }
 
@@ -24,9 +24,7 @@ public class Password {
         if (StringUtils.isBlank(password))
             return false;
         // Check for other invalid criteria here
-
-        //
-        return true;
+        return password.matches("^[a-zA-Z0-9]{10}$");
     }
 
     private String createHash(String password)

@@ -63,7 +63,27 @@ public class ClientStore {
     }
 
     public void updateClientData(Client client, ClientDTO clientData) {
+        if (!validateData(client, clientData)) throw new InvalidClientException("Client already exists!");
         client.updateData(clientData);
+    }
+
+    public boolean validateData(Client client, ClientDTO clientData) {
+        Email newEmail = new Email(clientData.getEmail());
+        long newCardNum = Long.parseLong(clientData.getCardNumber());
+        long newNhsId = Long.parseLong(clientData.getNhsId());
+        long newTIN = Long.parseLong(clientData.getTIN());
+
+        for (Client cli: clientList) {
+            if (cli.getEmail().equals(client.getEmail()))
+                continue;
+
+            if (cli.getEmail().equals(newEmail)
+                || cli.getCardNumber() == newCardNum
+                || cli.getNhsId() == newNhsId
+                || cli.getTIN() == newTIN)
+                return false;
+        }
+        return true;
     }
 
     public Client getClientByNhsID(Long nhsID) {

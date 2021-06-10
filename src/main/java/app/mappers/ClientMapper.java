@@ -15,6 +15,6 @@ public class ClientMapper {
         String email = client.getEmail().toString();
         String sex = client.getSex();
 
-        return new ClientDTO(name, cardNumber, nhsId, dateBirth, TIN, phoneNUmber, email, sex);
+        return new ClientDTO(name, cardNumber, nhsId, dateBirth, TIN, phoneNUmber, email, "", sex);
     }
 }

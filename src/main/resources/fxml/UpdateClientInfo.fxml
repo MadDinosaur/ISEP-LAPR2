@@ -14,7 +14,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.UpdateClientDataUI">
    <top>
       <VBox prefHeight="47.0" prefWidth="600.0" BorderPane.alignment="CENTER">
@@ -50,6 +49,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="Name" />
@@ -61,13 +61,15 @@
             <Label text="Tax Identification Number" GridPane.rowIndex="4" />
             <Label text="Phone Number" GridPane.rowIndex="5" />
             <Label text="E-mail" GridPane.rowIndex="6" />
-            <Label text="Sex" GridPane.rowIndex="7" />
+            <Label text="Sex" GridPane.rowIndex="8" />
             <TextField fx:id="txtNhsId" promptText="Insert NHS Id" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="txtBirthDate" promptText="Insert Date (DD/MM/YYYY)" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="txtTIN" promptText="Insert Tax Identification Number" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="txtPhoneNumber" promptText="Insert Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="txtEmail" promptText="Insert E-mail" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <ComboBox fx:id="cmbBoxSex" prefWidth="150.0" promptText="Select Sex" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <ComboBox fx:id="cmbBoxSex" prefWidth="150.0" promptText="Select Sex" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Label text="Password" GridPane.rowIndex="7" />
+            <TextField fx:id="txtPassword" promptText="Insert Password" GridPane.columnIndex="1" GridPane.rowIndex="7" />
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" />
