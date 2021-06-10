@@ -29,21 +29,21 @@ public class LinearRegression {
         if (x.length != y.length) {
             throw new IllegalArgumentException("array lengths are not equal");
         }
-        int n = x.length;
+        int lengthOfArray = x.length;
 
         // first pass
         double sumx = 0.0, sumy = 0.0, sumx2 = 0.0;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < lengthOfArray; i++) {
             sumx  += x[i];
             sumx2 += x[i]*x[i];
             sumy  += y[i];
         }
-        double xbar = sumx / n;
-        double ybar = sumy / n;
+        double xbar = sumx / lengthOfArray;
+        double ybar = sumy / lengthOfArray;
 
         // second pass: compute summary statistics
         double xxbar = 0.0, yybar = 0.0, xybar = 0.0;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < lengthOfArray; i++) {
             xxbar += (x[i] - xbar) * (x[i] - xbar);
             yybar += (y[i] - ybar) * (y[i] - ybar);
             xybar += (x[i] - xbar) * (y[i] - ybar);
@@ -54,17 +54,17 @@ public class LinearRegression {
         // more statistical analysis
         double rss = 0.0;      // residual sum of squares
         double ssr = 0.0;      // regression sum of squares
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < lengthOfArray; i++) {
             double fit = slope*x[i] + intercept;
             rss += (fit - y[i]) * (fit - y[i]);
             ssr += (fit - ybar) * (fit - ybar);
         }
 
-        int degreesOfFreedom = n-2;
+        int degreesOfFreedom = lengthOfArray-2;
         r2    = ssr / yybar;
         double svar  = rss / degreesOfFreedom;
         svar1 = svar / xxbar;
-        svar0 = svar/n + xbar*xbar*svar1;
+        svar0 = svar/lengthOfArray + xbar*xbar*svar1;
     }
 
     /**
