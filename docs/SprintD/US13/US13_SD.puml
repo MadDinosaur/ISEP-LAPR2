@@ -7,9 +7,16 @@ actor ClinicalChemistryTechnologist as CCT
 participant ":TestConsultationUI" as UI
 participant ":TestConsultationController" as CTRL
 participant ":Company" as CMP
-participant "cltStr: ClientStore" as STORE
+participant "cltStr: ClientStore" as CLTSTR
 participant "cltLst: List<Client>" as LST
-participant "cltMapper: ClientMapper" as MAP
+participant "tstStore: TestStore" as TSTSTR
+participant "tstList: tstLst" as TSTLST
+participant "test:Test" as TST
+participant "cltMapper: ClientMapper" as CLTMAP
+participant "tstMapper: TestMapper" as TSTMAP
+participant "testParamList: TestParamList" as LTSTPARAM
+participant "testParam: TestParameter" as TSTPARAM
+participant "testParamResult: TestParameterResult" as TSTPARAMRES
 
 activate CCT
 CCT -> UI: Starts client's test verification function
@@ -19,27 +26,78 @@ deactivate UI
 CCT -> UI: Chooses which way to order the clients
 activate UI
 
-alt by TIN
-
 create CTRL
 UI -> CTRL: create()
 
-UI -> CTRL: getCltLstTIN()
+UI -> CTRL: getlCltTIN()
 activate CTRL
 
 CTRL -> CMP: cltStr = getClientStore()
 activate CMP
 deactivate CMP
 
-CTRL -> STORE: cltLst =
-activate STORE
-deactivate STORE
+CTRL -> CLTSTR: lClt = getCltLst()
+activate CLTSTR
+deactivate CLTSTR
 
-CTRL -> MAP: toDTO(cltLst)
-ref over MAP: SD_ClientMapper_toDTO
+CTRL -> CLTMAP: toDTO(lClt)
+activate CLTMAP
+deactivate CLTMAP
 
 deactivate CTRL
 
-else by Name
+UI --> CCT: Shows the list of clients ordered in the specified manner and asks which they would like to pick
+deactivate UI
 
+CCT -> UI: Picks the desired client
+activate UI
+
+UI -> CTRL: getlCltTst(client)
+activate CTRL
+
+CTRL -> CMP: tstStr = getTstStr()
+activate CMP
+deactivate CMP
+
+CTRL -> TSTSTR: lTst = getlTst()
+activate TSTSTR
+deactivate TSTSTR
+
+CTRL -> TSTMAP: toDTO(lTst)
+activate TSTMAP
+deactivate TSTMAP
+deactivate CTRL
+
+UI --> CCT: Displays the selected client's test history
+deactivate UI
+
+loop until clinical chemistry technologist has checked all the wanted tests
+CCT -> UI : Selects a test
+activate UI
+UI -> CTRL : displayTestResults(testCode)
+activate CTRL
+CTRL -> TSTSTR : test = getTestByCode(testCode)
+activate TSTSTR
+|||
+deactivate TSTSTR
+CTRL -> TST : getTestParamResults()
+activate TST
+deactivate CTRL
+TST -> LTSTPARAM : getTestParamResults()
+activate LTSTPARAM
+deactivate TST
+loop for each TestParameter
+LTSTPARAM -> TSTPARAM : getTestParamResult()
+activate TSTPARAM
+deactivate LTSTPARAM
+TSTPARAM -> TSTPARAMRES : get()
+deactivate TSTPARAM
+activate TSTPARAMRES
+deactivate TSTPARAMRES
+end loop
+
+UI --> CCT : Displays test results
+
+deactivate UI
+deactivate CCT
 @enduml

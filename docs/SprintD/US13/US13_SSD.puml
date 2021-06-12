@@ -9,8 +9,9 @@ CCT -> ":System": Starts client's test verification function
 CCT -> ":System": Chooses which way to order the clients
 ":System" --> CCT: Shows the list of clients ordered in the specified manner and asks which they would like to pick
 CCT -> ":System": Picks the desired client
-":System" --> CCT: Shows the selected client's test history
-CCT -> ":System": Consults client's test details/results and exits
+":System" --> CCT: Displays the selected client's test history
+CCT -> ":System": Selects a test
+":System" --> CCT: Displays test results
 
 
 @enduml

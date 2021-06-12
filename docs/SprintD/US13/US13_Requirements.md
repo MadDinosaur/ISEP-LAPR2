@@ -14,10 +14,11 @@ As a clinical chemistry technologist, I intend to consult the historical tests p
 
 ####From the client clarifications
 
-* **Q1**: "What information does the clinical chemistry technologist have access to?" **A**: ""
+* **Q1**: "What information does the clinical chemistry technologist have access to?" **A**: "The clinical chemistry technologist should be able to check the historical tests performed by a particular client and see the **results** obtained in each test. For a given client (that was selected by the clinical chemistry technologist) the application should show all tests performed by the client and, for each parameter, the application should **show the parameter value and the parameter reference values**. The clinical chemistry technologist should not have access to the report made by the specialist doctor."
 
 * **Q2**: "Can the clinical chemistry technologist alter any of the test details/results?" **A**: ""
 
+* **Q3**: "The client's tests, that we have to show on this US, need to have been validated by the lab coordinator or is it enough if they just have results and we can show them before being validated by the lab coordinator?" **A**: "The tests to be presented in US13 are tests that have **already been validated** by the lab coordinator."
 
 ### 1.3. Acceptance Criteria
 
@@ -30,7 +31,7 @@ As a clinical chemistry technologist, I intend to consult the historical tests p
 ### 1.5 Input and Output Data
 
 * **Input data** - Typed data: N/A ; Selected Data: Client
-* **Output data** - All clients in the system, Client's test history
+* **Output data** - All clients with tests validated in the system, Client's validated test history (Results: Parameter value and parameter reference values)
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -61,9 +62,8 @@ As a clinical chemistry technologist, I intend to consult the historical tests p
 | Step 3: Chooses which way to order the clients | ... sorting the clients by the selected parameter? | SortingAlgorithm |  |
 | Step 4: Shows the list of clients ordered in the specified manner and asks which they would like to pick  | ... showing the list of clients? | TestConsultationUI | Pure Fabrication |
 | Step 5: Picks the desired client | ... getting the client's test ? | TestStore | High cohesion/Low coupling |
-| Step 6: Shows the selected client's test history |  |  |  |
-| Step 7: Consults client's test details/results and exits | ... ? |  |  |
-
+| Step 6: Displays the selected client's test history |  |  |  |
+| Step 7: Displays test results |  |  |  |
 
 ### Systematization ##
 

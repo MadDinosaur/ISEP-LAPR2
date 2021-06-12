@@ -30,10 +30,24 @@ class Test {
 -timeValidation
 }
 
+class TestParameterResult {
+-createdAt
+-value
+-metric
+}
+
+class Parameter {
+-code
+-shortName
+-description
+}
 
 Test "*"-up-"1" Company : performs <
 Company "1"--"1..*" Client : has >
 Test "*"--"1" Client : requested by >
-
+Test "*"--"1..*" Parameter : requests analysis of >
+TestParameter "*"--"1" Parameter : associated to >
+TestParameter "*"--"1" Test : has <
+TestParameter "1"-right- "0..1" TestParameterResult : contains >
 
 @enduml
