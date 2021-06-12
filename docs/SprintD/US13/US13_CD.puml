@@ -1,3 +1,94 @@
 @startuml
 
+class TestConsultationUI
+
+class TestConsultationController{
++getlClt()
++getlCltTst()
++displayTstRes(testCode)
+
+
+}
+
+class Client {
+- name
+- cardNumber
+- nhsId
+- dateBirth
+- TIN
+- phoneNumber
+- email
+- sex
+}
+
+class Company{
+-designation
+
++getClientStore()
+}
+
+class SortingAlgorithm{
+
+}
+
+class ClientStore {
++ getClientByEmail(email)
++ getlClt()
+}
+
+class TestStore {
++ getValidatedTestsByClient(client)
++ getTestByCode(testCode)
+}
+
+class Test {
+- testCode
+- nhsCode
+- dateOfCreation
+- dateReport
+- timeReport
+- dateResults
+- timeResults
+- dateValidation
+- timeValidation
++ getTestParamResults()
+}
+
+class ClientMapper{
++ toDtoList(lClt)
+}
+
+class TestMapper {
++ toDtoList(tests)
+}
+
+class TestParamList {
++ getTestParamResults()
+}
+
+class TestParameter {
++ getTestParamResult()
+}
+
+class TestParameterResult {
+- value
+- metric
+- refValue
+}
+
+TestConsultationUI ..> TestConsultationController
+TestConsultationUI ..> TestDTO
+TestConsultationController ..> TestMapper
+TestMapper ..> TestDTO
+TestConsultationController ..> Company
+Company --> ClientStore : uses
+Company --> SortingAlgorithm : uses
+SortingAlgorithm --> ClientStore : sorts
+ClientStore --> Client : contains
+Company --> TestStore : uses
+TestStore --> Test : contains
+Test --> TestParamList : uses
+TestParamList --> TestParameter : contains
+TestParameter --> TestParameterResult : contains
+
 @enduml
