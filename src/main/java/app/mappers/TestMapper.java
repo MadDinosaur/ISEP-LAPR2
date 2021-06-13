@@ -25,6 +25,8 @@ public class TestMapper {
         this.list = list;
     }
 
+    public TestMapper(){}
+
     /**
      * Method that turns a test into a test dto
      * @param test
@@ -32,19 +34,6 @@ public class TestMapper {
      */
     public TestDTO toDTO(Test test){
         TestDTO testDTO = new TestDTO(test.getClient(), test.getListOfCategories(), test.getTestCode(), test.getNhsCode(), test.getDateTimeRegister(), test.getListOfParameters(), test.getTestParamList(), test.getSampleList(), test.getReport(), test.getDateTimeReport(), test.getDateTimeResults(), test.getDateTimeValidation());
-        return testDTO;
-    }
-
-    /**
-     * Method that turns a test into a test dto for validation
-     * @param nhsCode
-     * @param dateTimeRegister
-     * @param dateTimeReport
-     * @param dateTimeResults
-     * @return dto of a test with the dates
-     */
-    public TestDTO toDTOValidation(String nhsCode, String dateTimeRegister, String dateTimeReport, String dateTimeResults){
-        TestDTO testDTO = new TestDTO(nhsCode, dateTimeRegister, dateTimeReport, dateTimeResults);
         return testDTO;
     }
 
@@ -60,16 +49,5 @@ public class TestMapper {
         return listDTO;
     }
 
-    public List<TestDTO> toDtoListValidation(){
-        try {
-            Iterator<Test> testIterator = list.iterator();
-            while(testIterator.hasNext()){
-                this.listDTO.add(toDTOValidation(testIterator.next().getNhsCode(), testIterator.next().getDateTimeRegister(), testIterator.next().getDateTimeReport(), testIterator.next().getDateTimeResults()));
-            }
-        }catch (NoSuchElementException e){
-            System.out.println("No such element");
-        }
-        return listDTO;
-    }
 
 }
