@@ -3,6 +3,7 @@ package app.domain.model;
 import app.domain.shared.Constants;
 import org.apache.commons.lang3.StringUtils;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -216,7 +217,7 @@ public class Category {
                 return parameter;
             }
         }
-        return null;
+        throw new InvalidParameterException("There's no parameter with such code: " + parameterCode);
     }
 
 }

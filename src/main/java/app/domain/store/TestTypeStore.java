@@ -97,7 +97,7 @@ public class TestTypeStore {
                 return testType;
             }
         }
-        return null;
+        throw new InvalidTestType("There's no test type with such code: " + code);
     }
 
 }
