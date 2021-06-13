@@ -1,5 +1,6 @@
 package app.domain.model;
 
+import app.domain.model.Exceptions.InvalidLaboratoryIDException;
 import app.domain.store.*;
 import auth.AuthFacade;
 import auth.domain.model.Email;
@@ -20,6 +21,7 @@ import java.util.Random;
  */
 public class Company {
 
+    private List<ClinicalAnalysisLaboratory> clinicalAnalysisLaboratoryLst = new ArrayList<>();
     private final String designation;
     private final AuthFacade authFacade;
     private final EmployeeStore employeeStore;
@@ -299,6 +301,14 @@ public class Company {
                 }
             }
         }
+    }
 
+    public ClinicalAnalysisLaboratory getLabById(String laboratoryID) {
+        for (ClinicalAnalysisLaboratory clinicalAnalysisLaboratory : clinicalAnalysisLaboratoryLst) {
+            if (clinicalAnalysisLaboratory.getLaboratoryID().equals(laboratoryID)) {
+                return clinicalAnalysisLaboratory;
+            }
+        }
+        throw new InvalidLaboratoryIDException("There's no laboratory with such ID " + laboratoryID);
     }
 }
