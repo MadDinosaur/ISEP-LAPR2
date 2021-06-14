@@ -26,7 +26,7 @@ public class Test {
     private SampleList sampleList = new SampleList();
     private StateOfTest stateOfTest;
     private Report report;
-    private String dateTimeRegister;
+    private final String dateTimeRegister;
     private String dateTimeReport;
     private String dateTimeResults;
     private String dateTimeValidation;
@@ -63,9 +63,9 @@ public class Test {
 
     public Test(ClinicalAnalysisLaboratory clinicalAnalysisLaboratory, Client client, String testCode, String nhsCode, TestType testType, List<Category> categoryList, TestParamList testParamList, String dateTimeRegister, String dateTimeResults, String dateTimeReport, String dateTimeValidation) {
         this.clinicalAnalysisLaboratory = clinicalAnalysisLaboratory;
-        this.client = client;
-        this.testCode = testCode;
-        this.nhsCode = nhsCode;
+        setClient(client);
+        setTestCode(testCode);
+        setNhsCode(nhsCode);
         this.testType = testType;
         this.listOfCategories = categoryList;
         this.testParamList = testParamList;

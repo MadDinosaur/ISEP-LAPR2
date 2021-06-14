@@ -13,11 +13,11 @@ public class MultiLinearRegression {
     private double x1, x2, intercept;
     private double sumYAverage;
     private double yTransposeY;
-    private double sqT, sqR, sqE;
-    private double sqRAverage, sqEAverage;
-    private double fTest;
-    private double critical;
-    private double rSquared, rSquaredAdjusted, r;
+    private final double sqR, sqT, sqE;
+    private final double sqRAverage, sqEAverage;
+    private final double fTest;
+    private final double critical;
+    private final double rSquared, rSquaredAdjusted, r;
 
 
     public MultiLinearRegression(double[] x1, double[] x2, double[] y) {
@@ -87,7 +87,41 @@ public class MultiLinearRegression {
 
     }
 
-    public double getPrevisionforY(int a1,int a2){
+    public double[][] getVector() {
+        return vector;
+    }
+    public double getSqT() {
+        return sqT;
+    }
+    public double getSqE() {
+        return sqE;
+    }
+    public double getSqR() {
+        return sqR;
+    }
+    public double getSqRAverage() {
+        return sqRAverage;
+    }
+    public double getSqEAverage() {
+        return sqEAverage;
+    }
+    public double getFTest() {
+        return fTest;
+    }
+    public double getCritical() {
+        return critical;
+    }
+    public double getRSquared() {
+        return rSquared;
+    }
+    public double getRSquaredAdjusted() {
+        return rSquaredAdjusted;
+    }
+    public double getR() {
+        return r;
+    }
+
+    public double getPrevisionforY(int a1, int a2){
         return a1*x1 + a2*x2 + intercept;
     }
 
