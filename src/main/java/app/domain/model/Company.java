@@ -80,6 +80,9 @@ public class Company {
         testStore.addTest(testTestHardCoded);
         //END OF HARDCODED THINGS FOR TESTS
 
+        ClinicalAnalysisLaboratory clinicalAnalysisLaboratory = new ClinicalAnalysisLaboratory();
+        clinicalAnalysisLaboratory.setLaboratoryID("001DO");
+
     }
 
 

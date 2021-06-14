@@ -21,8 +21,12 @@ public class TestTypeStore {
      */
     private CollectionMethod collectionMethodTest = new CollectionMethod("test Colection");
     Category categoryTest = new Category("Hemograma", "pistola", "WBC", "toma");
+    Category covidCategory = new Category("Covid", "Covid", "descrição", "Covid");
     private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(categoryTest));
-    private ArrayList<TestType> testTypeList = new ArrayList<>();
+    List<Category> covidCategoryList = new ArrayList<>(Collections.singleton(covidCategory));
+    TestType Covid = new TestType("Covid", "descrição", collectionMethodTest, covidCategoryList);
+    private ArrayList<TestType> testTypeList = new ArrayList<>(Collections.singleton(Covid));
+
 
     /**
      * Empty constructor

@@ -2,6 +2,7 @@ package app.domain.store;
 
 
 import app.domain.model.Client;
+import app.domain.model.DateBirth;
 import app.domain.model.Employee;
 import app.domain.model.Exceptions.InvalidClientException;
 import app.domain.model.Exceptions.InvalidEmailException;
@@ -10,9 +11,12 @@ import app.mappers.dto.ClientDTO;
 import auth.domain.model.Email;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ClientStore {
-    private ArrayList<Client> clientList = new ArrayList<>();
+
+    Client client = new Client("Georgia PEDDIE", 3196, 6000003196L, new DateBirth(3, 11, 1946), 2100003196, 91200003196L, new Email("GeorgiaPEDDIE2155@gmail.com"), "Feminine");
+    private ArrayList<Client> clientList = new ArrayList<>(Collections.singleton(client));
 
     private boolean addClient(Client client) {
         return this.clientList.add(client);
