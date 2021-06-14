@@ -3,13 +3,12 @@ package app.ui.console;
 import app.controller.RegisterNewLabController;
 import app.domain.model.Exceptions.*;
 import app.domain.model.TestType;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class    RegisterNewLabUI implements Runnable {
     static Scanner input = new Scanner(System.in);
-    private RegisterNewLabController CNLC = new RegisterNewLabController();
+    private final RegisterNewLabController cNLC = new RegisterNewLabController();
 
     public void run(){
         System.out.println("Creating a new clinical analysis laboratory...");
@@ -31,7 +30,7 @@ public class    RegisterNewLabUI implements Runnable {
                 long phonenumber = input.nextLong();
 
                 System.out.println("Insert tax identification number.");
-                long TIN = input.nextLong();
+                long taxIN = input.nextLong();
 
                 input.nextLine();
                 System.out.println("Insert laboratory ID.");
@@ -40,13 +39,13 @@ public class    RegisterNewLabUI implements Runnable {
                 System.out.println("Name: " + name);
                 System.out.println("Address: " + address);
                 System.out.println("Phone Number: " + phonenumber);
-                System.out.println("Tax Identification Number: " + TIN);
+                System.out.println("Tax Identification Number: " + taxIN);
                 System.out.println("Laboratory ID: " + labID);
                 System.out.println("Is this information correct? (yes/no)");
 
                 boolean confirm = confirmation();
                 if (confirm) {
-                    CNLC.setData(name, address, phonenumber, TIN, labID);
+                    cNLC.setData(name, address, phonenumber, taxIN, labID);
                 } else {
                     System.out.println("Reenter the information.");
                     setData();
@@ -69,18 +68,18 @@ public class    RegisterNewLabUI implements Runnable {
     }
 
     public void setTestType() {
-        ArrayList<TestType> TestTypeList = CNLC.getTestTypeList();
+        ArrayList<TestType> testTypeList = cNLC.getTestTypeList();
         System.out.println("Choose one or more of the following test types (type -1 to end selection):");
 
         int index = 0;
-        for(TestType tt : TestTypeList){
+        for(TestType tt : testTypeList){
             System.out.printf("%s - %s\n", index, tt.getCode());
             index++;
         }
 
         int i = input.nextInt();
         while (i != -1) {
-            CNLC.setTestType(TestTypeList.get(i));
+            cNLC.setTestType(testTypeList.get(i));
             i = input.nextInt();
         }
         input.nextLine();

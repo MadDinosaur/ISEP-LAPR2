@@ -1,21 +1,16 @@
 package app.ui.console;
 
-import app.controller.CreateNewParameterController;
 import app.controller.ValidateTestController;
 import app.domain.model.Exceptions.EmptyListException;
-import app.domain.model.Exceptions.TestDoesntExistException;
 import app.domain.model.Test;
-import app.mappers.dto.TestDTO;
-
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
 public class ValidateTestUI implements Runnable{
 
     Scanner sc = new Scanner(System.in);
-    private ValidateTestController vtctrl = new ValidateTestController();
+    private final ValidateTestController vtctrl = new ValidateTestController();
 
     @Override
     public void run() {
@@ -23,7 +18,6 @@ public class ValidateTestUI implements Runnable{
             if (vtctrl.getListTestsWithReport() != null) {
                 System.out.println("These are the available tests:");
                 int i = 0;
-                List<String> nhscodes = null;
                 try {
                     for (Test test : vtctrl.getListTestsWithReport()) {
                         System.out.println("Test#" + i + ": " + test.toStringWithDates());

@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class CreateReportUI implements Runnable {
 
     private static final Scanner sc = new Scanner(System.in);
-    private CreateReportController createReportController = new CreateReportController();
+    private final CreateReportController createReportController = new CreateReportController();
 
     public void run() {
         boolean loop = true;

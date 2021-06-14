@@ -1,11 +1,7 @@
 package app.ui.console;
 
 import app.controller.SampleController;
-import app.domain.model.Sample;
-import app.domain.store.SampleList;
 import app.mappers.dto.TestDTO;
-
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -18,12 +14,12 @@ import java.util.Scanner;
 public class SampleUI implements Runnable {
 
     static Scanner input = new Scanner(System.in);
-    private SampleController SC = new SampleController();
+    private final SampleController sc = new SampleController();
 
     public void run() {
 
-        List<TestDTO> TestList = SC.getTestList();
-        TestCodeSelection(TestList);
+        List<TestDTO> testList = sc.getTestList();
+        TestCodeSelection(testList);
 
         try {
             System.out.println("Insert number of samples:");
@@ -61,7 +57,7 @@ public class SampleUI implements Runnable {
 
         boolean confirm = confirmation();
         if(confirm) {
-            SC.setTestCode(testList.get(k).getTestCode());
+            sc.setTestCode(testList.get(k).getTestCode());
         } else {
             TestCodeSelection(testList);
         }
@@ -93,7 +89,7 @@ public class SampleUI implements Runnable {
         input.nextLine();
         boolean confirm = confirmation();
         if (confirm) {
-            SC.createSampleList(n);
+            sc.createSampleList(n);
         } else {
             System.out.println("Enter the correct number of samples:");
             setSampleNumber();
