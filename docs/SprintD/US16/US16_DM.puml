@@ -15,5 +15,18 @@ class Test {
 -dateValidation
 -timeValidation
 }
+class Client {
+-name
+-cardNumber
+-birthDate
+-sex
+-nhsID
+-TIF
+-phoneNumber
+-email
+-password
+}
+
+Test "*"--"1" Client : requested by >
 
 @enduml

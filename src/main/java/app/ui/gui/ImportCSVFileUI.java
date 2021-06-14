@@ -5,6 +5,7 @@ import app.domain.model.Exceptions.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
@@ -41,6 +42,7 @@ public class ImportCSVFileUI implements Initializable {
         File selectedFile = fc.showOpenDialog(null);
         importCSVFileController.setFile(selectedFile);
         fileNameTF.setText(importCSVFileController.getFile().getPath());
+        fileNameTF.setAlignment(Pos.BASELINE_LEFT);
 
     }
 
