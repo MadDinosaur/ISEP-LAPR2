@@ -63,9 +63,9 @@ public class Test {
 
     public Test(ClinicalAnalysisLaboratory clinicalAnalysisLaboratory, Client client, String testCode, String nhsCode, TestType testType, List<Category> categoryList, TestParamList testParamList, String dateTimeRegister, String dateTimeResults, String dateTimeReport, String dateTimeValidation) {
         this.clinicalAnalysisLaboratory = clinicalAnalysisLaboratory;
-        setClient(client);
-        setTestCode(testCode);
-        setNhsCode(nhsCode);
+        this.client = client;
+        this.testCode = testCode;
+        this.nhsCode = nhsCode;
         this.testType = testType;
         this.listOfCategories = categoryList;
         this.testParamList = testParamList;
