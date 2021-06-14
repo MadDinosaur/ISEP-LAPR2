@@ -48,47 +48,67 @@ public class ImportCSVFileUI implements Initializable {
 
     @FXML
     void importFile(ActionEvent event) {
-        while (importCSVFileController.goOneLineForward()) {
-                importingFileSteps();
-                System.out.println("Test was imported");
-        }
+            importingFileSteps();
     }
 
     void importingFileSteps() {
-        try {
-            importCSVFileController.readTestTypeCode();
-        } catch (InvalidTestCodeException e) {
-            importingFileSteps();
-        }
-        try {
-            importCSVFileController.readCategoryName();
-        } catch (InvalidCategoryException e) {
-            importingFileSteps();
-        }
-        try {
-            importCSVFileController.readParameterCodeAndResult();
-        } catch (InvalidParameterException e) {
-            importingFileSteps();
-        }
-        try {
+        do {
+            try {
+                importCSVFileController.readTestTypeCode();
+            } catch (InvalidTestCodeException e) {
+                e.printStackTrace();
+                importCSVFileController.goOneLineForward();
+                importingFileSteps();
+            }
+            try {
+                importCSVFileController.readCategoryName();
+            } catch (InvalidCategoryException e) {
+                e.printStackTrace();
+                importCSVFileController.goOneLineForward();
+                importingFileSteps();
+            }
+            try {
+                importCSVFileController.readParameterCodeAndResult();
+            } catch (InvalidParameterException e) {
+                e.printStackTrace();
+                importCSVFileController.goOneLineForward();
+                importingFileSteps();
+            }
             importCSVFileController.readNhsId();
-        } catch (InvalidClientException e) {
-            importingFileSteps();
-        }
-        try {
-            importCSVFileController.readLabId();
-        } catch (InvalidLaboratoryIDException e) {
-            importingFileSteps();
-        }
-        importCSVFileController.readTestCode();
-        importCSVFileController.readNhsCode();
-        importCSVFileController.readDateTimeRegister();
-        importCSVFileController.readDateTimeResults();
-        importCSVFileController.readDateTimeReport();
-        importCSVFileController.readDateTimeValidation();
-        importCSVFileController.createTest();
-        importCSVFileController.saveTest();
-        importCSVFileController.goOneLineForward();
+            System.out.println(importCSVFileController.nhsID);
+            importCSVFileController.readCardNumber();
+            importCSVFileController.readTin();
+            importCSVFileController.readbirthday();
+            importCSVFileController.readPhoneNumber();
+            importCSVFileController.readName();
+            importCSVFileController.readEmail();
+            importCSVFileController.readAddress();
+
+            try {
+                importCSVFileController.createClient();
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+                importCSVFileController.goOneLineForward();
+                importingFileSteps();
+            }
+            importCSVFileController.saveClient();
+            try {
+                importCSVFileController.readLabId();
+            } catch (InvalidLaboratoryIDException e) {
+                e.printStackTrace();
+                importCSVFileController.goOneLineForward();
+                importingFileSteps();
+            }
+            importCSVFileController.readTestCode();
+            importCSVFileController.readNhsCode();
+            importCSVFileController.readDateTimeRegister();
+            importCSVFileController.readDateTimeResults();
+            importCSVFileController.readDateTimeReport();
+            importCSVFileController.readDateTimeValidation();
+            importCSVFileController.createTest();
+            importCSVFileController.saveTest();
+            importCSVFileController.goOneLineForward();
+        } while (importCSVFileController.fileHasNextLine());
     }
 
     @Override

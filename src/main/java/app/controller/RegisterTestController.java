@@ -67,6 +67,7 @@ public class RegisterTestController {
     }
 
     public void setCategoryByName(String nameOfCategory) {
+        System.out.println(testTypeChosen.getCode());
         categoryOfTestType = testTypeChosen.getCategoryFromTestTypeByName(nameOfCategory);
         listOfChosenCategories.add(categoryOfTestType);
     }
@@ -117,7 +118,7 @@ public class RegisterTestController {
     public void setTestParameterByParameterCode(String parameterCode, String value) {
         for (Category category : listOfChosenCategories) {
             Parameter parameter = category.getParameterByCode(parameterCode);
-            this.testParamList.addTestParameterResult(parameter, new TestParameterResult(value, "mg", null));
+            this.testParamList.addTestParameterResult(parameter, new TestParameterResult(value, "mg", new ReferenceValue(0.5, 1.0, "mg")));
         }
     }
 
@@ -125,8 +126,8 @@ public class RegisterTestController {
         this.client = company.getClientStore().getClientByNhsID(nhsID);
     }
 
-    public Test createTestFromCSV(String testCode, String nhsCode, String dateTimeRegister, String dateTimeResults, String dateTimeReport, String dateTimeValidation) {
-        return new Test(this.clinicalAnalysisLaboratory, this.client, testCode, nhsCode, this.testTypeChosen, this.listOfChosenCategories, this.testParamList, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation);
+    public Test createTestFromCSV(Client client, String testCode, String nhsCode, String dateTimeRegister, String dateTimeResults, String dateTimeReport, String dateTimeValidation) {
+        return new Test(this.clinicalAnalysisLaboratory, client, testCode, nhsCode, this.testTypeChosen, this.listOfChosenCategories, this.testParamList, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation);
     }
 
     public void saveTest(Test test) {

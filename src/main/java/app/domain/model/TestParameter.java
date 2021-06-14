@@ -1,6 +1,5 @@
 package app.domain.model;
 
-import app.domain.model.Exceptions.InvalidReferenceValueException;
 import app.domain.model.Exceptions.InvalidTestResultException;
 
 public class TestParameter {
