@@ -1,17 +1,10 @@
 package app.ui.console;
 
-import app.controller.App;
 import app.controller.*;
 import app.domain.model.Category;
 import app.domain.model.Exceptions.InvalidCodeException;
 import app.domain.model.Exceptions.InvalidDescriptionException;
 import app.domain.model.Exceptions.InvalidNameException;
-import app.domain.model.Exceptions.InvalidNhsIdException;
-import app.ui.Main;
-
-import javax.swing.*;
-
-import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -20,7 +13,7 @@ import java.util.Scanner;
 public class CreateNewParameterUI implements Runnable{
 
     Scanner sc = new Scanner(System.in);
-    private CreateNewParameterController cnpc = new CreateNewParameterController();
+    private final CreateNewParameterController cnpc = new CreateNewParameterController();
 
     @Override
     public void run() {
@@ -36,7 +29,6 @@ public class CreateNewParameterUI implements Runnable{
                 String category = sc.nextLine();
                 if (category.equalsIgnoreCase("exit")) {
                     System.out.println("Exiting....");
-                    verifier = true;
                 } else while (iterator.hasNext()) {
                     Category cat = iterator.next();
                     if (cat.getCategoryName().equals(category)) {
@@ -59,7 +51,6 @@ public class CreateNewParameterUI implements Runnable{
                             String parameterDescription = parts[2];
                             if (parameterName.equalsIgnoreCase("exit") || parameterCode.equalsIgnoreCase("exit") || parameterDescription.equalsIgnoreCase("exit")) {
                                 System.out.println("Exiting....");
-                                verifier = true;
                             } else {
                                 System.out.println(parameterName + "; " + parameterCode + "; " + parameterDescription + ". Do you confirm this is the data for the new parameter?(Write Y/N  for yes or no respectively)");
                                 confirmation = sc.nextLine();
@@ -87,7 +78,6 @@ public class CreateNewParameterUI implements Runnable{
                     verifier = true;
                 } else
                     verifier = false;
-                confirmation = "N";
             }
         } else System.out.println("There doesn't seem to be any categories in the system, please introduce some before specifying parameters.");
     }
