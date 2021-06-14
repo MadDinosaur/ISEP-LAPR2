@@ -1,5 +1,8 @@
 package app.domain.model;
 
+import java.util.Arrays;
+import org.apache.commons.math3.distribution.FDistribution;
+
 public class MultiLinearRegression {
     private double[][] x;
     private double[][] xTranspose;
@@ -7,6 +10,15 @@ public class MultiLinearRegression {
     private double[][] xTransposeXInversed;
     private double[][] xTransposeY;
     private double[][] vector;
+    private double x1, x2, intercept;
+    private double sumYAverage;
+    private double yTransposeY;
+    private double sqT, sqR, sqE;
+    private double sqRAverage, sqEAverage;
+    private double fTest;
+    private double critical;
+    private double rSquared, rSquaredAdjusted, r;
+
 
     public MultiLinearRegression(double[] x1, double[] x2, double[] y) {
         if (x1.length != y.length && x2.length != y.length) {
@@ -29,10 +41,69 @@ public class MultiLinearRegression {
         xTransposeXInversed = invert(xTransposeX);
         xTransposeY = matrixMultiplication(xTranspose, yVertical);
         vector = matrixMultiplication(xTransposeXInversed,xTransposeY);
-        System.out.println(vector[0][0]);
+        intercept = vector[0][0];
+        this.x1 = vector[1][0];
+        this.x2 = vector[2][0];
+    /*     System.out.println(vector[0][0]);
         System.out.println(vector[1][0]);
-        System.out.println(vector[2][0]);
+        System.out.println(vector[2][0]);*/
+        for (double yNumber: y
+             ) {
+            yTransposeY += Math.pow(yNumber,2);
+        }
+        double sumY=0;
+        for (double yNumber: y
+        ) {
+            sumY += yNumber;
+        }
+        sumY = Math.pow(sumY,2);
+        sumYAverage = sumY/y.length;
+        double total = 0;
+        for (int i = 0;i<3;i++){
+            total += vector[i][0] * xTransposeY[i][0];
+        }
+        sqT= yTransposeY -sumYAverage;
+        sqE = yTransposeY - total;
+        sqR = sqT - sqE;
+       /* System.out.println(sqR);
+        System.out.println(sqE);
+        System.out.println(sqT);*/
+        int degreesOfFreedom = y.length - 1;
+        sqRAverage = sqR/ 2;
+        sqEAverage = sqE/ (degreesOfFreedom-2);
+        fTest = sqRAverage / sqEAverage;
+        /*System.out.println(sqRAverage);
+        System.out.println(sqEAverage);
+        System.out.println(fTest);*/
+        FDistribution fDistribution = new FDistribution(2, y.length - 3);
+        critical = fDistribution.inverseCumulativeProbability(1-0.05);
+        /*System.out.println(critical);*/
+        rSquared = sqR/sqT;
+        double lengthArray = y.length;
+        rSquaredAdjusted = 1- (lengthArray -1)/(lengthArray-3)*(1-rSquared);
+        r= Math.sqrt(rSquared);
+        /*System.out.println(rSquared);
+        System.out.println(rSquaredAdjusted);*/
 
+    }
+
+    public double getPrevisionforY(int a1,int a2){
+        return a1*x1 + a2*x2 + intercept;
+    }
+
+    public double getCriticalValue(int a1, int a2){
+        double[][] aValuesFirst = new double[3][3];
+        aValuesFirst[0][0] = 1;
+        aValuesFirst[0][1] = a1;
+        aValuesFirst[0][2] = a2;
+        double[][] aValues = new double[3][3];
+        aValues[0][0] = 1;
+        aValues[1][0] = a1;
+        aValues[2][0] = a2;
+        double[][] criticalValues = matrixMultiplication(aValuesFirst,xTransposeXInversed);
+        criticalValues = matrixMultiplication(criticalValues,aValues);
+
+        return (1+criticalValues[0][0])*sqEAverage;
     }
 
 
