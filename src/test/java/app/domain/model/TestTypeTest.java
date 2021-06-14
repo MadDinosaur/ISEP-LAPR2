@@ -51,7 +51,7 @@ public class TestTypeTest {
         Assert.assertEquals(tt1.getCollectionMethod().getDescriptionCollectionMethod(), tt.getCollectionMethod().getDescriptionCollectionMethod());
     }
 
-    @Test(expected = InvalidCategoryException.class)
+    @Test()
     public void addingAnAlreadyExistingCategory() {
         Category c2 = new Category("nome", "code", "description");
         tt.setCategory(c2);
