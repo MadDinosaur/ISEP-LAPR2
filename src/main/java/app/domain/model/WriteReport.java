@@ -74,7 +74,6 @@ public final class WriteReport implements Serializable, CharSequence {
                 "14/05/2021                    20                                      21.02\t                \t\t\t\t18.86-23.18\n" +
                 "13/05/2021                    14                                      15.03\t                \t\t\t\t12.87-17.19");
 
-        return string;
     }
     @Override
     public int length() {
