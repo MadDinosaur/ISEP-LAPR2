@@ -15,6 +15,7 @@ import java.util.List;
 
 public class RegisterTestController {
 
+    private ClinicalAnalysisLaboratory clinicalAnalysisLaboratory;
     private final Company company;
     private Client client;
     private TestTypeStore testTypeStore;
@@ -125,11 +126,15 @@ public class RegisterTestController {
     }
 
     public Test createTestFromCSV(String testCode, String nhsCode, String dateTimeRegister, String dateTimeResults, String dateTimeReport, String dateTimeValidation) {
-        return new Test(this.client, testCode, nhsCode, this.testTypeChosen, this.listOfChosenCategories, this.testParamList, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation);
+        return new Test(this.clinicalAnalysisLaboratory, this.client, testCode, nhsCode, this.testTypeChosen, this.listOfChosenCategories, this.testParamList, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation);
     }
 
     public void saveTest(Test test) {
         company.getTestStore().addTest(test);
+    }
+
+    public void setLabById(String laboratoryID) {
+        this.company.getLabById(laboratoryID);
     }
 
 }

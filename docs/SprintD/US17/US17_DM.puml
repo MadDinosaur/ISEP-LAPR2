@@ -53,11 +53,23 @@ class Parameter {
 -description
 }
 
+class TestParameter
+
+class TestParameterResult {
+-createdAt
+-value
+-metric
+}
+
 Test "*"--"1" Client : requested by >
 Test "*"-right-"1" "TestType" : is of >
 Parameter "*"--"1" Category : presented under >
 ClinicalAnalysisLaboratory "1"--"*" TestType : performs >
 TestType "1"--"1..*" Category : has >
+Test "1"--"*" TestParameter: has >
+TestParameter "1"--"1" TestParameterResult: contains >
+TestParameter "1"--"1" Parameter: associated to >
+
 
 
 

@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.LabCoordMenuUI">
    <children>
       <Label layoutX="181.0" layoutY="14.0" text="Laboratory Coordinator Menu">
          <font>
@@ -14,7 +19,7 @@
          </font>
       </Label>
       <Line endX="100.0" layoutX="300.0" layoutY="41.0" startX="-100.0" />
-      <Button fx:id="importCSVFileMenu" layoutX="221.0" layoutY="67.0" mnemonicParsing="false" text="Importing a CSV File Menu" />
+      <Button fx:id="importCSVFileMenu" layoutX="221.0" layoutY="67.0" mnemonicParsing="false" onAction="#importCSVFileMenu" text="Importing a CSV File Menu" />
       <Button fx:id="validateResults" layoutX="221.0" layoutY="108.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" text="Validate Results" />
       <Button fx:id="overviewTests" layoutX="221.0" layoutY="149.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" text="Overview of all tests" />
    </children>

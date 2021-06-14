@@ -1,9 +1,13 @@
 package app.ui.gui;
 
+import javafx.fxml.Initializable;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class LabCoordUI implements Runnable{
+public class LabCoordUI implements Initializable, Runnable{
     private App mainApp;
 
     public LabCoordUI(App app) {
@@ -18,5 +22,10 @@ public class LabCoordUI implements Runnable{
         } catch (Exception ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }

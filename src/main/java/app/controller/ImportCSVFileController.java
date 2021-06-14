@@ -1,12 +1,10 @@
 package app.controller;
 
-import app.domain.model.Exceptions.InvalidFileException;
+import app.domain.model.Exceptions.*;
 import app.domain.model.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class ImportCSVFileController {
@@ -25,9 +23,9 @@ public class ImportCSVFileController {
     private Test test;
     private File file;
 
-    private Scanner sc = new Scanner(file);
+    private Scanner sc;
 
-    public ImportCSVFileController() throws FileNotFoundException {
+    public ImportCSVFileController() {
 
     }
 
@@ -35,23 +33,23 @@ public class ImportCSVFileController {
         return this.file;
     }
 
-    public void setFile(File file) {
+    public void setFile(File file) throws FileNotFoundException {
         validateFile(file);
         this.file = file;
+        sc = new Scanner(file);
         this.titulos = sc.nextLine().split(";");
         this.valores = sc.nextLine().split(";");
+        System.out.println(valores.length);
     }
 
-    private boolean validateFile(File file) {
-        if (file.getName().contains(".csv")) {
-            return true;
-        } else {
+    private void validateFile(File file) {
+        if (!file.getName().contains(".csv")) {
             throw new InvalidFileException();
         }
     }
 
     public void readTestTypeCode() {
-        for (int i = 0; i < titulos.length; i++) {
+        for (int i = 0; i < this.titulos.length; i++) {
             if (titulos[i].equalsIgnoreCase("TestType")) {
                 String testTypeCode = valores[i];
                 registerTestController.setTestTypeByCode(testTypeCode);
@@ -117,9 +115,37 @@ public class ImportCSVFileController {
         }
     }
 
-    public void goOneLineForward() {
-        this.valores = sc.nextLine().split(";");
+    public boolean goOneLineForward() {
+        if (sc.hasNextLine()) {
+            this.valores = sc.nextLine().split(";");
+        } else {
+            return false;
+        }
+        return true;
     }
+
+    public void readNhsId() {
+        for (int i = 0; i < titulos.length; i++) {
+            if (titulos[i].equalsIgnoreCase("NHS_Number")) {
+                if (!valores[i].equalsIgnoreCase("NA")) {
+                    Long nhsID = Long.parseLong(valores[i]);
+                    registerTestController.setClientByNhsID(nhsID);
+                }
+            }
+        }
+    }
+
+    public void readLabId() {
+        for (int i = 0; i < titulos.length; i++) {
+            if (titulos[i].equalsIgnoreCase("Lab_ID")) {
+                if (!valores[i].equalsIgnoreCase("NA")) {
+                    String labID = valores[i];
+                    registerTestController.setLabById(labID);
+                }
+            }
+        }
+    }
+
 
     public void readTestCode() {
         for (int i = 0; i < titulos.length; i++) {

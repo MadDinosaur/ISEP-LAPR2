@@ -1,0 +1,19 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Test {
+-testCode
+-nhsCode
+-designation
+-dateRegister
+-timeRegister
+-dateAnalysis
+-timeAnalysis
+-dateReport
+-timeReport
+-dateValidation
+-timeValidation
+}
+
+@enduml

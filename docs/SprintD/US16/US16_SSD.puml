@@ -1,0 +1,11 @@
+@startuml
+autonumber
+
+actor "Laboratory Coordinator" as lc
+
+lc -> System: selects the overview of all tests menu
+System -> lc: requests the beginning and ending dates and the algorithm to be used
+lc -> System: types in the requested data
+System -> lc: shows the statistics and graphs
+
+@enduml

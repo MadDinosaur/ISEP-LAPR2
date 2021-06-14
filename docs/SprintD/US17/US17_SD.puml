@@ -31,9 +31,9 @@ deactivate icfu
 lc -> icfu: selects the CSV file
 activate icfu
 
-icfu -> icfc: file = setFile(fileDirectory)
-icfu -> icfc: validateFile(fileDirectory)
+icfu -> icfc: file = setFile(file)
 activate icfc
+icfu -> icfc: validateFile(file)
 deactivate icfc
 
 loop while there are lines to read
@@ -79,6 +79,7 @@ rtc -> tpl: addTestParameterResult(parameter, value)
 activate tpl
 deactivate tpl
 end loop
+icfu -> icfc: nhsID = readNhsId()
 icfc -> rtc: setClientByNHSId(nhsID)
 rtc -> Company: clientStore = getClientStore()
 activate Company
@@ -86,6 +87,12 @@ deactivate Company
 rtc -> cs: client = getClientByNhsId(nhsID)
 activate cs
 deactivate cs
+
+icfu -> icfc: labID = readLabId()
+icfc -> rtc: setLabById(laboratoryID)
+rtc -> Company: clinicalAnalysisLaboratory = getLabById(laboratoryID)
+activate Company
+deactivate Company
 
 icfu -> icfc: testCode = readTestCode()
 icfu -> icfc: nhsCode = readNhsCode()

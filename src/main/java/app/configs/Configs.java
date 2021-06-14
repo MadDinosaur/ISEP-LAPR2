@@ -29,22 +29,5 @@ public class Configs {
         }
     }
 
-    public SortingAlgorithm getPerformanceEvaluator() {
-        String className = props.getProperty("Company.SortingAlgorithm.Class");
-        Class<?> oClass = null;
-        try {
-            oClass = Class.forName(className);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        SortingAlgorithm sortingAlgorithm = null;
-        try {
-            sortingAlgorithm = (SortingAlgorithm) oClass.newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return sortingAlgorithm;
-    }
+
 }

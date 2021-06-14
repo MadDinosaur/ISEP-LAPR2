@@ -1,0 +1,27 @@
+@startuml
+
+autonumber
+
+actor "Laboratory Coordinator" as lc
+participant "OverviewTestsUI" as otUI
+participant "OverviewTestsController" as otC
+participant "Company" as company
+participant "testStore: TestStore" as ts
+participant "clientStore: ClientStore" as cs
+
+lc -> otUI: selects the overview of all tests menu
+otUI -[dotted]> lc: requests the beginning and ending dates and the algorithm to be used
+lc -> otUI: types in the requested data
+otUI -> otC: getNumberOfClientsInDateInterval(date)
+otC -> company: clientStore = getClientStore()
+otC -> cs: getNumberOfClientsInDateInterval(date)
+otUI -> otC: getTestsWaitingForResultsInDateInterval(date)
+otC -> company: testStore = getTestStore()
+otC -> ts: getTestsWaitingForResultsInDateInterval(date)
+otUI -> otC: getTestsValidatedInDateInterval(date)
+otC -> ts: getTestsValidatedInDateInterval(date)
+otUI -> otC: getDifferenceOfNewAndValidatedTests(date)
+otC -> ts: int[] values = getDifferenceOfNewAndValidatedTestsForEachHalfAnHour(date)
+otUI -[dotted]> lc: shows the statistics and graphs
+
+@enduml
