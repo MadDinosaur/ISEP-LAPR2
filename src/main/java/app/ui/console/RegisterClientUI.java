@@ -31,9 +31,12 @@ public class RegisterClientUI implements Runnable {
                 System.out.println(e);
             }
         }
+
+    }
+    private void registerClient(){
         System.out.println("Now introduce Client Card Number");
         System.out.println("*write \"exit\" at any moment to exit*");
-        verifier = false;
+        boolean verifier = false;
         while (!verifier) {
             try {
                 String clientCard = sc.nextLine();
