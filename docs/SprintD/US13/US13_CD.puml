@@ -3,9 +3,9 @@
 class TestConsultationUI
 
 class TestConsultationController{
-+getlClt()
-+getlCltTst()
-+displayTstRes(testCode)
++getClientList()
++getClientTestList()
++displayTestResults(testCode)
 
 
 }

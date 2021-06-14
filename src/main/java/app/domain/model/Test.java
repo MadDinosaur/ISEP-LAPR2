@@ -5,9 +5,7 @@ import app.domain.model.Exceptions.TestAlreadyValidatedException;
 import app.domain.store.SampleList;
 import app.domain.store.TestParamList;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +15,7 @@ public class Test {
     /**
      * Instance of current client
      */
+    private ClinicalAnalysisLaboratory clinicalAnalysisLaboratory;
     private Client client;
     private List<Category> listOfCategories;
     private final List<Parameter> listOfParameters = new ArrayList<>();
@@ -62,7 +61,8 @@ public class Test {
         dateTimeRegister = getDateTime();
     }
 
-    public Test(Client client, String testCode, String nhsCode, TestType testType, List<Category> categoryList, TestParamList testParamList, String dateTimeRegister, String dateTimeResults, String dateTimeReport, String dateTimeValidation) {
+    public Test(ClinicalAnalysisLaboratory clinicalAnalysisLaboratory, Client client, String testCode, String nhsCode, TestType testType, List<Category> categoryList, TestParamList testParamList, String dateTimeRegister, String dateTimeResults, String dateTimeReport, String dateTimeValidation) {
+        this.clinicalAnalysisLaboratory = clinicalAnalysisLaboratory;
         this.client = client;
         this.testCode = testCode;
         this.nhsCode = nhsCode;

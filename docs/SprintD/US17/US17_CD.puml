@@ -8,7 +8,6 @@ class ImportCSVFileController {
 -test
 
 +validateFile()
-+readLine()
 +createTest()
 +saveTest()
 }

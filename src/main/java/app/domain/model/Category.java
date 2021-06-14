@@ -3,7 +3,9 @@ package app.domain.model;
 import app.domain.shared.Constants;
 import org.apache.commons.lang3.StringUtils;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,7 +34,8 @@ public class Category {
     /**
      * Parameter cartegory's list of parameters
      */
-    private List<Parameter> parameterList;
+    Parameter IgGAN = new Parameter("IgGAN", "IgGAN", "descrição");
+    private List<Parameter> parameterList = new ArrayList<>(Collections.singleton(IgGAN));
 
     /**
      * Category class constructor with three parameters (Category's name, code and description)
@@ -49,7 +52,6 @@ public class Category {
         this.categoryCode = categoryCode;
         this.categoryDescription = categoryDescription;
         this.categoryNhsId = null;
-        this.parameterList = new ArrayList<>();
     }
 
     /**
@@ -216,7 +218,7 @@ public class Category {
                 return parameter;
             }
         }
-        return null;
+        throw new InvalidParameterException("There's no parameter with such code: " + parameterCode);
     }
 
 }

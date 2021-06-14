@@ -244,6 +244,6 @@ public class TestType {
                 return category;
             }
         }
-        return null;
+        throw new InvalidCategoryException("There's no category with such name: " + nameOfCategory);
     }
 }
