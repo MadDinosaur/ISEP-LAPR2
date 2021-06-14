@@ -2,14 +2,11 @@ package app.ui.console;
 
 import app.controller.App;
 import app.controller.RecordTestResultController;
-import app.controller.RegisterClientController;
 import app.domain.model.*;
 import app.domain.model.Exceptions.UnregisteredBarcodeException;
 import app.mappers.dto.ParamDTO;
 import app.domain.model.Client;
 import auth.domain.model.Email;
-
-import java.io.InterruptedIOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -67,7 +64,7 @@ public class RecordTestResultUI implements Runnable {
                     parameters.remove(selectedParameter - 1);
             }
         } catch (InterruptedException ex) {
-            return;
+            System.out.println(ex);
         }
     }
 
@@ -90,7 +87,8 @@ public class RecordTestResultUI implements Runnable {
 
     private List<ParamDTO> requestBarcode() throws InterruptedException {
         System.out.println("Please insert a sample barcode:");
-        if ((barcode = sc.nextLine()).equalsIgnoreCase("exit")) throw new InterruptedException();
+        barcode = sc.nextLine();
+        if ((barcode).equalsIgnoreCase("exit")) throw new InterruptedException();
 
         return recordTestResultController.getTestParameters(barcode);
     }
@@ -115,10 +113,12 @@ public class RecordTestResultUI implements Runnable {
 
     private void insertParameterAnalysis() throws InterruptedException {
         System.out.println("Insert result value:");
-        if ((result =  sc.nextLine()).equalsIgnoreCase("exit")) throw new InterruptedException();
+        result =  sc.nextLine();
+        if ((result).equalsIgnoreCase("exit")) throw new InterruptedException();
 
         System.out.println("Insert metric:");
-        if ((metric =  sc.nextLine()).equalsIgnoreCase("exit")) throw new InterruptedException();
+        metric =  sc.nextLine();
+        if ((metric).equalsIgnoreCase("exit")) throw new InterruptedException();
 
         paramCode = parameters.get(selectedParameter - 1).getCode();
 

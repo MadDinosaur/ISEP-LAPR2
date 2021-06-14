@@ -4,7 +4,6 @@ import app.controller.RegisterTestController;
 import app.domain.model.Category;
 import app.domain.model.Client;
 import app.domain.model.Parameter;
-import app.mappers.ParamMapper;
 import app.mappers.dto.ParamDTO;
 import app.mappers.dto.TestCategoryDto;
 import app.mappers.dto.TestTypeDto;
@@ -15,7 +14,7 @@ import java.util.Scanner;
 
 public class RegisterTestUI implements Runnable {
 
-    private RegisterTestController registerTestController = new RegisterTestController();
+    private final RegisterTestController registerTestController = new RegisterTestController();
     private Client client;
     private List<TestTypeDto> testTypeList = new ArrayList<TestTypeDto>();
     private TestTypeDto testTypeOfTest;
@@ -105,7 +104,7 @@ public class RegisterTestUI implements Runnable {
                 do {
                     String awnser = sc.next();
                     if (awnser.equalsIgnoreCase("yes")) {
-                        for (ParamDTO parameterDTO : parametersDtos) {
+                        for (ParamDTO ignored : parametersDtos) {
                          parametersDtos.remove(optionOfTestParameter-1);
                         }
                         repeatParameter = true;

@@ -10,11 +10,10 @@ import java.util.Scanner;
 public class CreateTestTypeUI implements Runnable {
 
     private static final Scanner sc = new Scanner(System.in);
-    private CreateTestTypeController cttc = new CreateTestTypeController();
-    private final String yesorno = "Please insert either yes or no!";
-    private final String codeInserted = "This is the code you inserted: \"%s\". Are you sure this is the code you want? (Yes/No)%n";
-    private final String descriptionInserted = "This is the description you inserted: \"%s\". Are you sure this is the description you want? (Yes/No)%n";
-    private final String categoryInserted = "Are you sure this is the category you want? (Yes/No)%n";
+    private final CreateTestTypeController cttc = new CreateTestTypeController();
+    private final static String yesorno = "Please insert either yes or no!";
+    private final static String descriptionInserted = "This is the description you inserted: \"%s\". Are you sure this is the description you want? (Yes/No)%n";
+    private final static String categoryInserted = "Are you sure this is the category you want? (Yes/No)%n";
 
     public void run() {
         createTestType();
@@ -36,6 +35,7 @@ public class CreateTestTypeUI implements Runnable {
                 boolean loop = false;
                 System.out.println("Insert the code for the test type: (make sure it is five alphanumeric characters)");
                 String code = sc.nextLine();
+                String codeInserted = "This is the code you inserted: \"%s\". Are you sure this is the code you want? (Yes/No)%n";
                 System.out.printf(codeInserted, code);
                 String confirmation = sc.nextLine();
                 while (!loop) {
