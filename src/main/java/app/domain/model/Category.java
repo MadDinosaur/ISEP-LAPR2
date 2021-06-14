@@ -34,8 +34,8 @@ public class Category {
     /**
      * Parameter cartegory's list of parameters
      */
-    Parameter IgGAN = new Parameter("IgGAN", "IgGAN", "descrição");
-    private List<Parameter> parameterList = new ArrayList<>(Collections.singleton(IgGAN));
+
+    private List<Parameter> parameterList = new ArrayList<>();
 
     /**
      * Category class constructor with three parameters (Category's name, code and description)

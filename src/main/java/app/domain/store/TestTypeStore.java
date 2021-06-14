@@ -23,6 +23,7 @@ public class TestTypeStore {
     Category categoryTest = new Category("Hemograma", "pistola", "WBC", "toma");
     Category covidCategory = new Category("Covid", "Covid", "descrição", "Covid");
     private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(categoryTest));
+    Parameter IgGAN = new Parameter("IgGAN", "IgGAN", "descrição");
     List<Category> covidCategoryList = new ArrayList<>(Collections.singleton(covidCategory));
     TestType Covid = new TestType("Covid", "descrição", collectionMethodTest, covidCategoryList);
     private ArrayList<TestType> testTypeList = new ArrayList<>(Collections.singleton(Covid));
@@ -32,6 +33,7 @@ public class TestTypeStore {
      * Empty constructor
      */
     public TestTypeStore() {
+        covidCategory.saveParameter(IgGAN);
     }
 
     /**

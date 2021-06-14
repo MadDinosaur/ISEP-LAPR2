@@ -8,7 +8,7 @@ participant "OverviewTestsController" as otC
 participant "Company" as company
 participant "testStore: TestStore" as ts
 participant "clientStore: ClientStore" as cs
-participant "BiggestContiguousSubSequenceAlgorithm"
+participant "algorithm: BiggestContiguousSubSequenceAlgorithm"
 
 lc -> otUI: selects the overview of all tests menu
 otUI -[dotted]> lc: requests the beginning and ending dates and the algorithm to be used
@@ -22,7 +22,10 @@ otC -> ts: getTestsWaitingForResultsInDateInterval(date)
 otUI -> otC: getTestsValidatedInDateInterval(date)
 otC -> ts: getTestsValidatedInDateInterval(date)
 otUI -> otC: getDifferenceOfNewAndValidatedTests(date)
-otC -> ts: int[] values = getDifferenceOfNewAndValidatedTestsForEachHalfAnHour(date)
+otC -> ts: int[] sequence = getDifferenceOfNewAndValidatedTestsForEachHalfAnHour(date)
+otUI -> otC: getBiggestContiguousSubSequence(sequence)
+otC -> company: algorithm = getBiggestContiguousSubSequenceAlgorithm()
+otC -> "algorithm: BiggestContiguousSubSequenceAlgorithm": getBiggestContiguousSubSequence(sequence)
 otUI -[dotted]> lc: shows the statistics and graphs
 
 @enduml

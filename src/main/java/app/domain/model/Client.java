@@ -20,6 +20,7 @@ public class Client {
     private String sex;
     private final String organizationRole = "cl";
     private final List<Test> clientTests = new ArrayList<>();
+    private String address;
 
     public Client(String name, long cardNumber, long nhsId, DateBirth dateBirth, long TIN, long phoneNumber, Email email, String sex) {
         setName(name);
@@ -30,6 +31,17 @@ public class Client {
         setPhoneNumber(phoneNumber);
         setEmail(email);
         setSex(sex);
+    }
+
+    public Client(String name, long cardNumber, long nhsId, DateBirth dateBirth, long tin, long phoneNumber, String address, Email email) {
+        this.name = name;
+        this.cardNumber = cardNumber;
+        this.nhsId = nhsId;
+        this.dateBirth = dateBirth;
+        this.TIN = tin;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.email = email;
     }
 
     public void setName(String name) {

@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.domain.model.Client;
 import app.domain.model.Exceptions.*;
 import app.domain.model.Test;
 
@@ -11,6 +12,7 @@ public class ImportCSVFileController {
 
 
     private RegisterTestController registerTestController = new RegisterTestController();
+    private RegisterClientController registerClientController = new RegisterClientController();
 
     private String[] titulos;
     private String[] valores;
@@ -20,14 +22,19 @@ public class ImportCSVFileController {
     private String dateTimeResults;
     private String dateTimeReport;
     private String dateTimeValidation;
+    private Long cardNumber;
+    public Long nhsID;
+    private Long tin;
+    private String birthday;
+    private Long phoneNumber;
+    private String name;
+    private String email;
+    private String address;
+    private Client client;
     private Test test;
     private File file;
 
     private Scanner sc;
-
-    public ImportCSVFileController() {
-
-    }
 
     public File getFile() {
         return this.file;
@@ -39,7 +46,6 @@ public class ImportCSVFileController {
         sc = new Scanner(file);
         this.titulos = sc.nextLine().split(";");
         this.valores = sc.nextLine().split(";");
-        System.out.println(valores.length);
     }
 
     private void validateFile(File file) {
@@ -48,20 +54,33 @@ public class ImportCSVFileController {
         }
     }
 
+    public boolean fileHasNextLine() {
+        if (sc.hasNextLine()) {
+            if (sc.nextLine().split(",").length == 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void readTestTypeCode() {
-        for (int i = 0; i < this.titulos.length; i++) {
+        for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("TestType")) {
                 String testTypeCode = valores[i];
+                System.out.println(testTypeCode);
                 registerTestController.setTestTypeByCode(testTypeCode);
             }
         }
     }
 
     public void readCategoryName() {
-        for (int i = 0; i < titulos.length; i++) {
+        for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("Category")) {
                 if (!valores[i].equalsIgnoreCase("NA")) {
                     String categoryName = valores[i];
+                    System.out.println(categoryName);
                     registerTestController.setCategoryByName(categoryName);
                 }
             }
@@ -69,7 +88,7 @@ public class ImportCSVFileController {
     }
 
     public void readParameterCodeAndResult() {
-        for (int i = 0; i < titulos.length; i++) {
+        for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("HB000")) {
                 if (!valores[i].equalsIgnoreCase("NA")) {
                     String parameterCode = titulos[i];
@@ -108,7 +127,9 @@ public class ImportCSVFileController {
             if (titulos[i].equalsIgnoreCase("IgGAN")) {
                 if (!valores[i].equalsIgnoreCase("NA")) {
                     String parameterCode = titulos[i];
+                    System.out.println(parameterCode);
                     String value = valores[i];
+                    System.out.println(value);
                     registerTestController.setTestParameterByParameterCode(parameterCode, value);
                 }
             }
@@ -116,7 +137,7 @@ public class ImportCSVFileController {
     }
 
     public boolean goOneLineForward() {
-        if (sc.hasNextLine()) {
+        if (fileHasNextLine()) {
             this.valores = sc.nextLine().split(";");
         } else {
             return false;
@@ -124,19 +145,9 @@ public class ImportCSVFileController {
         return true;
     }
 
-    public void readNhsId() {
-        for (int i = 0; i < titulos.length; i++) {
-            if (titulos[i].equalsIgnoreCase("NHS_Number")) {
-                if (!valores[i].equalsIgnoreCase("NA")) {
-                    Long nhsID = Long.parseLong(valores[i]);
-                    registerTestController.setClientByNhsID(nhsID);
-                }
-            }
-        }
-    }
 
     public void readLabId() {
-        for (int i = 0; i < titulos.length; i++) {
+        for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("Lab_ID")) {
                 if (!valores[i].equalsIgnoreCase("NA")) {
                     String labID = valores[i];
@@ -148,7 +159,7 @@ public class ImportCSVFileController {
 
 
     public void readTestCode() {
-        for (int i = 0; i < titulos.length; i++) {
+        for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("Test_Code")) {
                 this.testCode = valores[i];
             }
@@ -156,7 +167,7 @@ public class ImportCSVFileController {
     }
 
     public void readNhsCode() {
-        for (int i = 0; i < titulos.length; i++) {
+        for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("Nhs_Code")) {
                 this.nhsCode = valores[i];
             }
@@ -164,7 +175,7 @@ public class ImportCSVFileController {
     }
 
     public void readDateTimeRegister() {
-        for (int i = 0; i < titulos.length; i++) {
+        for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("Test_Reg_DateHour")) {
                 this.dateTimeRegister = valores[i];
             }
@@ -172,7 +183,7 @@ public class ImportCSVFileController {
     }
 
     public void readDateTimeResults() {
-        for (int i = 0; i < titulos.length; i++) {
+        for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("Test_Chemical_DateHour")) {
                 this.dateTimeResults = valores[i];
             }
@@ -180,7 +191,7 @@ public class ImportCSVFileController {
     }
 
     public void readDateTimeReport() {
-        for (int i = 0; i < titulos.length; i++) {
+        for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("Test_Doctor_DateHour")) {
                 this.dateTimeReport = valores[i];
             }
@@ -188,19 +199,105 @@ public class ImportCSVFileController {
     }
 
     public void readDateTimeValidation() {
-        for (int i = 0; i < titulos.length; i++) {
-            if (titulos[i].equalsIgnoreCase("Test_Validation_DateHour\n")) {
+        for (int i = 0; i < valores.length; i++) {
+            if (titulos[i].equalsIgnoreCase("Test_Validation_DateHour")) {
                 this.dateTimeValidation = valores[i];
             }
         }
     }
 
     public void createTest() {
-        this.test = registerTestController.createTestFromCSV(this.testCode, this.nhsCode, this.dateTimeRegister, this.dateTimeResults, this.dateTimeReport, this.dateTimeValidation);
+        System.out.println("Client was created sucessfully!");
+        this.test = registerTestController.createTestFromCSV(this.client, this.testCode, this.nhsCode, this.dateTimeRegister, this.dateTimeResults, this.dateTimeReport, this.dateTimeValidation);
     }
 
     public void saveTest() {
         registerTestController.saveTest(this.test);
+        System.out.println("Test was imported");
         this.registerTestController = new RegisterTestController();
+    }
+
+
+    public void readNhsId() {
+        for (int i = 0; i < valores.length; i++) {
+            if (titulos[i].equalsIgnoreCase("NHS_Number")) {
+                if (!valores[i].equalsIgnoreCase("NA")) {
+                    this.nhsID = Long.parseLong(valores[i]);
+                }
+            }
+        }
+    }
+
+    public void readCardNumber() {
+        for (int i = 0; i < valores.length; i++) {
+            if (titulos[i].equalsIgnoreCase("CitizenCard_Number")) {
+                this.cardNumber = Long.parseLong(valores[i]);
+            }
+        }
+    }
+
+    public void readTin() {
+        for (int i = 0; i < valores.length; i++) {
+            if (titulos[i].equalsIgnoreCase("TIN")) {
+                this.tin = Long.parseLong(valores[i]);
+            }
+        }
+    }
+
+    public void readbirthday() {
+        for (int i = 0; i < valores.length; i++) {
+            if (titulos[i].equalsIgnoreCase("BirthDay")) {
+                this.birthday = valores[i];
+            }
+        }
+    }
+
+    public void readPhoneNumber() {
+        for (int i = 0; i < valores.length; i++) {
+            if (titulos[i].equalsIgnoreCase("PhoneNumber")) {
+                this.phoneNumber = Long.parseLong(valores[i]);
+            }
+        }
+    }
+
+    public void readName() {
+        for (int i = 0; i < valores.length; i++) {
+            if (titulos[i].equalsIgnoreCase("Name")) {
+                this.name = valores[i];
+            }
+        }
+    }
+
+    public void readEmail() {
+        for (int i = 0; i < valores.length; i++) {
+            if (titulos[i].equalsIgnoreCase("Email")) {
+                this.email = valores[i];
+            }
+        }
+    }
+
+    public void readAddress() {
+        for (int i = 0; i < valores.length; i++) {
+            if (titulos[i].equalsIgnoreCase("Address")) {
+                this.address = valores[i];
+            }
+        }
+    }
+
+    public void createClient() {
+        System.out.println(name);
+        System.out.println(cardNumber);
+        System.out.println(nhsID);
+        System.out.println(birthday);
+        System.out.println(tin);
+        System.out.println(phoneNumber);
+        System.out.println(email);
+        System.out.println(address);
+        this.client = registerClientController.createClient(name, cardNumber, nhsID, birthday, tin, phoneNumber, address, email);
+    }
+
+    public void saveClient() {
+        registerClientController.saveClientFromCSV(client);
+        this.registerClientController = new RegisterClientController();
     }
 }

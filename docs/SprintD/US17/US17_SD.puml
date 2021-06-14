@@ -7,6 +7,7 @@ actor "Laboratory Coordinator" as lc
 participant ImportCSVFileUI as icfu
 participant ImportCSVFileController as icfc
 participant RegisterTestController as rtc
+participant RegisterClientController as rcc
 participant "categories: List<Category>" as categories
 participant "testParamList: TestParamList" as tpl
 participant Company
@@ -16,7 +17,7 @@ participant "testType: TestType" as tt
 participant "test: Test" as Test
 participant "result: TestParameterResult"
 participant "clientStore: ClientStore" as cs
-participant "client: Client"
+participant "client: Client" as client
 activate lc
 
 
@@ -80,13 +81,33 @@ activate tpl
 deactivate tpl
 end loop
 icfu -> icfc: nhsID = readNhsId()
-icfc -> rtc: setClientByNHSId(nhsID)
-rtc -> Company: clientStore = getClientStore()
+icfu -> icfc: cardNumber = readCardNumber()
+icfu -> icfc: tin = readTin()
+icfu -> icfc: birthday = readBirthday()
+icfu -> icfc: phoneNumber = readPhoneNumber()
+icfu -> icfc: name = readName()
+icfu -> icfc: email = readEmail()
+icfu -> icfc: address = readAddress()
+icfu -> icfc: createClient()
+
+
+icfc -> rcc: client = createClient(nhsID, cardNumber, tin, birthday, phoneNumber, name, email, address)
+activate rcc
+create client
+rcc -> client: create(nhsID, cardNumber, tin, birthday, phoneNumber, name, email, address)
+client -> client: validate()
+
+
+icfu -> icfc: saveClient()
+icfc -> rcc: saveClientFromCSV(client)
+rcc -> Company: clientStore = getClientStore()
 activate Company
 deactivate Company
-rtc -> cs: client = getClientByNhsId(nhsID)
+rcc -> cs: validate(client)
 activate cs
+rcc -> cs: saveClient(client)
 deactivate cs
+deactivate rcc
 
 icfu -> icfc: labID = readLabId()
 icfc -> rtc: setLabById(laboratoryID)
@@ -105,6 +126,9 @@ icfc -> rtc: test = createTestFromCSV(testCode, nhsCode, dateTimeRegister, dateT
 
 create Test
 rtc -> Test: create(client, testCode, nhsCode, testType, categories, testParamList, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation)
+
+
+
 Test -> Test: validate()
 
 icfu -> icfc: saveTest()
