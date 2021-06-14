@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class MultiLinearRegressionTest extends TestCase {
 
     public void testInvert() {
-        double[][] a = new double[3][3];
+     /*   double[][] a = new double[3][3];
         double[] aa = new double[3];
         double[] ab = new double[3];
         double[] ac = new double[3];
@@ -22,8 +22,7 @@ public class MultiLinearRegressionTest extends TestCase {
         a[2][2] = 1293;
         MultiLinearRegression multiLinearRegression = new MultiLinearRegression(aa,ab,ac);
         double[][] b;
-        b = multiLinearRegression.invert(a);
-        System.out.println(Arrays.deepToString(b));
+        b = multiLinearRegression.invert(a);*/
         //por acabar
     }
 }
