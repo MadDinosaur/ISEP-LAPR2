@@ -41,6 +41,17 @@ class LinearRegression {
 +toString()
 }
 
+class MultiLinearRegression {
+-x
+-xTranspose
+-xTransposeX
+-xTransposeXInversed
+-xTransposeY
++MultiLinearRegression(x1, x2, y)
++transposeMatrix(x)
++matrixMultiplication(firstMatrix, secondMatrix)
+}
+
 class WriteReport
 
 interface ExternalModuleNHSReport
@@ -50,7 +61,7 @@ class ExternalModuleNHSReportAdapter
 class Report2NHS
 
 Controller -> DailyReport
-Controller --> LinearRegression
+
 
 Runnable <|.. TimerTask
 TimerTask <|-- DailyReport

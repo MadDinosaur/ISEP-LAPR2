@@ -3,8 +3,12 @@
 autonumber
 
 actor ":System\n Clock:" as Clock
+participant Controller
 
-
+Clock -> Controller : trigger at 6:00 am
+activate Controller
 ref over Controller : SD_Timer
+Controller -> A
+deactivate Controller
 
 @enduml
