@@ -5,7 +5,6 @@ import app.domain.model.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.security.InvalidParameterException;
 import java.util.Scanner;
 
 public class ImportCSVFileController {
@@ -63,11 +62,7 @@ public class ImportCSVFileController {
             if (titulos[i].equalsIgnoreCase("Category")) {
                 if (!valores[i].equalsIgnoreCase("NA")) {
                     String categoryName = valores[i];
-                    try {
-                        registerTestController.setCategoryByName(categoryName);
-                    } catch (InvalidCategoryException e) {
-                        e.printStackTrace();
-                    }
+                    registerTestController.setCategoryByName(categoryName);
                 }
             }
         }
@@ -79,66 +74,42 @@ public class ImportCSVFileController {
                 if (!valores[i].equalsIgnoreCase("NA")) {
                     String parameterCode = titulos[i];
                     String value = valores[i];
-                    try {
-                        registerTestController.setTestParameterByParameterCode(parameterCode, value);
-                    } catch (InvalidParameterException e) {
-                        e.printStackTrace();
-                    }
+                    registerTestController.setTestParameterByParameterCode(parameterCode, value);
                 }
             }
             if (titulos[i].equalsIgnoreCase("WBC00")) {
                 if (!valores[i].equalsIgnoreCase("NA")) {
                     String parameterCode = titulos[i];
                     String value = valores[i];
-                    try {
-                        registerTestController.setTestParameterByParameterCode(parameterCode, value);
-                    } catch (InvalidParameterException e) {
-                        e.printStackTrace();
-                    }
+                    registerTestController.setTestParameterByParameterCode(parameterCode, value);
                 }
             }
             if (titulos[i].equalsIgnoreCase("PLT00")) {
                 if (!valores[i].equalsIgnoreCase("NA")) {
                     String parameterCode = titulos[i];
                     String value = valores[i];
-                    try {
-                        registerTestController.setTestParameterByParameterCode(parameterCode, value);
-                    } catch (InvalidParameterException e) {
-                        e.printStackTrace();
-                    }
+                    registerTestController.setTestParameterByParameterCode(parameterCode, value);
                 }
             }
             if (titulos[i].equalsIgnoreCase("RBC00")) {
                 if (!valores[i].equalsIgnoreCase("NA")) {
                     String parameterCode = titulos[i];
                     String value = valores[i];
-                    try {
-                        registerTestController.setTestParameterByParameterCode(parameterCode, value);
-                    } catch (InvalidParameterException e) {
-                        e.printStackTrace();
-                    }
+                    registerTestController.setTestParameterByParameterCode(parameterCode, value);
                 }
             }
             if (titulos[i].equalsIgnoreCase("HDL00")) {
                 if (!valores[i].equalsIgnoreCase("NA")) {
                     String parameterCode = titulos[i];
                     String value = valores[i];
-                    try {
-                        registerTestController.setTestParameterByParameterCode(parameterCode, value);
-                    } catch (InvalidParameterException e) {
-                        e.printStackTrace();
-                    }
+                    registerTestController.setTestParameterByParameterCode(parameterCode, value);
                 }
             }
             if (titulos[i].equalsIgnoreCase("IgGAN")) {
                 if (!valores[i].equalsIgnoreCase("NA")) {
                     String parameterCode = titulos[i];
                     String value = valores[i];
-                    try {
-                        registerTestController.setTestParameterByParameterCode(parameterCode, value);
-                    } catch (InvalidParameterException e) {
-                        e.printStackTrace();
-                    }
+                    registerTestController.setTestParameterByParameterCode(parameterCode, value);
                 }
             }
         }
@@ -158,11 +129,7 @@ public class ImportCSVFileController {
             if (titulos[i].equalsIgnoreCase("NHS_Number")) {
                 if (!valores[i].equalsIgnoreCase("NA")) {
                     Long nhsID = Long.parseLong(valores[i]);
-                    try {
-                        registerTestController.setClientByNhsID(nhsID);
-                    } catch (InvalidClientException e) {
-                        e.printStackTrace();
-                    }
+                    registerTestController.setClientByNhsID(nhsID);
                 }
             }
         }
@@ -173,11 +140,7 @@ public class ImportCSVFileController {
             if (titulos[i].equalsIgnoreCase("Lab_ID")) {
                 if (!valores[i].equalsIgnoreCase("NA")) {
                     String labID = valores[i];
-                    try {
-                        registerTestController.setLabById(labID);
-                    } catch (InvalidLaboratoryIDException e) {
-                        e.printStackTrace();
-                    }
+                    registerTestController.setLabById(labID);
                 }
             }
         }
