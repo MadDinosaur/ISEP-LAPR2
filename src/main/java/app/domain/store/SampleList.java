@@ -45,4 +45,5 @@ public class SampleList {
      * @return size
      */
     public int size() { return sampleList.size(); }
+
 }

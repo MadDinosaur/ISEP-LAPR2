@@ -1,14 +1,13 @@
 package app.domain.model;
 
 import app.domain.model.Exceptions.InvalidTextReportException;
-import app.domain.store.ClientStore;
-import app.domain.store.EmployeeStore;
-import app.domain.store.TestStore;
+import app.domain.store.*;
 import auth.domain.model.Email;
 import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -21,6 +20,10 @@ public class CompanyTest {
     private Client client = new Client("test",(long)  8765432187654322.0,1234512345,new DateBirth(24,12,2002),1234512347,(long)12345123456.0,new Email("teste@gmail.com"),"male");
     private String pss = "1234567890";
 
+    private SampleList sampleList = new SampleList();
+    private Sample sample1 = new Sample("123456789012");
+    private Sample sample2 = new Sample("111111111111");
+    private Sample sample3 = new Sample("123123123123");
 
 
     @Test
@@ -52,7 +55,21 @@ public class CompanyTest {
     }
 
 
+    @Test
+    public void testGetDesignation() {
+        String designation = company.getDesignation();
+        String actualDesignation = "test Company";
+        Assert.assertEquals(designation, actualDesignation);
+    }
 
+    @Test
+    public void testGetTestTypeStore() {
+        CollectionMethod collectionMethodTest = new CollectionMethod("test Colection");
+        Category categoryTest = new Category("Hemograma", "pistola", "WBC", "toma");
+        List<Category> categoryList = new ArrayList<Category>(Collections.singleton(categoryTest));
+        TestType t1 = new TestType("name", "code", collectionMethodTest, categoryList);
+        TestTypeStore testStore = company.getTestTypeStore();
+    }
 
 
 }

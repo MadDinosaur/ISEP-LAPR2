@@ -33,7 +33,6 @@ public class Company {
     private final Random random = new Random();
     private SampleList sampleList;
     private int testNumber;
-
     private final List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
 
     public Company(String designation) {
@@ -60,7 +59,8 @@ public class Company {
         clientStore.saveClient(new Client("Pedro",(long)  8765432187654323.0,1234512346,new DateBirth(11,9,2001),1234512348,(long)12345123457.0,new Email("teste3@gmail.com"),"male"));
         CollectionMethod collectionMethodTest = new CollectionMethod("test Colection");
         Category categoryTest = new Category("Hemogram", "HEM00", "Hemogram Description", "toma");
-        Parameter parameter = new Parameter("par2345","HB000","test f234");
+        String hb000 = "HB000";
+        Parameter parameter = new Parameter("par2345", hb000,"test f234");
         Parameter parameter2 = new Parameter("par2346","HB001","test f235");
         categoryTest.saveParameter(parameter);
         categoryTest.saveParameter(parameter2);
@@ -70,8 +70,8 @@ public class Company {
         Test testTestHardCoded = new Test(clientStore.getClientByCardNumber((long)8765432187654321.0),testTypeHardCoded,testNumberGenerator(),nhsCodeGenerator());
         Test testTestHardCodedRegistered = new Test(clientStore.getClientByCardNumber((long)8765432187654322.0),testTypeHardCoded,testNumberGenerator(),nhsCodeGenerator());
         Test testTestHardCodedDiagnosed = new Test(clientStore.getClientByCardNumber((long)8765432187654323.0),testTypeHardCoded,testNumberGenerator(),nhsCodeGenerator());
-        testTestHardCoded.saveTestParameterResult(parameter, testTestHardCoded.createTestParameterResult("HB000", "135", "mg"));
-        testTestHardCodedDiagnosed.saveTestParameterResult(parameter, testTestHardCodedDiagnosed.createTestParameterResult("HB000", "135", "mg"));
+        testTestHardCoded.saveTestParameterResult(parameter, testTestHardCoded.createTestParameterResult(hb000, "135", "mg"));
+        testTestHardCodedDiagnosed.saveTestParameterResult(parameter, testTestHardCodedDiagnosed.createTestParameterResult(hb000, "135", "mg"));
         testTestHardCoded.setStateOfTestToSamplesAnalyzed();
         testTestHardCodedDiagnosed.setStateOfTestToSamplesAnalyzed();
         testTestHardCodedDiagnosed.addReport(new Report("diagnosis", "Report is complete"));
