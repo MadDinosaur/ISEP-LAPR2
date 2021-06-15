@@ -3,15 +3,23 @@ package app.domain.model;
 import app.domain.model.Exceptions.InvalidTestResultException;
 
 public class TestParameter {
-    private Parameter param;
+    private final Parameter param;
     private TestParameterResult result;
 
     public TestParameter(Parameter param) {
-        this.param = param;
+        if (param != null) {
+            this.param = param;
+        }else throw new IllegalArgumentException("Parameter is null.");
     }
 
     public TestParameterResult createTestParameterResult(String value, String metric, ReferenceValue refValue) {
-       return new TestParameterResult(value, metric, refValue);
+       if(value != null) {
+           if(metric != null) {
+               if(refValue != null){
+                return new TestParameterResult(value, metric, refValue);
+               }else throw new IllegalArgumentException("Reference value is null.");
+           }else throw new IllegalArgumentException("Metric is null");
+       }else throw new IllegalArgumentException("Value is null.");
     }
 
     public boolean addTestParameterResult(TestParameterResult result) {

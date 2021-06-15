@@ -102,7 +102,7 @@ public class Category {
     private void checkCategoryCodeRules(String categoryCode) {
         if (StringUtils.isBlank(categoryCode))
             throw new IllegalArgumentException("Code cannot be blank.");
-        if ((categoryCode.length() < 4) || (categoryCode.length() > 8))
+        if ((categoryCode.length() < Constants.CATEGORY_CODE_MIN_CHARS) || (categoryCode.length() > Constants.CATEGORY_CODE_MAX_CHARS))
             throw new IllegalArgumentException("Code must have 5 characters.");
     }
 
