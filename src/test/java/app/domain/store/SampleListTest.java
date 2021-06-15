@@ -35,4 +35,13 @@ public class SampleListTest {
         int actualSize = 3;
         Assert.assertEquals(size, actualSize);
     }
+
+    @Test
+    public void existsSampleTest() {
+        sampleList.saveSample(sample1);
+        sampleList.saveSample(sample2);
+        sampleList.saveSample(sample3);
+        boolean result = sampleList.existsSample("123456789012");
+        Assert.assertTrue(result);
+    }
 }
