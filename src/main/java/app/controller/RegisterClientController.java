@@ -7,12 +7,8 @@ import app.domain.model.Exceptions.*;
 import app.domain.shared.Constants;
 import app.domain.store.ClientStore;
 import auth.domain.model.Email;
-import auth.domain.model.UserRole;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Optional;
 
 public class RegisterClientController {
     private  String name; //-
@@ -146,9 +142,9 @@ public class RegisterClientController {
         return new Client(name, cardNumber, nhsId, new DateBirth(ano, mes, dia), TIN, phoneNumber, address, new Email(email));
     }
 
-    public void saveClientFromCSV(Client client) {
+    public boolean saveClientFromCSV(Client client) {
         ClientStore clientStore = company.getClientStore();
-        clientStore.saveClient(client);
+        return (clientStore.saveClient(client));
     }
 }
 

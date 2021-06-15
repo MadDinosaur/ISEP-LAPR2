@@ -68,7 +68,6 @@ public class RegisterTestController {
     }
 
     public void setCategoryByName(String nameOfCategory) {
-        System.out.println(testTypeChosen.getCode());
         categoryOfTestType = testTypeChosen.getCategoryFromTestTypeByName(nameOfCategory);
         listOfChosenCategories.add(categoryOfTestType);
     }
