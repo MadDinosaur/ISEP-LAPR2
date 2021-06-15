@@ -10,7 +10,7 @@ class "BenchmarkAlgorithmAdapter" {
 +int[] getBiggestContiguousSubSequence(int[] sequence)
 }
 
-class "Brute-ForceAlgorithmAdapter" {
+class "BruteForceAlgorithmAdapter" {
 +int[] getBiggestContiguousSubSequence(int[] sequence)
 }
 
@@ -18,10 +18,12 @@ class "BenchmarkAlgorithm" {
 +int[] Max(int[] seq)
 }
 
-class "Brute-ForceAlgorithm"
+class "BruteForceAlgorithm" {
++ArrayList<Integer> biggestSumSubSequence(int[] sequence)
+}
 
 "BenchmarkAlgorithmAdapter" ..up|> BiggestContiguousSumAlgorithm
-"Brute-ForceAlgorithmAdapter" ..up|> BiggestContiguousSumAlgorithm
+"BruteForceAlgorithmAdapter" ..up|> BiggestContiguousSumAlgorithm
 "BenchmarkAlgorithmAdapter" --down> "BenchmarkAlgorithm"
-"Brute-ForceAlgorithmAdapter" --down> "Brute-ForceAlgorithm"
+"BruteForceAlgorithmAdapter" --down> "BruteForceAlgorithm"
 @enduml
