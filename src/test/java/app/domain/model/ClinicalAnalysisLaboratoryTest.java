@@ -114,5 +114,50 @@ public class ClinicalAnalysisLaboratoryTest {
         boolean validation = newLab.validateLaboratoryID(labID);
         Assert.assertTrue(validation);
     }
+
+    @Test
+    public void testGetName() {
+        String name = "name";
+        ClinicalAnalysisLaboratory newLab = new ClinicalAnalysisLaboratory();
+        newLab.setName(name);
+        String getName = newLab.getName();
+        Assert.assertEquals(name, getName);
+    }
+
+    @Test
+    public void testGetAddress() {
+        String address = "address";
+        ClinicalAnalysisLaboratory newLab = new ClinicalAnalysisLaboratory();
+        newLab.setAddress(address);
+        String getAddress = newLab.getAddress();
+        Assert.assertEquals(address, getAddress);
+    }
+
+    @Test
+    public void testGetPhoneNumber() {
+        long phonenumber = 12312312312L;
+        ClinicalAnalysisLaboratory newLab = new ClinicalAnalysisLaboratory();
+        newLab.setPhoneNumber(phonenumber);
+        long getPhoneNumber = newLab.getPhonenumber();
+        Assert.assertEquals(phonenumber, getPhoneNumber);
+    }
+
+    @Test
+    public void testGetTIN() {
+        long tin = 1231231231;
+        ClinicalAnalysisLaboratory newLab = new ClinicalAnalysisLaboratory();
+        newLab.setTIN(tin);
+        long getTIN = newLab.getTIN();
+        Assert.assertEquals(tin, getTIN);
+    }
+
+    @Test
+    public void testGetLabID() {
+        String labID = "lab50";
+        ClinicalAnalysisLaboratory newLab = new ClinicalAnalysisLaboratory();
+        newLab.setLaboratoryID(labID);
+        String getLabID = newLab.getLaboratoryID();
+        Assert.assertEquals(labID, getLabID);
+    }
 }
 
