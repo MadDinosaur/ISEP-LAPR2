@@ -14,7 +14,7 @@ public class Sample {
 
     /**
      * sets barcode text
-     * @param barcodeText
+     * @param barcodeText sample barcode
      */
     public Sample (String barcodeText) {
         this.barcodeText = barcodeText;
@@ -39,11 +39,6 @@ public class Sample {
      * @return barcodeText
      */
     public String getBarcode() {
-        return barcodeText;
-    }
-
-    @Override
-    public String toString() {
         return barcodeText;
     }
 }
