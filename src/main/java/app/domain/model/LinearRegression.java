@@ -1,5 +1,7 @@
 package app.domain.model;
 
+import org.apache.commons.math3.distribution.FDistribution;
+
 /**
  *  The code LinearRegression class performs a simple linear regression
  *  on an set of n data points (y_i, x_i).
@@ -22,6 +24,7 @@ public class LinearRegression {
     double tss;                                         //sqt
     double svar;                                        //mqr
     double statisticF;
+    private double critical;
 
 
     /**
@@ -72,6 +75,10 @@ public class LinearRegression {
         svar1 = svar / xxbar;
         svar0 = svar/lengthOfArray + xbar*xbar*svar1;
         statisticF = ssr /svar;
+
+        FDistribution fDistribution = new FDistribution(1, y.length - 2);
+
+        critical = fDistribution.inverseCumulativeProbability(1-0.05);
     }
 
     /**
@@ -142,6 +149,9 @@ public class LinearRegression {
     }
     public double getStatisticF() {
         return statisticF;
+    }
+    public double getCritical() {
+        return critical;
     }
 
     /**
