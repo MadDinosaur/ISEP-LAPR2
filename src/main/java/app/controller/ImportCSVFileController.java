@@ -13,6 +13,7 @@ public class ImportCSVFileController {
 
     private RegisterTestController registerTestController = new RegisterTestController();
     private RegisterClientController registerClientController = new RegisterClientController();
+    private RegisterNewLabController registerNewLabController = new RegisterNewLabController();
 
     private String[] titulos;
     private String[] valores;
@@ -55,14 +56,7 @@ public class ImportCSVFileController {
     }
 
     public boolean fileHasNextLine() {
-        if (sc.hasNextLine()) {
-            if (sc.nextLine().split(",").length == 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }
-        return false;
+       return sc.hasNextLine();
     }
 
     public void readTestTypeCode() {
@@ -151,7 +145,7 @@ public class ImportCSVFileController {
             if (titulos[i].equalsIgnoreCase("Lab_ID")) {
                 if (!valores[i].equalsIgnoreCase("NA")) {
                     String labID = valores[i];
-                    registerTestController.setLabById(labID);
+                    //LabID is not used
                 }
             }
         }
@@ -212,8 +206,7 @@ public class ImportCSVFileController {
     }
 
     public void saveTest() {
-        registerTestController.saveTest(this.test);
-        System.out.println("Test was imported");
+        if(registerTestController.saveTest(this.test)) System.out.println("Test was imported");
         this.registerTestController = new RegisterTestController();
     }
 
@@ -263,6 +256,7 @@ public class ImportCSVFileController {
     public void readName() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("Name")) {
+                if (valores[i].equals("#REF!")) throw new InvalidNameException();
                 this.name = valores[i];
             }
         }
@@ -270,7 +264,8 @@ public class ImportCSVFileController {
 
     public void readEmail() {
         for (int i = 0; i < valores.length; i++) {
-            if (titulos[i].equalsIgnoreCase("Email")) {
+            if (titulos[i].contains("mail")) {
+                if (valores[i].equals("#REF!")) throw new InvalidEmailException();
                 this.email = valores[i];
             }
         }
