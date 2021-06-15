@@ -1,5 +1,7 @@
 package app.domain.model;
 
+import org.apache.commons.math3.distribution.FDistribution;
+
 /**
  *  The code LinearRegression class performs a simple linear regression
  *  on an set of n data points (y_i, x_i).
@@ -17,6 +19,13 @@ public class LinearRegression {
     private final double intercept, slope;
     private final double r2;
     private final double svar0, svar1;
+    double ssr = 0.0;      // regression sum of squares //sqr
+    double rss = 0.0;      // residual sum of squares   //sqe
+    double tss;                                         //sqt
+    double svar;                                        //mqr
+    double statisticF;
+    private double critical;
+
 
     /**
      * Performs a linear regression on the data points (y[i], x[i]).
@@ -52,19 +61,24 @@ public class LinearRegression {
         intercept = ybar - slope * xbar;
 
         // more statistical analysis
-        double rss = 0.0;      // residual sum of squares
-        double ssr = 0.0;      // regression sum of squares
+
         for (int i = 0; i < lengthOfArray; i++) {
             double fit = slope*x[i] + intercept;
             rss += (fit - y[i]) * (fit - y[i]);
             ssr += (fit - ybar) * (fit - ybar);
         }
+        tss = rss + ssr;
 
         int degreesOfFreedom = lengthOfArray-2;
         r2    = ssr / yybar;
-        double svar  = rss / degreesOfFreedom;
+        svar = rss / degreesOfFreedom;
         svar1 = svar / xxbar;
         svar0 = svar/lengthOfArray + xbar*xbar*svar1;
+        statisticF = ssr /svar;
+
+        FDistribution fDistribution = new FDistribution(1, y.length - 2);
+
+        critical = fDistribution.inverseCumulativeProbability(1-0.05);
     }
 
     /**
@@ -123,6 +137,21 @@ public class LinearRegression {
      */
     public double predict(double x) {
         return slope*x + intercept;
+    }
+    public double getRss() {
+        return rss;
+    }
+    public double getSsr() {
+        return ssr;
+    }
+    public double getSvar() {
+        return svar;
+    }
+    public double getStatisticF() {
+        return statisticF;
+    }
+    public double getCritical() {
+        return critical;
     }
 
     /**
