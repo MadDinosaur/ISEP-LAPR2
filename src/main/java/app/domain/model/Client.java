@@ -5,6 +5,7 @@ import auth.domain.model.Email;
 import auth.domain.model.User;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -153,5 +154,13 @@ public class Client {
         setPhoneNumber(Long.parseLong(clientData.getPhoneNumber()));
         setEmail(new Email(clientData.getEmail()));
         setSex(clientData.getSex());
+    }
+
+    public int compareToTin(Client o){
+        return (int) (this.getTIN() - o.getTIN());
+    }
+
+    public int compareToName(Client o){
+        return this.getName().compareTo(o.getName());
     }
 }
