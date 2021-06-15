@@ -2,6 +2,7 @@ package app.domain.model;
 
 import app.domain.model.ClinicalAnalysisLaboratory;
 import app.domain.model.Exceptions.*;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class ClinicalAnalysisLaboratoryTest {
@@ -20,7 +21,7 @@ public class ClinicalAnalysisLaboratoryTest {
     }
 
     @Test(expected = InvalidAddressException.class)
-    public void testEmptyAdress() {
+    public void testEmptyAddress() {
         String address = "";
         ClinicalAnalysisLaboratory newLab = new ClinicalAnalysisLaboratory();
         newLab.setAddress(address);
@@ -72,6 +73,46 @@ public class ClinicalAnalysisLaboratoryTest {
         String labID = "a1b2c3";
         ClinicalAnalysisLaboratory newLab = new ClinicalAnalysisLaboratory();
         newLab.setLaboratoryID(labID);
+    }
+
+    @Test
+    public void testNameValidation() {
+        String name = "name";
+        ClinicalAnalysisLaboratory newLab = new ClinicalAnalysisLaboratory();
+        boolean validation = newLab.validateName(name);
+        Assert.assertFalse(validation);
+    }
+
+    @Test
+    public void testAddressValidation() {
+        String address = "address";
+        ClinicalAnalysisLaboratory newLab = new ClinicalAnalysisLaboratory();
+        boolean validation = newLab.validateAddress(address);
+        Assert.assertFalse(validation);
+    }
+
+    @Test
+    public void testPhoneNumberValidation() {
+        long phoneNumber = 12312312312L;
+        ClinicalAnalysisLaboratory newLab = new ClinicalAnalysisLaboratory();
+        boolean validation = newLab.validatePhoneNumber(phoneNumber);
+        Assert.assertTrue(validation);
+    }
+
+    @Test
+    public void testTINValidation() {
+        long tin = 1231231231;
+        ClinicalAnalysisLaboratory newLab = new ClinicalAnalysisLaboratory();
+        boolean validation = newLab.validateTIN(tin);
+        Assert.assertTrue(validation);
+    }
+
+    @Test
+    public void testLabIDValidation() {
+        String labID = "lab55";
+        ClinicalAnalysisLaboratory newLab = new ClinicalAnalysisLaboratory();
+        boolean validation = newLab.validateLaboratoryID(labID);
+        Assert.assertTrue(validation);
     }
 }
 
