@@ -9,10 +9,9 @@ public class MultiLinearRegression {
     private double[][] xTransposeX;
     private double[][] xTransposeXInversed;
     private double[][] xTransposeY;
-    private double[][] vector;
-    private double x1, x2, intercept;
-    private double sumYAverage;
     private double yTransposeY;
+    private final double[][] vector;
+    private final double x1, x2, intercept;
     private final double sqR, sqT, sqE;
     private final double sqRAverage, sqEAverage;
     private final double fTest;
@@ -57,12 +56,12 @@ public class MultiLinearRegression {
             sumY += yNumber;
         }
         sumY = Math.pow(sumY,2);
-        sumYAverage = sumY/y.length;
+        double sumYAverage = sumY / y.length;
         double total = 0;
         for (int i = 0;i<3;i++){
             total += vector[i][0] * xTransposeY[i][0];
         }
-        sqT= yTransposeY -sumYAverage;
+        sqT= yTransposeY - sumYAverage;
         sqE = yTransposeY - total;
         sqR = sqT - sqE;
        /* System.out.println(sqR);
