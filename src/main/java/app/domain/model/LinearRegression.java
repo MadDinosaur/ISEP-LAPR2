@@ -17,6 +17,12 @@ public class LinearRegression {
     private final double intercept, slope;
     private final double r2;
     private final double svar0, svar1;
+    double ssr = 0.0;      // regression sum of squares //sqr
+    double rss = 0.0;      // residual sum of squares   //sqe
+    double tss;                                         //sqt
+    double svar;                                        //mqr
+    double statisticF;
+
 
     /**
      * Performs a linear regression on the data points (y[i], x[i]).
@@ -52,19 +58,20 @@ public class LinearRegression {
         intercept = ybar - slope * xbar;
 
         // more statistical analysis
-        double rss = 0.0;      // residual sum of squares
-        double ssr = 0.0;      // regression sum of squares
+
         for (int i = 0; i < lengthOfArray; i++) {
             double fit = slope*x[i] + intercept;
             rss += (fit - y[i]) * (fit - y[i]);
             ssr += (fit - ybar) * (fit - ybar);
         }
+        tss = rss + ssr;
 
         int degreesOfFreedom = lengthOfArray-2;
         r2    = ssr / yybar;
-        double svar  = rss / degreesOfFreedom;
+        svar = rss / degreesOfFreedom;
         svar1 = svar / xxbar;
         svar0 = svar/lengthOfArray + xbar*xbar*svar1;
+        statisticF = ssr /svar;
     }
 
     /**
@@ -123,6 +130,18 @@ public class LinearRegression {
      */
     public double predict(double x) {
         return slope*x + intercept;
+    }
+    public double getRss() {
+        return rss;
+    }
+    public double getSsr() {
+        return ssr;
+    }
+    public double getSvar() {
+        return svar;
+    }
+    public double getStatisticF() {
+        return statisticF;
     }
 
     /**
