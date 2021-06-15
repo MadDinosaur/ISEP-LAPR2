@@ -58,6 +58,7 @@ public class RegisterTestController {
 
     public void setTestTypeByCode(String code) {
         testTypeChosen = testTypeStore.getTestTypeByCode(code);
+        testParamList = new TestParamList(testTypeChosen);
     }
 
     public List<TestCategoryDto> getListOfTestCategories() {
@@ -118,6 +119,7 @@ public class RegisterTestController {
     public void setTestParameterByParameterCode(String parameterCode, String value) {
         for (Category category : listOfChosenCategories) {
             Parameter parameter = category.getParameterByCode(parameterCode);
+            this.testParamList.createTestParam(parameter);
             this.testParamList.addTestParameterResult(parameter, new TestParameterResult(value, "mg", new ReferenceValue(0.5, 1.0, "mg")));
         }
     }
@@ -130,8 +132,8 @@ public class RegisterTestController {
         return new Test(this.clinicalAnalysisLaboratory, client, testCode, nhsCode, this.testTypeChosen, this.listOfChosenCategories, this.testParamList, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation);
     }
 
-    public void saveTest(Test test) {
-        company.getTestStore().addTest(test);
+    public boolean saveTest(Test test) {
+        return company.getTestStore().addTest(test);
     }
 
     public void setLabById(String laboratoryID) {

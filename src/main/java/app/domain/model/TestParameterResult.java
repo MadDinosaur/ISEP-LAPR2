@@ -4,6 +4,9 @@ import app.domain.model.Exceptions.InvalidMetricException;
 import app.domain.model.Exceptions.InvalidReferenceValueException;
 import app.domain.model.Exceptions.InvalidSampleValueException;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.ParseException;
 import java.util.Date;
 
 public class TestParameterResult {
@@ -25,7 +28,7 @@ public class TestParameterResult {
         Double parsedValue;
 
         try {
-            parsedValue = Double.parseDouble(value);
+            parsedValue = Double.parseDouble(value.replace(',','.'));
         } catch (NumberFormatException ex) {
             throw new InvalidSampleValueException("Result must be a number!");
         }

@@ -16,7 +16,7 @@ public class Email {
     public Email(String email)
     {
         if (!validate(email))
-            throw new IllegalArgumentException("Invalid Email Address.");
+            throw new IllegalArgumentException("Invalid Email Address " + email);
         this.email = email;
     }
 

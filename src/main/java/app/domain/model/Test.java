@@ -73,6 +73,7 @@ public class Test {
         this.dateTimeResults = dateTimeResults;
         this.dateTimeReport = dateTimeReport;
         this.dateTimeValidation = dateTimeValidation;
+        this.stateOfTest = StateOfTest.VALIDATED;
     }
 
     /**
