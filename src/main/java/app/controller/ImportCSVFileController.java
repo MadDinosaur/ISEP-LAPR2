@@ -46,7 +46,6 @@ public class ImportCSVFileController {
         this.file = file;
         sc = new Scanner(file);
         this.titulos = sc.nextLine().split(";");
-        this.valores = sc.nextLine().split(";");
     }
 
     private void validateFile(File file) {

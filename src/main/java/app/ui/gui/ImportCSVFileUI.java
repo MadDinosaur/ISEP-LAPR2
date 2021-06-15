@@ -52,16 +52,19 @@ public class ImportCSVFileUI implements Initializable {
     }
 
     void importingFileSteps() {
-        do {
+        while (importCSVFileController.fileHasNextLine()) {
+            try {
+                importCSVFileController.goOneLineForward();
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
+            }
             try {
                 importCSVFileController.readTestTypeCode();
             } catch (InvalidTestCodeException e) {
                 System.out.println(e.getMessage());
-                importCSVFileController.goOneLineForward();
                 continue;
             } catch (InvalidTestType e){
                 System.out.println(e.getMessage());
-                importCSVFileController.goOneLineForward();
                 continue;
             }
 
@@ -69,7 +72,6 @@ public class ImportCSVFileUI implements Initializable {
                 importCSVFileController.readCategoryName();
             } catch (InvalidCategoryException e) {
                 System.out.println(e.getMessage());
-                importCSVFileController.goOneLineForward();
                 continue;
             }
 
@@ -77,7 +79,6 @@ public class ImportCSVFileUI implements Initializable {
                 importCSVFileController.readParameterCodeAndResult();
             } catch (InvalidParameterException e) {
                 System.out.println(e.getMessage());
-                importCSVFileController.goOneLineForward();
                 continue;
             }
 
@@ -90,7 +91,6 @@ public class ImportCSVFileUI implements Initializable {
                 importCSVFileController.readName();
             } catch (InvalidNameException e) {
                 System.out.println(e.getMessage());
-                importCSVFileController.goOneLineForward();
                 continue;
             }
 
@@ -98,7 +98,6 @@ public class ImportCSVFileUI implements Initializable {
                 importCSVFileController.readEmail();
             } catch (InvalidEmailException e) {
                 System.out.println(e.getMessage());
-                importCSVFileController.goOneLineForward();
                 continue;
             }
             importCSVFileController.readAddress();
@@ -113,18 +112,13 @@ public class ImportCSVFileUI implements Initializable {
                 importCSVFileController.createClient();
             } catch (NullPointerException e) {
                 e.printStackTrace();
-                importCSVFileController.goOneLineForward();
                 continue;
             }
             importCSVFileController.saveClient();
             importCSVFileController.createTest();
             importCSVFileController.saveTest();
-            try {
-                importCSVFileController.goOneLineForward();
-            } catch (RuntimeException e) {
-                System.out.println(e.getMessage());
-            }
-        } while (importCSVFileController.fileHasNextLine());
+
+        }
         System.out.println("The CSV file was imported!");
     }
 
