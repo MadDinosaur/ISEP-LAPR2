@@ -17,7 +17,7 @@ import java.util.*;
  */
 public class Company {
 
-    private List<ClinicalAnalysisLaboratory> clinicalAnalysisLaboratoryLst = new ArrayList<>();
+    private final List<ClinicalAnalysisLaboratory> clinicalAnalysisLaboratoryLst = new ArrayList<>();
     private final String designation;
     private final AuthFacade authFacade;
     private final EmployeeStore employeeStore;
@@ -296,6 +296,11 @@ public class Company {
     public String generateNhsCodeGenerator() {
         return nhsCodeGenerator();
     }
+
+    public void MakeLinearRegressionReport(){
+
+    }
+
 
 
     public ClinicalAnalysisLaboratory getLabById(String laboratoryID) {
