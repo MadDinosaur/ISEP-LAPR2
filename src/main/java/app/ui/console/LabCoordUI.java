@@ -11,8 +11,8 @@ import java.util.List;
  */
 
 public class LabCoordUI implements Runnable{
-    public LabCoordUI()
-    {
+    public LabCoordUI() {
+        //Empty constructor
     }
 
     public void run()

@@ -33,7 +33,8 @@ public class ImportCSVFileUI implements Initializable {
     private Button importBtn;
 
 
-    public ImportCSVFileUI() throws FileNotFoundException {
+    public ImportCSVFileUI() {
+        //empty constructor
     }
 
     @FXML
@@ -124,6 +125,6 @@ public class ImportCSVFileUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        //empty
     }
 }

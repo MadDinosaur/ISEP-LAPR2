@@ -298,7 +298,7 @@ public class Company {
     }
 
     public void MakeLinearRegressionReport(){
-
+        //Empty constructor
     }
 
 
