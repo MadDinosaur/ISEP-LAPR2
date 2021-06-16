@@ -28,7 +28,7 @@ public class TestConsultationController {
         this.company = company;
     }
 
-    public List<ClientDTO> getClientList(String sortMethod){
+    public List<ClientDTO> getClientList(String sortMethod) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
         this.clientStore = this.company.getClientStore();
         this.clientList = this.clientStore.getClientList();
         Sortable sortingAlgorithm = this.company.getSortingAlgorithm();
