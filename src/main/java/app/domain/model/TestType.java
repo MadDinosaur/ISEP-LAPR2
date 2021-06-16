@@ -219,6 +219,8 @@ public class TestType {
                 case "Blood":
                     oClass = Class.forName("app.domain.adapter.ExternalModuleAdapter2");
                     break;
+                default:
+                    System.out.println("No external module found!");
             }
             return (ExternalModule) oClass.newInstance();
 

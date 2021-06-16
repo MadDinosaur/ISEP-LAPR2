@@ -16,6 +16,14 @@ public class ClinicalAnalysisLaboratory {
     private String laboratoryID;
     private final ArrayList<TestType> testTypeList = new ArrayList<>();
 
+<<<<<<< HEAD
+=======
+
+    /**
+     * Empty constructor due to previous problems
+     * // Empty constructor due to previous problems
+     */
+>>>>>>> 38a465e90b70bc0b2b3163e14e14af03fc2bcbee
     public ClinicalAnalysisLaboratory() {
         // Empty constructor due to previous problems
     }
