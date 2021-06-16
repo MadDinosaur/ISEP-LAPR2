@@ -1,7 +1,7 @@
 package app.domain.algorithms;
 
-import app.domain.model.Client;
 import app.domain.adapter.Sortable;
+import app.domain.model.Client;
 
 import java.util.List;
 

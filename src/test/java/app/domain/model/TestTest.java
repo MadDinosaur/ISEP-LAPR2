@@ -2,7 +2,6 @@ package app.domain.model;
 
 import app.domain.store.SampleList;
 import app.domain.store.TestParamList;
-import app.mappers.dto.TestDTO;
 import auth.domain.model.Email;
 import org.junit.Assert;
 
