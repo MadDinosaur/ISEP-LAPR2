@@ -19,6 +19,7 @@ public class ClinicalAnalysisLaboratory {
 
     /**
      * Empty constructor due to previous problems
+     * // Empty constructor due to previous problems
      */
     public ClinicalAnalysisLaboratory() {
 

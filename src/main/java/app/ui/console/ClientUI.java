@@ -14,6 +14,10 @@ import java.util.Scanner;
 public class ClientUI implements Runnable{
 
     private final Scanner sc = new Scanner(System.in);
+
+    /**
+     * //Empty constructor
+     */
     public ClientUI(){
 
     }
