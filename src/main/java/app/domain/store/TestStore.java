@@ -154,4 +154,12 @@ public class TestStore {
                 clientTests.add(test);
         return clientTests;
     }
+
+    public int getNumberOfTestsWaitingForResults() {
+        return getRegisteredTests().size();
+    }
+
+    public int getNumberOfTestsWaitingForReport() {
+        return getTestsListReadyForReport().size();
+    }
 }
