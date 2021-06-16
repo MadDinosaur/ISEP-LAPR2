@@ -1,9 +1,9 @@
 package app.domain.model;
 
 public class ReferenceValue {
-    private Double minValue;
-    private Double maxValue;
-    private String metric;
+    private final Double minValue;
+    private final Double maxValue;
+    private final String metric;
 
     public ReferenceValue(Double minValue, Double maxValue, String metric) {
         this.maxValue = maxValue;
