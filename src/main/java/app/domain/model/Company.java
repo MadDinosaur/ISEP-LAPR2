@@ -45,28 +45,28 @@ public class Company {
         this.testNumber = 1;
 
         //HARDCODED THINGS FOR TESTS
-        Employee testEmployee = new Employee("testEmployee",orgRoleStore.getOrganizationRole("Receptionist"),"nameEmployee","house","testEmployee@gmail.com","123456789","1234");
-        Client testClient = new Client("testClient",(long) 8765432187654321.0,1234512347,new DateBirth(24,12,2002),1234512345,(long)12345123457.0,new Email("testClient@gmail.com"),"male");
+        Employee testEmployee = new Employee("testEmployee", orgRoleStore.getOrganizationRole("Receptionist"), "nameEmployee", "house", "testEmployee@gmail.com", "123456789", "1234");
+        Client testClient = new Client("testClient", (long) 8765432187654321.0, 1234512347, new DateBirth(24, 12, 2002), 1234512345, (long) 12345123457.0, new Email("testClient@gmail.com"), "male");
         //add client and Receptionist as a user
-        saveClientAsUser(testClient,testClient.getEmail().toString());
+        saveClientAsUser(testClient, testClient.getEmail().toString());
         saveEmployeeAsUser(testEmployee);
         //
-        clientStore.saveClient(new Client("Maria",(long)  1234567812345678.0,1234512345,new DateBirth(24,12,2002),1234512346,(long)12345123456.0,new Email("teste@gmail.com"),"male"));
-        clientStore.saveClient(new Client("João",(long)  8765432187654322.0,1234512345,new DateBirth(24,12,2002),1234512347,(long)12345123456.0,new Email("teste2@gmail.com"),"male"));
-        clientStore.saveClient(new Client("Pedro",(long)  8765432187654323.0,1234512346,new DateBirth(11,9,2001),1234512348,(long)12345123457.0,new Email("teste3@gmail.com"),"male"));
+        clientStore.saveClient(new Client("Maria", (long) 1234567812345678.0, 1234512345, new DateBirth(24, 12, 2002), 1234512346, (long) 12345123456.0, new Email("teste@gmail.com"), "male"));
+        clientStore.saveClient(new Client("João", (long) 8765432187654322.0, 1234512345, new DateBirth(24, 12, 2002), 1234512347, (long) 12345123456.0, new Email("teste2@gmail.com"), "male"));
+        clientStore.saveClient(new Client("Pedro", (long) 8765432187654323.0, 1234512346, new DateBirth(11, 9, 2001), 1234512348, (long) 12345123457.0, new Email("teste3@gmail.com"), "male"));
         CollectionMethod collectionMethodTest = new CollectionMethod("test Colection");
         Category categoryTest = new Category("Hemogram", "HEM00", "Hemogram Description", "toma");
         String hb000 = "HB000";
-        Parameter parameter = new Parameter("par2345", hb000,"test f234");
-        Parameter parameter2 = new Parameter("par2346","HB001","test f235");
+        Parameter parameter = new Parameter("par2345", hb000, "test f234");
+        Parameter parameter2 = new Parameter("par2346", "HB001", "test f235");
         categoryTest.saveParameter(parameter);
         categoryTest.saveParameter(parameter2);
         List<Category> categoryList = new ArrayList<Category>(Collections.singleton(categoryTest));
-        TestType testTypeHardCoded = new TestType("Blood","test Of Test",collectionMethodTest,categoryList);
+        TestType testTypeHardCoded = new TestType("Blood", "test Of Test", collectionMethodTest, categoryList);
         testTypeStore.addTestType(testTypeHardCoded);
-        Test testTestHardCoded = new Test(clientStore.getClientByCardNumber((long)8765432187654321.0),testTypeHardCoded,testNumberGenerator(),nhsCodeGenerator());
-        Test testTestHardCodedRegistered = new Test(clientStore.getClientByCardNumber((long)8765432187654322.0),testTypeHardCoded,testNumberGenerator(),nhsCodeGenerator());
-        Test testTestHardCodedDiagnosed = new Test(clientStore.getClientByCardNumber((long)8765432187654323.0),testTypeHardCoded,testNumberGenerator(),nhsCodeGenerator());
+        Test testTestHardCoded = new Test(clientStore.getClientByCardNumber((long) 8765432187654321.0), testTypeHardCoded, testNumberGenerator(), nhsCodeGenerator());
+        Test testTestHardCodedRegistered = new Test(clientStore.getClientByCardNumber((long) 8765432187654322.0), testTypeHardCoded, testNumberGenerator(), nhsCodeGenerator());
+        Test testTestHardCodedDiagnosed = new Test(clientStore.getClientByCardNumber((long) 8765432187654323.0), testTypeHardCoded, testNumberGenerator(), nhsCodeGenerator());
         testTestHardCoded.saveTestParameterResult(parameter, testTestHardCoded.createTestParameterResult(hb000, "135", "mg"));
         testTestHardCodedDiagnosed.saveTestParameterResult(parameter, testTestHardCodedDiagnosed.createTestParameterResult(hb000, "135", "mg"));
         testTestHardCoded.setStateOfTestToSamplesAnalyzed();
@@ -129,28 +129,38 @@ public class Company {
 
     /**
      * Returns the Company Org Role Store
+     *
      * @return OrgRoleStore
      */
-    public OrgRoleStore getOrgRoleStore() { return this.orgRoleStore; }
+    public OrgRoleStore getOrgRoleStore() {
+        return this.orgRoleStore;
+    }
 
     /**
      * Returns a TestStore
+     *
      * @return TestStore
      */
-    public TestStore getTestStore() { return this.testStore;}
+    public TestStore getTestStore() {
+        return this.testStore;
+    }
 
     /**
      * Returns a ReportStore
+     *
      * @return ReportStore
      */
     public ReportStore getReportStore() {
         return this.reportStore;
     }
 
-    public SampleList getSampleStore() { return this.sampleList; }
+    public SampleList getSampleStore() {
+        return this.sampleList;
+    }
 
     /**
      * Saves the employee as a user
+     *
      * @return (in)success of the operation
      */
     public boolean saveEmployeeAsUser(Employee e) {
@@ -164,9 +174,10 @@ public class Company {
 
     /**
      * Saves the client as a user
+     *
      * @return (in)success of the operation
      */
-    public boolean saveClientAsUser(Client client,String email) {
+    public boolean saveClientAsUser(Client client, String email) {
         String pwd = generateUserPassword();
         if (authFacade.addUserWithRole(client.getName(), email, pwd, client.getOrganizationRole())) {
             clientStore.saveClient(client);
@@ -193,7 +204,7 @@ public class Company {
         return generatedString;
     }
 
-    private void sendUserPassword(String email, String pwd){
+    private void sendUserPassword(String email, String pwd) {
         File file = null;
         FileWriter myWriter = null;
         try {
@@ -214,7 +225,7 @@ public class Company {
         }
     }
 
-    public void sendNotification(Client client, String msg){
+    public void sendNotification(Client client, String msg) {
         File file = null;
         FileWriter myWriter = null;
         try {
@@ -223,7 +234,7 @@ public class Company {
             myWriter.write(msg);
         } catch (IOException e) {
             System.out.println("An error occurred on file " + file.getName());
-        }finally {
+        } finally {
             try {
                 assert myWriter != null;
                 myWriter.close();
@@ -240,14 +251,14 @@ public class Company {
         do {
             generatedNhsCode = nhsCodeGenerator();
             nhsCodeIsValidated = validateNhsNumber(generatedNhsCode);
-        }while (!nhsCodeIsValidated);
+        } while (!nhsCodeIsValidated);
 
-        Test testToClient = new Test(client,testType,generatedTestCode,generatedNhsCode);
+        Test testToClient = new Test(client, testType, generatedTestCode, generatedNhsCode);
         testStore.addTest(testToClient);
         client.addTestToClient(testToClient);
-        String[] codes=  new String[2];
-        codes[0]= generatedTestCode;
-        codes[1]= generatedNhsCode;
+        String[] codes = new String[2];
+        codes[0] = generatedTestCode;
+        codes[1] = generatedNhsCode;
         return codes;
     }
 
@@ -274,16 +285,17 @@ public class Company {
         return generatedNhsCode.toString();
     }
 
-    private boolean validateNhsNumber(String nhsCode){
+    private boolean validateNhsNumber(String nhsCode) {
         return testStore.validadeTestCode(nhsCode);
     }
 
-    public String generateNumberTest(){
+    public String generateNumberTest() {
         return testNumberGenerator();
     }
 
-    public String generateNhsCodeGenerator(){return  nhsCodeGenerator();}
-
+    public String generateNhsCodeGenerator() {
+        return nhsCodeGenerator();
+    }
 
 
     public ClinicalAnalysisLaboratory getLabById(String laboratoryID) {
@@ -346,4 +358,5 @@ public class Company {
         } catch (Exception ex) {
             throw new UnassignedExternalModuleException("Cannot access algorithm!");
         }
+    }
 }
