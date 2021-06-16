@@ -1,6 +1,5 @@
 package app.domain.model;
 
-import java.util.Arrays;
 import org.apache.commons.math3.distribution.FDistribution;
 import org.apache.commons.math3.distribution.TDistribution;
 

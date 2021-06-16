@@ -2,9 +2,6 @@ package app.domain.model;
 
 import app.domain.model.Exceptions.InvalidDateException;
 
-import javax.sound.midi.InvalidMidiDataException;
-import java.util.Date;
-
 public class DateBirth {
     private int year;
     private int month;

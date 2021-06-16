@@ -3,10 +3,8 @@ package app.domain.store;
 
 import app.domain.model.Client;
 import app.domain.model.DateBirth;
-import app.domain.model.Employee;
 import app.domain.model.Exceptions.InvalidClientException;
 import app.domain.model.Exceptions.InvalidEmailException;
-import app.domain.model.Exceptions.InvalidEmployeeException;
 import app.mappers.dto.ClientDTO;
 import auth.domain.model.Email;
 

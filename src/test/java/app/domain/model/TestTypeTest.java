@@ -1,6 +1,5 @@
 package app.domain.model;
 
-import app.domain.model.Exceptions.InvalidCategoryException;
 import app.domain.model.Exceptions.InvalidCodeException;
 import app.domain.model.Exceptions.InvalidDescriptionException;
 import org.junit.Assert;

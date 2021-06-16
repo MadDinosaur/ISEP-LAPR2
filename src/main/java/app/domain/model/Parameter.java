@@ -1,6 +1,8 @@
 package app.domain.model;
 
-import app.domain.model.Exceptions.*;
+import app.domain.model.Exceptions.InvalidCodeException;
+import app.domain.model.Exceptions.InvalidDescriptionException;
+import app.domain.model.Exceptions.InvalidNameException;
 import org.apache.commons.lang3.StringUtils;
 
 public class Parameter {

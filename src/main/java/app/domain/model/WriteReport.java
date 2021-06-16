@@ -1,9 +1,5 @@
 package app.domain.model;
 
-import java.io.Serializable;
-import java.io.Writer;
-import java.util.Date;
-
 public class WriteReport implements CharSequence {
     double a1;
     double a2;

@@ -2,8 +2,6 @@ package app.domain.model;
 
 import junit.framework.TestCase;
 
-import java.util.Arrays;
-
 public class MultiLinearRegressionTest extends TestCase {
 
     public void testInvert() {

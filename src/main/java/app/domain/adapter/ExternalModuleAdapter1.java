@@ -1,7 +1,7 @@
 package app.domain.adapter;
 
-import app.domain.model.ReferenceValue;
 import app.domain.model.Parameter;
+import app.domain.model.ReferenceValue;
 import com.example3.CovidReferenceValues1API;
 
 public class ExternalModuleAdapter1 implements ExternalModule {

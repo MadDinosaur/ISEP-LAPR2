@@ -2,13 +2,11 @@ package app.ui.gui;
 
 import app.controller.App;
 import app.controller.ShowTestResultController;
-import app.domain.model.Test;
 import app.mappers.dto.TestDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 import java.net.URL;
@@ -16,7 +14,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 public class ShowTestResultsScene1UI implements Initializable {
     ShowTestResultController controller = new ShowTestResultController();

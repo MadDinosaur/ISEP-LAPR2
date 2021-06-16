@@ -1,10 +1,10 @@
 package app.controller;
 
+import app.domain.model.Client;
 import app.domain.model.Company;
 import app.domain.model.Exceptions.*;
 import app.mappers.ClientMapper;
 import app.mappers.dto.ClientDTO;
-import app.domain.model.Client;
 
 public class UpdateClientDataController {
     private Company company = App.getInstance().getCompany();

@@ -1,6 +1,9 @@
 package app.mappers.dto;
 
-import app.domain.model.*;
+import app.domain.model.Category;
+import app.domain.model.Client;
+import app.domain.model.Parameter;
+import app.domain.model.Report;
 import app.domain.store.SampleList;
 import app.domain.store.TestParamList;
 

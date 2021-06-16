@@ -4,7 +4,6 @@ import app.domain.model.Exceptions.InvalidLaboratoryIDException;
 import app.domain.store.*;
 import auth.AuthFacade;
 import auth.domain.model.Email;
-
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;

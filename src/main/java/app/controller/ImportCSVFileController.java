@@ -1,7 +1,9 @@
 package app.controller;
 
 import app.domain.model.Client;
-import app.domain.model.Exceptions.*;
+import app.domain.model.Exceptions.InvalidEmailException;
+import app.domain.model.Exceptions.InvalidFileException;
+import app.domain.model.Exceptions.InvalidNameException;
 import app.domain.model.Test;
 
 import java.io.File;

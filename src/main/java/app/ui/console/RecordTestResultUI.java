@@ -5,8 +5,8 @@ import app.controller.RecordTestResultController;
 import app.domain.model.*;
 import app.domain.model.Exceptions.UnregisteredBarcodeException;
 import app.mappers.dto.ParamDTO;
-import app.domain.model.Client;
 import auth.domain.model.Email;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

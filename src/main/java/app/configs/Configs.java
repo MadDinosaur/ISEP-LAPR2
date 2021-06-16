@@ -1,7 +1,5 @@
 package app.configs;
 
-import app.domain.model.Company;
-
 import java.io.*;
 import java.util.Properties;
 

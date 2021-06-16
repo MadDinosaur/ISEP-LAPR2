@@ -1,15 +1,11 @@
 package app.domain.model;
 
 import auth.domain.model.Email;
-import junit.framework.TestCase;
 import org.junit.Assert;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static junit.framework.TestCase.assertEquals;
 
 public class TestTest{
     Client client1 = new Client("Teste",(long) 8765432187654321.0,1234512347,new DateBirth(24,12,2002),1234512345,(long)12345123457.0,new Email("teste50@gmail.com"),"male");
