@@ -37,6 +37,6 @@ public class LabCoordMenuUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        //empty
     }
 }

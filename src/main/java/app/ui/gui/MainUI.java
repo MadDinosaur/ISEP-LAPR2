@@ -22,7 +22,9 @@ public class MainUI implements Initializable {
      * Initializes the UI class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {}
+    public void initialize(URL url, ResourceBundle rb) {
+        //empty
+    }
 
     public void setMainApp(App mainApp) {
         this.mainApp = mainApp;

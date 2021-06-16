@@ -11,8 +11,8 @@ import java.util.List;
  */
 
 public class ReceptionistUI implements Runnable{
-    public ReceptionistUI()
-    {
+    public ReceptionistUI() {
+        //Empty constructor
     }
 
     public void run()
