@@ -297,15 +297,12 @@ public class Company {
         return nhsCodeGenerator();
     }
 
-<<<<<<< HEAD
     public void MakeLinearRegressionReport(){
 
     }
 
 
 
-=======
->>>>>>> 6dbe49b543b5b3851a8319c3b42119f494d3e996
     public ClinicalAnalysisLaboratory getLabById(String laboratoryID) {
         for (ClinicalAnalysisLaboratory clinicalAnalysisLaboratory : clinicalAnalysisLaboratoryLst) {
             if (clinicalAnalysisLaboratory.getLaboratoryID().equals(laboratoryID)) {
