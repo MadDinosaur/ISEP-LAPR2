@@ -13,8 +13,8 @@ import java.util.List;
  */
 public class MainMenuUI {
 
-    public MainMenuUI()
-    {
+    public MainMenuUI() {
+        //Empty constructor
     }
 
     public void run() throws IOException

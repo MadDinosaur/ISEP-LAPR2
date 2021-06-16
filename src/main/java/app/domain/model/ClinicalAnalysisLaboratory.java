@@ -14,14 +14,13 @@ public class ClinicalAnalysisLaboratory {
     private long phonenumber;
     private long tin;
     private String laboratoryID;
-    private ArrayList<TestType> testTypeList = new ArrayList<>();
-
-
+    private final ArrayList<TestType> testTypeList = new ArrayList<>();
+    
     /**
-     * Empty constructor due to previous problems
+     *
      */
     public ClinicalAnalysisLaboratory() {
-
+        // Empty constructor due to previous problems
     }
 
     /**

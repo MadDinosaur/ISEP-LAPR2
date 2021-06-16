@@ -11,8 +11,8 @@ import java.util.List;
  */
 
 public class SpecDocUI implements Runnable{
-    public SpecDocUI()
-    {
+    public SpecDocUI() {
+        //Empty constructor
     }
 
     public void run()

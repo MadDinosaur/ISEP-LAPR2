@@ -13,6 +13,8 @@ import java.util.Scanner;
 
 public class CreateNewParameterUI implements Runnable{
 
+    private final String EXITING = "Exiting....";
+
     Scanner sc = new Scanner(System.in);
     private final CreateNewParameterController cnpc = new CreateNewParameterController();
 
@@ -29,7 +31,7 @@ public class CreateNewParameterUI implements Runnable{
             while (!verifier) {
                 String category = sc.nextLine();
                 if (category.equalsIgnoreCase("exit")) {
-                    System.out.println("Exiting....");
+                    System.out.println(EXITING);
                 } else while (iterator.hasNext()) {
                     Category cat = iterator.next();
                     if (cat.getCategoryName().equals(category)) {
@@ -51,7 +53,7 @@ public class CreateNewParameterUI implements Runnable{
                             String parameterCode = parts[1];
                             String parameterDescription = parts[2];
                             if (parameterName.equalsIgnoreCase("exit") || parameterCode.equalsIgnoreCase("exit") || parameterDescription.equalsIgnoreCase("exit")) {
-                                System.out.println("Exiting....");
+                                System.out.println(EXITING);
                             } else {
                                 System.out.println(parameterName + "; " + parameterCode + "; " + parameterDescription + ". Do you confirm this is the data for the new parameter?(Write Y/N  for yes or no respectively)");
                                 confirmation = sc.nextLine();
@@ -75,7 +77,7 @@ public class CreateNewParameterUI implements Runnable{
                 System.out.println("Would you like to add more parameters? (write Y/N for yes or no respectively.)");
                 confirmation = sc.nextLine();
                 if (confirmation.equalsIgnoreCase("exit") || confirmation.equalsIgnoreCase("N") || confirmation.equalsIgnoreCase("No")) {
-                    System.out.println("Exiting....");
+                    System.out.println(EXITING);
                     verifier = true;
                 } else
                     verifier = false;

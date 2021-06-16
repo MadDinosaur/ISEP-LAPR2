@@ -11,8 +11,8 @@ import java.util.List;
  */
 
 public class MedLabTechUI implements Runnable{
-    public MedLabTechUI()
-    {
+    public MedLabTechUI() {
+        //Empty constructor
     }
 
     public void run()

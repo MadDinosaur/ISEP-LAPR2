@@ -26,6 +26,6 @@ public class LabCoordUI implements Initializable, Runnable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        //empty
     }
 }

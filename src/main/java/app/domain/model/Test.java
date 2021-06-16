@@ -12,10 +12,6 @@ import java.util.List;
 
 public class Test {
 
-    /**
-     * Instance of current client
-     */
-    private ClinicalAnalysisLaboratory clinicalAnalysisLaboratory;
     private Client client;
     private List<Category> listOfCategories;
     private final List<Parameter> listOfParameters = new ArrayList<>();
@@ -34,7 +30,7 @@ public class Test {
     /**
      * State of the test
      */
-    private enum StateOfTest{
+    enum StateOfTest{
         REGISTERED,
         SAMPLES_COLLECTED,
         SAMPLES_ANALYZED,
@@ -62,7 +58,9 @@ public class Test {
     }
 
     public Test(ClinicalAnalysisLaboratory clinicalAnalysisLaboratory, Client client, String testCode, String nhsCode, TestType testType, List<Category> categoryList, TestParamList testParamList, String dateTimeRegister, String dateTimeResults, String dateTimeReport, String dateTimeValidation) {
-        this.clinicalAnalysisLaboratory = clinicalAnalysisLaboratory;
+        /**
+         * Instance of current client
+         */
         this.client = client;
         this.testCode = testCode;
         this.nhsCode = nhsCode;

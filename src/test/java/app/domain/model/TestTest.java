@@ -1,5 +1,6 @@
 package app.domain.model;
 
+import app.mappers.dto.TestDTO;
 import auth.domain.model.Email;
 import org.junit.Assert;
 
@@ -61,6 +62,20 @@ public class TestTest{
         Assert.assertFalse(test1.isValidated());
     }
 
+    @org.junit.Test
+    public void gettersTest() {
+        Test.StateOfTest stateOfTest = test1.getStateOfTest();
+        Report report = test1.getReport();
+        String dateTimeReport = test1.getDateTimeReport();
+        String dateTimeResults = test1.getDateTimeResults();
+        String dateTimeValidation = test1.getDateTimeValidation();
+
+        Assert.assertEquals(stateOfTest, Test.StateOfTest.REGISTERED);
+        Assert.assertNull(dateTimeReport);
+        Assert.assertNull(dateTimeResults);
+        Assert.assertNull(dateTimeValidation);
+        Assert.assertNull(report);
+    }
 
 
 

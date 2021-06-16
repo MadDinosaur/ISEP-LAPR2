@@ -145,6 +145,8 @@ public class RecordTestResultUI implements Runnable {
                 }
             case "no":
                 return false;
+            default:
+                System.out.println("Please insert a valid confirmation!");
         }
         return false;
     }
