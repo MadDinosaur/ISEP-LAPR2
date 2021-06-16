@@ -15,7 +15,7 @@ public class RegisterNewLabController {
         newlab.setName(name);
         newlab.setAddress(address);
         newlab.setPhoneNumber(phonenumber);
-        newlab.setTIN(TIN);
+        newlab.setTin(TIN);
         newlab.setLaboratoryID(labID);
     }
 
