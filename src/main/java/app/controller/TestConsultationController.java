@@ -25,26 +25,36 @@ public class TestConsultationController {
         this.company = company;
     }
 
-    public List<ClientDTO> getClientList(){
+    public List<ClientDTO> getClientList(String sortMethod){
         this.clientStore = this.company.getClientStore();
         this.clientList = this.clientStore.getClientList();
+        Sortable sortingAlgorithm = this.company.getSortingAlgorithm();
+        Client[] clientArr = null;
+        if(this.clientList != null) {
+            if (sortMethod.equalsIgnoreCase("name")) {
+                clientArr = sortingAlgorithm.sortByName(this.clientList);
+            } else {
+                clientArr = sortingAlgorithm.sortByTin(this.clientList);
+            }
+        }else throw new IllegalArgumentException("Client list is empty!");
         List<ClientDTO> clientDTOList = null;
         ClientMapper clientMapper = new ClientMapper();
-        for(Client client : this.clientList){
-            clientDTOList.add(clientMapper.toDTO(client));
-        }
+            for (int i = 0; i < clientArr.length; i++) {
+                clientDTOList.add(clientMapper.toDTO(clientArr[i]));
+            }
+
         return clientDTOList;
     }
 
-    public List<TestDTO> getClientTestList(Client client){
+    public String[] getClientTestListWithResults(Client client){
         this.testStore = this.company.getTestStore();
         List<Test> clientTestList = testStore.getValidatedTestsByClient(client);
         TestMapper testMapper = new TestMapper();
         List<TestDTO> clientTestListDTO = null;
         for (Test test : clientTestList){
-            clientTestListDTO.add(testMapper.toDTO(test));
+
+            testMapper.toDTO(test);
         }
-        return clientTestListDTO;
     }
 
     public List<TestParameterResult> displayTestResults(String testCode){

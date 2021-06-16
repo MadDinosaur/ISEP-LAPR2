@@ -7,13 +7,8 @@ import auth.domain.model.Email;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.io.*;
+import java.util.*;
 
 /**
  *
@@ -287,25 +282,6 @@ public class Company {
 
     public String generateNhsCodeGenerator(){return  nhsCodeGenerator();}
 
-    public void bubbleSort(int[] a){
-        /**
-         * https://stackabuse.com/sorting-algorithms-in-java#bubblesort
-         */
-        boolean sorted = false;
-        int temp;
-        while(!sorted) {
-            sorted = true;
-            for (int i = 0; i < a.length - 1; i++) {
-                if (a[i] > a[i+1]) {
-                    temp = a[i];
-                    a[i] = a[i+1];
-                    a[i+1] = temp;
-                    sorted = false;
-                }
-            }
-        }
-    }
-
     public ClinicalAnalysisLaboratory getLabById(String laboratoryID) {
         for (ClinicalAnalysisLaboratory clinicalAnalysisLaboratory : clinicalAnalysisLaboratoryLst) {
             if (clinicalAnalysisLaboratory.getLaboratoryID().equals(laboratoryID)) {
@@ -313,5 +289,25 @@ public class Company {
             }
         }
         throw new InvalidLaboratoryIDException("There's no laboratory with such ID " + laboratoryID);
+    }
+
+    public Sortable getSortingAlgorithm(){
+        Properties props = new Properties(System.getProperties());
+
+        try {
+            InputStream in = new FileInputStream("src/main/resources/config.properties");
+            props.load(in);
+            in.close();
+            System.setProperties(props);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String sortAlg = props.getProperty("sortingAlgorithm1");
+
+        Class<?> oClass = Class.forName(sortAlg);
+        Sortable sortingAlgorithm = (Sortable) oClass.newInstance();
+
+        return sortingAlgorithm;
     }
 }
