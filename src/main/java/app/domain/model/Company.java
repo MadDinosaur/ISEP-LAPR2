@@ -96,8 +96,6 @@ public class Company {
     }
 
     public boolean validateCategory(Category pc) {
-        if (pc == null)
-            return false;
         return !this.categoryList.contains(pc);
     }
 
