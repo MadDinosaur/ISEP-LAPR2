@@ -16,6 +16,10 @@ public class ClinicalAnalysisLaboratory {
     private String laboratoryID;
     private ArrayList<TestType> testTypeList = new ArrayList<>();
 
+
+    /**
+     * Empty constructor due to previous problems
+     */
     public ClinicalAnalysisLaboratory() {
 
     }
@@ -60,8 +64,8 @@ public class ClinicalAnalysisLaboratory {
      * set tin
      * @param tin tax identification number
      */
-    public void setTIN(long tin){
-        if (validateTIN(tin)) {
+    public void setTin(long tin){
+        if (validateTin(tin)) {
             this.tin = tin;
         } else {
             throw new InvalidTINException();
@@ -95,17 +99,17 @@ public class ClinicalAnalysisLaboratory {
     public String getName() { return name; }
     public String getAddress() { return address; }
     public long getPhonenumber() { return phonenumber; }
-    public long getTIN() { return tin; }
+    public long getTin() { return tin; }
     public String getLaboratoryID() { return laboratoryID; }
     public ArrayList<TestType> getTestTypeList() { return testTypeList; }
 
     /**
      * attributes validation
-     * @return returns true/false depending if the attribute in question being validated or not
+     * @return returns true/false depending if the attribute in question is valid or not
      */
     public boolean validateName(String name) { return (name == null || name.isEmpty() || name.length() > 20); }
     public boolean validateAddress (String address) { return (address == null || address.isEmpty() || address.length() > 30); }
     public boolean validatePhoneNumber (long phonenumber) { return (phonenumber > 10000000000L && phonenumber < 99999999999L); }
-    public boolean validateTIN (long TIN) { return (TIN > 1000000000 && TIN < 9999999999L); }
+    public boolean validateTin (long tin) { return (tin > 1000000000 && tin < 9999999999L); }
     public boolean validateLaboratoryID (String laboratoryID) { return laboratoryID.length() == 5; }
 }

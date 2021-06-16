@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -11,16 +12,52 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.LabCoordMenuUI">
-   <children>
-      <Label layoutX="181.0" layoutY="14.0" text="Laboratory Coordinator Menu">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Line endX="100.0" layoutX="300.0" layoutY="41.0" startX="-100.0" />
-      <Button fx:id="importCSVFileMenu" layoutX="221.0" layoutY="67.0" mnemonicParsing="false" onAction="#importCSVFileMenu" text="Importing a CSV File Menu" />
-      <Button fx:id="validateResults" layoutX="221.0" layoutY="108.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" text="Validate Results" />
-      <Button fx:id="overviewTests" layoutX="221.0" layoutY="149.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" text="Overview of all tests" />
-   </children>
-</Pane>
+
+<BorderPane prefHeight="158.0" prefWidth="228.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.LabCoordMenuUI">
+   <top>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="63.0" prefWidth="228.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="211.0" text="Laboratory Coordinator Menu">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Label>
+            <Line endX="100.0" startX="-100.0">
+               <VBox.margin>
+                  <Insets left="13.0" />
+               </VBox.margin>
+            </Line>
+         </children>
+         <padding>
+            <Insets bottom="100.0" />
+         </padding>
+      </VBox>
+   </top>
+   <center>
+      <VBox alignment="BOTTOM_CENTER" prefHeight="41.0" prefWidth="228.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="importCSVFileMenu" mnemonicParsing="false" onAction="#importCSVFileMenu" text="Importing a CSV File Menu">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="validateResults" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" text="Validate Results">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="overviewTests" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" text="Overview of all tests">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="100.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>

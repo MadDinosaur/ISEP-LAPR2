@@ -24,7 +24,7 @@ public class ImportCSVFileController {
     private String dateTimeReport;
     private String dateTimeValidation;
     private Long cardNumber;
-    public Long nhsID;
+    private Long nhsID;
     private Long tin;
     private String birthday;
     private Long phoneNumber;
@@ -46,7 +46,6 @@ public class ImportCSVFileController {
         this.file = file;
         sc = new Scanner(file);
         this.titulos = sc.nextLine().split(";");
-        this.valores = sc.nextLine().split(";");
     }
 
     private void validateFile(File file) {
@@ -63,7 +62,6 @@ public class ImportCSVFileController {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("TestType")) {
                 String testTypeCode = valores[i];
-                System.out.println(testTypeCode);
                 registerTestController.setTestTypeByCode(testTypeCode);
             }
         }
@@ -74,7 +72,6 @@ public class ImportCSVFileController {
             if (titulos[i].equalsIgnoreCase("Category")) {
                 if (!valores[i].equalsIgnoreCase("NA")) {
                     String categoryName = valores[i];
-                    System.out.println(categoryName);
                     registerTestController.setCategoryByName(categoryName);
                 }
             }
@@ -121,9 +118,7 @@ public class ImportCSVFileController {
             if (titulos[i].equalsIgnoreCase("IgGAN")) {
                 if (!valores[i].equalsIgnoreCase("NA")) {
                     String parameterCode = titulos[i];
-                    System.out.println(parameterCode);
                     String value = valores[i];
-                    System.out.println(value);
                     registerTestController.setTestParameterByParameterCode(parameterCode, value);
                 }
             }
@@ -201,12 +196,14 @@ public class ImportCSVFileController {
     }
 
     public void createTest() {
-        System.out.println("Client was created sucessfully!");
+        System.out.printf("-----Tests's info-----\nTest Code: %s\nNhs Code: %s\nDate and Time of Register: %s\nDate and Time of Results: %s\nDate and Time of Report: %s\nDate and Time of Validation: %s\n", testCode, nhsCode, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation);
         this.test = registerTestController.createTestFromCSV(this.client, this.testCode, this.nhsCode, this.dateTimeRegister, this.dateTimeResults, this.dateTimeReport, this.dateTimeValidation);
     }
 
     public void saveTest() {
-        if(registerTestController.saveTest(this.test)) System.out.println("Test was imported");
+        if (registerTestController.saveTest(this.test)){
+            System.out.println("Test was sucessfully imported!\n------------------------------\n\n");
+        }
         this.registerTestController = new RegisterTestController();
     }
 
@@ -280,19 +277,19 @@ public class ImportCSVFileController {
     }
 
     public void createClient() {
-        System.out.println(name);
-        System.out.println(cardNumber);
-        System.out.println(nhsID);
-        System.out.println(birthday);
-        System.out.println(tin);
-        System.out.println(phoneNumber);
-        System.out.println(email);
-        System.out.println(address);
-        this.client = registerClientController.createClient(name, cardNumber, nhsID, birthday, tin, phoneNumber, address, email);
+        System.out.printf("-----Client's info-----\nName: %s\nCard Number: %s\nNhs Id: %s\nBirthday: %s\nTin: %s\nPhone Number: %s\nE-mail: %s\nAddress: %s\n", name, cardNumber, nhsID, birthday, tin, phoneNumber, email, address);
+        try {
+            this.client = registerClientController.createClient(name, cardNumber, nhsID, birthday, tin, phoneNumber, address, email);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void saveClient() {
-        registerClientController.saveClientFromCSV(client);
+        if (registerClientController.saveClientFromCSV(client)) {
+            System.out.println("Client was successfully created!");
+        };
+
         this.registerClientController = new RegisterClientController();
     }
 }

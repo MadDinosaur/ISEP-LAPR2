@@ -2,10 +2,8 @@ package app.domain.model;
 
 import app.mappers.dto.ClientDTO;
 import auth.domain.model.Email;
-import auth.domain.model.User;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,13 +13,14 @@ public class Client {
     private long cardNumber;
     private long nhsId;
     private DateBirth dateBirth;
-    private long TIN;
+    private long tin;
     private long phoneNumber;
     private Email email;
     private String sex;
     private final String organizationRole = "cl";
     private final List<Test> clientTests = new ArrayList<>();
     private String address;
+
 
     public Client(String name, long cardNumber, long nhsId, DateBirth dateBirth, long TIN, long phoneNumber, Email email, String sex) {
         setName(name);
@@ -39,7 +38,7 @@ public class Client {
         this.cardNumber = cardNumber;
         this.nhsId = nhsId;
         this.dateBirth = dateBirth;
-        this.TIN = tin;
+        this.tin = tin;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.email = email;
@@ -63,9 +62,9 @@ public class Client {
         this.dateBirth = dateBirth;
     }
 
-    public void setTIN(long TIN) {
+    public void setTIN(long tin) {
 
-        this.TIN = TIN;
+        this.tin = tin;
 
     }
 
@@ -100,7 +99,7 @@ public class Client {
     }
 
     public long getTIN() {
-        return TIN;
+        return tin;
     }
 
     public List<Test> getClientTests() {

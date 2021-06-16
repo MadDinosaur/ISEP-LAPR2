@@ -48,72 +48,78 @@ public class ImportCSVFileUI implements Initializable {
 
     @FXML
     void importFile(ActionEvent event) {
-            importingFileSteps();
+        importingFileSteps();
     }
 
     void importingFileSteps() {
-        do {
+        while (importCSVFileController.fileHasNextLine()) {
+            try {
+                importCSVFileController.goOneLineForward();
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
+            }
             try {
                 importCSVFileController.readTestTypeCode();
             } catch (InvalidTestCodeException e) {
-                e.printStackTrace();
-                importCSVFileController.goOneLineForward();
+                System.out.println(e.getMessage());
+                continue;
+            } catch (InvalidTestType e){
+                System.out.println(e.getMessage());
                 continue;
             }
+
             try {
                 importCSVFileController.readCategoryName();
             } catch (InvalidCategoryException e) {
-                e.printStackTrace();
-                importCSVFileController.goOneLineForward();
+                System.out.println(e.getMessage());
                 continue;
             }
+
             try {
                 importCSVFileController.readParameterCodeAndResult();
             } catch (InvalidParameterException e) {
-                e.printStackTrace();
-                importCSVFileController.goOneLineForward();
+                System.out.println(e.getMessage());
                 continue;
             }
+
             importCSVFileController.readNhsId();
-            System.out.println(importCSVFileController.nhsID);
             importCSVFileController.readCardNumber();
             importCSVFileController.readTin();
             importCSVFileController.readbirthday();
             importCSVFileController.readPhoneNumber();
             try {
                 importCSVFileController.readName();
+            } catch (InvalidNameException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+
+            try {
                 importCSVFileController.readEmail();
-            } catch (InvalidNameException | InvalidEmailException e) {
-                importCSVFileController.goOneLineForward();
+            } catch (InvalidEmailException e) {
+                System.out.println(e.getMessage());
                 continue;
             }
             importCSVFileController.readAddress();
-
-            try {
-                importCSVFileController.createClient();
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-                importCSVFileController.goOneLineForward();
-                continue;
-            }
-            importCSVFileController.saveClient();
-            try {
-                importCSVFileController.readLabId();
-            } catch (InvalidLaboratoryIDException e) {
-                e.printStackTrace();
-                importCSVFileController.goOneLineForward();
-                continue;
-            }
+            importCSVFileController.readLabId();
             importCSVFileController.readTestCode();
             importCSVFileController.readNhsCode();
             importCSVFileController.readDateTimeRegister();
             importCSVFileController.readDateTimeResults();
             importCSVFileController.readDateTimeReport();
             importCSVFileController.readDateTimeValidation();
+            try {
+                importCSVFileController.createClient();
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+                continue;
+            }
+            importCSVFileController.saveClient();
             importCSVFileController.createTest();
             importCSVFileController.saveTest();
-            importCSVFileController.goOneLineForward();
-        } while (importCSVFileController.fileHasNextLine());
+
+        }
+        System.out.println("The CSV file was imported!");
     }
 
     @Override
