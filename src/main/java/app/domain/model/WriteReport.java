@@ -1,39 +1,49 @@
 package app.domain.model;
 
 import java.io.Serializable;
+import java.io.Writer;
+import java.util.Date;
 
-public final class WriteReport implements Serializable, CharSequence {
+public class WriteReport implements CharSequence {
+    double a1;
+    double a2;
+    double rSquared;
+    double r2Adjusted;
+    double r;
+    private double sqR, sqT, sqE;
+    private double sqRAverage, sqEAverage;
+    private double fTest;
+    private int degreesOfFreedom;
+    private int numberOfObservations;
+    private int currentDay;
+    double[] x1;
+    double[] x2;
+
+
 
     // private File file = new File("Report.txt");
     // WriteReport str = new WriteReport();
+    public WriteReport(MultiLinearRegression multiLinearRegression){
+
+    }
 
     public WriteReport() {
 
         double a = 5;
         double b = 10;
-        double r2 = 50;
-        double r2a = 10;
+
         double r = 1;
         String t_obs = "observacao";
         String decision = "decisao";
         String rejection = "Reject H0/ No reject H0";
-        double c = 2;
-        double d = 1347.4754;
-        double e = 673.7377;
-        double f = 28.7538;
-        double g = 15;
-        double h = 351.4699;
-        double i = 23.4313;
-        double j = 17;
-        double k = 1698.9444;
         String fi = "decisao";
 
-        StringBuilder string = new StringBuilder("The regression model fitted using data from the interval\n" +
+        StringBuilder stringToBuild = new StringBuilder("The regression model fitted using data from the interval\n" +
                 "^y = " + a + "x + " + b + "\n" +
                 "\n" +
                 "Other statistics\n" +
-                "R2 = " + r2 + "\n" +
-                "R2adjusted = " + r2a + "\n" +
+                "R2 = " + rSquared+ "\n" +
+                "R2adjusted = " + r2Adjusted + "\n" +
                 "R = " + r + "\n" +
                 "\n" +
                 "Hypothesis tests for regression coefficients\n" +
@@ -45,19 +55,22 @@ public final class WriteReport implements Serializable, CharSequence {
                 "\n" +
                 "Significance model with Anova\n" +
                 "H0: b=0  H1:b<>0\n" +
-                "\t\tgrau de liberdade\tsoma dos quadrados\t\tmedia quadratica\t\testatistica de teste f\n" +
-                "Regression\t" + c + "\t" + d + "\t" + e + "\t" + f + "\n" +
-                "Residual\t" + g + "\t " + h + "\t " + i + "\n" +
-                "Total\t\t" + j + "\t" + k + "\n" +
+                "\t\t            df\t       SS\t\t     MS\t\t     F\n" +
+                "Regression\t" + sqR + "\t" + "2" + "\t" + sqRAverage + "\t" + fTest + "\n" +  //simple /multi
+                "Residual\t" +   sqE + "\t " + (degreesOfFreedom-2) + "\t "+ sqEAverage + "\n" +
+                "Total\t\t" +    sqT + "\t" + degreesOfFreedom + "\n" +
                 "\n" +
-                "Decision: " + fi + "\n" +
-                "0 > f0.05,(2.15)=3.682\n" +
-                "Reject H0\n" +
+                "Decision: f  \n" +
+                "0 > f0.05,(2. "+(degreesOfFreedom-2)+")=3.682\n" +  //simple /multi
+                "Reject H0\n" +                                      //reject or not
                 "The regression model is significant.\n" +
                 "\n" +
                 "// Prediction values\n" +
                 "\n" +
-                "Date           Number of OBSERVED positive cases        Number of ESTIMATED/EXPECTED positive cases \t\t95% intervals\n" +
+                "Date           Number of OBSERVED positive cases        Number of ESTIMATED/EXPECTED positive cases \t\t95% intervals\n");
+                for(double x:x1){
+                    stringToBuild.append(currentDay+ "                    "+currentDay+"  "+ x1[0]+"                                      ");
+                }
                 "29/05/2021                    21                                      22.32\t\t\t\t\t                13.16-23.48\n" +
                 "28/05/2021                    20                                      21.32\t\t\t\t                \t19.16-23.48\n" +
                 "27/05/2021                    14                                      14.33\t\t\t\t                \t12.17-16.49\n" +

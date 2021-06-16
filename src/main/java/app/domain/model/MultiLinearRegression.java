@@ -2,6 +2,7 @@ package app.domain.model;
 
 import java.util.Arrays;
 import org.apache.commons.math3.distribution.FDistribution;
+import org.apache.commons.math3.distribution.TDistribution;
 
 public class MultiLinearRegression {
     private double[][] x;
@@ -11,19 +12,25 @@ public class MultiLinearRegression {
     private double[][] xTransposeY;
     private double yTransposeY;
     private final double[][] vector;
+    int degreesOfFreedom;
+    int numberOfObservations;
     private final double x1, x2, intercept;
     private final double sqR, sqT, sqE;
     private final double sqRAverage, sqEAverage;
     private final double fTest;
     private final double critical;
     private final double rSquared, rSquaredAdjusted, r;
+    private double[] x1Array;
+    private double[] x2Array;
 
 
     public MultiLinearRegression(double[] x1, double[] x2, double[] y) {
         if (x1.length != y.length && x2.length != y.length) {
             throw new IllegalArgumentException("array lengths are not equal");
         }
-
+        x1Array = x1;
+        x2Array = x2;
+        numberOfObservations = y.length;
         x = new double[x1.length][3];
 
         for (int index = 0; index < x1.length; index++) {
@@ -67,7 +74,7 @@ public class MultiLinearRegression {
        /* System.out.println(sqR);
         System.out.println(sqE);
         System.out.println(sqT);*/
-        int degreesOfFreedom = y.length - 1;
+        degreesOfFreedom= y.length - 1;
         sqRAverage = sqR/ 2;
         sqEAverage = sqE/ (degreesOfFreedom-2);
         fTest = sqRAverage / sqEAverage;
@@ -81,6 +88,7 @@ public class MultiLinearRegression {
         double lengthArray = y.length;
         rSquaredAdjusted = 1- (lengthArray -1)/(lengthArray-3)*(1-rSquared);
         r= Math.sqrt(rSquared);
+
         /*System.out.println(rSquared);
         System.out.println(rSquaredAdjusted);*/
 
@@ -119,6 +127,12 @@ public class MultiLinearRegression {
     public double getR() {
         return r;
     }
+    public double getX1() {
+        return x1;
+    }
+    public double getX2() {
+        return x2;
+    }
 
     public double getPrevisionforY(int a1, int a2){
         return a1*x1 + a2*x2 + intercept;
@@ -134,9 +148,10 @@ public class MultiLinearRegression {
         aValues[1][0] = a1;
         aValues[2][0] = a2;
         double[][] criticalValues = matrixMultiplication(aValuesFirst,xTransposeXInversed);
+        TDistribution tDistribution = new TDistribution(degreesOfFreedom-2);
+        double tStrudent = tDistribution.inverseCumulativeProbability(0.975);
         criticalValues = matrixMultiplication(criticalValues,aValues);
-
-        return (1+criticalValues[0][0])*sqEAverage;
+        return Math.sqrt(criticalValues[0][0]*sqEAverage)*tStrudent;
     }
 
 

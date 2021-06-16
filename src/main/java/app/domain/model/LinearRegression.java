@@ -154,6 +154,10 @@ public class LinearRegression {
         return critical;
     }
 
+/*    public double getCriticalValues(){
+
+    }*/
+
     /**
      * Returns a string representation of the simple linear regression model.
      *
