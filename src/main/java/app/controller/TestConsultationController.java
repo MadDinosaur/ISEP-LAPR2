@@ -1,9 +1,12 @@
 package app.controller;
 
 import app.domain.model.*;
-import app.domain.store.*;
-import app.mappers.*;
-import app.mappers.dto.*;
+import app.domain.store.ClientStore;
+import app.domain.store.TestStore;
+import app.mappers.ClientMapper;
+import app.mappers.TestMapper;
+import app.mappers.dto.ClientDTO;
+import app.mappers.dto.TestDTO;
 
 import java.util.List;
 

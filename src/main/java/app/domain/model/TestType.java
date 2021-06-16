@@ -4,13 +4,12 @@ import app.domain.adapter.ExternalModule;
 import app.domain.model.Exceptions.InvalidCategoryException;
 import app.domain.model.Exceptions.InvalidCodeException;
 import app.domain.model.Exceptions.InvalidDescriptionException;
+import app.domain.model.Exceptions.UnassignedExternalModuleException;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import app.domain.model.Exceptions.UnassignedExternalModuleException;
-import org.apache.commons.lang3.StringUtils;
 
 
 /**

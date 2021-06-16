@@ -1,7 +1,7 @@
 package app.domain.adapter;
 
-import app.domain.model.ReferenceValue;
 import app.domain.model.Parameter;
+import app.domain.model.ReferenceValue;
 import com.example1.ExternalModule3API;
 
 public class ExternalModuleAdapter3 implements ExternalModule {

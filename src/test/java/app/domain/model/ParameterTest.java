@@ -1,13 +1,9 @@
 package app.domain.model;
 
-import app.controller.CreateNewParameterController;
-import app.domain.model.ClinicalAnalysisLaboratory;
-import app.domain.model.Exceptions.*;
-import org.junit.Assert;
+import app.domain.model.Exceptions.InvalidCodeException;
+import app.domain.model.Exceptions.InvalidDescriptionException;
+import app.domain.model.Exceptions.InvalidNameException;
 import org.junit.Test;
-import app.domain.model.*;
-
-import java.util.List;
 
 public class ParameterTest {
 

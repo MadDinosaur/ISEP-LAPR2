@@ -1,6 +1,5 @@
 package app.domain.adapter;
 
-import net.sourceforge.barbecue.Barcode;
 import net.sourceforge.barbecue.BarcodeException;
 import net.sourceforge.barbecue.output.OutputException;
 

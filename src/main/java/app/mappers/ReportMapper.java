@@ -1,7 +1,7 @@
 package app.mappers;
 
-import app.mappers.dto.ReportDTO;
 import app.domain.model.Report;
+import app.mappers.dto.ReportDTO;
 
 public class ReportMapper {
 

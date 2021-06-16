@@ -4,7 +4,6 @@ import app.domain.model.Category;
 import app.domain.model.Company;
 import app.domain.model.Parameter;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class CreateNewParameterController {
