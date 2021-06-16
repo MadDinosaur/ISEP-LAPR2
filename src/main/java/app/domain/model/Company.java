@@ -1,6 +1,9 @@
 package app.domain.model;
 
+import app.domain.adapter.BiggestContiguousSumAlgorithm;
+import app.domain.adapter.ExternalModule;
 import app.domain.model.Exceptions.InvalidLaboratoryIDException;
+import app.domain.model.Exceptions.UnassignedExternalModuleException;
 import app.domain.store.*;
 import auth.AuthFacade;
 import auth.domain.model.Email;
@@ -313,5 +316,26 @@ public class Company {
             }
         }
         throw new InvalidLaboratoryIDException("There's no laboratory with such ID " + laboratoryID);
+    }
+
+    public BiggestContiguousSumAlgorithm getBiggestContinuousSumAlgorithm(String code) {
+        Class<?> oClass = null;
+
+        try {
+            switch (code) {
+                case "BruteForce":
+                    oClass = Class.forName("app.domain.adapter.BruteForceAdapter");
+                    break;
+                case "Benchmark":
+                    oClass = Class.forName("app.domain.adapter.BenchmarkAdapter");
+                    break;
+            }
+            return (BiggestContiguousSumAlgorithm) oClass.newInstance();
+
+        } catch (ClassNotFoundException ex) {
+            throw new UnassignedExternalModuleException();
+        } catch (Exception ex) {
+            throw new UnassignedExternalModuleException("Cannot access algorithm!");
+        }
     }
 }

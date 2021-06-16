@@ -2,10 +2,8 @@ package app.domain.model;
 
 import app.mappers.dto.ClientDTO;
 import auth.domain.model.Email;
-import auth.domain.model.User;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
