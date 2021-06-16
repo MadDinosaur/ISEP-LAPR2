@@ -16,10 +16,10 @@ public class ClientUI implements Runnable{
     private final Scanner sc = new Scanner(System.in);
 
     /**
-     * //Empty constructor
+     *
      */
-    public ClientUI(){
-
+    public ClientUI() {
+        //Empty constructor
     }
 
     public void run() {

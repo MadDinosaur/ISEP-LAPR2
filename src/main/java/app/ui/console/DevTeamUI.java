@@ -6,9 +6,8 @@ package app.ui.console;
  */
 public class DevTeamUI implements Runnable{
 
-    public DevTeamUI()
-    {
-
+    public DevTeamUI() {
+        //Empty constructor
     }
     public void run()
     {

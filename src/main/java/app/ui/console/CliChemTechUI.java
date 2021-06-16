@@ -13,10 +13,10 @@ import java.util.List;
 public class CliChemTechUI implements Runnable{
 
     /**
-     * //Empty constructor
+     *
      */
-    public CliChemTechUI()
-    {
+    public CliChemTechUI() {
+        //Empty constructor
     }
 
     public void run()

@@ -13,10 +13,10 @@ import java.util.List;
 public class AdminUI implements Runnable{
 
     /**
-     * //Empty constructor
+     *
      */
-    public AdminUI()
-    {
+    public AdminUI() {
+        //Empty constructor
     }
 
     public void run()
