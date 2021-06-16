@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class TestTypeStore {
 
-    final String COVID = "Covid";
+    final String COVIDSTRING = "Covid";
     final String DESCRICAO = "descrição";
 
     /**
@@ -24,11 +24,11 @@ public class TestTypeStore {
      */
     private CollectionMethod collectionMethodTest = new CollectionMethod("test Colection");
     Category categoryTest = new Category("Hemograma", "pistola", "WBC", "toma");
-    Category covidCategory = new Category(COVID, COVID, DESCRICAO, COVID);
+    Category covidCategory = new Category(COVIDSTRING, COVIDSTRING, DESCRICAO, COVIDSTRING);
     private List<Category> categoryList = new ArrayList<Category>(Collections.singleton(categoryTest));
     Parameter IgGAN = new Parameter("IgGAN", "IgGAN", DESCRICAO);
     List<Category> covidCategoryList = new ArrayList<>(Collections.singleton(covidCategory));
-    TestType Covid = new TestType(COVID, DESCRICAO, collectionMethodTest, covidCategoryList);
+    TestType Covid = new TestType(COVIDSTRING, DESCRICAO, collectionMethodTest, covidCategoryList);
     private ArrayList<TestType> testTypeList = new ArrayList<>(Collections.singleton(Covid));
 
 
