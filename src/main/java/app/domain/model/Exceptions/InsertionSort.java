@@ -1,10 +1,11 @@
 package app.domain.model.Exceptions;
 
 import app.domain.model.Client;
+import app.domain.model.Sortable;
 
 import java.util.List;
 
-public class InsertionSort {
+public class InsertionSort implements Sortable {
 
     public Client[] sortByTin(List<Client> clientList) {
         Client[] clientArr = new Client[clientList.size()];
