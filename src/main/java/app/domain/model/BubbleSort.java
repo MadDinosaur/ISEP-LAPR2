@@ -2,7 +2,7 @@ package app.domain.model;
 
 import java.util.List;
 
-public class BubbleSort {
+public class BubbleSort implements Sortable{
 
     public Client[] sortByTin(List<Client> clientList){
         Client[] clientArr = new Client[clientList.size()];
