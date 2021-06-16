@@ -14,7 +14,7 @@ public class ClinicalAnalysisLaboratory {
     private long phonenumber;
     private long tin;
     private String laboratoryID;
-    private ArrayList<TestType> testTypeList = new ArrayList<>();
+    private final ArrayList<TestType> testTypeList = new ArrayList<>();
 
 
     /**
