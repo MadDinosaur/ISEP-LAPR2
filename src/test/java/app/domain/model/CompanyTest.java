@@ -71,5 +71,9 @@ public class CompanyTest {
         TestTypeStore testStore = company.getTestTypeStore();
     }
 
-
+    @Test
+    public void testValidateCategory() {
+        Category pc = null;
+        Assert.assertFalse(company.validateCategory(pc));
+    }
 }

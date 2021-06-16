@@ -17,7 +17,7 @@ import java.util.*;
  */
 public class Company {
 
-    private List<ClinicalAnalysisLaboratory> clinicalAnalysisLaboratoryLst = new ArrayList<>();
+    private final List<ClinicalAnalysisLaboratory> clinicalAnalysisLaboratoryLst = new ArrayList<>();
     private final String designation;
     private final AuthFacade authFacade;
     private final EmployeeStore employeeStore;
@@ -297,6 +297,12 @@ public class Company {
         return nhsCodeGenerator();
     }
 
+    public void MakeLinearRegressionReport(){
+
+    }
+
+
+
     public ClinicalAnalysisLaboratory getLabById(String laboratoryID) {
         for (ClinicalAnalysisLaboratory clinicalAnalysisLaboratory : clinicalAnalysisLaboratoryLst) {
             if (clinicalAnalysisLaboratory.getLaboratoryID().equals(laboratoryID)) {
@@ -349,6 +355,8 @@ public class Company {
                 case "Benchmark":
                     oClass = Class.forName("app.domain.adapter.BenchmarkAdapter");
                     break;
+                default:
+                    System.out.println("No algorithm found!");
             }
             return (BiggestContiguousSumAlgorithm) oClass.newInstance();
 
