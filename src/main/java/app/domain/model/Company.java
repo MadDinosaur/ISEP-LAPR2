@@ -30,6 +30,7 @@ public class Company {
     private int testNumber;
     private final List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
 
+
     public Company(String designation) {
         if (StringUtils.isBlank(designation))
             throw new IllegalArgumentException("Designation cannot be blank.");
@@ -282,6 +283,8 @@ public class Company {
 
     public String generateNhsCodeGenerator(){return  nhsCodeGenerator();}
 
+
+
     public ClinicalAnalysisLaboratory getLabById(String laboratoryID) {
         for (ClinicalAnalysisLaboratory clinicalAnalysisLaboratory : clinicalAnalysisLaboratoryLst) {
             if (clinicalAnalysisLaboratory.getLaboratoryID().equals(laboratoryID)) {
@@ -291,7 +294,7 @@ public class Company {
         throw new InvalidLaboratoryIDException("There's no laboratory with such ID " + laboratoryID);
     }
 
-    public Sortable getSortingAlgorithm(){
+    public Sortable getSortingAlgorithm() throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         Properties props = new Properties(System.getProperties());
 
         try {

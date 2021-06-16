@@ -27,6 +27,9 @@ public class DateBirth {
         setMonth(month);
         setYear(year);
     }
+    public int getYear() {
+        return year;
+    }
 
     public void setDay(int day) {
         if(day <0 || day> 31){
