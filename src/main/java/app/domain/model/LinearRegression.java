@@ -24,7 +24,7 @@ public class LinearRegression {
     double tss;                                         //sqt
     double svar;                                        //mqr
     double statisticF;
-    private double critical;
+    private final double critical;
 
 
     /**
@@ -41,7 +41,9 @@ public class LinearRegression {
         int lengthOfArray = x.length;
 
         // first pass
-        double sumx = 0.0, sumy = 0.0, sumx2 = 0.0;
+        double sumx = 0.0;
+        double sumy = 0.0;
+        double sumx2 = 0.0;
         for (int i = 0; i < lengthOfArray; i++) {
             sumx  += x[i];
             sumx2 += x[i]*x[i];
@@ -153,10 +155,6 @@ public class LinearRegression {
     public double getCritical() {
         return critical;
     }
-
-/*    public double getCriticalValues(){
-
-    }*/
 
     /**
      * Returns a string representation of the simple linear regression model.
