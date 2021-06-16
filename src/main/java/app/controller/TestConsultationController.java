@@ -54,10 +54,12 @@ public class TestConsultationController {
         List<Test> clientTestList = testStore.getValidatedTestsByClient(client);
         TestMapper testMapper = new TestMapper();
         List<TestDTO> clientTestListDTO = null;
+        String[] clientTestListWithResults = null;
         for (Test test : clientTestList){
 
             testMapper.toDTO(test);
         }
+        return clientTestListWithResults;
     }
 
     public List<TestParameterResult> displayTestResults(String testCode){
