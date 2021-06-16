@@ -28,7 +28,7 @@ public class TestConsultationController {
         this.company = company;
     }
 
-    public List<ClientDTO> getClientList(String sortMethod){
+    public List<ClientDTO> getClientList(String sortMethod) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
         this.clientStore = this.company.getClientStore();
         this.clientList = this.clientStore.getClientList();
         Sortable sortingAlgorithm = this.company.getSortingAlgorithm();
@@ -54,10 +54,12 @@ public class TestConsultationController {
         List<Test> clientTestList = testStore.getValidatedTestsByClient(client);
         TestMapper testMapper = new TestMapper();
         List<TestDTO> clientTestListDTO = null;
+        String[] clientTestListWithResults = null;
         for (Test test : clientTestList){
 
             testMapper.toDTO(test);
         }
+        return clientTestListWithResults;
     }
 
     public List<TestParameterResult> displayTestResults(String testCode){
