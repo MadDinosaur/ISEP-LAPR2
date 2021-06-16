@@ -1,8 +1,11 @@
-package app.domain.model;
+package app.domain.algorithms;
+
+import app.domain.model.Client;
+import app.domain.adapter.Sortable;
 
 import java.util.List;
 
-public class BubbleSort implements Sortable{
+public class BubbleSort implements Sortable {
 
     public Client[] sortByTin(List<Client> clientList){
         Client[] clientArr = new Client[clientList.size()];

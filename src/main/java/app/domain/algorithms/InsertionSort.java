@@ -1,7 +1,7 @@
-package app.domain.model.Exceptions;
+package app.domain.algorithms;
 
 import app.domain.model.Client;
-import app.domain.model.Sortable;
+import app.domain.adapter.Sortable;
 
 import java.util.List;
 

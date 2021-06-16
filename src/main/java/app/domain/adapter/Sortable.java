@@ -1,4 +1,6 @@
-package app.domain.model;
+package app.domain.adapter;
+
+import app.domain.model.Client;
 
 import java.util.List;
 

@@ -1,6 +1,7 @@
 package app.domain.model;
 
 import app.domain.adapter.BiggestContiguousSumAlgorithm;
+import app.domain.adapter.Sortable;
 import app.domain.model.Exceptions.InvalidLaboratoryIDException;
 import app.domain.model.Exceptions.UnassignedExternalModuleException;
 import app.domain.store.*;

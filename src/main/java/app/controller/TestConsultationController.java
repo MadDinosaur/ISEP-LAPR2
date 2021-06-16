@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.domain.adapter.Sortable;
 import app.domain.model.*;
 import app.domain.store.ClientStore;
 import app.domain.store.TestStore;
@@ -55,9 +56,13 @@ public class TestConsultationController {
         TestMapper testMapper = new TestMapper();
         List<TestDTO> clientTestListDTO = null;
         String[] clientTestListWithResults = null;
+        int i = 0;
         for (Test test : clientTestList){
-
             testMapper.toDTO(test);
+            for(TestParameter testParameter : test.getTestParamList().getTestParameters()){
+                String testParamWithResult = testParameter.getParameter().getParameterName() + ": "+ testParameter.getResult().toString();
+                clientTestListWithResults[i] = "Test #" + i + ":";
+            }
         }
         return clientTestListWithResults;
     }
