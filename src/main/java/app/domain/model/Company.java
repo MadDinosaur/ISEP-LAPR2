@@ -29,7 +29,7 @@ public class Company {
     private final Random random = new Random();
     private SampleList sampleList;
     private int testNumber;
-    private final List<Category> categoryList = new ArrayList<Category>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
+    private final List<Category> categoryList = new ArrayList<>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
 
 
     public Company(String designation) {
@@ -61,7 +61,7 @@ public class Company {
         Parameter parameter2 = new Parameter("par2346", "HB001", "test f235");
         categoryTest.saveParameter(parameter);
         categoryTest.saveParameter(parameter2);
-        List<Category> categoryList = new ArrayList<Category>(Collections.singleton(categoryTest));
+        List<Category> categoryList = new ArrayList<>(Collections.singleton(categoryTest));
         TestType testTypeHardCoded = new TestType("Blood", "test Of Test", collectionMethodTest, categoryList);
         testTypeStore.addTestType(testTypeHardCoded);
         Test testTestHardCoded = new Test(clientStore.getClientByCardNumber((long) 8765432187654321.0), testTypeHardCoded, testNumberGenerator(), nhsCodeGenerator());
