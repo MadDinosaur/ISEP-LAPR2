@@ -305,8 +305,20 @@ public class Company {
 
         String sortAlg = props.getProperty("sortingAlgorithm1");
 
-        Class<?> oClass = Class.forName(sortAlg);
-        Sortable sortingAlgorithm = (Sortable) oClass.newInstance();
+        Class<?> oClass = null;
+        try {
+            oClass = Class.forName(sortAlg);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        Sortable sortingAlgorithm = null;
+        try {
+            sortingAlgorithm = (Sortable) oClass.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
 
         return sortingAlgorithm;
     }
