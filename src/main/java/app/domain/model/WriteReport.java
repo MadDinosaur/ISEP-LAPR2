@@ -14,16 +14,14 @@ public class WriteReport implements CharSequence {
     private int currentDay;
     double[] x1;
     double[] x2;
-
+    MultiLinearRegression multiLinearRegression;
 
 
     // private File file = new File("Report.txt");
     // WriteReport str = new WriteReport();
-    public WriteReport(MultiLinearRegression multiLinearRegression){
+    
 
-    }
-
-    public WriteReport() {
+    public WriteReport(MultiLinearRegression multiLinearRegression) {
 
         double a = 5;
         double b = 10;
@@ -65,9 +63,9 @@ public class WriteReport implements CharSequence {
                 "\n" +
                 "Date           Number of OBSERVED positive cases        Number of ESTIMATED/EXPECTED positive cases \t\t95% intervals\n");
                 for(double x:x1){
-                    stringToBuild.append(currentDay+ "                    "+currentDay+"  "+ x1[0]+"                                      ");
+                    stringToBuild.append(currentDay+ "                    "+currentDay+"  "+ "                                      ");
                 }
-                "29/05/2021                    21                                      22.32\t\t\t\t\t                13.16-23.48\n" +
+/*                "29/05/2021                    21                                      22.32\t\t\t\t\t                13.16-23.48\n" +
                 "28/05/2021                    20                                      21.32\t\t\t\t                \t19.16-23.48\n" +
                 "27/05/2021                    14                                      14.33\t\t\t\t                \t12.17-16.49\n" +
                 "26/05/2021                    23                                      22.35\t\t\t\t                \t20.19-24.51\n" +
@@ -81,7 +79,7 @@ public class WriteReport implements CharSequence {
                 "17/05/2021                    22                                      23.01\t                \t\t\t\t20.85-25.17\n" +
                 "15/05/2021                    20                                      21.02\t                \t\t\t\t18.86-23.18\n" +
                 "14/05/2021                    20                                      21.02\t                \t\t\t\t18.86-23.18\n" +
-                "13/05/2021                    14                                      15.03\t                \t\t\t\t12.87-17.19");
+                "13/05/2021                    14                                      15.03\t                \t\t\t\t12.87-17.19";*/
 
     }
     @Override

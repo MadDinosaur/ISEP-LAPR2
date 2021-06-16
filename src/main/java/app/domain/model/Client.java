@@ -20,6 +20,7 @@ public class Client {
     private final String organizationRole = "cl";
     private final List<Test> clientTests = new ArrayList<>();
     private String address;
+    private int  ageInYears;
 
 
     public Client(String name, long cardNumber, long nhsId, DateBirth dateBirth, long TIN, long phoneNumber, Email email, String sex) {
@@ -60,6 +61,7 @@ public class Client {
 
     public void setDateBirth(DateBirth dateBirth) {
         this.dateBirth = dateBirth;
+        this.ageInYears = 2021- dateBirth.getYear();
     }
 
     public void setTIN(long tin) {
@@ -120,6 +122,10 @@ public class Client {
 
     public long getNhsId() {
         return nhsId;
+    }
+
+    public int getAgeInYears() {
+        return ageInYears;
     }
 
     public void addTestToClient(Test test) {

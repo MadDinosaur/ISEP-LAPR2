@@ -132,7 +132,6 @@ public class MultiLinearRegression {
     public double getX2() {
         return x2;
     }
-
     public double getPrevisionforY(int a1, int a2){
         return a1*x1 + a2*x2 + intercept;
     }
