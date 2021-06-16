@@ -355,6 +355,8 @@ public class Company {
                 case "Benchmark":
                     oClass = Class.forName("app.domain.adapter.BenchmarkAdapter");
                     break;
+                default:
+                    System.out.println("No algorithm found!");
             }
             return (BiggestContiguousSumAlgorithm) oClass.newInstance();
 
