@@ -1,13 +1,13 @@
 package app.domain.model;
 
-import app.domain.model.Exceptions.InvalidTextReportException;
-import app.domain.store.*;
+import app.domain.store.ClientStore;
+import app.domain.store.EmployeeStore;
+import app.domain.store.SampleList;
+import app.domain.store.TestTypeStore;
 import auth.domain.model.Email;
-import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

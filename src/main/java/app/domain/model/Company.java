@@ -1,10 +1,11 @@
 package app.domain.model;
 
+import app.domain.adapter.BiggestContiguousSumAlgorithm;
 import app.domain.model.Exceptions.InvalidLaboratoryIDException;
+import app.domain.model.Exceptions.UnassignedExternalModuleException;
 import app.domain.store.*;
 import auth.AuthFacade;
 import auth.domain.model.Email;
-
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
@@ -322,4 +323,24 @@ public class Company {
 
         return sortingAlgorithm;
     }
+
+    public BiggestContiguousSumAlgorithm getBiggestContinuousSumAlgorithm(String code) {
+        Class<?> oClass = null;
+
+        try {
+            switch (code) {
+                case "BruteForce":
+                    oClass = Class.forName("app.domain.adapter.BruteForceAdapter");
+                    break;
+                case "Benchmark":
+                    oClass = Class.forName("app.domain.adapter.BenchmarkAdapter");
+                    break;
+            }
+            return (BiggestContiguousSumAlgorithm) oClass.newInstance();
+
+        } catch (ClassNotFoundException ex) {
+            throw new UnassignedExternalModuleException();
+        } catch (Exception ex) {
+            throw new UnassignedExternalModuleException("Cannot access algorithm!");
+        }
 }

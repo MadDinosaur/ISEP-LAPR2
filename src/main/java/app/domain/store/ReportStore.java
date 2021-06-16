@@ -1,8 +1,8 @@
 package app.domain.store;
 
-import app.mappers.dto.ReportDTO;
 import app.domain.model.Report;
 import app.mappers.ReportMapper;
+import app.mappers.dto.ReportDTO;
 
 public class ReportStore {
 

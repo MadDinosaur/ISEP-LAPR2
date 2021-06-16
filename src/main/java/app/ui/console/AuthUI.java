@@ -1,12 +1,9 @@
 package app.ui.console;
 
 import app.controller.AuthController;
-import app.domain.shared.Constants;
 import app.ui.console.utils.Utils;
-import auth.domain.model.UserRole;
 import auth.mappers.dto.UserRoleDTO;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

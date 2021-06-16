@@ -4,9 +4,6 @@ import app.domain.model.Exceptions.InvalidMetricException;
 import app.domain.model.Exceptions.InvalidReferenceValueException;
 import app.domain.model.Exceptions.InvalidSampleValueException;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.text.ParseException;
 import java.util.Date;
 
 public class TestParameterResult {

@@ -10,22 +10,33 @@ participant "testStore: TestStore" as ts
 participant "clientStore: ClientStore" as cs
 participant "algorithm: BiggestContiguousSubSequenceAlgorithm"
 
+activate lc
+activate otUI
+
 lc -> otUI: selects the overview of all tests menu
 otUI -[dotted]> lc: requests the beginning and ending dates and the algorithm to be used
+deactivate otUI
 lc -> otUI: types in the requested data
-otUI -> otC: getNumberOfClientsInDateInterval(date)
+activate otUI
+otUI -> otC: dateInterval = getDatesBetweenDateInterval(begginingDate, endingDate)
+otUI -> otC: getNumberOfClients()
 otC -> company: clientStore = getClientStore()
-otC -> cs: getNumberOfClientsInDateInterval(date)
-otUI -> otC: getTestsWaitingForResultsInDateInterval(date)
+otC -> cs: getNumberOfClients()
+otUI -> otC: getNumberOfTestsWaitingForResults()
 otC -> company: testStore = getTestStore()
-otC -> ts: getTestsWaitingForResultsInDateInterval(date)
-otUI -> otC: getTestsValidatedInDateInterval(date)
-otC -> ts: getTestsValidatedInDateInterval(date)
-otUI -> otC: getDifferenceOfNewAndValidatedTests(date)
-otC -> ts: int[] sequence = getDifferenceOfNewAndValidatedTestsForEachHalfAnHour(date)
-otUI -> otC: getBiggestContiguousSubSequence(sequence)
-otC -> company: algorithm = getBiggestContiguousSubSequenceAlgorithm()
+otC -> ts: getNumberTestsWaitingForResults()
+otUI -> otC: getNumberOfTestsWaitingForReport()
+otC -> ts: getNumberOfTestsWaitingForReport()
+otUI -> otC: getTestsValidatedInDateInterval(dateInterval)
+otC -> ts: getTestsValidatedInDateInterval(dateInterval)
+otUI -> otC: getDifferenceOfNewAndValidatedTests(dateInterval)
+otC -> ts: int[] sequence = getDifferenceOfNewAndValidatedTestsForEachHalfAnHour(dateInterval)
+otUI -> otC: getBiggestContiguousSubSequence(code)
+otC -> company: algorithm = getBiggestContiguousSubSequenceAlgorithm(code)
 otC -> "algorithm: BiggestContiguousSubSequenceAlgorithm": getBiggestContiguousSubSequence(sequence)
 otUI -[dotted]> lc: shows the statistics and graphs
+
+deactivate otUI
+deactivate lc
 
 @enduml

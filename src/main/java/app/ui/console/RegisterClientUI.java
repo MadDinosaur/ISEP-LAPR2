@@ -4,7 +4,8 @@ import app.controller.RegisterClientController;
 import app.domain.model.Exceptions.*;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class RegisterClientUI implements Runnable {
 

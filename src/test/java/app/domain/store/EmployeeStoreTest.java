@@ -3,11 +3,8 @@ package app.domain.store;
 import app.domain.model.Employee;
 import app.domain.model.Exceptions.InvalidEmployeeException;
 import app.domain.model.OrganizationRole;
-import app.domain.store.EmployeeStore;
 import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class EmployeeStoreTest {
     EmployeeStore es = new EmployeeStore();

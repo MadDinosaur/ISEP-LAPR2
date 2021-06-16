@@ -1,6 +1,9 @@
 package app.controller;
 
-import app.domain.model.*;
+import app.domain.model.Company;
+import app.domain.model.Report;
+import app.domain.model.Test;
+import app.domain.model.TestParameter;
 import app.domain.store.ReportStore;
 import app.domain.store.TestParamList;
 import app.domain.store.TestStore;

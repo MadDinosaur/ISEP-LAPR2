@@ -3,7 +3,6 @@ package app.domain.store;
 import app.domain.model.Sample;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SampleList {
 

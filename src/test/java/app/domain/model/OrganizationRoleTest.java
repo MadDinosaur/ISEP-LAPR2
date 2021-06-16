@@ -1,11 +1,6 @@
 package app.domain.model;
 
-import app.domain.model.Employee;
-import app.domain.model.Exceptions.InvalidEmployeeException;
-import app.domain.model.OrganizationRole;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class OrganizationRoleTest {
     OrganizationRole orgRoleTest = new OrganizationRole("any", "any");

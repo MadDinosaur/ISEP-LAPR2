@@ -1,7 +1,7 @@
 package app.mappers;
 
-import app.mappers.dto.ClientDTO;
 import app.domain.model.Client;
+import app.mappers.dto.ClientDTO;
 
 public class ClientMapper {
 
