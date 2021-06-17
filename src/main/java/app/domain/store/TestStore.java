@@ -131,7 +131,11 @@ public class TestStore {
                 numberOfClient++;
             }
         }
-        return sumAge/numberOfClient;
+        if(numberOfClient !=0) {
+            return sumAge / numberOfClient;
+        }else{
+            return 0;
+        }
     }
 
 
