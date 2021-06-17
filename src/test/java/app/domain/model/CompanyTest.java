@@ -130,7 +130,4 @@ public class CompanyTest {
         Assert.assertNotNull(sampleList);
     }
 
-    @Test
-    
-
 }
