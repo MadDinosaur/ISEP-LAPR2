@@ -44,6 +44,7 @@ public class Company {
         this.orgRoleStore = new OrgRoleStore(authFacade);
         this.testStore = new TestStore();
         this.testNumber = 1;
+        this.sampleList = new SampleList();
 
         //HARDCODED THINGS FOR TESTS
         Employee testEmployee = new Employee("testEmployee", orgRoleStore.getOrganizationRole("Receptionist"), "nameEmployee", "house", "testEmployee@gmail.com", "123456789", "1234");
@@ -62,8 +63,8 @@ public class Company {
         Parameter parameter2 = new Parameter("par2346", "HB001", "test f235");
         categoryTest.saveParameter(parameter);
         categoryTest.saveParameter(parameter2);
-        List<Category> categoryList = new ArrayList<>(Collections.singleton(categoryTest));
-        TestType testTypeHardCoded = new TestType("Blood", "test Of Test", collectionMethodTest, categoryList);
+        List<Category> categoryList1 = new ArrayList<>(Collections.singleton(categoryTest));
+        TestType testTypeHardCoded = new TestType("Blood", "test Of Test", collectionMethodTest, categoryList1);
         testTypeStore.addTestType(testTypeHardCoded);
         Test testTestHardCoded = new Test(clientStore.getClientByCardNumber((long) 8765432187654321.0), testTypeHardCoded, testNumberGenerator(), nhsCodeGenerator());
         Test testTestHardCodedRegistered = new Test(clientStore.getClientByCardNumber((long) 8765432187654322.0), testTypeHardCoded, testNumberGenerator(), nhsCodeGenerator());
@@ -92,8 +93,8 @@ public class Company {
         return authFacade;
     }
 
-    public Category createCategory(String code, String description, String nhsId) {
-        return new Category(code, description, nhsId);
+    public Category createCategory(String name, String code, String description) {
+        return new Category(name, code, description );
     }
 
     public boolean validateCategory(Category pc) {

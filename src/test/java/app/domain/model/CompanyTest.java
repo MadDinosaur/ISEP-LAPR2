@@ -1,30 +1,31 @@
 package app.domain.model;
 
-import app.domain.store.ClientStore;
-import app.domain.store.EmployeeStore;
-import app.domain.store.SampleList;
-import app.domain.store.TestTypeStore;
+import app.domain.store.*;
+import auth.AuthFacade;
 import auth.domain.model.Email;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class CompanyTest {
 
-    private Company company = new Company("test Company");
-    private ClientStore clientStore= new ClientStore();
-    private EmployeeStore employeeStore = new EmployeeStore();
-    private Client client = new Client("test",(long)  8765432187654322.0,1234512345,new DateBirth(24,12,2002),1234512347,(long)12345123456.0,new Email("teste@gmail.com"),"male");
-    private String pss = "1234567890";
+    private final Company company = new Company("test Company");
+    private final ClientStore clientStore= new ClientStore();
+    private final EmployeeStore employeeStore = new EmployeeStore();
+    private final Client client = new Client("test",(long)  8765432187654322.0,1234512345,new DateBirth(24,12,2002),1234512347,(long)12345123456.0,new Email("teste@gmail.com"),"male");
+    private final String pss = "1234567890";
 
-    private SampleList sampleList = new SampleList();
-    private Sample sample1 = new Sample("123456789012");
-    private Sample sample2 = new Sample("111111111111");
-    private Sample sample3 = new Sample("123123123123");
+    private final SampleList sampleList = new SampleList();
+    private final Sample sample1 = new Sample("123456789012");
+    private final Sample sample2 = new Sample("111111111111");
+    private final Sample sample3 = new Sample("123123123123");
 
+    private final Category pc = null;
+    private final Category pc1 = new Category("name", "12345", "description");
 
     @Test
     public void testSaveClientAsUser() {
@@ -69,11 +70,64 @@ public class CompanyTest {
         List<Category> categoryList = new ArrayList<Category>(Collections.singleton(categoryTest));
         TestType t1 = new TestType("name", "code", collectionMethodTest, categoryList);
         TestTypeStore testStore = company.getTestTypeStore();
+        Assert.assertNotNull(testStore);
     }
 
     @Test
     public void testValidateCategory() {
-        Category pc = null;
         Assert.assertFalse(company.validateCategory(pc));
+        Assert.assertTrue(company.validateCategory(pc1));
     }
+
+    @Test
+    public void saveCategoryTest() {
+        Assert.assertFalse(company.saveCategory(pc));
+        Assert.assertTrue(company.saveCategory(pc1));
+    }
+
+    @Test
+    public void authFacadeTest() {
+       AuthFacade authFacade = company.getAuthFacade();
+       Assert.assertNotNull(authFacade);
+    }
+
+    @Test
+    public void createCategoryTest() {
+        Category category = company.createCategory("name", "12345", "description");
+        String name = category.getCategoryName();
+        String code = category.getCategoryCode();
+        String description = category.getCategoryDescription();
+
+        Assert.assertEquals(name, "name");
+        Assert.assertEquals(code, "12345");
+        Assert.assertEquals(description, "description");
+    }
+
+    @Test
+    public void companyGettersTest() {
+        ArrayList<TestType> testTypeList = company.getTestTypeList();
+        Assert.assertNotNull(testTypeList);
+
+        List<Category> categoryList = company.getCategoryList();
+        Assert.assertNotNull(categoryList);
+
+        EmployeeStore employeeStore = company.getEmployeeStore();
+        Assert.assertNotNull(employeeStore);
+
+        ClientStore clientStore = company.getClientStore();
+        Assert.assertNotNull(clientStore);
+
+        OrgRoleStore orgRoleStore = company.getOrgRoleStore();
+        Assert.assertNotNull(orgRoleStore);
+
+        TestStore testStore = company.getTestStore();
+        Assert.assertNotNull(testStore);
+
+        ReportStore reportStore = company.getReportStore();
+        Assert.assertNotNull(reportStore);
+
+        SampleList sampleList = company.getSampleStore();
+        Assert.assertNotNull(sampleList);
+    }
+
 }
