@@ -42,6 +42,7 @@ public class ImportCSVFileUI implements Initializable {
         FileChooser fc = new FileChooser();
         File selectedFile = fc.showOpenDialog(null);
         importCSVFileController.setFile(selectedFile);
+        fileNameTF.setDisable(true);
         fileNameTF.setText(importCSVFileController.getFile().getPath());
         fileNameTF.setAlignment(Pos.BASELINE_LEFT);
 
