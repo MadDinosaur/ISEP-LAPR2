@@ -1,5 +1,14 @@
 package app.domain.model;
 
+import app.domain.store.TestStore;
+import org.apache.commons.lang3.time.DateUtils;
+
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+
 public class WriteReport implements CharSequence {
     double a1;
     double a2;
@@ -11,9 +20,10 @@ public class WriteReport implements CharSequence {
     private double fTest;
     private int degreesOfFreedom;
     private int numberOfObservations;
-    private int currentDay;
+    private String currentDay;
     double[] x1;
     double[] x2;
+    private final int daysForTable;
     MultiLinearRegression multiLinearRegression;
 
 
@@ -21,7 +31,15 @@ public class WriteReport implements CharSequence {
     // WriteReport str = new WriteReport();
     
 
-    public WriteReport(MultiLinearRegression multiLinearRegression) {
+    public WriteReport(double[]variableA,double[]variableB, TestStore testStore, int daysForTable, String currentDay) {
+        this.daysForTable =daysForTable;
+        this.currentDay = currentDay;
+        String[] dateComponents = currentDay.split("/");
+        int day= Integer.parseInt(dateComponents[0]);
+        int month = Integer.parseInt(dateComponents[1]);
+        int year = Integer.parseInt(dateComponents[2]);
+        Date dateCurrentDay = new GregorianCalendar(year, month, day).getTime();
+
 
         double a = 5;
         double b = 10;
@@ -62,8 +80,23 @@ public class WriteReport implements CharSequence {
                 "// Prediction values\n" +
                 "\n" +
                 "Date           Number of OBSERVED positive cases        Number of ESTIMATED/EXPECTED positive cases \t\t95% intervals\n");
-                for(double x:x1){
-                    stringToBuild.append(currentDay+ "                    "+currentDay+"  "+ "                                      ");
+                Date dayOfTable;
+                int index = 1;
+                for(index= 1; index<daysForTable;index++){
+                    dayOfTable = DateUtils.addDays(dateCurrentDay,-1);
+                    Calendar calendar  = Calendar.getInstance();
+                    calendar.setTime(dayOfTable);
+                    int dayOfCalendar = calendar.get(Calendar.DAY_OF_MONTH);
+                    int monthOfCalendar = calendar.get(Calendar.DAY_OF_MONTH);
+                    int yearOfCalendar = calendar.get(Calendar.YEAR);
+                    String dateInString = dayOfCalendar +"/"+monthOfCalendar+"/"+yearOfCalendar;
+                    if(dayOfTable.getDay() == 0){
+                        index--;
+                        continue;
+                    }
+                    double critical = multiLinearRegression.getPrevisionforY(testStore.getNumberOfTestsPerformed(dateInString),testStore.getAverageAgeOfClient(dateInString));
+                    stringToBuild.append((dayOfTable.toString()+ "                    "+testStore.getNumberOfPositiveCasesPerDay(dateInString)+"                                      "+multiLinearRegression.getPrevisionforY(testStore.getNumberOfTestsPerformed(dateInString),testStore.getAverageAgeOfClient(dateInString))+"                                      "+(critical - multiLinearRegression.getCriticalValue(testStore.getNumberOfTestsPerformed(dateInString),testStore.getAverageAgeOfClient(dateInString) )) + "-" +(critical + multiLinearRegression.getCriticalValue(testStore.getNumberOfTestsPerformed(dateInString),testStore.getAverageAgeOfClient(dateInString) )) ));
+
                 }
 /*                "29/05/2021                    21                                      22.32\t\t\t\t\t                13.16-23.48\n" +
                 "28/05/2021                    20                                      21.32\t\t\t\t                \t19.16-23.48\n" +

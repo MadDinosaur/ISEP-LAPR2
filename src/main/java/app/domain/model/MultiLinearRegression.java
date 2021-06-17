@@ -132,11 +132,11 @@ public class MultiLinearRegression {
     public double getX2() {
         return x2;
     }
-    public double getPrevisionforY(int a1, int a2){
+    public double getPrevisionforY(double a1, double a2){
         return a1*x1 + a2*x2 + intercept;
     }
 
-    public double getCriticalValue(int a1, int a2){
+    public double getCriticalValue(double a1, double a2){
         double[][] aValuesFirst = new double[3][3];
         aValuesFirst[0][0] = 1;
         aValuesFirst[0][1] = a1;
