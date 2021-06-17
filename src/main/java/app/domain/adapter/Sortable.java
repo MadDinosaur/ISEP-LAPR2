@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface Sortable {
 
-    public Client[] sortByTin(List<Client> clientList);
+    Client[] sortByTin(List<Client> clientList);
 
-    public Client[] sortByName(List<Client> clientList);
+    Client[] sortByName(List<Client> clientList);
 }
