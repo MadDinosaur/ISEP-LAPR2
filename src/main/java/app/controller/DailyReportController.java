@@ -58,7 +58,7 @@ public class DailyReportController extends TimerTask {
      */
     public void run() {
         //new WriteReport();
-        System.out.println("ola");
         nhsreport.generateLogEvent();
+        System.out.println("NHS Daily Report sent");
     }
 }

@@ -77,63 +77,67 @@ public class TestStore {
         return validated;
     }
 
-    public List<Test> getListPositiveCovid(){
+    public List<Test> getListPositiveCovid() {
         List<Test> positiveCovid = new ArrayList<>();
-        for (Test test : tests){
-            if (test.isValidated()){
-                if(test.getTestType().getCode().equals("Covid")){
-                    for (TestParameterResult parameterResult: test.getTestParamResults()) {
-                        if(parameterResult.getValue() > 1.4){
-                            positiveCovid.add(test);
+        for (Test test : tests) {
+            if (test.getTestType().getCode().equals("Covid")) {
+                if(test.isValidated()) {
+                    List<TestParameterResult> testParameterResultList = test.getTestParamResults();
+                    for (TestParameterResult parameterResult : testParameterResultList) {
+                        if (parameterResult.getValue() != null) {
+                            if (parameterResult.getValue() > 1.4) {
+                                positiveCovid.add(test);
+                            }
                         }
-
                     }
                 }
             }
         }
-        return  positiveCovid;
+        return positiveCovid;
     }
-    public int getNumberOfPositiveCasesPerDay(String dayOfTest){
+
+    public int getNumberOfPositiveCasesPerDay(String dayOfTest) {
         List<Test> listOfPositiveTests = getListPositiveCovid();
-        int numberOfCases=0;
-        for (Test test : listOfPositiveTests){
+        int numberOfCases = 0;
+        for (Test test : listOfPositiveTests) {
             String date = test.getDateTimeRegister();
             String[] dateComponents = date.split(" ");
             date = dateComponents[0];
-            if(dayOfTest.equalsIgnoreCase(date)){
+            if (dayOfTest.equalsIgnoreCase(date)) {
                 numberOfCases++;
             }
         }
         return numberOfCases;
     }
 
-    public double getNumberOfTestsPerformed(String dayOfTest){
+    public double getNumberOfTestsPerformed(String dayOfTest) {
         double numberOfTestsMade = 0;
-        for (Test test : tests){
+        for (Test test : tests) {
             String date = test.getDateTimeRegister();
             String[] dateComponents = date.split(" ");
             date = dateComponents[0];
-            if(dayOfTest.equalsIgnoreCase(date)){
+            if (dayOfTest.equalsIgnoreCase(date)) {
                 numberOfTestsMade++;
             }
         }
         return numberOfTestsMade;
     }
-    public double getAverageAgeOfClient(String dayOfTest){
+
+    public double getAverageAgeOfClient(String dayOfTest) {
         double sumAge = 0;
         int numberOfClient = 0;
-        for (Test test : tests){
+        for (Test test : tests) {
             String date = test.getDateTimeRegister();
             String[] dateComponents = date.split(" ");
             date = dateComponents[0];
-            if(dayOfTest.equalsIgnoreCase(date)){
+            if (dayOfTest.equalsIgnoreCase(date)) {
                 sumAge = test.getClient().getAgeInYears();
                 numberOfClient++;
             }
         }
-        if(numberOfClient !=0) {
+        if (numberOfClient != 0) {
             return sumAge / numberOfClient;
-        }else{
+        } else {
             return 0;
         }
     }
