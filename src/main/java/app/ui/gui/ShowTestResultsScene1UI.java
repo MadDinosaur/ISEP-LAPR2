@@ -2,6 +2,7 @@ package app.ui.gui;
 
 import app.controller.App;
 import app.controller.ShowTestResultController;
+import app.domain.model.Test;
 import app.mappers.dto.TestDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -39,10 +44,12 @@ public class ShowTestResultsScene1UI implements Initializable {
         try {
             ShowTestResultsScene2UI showTestResultsScene2UI =
                     (ShowTestResultsScene2UI) this.mainApp.
-                            replaceSceneContent("/fxml/ShowTestResultsScene1.fxml");
+                            replaceSceneContent("/fxml/ShowTestResultsScene2.fxml");
             showTestResultsScene2UI.setParent(this);
             showTestResultsScene2UI.setMainApp(this.mainApp);
             showTestResultsScene2UI.setTest(lstViewTests.getSelectionModel().getSelectedItem());
+            showTestResultsScene2UI.displayTestInfo();
+            showTestResultsScene2UI.displayTestResultInfo();
         } catch (Exception ex) {
             Logger.getLogger(app.ui.gui.App.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -50,6 +57,8 @@ public class ShowTestResultsScene1UI implements Initializable {
     public void setMainApp(app.ui.gui.App mainApp) {
         this.mainApp = mainApp;
     }
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -61,10 +70,21 @@ public class ShowTestResultsScene1UI implements Initializable {
     }
 
     private void displayTestList() {
-        lstViewTests = new ListView<>();
-
         List<TestDTO> tests = controller
                 .displayClientTests(App.getInstance().getCurrentUserSession().getUserId().toString());
+
+        Comparator<TestDTO> byRegDate = new Comparator<TestDTO>() {
+            @Override
+            public int compare(TestDTO t1, TestDTO t2) {
+                try {
+                    return new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(t1.getDateTimeRegister())
+                            .compareTo(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(t2.getDateTimeRegister()));
+                } catch (ParseException e) {
+                    return -1;
+                }
+            }
+        };
+        tests.sort(byRegDate);
         lstViewTests.getItems().addAll(tests);
     }
 

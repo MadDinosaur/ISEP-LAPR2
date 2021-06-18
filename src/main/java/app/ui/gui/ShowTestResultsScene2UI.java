@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,16 +43,7 @@ public class ShowTestResultsScene2UI implements Initializable {
     private Label lbDateValidation;
 
     @FXML
-    private TableView<TestParameter> tViewResults;
-
-    @FXML
-    private TableColumn<TestParameter, String> tColParameter;
-
-    @FXML
-    private TableColumn<TestParameter, String> tColValue;
-
-    @FXML
-    private TableColumn<TestParameter, String> tColRefValue;
+    private GridPane gridTests;
 
     public void setParent(ShowTestResultsScene1UI parent) {
         this.parent = parent;
@@ -72,23 +64,37 @@ public class ShowTestResultsScene2UI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        displayTestInfo();
-        displayTestResultInfo();
     }
 
-    private void displayTestInfo() {
+    public void displayTestInfo() {
         lbTestCode.setText(testDto.getTestCode());
         lbNhsCode.setText(testDto.getNhsCode());
         lbDateRegistration.setText(testDto.getDateTimeRegister());
         lbDateValidation.setText(testDto.getDateTimeValidation());
     }
 
-    private void displayTestResultInfo() {
-        tColParameter.setCellValueFactory(new PropertyValueFactory<>("param"));
-        tColRefValue.setCellValueFactory(new PropertyValueFactory<>("refValue"));
-        tColValue.setCellValueFactory(new PropertyValueFactory<>("result"));
+    public void displayTestResultInfo() {
+        Label lbParam = new Label("NA");
+        Label lbValue = new Label("NA");
+        Label lbRefValue =  new Label("NA");
+        int line = 1;
+
 
         TestParamList testParams = testDto.getTestParamList();
-        tViewResults.getItems().addAll(testParams.getTestParameters());
+        for(TestParameter tp: testParams.getTestParameters()) {
+            if (tp.getParameter() != null)
+            lbParam.setText(tp.getParameter().getParameterName());
+            if (tp.getResult() != null)
+            lbValue.setText(tp.getResult().getValue() + tp.getResult().getMetric());
+            if (tp.getReferenceValue() != null)
+            lbRefValue.setText(tp.getReferenceValue().getMinValue() + tp.getReferenceValue().getMetric()
+                    + " - " + tp.getReferenceValue().getMaxValue() + tp.getReferenceValue().getMetric());
+
+            gridTests.add(lbParam, 0, line);
+            gridTests.add(lbValue, 1, line);
+            gridTests.add(lbRefValue, 2, line);
+
+            line++;
+        }
     }
 }
