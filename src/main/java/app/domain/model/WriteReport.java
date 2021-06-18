@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
 
-public class WriteReport{
+public class WriteReport implements CharSequence {
     double rSquared;
     double r2Adjusted;
     double r;
@@ -155,5 +155,18 @@ public class WriteReport{
         return stringToReport;
     }
 
+    @Override
+    public int length() {
+        return 0;
+    }
 
+    @Override
+    public char charAt(int index) {
+        return 0;
+    }
+
+    @Override
+    public CharSequence subSequence(int start, int end) {
+        return null;
+    }
 }
