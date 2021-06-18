@@ -109,7 +109,7 @@ public class Company {
         return this.categoryList.add(pc);
     }
 
-    public ArrayList<TestType> getTestTypeList() {
+    public List<TestType> getTestTypeList() {
         return getTestTypeStore().getTestTypeList();
     }
 
@@ -335,7 +335,11 @@ public class Company {
                 default:
                     System.out.println("No algorithm found!");
             }
-            return (BiggestContiguousSumAlgorithm) oClass.newInstance();
+            if (oClass != null) {
+                return (BiggestContiguousSumAlgorithm) oClass.newInstance();
+            } else {
+                throw new NullPointerException("The return value is null");
+            }
 
         } catch (ClassNotFoundException ex) {
             throw new UnassignedExternalModuleException();

@@ -3,6 +3,7 @@ package app.domain.model;
 import app.domain.model.Exceptions.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ClinicalAnalysisLaboratory {
 
@@ -14,7 +15,7 @@ public class ClinicalAnalysisLaboratory {
     private long phonenumber;
     private long tin;
     private String laboratoryID;
-    private final ArrayList<TestType> testTypeList = new ArrayList<>();
+    private final List<TestType> testTypeList = new ArrayList<>();
     
     /**
      *
@@ -100,7 +101,7 @@ public class ClinicalAnalysisLaboratory {
     public long getPhonenumber() { return phonenumber; }
     public long getTin() { return tin; }
     public String getLaboratoryID() { return laboratoryID; }
-    public ArrayList<TestType> getTestTypeList() { return testTypeList; }
+    public List<TestType> getTestTypeList() { return testTypeList; }
 
     /**
      * attributes validation

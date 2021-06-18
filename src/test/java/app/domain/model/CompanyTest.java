@@ -105,7 +105,7 @@ public class CompanyTest {
 
     @Test
     public void companyGettersTest() {
-        ArrayList<TestType> testTypeList = company.getTestTypeList();
+        List<TestType> testTypeList = company.getTestTypeList();
         Assert.assertNotNull(testTypeList);
 
         List<Category> categoryList = company.getCategoryList();

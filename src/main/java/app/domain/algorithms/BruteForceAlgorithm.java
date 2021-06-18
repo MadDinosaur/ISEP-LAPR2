@@ -3,6 +3,11 @@ package app.domain.algorithms;
 import java.util.ArrayList;
 
 public class BruteForceAlgorithm {
+
+    public BruteForceAlgorithm() {
+        //empty constructor
+    }
+
     public static ArrayList<Integer> biggestSumSubSequence(int[] sequence) {
         int maxSum = sequence[0];
         ArrayList<Integer> maxSubsequenceTemp = new ArrayList<>();
@@ -22,7 +27,6 @@ public class BruteForceAlgorithm {
                 }
             }
         }
-        System.out.println(maxSum);
         return maxSubsequence;
     }
 }

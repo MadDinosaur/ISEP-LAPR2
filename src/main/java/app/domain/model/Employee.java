@@ -3,13 +3,13 @@ package app.domain.model;
 import app.domain.model.Exceptions.*;
 
 public class Employee {
-    private String id;
-    private String name;
-    private String address;
-    private String email;
-    private int phoneNumber;
-    private int socCode;
-    private OrganizationRole organizationRole;
+    private final String id;
+    private final String name;
+    private final String address;
+    private final String email;
+    private final int phoneNumber;
+    private final int   socCode;
+    private final OrganizationRole organizationRole;
 
     public Employee(String id, OrganizationRole role, String name, String address, String email, String phoneNumber, String soc) {
         if (!validateName(name)) throw new InvalidNameException();
