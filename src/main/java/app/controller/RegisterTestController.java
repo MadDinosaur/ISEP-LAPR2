@@ -119,7 +119,7 @@ public class RegisterTestController {
         for (Category category : listOfChosenCategories) {
             Parameter parameter = category.getParameterByCode(parameterCode);
             this.testParamList.createTestParam(parameter);
-            this.testParamList.addTestParameterResult(parameter, new TestParameterResult(value, "mg", new ReferenceValue(0.5, 1.0, "mg")));
+            this.testParamList.addTestParameterResult(parameter, testParamList.createTestParameterResult(parameterCode, value, ""));
         }
     }
 

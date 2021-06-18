@@ -1,8 +1,8 @@
 @startuml
 
-class TestConsultationUI
+class ShowClientListUI
 
-class TestConsultationController{
+class ShowClientListController{
 +getClientList()
 +getClientTestList()
 +displayTestResults(testCode)
@@ -83,13 +83,13 @@ class TestParameterResult {
 - refValue
 }
 
-TestConsultationUI ..> TestConsultationController
-TestConsultationController ..> Company
-TestConsultationController ..> Sortable
+ShowClientListUI ..> ShowClientListController
+ShowClientListController ..> Company
+ShowClientListController ..> Sortable
 ClientStore --> Sortable : uses
 ClientStore --> Client : contains
 ClientMapper ..> ClientDTO
-TestConsultationUI ..> ClientDTO
+ShowClientListUI ..> ClientDTO
 ShowTestResultsUI ..> ShowTestResultsController
 ShowTestResultsUI ..> TestDTO
 ShowTestResultsController ..> TestMapper

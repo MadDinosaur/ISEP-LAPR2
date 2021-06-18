@@ -56,4 +56,9 @@ public class ClientDTO {
     public String getSex() {
         return sex;
     }
+
+    @Override
+    public String toString() {
+        return "Name: " + this.name + " | TIN: " + this.TIN + " | E-mail: " + this.email + " | Phone Number: " + this.phoneNumber;
+    }
 }
