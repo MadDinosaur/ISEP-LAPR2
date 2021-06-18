@@ -23,11 +23,14 @@ public class LabCoordMenuUI implements Initializable {
     private Button validateResults;
 
     @FXML
+    private Button backBtn;
+
+    @FXML
     void importCSVFileMenu(ActionEvent event) {
         try {
-            ImportCSVFileUI importCSVFileUI =
-                    (ImportCSVFileUI) this.mainApp.
-                            replaceSceneContent("/fxml/ImportCSVFileScene.fxml");
+            ImportCSVFileUI importCSVFileUI = (ImportCSVFileUI) this.mainApp.replaceSceneContent("/fxml/ImportCSVFileScene.fxml");
+            importCSVFileUI.setMainApp(this.mainApp);
+            importCSVFileUI.setParent(this);
         } catch (Exception ex) {
             Logger.getLogger(app.ui.gui.App.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -36,16 +39,32 @@ public class LabCoordMenuUI implements Initializable {
     @FXML
     void overviewTestsMenu(ActionEvent event) {
         try {
-            OverviewTestsUI overviewTestsUI =
-                    (OverviewTestsUI) this.mainApp.
-                            replaceSceneContent("/fxml/OverviewTestsScene.fxml");
+            OverviewTestsUI overviewTestsUI = (OverviewTestsUI) this.mainApp.replaceSceneContent("/fxml/OverviewTestsScene.fxml");
+            overviewTestsUI.setMainApp(this.mainApp);
+            overviewTestsUI.setParent(this);
         } catch (Exception ex) {
             Logger.getLogger(app.ui.gui.App.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
 
-    public void setMainApp(App mainApp) { this.mainApp = mainApp; }
+    public void setMainApp(App mainApp) {
+        this.mainApp = mainApp;
+    }
+
+    public void toLabCoordMenu() {
+        try {
+            LabCoordMenuUI labCoordMenuUI = (LabCoordMenuUI) mainApp.replaceSceneContent("/fxml/LabCoordMenuScene.fxml");
+            labCoordMenuUI.setMainApp(this.mainApp);
+        } catch (Exception ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    void backScene(ActionEvent event) {
+        this.mainApp.toMainScene();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

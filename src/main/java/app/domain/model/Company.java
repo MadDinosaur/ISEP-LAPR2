@@ -1,5 +1,6 @@
 package app.domain.model;
 
+import app.controller.App;
 import app.domain.adapter.BiggestContiguousSumAlgorithm;
 import app.domain.adapter.Sortable;
 import app.domain.model.Exceptions.InvalidLaboratoryIDException;
@@ -8,6 +9,7 @@ import app.domain.store.*;
 import auth.AuthFacade;
 import auth.domain.model.Email;
 import org.apache.commons.lang3.StringUtils;
+import static com.nhs.report.Report2NHS.writeUsingFileWriter;
 
 import java.io.*;
 import java.util.*;
@@ -46,6 +48,9 @@ public class Company {
         this.testNumber = 1;
         this.sampleList = new SampleList();
 
+
+
+
         //HARDCODED THINGS FOR TESTS
         Employee testEmployee = new Employee("testEmployee", orgRoleStore.getOrganizationRole("Receptionist"), "nameEmployee", "house", "testEmployee@gmail.com", "123456789", "1234");
         Client testClient = new Client("testClient", (long) 8765432187654321.0, 1234512347, new DateBirth(24, 12, 2002), 1234512345, (long) 12345123457.0, new Email("testClient@gmail.com"), "male");
@@ -81,7 +86,7 @@ public class Company {
 
         ClinicalAnalysisLaboratory clinicalAnalysisLaboratory = new ClinicalAnalysisLaboratory();
         clinicalAnalysisLaboratory.setLaboratoryID("001DO");
-
+        MakeLinearRegressionReport();
     }
 
 
@@ -109,7 +114,7 @@ public class Company {
         return this.categoryList.add(pc);
     }
 
-    public ArrayList<TestType> getTestTypeList() {
+    public List<TestType> getTestTypeList() {
         return getTestTypeStore().getTestTypeList();
     }
 
@@ -227,6 +232,11 @@ public class Company {
         }
     }
 
+    /**
+     * Method that sends an email notification to a client
+     * @param client
+     * @param msg
+     */
     public void sendNotification(Client client, String msg) {
         File file = null;
         FileWriter myWriter = null;
@@ -300,7 +310,10 @@ public class Company {
     }
 
     public void MakeLinearRegressionReport(){
-        //Empty constructor
+        WriteReport writeReport = new WriteReport(testStore,10,"18/06/2021");
+        String stringToReport = writeReport.getReport();
+        writeUsingFileWriter(stringToReport);
+
     }
 
 
@@ -314,37 +327,7 @@ public class Company {
         throw new InvalidLaboratoryIDException("There's no laboratory with such ID " + laboratoryID);
     }
 
-    public Sortable getSortingAlgorithm() {
-        Properties props = new Properties(System.getProperties());
 
-        try {
-            InputStream in = new FileInputStream("src/main/resources/config.properties");
-            props.load(in);
-            in.close();
-            System.setProperties(props);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        String sortAlg = props.getProperty("sortingAlgorithm1");
-
-        Class<?> oClass = null;
-        try {
-            oClass = Class.forName(sortAlg);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        Sortable sortingAlgorithm = null;
-        try {
-            sortingAlgorithm = (Sortable) oClass.newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        return sortingAlgorithm;
-    }
 
     public BiggestContiguousSumAlgorithm getBiggestContinuousSumAlgorithm(String code) {
         Class<?> oClass = null;
@@ -360,7 +343,11 @@ public class Company {
                 default:
                     System.out.println("No algorithm found!");
             }
-            return (BiggestContiguousSumAlgorithm) oClass.newInstance();
+            if (oClass != null) {
+                return (BiggestContiguousSumAlgorithm) oClass.newInstance();
+            } else {
+                throw new NullPointerException("The return value is null");
+            }
 
         } catch (ClassNotFoundException ex) {
             throw new UnassignedExternalModuleException();

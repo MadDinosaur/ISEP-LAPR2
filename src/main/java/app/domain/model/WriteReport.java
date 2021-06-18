@@ -3,58 +3,91 @@ package app.domain.model;
 import app.domain.store.TestStore;
 import org.apache.commons.lang3.time.DateUtils;
 
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 public class WriteReport implements CharSequence {
-    double a1;
-    double a2;
     double rSquared;
     double r2Adjusted;
     double r;
-    private double sqR, sqT, sqE;
-    private double sqRAverage, sqEAverage;
-    private double fTest;
-    private int degreesOfFreedom;
-    private int numberOfObservations;
+    private final double sqR, sqT, sqE;
+    private final double sqRAverage, sqEAverage;
+    private final double fTest;
+    private final int degreesOfFreedom;
     private String currentDay;
-    double[] x1;
-    double[] x2;
-    private final int daysForTable;
-    MultiLinearRegression multiLinearRegression;
+    double xa;
+    double xb;
+    double intercept;
+    double critical;
+    double[] x1 ;
+    double[] x2 ;
+    double[] y;
+    String stringToReport;
 
 
     // private File file = new File("Report.txt");
     // WriteReport str = new WriteReport();
-    
 
-    public WriteReport(double[]variableA,double[]variableB, TestStore testStore, int daysForTable, String currentDay) {
-        this.daysForTable =daysForTable;
-        this.currentDay = currentDay;
+
+    public WriteReport(TestStore testStore, int historicalPoints, String currentDay) {
+        x1 = new double[historicalPoints];
+        x2 = new double[historicalPoints];
+        y = new double[historicalPoints];
         String[] dateComponents = currentDay.split("/");
-        int day= Integer.parseInt(dateComponents[0]);
+        int day = Integer.parseInt(dateComponents[0]);
         int month = Integer.parseInt(dateComponents[1]);
         int year = Integer.parseInt(dateComponents[2]);
         Date dateCurrentDay = new GregorianCalendar(year, month, day).getTime();
 
+        Date dayOfTableToMakeRegression = dateCurrentDay;
+        int i;
+        for (i = 0; i < historicalPoints; i++) {
+            dayOfTableToMakeRegression = DateUtils.addDays(dayOfTableToMakeRegression, -1);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(dayOfTableToMakeRegression);
+            int dayOfCalendar = calendar.get(Calendar.DAY_OF_MONTH);
+            int monthOfCalendar = calendar.get(Calendar.MONTH);
+            int yearOfCalendar = calendar.get(Calendar.YEAR);
+            String dateInString = dayOfCalendar + "/" + monthOfCalendar + "/" + yearOfCalendar;
+            if (dayOfTableToMakeRegression.getDay() == 0) {
+                i--;
+                continue;
+            }
+            x1[i] = testStore.getNumberOfTestsPerformed(dateInString);
+            x2[i] = testStore.getAverageAgeOfClient(dateInString);
+            y[i] = testStore.getNumberOfPositiveCasesPerDay(dateInString);
+        }
 
-        double a = 5;
-        double b = 10;
+        MultiLinearRegression multiLinearRegression = new MultiLinearRegression(x1, x2, y);
+        this.currentDay = currentDay;
 
-        double r = 1;
+        xa = multiLinearRegression.getX1();
+        xb = multiLinearRegression.getX2();
+        intercept = multiLinearRegression.getIntercept();
+        degreesOfFreedom = multiLinearRegression.getDegreesOfFreedom();
+        sqR = multiLinearRegression.getSqR();
+        sqE = multiLinearRegression.getSqE();
+        sqT = multiLinearRegression.getSqT();
+        sqEAverage = multiLinearRegression.getSqEAverage();
+        sqRAverage = multiLinearRegression.getSqRAverage();
+        fTest = multiLinearRegression.getFTest();
+        rSquared = multiLinearRegression.getRSquared();
+        r2Adjusted = multiLinearRegression.getRSquaredAdjusted();
+        r = multiLinearRegression.getR();
+        critical = multiLinearRegression.getCritical();
+
         String t_obs = "observacao";
         String decision = "decisao";
         String rejection = "Reject H0/ No reject H0";
-        String fi = "decisao";
+
 
         StringBuilder stringToBuild = new StringBuilder("The regression model fitted using data from the interval\n" +
-                "^y = " + a + "x + " + b + "\n" +
+                "^y = " + xa + "x1 + " + xb + "x2 +" + intercept + "\n" +
                 "\n" +
                 "Other statistics\n" +
-                "R2 = " + rSquared+ "\n" +
+                "R2 = " + rSquared + "\n" +
                 "R2adjusted = " + r2Adjusted + "\n" +
                 "R = " + r + "\n" +
                 "\n" +
@@ -69,52 +102,52 @@ public class WriteReport implements CharSequence {
                 "H0: b=0  H1:b<>0\n" +
                 "\t\t            df\t       SS\t\t     MS\t\t     F\n" +
                 "Regression\t" + sqR + "\t" + "2" + "\t" + sqRAverage + "\t" + fTest + "\n" +  //simple /multi
-                "Residual\t" +   sqE + "\t " + (degreesOfFreedom-2) + "\t "+ sqEAverage + "\n" +
-                "Total\t\t" +    sqT + "\t" + degreesOfFreedom + "\n" +
+                "Residual\t" + sqE + "\t" + (degreesOfFreedom - 2) + "\t " + sqEAverage + "\n" +
+                "Total\t\t" + sqT + "\t" + degreesOfFreedom + "\n" +
                 "\n" +
                 "Decision: f  \n" +
-                "0 > f0.05,(2. "+(degreesOfFreedom-2)+")=3.682\n" +  //simple /multi
-                "Reject H0\n" +                                      //reject or not
-                "The regression model is significant.\n" +
-                "\n" +
+                "0 > f0.05,(2. " + (degreesOfFreedom - 2) + ")=" + critical + "\n");
+        if (fTest > critical) {
+            stringToBuild.append("Reject H0\n" +                                      //reject or not
+                    "The regression model is significant.\n");
+        } else {
+            stringToBuild.append("No reject H0\n" +
+                    "The regression model is not significant.\n");
+        }
+        stringToBuild.append("\n" +
                 "// Prediction values\n" +
                 "\n" +
-                "Date           Number of OBSERVED positive cases        Number of ESTIMATED/EXPECTED positive cases \t\t95% intervals\n");
-                Date dayOfTable;
-                int index = 1;
-                for(index= 1; index<daysForTable;index++){
-                    dayOfTable = DateUtils.addDays(dateCurrentDay,-1);
-                    Calendar calendar  = Calendar.getInstance();
-                    calendar.setTime(dayOfTable);
-                    int dayOfCalendar = calendar.get(Calendar.DAY_OF_MONTH);
-                    int monthOfCalendar = calendar.get(Calendar.DAY_OF_MONTH);
-                    int yearOfCalendar = calendar.get(Calendar.YEAR);
-                    String dateInString = dayOfCalendar +"/"+monthOfCalendar+"/"+yearOfCalendar;
-                    if(dayOfTable.getDay() == 0){
-                        index--;
-                        continue;
-                    }
-                    double critical = multiLinearRegression.getPrevisionforY(testStore.getNumberOfTestsPerformed(dateInString),testStore.getAverageAgeOfClient(dateInString));
-                    stringToBuild.append((dayOfTable.toString()+ "                    "+testStore.getNumberOfPositiveCasesPerDay(dateInString)+"                                      "+multiLinearRegression.getPrevisionforY(testStore.getNumberOfTestsPerformed(dateInString),testStore.getAverageAgeOfClient(dateInString))+"                                      "+(critical - multiLinearRegression.getCriticalValue(testStore.getNumberOfTestsPerformed(dateInString),testStore.getAverageAgeOfClient(dateInString) )) + "-" +(critical + multiLinearRegression.getCriticalValue(testStore.getNumberOfTestsPerformed(dateInString),testStore.getAverageAgeOfClient(dateInString) )) ));
+                "Date                Number of OBSERVED positive cases           Number of ESTIMATED/EXPECTED positive cases \t\t95% intervals\n");
+        Date dayOfTable = dateCurrentDay;
+        int index;
+        for (index = 1; index <= historicalPoints; index++) {
+            dayOfTable = DateUtils.addDays(dayOfTable, -1);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(dayOfTable);
+            int dayOfCalendar = calendar.get(Calendar.DAY_OF_MONTH);
+            int monthOfCalendar = calendar.get(Calendar.MONTH);
+            int yearOfCalendar = calendar.get(Calendar.YEAR);
 
-                }
-/*                "29/05/2021                    21                                      22.32\t\t\t\t\t                13.16-23.48\n" +
-                "28/05/2021                    20                                      21.32\t\t\t\t                \t19.16-23.48\n" +
-                "27/05/2021                    14                                      14.33\t\t\t\t                \t12.17-16.49\n" +
-                "26/05/2021                    23                                      22.35\t\t\t\t                \t20.19-24.51\n" +
-                "25/05/2021                    12                                      11.47\t\t\t                \t\t 9.31-13.63\n" +
-                "24/05/2021                    22                                      23.01\t\t\t                \t\t20.85-25.17\n" +
-                "22/05/2021                    20                                      22.02\t\t\t                \t\t19.86-24.18\n" +
-                "21/05/2021                    20                                      22.02\t\t\t                \t\t19.86-24.18\n" +
-                "20/05/2021                    14                                      13.97\t\t\t                \t\t11.81-16.13\n" +
-                "19/05/2021                    23                                      21.95             \t\t\t\t\t19.79-24.11\n" +
-                "18/05/2021                    12                                      11.98\t                \t\t\t\t 9.82-14.14\n" +
-                "17/05/2021                    22                                      23.01\t                \t\t\t\t20.85-25.17\n" +
-                "15/05/2021                    20                                      21.02\t                \t\t\t\t18.86-23.18\n" +
-                "14/05/2021                    20                                      21.02\t                \t\t\t\t18.86-23.18\n" +
-                "13/05/2021                    14                                      15.03\t                \t\t\t\t12.87-17.19";*/
+            String dateInString = dayOfCalendar + "/" + monthOfCalendar + "/" + yearOfCalendar;
+            String pattern = "dd-MM-yyyy";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+            String dayOfTableInString = simpleDateFormat.format(dayOfTable);
 
+            if (dayOfTable.getDay() == 0) {
+                index--;
+
+            } else {
+                double critical = multiLinearRegression.getPrevisionforY(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString));
+                stringToBuild.append((dayOfTableInString + "                    " + testStore.getNumberOfPositiveCasesPerDay(dateInString) + "                                      " + multiLinearRegression.getPrevisionforY(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString)) + "                                      " + (critical - multiLinearRegression.getCriticalValue(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString))) + "-" + (critical + multiLinearRegression.getCriticalValue(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString)))) + "\n");
+            }
+        }
+        stringToReport = stringToBuild.toString();
     }
+
+    public String getReport() {
+        return stringToReport;
+    }
+
     @Override
     public int length() {
         return 0;

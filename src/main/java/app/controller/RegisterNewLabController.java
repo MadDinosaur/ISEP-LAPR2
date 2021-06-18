@@ -5,6 +5,7 @@ import app.domain.model.Company;
 import app.domain.model.TestType;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RegisterNewLabController {
     private ClinicalAnalysisLaboratory newlab = new ClinicalAnalysisLaboratory();
@@ -19,7 +20,7 @@ public class RegisterNewLabController {
         newlab.setLaboratoryID(labID);
     }
 
-    public ArrayList<TestType> getTestTypeList() {
+    public List<TestType> getTestTypeList() {
        return company.getTestTypeList();
     }
 

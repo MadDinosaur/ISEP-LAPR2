@@ -4,7 +4,7 @@ import app.controller.RegisterNewLabController;
 import app.domain.model.Exceptions.*;
 import app.domain.model.TestType;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class    RegisterNewLabUI implements Runnable {
@@ -69,7 +69,7 @@ public class    RegisterNewLabUI implements Runnable {
     }
 
     public void setTestType() {
-        ArrayList<TestType> testTypeList = cNLC.getTestTypeList();
+        List<TestType> testTypeList = cNLC.getTestTypeList();
         System.out.println("Choose one or more of the following test types (type -1 to end selection):");
 
         int index = 0;

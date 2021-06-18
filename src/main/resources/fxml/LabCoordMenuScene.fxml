@@ -52,6 +52,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="backBtn" mnemonicParsing="false" onAction="#backScene" text="Back" />
          </children>
          <padding>
             <Insets bottom="100.0" />
