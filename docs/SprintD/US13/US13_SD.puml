@@ -4,8 +4,8 @@
 autonumber
 
 actor ClinicalChemistryTechnologist as CCT
-participant ":TestConsultationUI" as UI
-participant ":TestConsultationController" as CTRL
+participant ":ShowClientListUI" as UI
+participant ":ShowClientListController" as CTRL
 participant ":ShowTestResultController" as TCTRL
 participant ":Company" as CMP
 participant "clientStore: ClientStore" as CLTSTR

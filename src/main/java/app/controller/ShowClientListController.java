@@ -10,7 +10,7 @@ import app.mappers.dto.ClientDTO;
 import java.lang.ref.Cleaner;
 import java.util.List;
 
-public class TestConsultationController {
+public class ShowClientListController {
 
 
     /**
@@ -31,7 +31,7 @@ public class TestConsultationController {
     /**
      * Constructor of TestConsultationController without parameters
      */
-    public TestConsultationController() {
+    public ShowClientListController() {
         this.company = App.getInstance().getCompany();
     }
 
@@ -39,7 +39,7 @@ public class TestConsultationController {
      * Constructor of TestConsultationController with one parameter
      * @param company
      */
-    public TestConsultationController(Company company){
+    public ShowClientListController(Company company){
         this.company = company;
     }
 
