@@ -6,19 +6,12 @@ autonumber
 actor ClinicalChemistryTechnologist as CCT
 participant ":TestConsultationUI" as UI
 participant ":TestConsultationController" as CTRL
+participant ":ShowTestResultController" as TCTRL
 participant ":Company" as CMP
 participant "clientStore: ClientStore" as CLTSTR
 participant "clientList: List<Client>" as LST
 participant ":Sortable" as SRT
-participant "sortAlg: SortingAlgorithm" as SRTALG
-participant "testStore: TestStore" as TSTSTR
-participant "testList: List<Test>" as TSTLST
-participant "test: Test" as TST
 participant "clientMapper: ClientMapper" as CLTMAP
-participant "testMapper: TestMapper" as TSTMAP
-participant "testParamList: TestParamList" as LTSTPARAM
-participant "testParam: TestParameter" as TSTPARAM
-participant "testParamRes: TestParameterResult" as TSTPARAMRES
 
 activate CCT
 CCT -> UI: Starts client's test verification function
@@ -40,27 +33,19 @@ deactivate CMP
 
 CTRL -> CLTSTR: clientList = getClientList()
 activate CLTSTR
-deactivate CLTSTR
 
-CTRL -> CMP: getSortingAlgorithm()
-activate CMP
+CTRL -> CLTSTR: getSortingAlgorithm()
 create SRT
-CMP -> SRT: create()
-deactivate CMP
+CLTSTR -> SRT: create()
+deactivate CLTSTR
 
 alt sortMethod = "TIN"
 CTRL -> SRT: sortByTin(clientList)
 activate SRT
-SRT -> SRTALG: sortByTin(clientList)
-activate SRTALG
-deactivate SRTALG
 deactivate SRT
-else
+else sortMethod = "Name"
 CTRL -> SRT: sortByName(clientList)
 activate SRT
-SRT -> SRTALG: sortByName(clientList)
-activate SRTALG
-deactivate SRTALG
 deactivate SRT
 end
 
@@ -76,47 +61,8 @@ deactivate UI
 CCT -> UI: Picks the desired client
 activate UI
 
-UI -> CTRL: getClientValidatedTestList(client)
-activate CTRL
-
-CTRL -> CMP: testStore = getTestStore()
-activate CMP
-deactivate CMP
-
-CTRL -> TSTSTR: testList = getValidatedTestsByClient(client)
-activate TSTSTR
-deactivate TSTSTR
-
-CTRL -> TSTMAP: toDTO(testList)
-activate TSTMAP
-deactivate TSTMAP
-
-CTRL -> TSTSTR : test = getTestByCode(testCode)
-activate TSTSTR
-deactivate TSTSTR
-
-CTRL -> TST : getTestParamResults()
-activate TST
-deactivate CTRL
-
-TST -> LTSTPARAM : getTestParamResults()
-activate LTSTPARAM
-deactivate TST
-
-loop for each TestParameter
-
-LTSTPARAM -> TSTPARAM : getTestParamResult()
-activate TSTPARAM
-deactivate LTSTPARAM
-
-TSTPARAM -> TSTPARAMRES : get()
-deactivate TSTPARAM
-activate TSTPARAMRES
-deactivate TSTPARAMRES
-
-end loop
-
-
+UI -> TCTRL: displayClientTests(email)
+ref over TCTRL: US1_SD
 
 UI --> CCT: Displays the selected client's test history
 deactivate UI
