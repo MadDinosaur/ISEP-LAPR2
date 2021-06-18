@@ -4,11 +4,7 @@ import org.apache.commons.math3.distribution.FDistribution;
 import org.apache.commons.math3.distribution.TDistribution;
 
 public class MultiLinearRegression {
-    private double[][] x;
-    private double[][] xTranspose;
-    private double[][] xTransposeX;
-    private double[][] xTransposeXInversed;
-    private double[][] xTransposeY;
+    private final double[][] xTransposeXInversed;
     private double yTransposeY;
     private final double[][] vector;
     int degreesOfFreedom;
@@ -19,18 +15,19 @@ public class MultiLinearRegression {
     private final double fTest;
     private final double critical;
     private final double rSquared, rSquaredAdjusted, r;
-    private double[] x1Array;
-    private double[] x2Array;
 
 
     public MultiLinearRegression(double[] x1, double[] x2, double[] y) {
+
+        double[][] x = new double[x1.length][3];
+        double[][] xTranspose = transposeMatrix(x);
+        double[][] xTransposeX = matrixMultiplication(xTranspose, x);
+        xTransposeXInversed = invert(xTransposeX);
+
         if (x1.length != y.length && x2.length != y.length) {
             throw new IllegalArgumentException("array lengths are not equal");
         }
-        x1Array = x1;
-        x2Array = x2;
         numberOfObservations = y.length;
-        x = new double[x1.length][3];
 
         for (int index = 0; index < x1.length; index++) {
             x[index][0] = 1;
@@ -41,17 +38,13 @@ public class MultiLinearRegression {
         for (int i = 0; i < yVertical.length; i++) {
             yVertical[i][0] = y[i];
         }
-        xTranspose = transposeMatrix(x);
-        xTransposeX = matrixMultiplication(xTranspose, x);
-        xTransposeXInversed = invert(xTransposeX);
-        xTransposeY = matrixMultiplication(xTranspose, yVertical);
-        vector = matrixMultiplication(xTransposeXInversed,xTransposeY);
+
+        double[][] xTransposeY = matrixMultiplication(xTranspose, yVertical);
+
+        vector = matrixMultiplication(xTransposeXInversed, xTransposeY);
         intercept = vector[0][0];
         this.x1 = vector[1][0];
         this.x2 = vector[2][0];
-    /*     System.out.println(vector[0][0]);
-        System.out.println(vector[1][0]);
-        System.out.println(vector[2][0]);*/
         for (double yNumber: y
              ) {
             yTransposeY += Math.pow(yNumber,2);
@@ -70,26 +63,16 @@ public class MultiLinearRegression {
         sqT= yTransposeY - sumYAverage;
         sqE = yTransposeY - total;
         sqR = sqT - sqE;
-       /* System.out.println(sqR);
-        System.out.println(sqE);
-        System.out.println(sqT);*/
         degreesOfFreedom= y.length - 1;
         sqRAverage = sqR/ 2;
         sqEAverage = sqE/ (degreesOfFreedom-2);
         fTest = sqRAverage / sqEAverage;
-        /*System.out.println(sqRAverage);
-        System.out.println(sqEAverage);
-        System.out.println(fTest);*/
         FDistribution fDistribution = new FDistribution(2, y.length - 3);
         critical = fDistribution.inverseCumulativeProbability(1-0.05);
-        /*System.out.println(critical);*/
         rSquared = sqR/sqT;
         double lengthArray = y.length;
         rSquaredAdjusted = 1- (lengthArray -1)/(lengthArray-3)*(1-rSquared);
         r= Math.sqrt(rSquared);
-
-        /*System.out.println(rSquared);
-        System.out.println(rSquaredAdjusted);*/
     }
 
     public int getDegreesOfFreedom(){ return degreesOfFreedom;}
