@@ -1,5 +1,7 @@
 package app.controller;
 
+import app.domain.adapter.ExternalModuleNhsReport;
+import app.domain.adapter.ExternalModuleNhsReportAdapter;
 import app.domain.model.Company;
 import app.domain.model.WriteReport;
 import com.sun.prism.shader.DrawEllipse_LinearGradient_REFLECT_AlphaTest_Loader;
@@ -12,9 +14,18 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class DailyReportController extends TimerTask {
-    Company company = App.getInstance().getCompany();
+/**
+ *
+ * @author Luis Moreira <1200973@isep.ipp.pt>
+ */
 
+public class DailyReportController extends TimerTask {
+    private Company company = App.getInstance().getCompany();
+    private ExternalModuleNhsReport nhsreport = new ExternalModuleNhsReportAdapter();
+
+    /**
+     * timer which will trigger the creating of a daily report
+     */
     public static void dailyReportTimer() {
         //timer task for daily NHS report
         //the Date and time at which you want to execute
@@ -37,15 +48,17 @@ public class DailyReportController extends TimerTask {
         timer.schedule(new DailyReportController(), 3000, period );
 
         /*
-        int period = 86400000; //1 day
+        int period = 86400000; // 1 day in milliseconds
         timer.schedule(new DailyReportController(), date, period );
         */
     }
 
-
+    /**
+     * method triggered by the timer above
+     */
     public void run() {
         //new WriteReport();
-
         System.out.println("ola");
+        nhsreport.generateLogEvent();
     }
 }
