@@ -1,5 +1,6 @@
 package app.ui.gui;
 
+import app.controller.DailyReportController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,6 +10,11 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Timer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,6 +33,7 @@ public class App extends Application {
         stage.setMinHeight(MINIMUM_WINDOW_HEIGHT);
         toMainScene();
         this.stage.show();
+        DailyReportController.dailyReportTimer();
     }
 
     public Stage getStage() {
@@ -71,4 +78,5 @@ public class App extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }

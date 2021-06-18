@@ -1,9 +1,13 @@
 package app.domain.model;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class MultiLinearRegressionTest extends TestCase {
+public class MultiLinearRegressionTest {
+    double[] x1 = new double[3];
+    double[] x2 = new double[4];
+    double[] y = new double[5];
 
+    @Test
     public void testInvert() {
      /*   double[][] a = new double[3][3];
         double[] aa = new double[3];
@@ -22,5 +26,10 @@ public class MultiLinearRegressionTest extends TestCase {
         double[][] b;
         b = multiLinearRegression.invert(a);*/
         //por acabar
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void IllegalArgumentTest() {
+        new MultiLinearRegression(x1, x2, y);
     }
 }
