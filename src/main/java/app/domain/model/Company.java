@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import static com.nhs.report.Report2NHS.writeUsingFileWriter;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -86,7 +87,6 @@ public class Company {
 
         ClinicalAnalysisLaboratory clinicalAnalysisLaboratory = new ClinicalAnalysisLaboratory();
         clinicalAnalysisLaboratory.setLaboratoryID("001DO");
-        MakeLinearRegressionReport();
     }
 
 
@@ -310,7 +310,19 @@ public class Company {
     }
 
     public void MakeLinearRegressionReport(){
-        WriteReport writeReport = new WriteReport(testStore,10,"18/06/2021");
+        String currentDay = "20/05/2021";
+        String[] dateComponents = currentDay.split("/");
+        int day = Integer.parseInt(dateComponents[0]);
+        int month = Integer.parseInt(dateComponents[1]);
+        int year = Integer.parseInt(dateComponents[2]);
+        String currentDayFinal = "28/05/2021";
+        String[] dateComponentsFinal = currentDayFinal.split("/");
+        int dayFinal = Integer.parseInt(dateComponentsFinal[0]);
+        int monthFinal = Integer.parseInt(dateComponentsFinal[1]);
+        int yearFinal = Integer.parseInt(dateComponentsFinal[2]);
+        Date dateCurrentDayFinal = new GregorianCalendar(yearFinal, monthFinal, dayFinal).getTime();
+        Date dateCurrentDay = new GregorianCalendar(year, month, day).getTime();
+        WriteReport writeReport = new WriteReport(testStore,15,"30/05/2021",dateCurrentDay,dateCurrentDayFinal);
         String stringToReport = writeReport.getReport();
         writeUsingFileWriter(stringToReport);
 
