@@ -23,6 +23,8 @@ public class DailyReportController extends TimerTask {
     private Company company = App.getInstance().getCompany();
     private ExternalModuleNhsReport nhsreport = new ExternalModuleNhsReportAdapter();
 
+    //private WriteReport writeReport = new WriteReport();
+
     /**
      * timer which will trigger the creating of a daily report
      */
@@ -57,7 +59,9 @@ public class DailyReportController extends TimerTask {
      * method triggered by the timer above
      */
     public void run() {
-        //new WriteReport();
+        //String report = writeReport.getReport();
+        String abc = "xD funny momement";
+        nhsreport.sendReport(abc);
         nhsreport.generateLogEvent();
         System.out.println("NHS Daily Report sent");
     }
