@@ -41,6 +41,7 @@ public class LabCoordMenuUI implements Initializable {
         try {
             OverviewTestsUI overviewTestsUI = (OverviewTestsUI) this.mainApp.replaceSceneContent("/fxml/OverviewTestsScene.fxml");
             overviewTestsUI.setMainApp(this.mainApp);
+            overviewTestsUI.setParent(this);
         } catch (Exception ex) {
             Logger.getLogger(app.ui.gui.App.class.getName()).log(Level.SEVERE, null, ex);
         }

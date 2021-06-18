@@ -15,8 +15,6 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.security.InvalidParameterException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ImportCSVFileUI implements Initializable {
 
@@ -73,10 +71,7 @@ public class ImportCSVFileUI implements Initializable {
             }
             try {
                 importCSVFileController.readTestTypeCode();
-            } catch (InvalidTestCodeException e) {
-                System.out.println(e.getMessage());
-                continue;
-            } catch (InvalidTestType e) {
+            } catch (InvalidTestCodeException | InvalidTestType e) {
                 System.out.println(e.getMessage());
                 continue;
             }
@@ -136,7 +131,7 @@ public class ImportCSVFileUI implements Initializable {
     }
 
     @FXML
-    void backScene(ActionEvent event) throws Exception {
+    void backScene(ActionEvent event) {
         parent.toLabCoordMenu();
     }
 

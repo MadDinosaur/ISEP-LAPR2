@@ -24,9 +24,9 @@
                   <Insets left="150.0" />
                </VBox.margin>
             </Label>
-            <Line endX="100.0" startX="-100.0">
+            <Line endX="100.0" startX="-40.0">
                <VBox.margin>
-                  <Insets left="125.0" />
+                  <Insets left="155.0" />
                </VBox.margin>
             </Line>
          </children>
