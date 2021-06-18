@@ -2,7 +2,13 @@
 
 skinparam classAttributeIconSize 0
 
-class Controller
+class DailyReportController {
++dailyReportTimer()
++run()
+}
+
+class Company {
+}
 
 interface Runnable {
 +run()
@@ -12,17 +18,6 @@ abstract TimerTask {
 +run()
 +cancel()
 +scheduleExecutionTime()
-}
-
-class DailyReport {
-+DailyReport(delay, interval)
-+run()
-}
-
-class Timer {
-+Timer()
-+schedule(...)
-+scheduleAtFixedRate(...)
 }
 
 class LinearRegression {
@@ -53,28 +48,34 @@ class MultiLinearRegression {
 }
 
 class TestStore {
-+getValidos
 }
 
 class WriteReport
 
-interface ExternalModuleNHSReport
+interface ExternalModuleNhsReport {
++void sendReport(String string)
++void generateLogEvent()
+}
 
-class ExternalModuleNHSReportAdapter
+class ExternalModuleNhsReportAdapter {
++sendReport(String string)
++generateLogEvent()
++getDateAndTime()
+}
 
-class Report2NHS
+class Report2NHS {
++writeUsingFileWriter(String data)
+}
 
-Controller -> DailyReport
-
-
+DailyReportController --> ExternalModuleNhsReport
 Runnable <|.. TimerTask
-TimerTask <|-- DailyReport
-Timer --> DailyReport
-DailyReport --> WriteReport
-
-DailyReport -> ExternalModuleNHSReport
-
-ExternalModuleNHSReport <|.. ExternalModuleNHSReportAdapter
-ExternalModuleNHSReportAdapter --> Report2NHS
+TimerTask <|-- DailyReportController
+DailyReportController --> WriteReport
+Company <- DailyReportController
+TestStore <- Company
+ExternalModuleNhsReport <|... ExternalModuleNhsReportAdapter
+ExternalModuleNhsReportAdapter --> Report2NHS
+LinearRegression <- WriteReport
+WriteReport --> MultiLinearRegression
 
 @enduml
