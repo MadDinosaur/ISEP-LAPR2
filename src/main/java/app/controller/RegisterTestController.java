@@ -119,7 +119,7 @@ public class RegisterTestController {
         for (Category category : listOfChosenCategories) {
             Parameter parameter = category.getParameterByCode(parameterCode);
             this.testParamList.createTestParam(parameter);
-            this.testParamList.addTestParameterResult(parameter, testParamList.createTestParameterResult(parameterCode, value, ""));
+            this.testParamList.addTestParameterResult(parameter, testParamList.createTestParameterResult(parameterCode, value, " "));
         }
     }
 
@@ -128,7 +128,7 @@ public class RegisterTestController {
     }
 
     public Test createTestFromCSV(Client client, String testCode, String nhsCode, String dateTimeRegister, String dateTimeResults, String dateTimeReport, String dateTimeValidation) {
-        return new Test(this.clinicalAnalysisLaboratory, client, testCode, nhsCode, this.testTypeChosen, this.listOfChosenCategories, this.testParamList, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation);
+        return this.company.getTestStore().createTestFromCSV(this.clinicalAnalysisLaboratory, client, testCode, nhsCode, this.testTypeChosen, this.listOfChosenCategories, this.testParamList, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation);
     }
 
     public boolean saveTest(Test test) {

@@ -124,8 +124,13 @@ icfu -> icfc: dateTimeValidation = readDateTimeValidation()
 icfu -> icfc: createTest()
 icfc -> rtc: test = createTestFromCSV(testCode, nhsCode, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation)
 
+rtc -> Company: testStore = getTestStore()
+activate Company
+deactivate Company
+rtc -> ts: createTestFromCSV(client, testCode, nhsCode, testType, categories, testParamList, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation)
+
 create Test
-rtc -> Test: create(client, testCode, nhsCode, testType, categories, testParamList, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation)
+ts -> Test: create(client, testCode, nhsCode, testType, categories, testParamList, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation)
 
 
 
@@ -134,9 +139,7 @@ Test -> Test: validate()
 icfu -> icfc: saveTest()
 icfc -> rtc: saveTest(test)
 
-rtc -> Company: testStore = getTestStore()
-activate Company
-deactivate Company
+
 
 
 rtc -> ts: validate(test)
