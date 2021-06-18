@@ -35,7 +35,7 @@ public class TestParameterResult {
     }
 
     private void validateMetric(String metric) {
-        if (metric.isEmpty() || metric.equals(" ")) throw new InvalidMetricException();
+        if (metric.isEmpty()) throw new InvalidMetricException();
     }
 
     private void validateRefValue(ReferenceValue refValue) {

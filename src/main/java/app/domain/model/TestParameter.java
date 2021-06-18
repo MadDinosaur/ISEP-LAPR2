@@ -24,7 +24,6 @@ public class TestParameter {
 
     public boolean addTestParameterResult(TestParameterResult result) {
         if(this.result != null || result == null) return false;
-
         this.result = result;
         return true;
     }
