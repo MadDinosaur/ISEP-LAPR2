@@ -90,9 +90,9 @@ public class MultiLinearRegression {
 
         /*System.out.println(rSquared);
         System.out.println(rSquaredAdjusted);*/
-
     }
 
+    public int getDegreesOfFreedom(){ return degreesOfFreedom;}
     public double[][] getVector() {
         return vector;
     }
@@ -131,6 +131,9 @@ public class MultiLinearRegression {
     }
     public double getX2() {
         return x2;
+    }
+    public double getIntercept() {
+        return intercept;
     }
     public double getPrevisionforY(double a1, double a2){
         return a1*x1 + a2*x2 + intercept;
