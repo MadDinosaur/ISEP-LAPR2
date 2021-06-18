@@ -1,45 +1,67 @@
 package app.controller;
 
 import app.domain.adapter.Sortable;
-import app.domain.model.*;
+import app.domain.model.Client;
+import app.domain.model.Company;
 import app.domain.store.ClientStore;
-import app.domain.store.TestStore;
 import app.mappers.ClientMapper;
-import app.mappers.TestMapper;
 import app.mappers.dto.ClientDTO;
-import app.mappers.dto.TestDTO;
 
+import java.lang.ref.Cleaner;
 import java.util.List;
 
 public class TestConsultationController {
 
+
+    /**
+     * Instance of company
+     */
     private Company company;
 
+    /**
+     * Instance of client store
+     */
     private ClientStore clientStore;
 
+    /**
+     * Instance of client list
+     */
     private List<Client> clientList;
 
-    private TestStore testStore;
-
+    /**
+     * Constructor of TestConsultationController without parameters
+     */
     public TestConsultationController() {
         this.company = App.getInstance().getCompany();
     }
 
+    /**
+     * Constructor of TestConsultationController with one parameter
+     * @param company
+     */
     public TestConsultationController(Company company){
         this.company = company;
     }
 
-    public List<ClientDTO> getClientList(String sortMethod) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
+    /**
+     * Method that gets and sorts the client list by the specified method
+     * @param sortMethod
+     * @return an ordered list of client dto
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     * @throws ClassNotFoundException
+     */
+    public List<ClientDTO> getSortedClientList(String sortMethod) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
         this.clientStore = this.company.getClientStore();
         this.clientList = this.clientStore.getClientList();
-        Sortable sortingAlgorithm = this.company.getSortingAlgorithm();
-        Client[] clientArr = null;
+        Sortable sortingAlgorithm = this.clientStore.getSortingAlgorithm();
+        Client[] clientArr;
         if(this.clientList != null) {
             if (sortMethod.equalsIgnoreCase("tin")) {
                 clientArr = sortingAlgorithm.sortByTin(this.clientList);
-            } else {
+            } else if(sortMethod.equalsIgnoreCase("name")){
                 clientArr = sortingAlgorithm.sortByName(this.clientList);
-            }
+            }else throw new IllegalAccessException("The specified ordering method doesn't exist.");
         }else throw new IllegalArgumentException("Client list is empty!");
         List<ClientDTO> clientDTOList = null;
         ClientMapper clientMapper = new ClientMapper();
@@ -48,28 +70,5 @@ public class TestConsultationController {
         }
         return clientDTOList;
     }
-
-    public String[] getClientTestListWithResults(Client client){
-        this.testStore = this.company.getTestStore();
-        List<Test> clientTestList = testStore.getValidatedTestsByClient(client);
-        TestMapper testMapper = new TestMapper();
-        List<TestDTO> clientTestListDTO = null;
-        String[] clientTestListWithResults = null;
-        int i = 0;
-        for (Test test : clientTestList){
-            testMapper.toDTO(test);
-            for(TestParameter testParameter : test.getTestParamList().getTestParameters()){
-                String testParamWithResult = testParameter.getParameter().getParameterName() + ": "+ testParameter.getResult().toString();
-                clientTestListWithResults[i] = "Test #" + i + ":";
-            }
-        }
-        return clientTestListWithResults;
-    }
-
-    public List<TestParameterResult> displayTestResults(String testCode){
-        Test test = testStore.getTestByCode(testCode);
-        return test.getTestParamResults();
-    }
-
 
 }
