@@ -64,7 +64,7 @@ controller -> cstore: updateClientData(client, dto)
 deactivate controller
 activate cstore
 cstore -> cstore : validateData(client, dto)
-cstore -> client : updateClientData(dto)
+cstore -> client : updateData(dto)
 deactivate cstore
 activate client
 client -> client : validateData()

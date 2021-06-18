@@ -1,6 +1,10 @@
 @startuml
 skinparam classAttributeIconSize 0
 
+class AuthFacade {
++ changeUserEmail(oldEmail, newEmail)
++ changeUserPassword(email, pwd)
+}
 class Client {
 - name
 - cardNumber
@@ -10,6 +14,7 @@ class Client {
 - phoneNumber
 - email
 - sex
++ updateData(dto)
 }
 class UpdateClientDataUI
 class UpdateClientDataController
@@ -18,6 +23,8 @@ class Company {
 }
 class ClientStore {
 + getClientByEmail(email)
++ updateClientData(client, dto)
+- validateData(dto)
 }
 class ClientMapper {
 + toDTO(client)
@@ -36,6 +43,7 @@ class ClientDTO {
 UpdateClientDataUI ..> UpdateClientDataController
 UpdateClientDataUI ..> ClientDTO
 UpdateClientDataController ..> ClientMapper
+UpdateClientDataController ..> AuthFacade
 ClientMapper .right.> ClientDTO
 UpdateClientDataController ..> Company
 Company --> ClientStore : uses
