@@ -57,7 +57,7 @@ public class ImportCSVFileController {
     }
 
     public boolean fileHasNextLine() {
-       return sc.hasNextLine();
+       return (sc.hasNextLine());
     }
 
     public void readTestTypeCode() {
