@@ -4,18 +4,20 @@ import app.domain.store.TestStore;
 import org.apache.commons.lang3.time.DateUtils;
 
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.concurrent.TimeUnit;
 
 public class WriteReport implements CharSequence {
     double rSquared;
     double r2Adjusted;
     double r;
-    private final double sqR, sqT, sqE;
-    private final double sqRAverage, sqEAverage;
-    private final double fTest;
-    private final int degreesOfFreedom;
+    private double sqR, sqT, sqE;
+    private double sqRAverage, sqEAverage;
+    private double fTest;
+    private int degreesOfFreedom;
     private String currentDay;
     double xa;
     double xb;
@@ -31,19 +33,24 @@ public class WriteReport implements CharSequence {
     // WriteReport str = new WriteReport();
 
 
-    public WriteReport(TestStore testStore, int historicalPoints, String currentDay) {
-        x1 = new double[historicalPoints];
-        x2 = new double[historicalPoints];
-        y = new double[historicalPoints];
+    public WriteReport(TestStore testStore, int historicalPoints, String currentDay, Date startRegression, Date finishRegression) {
+
+        long diffInDays =  (finishRegression.getTime() - startRegression .getTime());
+        int daysOfRegression = (int) TimeUnit.DAYS.convert(diffInDays, TimeUnit.MILLISECONDS);
+
+        x1 = new double[daysOfRegression];
+        x2 = new double[daysOfRegression];
+        y = new double[daysOfRegression];
         String[] dateComponents = currentDay.split("/");
         int day = Integer.parseInt(dateComponents[0]);
         int month = Integer.parseInt(dateComponents[1]);
         int year = Integer.parseInt(dateComponents[2]);
         Date dateCurrentDay = new GregorianCalendar(year, month, day).getTime();
 
+
         Date dayOfTableToMakeRegression = dateCurrentDay;
         int i;
-        for (i = 0; i < historicalPoints; i++) {
+        for (i = 0; i < daysOfRegression; i++) {
             dayOfTableToMakeRegression = DateUtils.addDays(dayOfTableToMakeRegression, -1);
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(dayOfTableToMakeRegression);

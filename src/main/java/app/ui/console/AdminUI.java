@@ -32,6 +32,7 @@ public class AdminUI implements Runnable{
         options.add(new MenuItem("Register a test result", new RecordTestResultUI()));
         options.add(new MenuItem("Register a new report", new CreateReportUI()));
         options.add(new MenuItem("Validate test", new ValidateTestUI()));
+        options.add(new MenuItem("Regression", new CreateNhsReportUI()));
 
         int option = 0;
         do
