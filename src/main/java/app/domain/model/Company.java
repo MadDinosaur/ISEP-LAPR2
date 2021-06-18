@@ -232,6 +232,11 @@ public class Company {
         }
     }
 
+    /**
+     * Method that sends an email notification to a client
+     * @param client
+     * @param msg
+     */
     public void sendNotification(Client client, String msg) {
         File file = null;
         FileWriter myWriter = null;
@@ -322,37 +327,7 @@ public class Company {
         throw new InvalidLaboratoryIDException("There's no laboratory with such ID " + laboratoryID);
     }
 
-    public Sortable getSortingAlgorithm() {
-        Properties props = new Properties(System.getProperties());
 
-        try {
-            InputStream in = new FileInputStream("src/main/resources/config.properties");
-            props.load(in);
-            in.close();
-            System.setProperties(props);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        String sortAlg = props.getProperty("sortingAlgorithm1");
-
-        Class<?> oClass = null;
-        try {
-            oClass = Class.forName(sortAlg);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        Sortable sortingAlgorithm = null;
-        try {
-            sortingAlgorithm = (Sortable) oClass.newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        return sortingAlgorithm;
-    }
 
     public BiggestContiguousSumAlgorithm getBiggestContinuousSumAlgorithm(String code) {
         Class<?> oClass = null;

@@ -1,6 +1,7 @@
 package app.domain.store;
 
 
+import app.domain.adapter.Sortable;
 import app.domain.model.Client;
 import app.domain.model.DateBirth;
 import app.domain.model.Exceptions.InvalidClientException;
@@ -8,8 +9,12 @@ import app.domain.model.Exceptions.InvalidEmailException;
 import app.mappers.dto.ClientDTO;
 import auth.domain.model.Email;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Properties;
 
 public class ClientStore {
 
@@ -99,5 +104,41 @@ public class ClientStore {
 
     public int getTotalNumberOfClients() {
         return this.clientList.size();
+    }
+
+    /**
+     * Method that gets the sorting algorithm specified in the configuration file
+     * @return Sortable interface
+     */
+    public Sortable getSortingAlgorithm() {
+        Properties props = new Properties(System.getProperties());
+
+        try {
+            InputStream in = new FileInputStream("src/main/resources/config.properties");
+            props.load(in);
+            in.close();
+            System.setProperties(props);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String sortAlg = props.getProperty("sortingAlgorithm1");
+
+        Class<?> oClass = null;
+        try {
+            oClass = Class.forName(sortAlg);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        Sortable sortingAlgorithm = null;
+        try {
+            sortingAlgorithm = (Sortable) oClass.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        return sortingAlgorithm;
     }
 }
