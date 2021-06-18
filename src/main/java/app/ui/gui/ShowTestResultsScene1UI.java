@@ -92,6 +92,7 @@ public class ShowTestResultsScene1UI implements Initializable {
         try {
             ShowTestResultsScene1UI showTestResultsScene1UI= (ShowTestResultsScene1UI) mainApp.replaceSceneContent("/fxml/ShowTestResultsScene1.fxml");
             showTestResultsScene1UI.setMainApp(this.mainApp);
+            showTestResultsScene1UI.setParent(this.parent);
         } catch (Exception ex) {
             Logger.getLogger(app.ui.gui.App.class.getName()).log(Level.SEVERE, null, ex);
         }

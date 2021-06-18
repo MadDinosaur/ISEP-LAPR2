@@ -1,8 +1,10 @@
 package app.ui.gui;
 
+import app.controller.ShowTestResultController;
 import app.domain.model.TestParameter;
 import app.domain.store.TestParamList;
 import app.mappers.dto.TestDTO;
+import app.mappers.dto.TestParameterDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,9 +16,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ShowTestResultsScene2UI implements Initializable {
+    private ShowTestResultController showTestResultController = new ShowTestResultController();
+
     private App mainApp;
     private ShowTestResultsScene1UI parent;
     private TestDTO testDto;
@@ -74,21 +79,16 @@ public class ShowTestResultsScene2UI implements Initializable {
     }
 
     public void displayTestResultInfo() {
-        Label lbParam = new Label("NA");
-        Label lbValue = new Label("NA");
-        Label lbRefValue =  new Label("NA");
+        Label lbParam = new Label(), lbValue = new Label(), lbRefValue = new Label();
         int line = 1;
 
+        List<TestParameterDTO> testParams = showTestResultController.displayTestResults(testDto.getTestCode());
 
-        TestParamList testParams = testDto.getTestParamList();
-        for(TestParameter tp: testParams.getTestParameters()) {
-            if (tp.getParameter() != null)
-            lbParam.setText(tp.getParameter().getParameterName());
-            if (tp.getResult() != null)
-            lbValue.setText(tp.getResult().getValue() + tp.getResult().getMetric());
-            if (tp.getReferenceValue() != null)
-            lbRefValue.setText(tp.getReferenceValue().getMinValue() + tp.getReferenceValue().getMetric()
-                    + " - " + tp.getReferenceValue().getMaxValue() + tp.getReferenceValue().getMetric());
+        for(TestParameterDTO tp: testParams) {
+            lbParam.setText(tp.getParameter());
+            lbValue.setText(tp.getResultValue() + tp.getResultMetric());
+            lbRefValue.setText(tp.getRefValueMin() + tp.getRefValueMetric()
+                    + " - " + tp.getRefValueMax() + tp.getRefValueMetric());
 
             gridTests.add(lbParam, 0, line);
             gridTests.add(lbValue, 1, line);

@@ -1,5 +1,6 @@
 package app.domain.model;
 
+import app.controller.App;
 import app.domain.adapter.BiggestContiguousSumAlgorithm;
 import app.domain.adapter.Sortable;
 import app.domain.model.Exceptions.InvalidLaboratoryIDException;
@@ -8,8 +9,10 @@ import app.domain.store.*;
 import auth.AuthFacade;
 import auth.domain.model.Email;
 import org.apache.commons.lang3.StringUtils;
+import static com.nhs.report.Report2NHS.writeUsingFileWriter;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -46,6 +49,9 @@ public class Company {
         this.testNumber = 1;
         this.sampleList = new SampleList();
 
+
+
+
         //HARDCODED THINGS FOR TESTS
         Employee testEmployee = new Employee("testEmployee", orgRoleStore.getOrganizationRole("Receptionist"), "nameEmployee", "house", "testEmployee@gmail.com", "123456789", "1234");
         Client testClient = new Client("testClient", (long) 8765432187654321.0, 1234512347, new DateBirth(24, 12, 2002), 1234512345, (long) 12345123457.0, new Email("testClient@gmail.com"), "male");
@@ -81,7 +87,6 @@ public class Company {
 
         ClinicalAnalysisLaboratory clinicalAnalysisLaboratory = new ClinicalAnalysisLaboratory();
         clinicalAnalysisLaboratory.setLaboratoryID("001DO");
-
     }
 
 
@@ -305,7 +310,22 @@ public class Company {
     }
 
     public void MakeLinearRegressionReport(){
-        //Empty constructor
+        String currentDay = "20/05/2021";
+        String[] dateComponents = currentDay.split("/");
+        int day = Integer.parseInt(dateComponents[0]);
+        int month = Integer.parseInt(dateComponents[1]);
+        int year = Integer.parseInt(dateComponents[2]);
+        String currentDayFinal = "28/05/2021";
+        String[] dateComponentsFinal = currentDayFinal.split("/");
+        int dayFinal = Integer.parseInt(dateComponentsFinal[0]);
+        int monthFinal = Integer.parseInt(dateComponentsFinal[1]);
+        int yearFinal = Integer.parseInt(dateComponentsFinal[2]);
+        Date dateCurrentDayFinal = new GregorianCalendar(yearFinal, monthFinal, dayFinal).getTime();
+        Date dateCurrentDay = new GregorianCalendar(year, month, day).getTime();
+        WriteReport writeReport = new WriteReport(testStore,15,"30/05/2021",dateCurrentDay,dateCurrentDayFinal);
+        String stringToReport = writeReport.getReport();
+        writeUsingFileWriter(stringToReport);
+
     }
 
 

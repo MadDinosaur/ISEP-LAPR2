@@ -22,6 +22,7 @@ public class ImportCSVFileUI implements Initializable {
 
     private ImportCSVFileController importCSVFileController = new ImportCSVFileController();
 
+    private LabCoordMenuUI parent;
 
     @FXML
     private TextField fileNameTF;
@@ -32,20 +33,28 @@ public class ImportCSVFileUI implements Initializable {
     @FXML
     private Button importBtn;
 
+    @FXML
+    private Button backBtn;
+
 
     public ImportCSVFileUI() {
         //empty constructor
     }
 
+    public void setParent(LabCoordMenuUI parent) {
+        this.parent = parent;
+    }
+
     @FXML
     void selectFile(ActionEvent event) throws FileNotFoundException {
+        fileNameTF.setDisable(true);
         FileChooser fc = new FileChooser();
         File selectedFile = fc.showOpenDialog(null);
-        importCSVFileController.setFile(selectedFile);
-        fileNameTF.setDisable(true);
-        fileNameTF.setText(importCSVFileController.getFile().getPath());
-        fileNameTF.setAlignment(Pos.BASELINE_LEFT);
-
+        if(selectedFile != null) {
+            importCSVFileController.setFile(selectedFile);
+            fileNameTF.setText(importCSVFileController.getFile().getPath());
+            fileNameTF.setAlignment(Pos.BASELINE_LEFT);
+        }
     }
 
     @FXML
@@ -62,10 +71,7 @@ public class ImportCSVFileUI implements Initializable {
             }
             try {
                 importCSVFileController.readTestTypeCode();
-            } catch (InvalidTestCodeException e) {
-                System.out.println(e.getMessage());
-                continue;
-            } catch (InvalidTestType e){
+            } catch (InvalidTestCodeException | InvalidTestType e) {
                 System.out.println(e.getMessage());
                 continue;
             }
@@ -123,6 +129,16 @@ public class ImportCSVFileUI implements Initializable {
         }
         System.out.println("The CSV file was imported!");
     }
+
+    @FXML
+    void backScene(ActionEvent event) {
+        parent.toLabCoordMenu();
+    }
+
+    public void setMainApp(App mainApp) {
+        this.mainApp = mainApp;
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

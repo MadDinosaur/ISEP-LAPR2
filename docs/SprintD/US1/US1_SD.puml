@@ -9,9 +9,8 @@ participant "clientStore: ClientStore" as cstore
 participant "testStore:TestStore" as tstore
 participant "test:Test" as test
 participant "testMap: TestMapper" as tmap
-participant "testParamList:TestParamList" as testparamls
-participant "testParam:TestParameter" as testparam
-participant "testParamResult:TestParameterResult" as testparamres
+participant "testParamList: TestParamList" as testparamls
+participant "testParamMapper: TestParamMapper" as tpmap
 
 activate cli
 cli -> ui : accesses application to view results
@@ -53,21 +52,20 @@ controller -> tstore : test = getTestByCode(testCode)
 activate tstore
 |||
 deactivate tstore
-controller -> test : getTestParamResults()
+controller -> test : getTestParamList()
 activate test
-deactivate controller
-test -> testparamls : getTestParamResults()
-activate testparamls
 deactivate test
-loop for each TestParameter
-testparamls -> testparam : getTestParamResult()
-activate testparam
+controller -> testparamls : testParams = getTestParameters()
+activate testparamls
 deactivate testparamls
-testparam -> testparamres : get()
-deactivate testparam
-activate testparamres
-deactivate testparamres
-end loop
+create tpmap
+controller -> tpmap : create(testParams)
+activate tpmap
+controller -> tpmap : toDtoList()
+deactivate tpmap
+
+deactivate controller
+
 ui --> cli : displays test results
 deactivate ui
 @enduml
