@@ -1,5 +1,8 @@
 package app.ui.console;
 
+import app.controller.App;
+import app.domain.model.Company;
+
 import java.util.Scanner;
 
 public class CreateNhsReportUI implements Runnable{
@@ -11,10 +14,13 @@ public class CreateNhsReportUI implements Runnable{
     private String finalDate;
     private String regressionModel;
     private String independentVariable;
+    private Company company = App.getInstance().getCompany();
 
     @Override
     public void run(){
-        System.out.println("\n");
+        company.MakeLinearRegressionReport();
+
+        /*System.out.println("\n");
         System.out.println("######## Nhs Report Creation ########");
         System.out.println("Please choose an option for the historical points");
         String awnser =sc.nextLine();
@@ -50,7 +56,7 @@ public class CreateNhsReportUI implements Runnable{
             }else{
                 regressionModel = "mean age";
             }
-        }
+        }*/
 
     }
 }
