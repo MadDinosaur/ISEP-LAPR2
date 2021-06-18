@@ -49,6 +49,6 @@ public class DateBirth {
 
     @Override
     public String toString(){
-        return String.format(day+"/"+month+"/"+year);
+        return String.format("%s/%s/%s", day, month, year);
     }
 }

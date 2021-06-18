@@ -13,22 +13,22 @@ public class Category {
     /**
      * Parameter category's name
      */
-    private String categoryName;
+    private final String categoryName;
 
     /**
      * Parameter category's code
      */
-    private String categoryCode;
+    private final String categoryCode;
 
     /**
      * Parameter category's description
      */
-    private String categoryDescription;
+    private final String categoryDescription;
 
     /**
      * Parameter category's NHS id
      */
-    private String categoryNhsId;
+    private final String categoryNhsId;
 
     /**
      * Parameter cartegory's list of parameters

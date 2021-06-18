@@ -56,11 +56,7 @@ public class CollectionMethod {
      * @return True if it's valid and false if it's invalid
      */
     public boolean validateDescriptionCollectionMethod(String description) {
-        if (description.equals("") || description.length() > 20) {
-            return false;
-        } else {
-            return true;
-        }
+        return !description.equals("") && description.length() <= 20;
     }
 
     /**
@@ -71,7 +67,7 @@ public class CollectionMethod {
     @Override
     public boolean equals(Object otherObject) {
         if (this == otherObject) return true;
-        if (getClass() != otherObject.getClass()) return false;
+        if (otherObject == null || getClass() != otherObject.getClass()) return false;
         CollectionMethod that = (CollectionMethod) otherObject;
         return Objects.equals(descriptionCollectionMethod, that.descriptionCollectionMethod);
     }
