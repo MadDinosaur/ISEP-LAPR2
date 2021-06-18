@@ -23,6 +23,7 @@ public class Test {
     private StateOfTest stateOfTest;
     private Report report;
     private final String dateTimeRegister;
+    private String dateTimeCollection;
     private String dateTimeReport;
     private String dateTimeResults;
     private String dateTimeValidation;
@@ -103,6 +104,7 @@ public class Test {
      */
     public void setSampleList(SampleList sampleList) {
         this.sampleList = sampleList;
+        this.dateTimeCollection = LocalDateTime.now().toString();
         stateOfTest = StateOfTest.SAMPLES_COLLECTED;
     }
 
@@ -156,6 +158,7 @@ public class Test {
         return dateTimeResults;
     }
 
+    public String getDateTimeCollection() { return dateTimeCollection; }
 
     public String getDateTimeValidation() {
         return dateTimeValidation;

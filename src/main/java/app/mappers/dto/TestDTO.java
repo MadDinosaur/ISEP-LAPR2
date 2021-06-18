@@ -15,8 +15,10 @@ public class TestDTO {
     private Client client;
     private List<Category> listOfCategories;
     private String testCode;
+    private String testType;
     private String nhsCode;
     private String dateTimeRegister;
+    private String dateTimeSamples;
     private List<Parameter> listOfParameters = new ArrayList<>();
     private TestParamList testParamList;
     private SampleList sampleList = new SampleList();
@@ -34,16 +36,18 @@ public class TestDTO {
         VALIDATED
     }
 
-    public TestDTO(Client client, List<Category> listOfCategories, String testCode, String nhsCode, String dateTimeRegister, List<Parameter> listOfParameters, TestParamList testParamList, SampleList sampleList, Report report, String dateTimeReport, String dateTimeResults, String dateTimeValidation) {
+    public TestDTO(Client client, List<Category> listOfCategories, String testCode, String testType, String nhsCode, String dateTimeRegister, String dateTimeSamples, List<Parameter> listOfParameters, TestParamList testParamList, SampleList sampleList, Report report, String dateTimeReport, String dateTimeResults, String dateTimeValidation) {
         this.client = client;
         this.listOfCategories = listOfCategories;
         this.testCode = testCode;
+        this.testType = testType;
         this.nhsCode = nhsCode;
         this.dateTimeRegister = dateTimeRegister;
         this.listOfParameters = listOfParameters;
         this.testParamList = testParamList;
         this.sampleList = sampleList;
         this.report = report;
+        this.dateTimeSamples = dateTimeSamples;
         this.dateTimeReport = dateTimeReport;
         this.dateTimeResults = dateTimeResults;
         this.dateTimeValidation = dateTimeValidation;
@@ -68,12 +72,20 @@ public class TestDTO {
         return testCode;
     }
 
+    public String getTestType() {
+        return testType;
+    }
+
     public String getNhsCode() {
         return nhsCode;
     }
 
     public String getDateTimeRegister() {
         return dateTimeRegister;
+    }
+
+    public String getDateTimeSamples() {
+        return dateTimeSamples;
     }
 
     public List<Parameter> getListOfParameters() {
@@ -110,10 +122,6 @@ public class TestDTO {
 
     @Override
     public String toString() {
-        return "dateOfCreation=" + dateTimeRegister +
-                ", dateTimeReport=" + dateTimeReport +
-                ", dateTimeResults=" + dateTimeResults +
-                ", dateTimeValidation=" + dateTimeValidation +
-                '}';
+        return String.format("Date: %s, Test Type: %s, Test no.: %s, NHS no.: %s", dateTimeRegister, testType, testCode, nhsCode);
     }
 }

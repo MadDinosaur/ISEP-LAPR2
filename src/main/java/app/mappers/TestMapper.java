@@ -35,7 +35,7 @@ public class TestMapper {
      * @return dto of a test
      */
     public TestDTO toDTO(Test test){
-        TestDTO testDTO = new TestDTO(test.getClient(), test.getListOfCategories(), test.getTestCode(), test.getNhsCode(), test.getDateTimeRegister(), test.getListOfParameters(), test.getTestParamList(), test.getSampleList(), test.getReport(), test.getDateTimeReport(), test.getDateTimeResults(), test.getDateTimeValidation());
+        TestDTO testDTO = new TestDTO(test.getClient(), test.getListOfCategories(), test.getTestCode(), test.getTestType().getCode(), test.getNhsCode(), test.getDateTimeRegister(), test.getDateTimeCollection(), test.getListOfParameters(), test.getTestParamList(), test.getSampleList(), test.getReport(), test.getDateTimeReport(), test.getDateTimeResults(), test.getDateTimeValidation());
         return testDTO;
     }
 
@@ -52,4 +52,7 @@ public class TestMapper {
     }
 
 
+    public List<TestDTO> toDtoListValidation() {
+        return null;
+    }
 }
