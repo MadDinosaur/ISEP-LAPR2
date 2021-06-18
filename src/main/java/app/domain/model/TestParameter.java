@@ -41,4 +41,5 @@ public class TestParameter {
         if (result == null) throw new InvalidTestResultException("Test results haven't been registered yet");
         return result;
     }
+
 }

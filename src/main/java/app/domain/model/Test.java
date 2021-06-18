@@ -281,7 +281,7 @@ public class Test {
     public String toStringWithSamples() {
         StringBuilder samplesToString = new StringBuilder();
         for (Sample sample: getSampleList().getSampleList())
-            samplesToString.append(sample + "    ");
+            samplesToString.append(sample.getBarcode() + "    ");
 
         return String.format("%sSamples Collected no.: %s\n" , toString(), samplesToString.toString());
     }

@@ -97,7 +97,7 @@ public class ClientStore {
         throw new InvalidClientException();
     }
 
-    public int getNumberOfClients() {
+    public int getTotalNumberOfClients() {
         return this.clientList.size();
     }
 }

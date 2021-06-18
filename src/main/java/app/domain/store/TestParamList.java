@@ -24,6 +24,10 @@ public class TestParamList {
         throw new UnregisteredParameterException();
     }
 
+    public TestParameterResult getTestParamResult(String paramCode){
+        return getTestParameter(paramCode).getResult();
+    }
+
     public List<Parameter> getParameters() {
         List<Parameter> params = new ArrayList<>();
 
@@ -80,5 +84,7 @@ public class TestParamList {
     public int size() {
         return testParameters.size();
     }
+
+
 
 }

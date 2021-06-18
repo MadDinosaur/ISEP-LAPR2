@@ -14,10 +14,10 @@ public class LabCoordMenuUI implements Initializable {
     private App mainApp;
 
     @FXML
-    private Button importCSVFileMenu;
+    private Button importCSVFileBtn;
 
     @FXML
-    private Button overviewTests;
+    private Button overviewTestsBtn;
 
     @FXML
     private Button validateResults;
@@ -32,6 +32,18 @@ public class LabCoordMenuUI implements Initializable {
             Logger.getLogger(app.ui.gui.App.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @FXML
+    void overviewTestsMenu(ActionEvent event) {
+        try {
+            OverviewTestsUI overviewTestsUI =
+                    (OverviewTestsUI) this.mainApp.
+                            replaceSceneContent("/fxml/OverviewTestsScene.fxml");
+        } catch (Exception ex) {
+            Logger.getLogger(app.ui.gui.App.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 
     public void setMainApp(App mainApp) { this.mainApp = mainApp; }
 

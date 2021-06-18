@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.domain.adapter.Sortable;
 import app.domain.model.*;
 import app.domain.store.ClientStore;
 import app.domain.store.TestStore;
@@ -34,18 +35,17 @@ public class TestConsultationController {
         Sortable sortingAlgorithm = this.company.getSortingAlgorithm();
         Client[] clientArr = null;
         if(this.clientList != null) {
-            if (sortMethod.equalsIgnoreCase("name")) {
-                clientArr = sortingAlgorithm.sortByName(this.clientList);
-            } else {
+            if (sortMethod.equalsIgnoreCase("tin")) {
                 clientArr = sortingAlgorithm.sortByTin(this.clientList);
+            } else {
+                clientArr = sortingAlgorithm.sortByName(this.clientList);
             }
         }else throw new IllegalArgumentException("Client list is empty!");
         List<ClientDTO> clientDTOList = null;
         ClientMapper clientMapper = new ClientMapper();
-            for (int i = 0; i < clientArr.length; i++) {
-                clientDTOList.add(clientMapper.toDTO(clientArr[i]));
-            }
-
+        for (int i = 0; i < clientArr.length; i++) {
+            clientDTOList.add(clientMapper.toDTO(clientArr[i]));
+        }
         return clientDTOList;
     }
 
@@ -55,9 +55,13 @@ public class TestConsultationController {
         TestMapper testMapper = new TestMapper();
         List<TestDTO> clientTestListDTO = null;
         String[] clientTestListWithResults = null;
+        int i = 0;
         for (Test test : clientTestList){
-
             testMapper.toDTO(test);
+            for(TestParameter testParameter : test.getTestParamList().getTestParameters()){
+                String testParamWithResult = testParameter.getParameter().getParameterName() + ": "+ testParameter.getResult().toString();
+                clientTestListWithResults[i] = "Test #" + i + ":";
+            }
         }
         return clientTestListWithResults;
     }

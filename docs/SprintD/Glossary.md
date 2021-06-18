@@ -25,7 +25,7 @@
 | **Sample** | **Amostra** | Matter extracted from the body of a client to aid in the process of a medical diagnosis (ex. blood or swab sample) |
 | **SD** | **---** | Acronym for Specialist Doctor: Analyzes the results of the chemical analysis and writes a report | 
 | **SOC** | **---** | Acronym for Standard Occupational Classification: A code assigned to a job based on the skills and qualifications needed |
-| **Swab** | **Esfregaço** | Utensil for collecting nasal samples (used in Covid-19 tests) |
+| **Swab** | **Esfregaço** | Method for collecting nasal samples (used in Covid-19 tests) |
 | **Test** | **Teste** | Sequencial process of sample collection, chemical analysis and diagnosis of a condition or disease (ex. blood or Covid test) |
 | **Test Report** | **Relatório de Teste** | Written document by a specialist doctor that includes test details and the diagnosis |
 | **TIN** | **NIF** | Tax Identification Number |

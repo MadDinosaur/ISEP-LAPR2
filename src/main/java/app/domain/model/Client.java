@@ -20,7 +20,7 @@ public class Client {
     private final String organizationRole = "cl";
     private final List<Test> clientTests = new ArrayList<>();
     private String address;
-    private int  ageInYears;
+    private int ageInYears;
 
 
     public Client(String name, long cardNumber, long nhsId, DateBirth dateBirth, long TIN, long phoneNumber, Email email, String sex) {
