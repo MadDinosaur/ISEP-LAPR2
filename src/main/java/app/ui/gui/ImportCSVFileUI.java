@@ -92,6 +92,8 @@ public class ImportCSVFileUI implements Initializable {
 
             importCSVFileController.readNhsId();
             importCSVFileController.readCardNumber();
+
+
             importCSVFileController.readTin();
             importCSVFileController.readbirthday();
             importCSVFileController.readPhoneNumber();
@@ -120,6 +122,9 @@ public class ImportCSVFileUI implements Initializable {
                 importCSVFileController.createClient();
             } catch (NullPointerException e) {
                 e.printStackTrace();
+                continue;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
                 continue;
             }
             importCSVFileController.saveClient();

@@ -409,7 +409,6 @@ public class TestStore {
 
     public Test createTestFromCSV(ClinicalAnalysisLaboratory clinicalAnalysisLaboratory, Client client, String testCode, String nhsCode, TestType testTypeChosen, List<Category> listOfChosenCategories, TestParamList testParamList, String dateTimeRegister, String dateTimeResults, String dateTimeReport, String dateTimeValidation) {
         Test test = new Test(clinicalAnalysisLaboratory, client, testCode, nhsCode, testTypeChosen, listOfChosenCategories, testParamList, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation);
-        test.setStateOfTestToValidated();
         return test;
     }
 
