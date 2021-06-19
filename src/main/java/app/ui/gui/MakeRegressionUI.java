@@ -77,6 +77,15 @@ public class MakeRegressionUI implements Initializable {
         String intialDay = this.initialDay.getText();
         String finalDay = this.finalDay.getText();
         String typeOfPoints = this.typeOfPoints.getText();
+        if(typeOfPoints.equalsIgnoreCase("days")){
+        }else{
+            if(typeOfPoints.equalsIgnoreCase("weeks")){
+                historicalPointsInt = historicalPointsInt*7;
+            }
+        }
+        /*if(){
+
+        }*/
         System.out.println(typeOfPoints);
 
     }
@@ -93,7 +102,7 @@ public class MakeRegressionUI implements Initializable {
     }
 
     public void currentDay(ActionEvent actionEvent) {
-    }       
+    }
 
     public void initialDay(ActionEvent actionEvent) {
     }

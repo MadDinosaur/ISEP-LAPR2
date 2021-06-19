@@ -59,4 +59,7 @@
          </padding>
       </VBox>
    </center>
+   <bottom>
+      <Button fx:id="regression" mnemonicParsing="false" onAction="#testRegression" text="Test regression" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>
