@@ -3,14 +3,18 @@ package app.controller;
 import app.domain.adapter.ExternalModuleNhsReport;
 import app.domain.adapter.ExternalModuleNhsReportAdapter;
 import app.domain.model.Company;
+import app.configs.Configs;
 import app.domain.model.WriteReport;
 import com.sun.prism.shader.DrawEllipse_LinearGradient_REFLECT_AlphaTest_Loader;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Properties;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -20,17 +24,16 @@ import java.util.TimerTask;
  */
 
 public class DailyReportController extends TimerTask {
-    private Company company = App.getInstance().getCompany();
-    private ExternalModuleNhsReport nhsreport = new ExternalModuleNhsReportAdapter();
+
+    private final Company company = App.getInstance().getCompany();
+    private final ExternalModuleNhsReport nhsReport = new ExternalModuleNhsReportAdapter();
 
     //private WriteReport writeReport = new WriteReport();
 
     /**
      * timer which will trigger the creating of a daily report
      */
-    public static void dailyReportTimer() {
-        //timer task for daily NHS report
-        //the Date and time at which you want to execute
+    public static void dailyReportTimer()  {
 
         /* Ativar isto e o resto em baixo para usar os tempos corretos
 
@@ -51,7 +54,7 @@ public class DailyReportController extends TimerTask {
 
         /*
         int period = 86400000; // 1 day in milliseconds
-        timer.schedule(new DailyReportController(), date, period );
+        timer.schedule(new DailyReportController(), date, period);
         */
     }
 
@@ -59,10 +62,14 @@ public class DailyReportController extends TimerTask {
      * method triggered by the timer above
      */
     public void run() {
+
+        Properties props = new Properties(System.getProperties());
+        String intervalDates = props.getProperty("intervalDates");
+        String historicalPoints = props.getProperty("historicalPoints");
+
         //String report = writeReport.getReport();
         String abc = "xD funny momement";
-        nhsreport.sendReport(abc);
-        nhsreport.generateLogEvent();
+        nhsReport.sendReport(abc);
         System.out.println("NHS Daily Report sent");
     }
 }

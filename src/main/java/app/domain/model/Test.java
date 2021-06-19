@@ -62,11 +62,11 @@ public class Test {
         /**
          * Instance of current client
          */
-        this.client = client;
-        this.testCode = testCode;
-        this.nhsCode = nhsCode;
-        this.testType = testType;
-        this.listOfCategories = categoryList;
+        setClient(client);
+        setTestCode(testCode);
+        setNhsCode(nhsCode);
+        setTestType(testType);
+        setListOfCategories(listOfCategories);
         this.testParamList = testParamList;
         this.dateTimeRegister = dateTimeRegister;
         this.dateTimeResults = dateTimeResults;
@@ -79,7 +79,7 @@ public class Test {
      * Sets the client and verifies if it is null
      */
     private void setClient(Client client) {
-        if (client==null) {
+        if (client == null) {
             throw new IllegalArgumentException("Client is errored");
         }
         this.client = client;
