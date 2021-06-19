@@ -74,7 +74,7 @@ public class MakeRegressionUI implements Initializable {
         String historicalPoints = this.historicalPoints.getText();
         int historicalPointsInt = Integer.parseInt(historicalPoints);
         String currentDay = this.currentDay.getText();
-        String intialDay = this.initialDay.getText();
+        String intialDayString = this.initialDay.getText();
         String finalDay = this.finalDay.getText();
         String typeOfPoints = this.typeOfPoints.getText();
         if(typeOfPoints.equalsIgnoreCase("days")){
@@ -83,10 +83,24 @@ public class MakeRegressionUI implements Initializable {
                 historicalPointsInt = historicalPointsInt*7;
             }
         }
-        /*if(){
-
-        }*/
+        String independentVariable = null;
+        if(independentVar.getText().equalsIgnoreCase(meanAge.getText())){
+            independentVariable = "mean age";
+        }else{
+            if(independentVar.getText().equalsIgnoreCase(totalTests.getText())){
+                independentVariable = "total tests";
+            }else{
+                if(independentVar.getText().equalsIgnoreCase(both.getText())){
+                    independentVariable = "multilinear";
+                }
+            }
+        }
         System.out.println(typeOfPoints);
+        System.out.println(independentVariable);
+        System.out.println(historicalPointsInt);
+        System.out.println(currentDay);
+        System.out.println(intialDayString);
+        System.out.println(finalDay);
 
     }
 
