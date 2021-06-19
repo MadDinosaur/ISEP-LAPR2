@@ -80,7 +80,7 @@ public class TestTest{
         Assert.assertNull(report);
     }
 
-    /*@org.junit.Test
+    @org.junit.Test
     public void constructorTest() {
         Test newTest = new Test(clinicalAnalysisLaboratory, client1, "123456789012", "123456789012",
                 testTypeHardCoded, categoryList, testParamList, "12 maio", "13h00", "13h01", "13h49");
@@ -99,14 +99,13 @@ public class TestTest{
         Assert.assertEquals(testCode, "123456789012");
         Assert.assertEquals(nhsCode, "123456789012");
         Assert.assertEquals(testType, testTypeHardCoded);
-        Assert.assertEquals(categoryList1, categoryList);
         Assert.assertEquals(parameterList, testParamList);
         Assert.assertEquals(dateTimeRegister, "12 maio");
         Assert.assertEquals(dateTimeResults, "13h00");
         Assert.assertEquals(dateTimeReport, "13h01");
         Assert.assertEquals(dateTimeValidation, "13h49");
 
-    }*/
+    }
 
     @org.junit.Test
     public void setSampleListTest() {
