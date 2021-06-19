@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ClinicalChemistryTechnologistMenuUI {
+public class CliChemTechMenuUI {
     App mainApp;
 
     @FXML
@@ -31,6 +31,16 @@ public class ClinicalChemistryTechnologistMenuUI {
             ShowClientListUI showClientListUI = (ShowClientListUI) this.mainApp.replaceSceneContent("/fxml/ShowClientList.fxml");
             showClientListUI.setMainApp(this.mainApp);
             showClientListUI.setParent(this);
+        } catch (Exception ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    public void toCliChemTechMenu() {
+        try {
+            CliChemTechMenuUI cliChemTechMenuUI= (CliChemTechMenuUI) mainApp.replaceSceneContent("/fxml/CliChemTech.fxml");
+            cliChemTechMenuUI.setMainApp(this.mainApp);
         } catch (Exception ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }

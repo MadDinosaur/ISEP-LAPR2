@@ -47,7 +47,6 @@ public class ImportCSVFileUI implements Initializable {
 
     @FXML
     void selectFile(ActionEvent event) throws FileNotFoundException {
-        fileNameTF.setDisable(true);
         FileChooser fc = new FileChooser();
         File selectedFile = fc.showOpenDialog(null);
         if(selectedFile != null) {
@@ -148,7 +147,7 @@ public class ImportCSVFileUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //empty
+        fileNameTF.setDisable(true);
     }
 
 

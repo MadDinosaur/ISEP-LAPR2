@@ -2,61 +2,53 @@ package app.controller;
 
 import app.domain.adapter.BiggestContiguousSumAlgorithm;
 import app.domain.model.Company;
-import app.domain.store.ClientStore;
-import app.domain.store.TestStore;
 
+import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class OverviewTestsController {
 
     private Company company;
-    private ClientStore clientStore = company.getClientStore();
-    private TestStore testStore = company.getTestStore();
     private BiggestContiguousSumAlgorithm algorithm;
 
-    /**
-     * Code inspired from the following website: https://www.baeldung.com/java-between-dates
-     * @param begginingDate Beggining date
-     * @param endingDate Ending date
-     */
-    public List<Date> getDatesBetweenDateInterval(Date begginingDate, Date endingDate) {
-        List<Date> datesInRange = new ArrayList<>();
-        Calendar calendar = new GregorianCalendar();
-        calendar.setTime(begginingDate);
-
-        Calendar endCalendar = new GregorianCalendar();
-        endCalendar.setTime(endingDate);
-
-        while (calendar.before(endCalendar)) {
-            Date result = calendar.getTime();
-            datesInRange.add(result);
-            calendar.add(Calendar.DATE, 1);
-        }
-        return datesInRange;
+    public OverviewTestsController() {
+        this.company = App.getInstance().getCompany();
     }
 
+    public static List<Date> getDatesBetweenDateInterval(LocalDate beginningDate, LocalDate endingDate) {
+        List<Date> dateLst = new ArrayList<>();
+        List<LocalDate> localDateLst = beginningDate.datesUntil(endingDate).collect(Collectors.toList());
+        for (LocalDate localDate : localDateLst) {
+            Date date = new Date(localDate.getYear() - 1900, localDate.getMonth().getValue() - 1, localDate.getDayOfMonth());
+            dateLst.add(date);
+        }
+        return dateLst;
+    }
+
+
     public int getTotalNumberOfClients() {
-        return this.clientStore.getTotalNumberOfClients();
+        return this.company.getClientStore().getTotalNumberOfClients();
     }
 
     public int getTotalNumberOfValidatedTests() {
-        return this.testStore.getTotalNumberOfValidatedTests();
+        return this.company.getTestStore().getTotalNumberOfValidatedTests();
     }
 
-    public List<Integer> getNumberOfTestsWaitingForResultsInDateInterval(List<Date> dateInterval) {
-        return this.testStore.getNumberOfTestsWaitingForResultsInDateInterval(dateInterval);
+    public int getNumberOfTestsWaitingForResultsInDate(Date date) {
+        return this.company.getTestStore().getNumberOfTestsWaitingForResultsInDate(date);
     }
 
-    public List<Integer> getNumberOfTestsWaitingForReportInDateInterval(List<Date> dateInterval) {
-        return this.testStore.getNumberOfTestsWaitingForReportInDateInterval(dateInterval);
+    public int getNumberOfTestsWaitingForReportInDate(Date date) {
+        return this.company.getTestStore().getNumberOfTestsWaitingForReportInDate(date);
     }
 
-    public List<Integer> getNumberOfTestsValidatedInDateInterval(List<Date> dateInterval) {
-        return this.testStore.getNumberOfTestsValidatedInDateInterval(dateInterval);
+    public int getNumberOfTestsValidatedInDate(Date date) {
+        return this.company.getTestStore().getNumberOfTestsValidatedInDate(date);
     }
 
     public int[] getDifferenceOfNewAndValidatedTests(List<Date> dateInterval) {
-        return this.testStore.getDifferenceOfNewAndValidatedTestsForEachHalfAnHour(dateInterval);
+        return this.company.getTestStore().getDifferenceOfNewAndValidatedTestsForEachHalfAnHour(dateInterval);
     }
 
     public int[] getBiggestContiguousSubSequence(int[] sequence, String code) {

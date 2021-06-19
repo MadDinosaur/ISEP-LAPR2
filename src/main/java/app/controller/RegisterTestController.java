@@ -10,6 +10,7 @@ import app.mappers.dto.ParamDTO;
 import app.mappers.dto.TestCategoryDto;
 import app.mappers.dto.TestTypeDto;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -117,9 +118,13 @@ public class RegisterTestController {
 
     public void setTestParameterByParameterCode(String parameterCode, String value) {
         for (Category category : listOfChosenCategories) {
-            Parameter parameter = category.getParameterByCode(parameterCode);
-            this.testParamList.createTestParam(parameter);
-            this.testParamList.addTestParameterResult(parameter, testParamList.createTestParameterResult(parameterCode, value, " "));
+            try {
+                Parameter parameter = category.getParameterByCode(parameterCode);
+                this.testParamList.createTestParam(parameter);
+                this.testParamList.addTestParameterResult(parameter, testParamList.createTestParameterResult(parameterCode, value, " "));
+            } catch (InvalidParameterException e) {
+                continue;
+            }
         }
     }
 
