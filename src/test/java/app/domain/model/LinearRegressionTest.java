@@ -37,20 +37,20 @@ public class LinearRegressionTest {
         double predict = linearRegression.predict(1.5);
         Assert.assertEquals(predict, 4.0833, 5);
 
-        double rss = linearRegression.getRss();
+        double rss = linearRegression.getSe();
         Assert.assertEquals(rss, 0.1666, 5);
 
-        double ssr = linearRegression.getSsr();
+        double ssr = linearRegression.getSr();
         Assert.assertEquals(ssr, 4.5, 0);
 
-        double svar = linearRegression.getSvar();
-        Assert.assertEquals(svar, 0.1666, 5);
+/*        double svar = linearRegression.slope();
+        Assert.assertEquals(svar, 0.1666, 5);*/
 
-        double statisticF = linearRegression.getStatisticF();
+        double statisticF = linearRegression.getF();
         Assert.assertEquals(statisticF, 26.999, 5);
 
-        double critical = linearRegression.getCritical();
-        Assert.assertEquals(critical, 161.44, 5);
+   /*     double critical = linearRegression.getInterval(0.95);
+        Assert.assertEquals(critical, 161.44, 5);*/
 
         String toString = linearRegression.toString();
         Assert.assertNotNull(toString);

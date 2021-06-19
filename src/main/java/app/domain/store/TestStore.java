@@ -81,15 +81,22 @@ public class TestStore {
         List<Test> positiveCovid = new ArrayList<>();
         for (Test test : tests) {
             if (test.getTestType().getCode().equals("Covid")) {
-                if(test.isValidated()) {
-                    List<TestParameterResult> testParameterResultList = test.getTestParamResults();
+                if (test.isValidated()) {
+                    List<TestParameterResult> testParameterResultList = null;
+                    try {
+                        testParameterResultList = test.getTestParamResults();
+                    } catch (Exception e) {
+                        continue;
+                    }
+                    ;
+                    assert testParameterResultList != null;
                     for (TestParameterResult parameterResult : testParameterResultList) {
-                        if (parameterResult.getValue() != null) {
-                            if (parameterResult.getValue() > 1.4) {
-                                positiveCovid.add(test);
-                            }
+                        if (parameterResult.getValue() > 1.4) {
+                            positiveCovid.add(test);
                         }
                     }
+
+
                 }
             }
         }
@@ -131,11 +138,12 @@ public class TestStore {
             String[] dateComponents = date.split(" ");
             date = dateComponents[0];
             if (dayOfTest.equalsIgnoreCase(date)) {
-                sumAge = test.getClient().getAgeInYears();
+                sumAge += test.getClient().getAgeInYears();
                 numberOfClient++;
             }
         }
         if (numberOfClient != 0) {
+
             return sumAge / numberOfClient;
         } else {
             return 0;
