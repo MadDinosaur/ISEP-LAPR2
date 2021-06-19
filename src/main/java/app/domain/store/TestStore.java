@@ -13,6 +13,7 @@ import java.util.List;
 public class TestStore {
     private final List<Test> tests = new ArrayList<>();
 
+
     public boolean addTest(Test test) {
         validateTest(test);
         return this.tests.add(test);
@@ -279,7 +280,7 @@ public class TestStore {
                 int month = Integer.parseInt(dayMonthYear[1]);
                 int year = Integer.parseInt(dayMonthYear[2]);
                 Date dateOfValidation = new Date(year - 1900, month - 1, day);
-                if (!dateOfValidation.after(date)) {
+                if (!dateOfValidation.after(date) && !dateOfValidation.before(date)) {
                     numberOfTests++;
                 }
             }
