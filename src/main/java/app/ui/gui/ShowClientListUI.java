@@ -77,7 +77,7 @@ public class ShowClientListUI implements Initializable{
         try{
             ShowTestResultsScene1UI showTestResultsScene1UI = new ShowTestResultsScene1UI();
             showTestResultsScene1UI.setMainApp(this.mainApp);
-            showTestResultsScene1UI.setParent2(this);
+            showTestResultsScene1UI.setParent(this);
             showTestResultsScene1UI.displayTestList(lstViewClients.getSelectionModel().getSelectedItem().getEmail());
         } catch (Exception e){
             Logger.getLogger(app.ui.gui.App.class.getName()).log(Level.SEVERE, null, e);
