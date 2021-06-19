@@ -82,14 +82,12 @@ public class TestStore {
         for (Test test : tests) {
             if (test.getTestType().getCode().equals("Covid")) {
                 if (test.isValidated()) {
-                    List<TestParameterResult> testParameterResultList = null;
-                    try {
+                    List<TestParameterResult> testParameterResultList = test.getTestParamResults();
+                  /*  try {
                         testParameterResultList = test.getTestParamResults();
                     } catch (Exception e) {
                         continue;
-                    }
-                    ;
-                    assert testParameterResultList != null;
+                    }*/
                     for (TestParameterResult parameterResult : testParameterResultList) {
                         if (parameterResult.getValue() > 1.4) {
                             positiveCovid.add(test);
