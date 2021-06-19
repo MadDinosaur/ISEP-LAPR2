@@ -64,6 +64,7 @@ public class ImportCSVFileUI implements Initializable {
 
     void importingFileSteps() {
         while (importCSVFileController.fileHasNextLine()) {
+            importCSVFileController.createNewControllers();
             try {
                 importCSVFileController.goOneLineForward();
             } catch (RuntimeException e) {

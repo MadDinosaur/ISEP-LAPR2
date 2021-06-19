@@ -13,8 +13,8 @@ import java.util.Scanner;
 public class ImportCSVFileController {
 
 
-    private RegisterTestController registerTestController = new RegisterTestController();
-    private RegisterClientController registerClientController = new RegisterClientController();
+    private RegisterTestController registerTestController;
+    private RegisterClientController registerClientController;
     private RegisterNewLabController registerNewLabController = new RegisterNewLabController();
 
     private String[] titulos;
@@ -299,5 +299,10 @@ public class ImportCSVFileController {
         };
 
         this.registerClientController = new RegisterClientController();
+    }
+
+    public void createNewControllers() {
+        this.registerClientController = new RegisterClientController();
+        this.registerTestController = new RegisterTestController();
     }
 }
