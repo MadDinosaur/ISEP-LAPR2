@@ -12,6 +12,10 @@ import java.util.ResourceBundle;
 
 public class MakeRegressionUI implements Initializable {
 
+    private MainMenuUI parent;
+    private App mainApp;
+    private CreateNhsReportController createNhsReportController = new CreateNhsReportController();
+
     public MenuButton independentVar;
     public MenuItem totalTests;
     public MenuItem meanAge;
@@ -22,19 +26,13 @@ public class MakeRegressionUI implements Initializable {
     public TextField historicalPoints;
     public MenuButton typeOfPoints;
     public MenuItem days;
-    public SeparatorMenuItem weeks;
-
-    private App mainApp;
-
-    private CreateNhsReportController createNhsReportController = new CreateNhsReportController();
+    public MenuItem weeks;
 
     @FXML
     private Button backBtn;
 
     @FXML
     private TextField currentDay;
-
-    private MainMenuUI parent;
 
     public void setParent(MainMenuUI parent) {
         this.parent = parent;
@@ -52,22 +50,22 @@ public class MakeRegressionUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 
-
     public void multiLinear(ActionEvent actionEvent) {
+        independentVar.setText(both.getText());
     }
 
     public void meanAge(ActionEvent actionEvent) {
+        independentVar.setText(meanAge.getText());
     }
 
     public void totalTests(ActionEvent actionEvent) {
+        independentVar.setText(totalTests.getText());
     }
 
     public void indVariable(ActionEvent actionEvent) {
     }
-
 
     public void typePoints(ActionEvent actionEvent) {
     }
@@ -81,7 +79,25 @@ public class MakeRegressionUI implements Initializable {
         String typeOfPoints = this.typeOfPoints.getText();
         System.out.println(typeOfPoints);
 
-
     }
 
+    public void daysAsPoints(ActionEvent actionEvent) {
+        typeOfPoints.setText(days.getText());
+    }
+
+    public void weeksAsPoints(ActionEvent actionEvent) {
+        typeOfPoints.setText(weeks.getText());
+    }
+
+    public void numberPoints(ActionEvent actionEvent) {
+    }
+
+    public void currentDay(ActionEvent actionEvent) {
+    }       
+
+    public void initialDay(ActionEvent actionEvent) {
+    }
+
+    public void finalDay(ActionEvent actionEvent) {
+    }
 }

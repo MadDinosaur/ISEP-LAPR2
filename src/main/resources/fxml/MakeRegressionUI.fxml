@@ -59,9 +59,9 @@
                <children>
                   <MenuButton fx:id="typeOfPoints" mnemonicParsing="false" onAction="#typePoints" text="Type of historical points" GridPane.columnIndex="1">
                     <items>
-                      <MenuItem fx:id="days" mnemonicParsing="false" onAction="#typeAsPoints" text="Days" />
-                        <SeparatorMenuItem fx:id="weeks" mnemonicParsing="false" onAction="#weeksAsPoints" />
-                      <MenuItem mnemonicParsing="false" text="Weeks" />
+                      <MenuItem fx:id="days" mnemonicParsing="false" onAction="#daysAsPoints" text="Days" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="weeks" mnemonicParsing="false" onAction="#weeksAsPoints" text="Unspecified Action" />
                     </items>
                      <GridPane.margin>
                         <Insets left="25.0" />
