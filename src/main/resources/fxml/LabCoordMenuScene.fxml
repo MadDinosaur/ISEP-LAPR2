@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="158.0" prefWidth="228.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.LabCoordMenuUI">
+<BorderPane prefHeight="158.0" prefWidth="228.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.LabCoordMenuUI">
    <top>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="63.0" prefWidth="228.0" BorderPane.alignment="CENTER">
          <children>
@@ -42,7 +39,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="validateResults" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" text="Validate Results">
+            <Button fx:id="validateResults" mnemonicParsing="false" onAction="#validateResults" prefHeight="25.0" prefWidth="158.0" text="Validate Results">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>

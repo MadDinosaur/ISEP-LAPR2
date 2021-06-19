@@ -1,5 +1,6 @@
 package app.ui.gui;
 
+import app.ui.console.ValidateTestUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -59,6 +60,12 @@ public class LabCoordMenuUI implements Initializable {
         } catch (Exception ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    void validateResults(ActionEvent event) {
+        mainApp.getStage().setIconified(true);
+        new ValidateTestUI().run();
     }
 
     @FXML
