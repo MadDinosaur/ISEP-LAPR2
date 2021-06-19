@@ -1,49 +1,22 @@
 package app.ui.gui;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+public class AdminUI implements Runnable {
+    private App mainApp;
 
-public class AdminUI implements Initializable {
+    public AdminUI(App app) {
+        this.mainApp = app;
+    }
+
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    }
-
-    public void validateTest(ActionEvent actionEvent) {
-    }
-
-    public void registerEmployee(ActionEvent actionEvent) {
-    }
-
-    public void registerLab(ActionEvent actionEvent) {
-    }
-
-    public void registerTestResult(ActionEvent actionEvent) {
-    }
-
-    public void registerTest(ActionEvent actionEvent) {
-    }
-
-    public void createTestType(ActionEvent actionEvent) {
-    }
-
-    public void makeRegression(ActionEvent actionEvent) {
-    }
-
-    public void registerNewReport(ActionEvent actionEvent) {
-    }
-
-    public void registerSamples(ActionEvent actionEvent) {
-    }
-
-    public void registerClient(ActionEvent actionEvent) {
-    }
-
-    public void createParameter(ActionEvent actionEvent) {
-    }
-
-    public void backScene(ActionEvent actionEvent) {
+    public void run() {
+        try {
+            AdminMenuUI adminMenuUI = (AdminMenuUI) this.mainApp.replaceSceneContent("/fxml/AdminScene.fxml");
+            adminMenuUI.setMainApp(this.mainApp);
+        } catch (Exception ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

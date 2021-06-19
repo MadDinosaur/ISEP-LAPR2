@@ -12,7 +12,7 @@ import java.util.ResourceBundle;
 
 public class MakeRegressionUI implements Initializable {
 
-    private MainMenuUI parent;
+    private AdminMenuUI parent;
     private App mainApp;
     private CreateNhsReportController createNhsReportController = new CreateNhsReportController();
 
@@ -34,13 +34,13 @@ public class MakeRegressionUI implements Initializable {
     @FXML
     private TextField currentDay;
 
-    public void setParent(MainMenuUI parent) {
+    public void setParent(AdminMenuUI parent) {
         this.parent = parent;
     }
 
     @FXML
     void backScene(ActionEvent event) {
-        new MainMenuUI();
+        parent.toAdminMenu();
     }
 
     public void setMainApp(App mainApp) {
