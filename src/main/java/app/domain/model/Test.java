@@ -72,10 +72,27 @@ public class Test {
         this.clinicalAnalysisLaboratory = clinicalAnalysisLaboratory;
         this.testParamList = testParamList;
         this.dateTimeRegister = dateTimeRegister;
-        this.dateTimeResults = dateTimeResults;
-        this.dateTimeReport = dateTimeReport;
-        this.dateTimeValidation = dateTimeValidation;
-        this.stateOfTest = StateOfTest.VALIDATED;
+        if (dateTimeResults == null) {
+            this.stateOfTest = StateOfTest.REGISTERED;
+        } else {
+            this.dateTimeResults = dateTimeResults;
+        }
+
+        if (dateTimeReport == null) {
+            this.stateOfTest = StateOfTest.SAMPLES_ANALYZED;
+        } else {
+            this.dateTimeReport = dateTimeReport;
+        }
+
+        if (dateTimeValidation == null) {
+            this.stateOfTest = StateOfTest.REPORT_MADE;
+        } else {
+            this.dateTimeValidation = dateTimeValidation;
+        }
+
+        if (dateTimeResults != null && dateTimeReport != null && dateTimeValidation != null) {
+            this.stateOfTest = StateOfTest.VALIDATED;
+        }
     }
 
     /**
