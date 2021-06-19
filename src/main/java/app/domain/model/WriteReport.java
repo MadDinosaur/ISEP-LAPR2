@@ -241,9 +241,9 @@ public class WriteReport implements CharSequence {
         sqRAverage = sqR;
         fTest = linearRegression.getF();
         rSquared = linearRegression.R2();
-        r2Adjusted = linearRegression.get
+ /*       r2Adjusted = linearRegression.get
         this.r = Math.sqrt(rSquared);
-        critical = multiLinearRegression.getCritical();
+        critical = multiLinearRegression.getCritical();*/
 
         String t_obs = "observacao";
         String decision = "decisao";
@@ -315,8 +315,9 @@ public class WriteReport implements CharSequence {
                 index--;
 
             } else {
-                double critical = multiLinearRegression.getPrevisionforY(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString));
+    /*            double critical = multiLinearRegression.getPrevisionforY(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString));
                 stringToBuild.append((dayOfTableInString + "                    " + testStore.getNumberOfPositiveCasesPerDay(dateInString) + "                                      " + multiLinearRegression.getPrevisionforY(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString)) + "                                      " + (critical - multiLinearRegression.getCriticalValue(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString))) + "-" + (critical + multiLinearRegression.getCriticalValue(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString)))) + "\n");
+            }*/
             }
         }
         stringToReport = stringToBuild.toString();
