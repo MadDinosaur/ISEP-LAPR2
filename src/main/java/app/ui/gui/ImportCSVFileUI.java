@@ -20,7 +20,7 @@ public class ImportCSVFileUI implements Initializable {
 
     private App mainApp;
 
-    private ImportCSVFileController importCSVFileController = new ImportCSVFileController();
+    private final ImportCSVFileController importCSVFileController = new ImportCSVFileController();
 
     private LabCoordMenuUI parent;
 
@@ -149,4 +149,6 @@ public class ImportCSVFileUI implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         fileNameTF.setDisable(true);
     }
+
+
 }

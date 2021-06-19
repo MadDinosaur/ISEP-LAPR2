@@ -8,7 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
+
 
 public class WriteReport implements CharSequence {
     double rSquared;
@@ -241,9 +241,9 @@ public class WriteReport implements CharSequence {
         sqRAverage = sqR;
         fTest = linearRegression.getF();
         rSquared = linearRegression.R2();
- /*       r2Adjusted = linearRegression.get
+        r2Adjusted =
         this.r = Math.sqrt(rSquared);
-        critical = multiLinearRegression.getCritical();*/
+        critical = linearRegression.getT0(0.95);
 
         String t_obs = "observacao";
         String decision = "decisao";
@@ -251,11 +251,10 @@ public class WriteReport implements CharSequence {
 
 
         StringBuilder stringToBuild = new StringBuilder("The regression model fitted using data from the interval\n" +
-                "^y = " + xa + "x1 + " + xb + "x2 +" + intercept + "\n" +
+                "^y = " + xa + "x " + intercept + "\n" +
                 "\n" +
                 "Other statistics\n" +
                 "R2 = " + rSquared + "\n" +
-                "R2adjusted = " + r2Adjusted + "\n" +
                 "R = " + r + "\n" +
                 "\n" +
                 "Hypothesis tests for regression coefficients\n" +
@@ -315,13 +314,36 @@ public class WriteReport implements CharSequence {
                 index--;
 
             } else {
-    /*            double critical = multiLinearRegression.getPrevisionforY(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString));
-                stringToBuild.append((dayOfTableInString + "                    " + testStore.getNumberOfPositiveCasesPerDay(dateInString) + "                                      " + multiLinearRegression.getPrevisionforY(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString)) + "                                      " + (critical - multiLinearRegression.getCriticalValue(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString))) + "-" + (critical + multiLinearRegression.getCriticalValue(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString)))) + "\n");
-            }*/
+                double critical;
+                if(independentVariable.equalsIgnoreCase("mean age")){
+                    critical = linearRegression.getInterval(0.95,testStore.getAverageAgeOfClient(dateInString));
+                }else{
+                    if(independentVariable.equalsIgnoreCase("tests made")){
+                        critical = linearRegression.getInterval(0.95,testStore.getNumberOfTestsPerformed(dateInString));
+                    }else{
+                        throw new Exception("Invalid variable");
+                    }
+                }
+                stringToBuild.append((dayOfTableInString + "                    " + testStore.getNumberOfPositiveCasesPerDay(dateInString) + "                                      "));
+                double prevision;
+                if(independentVariable.equalsIgnoreCase("mean age")){
+                    stringToBuild.append(linearRegression.predict(testStore.getAverageAgeOfClient(dateInString)));
+                    prevision = linearRegression.predict(testStore.getAverageAgeOfClient(dateInString));
+                }else{
+                    if(independentVariable.equalsIgnoreCase("tests made")){
+                        stringToBuild.append(linearRegression.predict(testStore.getNumberOfTestsPerformed(dateInString)));
+                        prevision = linearRegression.predict(testStore.getNumberOfTestsPerformed(dateInString));
+                    }else{
+                        throw new Exception("Invalid variable");
+                    }
+                }
+
+                stringToBuild.append( "                                      " + (prevision - critical) + "-" + (prevision + critical) + "\n");
             }
-        }
+            }
         stringToReport = stringToBuild.toString();
-    }
+        }
+
 
     public String getReport() {
         return stringToReport;
