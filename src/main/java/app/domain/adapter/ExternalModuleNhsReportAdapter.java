@@ -17,19 +17,13 @@ import static com.nhs.report.Report2NHS.writeUsingFileWriter;
 public class ExternalModuleNhsReportAdapter implements ExternalModuleNhsReport{
 
     /**
-     * this will use access the external library Report2NHS, where the report will be created and sent
+     * this method will use access the external library Report2NHS, where the report will be created and sent
+     * also after that, it will register the event and generate a .txt log file into the folder
      * @param string this string includes all the information which will be written into the report
      */
     @Override
     public void sendReport(String string) {
         writeUsingFileWriter(string);
-    }
-
-    /**
-     * generation of a log events file
-     */
-    @Override
-    public void generateLogEvent() {
 
         File log = new File("./NHSReport/log.txt");
         try {
@@ -45,9 +39,8 @@ public class ExternalModuleNhsReportAdapter implements ExternalModuleNhsReport{
         } catch (IOException e) {
             System.out.println("Error saving the log event.");
         }
-
+        
     }
-
     /**
      * method used to get current Date and Time
      * @return String with current date and time

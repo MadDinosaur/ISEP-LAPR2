@@ -21,45 +21,27 @@ abstract TimerTask {
 }
 
 class LinearRegression {
--intercept
--slope
--r2
--svar0
--svar1
 +LinearRegression(x, y)
-+intercept()
-+slope()
-+R2()
-+interceptStdErr()
-+slopeStdErr()
-+predict(x)
-+toString()
 }
 
 class MultiLinearRegression {
--x
--xTranspose
--xTransposeX
--xTransposeXInversed
--xTransposeY
 +MultiLinearRegression(x1, x2, y)
-+transposeMatrix(x)
-+matrixMultiplication(firstMatrix, secondMatrix)
 }
 
 class TestStore {
 }
 
-class WriteReport
+class WriteReport {
++WriteReport(testStore, historicalPoints, currentDay, startRegression, finishRegression)
++String getReport()
+}
 
 interface ExternalModuleNhsReport {
 +void sendReport(String string)
-+void generateLogEvent()
 }
 
 class ExternalModuleNhsReportAdapter {
 +sendReport(String string)
-+generateLogEvent()
 +getDateAndTime()
 }
 
@@ -67,15 +49,15 @@ class Report2NHS {
 +writeUsingFileWriter(String data)
 }
 
-DailyReportController --> ExternalModuleNhsReport
+DailyReportController ..> ExternalModuleNhsReport
 Runnable <|.. TimerTask
 TimerTask <|-- DailyReportController
-DailyReportController --> WriteReport
-Company <- DailyReportController
-TestStore <- Company
-ExternalModuleNhsReport <|... ExternalModuleNhsReportAdapter
-ExternalModuleNhsReportAdapter --> Report2NHS
-LinearRegression <- WriteReport
-WriteReport --> MultiLinearRegression
+DailyReportController ..> WriteReport
+Company <. DailyReportController
+TestStore <. Company
+ExternalModuleNhsReport <|.. ExternalModuleNhsReportAdapter
+ExternalModuleNhsReportAdapter ..> Report2NHS
+LinearRegression <. WriteReport
+WriteReport ..> MultiLinearRegression
 
 @enduml

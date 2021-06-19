@@ -11,9 +11,4 @@ public interface ExternalModuleNhsReport {
      * @param string this string includes all the information which will be written into the report
      */
     void sendReport(String string);
-
-    /**
-     * this will generate log.txt and write log events related to the daily reports sent to NHS
-     */
-    void generateLogEvent();
 }

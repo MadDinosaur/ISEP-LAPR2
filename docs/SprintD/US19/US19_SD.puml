@@ -3,12 +3,51 @@
 autonumber
 
 actor ":System\n Clock:" as Clock
-participant Controller
+participant "timer : Timer" as timer
+participant DailyReportController as controller
+participant Company as company
+participant "writeReport : WriteReport" as writereport
+participant ExternalModuleNhsReport as interface
+participant ExternalModuleNhsReportAdapter as adapter
 
-Clock -> Controller : trigger at 6:00 am
-activate Controller
-ref over Controller : SD_Timer
-Controller -> A
-deactivate Controller
+activate Clock
+activate controller
+create timer
+controller --> timer : create()
+controller -> timer : schedule(task, delay, interval)
+activate timer
+deactivate controller
+deactivate timer
+
+note over timer : Clock will trigger at 6.00 am, executing the daily report functionality
+
+Clock -> timer : clock hits at 6.00 am
+activate timer
+timer -> controller : run()
+deactivate timer
+activate controller
+
+controller -> company
+activate company
+deactivate company
+
+create writereport
+controller -> writereport : create()
+controller -> writereport : WriteReport()
+activate writereport
+deactivate writereport
+controller -> writereport : report = getReport()
+activate writereport
+deactivate writereport
+
+controller -> interface : sendReport(report)
+activate interface
+interface -> adapter : sendReport(string)
+activate adapter
+deactivate interface
+deactivate adapter
+deactivate controller
+
+deactivate Clock
 
 @enduml

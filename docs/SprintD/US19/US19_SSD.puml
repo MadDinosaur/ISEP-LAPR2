@@ -5,6 +5,8 @@ autonumber
 actor ":System\n Clock:" as Clock
 participant ":System" as sys
 
-Clock -> sys: trigger at 6:00 am
+activate Clock
+Clock -> sys: clock trigger at 6.00 am
+deactivate Clock
 
 @enduml

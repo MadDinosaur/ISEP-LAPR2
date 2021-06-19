@@ -1,6 +1,6 @@
 // This file is an example of a report that should be sent to the NHS
 // in US18 (for US19 the report is the same but the configurations are all defined
-// in a configuration file and the report is sent automatically everyday at 6h00PM).
+// in a configuration file and the report is sent automatically everyday at 6h00AM).
 //
 // If the administrator selects:
 //       1. The current day to be 31/05/2021;
