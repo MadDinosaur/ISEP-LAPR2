@@ -61,7 +61,6 @@ public class Client {
 
     public void setDateBirth(DateBirth dateBirth) {
         this.dateBirth = dateBirth;
-        this.ageInYears = 2021- dateBirth.getYear();
     }
 
     public void setTIN(long tin) {
@@ -125,7 +124,7 @@ public class Client {
     }
 
     public int getAgeInYears() {
-        return ageInYears;
+        return 2021- dateBirth.getYear();
     }
 
     public void addTestToClient(Test test) {
