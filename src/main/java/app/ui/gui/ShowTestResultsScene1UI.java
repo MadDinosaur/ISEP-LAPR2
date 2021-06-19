@@ -24,6 +24,7 @@ public class ShowTestResultsScene1UI implements Initializable {
     ShowTestResultController controller = new ShowTestResultController();
     app.ui.gui.App mainApp;
     ClientMenuUI parent;
+    ShowClientListUI parent2;
 
     @FXML
     private ListView<TestDTO> lstViewTests;
@@ -69,9 +70,30 @@ public class ShowTestResultsScene1UI implements Initializable {
         this.parent = parent;
     }
 
+    public void setParent2(ShowClientListUI parent2){this.parent2 = parent2;}
+
     private void displayTestList() {
         List<TestDTO> tests = controller
                 .displayClientTests(App.getInstance().getCurrentUserSession().getUserId().toString());
+
+        Comparator<TestDTO> byRegDate = new Comparator<TestDTO>() {
+            @Override
+            public int compare(TestDTO t1, TestDTO t2) {
+                try {
+                    return new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(t1.getDateTimeRegister())
+                            .compareTo(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(t2.getDateTimeRegister()));
+                } catch (ParseException e) {
+                    return -1;
+                }
+            }
+        };
+        tests.sort(byRegDate);
+        lstViewTests.getItems().addAll(tests);
+    }
+
+    public void displayTestList(String email) {
+        List<TestDTO> tests = controller
+                .displayClientTests(email);
 
         Comparator<TestDTO> byRegDate = new Comparator<TestDTO>() {
             @Override

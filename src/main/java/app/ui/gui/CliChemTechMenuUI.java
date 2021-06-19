@@ -1,9 +1,9 @@
 package app.ui.gui;
 
+import app.ui.console.RecordTestResultUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,7 +14,10 @@ public class CliChemTechMenuUI {
     private Button btnBack;
 
     @FXML
-    private Button btnClientsTests;
+    private Button btnShowClientList;
+
+    @FXML
+    private Button btnRecordTestResults;
 
     public void setMainApp(App mainApp) {
         this.mainApp = mainApp;
@@ -26,7 +29,7 @@ public class CliChemTechMenuUI {
     }
 
     @FXML
-    void toShowClientListScene(ActionEvent event) {
+    void showClientListScene(ActionEvent event) {
         try {
             ShowClientListUI showClientListUI = (ShowClientListUI) this.mainApp.replaceSceneContent("/fxml/ShowClientList.fxml");
             showClientListUI.setMainApp(this.mainApp);
@@ -44,5 +47,11 @@ public class CliChemTechMenuUI {
         } catch (Exception ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    public void recordTestResults(ActionEvent event){
+        mainApp.getStage().setIconified(true);
+        new RecordTestResultUI().run();
     }
 }

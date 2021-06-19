@@ -73,7 +73,26 @@ public class ShowClientListUI implements Initializable{
 
     }
 
+    public void showClientTests(ActionEvent event){
+        try{
+            ShowTestResultsScene1UI showTestResultsScene1UI = new ShowTestResultsScene1UI();
+            showTestResultsScene1UI.setMainApp(this.mainApp);
+            showTestResultsScene1UI.setParent2(this);
+            showTestResultsScene1UI.displayTestList(lstViewClients.getSelectionModel().getSelectedItem().getEmail());
+        } catch (Exception e){
+            Logger.getLogger(app.ui.gui.App.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
 
+    public void toShowClientList(){
+        try {
+            ShowClientListUI showClientListUI= (ShowClientListUI) mainApp.replaceSceneContent("/fxml/ShowClientList.fxml");
+            showClientListUI.setMainApp(this.mainApp);
+            showClientListUI.setParent(this.parent);
+        } catch (Exception e) {
+            Logger.getLogger(app.ui.gui.App.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
 
 
     @FXML
