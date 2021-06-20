@@ -77,6 +77,7 @@ public class ShowClientListUI implements Initializable{
     public void showClientTests(ActionEvent event){
         try{
             ShowTestResultsScene1UI showTestResultsScene1UI = new ShowTestResultsScene1UI();
+            mainApp.replaceSceneContent("/fxml/ShowTestResultsScene1.fxml");
             showTestResultsScene1UI.setMainApp(this.mainApp);
             showTestResultsScene1UI.setParent(this);
             showTestResultsScene1UI.displayTestList(lstViewClients.getSelectionModel().getSelectedItem().getEmail());

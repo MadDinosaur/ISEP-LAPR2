@@ -26,7 +26,7 @@ public class ShowTestResultsScene1UI implements Initializable {
     ShowClientListUI parentCliChem;
 
     @FXML
-    private ListView<TestDTO> lstViewTests;
+    private ListView<TestDTO> lstViewTests = new ListView<>();
 
     @FXML
     private Button btnBack;
