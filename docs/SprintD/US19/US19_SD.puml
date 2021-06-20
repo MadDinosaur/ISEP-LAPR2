@@ -3,6 +3,7 @@
 autonumber
 
 actor ":System\n Clock:" as Clock
+participant DailyReportTimer as drtimer
 participant "timer : Timer" as timer
 participant DailyReportController as controller
 participant CreateNhsReportController as controller1
@@ -12,15 +13,15 @@ participant ExternalModuleNhsReport as interface
 participant ExternalModuleNhsReportAdapter as adapter
 
 activate Clock
-activate controller
+activate drtimer
 create timer
-controller --> timer : create()
-controller -> timer : schedule(task, delay, period)
+drtimer --> timer : create()
+drtimer -> timer : schedule(task, delay, period)
 activate timer
-deactivate controller
 deactivate timer
+deactivate drtimer
 
-note over timer : Clock will trigger at 6.00 am, executing the daily report functionality
+note over drtimer, timer : Clock will trigger at 6.00 am, executing the daily report functionality
 
 Clock -> timer : clock hits at 6.00 am
 activate timer

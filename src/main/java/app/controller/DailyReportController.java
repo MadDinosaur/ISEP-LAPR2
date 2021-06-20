@@ -26,31 +26,9 @@ public class DailyReportController extends TimerTask {
     private final ExternalModuleNhsReport nhsReport = new ExternalModuleNhsReportAdapter();
 
     /**
-     * timer which will trigger the creating of a daily report
-     */
-    public static void dailyReportTimer()  {
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = null;
-
-        try {
-            date = dateFormatter.parse("2021-06-20 19:30:00");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        Timer timer = new Timer();
-        int period = 86400000; // 1 day in milliseconds
-        long delay = 3000;
-        timer.schedule(new DailyReportController(), delay, period);
-    }
-
-    /**
      * method triggered by the timer above
      */
     public void run() {
-
-        System.out.println("ola");
-
         Properties props = new Properties();
         try {
             FileInputStream ip = new FileInputStream("src\\main\\resources\\config.properties");
