@@ -4,7 +4,7 @@ import app.domain.algorithms.BruteForceAlgorithm;
 
 import java.util.ArrayList;
 
-public class BruteForceAdapter implements BiggestContiguousSumAlgorithm {
+public class BruteForceAdapter implements BiggestContiguousSubSequenceAlgorithm {
 
     @Override
     public int[] getBiggestContiguousSubSequence(int[] sequence) {
