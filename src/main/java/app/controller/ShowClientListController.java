@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 
 import java.lang.ref.Cleaner;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -66,11 +67,13 @@ public class ShowClientListController {
                 clientArr = sortingAlgorithm.sortByName(this.clientList);
             }else throw new IllegalAccessException("The specified ordering method doesn't exist.");
         }else throw new IllegalArgumentException("Client list is empty!");
-        List<ClientDTO> clientDTOList = null;
+        List<ClientDTO> clientDTOList = new ArrayList<>();
         ClientMapper clientMapper = new ClientMapper();
-        for (int i = 0; i < clientArr.length; i++) {
-            clientDTOList.add(clientMapper.toDTO(clientArr[i]));
-        }
+        if(clientArr != null) {
+            for (int i = 0; i < clientArr.length; i++) {
+                clientDTOList.add(clientMapper.toDTO(clientArr[i]));
+            }
+        }else throw new NullPointerException("Client list is empty.");
         return clientDTOList;
     }
 
