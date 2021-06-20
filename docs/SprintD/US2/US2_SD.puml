@@ -27,7 +27,7 @@ activate cstore
 deactivate cstore
 controller -> cmapper : toDTO(client)
 activate cmapper
-cmapper -> dto : create(name, cardNumber, TIN, etc.)
+cmapper -> dto : create(name, phoneNumber, etc.)
 activate dto
 deactivate dto
 deactivate cmapper
@@ -47,7 +47,7 @@ ui --> cli : shows the data and requests confirmation
 deactivate ui
 cli -> ui :  confirms the data
 activate ui
-ui -> dto: dto = create(name, cardNumber, TIN, etc.)
+ui -> dto: dto = create(name, phoneNumber, etc.)
 activate dto
 deactivate dto
 ui -> controller: updateClientData(dto)
