@@ -25,6 +25,7 @@ import java.util.TimerTask;
 
 public class DailyReportController extends TimerTask {
 
+    CreateNhsReportController createNhsReportController = new CreateNhsReportController();
     private final Company company = App.getInstance().getCompany();
     private final ExternalModuleNhsReport nhsReport = new ExternalModuleNhsReportAdapter();
     private int historicalPoints;
@@ -78,7 +79,7 @@ public class DailyReportController extends TimerTask {
         //String report = writeReport.getReport();
         String abc = "xD funny momement";
 
-        CreateNhsReportController createNhsReportController = new CreateNhsReportController();
+
         createNhsReportController.setHistoricalPoints(historicalPoints);
         createNhsReportController.setCurrentDay(currentDay);
         createNhsReportController.setInitialDay(initialDay);
