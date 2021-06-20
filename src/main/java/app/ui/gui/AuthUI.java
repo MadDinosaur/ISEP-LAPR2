@@ -61,10 +61,10 @@ public class AuthUI implements Initializable {
     private List<MenuItem> getMenuItemForRoles()
     {
         List<MenuItem> rolesUI = new ArrayList<>();
-        rolesUI.add(new MenuItem("Administrator", new AdminUI()));
+        rolesUI.add(new MenuItem("Administrator", new AdminUI(mainApp)));
         rolesUI.add(new MenuItem("Receptionist", new ReceptionistUI()));
         rolesUI.add(new MenuItem("Medical Lab Technician", new MedLabTechUI()));
-        rolesUI.add(new MenuItem("Clinical Chemistry Technologist", new CliChemTechUI()));
+        rolesUI.add(new MenuItem("Clinical Chemistry Technologist", new CliChemTechUI(mainApp)));
         rolesUI.add(new MenuItem("Laboratory Coordinator", new LabCoordUI(mainApp)));
         rolesUI.add(new MenuItem("Specialist Doctor", new SpecDocUI()));
         rolesUI.add(new MenuItem("Client", new ClientUI(mainApp)));

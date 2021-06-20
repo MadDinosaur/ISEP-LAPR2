@@ -1,5 +1,10 @@
 package app.domain.shared;
 
+import app.controller.App;
+import app.domain.model.Company;
+
+import java.util.concurrent.CompletableFuture;
+
 /**
  *
  * @author Paulo Maio <pam@isep.ipp.pt>
@@ -21,4 +26,6 @@ public class Constants {
     public static final String SEX_BY_DEFAULT = "None";
     public static final String SEX_OPTION_1 = "Male";
     public static final String SEX_OPTION_2 = "Female";
+
+    public static final Company company = App.getInstance().getCompany();
 }

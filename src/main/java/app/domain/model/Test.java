@@ -27,11 +27,12 @@ public class Test {
     private String dateTimeReport;
     private String dateTimeResults;
     private String dateTimeValidation;
+    private ClinicalAnalysisLaboratory clinicalAnalysisLaboratory;
 
     /**
      * State of the test
      */
-    enum StateOfTest{
+    enum StateOfTest {
         REGISTERED,
         SAMPLES_COLLECTED,
         SAMPLES_ANALYZED,
@@ -41,12 +42,13 @@ public class Test {
 
     /**
      * Creates a new instance of test
-     * @param client Client to register test
+     *
+     * @param client   Client to register test
      * @param testType Categories of tests to register
      * @param testCode Test Code of the Test
-     * @param nhsCode Nhs Code of the Test
+     * @param nhsCode  Nhs Code of the Test
      */
-    public Test(Client client, TestType testType,String testCode, String nhsCode){
+    public Test(Client client, TestType testType, String testCode, String nhsCode) {
         setClient(client);
         setTestType(testType);
         setTestParameters();
@@ -62,24 +64,42 @@ public class Test {
         /**
          * Instance of current client
          */
-        this.client = client;
-        this.testCode = testCode;
-        this.nhsCode = nhsCode;
-        this.testType = testType;
-        this.listOfCategories = categoryList;
+        setClient(client);
+        setTestCode(testCode);
+        setNhsCode(nhsCode);
+        setTestType(testType);
+        setListOfCategories(listOfCategories);
+        this.clinicalAnalysisLaboratory = clinicalAnalysisLaboratory;
         this.testParamList = testParamList;
         this.dateTimeRegister = dateTimeRegister;
-        this.dateTimeResults = dateTimeResults;
-        this.dateTimeReport = dateTimeReport;
-        this.dateTimeValidation = dateTimeValidation;
-        this.stateOfTest = StateOfTest.VALIDATED;
+        if (dateTimeResults == null) {
+            this.stateOfTest = StateOfTest.REGISTERED;
+        } else {
+            this.dateTimeResults = dateTimeResults;
+        }
+
+        if (dateTimeReport == null) {
+            this.stateOfTest = StateOfTest.SAMPLES_ANALYZED;
+        } else {
+            this.dateTimeReport = dateTimeReport;
+        }
+
+        if (dateTimeValidation == null) {
+            this.stateOfTest = StateOfTest.REPORT_MADE;
+        } else {
+            this.dateTimeValidation = dateTimeValidation;
+        }
+
+        if (dateTimeResults != null && dateTimeReport != null && dateTimeValidation != null) {
+            this.stateOfTest = StateOfTest.VALIDATED;
+        }
     }
 
     /**
      * Sets the client and verifies if it is null
      */
     private void setClient(Client client) {
-        if (client==null) {
+        if (client == null) {
             throw new IllegalArgumentException("Client is errored");
         }
         this.client = client;
@@ -88,18 +108,22 @@ public class Test {
     private void setListOfCategories(List<Category> listOfCategories) {
         this.listOfCategories = listOfCategories;
     }
+
     private void setTestCode(String testCode) {
         this.testCode = testCode;
     }
+
     private void setNhsCode(String nhsCode) {
         this.nhsCode = nhsCode;
     }
+
     private void setTestType(TestType testType) {
         this.testType = testType;
     }
 
     /**
      * sets a samples list associated to a test, and then changes test' state to "SAMPLES_COLLECTED"
+     *
      * @param sampleList list of collected samples
      */
     public void setSampleList(SampleList sampleList) {
@@ -110,6 +134,7 @@ public class Test {
 
     /**
      * Returns a Test Parameter List
+     *
      * @return TestParamList
      */
     public TestParamList getTestParamList() {
@@ -128,7 +153,9 @@ public class Test {
         return listOfCategories;
     }
 
-    public TestType getTestType() { return testType; }
+    public TestType getTestType() {
+        return testType;
+    }
 
     public String getNhsCode() {
         return nhsCode;
@@ -158,7 +185,9 @@ public class Test {
         return dateTimeResults;
     }
 
-    public String getDateTimeCollection() { return dateTimeCollection; }
+    public String getDateTimeCollection() {
+        return dateTimeCollection;
+    }
 
     public String getDateTimeValidation() {
         return dateTimeValidation;
@@ -184,19 +213,19 @@ public class Test {
         return stateOfTest.equals(StateOfTest.VALIDATED);
     }
 
-    private void getParametersFromCategoriesToStore(){
-        for(int i = 0; i<this.listOfCategories.size();i++){
+    private void getParametersFromCategoriesToStore() {
+        for (int i = 0; i < this.listOfCategories.size(); i++) {
             Category category = listOfCategories.get(i);
             List<Parameter> listOfParametersOfCategory = category.getParameterList();
-            for (int j = 0; j<listOfParametersOfCategory.size(); j++) {
-                Parameter parameter = listOfParametersOfCategory.get(i);
+            for (int j = 0; j < listOfParametersOfCategory.size(); j++) {
+                Parameter parameter = listOfParametersOfCategory.get(j);
                 listOfParameters.add(parameter);
             }
         }
     }
 
     public Parameter getParameter(String paramCode) {
-        for (Parameter param: listOfParameters)
+        for (Parameter param : listOfParameters)
             if (param.getParameterCode().equalsIgnoreCase(paramCode))
                 return param;
 
@@ -210,14 +239,16 @@ public class Test {
     public String getTestCode() {
         return this.testCode;
     }
+
     private void setTestParameters() {
         this.testParamList = new TestParamList(testType);
-        for(Parameter parameter: testType.getParameters())
+        for (Parameter parameter : testType.getParameters())
             testParamList.createTestParam(parameter);
     }
 
     /**
      * Adds a report into the test
+     *
      * @param report Report
      */
     public void addReport(Report report) {
@@ -229,15 +260,16 @@ public class Test {
     /**
      * Validates test
      */
-    public void validateTest(){
-        if(!stateOfTest.equals(StateOfTest.VALIDATED)) {
+    public void validateTest() {
+        if (!stateOfTest.equals(StateOfTest.VALIDATED)) {
             this.stateOfTest = StateOfTest.VALIDATED;
             this.dateTimeValidation = getDateTime();
-        }else throw new TestAlreadyValidatedException("Test was already validated");
+        } else throw new TestAlreadyValidatedException("Test was already validated");
     }
 
     /**
      * Returns the current date
+     *
      * @return LocalDate
      */
     public static String getDateTime() {
@@ -247,6 +279,7 @@ public class Test {
 
     /**
      * Returns the current time
+     *
      * @return LocalTime
      */
 
@@ -259,7 +292,7 @@ public class Test {
         this.stateOfTest = StateOfTest.SAMPLES_COLLECTED;
     }
 
-    public void setStateOfTestToValidated(){
+    public void setStateOfTestToValidated() {
         this.stateOfTest = StateOfTest.VALIDATED;
     }
 
@@ -283,13 +316,13 @@ public class Test {
 
     public String toStringWithSamples() {
         StringBuilder samplesToString = new StringBuilder();
-        for (Sample sample: getSampleList().getSampleList())
+        for (Sample sample : getSampleList().getSampleList())
             samplesToString.append(sample.getBarcode() + "    ");
 
-        return String.format("%sSamples Collected no.: %s\n" , toString(), samplesToString.toString());
+        return String.format("%sSamples Collected no.: %s\n", toString(), samplesToString.toString());
     }
 
-    public String toStringWithDates(){
+    public String toStringWithDates() {
         return String.format("registration date: " + dateTimeRegister + "; results date: " + dateTimeResults + "; diagnosis date: " + dateTimeReport + ".");
     }
 

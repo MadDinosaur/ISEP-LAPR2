@@ -13,8 +13,8 @@ import java.util.Scanner;
 public class ImportCSVFileController {
 
 
-    private RegisterTestController registerTestController = new RegisterTestController();
-    private RegisterClientController registerClientController = new RegisterClientController();
+    private RegisterTestController registerTestController;
+    private RegisterClientController registerClientController;
     private RegisterNewLabController registerNewLabController = new RegisterNewLabController();
 
     private String[] titulos;
@@ -198,8 +198,9 @@ public class ImportCSVFileController {
     }
 
     public void createTest() {
-        System.out.printf("-----Tests's info-----\nTest Code: %s\nNhs Code: %s\nDate and Time of Register: %s\nDate and Time of Results: %s\nDate and Time of Report: %s\nDate and Time of Validation: %s\n", testCode, nhsCode, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation);
         this.test = registerTestController.createTestFromCSV(this.client, this.testCode, this.nhsCode, this.dateTimeRegister, this.dateTimeResults, this.dateTimeReport, this.dateTimeValidation);
+        System.out.printf("-----Tests's info-----\nTest Code: %s\nNhs Code: %s\nDate and Time of Register: %s\nDate and Time of Results: %s\nDate and Time of Report: %s\nDate and Time of Validation: %s\n", testCode, nhsCode, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation);
+
     }
 
     public void saveTest() {
@@ -214,7 +215,11 @@ public class ImportCSVFileController {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("NHS_Number")) {
                 if (!valores[i].equalsIgnoreCase("NA")) {
-                    this.nhsID = Long.parseLong(valores[i]);
+                    try {
+                        this.nhsID = Long.parseLong(valores[i]);
+                    } catch (NumberFormatException e) {
+                        System.out.println("The nhs id shouldn't letters.");
+                    }
                 }
             }
         }
@@ -247,7 +252,11 @@ public class ImportCSVFileController {
     public void readPhoneNumber() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("PhoneNumber")) {
-                this.phoneNumber = Long.parseLong(valores[i]);
+                try {
+                    this.phoneNumber = Long.parseLong(valores[i]);
+                } catch (NumberFormatException e) {
+                    System.out.println("The phone number shouldn't contain letters.");
+                }
             }
         }
     }
@@ -279,12 +288,9 @@ public class ImportCSVFileController {
     }
 
     public void createClient() {
+        this.client = registerClientController.createClient(name, cardNumber, nhsID, birthday, tin, phoneNumber, address, email);
         System.out.printf("-----Client's info-----\nName: %s\nCard Number: %s\nNhs Id: %s\nBirthday: %s\nTin: %s\nPhone Number: %s\nE-mail: %s\nAddress: %s\n", name, cardNumber, nhsID, birthday, tin, phoneNumber, email, address);
-        try {
-            this.client = registerClientController.createClient(name, cardNumber, nhsID, birthday, tin, phoneNumber, address, email);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+
     }
 
     public void saveClient() {
@@ -293,5 +299,10 @@ public class ImportCSVFileController {
         };
 
         this.registerClientController = new RegisterClientController();
+    }
+
+    public void createNewControllers() {
+        this.registerClientController = new RegisterClientController();
+        this.registerTestController = new RegisterTestController();
     }
 }

@@ -20,7 +20,7 @@ public class ImportCSVFileUI implements Initializable {
 
     private App mainApp;
 
-    private ImportCSVFileController importCSVFileController = new ImportCSVFileController();
+    private final ImportCSVFileController importCSVFileController = new ImportCSVFileController();
 
     private LabCoordMenuUI parent;
 
@@ -47,7 +47,6 @@ public class ImportCSVFileUI implements Initializable {
 
     @FXML
     void selectFile(ActionEvent event) throws FileNotFoundException {
-        fileNameTF.setDisable(true);
         FileChooser fc = new FileChooser();
         File selectedFile = fc.showOpenDialog(null);
         if(selectedFile != null) {
@@ -64,6 +63,7 @@ public class ImportCSVFileUI implements Initializable {
 
     void importingFileSteps() {
         while (importCSVFileController.fileHasNextLine()) {
+            importCSVFileController.createNewControllers();
             try {
                 importCSVFileController.goOneLineForward();
             } catch (RuntimeException e) {
@@ -92,6 +92,8 @@ public class ImportCSVFileUI implements Initializable {
 
             importCSVFileController.readNhsId();
             importCSVFileController.readCardNumber();
+
+
             importCSVFileController.readTin();
             importCSVFileController.readbirthday();
             importCSVFileController.readPhoneNumber();
@@ -121,6 +123,9 @@ public class ImportCSVFileUI implements Initializable {
             } catch (NullPointerException e) {
                 e.printStackTrace();
                 continue;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
             }
             importCSVFileController.saveClient();
             importCSVFileController.createTest();
@@ -142,6 +147,8 @@ public class ImportCSVFileUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //empty
+        fileNameTF.setDisable(true);
     }
+
+
 }

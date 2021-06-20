@@ -22,7 +22,7 @@ public class TestParamMapper {
         parameter = testParameter.getParameter().getParameterName();
 
         if (testParameter.getResult() != null) {
-            resultValue = testParameter.getResult().getValue().toString();
+            resultValue = ""+ testParameter.getResult().getValue();
             resultMetric = testParameter.getResult().getMetric();
         }
 

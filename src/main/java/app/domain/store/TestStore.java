@@ -13,6 +13,7 @@ import java.util.List;
 public class TestStore {
     private final List<Test> tests = new ArrayList<>();
 
+
     public boolean addTest(Test test) {
         validateTest(test);
         return this.tests.add(test);
@@ -81,15 +82,20 @@ public class TestStore {
         List<Test> positiveCovid = new ArrayList<>();
         for (Test test : tests) {
             if (test.getTestType().getCode().equals("Covid")) {
-                if(test.isValidated()) {
+                if (test.isValidated()) {
                     List<TestParameterResult> testParameterResultList = test.getTestParamResults();
+                  /*  try {
+                        testParameterResultList = test.getTestParamResults();
+                    } catch (Exception e) {
+                        continue;
+                    }*/
                     for (TestParameterResult parameterResult : testParameterResultList) {
-                        if (parameterResult.getValue() != null) {
-                            if (parameterResult.getValue() > 1.4) {
-                                positiveCovid.add(test);
-                            }
+                        if (parameterResult.getValue() > 1.4) {
+                            positiveCovid.add(test);
                         }
                     }
+
+
                 }
             }
         }
@@ -131,11 +137,12 @@ public class TestStore {
             String[] dateComponents = date.split(" ");
             date = dateComponents[0];
             if (dayOfTest.equalsIgnoreCase(date)) {
-                sumAge = test.getClient().getAgeInYears();
+                sumAge += test.getClient().getAgeInYears();
                 numberOfClient++;
             }
         }
         if (numberOfClient != 0) {
+
             return sumAge / numberOfClient;
         } else {
             return 0;
@@ -232,9 +239,7 @@ public class TestStore {
     }
 
 
-    public List<Integer> getNumberOfTestsWaitingForResultsInDateInterval(List<Date> dateInterval) {
-        List<Integer> listOfNumberOfTestsInEachDay = new ArrayList<>();
-        for (Date date : dateInterval) {
+    public int getNumberOfTestsWaitingForResultsInDate(Date date) {
             int numberOfTests = 0;
             for (Test test : getRegisteredTests()) {
                 String[] dateAndTimeOfRegister = test.getDateTimeRegister().split(" ");
@@ -242,19 +247,15 @@ public class TestStore {
                 int day = Integer.parseInt(dayMonthYear[0]);
                 int month = Integer.parseInt(dayMonthYear[1]);
                 int year = Integer.parseInt(dayMonthYear[2]);
-                Date dateOfRegister = new Date(year, month, day);
+                Date dateOfRegister = new Date(year - 1900, month - 1, day);
                 if (!dateOfRegister.after(date)) {
                     numberOfTests++;
                 }
             }
-            listOfNumberOfTestsInEachDay.add(numberOfTests);
-        }
-        return listOfNumberOfTestsInEachDay;
+        return numberOfTests;
     }
 
-    public List<Integer> getNumberOfTestsWaitingForReportInDateInterval(List<Date> dateInterval) {
-        List<Integer> listOfNumberOfTestsInEachDay = new ArrayList<>();
-        for (Date date : dateInterval) {
+    public int getNumberOfTestsWaitingForReportInDate(Date date) {
             int numberOfTests = 0;
             for (Test test : getTestsListReadyForReport()) {
                 String[] dateAndTimeOfResults = test.getDateTimeResults().split(" ");
@@ -262,19 +263,15 @@ public class TestStore {
                 int day = Integer.parseInt(dayMonthYear[0]);
                 int month = Integer.parseInt(dayMonthYear[1]);
                 int year = Integer.parseInt(dayMonthYear[2]);
-                Date dateOfResults = new Date(year, month, day);
+                Date dateOfResults = new Date(year - 1900, month - 1, day);
                 if (!dateOfResults.after(date)) {
                     numberOfTests++;
                 }
             }
-            listOfNumberOfTestsInEachDay.add(numberOfTests);
-        }
-        return listOfNumberOfTestsInEachDay;
+        return numberOfTests;
     }
 
-    public List<Integer> getNumberOfTestsValidatedInDateInterval(List<Date> dateInterval) {
-        List<Integer> listOfNumberOfTestsInEachDay = new ArrayList<>();
-        for (Date date : dateInterval) {
+    public int getNumberOfTestsValidatedInDate(Date date) {
             int numberOfTests = 0;
             for (Test test : getTestsValidated()) {
                 String[] dateAndTimeOfValidation = test.getDateTimeValidation().split(" ");
@@ -282,14 +279,12 @@ public class TestStore {
                 int day = Integer.parseInt(dayMonthYear[0]);
                 int month = Integer.parseInt(dayMonthYear[1]);
                 int year = Integer.parseInt(dayMonthYear[2]);
-                Date dateOfValidation = new Date(year, month, day);
-                if (!dateOfValidation.after(date)) {
+                Date dateOfValidation = new Date(year - 1900, month - 1, day);
+                if (!dateOfValidation.after(date) && !dateOfValidation.before(date)) {
                     numberOfTests++;
                 }
             }
-            listOfNumberOfTestsInEachDay.add(numberOfTests);
-        }
-        return listOfNumberOfTestsInEachDay;
+        return numberOfTests;
     }
 
 
@@ -363,7 +358,7 @@ public class TestStore {
                 int day = Integer.parseInt(dayMonthYear[0]);
                 int month = Integer.parseInt(dayMonthYear[1]);
                 int year = Integer.parseInt(dayMonthYear[2]);
-                Date dateOfRegister = new Date(year, month, day);
+                Date dateOfRegister = new Date(year - 1900, month - 1, day);
                 if (dateOfRegister.equals(date)) {
                     numberOfTestsForEachHalfAnHour = sortTestsForEachHalfAnHour(hours, minutes, size, i);
                 }
@@ -387,7 +382,7 @@ public class TestStore {
                 int day = Integer.parseInt(dayMonthYear[0]);
                 int month = Integer.parseInt(dayMonthYear[1]);
                 int year = Integer.parseInt(dayMonthYear[2]);
-                Date dateOfValidation = new Date(year, month, day);
+                Date dateOfValidation = new Date(year - 1900, month - 1, day);
                 if (dateOfValidation.equals(date)) {
                     numberOfTestsForEachHalfAnHour = sortTestsForEachHalfAnHour(hours, minutes, size, i);
                 }
@@ -409,7 +404,6 @@ public class TestStore {
 
     public Test createTestFromCSV(ClinicalAnalysisLaboratory clinicalAnalysisLaboratory, Client client, String testCode, String nhsCode, TestType testTypeChosen, List<Category> listOfChosenCategories, TestParamList testParamList, String dateTimeRegister, String dateTimeResults, String dateTimeReport, String dateTimeValidation) {
         Test test = new Test(clinicalAnalysisLaboratory, client, testCode, nhsCode, testTypeChosen, listOfChosenCategories, testParamList, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation);
-        test.setStateOfTestToValidated();
         return test;
     }
 

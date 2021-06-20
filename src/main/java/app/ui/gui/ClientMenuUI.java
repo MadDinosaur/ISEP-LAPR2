@@ -47,6 +47,7 @@ public class ClientMenuUI implements Initializable {
                             replaceSceneContent("/fxml/ShowTestResultsScene1.fxml");
             showTestResultsScene1UI.setMainApp(this.mainApp);
             showTestResultsScene1UI.setParent(this);
+            showTestResultsScene1UI.displayTestList(app.controller.App.getInstance().getCurrentUserSession().getUserId().toString());
         } catch (Exception ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
