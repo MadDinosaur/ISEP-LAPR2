@@ -31,7 +31,7 @@ public class CreateNhsReportController {
     public void setIndependentVariable(String independentVariable) {
         this.independentVariable = independentVariable;
     }
-    public void makeRegression(){
+    public String makeRegression(){
 
         String[] dateComponentsFinal = finalDay.split("/");
         int dayFinal = Integer.parseInt(dateComponentsFinal[0]);
@@ -45,9 +45,11 @@ public class CreateNhsReportController {
         int year = Integer.parseInt(dateComponents[2]);
         Date dateInitialDay = new GregorianCalendar(year, month, day).getTime();
 
+        String report = "";
+
         if(independentVariable.equalsIgnoreCase("multilinear")){
-            company.makeMultiLinearRegressionReport(historicalPoints,currentDay,dateInitialDay,dateFinalDay);
-        }else{
+            report = company.makeMultiLinearRegressionReport(historicalPoints,currentDay,dateInitialDay,dateFinalDay);
+        } else {
             if(independentVariable.equalsIgnoreCase("mean age")){
                 try {
                     company.makeSimpleLinearRegressionReport(historicalPoints,currentDay,dateInitialDay,dateFinalDay,independentVariable);
@@ -65,6 +67,6 @@ public class CreateNhsReportController {
             }
         }
 
-
+        return report;
     }
 }

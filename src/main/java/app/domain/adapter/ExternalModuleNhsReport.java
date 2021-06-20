@@ -1,5 +1,8 @@
 package app.domain.adapter;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author Luis Moreira <1200973@isep.ipp.pt>
@@ -11,4 +14,6 @@ public interface ExternalModuleNhsReport {
      * @param string this string includes all the information which will be written into the report
      */
     void sendReport(String string);
+    String getDateAndTime();
+
 }
