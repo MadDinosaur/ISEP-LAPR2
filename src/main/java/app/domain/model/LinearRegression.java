@@ -168,8 +168,8 @@ public class LinearRegression {
     }
 
     public double getT0(double significance) {
-        FDistribution tDistribution = new FDistribution(1,numTests);
-        return tDistribution.inverseCumulativeProbability(1-significance);
+        FDistribution fDistribution = new FDistribution(1,numTests);
+        return fDistribution.inverseCumulativeProbability(1-significance);
     }
 
     public double getTa() { //ver se é maior que ts, se for rejeita h0

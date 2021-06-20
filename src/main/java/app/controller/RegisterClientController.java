@@ -49,11 +49,7 @@ public class RegisterClientController {
     }
 
     public void setCardNumber(long cardNumber) {
-        if (cardNumber > 9999 || cardNumber < 1000) {
-            throw new InvalidCardNumberException("Card Number must have 4 digits");
-        } else {
-            this.cardNumber = cardNumber;
-        }
+        this.cardNumber = cardNumber;
     }
 
     public void setNhsId(long nhsId) {
