@@ -265,9 +265,16 @@ public class WriteReport implements CharSequence {
         this.r = Math.sqrt(rSquared);
         critical = linearRegression.getT0(0.05);
 
-        String t_obs = "observacao";
-        String decision = "decisao";
-        String rejection = "Reject H0/ No reject H0";
+        double t_obs;
+        String rejection;
+        t_obs = linearRegression.getTs(0.99);
+        double tCritical = linearRegression.getTa();
+        if (tCritical > t_obs){
+            rejection = "Reject H0";
+        }else{
+            rejection = "No reject H0";
+        }
+
 
 
         StringBuilder stringToBuild = new StringBuilder("The regression model fitted using data from the interval\n" +
@@ -279,8 +286,8 @@ public class WriteReport implements CharSequence {
                 "\n" +
                 "Hypothesis tests for regression coefficients\n" +
                 "HO:b=0 (a=0) H1: b<>0 (a<>0)\n" +
-                "t_obs = " + t_obs + "\n" +
-                "Decision: " + decision + "\n" +
+                "t_obs = " + tCritical + "\n" +
+                "Decision: " + t_obs + "\n" +
                 rejection + "\n" +
                 "\n" +
                 "\n" +
