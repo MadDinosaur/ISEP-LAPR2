@@ -2,7 +2,7 @@
 
 skinparam classAttributeIconSize 0
 
-interface BiggestContiguousSumAlgorithm {
+interface BiggestContiguousSubSequenceAlgorithm {
 +int[] getBiggestContiguousSubSequence(int[] sequence)
 }
 
@@ -22,8 +22,54 @@ class "BruteForceAlgorithm" {
 +ArrayList<Integer> biggestSumSubSequence(int[] sequence)
 }
 
-"BenchmarkAlgorithmAdapter" ..up|> BiggestContiguousSumAlgorithm
-"BruteForceAlgorithmAdapter" ..up|> BiggestContiguousSumAlgorithm
+class OverviewTestsUI {
+-dateInterval
+-int[] sequence
+}
+
+class OverviewTestsController {
+-clientStore
+-testStore
+-algorithm
+
++dateInterval getDatesBetweenDateInterval(beginningDate, endingDate)
++getTotalNumberOfClients()
++getTotalNumberOfValidatedTests()
++getNumberOfTestsWaitingForResultsInDate(date)
++getNumberOfTestsWaitingForReportInDate(date)
++getNumberOfTestsValidatedInDate(date)
++getDifferenceOfNewAndValidatedTests(dateInterval)
++getBiggestContiguousSubSequence(sequence, code)
+}
+
+class Company {
++clientStore getClientStore()
++testStore getTestStore()
++getBiggestContiguousSubSequenceAlgorithm(code)
+}
+
+class TestStore {
++getTotalNumberOfValidatedTests()
++getNumberOfTestsWaitingForResultsInDate(date)
++getNumberOfTestsWaitingForReportInDate(date)
++getNumberOfTestsValidatedInDate(date)
++getDifferenceOfNewAndValidatedTestsForEachHalfAnHour(dateInterval)
++getNumberOfNewTestsForEachHalfAnHour(dateInterval)
++getNumberOfValidatedTestsForEachHalfAnHour(dateInterval)
+}
+
+class ClientStore {
++getTotalNumberOfClients()
+}
+
+"BenchmarkAlgorithmAdapter" ..up|> BiggestContiguousSubSequenceAlgorithm
+"BruteForceAlgorithmAdapter" ..up|> BiggestContiguousSubSequenceAlgorithm
 "BenchmarkAlgorithmAdapter" --down> "BenchmarkAlgorithm"
 "BruteForceAlgorithmAdapter" --down> "BruteForceAlgorithm"
+
+OverviewTestsUI ..> OverviewTestsController
+OverviewTestsController ..> Company
+Company -down-> TestStore: uses >
+Company -down-> ClientStore: uses >
+Company ..> BiggestContiguousSubSequenceAlgorithm
 @enduml

@@ -39,6 +39,8 @@ public class ExternalModuleNhsReportAdapter implements ExternalModuleNhsReport{
         } catch (IOException e) {
             System.out.println("Error saving the log event.");
         }
+
+        System.out.println("NHS Daily Report sent");
         
     }
     /**

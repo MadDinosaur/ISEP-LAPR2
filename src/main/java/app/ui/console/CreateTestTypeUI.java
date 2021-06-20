@@ -96,7 +96,7 @@ public class CreateTestTypeUI implements Runnable {
         boolean noMore = false;
         int counter = 0;
         String confirmation;
-        System.out.println("Here is a list of the categories available:%n");
+        System.out.println("Here is a list of the categories available:\n");
         cttc.displayCategoryList();
         System.out.println();
         System.out.println("One by one, insert the number of the category you want to associate to the test type (If you don't want to insert any more categories, please press ENTER)");

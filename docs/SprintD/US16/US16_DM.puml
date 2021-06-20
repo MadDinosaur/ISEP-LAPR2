@@ -6,14 +6,10 @@ class Test {
 -testCode
 -nhsCode
 -designation
--dateRegister
--timeRegister
--dateAnalysis
--timeAnalysis
--dateReport
--timeReport
--dateValidation
--timeValidation
+-dateTimeRegister
+-dateTimeAnalysis
+-dateTimeReport
+-dateTimeValidation
 }
 class Client {
 -name

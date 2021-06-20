@@ -7,7 +7,6 @@ import app.domain.store.ClientStore;
 import app.mappers.ClientMapper;
 import app.mappers.dto.ClientDTO;
 
-import java.lang.ref.Cleaner;
 import java.util.List;
 
 public class ShowClientListController {

@@ -3,8 +3,6 @@ package app.domain.shared;
 import app.controller.App;
 import app.domain.model.Company;
 
-import java.util.concurrent.CompletableFuture;
-
 /**
  *
  * @author Paulo Maio <pam@isep.ipp.pt>

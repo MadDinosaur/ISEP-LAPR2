@@ -11,4 +11,6 @@ public interface ExternalModuleNhsReport {
      * @param string this string includes all the information which will be written into the report
      */
     void sendReport(String string);
+    String getDateAndTime();
+
 }
