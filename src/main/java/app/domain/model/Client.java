@@ -108,6 +108,15 @@ public class Client implements Serializable {
         return clientTests;
     }
 
+    public boolean checkValidatedTests(){
+        for(Test test : clientTests){
+            if(test.getStateOfTest().equals("VALIDATED")){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public DateBirth getDateBirth() {
         return dateBirth;
     }
