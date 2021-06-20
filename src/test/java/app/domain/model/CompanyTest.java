@@ -46,7 +46,7 @@ public class CompanyTest {
     @Test
     public void testNhsNumberGeneretor(){
         String testCode = company.generateNumberTest();
-        Assert.assertEquals(testCode,"000000000004");
+        Assert.assertEquals(testCode,"000000000005");
     }
 
     @Test(expected = IllegalArgumentException.class)
