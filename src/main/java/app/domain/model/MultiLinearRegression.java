@@ -3,8 +3,6 @@ package app.domain.model;
 import org.apache.commons.math3.distribution.FDistribution;
 import org.apache.commons.math3.distribution.TDistribution;
 
-import java.util.Arrays;
-
 public class MultiLinearRegression {
     private final double[][] xTransposeXInversed;
     private double yTransposeY;

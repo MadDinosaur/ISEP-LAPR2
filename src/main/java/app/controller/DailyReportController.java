@@ -2,20 +2,12 @@ package app.controller;
 
 import app.domain.adapter.ExternalModuleNhsReport;
 import app.domain.adapter.ExternalModuleNhsReportAdapter;
-import app.domain.model.Company;
-import app.configs.Configs;
-import app.domain.model.WriteReport;
-import com.sun.prism.shader.DrawEllipse_LinearGradient_REFLECT_AlphaTest_Loader;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Properties;
 import java.util.Timer;
@@ -27,20 +19,13 @@ import java.util.TimerTask;
  */
 
 public class DailyReportController extends TimerTask {
-
-    Company company = App.getInstance().getCompany();
     CreateNhsReportController createNhsReportController = new CreateNhsReportController();
-
     private final ExternalModuleNhsReport nhsReport = new ExternalModuleNhsReportAdapter();
-    private WriteReport writeReport;
 
     /**
      * timer which will trigger the creating of a daily report
      */
     public static void dailyReportTimer()  {
-
-        /* Ativar isto e o resto em baixo para usar os tempos corretos
-
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = null;
 
@@ -49,16 +34,12 @@ public class DailyReportController extends TimerTask {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-         */
+
 
         Timer timer = new Timer();
-
-        int period = 10000;//10 seconds
-        timer.schedule(new DailyReportController(), 1000, period );
-        /*
         int period = 86400000; // 1 day in milliseconds
         timer.schedule(new DailyReportController(), date, period);
-        */
+
     }
 
     /**

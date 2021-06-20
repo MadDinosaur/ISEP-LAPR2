@@ -1,8 +1,5 @@
 package app.domain.adapter;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 /**
  *
  * @author Luis Moreira <1200973@isep.ipp.pt>

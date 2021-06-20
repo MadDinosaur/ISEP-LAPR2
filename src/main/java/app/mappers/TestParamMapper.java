@@ -1,11 +1,9 @@
 package app.mappers;
 
-import app.domain.model.Test;
 import app.domain.model.TestParameter;
 import app.mappers.dto.TestParameterDTO;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class TestParamMapper {

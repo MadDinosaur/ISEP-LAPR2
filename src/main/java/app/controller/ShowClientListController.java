@@ -7,7 +7,12 @@ import app.domain.store.ClientStore;
 import app.mappers.ClientMapper;
 import app.mappers.dto.ClientDTO;
 
+<<<<<<< HEAD
 import java.lang.ref.Cleaner;
+import java.net.URL;
+import java.util.ArrayList;
+=======
+>>>>>>> 258045ffac5b1b1e27309dcfc123a3a7887d40e1
 import java.util.List;
 
 public class ShowClientListController {
@@ -63,11 +68,13 @@ public class ShowClientListController {
                 clientArr = sortingAlgorithm.sortByName(this.clientList);
             }else throw new IllegalAccessException("The specified ordering method doesn't exist.");
         }else throw new IllegalArgumentException("Client list is empty!");
-        List<ClientDTO> clientDTOList = null;
+        List<ClientDTO> clientDTOList = new ArrayList<>();
         ClientMapper clientMapper = new ClientMapper();
-        for (int i = 0; i < clientArr.length; i++) {
-            clientDTOList.add(clientMapper.toDTO(clientArr[i]));
-        }
+        if(clientArr != null) {
+            for (int i = 0; i < clientArr.length; i++) {
+                clientDTOList.add(clientMapper.toDTO(clientArr[i]));
+            }
+        }else throw new NullPointerException("Client list is empty.");
         return clientDTOList;
     }
 

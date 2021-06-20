@@ -1,7 +1,10 @@
 package app.ui.gui;
 
 import app.controller.AuthController;
-import app.ui.console.*;
+import app.ui.console.MedLabTechUI;
+import app.ui.console.MenuItem;
+import app.ui.console.ReceptionistUI;
+import app.ui.console.SpecDocUI;
 import app.ui.console.utils.Utils;
 import auth.mappers.dto.UserRoleDTO;
 import javafx.event.ActionEvent;

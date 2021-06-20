@@ -1,8 +1,6 @@
 package app.ui.gui;
 
 import app.controller.ShowTestResultController;
-import app.domain.model.TestParameter;
-import app.domain.store.TestParamList;
 import app.mappers.dto.TestDTO;
 import app.mappers.dto.TestParameterDTO;
 import javafx.event.ActionEvent;
@@ -10,9 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;

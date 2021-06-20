@@ -6,7 +6,6 @@ import auth.domain.model.Email;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -47,7 +46,7 @@ public class CompanyTest {
     @Test
     public void testNhsNumberGeneretor(){
         String testCode = company.generateNumberTest();
-        Assert.assertEquals(testCode,"000000000004");
+        Assert.assertEquals(testCode,"000000000005");
     }
 
     @Test(expected = IllegalArgumentException.class)
