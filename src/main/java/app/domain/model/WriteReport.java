@@ -138,7 +138,7 @@ public class WriteReport implements CharSequence {
                 "\n" +
                 "Significance model with Anova\n" +
                 "H0: b=0  H1:b<>0\n" +
-                "\t\t            df\t       SS\t\t     MS\t\t     F\n" +
+                "\t\t            SS\t       df\t\t     MS\t\t     F\n" +
                 "Regression\t" + sqR + "\t" + "2" + "\t" + sqRAverage + "\t" + fTest + "\n" +  //simple /multi
                 "Residual\t" + sqE + "\t" + (degreesOfFreedom - 2) + "\t " + sqEAverage + "\n" +
                 "Total\t\t" + sqT + "\t" + degreesOfFreedom + "\n" +
