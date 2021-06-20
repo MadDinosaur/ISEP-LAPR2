@@ -84,11 +84,6 @@ public class TestStore {
             if (test.getTestType().getCode().equals("Covid")) {
                 if (test.isValidated()) {
                     List<TestParameterResult> testParameterResultList = test.getTestParamResults();
-                  /*  try {
-                        testParameterResultList = test.getTestParamResults();
-                    } catch (Exception e) {
-                        continue;
-                    }*/
                     for (TestParameterResult parameterResult : testParameterResultList) {
                         if (parameterResult.getValue() > 1.4) {
                             positiveCovid.add(test);
@@ -106,11 +101,13 @@ public class TestStore {
         List<Test> listOfPositiveTests = getListPositiveCovid();
         int numberOfCases = 0;
         for (Test test : listOfPositiveTests) {
-            String date = test.getDateTimeRegister();
-            String[] dateComponents = date.split(" ");
-            date = dateComponents[0];
-            if (dayOfTest.equalsIgnoreCase(date)) {
-                numberOfCases++;
+            String date = test.getDateTimeValidation();
+            if(date != null) {
+                String[] dateComponents = date.split(" ");
+                date = dateComponents[0];
+                if (dayOfTest.equalsIgnoreCase(date)) {
+                    numberOfCases++;
+                }
             }
         }
         return numberOfCases;
@@ -119,11 +116,13 @@ public class TestStore {
     public double getNumberOfTestsPerformed(String dayOfTest) {
         double numberOfTestsMade = 0;
         for (Test test : tests) {
-            String date = test.getDateTimeRegister();
-            String[] dateComponents = date.split(" ");
-            date = dateComponents[0];
-            if (dayOfTest.equalsIgnoreCase(date)) {
-                numberOfTestsMade++;
+            String date = test.getDateTimeValidation();
+            if(date != null) {
+                String[] dateComponents = date.split(" ");
+                date = dateComponents[0];
+                if (dayOfTest.equalsIgnoreCase(date)) {
+                    numberOfTestsMade++;
+                }
             }
         }
         return numberOfTestsMade;
@@ -133,12 +132,14 @@ public class TestStore {
         double sumAge = 0;
         int numberOfClient = 0;
         for (Test test : tests) {
-            String date = test.getDateTimeRegister();
-            String[] dateComponents = date.split(" ");
-            date = dateComponents[0];
-            if (dayOfTest.equalsIgnoreCase(date)) {
-                sumAge += test.getClient().getAgeInYears();
-                numberOfClient++;
+            String date = test.getDateTimeValidation();
+            if(date != null) {
+                String[] dateComponents = date.split(" ");
+                date = dateComponents[0];
+                if (dayOfTest.equalsIgnoreCase(date)) {
+                    sumAge += test.getClient().getAgeInYears();
+                    numberOfClient++;
+                }
             }
         }
         if (numberOfClient != 0) {
