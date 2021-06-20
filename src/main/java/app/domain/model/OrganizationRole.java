@@ -1,8 +1,9 @@
 package app.domain.model;
 
+import java.io.Serializable;
 import java.security.InvalidParameterException;
 
-public class OrganizationRole {
+public class OrganizationRole implements Serializable {
     private String id;
     private String description;
 

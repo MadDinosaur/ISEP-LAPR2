@@ -3,11 +3,12 @@ package app.domain.model;
 import app.mappers.dto.ClientDTO;
 import auth.domain.model.Email;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Client {
+public class Client implements Serializable {
 
     private String name;
     private long cardNumber;

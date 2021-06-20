@@ -2,12 +2,13 @@ package app.domain.model;
 
 import app.domain.model.Exceptions.InvalidDescriptionException;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * @author 1200985 Tomás Cancela
  */
-public class CollectionMethod {
+public class CollectionMethod implements Serializable {
 
 
     /**

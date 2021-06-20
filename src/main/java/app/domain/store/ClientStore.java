@@ -12,11 +12,12 @@ import auth.domain.model.Email;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Properties;
 
-public class ClientStore {
+public class ClientStore implements Serializable {
 
     Client client = new Client("Georgia PEDDIE", 3196, 6000003196L, new DateBirth(3, 11, 1946), 2100003196, 91200003196L, new Email("GeorgiaPEDDIE2155@gmail.com"), "Feminine");
     private ArrayList<Client> clientList = new ArrayList<>(Collections.singleton(client));

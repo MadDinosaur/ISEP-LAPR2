@@ -8,9 +8,7 @@ import auth.AuthFacade;
 import auth.domain.model.Email;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 import static com.nhs.report.Report2NHS.writeUsingFileWriter;
@@ -48,8 +46,6 @@ public class Company {
         this.testStore = new TestStore();
         this.testNumber = 1;
         this.sampleList = new SampleList();
-
-
 
 
         //HARDCODED THINGS FOR TESTS
