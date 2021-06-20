@@ -149,25 +149,25 @@ public class CreateTestTypeUI implements Runnable {
         boolean valid = false;
         while (!valid) {
             try {
-                boolean loop = false;
+                boolean loopTestType = false;
                 System.out.println("Insert the description you want for the test type:");
-                String description = sc.nextLine();
-                System.out.printf(DESCRIPTIONINSERTED, description);
-                String confirmation = sc.nextLine();
-                while (!loop) {
-                    if (confirmation.equalsIgnoreCase("yes")) {
-                        loop = true;
-                        cttc.setDescription(description);
+                String descriptionTestType = sc.nextLine();
+                System.out.printf(DESCRIPTIONINSERTED, descriptionTestType);
+                String confirmationTestType = sc.nextLine();
+                while (!loopTestType) {
+                    if (confirmationTestType.equalsIgnoreCase("yes")) {
+                        loopTestType = true;
+                        cttc.setDescription(descriptionTestType);
                         System.out.println("Description saved!\n");
                         valid = true;
-                    } else if (confirmation.equalsIgnoreCase("no")) {
+                    } else if (confirmationTestType.equalsIgnoreCase("no")) {
                         System.out.println("Please, type the description you want once again.\n");
-                        description = sc.nextLine();
-                        System.out.printf(DESCRIPTIONINSERTED, description);
-                        confirmation = sc.nextLine();
+                        descriptionTestType = sc.nextLine();
+                        System.out.printf(DESCRIPTIONINSERTED, descriptionTestType);
+                        confirmationTestType = sc.nextLine();
                     } else {
                         System.out.println(YESORNO);
-                        confirmation = sc.nextLine();
+                        confirmationTestType = sc.nextLine();
                     }
                 }
             } catch (InvalidDescriptionException e) {
