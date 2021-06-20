@@ -4,6 +4,7 @@ import app.domain.store.TestStore;
 import org.apache.commons.lang3.time.DateUtils;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -47,7 +48,7 @@ public class WriteReport implements CharSequence {
         int year = Integer.parseInt(dateComponents[2]);
         Date dateCurrentDay = new GregorianCalendar(year, month, day).getTime();
 
-        Date dayOfTableToMakeRegression = dateCurrentDay;
+        Date dayOfTableToMakeRegression = finishRegression;
         int i;
         for (i = 0; i < daysOfRegression; i++) {
             dayOfTableToMakeRegression = DateUtils.addDays(dayOfTableToMakeRegression, -1);
@@ -189,7 +190,7 @@ public class WriteReport implements CharSequence {
         int year = Integer.parseInt(dateComponents[2]);
         Date dateCurrentDay = new GregorianCalendar(year, month, day).getTime();
 
-        Date dayOfTableToMakeRegression = dateCurrentDay;
+        Date dayOfTableToMakeRegression = finishRegression;
         int i;
         for (i = 0; i < daysOfRegression; i++) {
             dayOfTableToMakeRegression = DateUtils.addDays(dayOfTableToMakeRegression, -1);
@@ -219,6 +220,10 @@ public class WriteReport implements CharSequence {
             x2[i] = testStore.getAverageAgeOfClient(dateInString);
             y[i] = testStore.getNumberOfPositiveCasesPerDay(dateInString);
         }
+        System.out.println(Arrays.toString(x1));
+        System.out.println(Arrays.toString(x2));
+        System.out.println(Arrays.toString(y));
+
         LinearRegression linearRegression;
         if(independentVariable.equalsIgnoreCase("mean age")){
              linearRegression = new LinearRegression(x2,y);

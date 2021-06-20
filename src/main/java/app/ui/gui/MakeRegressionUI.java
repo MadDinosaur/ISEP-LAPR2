@@ -100,13 +100,9 @@ public class MakeRegressionUI implements Initializable {
         createNhsReportController.setInitialDay(intialDayString);
         createNhsReportController.setFinalDay(finalDay);
         createNhsReportController.setIndependentVariable(independentVariable);
+        createNhsReportController.makeRegression();
 
-        System.out.println(typeOfPoints);
-        System.out.println(independentVariable);
-        System.out.println(historicalPointsInt);
-        System.out.println(currentDay);
-        System.out.println(intialDayString);
-        System.out.println(finalDay);
+
 
     }
 
