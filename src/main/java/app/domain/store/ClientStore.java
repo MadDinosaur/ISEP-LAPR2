@@ -125,7 +125,6 @@ public class ClientStore {
         }
 
         String sortAlg = props.getProperty("sortingAlgorithm1");
-        System.out.println(sortAlg);
         Class<?> oClass = null;
         try {
             switch (sortAlg) {
