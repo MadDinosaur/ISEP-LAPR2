@@ -46,57 +46,6 @@ public class Company {
         this.testStore = new TestStore();
         this.testNumber = 1;
         this.sampleList = new SampleList();
-        try {
-            FileOutputStream fileOut = new FileOutputStream("employeeStore.bin");
-            ObjectOutputStream outStream = new ObjectOutputStream(fileOut);
-            outStream.writeObject(employeeStore);
-            outStream.close();
-            fileOut.close();
-        } catch(IOException i) {
-            i.printStackTrace();
-        }
-
-        try {
-            FileOutputStream fileOut = new FileOutputStream("clientStore.bin");
-            ObjectOutputStream outStream = new ObjectOutputStream(fileOut);
-            outStream.writeObject(clientStore);
-            outStream.close();
-            fileOut.close();
-        } catch(IOException i) {
-            i.printStackTrace();
-        }
-
-        try {
-            FileOutputStream fileOut = new FileOutputStream("testStore.bin");
-            ObjectOutputStream outStream = new ObjectOutputStream(fileOut);
-            outStream.writeObject(testStore);
-            outStream.close();
-            fileOut.close();
-        } catch(IOException i) {
-            i.printStackTrace();
-        }
-
-        try {
-            FileOutputStream fileOut = new FileOutputStream("orgRoleStore.bin");
-            ObjectOutputStream outStream = new ObjectOutputStream(fileOut);
-            outStream.writeObject(orgRoleStore);
-            outStream.close();
-            fileOut.close();
-        } catch(IOException i) {
-            i.printStackTrace();
-        }
-        try {
-            FileOutputStream fileOut = new FileOutputStream("testTypeStore.bin");
-            ObjectOutputStream outStream = new ObjectOutputStream(fileOut);
-            outStream.writeObject(testTypeStore);
-            outStream.close();
-            fileOut.close();
-        } catch(IOException i) {
-            i.printStackTrace();
-        }
-
-
-
 
 
         //HARDCODED THINGS FOR TESTS
