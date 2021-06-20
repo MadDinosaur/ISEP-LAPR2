@@ -1,5 +1,5 @@
 package app.domain.adapter;
 
-public interface BiggestContiguousSumAlgorithm {
+public interface BiggestContiguousSubSequenceAlgorithm {
     int[] getBiggestContiguousSubSequence(int[] sequence);
 }

@@ -7,12 +7,15 @@ import app.configs.Configs;
 import app.domain.model.WriteReport;
 import com.sun.prism.shader.DrawEllipse_LinearGradient_REFLECT_AlphaTest_Loader;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Properties;
 import java.util.Timer;
@@ -25,16 +28,11 @@ import java.util.TimerTask;
 
 public class DailyReportController extends TimerTask {
 
-    private final Company company = App.getInstance().getCompany();
+    Company company = App.getInstance().getCompany();
+    CreateNhsReportController createNhsReportController = new CreateNhsReportController();
+
     private final ExternalModuleNhsReport nhsReport = new ExternalModuleNhsReportAdapter();
-    private int historicalPoints;
-    private String independentVariable;
-    private String currentDay;
-    private String initialDay;
-    private String finalDay;
-
-
-    //private WriteReport writeReport = new WriteReport();
+    private WriteReport writeReport;
 
     /**
      * timer which will trigger the creating of a daily report
@@ -56,8 +54,7 @@ public class DailyReportController extends TimerTask {
         Timer timer = new Timer();
 
         int period = 10000;//10 seconds
-        timer.schedule(new DailyReportController(), 3000, period );
-
+        timer.schedule(new DailyReportController(), 1000, period );
         /*
         int period = 86400000; // 1 day in milliseconds
         timer.schedule(new DailyReportController(), date, period);
@@ -69,22 +66,34 @@ public class DailyReportController extends TimerTask {
      */
     public void run() {
 
+        Properties props = new Properties();
+        try {
+            FileInputStream ip = new FileInputStream("src\\main\\resources\\config.properties");
+            props.load(ip);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        Properties props = new Properties(System.getProperties());
-        String intervalDates = props.getProperty("intervalDates");
         String historicalPointsString = props.getProperty("historicalPoints");
-        historicalPoints = Integer.parseInt(historicalPointsString);
+        String today = nhsReport.getDateAndTime();
+        String[] dateComponents = today.split(" ");
+        String intervalDates = props.getProperty("intervalDates");
+        String[] intervalDate = intervalDates.split(" ");
 
-        //String report = writeReport.getReport();
-        String abc = "xD funny momement";
+        int historicalPoints = Integer.parseInt(historicalPointsString);
+        String currentDay = dateComponents[0];
+        String initialDay = intervalDate[0];
+        String finalDay = intervalDate[1];
+        String independentVariable = props.getProperty("independentVariable");
 
-        CreateNhsReportController createNhsReportController = new CreateNhsReportController();
         createNhsReportController.setHistoricalPoints(historicalPoints);
         createNhsReportController.setCurrentDay(currentDay);
         createNhsReportController.setInitialDay(initialDay);
         createNhsReportController.setFinalDay(finalDay);
         createNhsReportController.setIndependentVariable(independentVariable);
+        String report = createNhsReportController.makeRegression();
 
-        System.out.println("NHS Daily Report sent");
+        nhsReport.sendReport(report);
+
     }
 }

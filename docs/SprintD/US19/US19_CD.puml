@@ -7,7 +7,13 @@ class DailyReportController {
 +run()
 }
 
-class Company {
+class CreateNhsReportController {
++setHistoricalPoints(historicalPoints)
++setCurrentDay(currentDay)
++setInitialDay(initialDay)
++setFinalDay(finalDay)
++setIndependentVariable(independentVariable)
++makeRegression()
 }
 
 interface Runnable {
@@ -28,16 +34,19 @@ class MultiLinearRegression {
 +MultiLinearRegression(x1, x2, y)
 }
 
-class TestStore {
+class Company {
++makeMultiLinearRegressionReport(historicalPoints, dateCurrentDay, dateInitalDay, dateDayFinal)
++makeSimpleLinearRegressionReport(historicalPoints, dateCurrentDay, dateInitalDay, dateCurrentDayFinal, independentVar)
 }
 
 class WriteReport {
 +WriteReport(testStore, historicalPoints, currentDay, startRegression, finishRegression)
-+String getReport()
++getReport()
 }
 
 interface ExternalModuleNhsReport {
 +void sendReport(String string)
++void getDateAndTime()
 }
 
 class ExternalModuleNhsReportAdapter {
@@ -52,12 +61,12 @@ class Report2NHS {
 DailyReportController ..> ExternalModuleNhsReport
 Runnable <|.. TimerTask
 TimerTask <|-- DailyReportController
-DailyReportController ..> WriteReport
-Company <. DailyReportController
-TestStore <. Company
+DailyReportController .> CreateNhsReportController
+CreateNhsReportController .> Company
+Company ..> WriteReport
 ExternalModuleNhsReport <|.. ExternalModuleNhsReportAdapter
-ExternalModuleNhsReportAdapter ..> Report2NHS
-LinearRegression <. WriteReport
+ExternalModuleNhsReportAdapter --> Report2NHS
+WriteReport ..> LinearRegression
 WriteReport ..> MultiLinearRegression
 
 @enduml

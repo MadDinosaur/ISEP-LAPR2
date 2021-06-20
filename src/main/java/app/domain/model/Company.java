@@ -1,6 +1,6 @@
 package app.domain.model;
 
-import app.domain.adapter.BiggestContiguousSumAlgorithm;
+import app.domain.adapter.BiggestContiguousSubSequenceAlgorithm;
 import app.domain.model.Exceptions.InvalidLaboratoryIDException;
 import app.domain.model.Exceptions.UnassignedExternalModuleException;
 import app.domain.store.*;
@@ -75,6 +75,8 @@ public class Company {
         Test testTestHardCoded = new Test(clientStore.getClientByCardNumber((long) 8765432187654321.0), testTypeHardCoded, testNumberGenerator(), nhsCodeGenerator());
         Test testTestHardCodedRegistered = new Test(clientStore.getClientByCardNumber((long) 8765432187654322.0), testTypeHardCoded, testNumberGenerator(), nhsCodeGenerator());
         Test testTestHardCodedDiagnosed = new Test(clientStore.getClientByCardNumber((long) 8765432187654323.0), testTypeHardCoded, testNumberGenerator(), nhsCodeGenerator());
+        Test testReport = new Test(clientStore.getClientByCardNumber((long) 8765432187654323.0), testTypeHardCoded, testNumberGenerator(), nhsCodeGenerator());
+        testReport.setStateOfTestToSamplesCollected();
         testTestHardCoded.saveTestParameterResult(parameter, testTestHardCoded.createTestParameterResult(hb000, "135", "mg"));
         testTestHardCodedDiagnosed.saveTestParameterResult(parameter, testTestHardCodedDiagnosed.createTestParameterResult(hb000, "135", "mg"));
         testTestHardCoded.setStateOfTestToSamplesAnalyzed();
@@ -83,6 +85,7 @@ public class Company {
         testStore.addTest(testTestHardCodedDiagnosed);
         testStore.addTest(testTestHardCodedRegistered);
         testStore.addTest(testTestHardCoded);
+        testStore.addTest(testReport);
         //END OF HARDCODED THINGS FOR TESTS
 
     }
@@ -307,18 +310,18 @@ public class Company {
         return nhsCodeGenerator();
     }
 
-    public void makeMultiLinearRegressionReport(int historicalPoints, String dateCurrentDay, Date dateInitalDay,Date dateCurrentDayFinal){
-        WriteReport writeReport = new WriteReport(testStore,historicalPoints,dateCurrentDay,dateInitalDay,dateCurrentDayFinal);
+    public String makeMultiLinearRegressionReport(int historicalPoints, String dateCurrentDay, Date dateInitalDay,Date dateDayFinal){
+        System.out.println("");
+        WriteReport writeReport = new WriteReport(testStore,historicalPoints,dateCurrentDay,dateInitalDay,dateDayFinal);
         String stringToReport = writeReport.getReport();
         writeUsingFileWriter(stringToReport);
+        return stringToReport;
     }
     public void makeSimpleLinearRegressionReport(int historicalPoints, String dateCurrentDay, Date dateInitalDay,Date dateCurrentDayFinal, String independentVar) throws Exception {
         WriteReport writeReport = new WriteReport(testStore,historicalPoints,dateCurrentDay,dateInitalDay,dateCurrentDayFinal,independentVar);
         String stringToReport = writeReport.getReport();
         writeUsingFileWriter(stringToReport);
     }
-
-
 
     public ClinicalAnalysisLaboratory getLabById(String laboratoryID) {
         for (ClinicalAnalysisLaboratory clinicalAnalysisLaboratory : clinicalAnalysisLaboratoryLst) {
@@ -331,7 +334,7 @@ public class Company {
 
 
 
-    public BiggestContiguousSumAlgorithm getBiggestContinuousSumAlgorithm(String code) {
+    public BiggestContiguousSubSequenceAlgorithm getBiggestContinuousSumAlgorithm(String code) {
         Class<?> oClass = null;
 
         try {
@@ -346,7 +349,7 @@ public class Company {
                     System.out.println("No algorithm found!");
             }
             if (oClass != null) {
-                return (BiggestContiguousSumAlgorithm) oClass.newInstance();
+                return (BiggestContiguousSubSequenceAlgorithm) oClass.newInstance();
             } else {
                 throw new NullPointerException("The return value is null");
             }
@@ -357,4 +360,5 @@ public class Company {
             throw new UnassignedExternalModuleException("Cannot access algorithm!");
         }
     }
+
 }
