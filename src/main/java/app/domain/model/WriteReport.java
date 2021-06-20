@@ -15,11 +15,11 @@ public class WriteReport implements CharSequence {
     double rSquared;
     double r2Adjusted;
     double r;
-    private double sqR, sqT, sqE;
-    private double sqRAverage, sqEAverage;
-    private double fTest;
-    private int degreesOfFreedom;
-    private String currentDay;
+    private final double sqR, sqT, sqE;
+    private final double sqRAverage, sqEAverage;
+    private final double fTest;
+    private final int degreesOfFreedom;
+    private final String currentDay;
     double xa;
     double xb;
     double intercept;
