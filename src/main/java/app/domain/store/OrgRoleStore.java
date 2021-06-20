@@ -6,11 +6,12 @@ import app.domain.model.OrganizationRole;
 import app.domain.shared.Constants;
 import auth.AuthFacade;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class OrgRoleStore {
+public class OrgRoleStore implements Serializable {
     private AuthFacade authFacade;
     private ArrayList<OrganizationRole> rolesList = new ArrayList<>();
 

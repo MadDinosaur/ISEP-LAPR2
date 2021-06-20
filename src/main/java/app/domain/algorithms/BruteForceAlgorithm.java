@@ -8,7 +8,7 @@ public class BruteForceAlgorithm {
         //empty constructor
     }
 
-    public static ArrayList<Integer> biggestSumSubSequence(int[] sequence) {
+    public static ArrayList<Integer> biggestContiguousSubSequence(int[] sequence) {
         int maxSum = sequence[0];
         ArrayList<Integer> maxSubsequenceTemp = new ArrayList<>();
         ArrayList<Integer> maxSubsequence = new ArrayList<>();

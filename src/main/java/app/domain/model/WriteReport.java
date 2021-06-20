@@ -51,6 +51,7 @@ public class WriteReport implements CharSequence {
         Date dayOfTableToMakeRegression = finishRegression;
         int i;
         for (i = 0; i < daysOfRegression; i++) {
+            dayOfTableToMakeRegression = DateUtils.addDays(dayOfTableToMakeRegression, -1);
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(dayOfTableToMakeRegression);
             int dayOfCalendar = calendar.get(Calendar.DAY_OF_MONTH);
@@ -76,7 +77,6 @@ public class WriteReport implements CharSequence {
             x1[i] = testStore.getNumberOfTestsPerformed(dateInString);
             x2[i] = testStore.getAverageAgeOfClient(dateInString);
             y[i] = testStore.getNumberOfPositiveCasesPerDay(dateInString);
-            dayOfTableToMakeRegression = DateUtils.addDays(dayOfTableToMakeRegression, -1);
         }
 
 
@@ -98,7 +98,7 @@ public class WriteReport implements CharSequence {
         r2Adjusted = multiLinearRegression.getRSquaredAdjusted();
         r = multiLinearRegression.getR();
         critical = multiLinearRegression.getCritical();
-        String selectedCoefient = null;
+        String selectedCoefient = "intercept";
 
         double t_obs;
         if(selectedCoefient.equalsIgnoreCase("a")){
@@ -138,7 +138,7 @@ public class WriteReport implements CharSequence {
                 "\n" +
                 "Significance model with Anova\n" +
                 "H0: b=0  H1:b<>0\n" +
-                "\t\t            df\t       SS\t\t     MS\t\t     F\n" +
+                "\t\t            SS\t       df\t\t     MS\t\t     F\n" +
                 "Regression\t" + sqR + "\t" + "2" + "\t" + sqRAverage + "\t" + fTest + "\n" +  //simple /multi
                 "Residual\t" + sqE + "\t" + (degreesOfFreedom - 2) + "\t " + sqEAverage + "\n" +
                 "Total\t\t" + sqT + "\t" + degreesOfFreedom + "\n" +
@@ -265,9 +265,16 @@ public class WriteReport implements CharSequence {
         this.r = Math.sqrt(rSquared);
         critical = linearRegression.getT0(0.05);
 
-        String t_obs = "observacao";
-        String decision = "decisao";
-        String rejection = "Reject H0/ No reject H0";
+        double t_obs;
+        String rejection;
+        t_obs = linearRegression.getTs(0.99);
+        double tCritical = linearRegression.getTa();
+        if (tCritical > t_obs){
+            rejection = "Reject H0";
+        }else{
+            rejection = "No reject H0";
+        }
+
 
 
         StringBuilder stringToBuild = new StringBuilder("The regression model fitted using data from the interval\n" +
@@ -279,8 +286,8 @@ public class WriteReport implements CharSequence {
                 "\n" +
                 "Hypothesis tests for regression coefficients\n" +
                 "HO:b=0 (a=0) H1: b<>0 (a<>0)\n" +
-                "t_obs = " + t_obs + "\n" +
-                "Decision: " + decision + "\n" +
+                "t_obs = " + tCritical + "\n" +
+                "Decision: " + t_obs + "\n" +
                 rejection + "\n" +
                 "\n" +
                 "\n" +

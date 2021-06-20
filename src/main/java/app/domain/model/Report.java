@@ -13,12 +13,12 @@ public class Report {
     /**
      * Report's diagnosis text
      */
-    private String textDiagnosis;
+    private final String textDiagnosis;
 
     /**
      * Report's text
      */
-    private String textReport;
+    private final String textReport;
 
     /**
      * Constructs a report with the diagnosis' text and the report's text

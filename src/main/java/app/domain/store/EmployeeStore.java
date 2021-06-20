@@ -4,9 +4,10 @@ import app.domain.model.Employee;
 import app.domain.model.Exceptions.InvalidEmployeeException;
 import app.domain.model.Exceptions.InvalidNameException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class EmployeeStore {
+public class EmployeeStore implements Serializable {
     private int id = 1;
     private ArrayList<Employee> employeeList = new ArrayList<>();
 

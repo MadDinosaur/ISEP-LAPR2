@@ -4,7 +4,9 @@ import app.domain.model.Report;
 import app.mappers.ReportMapper;
 import app.mappers.dto.ReportDTO;
 
-public class ReportStore {
+import java.io.Serializable;
+
+public class ReportStore implements Serializable {
 
     /**
      * Creates a report

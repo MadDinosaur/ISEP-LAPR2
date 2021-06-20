@@ -8,7 +8,7 @@ public class BruteForceAdapter implements BiggestContiguousSubSequenceAlgorithm 
 
     @Override
     public int[] getBiggestContiguousSubSequence(int[] sequence) {
-        ArrayList<Integer> subSequenceTemp = BruteForceAlgorithm.biggestSumSubSequence(sequence);
+        ArrayList<Integer> subSequenceTemp = BruteForceAlgorithm.biggestContiguousSubSequence(sequence);
         int[] subSequence = new int[subSequenceTemp.size()];
         for (int i = 0; i < subSequenceTemp.size(); i++) {
             subSequence[i] = subSequenceTemp.get(i);

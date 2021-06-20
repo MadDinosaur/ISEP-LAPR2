@@ -6,6 +6,7 @@ import app.domain.model.Exceptions.InvalidTestType;
 import app.domain.model.Parameter;
 import app.domain.model.TestType;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 /**
  * @author 1200985 Tomás Cancela
  */
-public class TestTypeStore {
+public class TestTypeStore implements Serializable {
 
     final String COVIDSTRING = "Covid";
     final String DESCRICAO = "descrição";
