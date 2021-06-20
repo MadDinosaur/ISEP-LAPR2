@@ -307,19 +307,18 @@ public class Company {
         return nhsCodeGenerator();
     }
 
-    public void makeMultiLinearRegressionReport(int historicalPoints, String dateCurrentDay, Date dateInitalDay,Date dateDayFinal){
+    public String makeMultiLinearRegressionReport(int historicalPoints, String dateCurrentDay, Date dateInitalDay,Date dateDayFinal){
         System.out.println("");
         WriteReport writeReport = new WriteReport(testStore,historicalPoints,dateCurrentDay,dateInitalDay,dateDayFinal);
         String stringToReport = writeReport.getReport();
         writeUsingFileWriter(stringToReport);
+        return stringToReport;
     }
     public void makeSimpleLinearRegressionReport(int historicalPoints, String dateCurrentDay, Date dateInitalDay,Date dateCurrentDayFinal, String independentVar) throws Exception {
         WriteReport writeReport = new WriteReport(testStore,historicalPoints,dateCurrentDay,dateInitalDay,dateCurrentDayFinal,independentVar);
         String stringToReport = writeReport.getReport();
         writeUsingFileWriter(stringToReport);
     }
-
-
 
     public ClinicalAnalysisLaboratory getLabById(String laboratoryID) {
         for (ClinicalAnalysisLaboratory clinicalAnalysisLaboratory : clinicalAnalysisLaboratoryLst) {

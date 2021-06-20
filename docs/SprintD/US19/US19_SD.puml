@@ -5,6 +5,7 @@ autonumber
 actor ":System\n Clock:" as Clock
 participant "timer : Timer" as timer
 participant DailyReportController as controller
+participant CreateNhsReportController as controller1
 participant Company as company
 participant "writeReport : WriteReport" as writereport
 participant ExternalModuleNhsReport as interface
@@ -27,18 +28,30 @@ timer -> controller : run()
 deactivate timer
 activate controller
 
-controller -> company
+controller -> controller1 : setHistoricalPoints(historicalPoints)
+activate controller1
+deactivate controller1
+controller -> controller1 : setInitialDay(initialDay)
+activate controller1
+deactivate controller1
+controller -> controller1 : setFinalDay(finalDay)
+activate controller1
+deactivate controller1
+controller -> controller1 : setIndependentVariable(independentVariable);
+activate controller1
+deactivate controller1
+controller -> controller1 : report = createNhsReportController.makeRegression();
+activate controller1
+controller1 -> company : makeMultiLinearRegressionReport(historicalPoints, dateCurrentDay, dateInitalDay, dateDayFinal)
 activate company
-deactivate company
-
 create writereport
-controller -> writereport : create()
-controller -> writereport : WriteReport()
+company -> writereport : create()
+company -> writereport : WriteReport(testStore, historicalPoints, dateCurrentDay, dateInitalDay, dateDayFinal);
 activate writereport
 deactivate writereport
-controller -> writereport : report = getReport()
-activate writereport
-deactivate writereport
+deactivate company
+deactivate controller1
+
 
 controller -> interface : sendReport(report)
 activate interface

@@ -28,6 +28,7 @@ import java.util.TimerTask;
 
 public class DailyReportController extends TimerTask {
 
+    Company company = App.getInstance().getCompany();
     CreateNhsReportController createNhsReportController = new CreateNhsReportController();
 
     private final ExternalModuleNhsReport nhsReport = new ExternalModuleNhsReportAdapter();
@@ -90,10 +91,8 @@ public class DailyReportController extends TimerTask {
         createNhsReportController.setInitialDay(initialDay);
         createNhsReportController.setFinalDay(finalDay);
         createNhsReportController.setIndependentVariable(independentVariable);
-        createNhsReportController.makeRegression();
+        String report = createNhsReportController.makeRegression();
 
-        String report = writeReport.getReport();
-        //String report = "report";
         nhsReport.sendReport(report);
 
     }
