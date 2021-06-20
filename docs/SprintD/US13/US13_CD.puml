@@ -86,7 +86,8 @@ class TestParameterResult {
 ShowClientListUI ..> ShowClientListController
 ShowClientListController ..> Company
 ShowClientListController ..> Sortable
-ClientStore --> Sortable : uses
+ShowClientListController ..> ClientMapper
+Client --> Sortable : is
 ClientStore --> Client : contains
 ClientMapper ..> ClientDTO
 ShowClientListUI ..> ClientDTO

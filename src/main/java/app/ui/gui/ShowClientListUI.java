@@ -99,5 +99,7 @@ public class ShowClientListUI implements Initializable{
     void btnBack(ActionEvent event) {parent.toCliChemTechMenu();}
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {}
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //empty
+    }
 }

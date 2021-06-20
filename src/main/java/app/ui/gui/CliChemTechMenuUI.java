@@ -3,11 +3,16 @@ package app.ui.gui;
 import app.ui.console.RecordTestResultUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+
+import javax.naming.spi.InitialContextFactory;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CliChemTechMenuUI {
+public class CliChemTechMenuUI implements Initializable {
     App mainApp;
 
     @FXML
@@ -42,7 +47,7 @@ public class CliChemTechMenuUI {
     @FXML
     public void toCliChemTechMenu() {
         try {
-            CliChemTechMenuUI cliChemTechMenuUI= (CliChemTechMenuUI) mainApp.replaceSceneContent("/fxml/CliChemTech.fxml");
+            CliChemTechMenuUI cliChemTechMenuUI = (CliChemTechMenuUI) mainApp.replaceSceneContent("/fxml/CliChemTechMenuScene.fxml");
             cliChemTechMenuUI.setMainApp(this.mainApp);
         } catch (Exception ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
@@ -51,7 +56,11 @@ public class CliChemTechMenuUI {
 
     @FXML
     public void recordTestResults(ActionEvent event){
-        mainApp.getStage().setIconified(true);
         new RecordTestResultUI().run();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //empty
     }
 }

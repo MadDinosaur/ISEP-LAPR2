@@ -8,6 +8,7 @@ import app.domain.model.Exceptions.InvalidClientException;
 import app.domain.model.Exceptions.InvalidEmailException;
 import app.mappers.dto.ClientDTO;
 import auth.domain.model.Email;
+import org.apache.commons.lang3.ObjectUtils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -29,7 +30,9 @@ public class ClientStore {
     }
 
     public ArrayList<Client> getClientList(){
-        return this.clientList;
+        if(this.clientList != null) {
+            return this.clientList;
+        }else throw new IllegalArgumentException("Client list is currently empty.");
     }
 
     public Client getClientByTINumber(long taxNumber){
@@ -123,21 +126,32 @@ public class ClientStore {
         }
 
         String sortAlg = props.getProperty("sortingAlgorithm1");
-
+        System.out.println(sortAlg);
         Class<?> oClass = null;
         try {
-            oClass = Class.forName(sortAlg);
+            switch (sortAlg) {
+                case "BubbleSort":
+                    oClass = Class.forName("app.domain.algorithms.BubbleSort");
+                    break;
+                case "InsertionSort":
+                    oClass = Class.forName("app.domain.algorithms.InsertionSort");
+                    break;
+                default:
+                    System.out.println("No algorithm found!");
+            }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         Sortable sortingAlgorithm = null;
-        try {
-            sortingAlgorithm = (Sortable) oClass.newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        if(oClass != null ) {
+            try {
+                sortingAlgorithm = (Sortable) oClass.newInstance();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }else throw new NullPointerException("Sorting algorithm is null.");
 
         return sortingAlgorithm;
     }
