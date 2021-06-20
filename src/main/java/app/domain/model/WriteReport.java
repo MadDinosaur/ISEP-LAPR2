@@ -2,9 +2,9 @@ package app.domain.model;
 
 import app.domain.store.TestStore;
 import org.apache.commons.lang3.time.DateUtils;
+import org.apache.commons.math3.distribution.TDistribution;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -51,7 +51,6 @@ public class WriteReport implements CharSequence {
         Date dayOfTableToMakeRegression = finishRegression;
         int i;
         for (i = 0; i < daysOfRegression; i++) {
-            dayOfTableToMakeRegression = DateUtils.addDays(dayOfTableToMakeRegression, -1);
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(dayOfTableToMakeRegression);
             int dayOfCalendar = calendar.get(Calendar.DAY_OF_MONTH);
@@ -77,6 +76,7 @@ public class WriteReport implements CharSequence {
             x1[i] = testStore.getNumberOfTestsPerformed(dateInString);
             x2[i] = testStore.getAverageAgeOfClient(dateInString);
             y[i] = testStore.getNumberOfPositiveCasesPerDay(dateInString);
+            dayOfTableToMakeRegression = DateUtils.addDays(dayOfTableToMakeRegression, -1);
         }
 
 
@@ -87,7 +87,7 @@ public class WriteReport implements CharSequence {
 
         xb = multiLinearRegression.getX2();
         intercept = multiLinearRegression.getIntercept();
-        degreesOfFreedom = multiLinearRegression.getDegreesOfFreedom();
+        degreesOfFreedom = multiLinearRegression.getDegreesOfFreedom() +1;
         sqR = multiLinearRegression.getSqR();
         sqE = multiLinearRegression.getSqE();
         sqT = multiLinearRegression.getSqT();
@@ -98,10 +98,27 @@ public class WriteReport implements CharSequence {
         r2Adjusted = multiLinearRegression.getRSquaredAdjusted();
         r = multiLinearRegression.getR();
         critical = multiLinearRegression.getCritical();
+        String selectedCoefient = null;
 
-        String t_obs = "observacao";
-        String decision = "decisao";
-        String rejection = "Reject H0/ No reject H0";
+        double t_obs;
+        if(selectedCoefient.equalsIgnoreCase("a")){
+            t_obs = xa / Math.sqrt(sqEAverage*multiLinearRegression.xTransposeX1());
+        }else{
+            if(selectedCoefient.equalsIgnoreCase("b")){
+                t_obs = xb / Math.sqrt(sqEAverage*multiLinearRegression.xTransposeX2());
+            }else{
+                t_obs = intercept / Math.sqrt(sqEAverage*multiLinearRegression.xTransposeX0());
+            }
+        }
+
+        String rejection;
+        TDistribution tDistribution = new TDistribution(degreesOfFreedom-2);
+        double coefientCritical = tDistribution.cumulativeProbability(0.975);
+        if(t_obs > coefientCritical){
+            rejection = "Reject H0";
+        }else{
+            rejection = "No reject H0";
+        }
 
 
         StringBuilder stringToBuild = new StringBuilder("The regression model fitted using data from the interval\n" +
@@ -115,7 +132,7 @@ public class WriteReport implements CharSequence {
                 "Hypothesis tests for regression coefficients\n" +
                 "HO:b=0 (a=0) H1: b<>0 (a<>0)\n" +
                 "t_obs = " + t_obs + "\n" +
-                "Decision: " + decision + "\n" +
+                "Decision: "+ "\n" +
                 rejection + "\n" +
                 "\n" +
                 "\n" +
@@ -220,9 +237,7 @@ public class WriteReport implements CharSequence {
             x2[i] = testStore.getAverageAgeOfClient(dateInString);
             y[i] = testStore.getNumberOfPositiveCasesPerDay(dateInString);
         }
-        System.out.println(Arrays.toString(x1));
-        System.out.println(Arrays.toString(x2));
-        System.out.println(Arrays.toString(y));
+
 
         LinearRegression linearRegression;
         if(independentVariable.equalsIgnoreCase("mean age")){
@@ -238,7 +253,7 @@ public class WriteReport implements CharSequence {
 
         xa = linearRegression.slope();
         intercept = linearRegression.intercept();
-        degreesOfFreedom = linearRegression.getDegreesOfFreedom();
+        degreesOfFreedom = linearRegression.getDegreesOfFreedom() +1;
         sqR = linearRegression.getSr();
         sqE = linearRegression.getSe();
         sqT = sqE +sqR;
@@ -248,7 +263,7 @@ public class WriteReport implements CharSequence {
         rSquared = linearRegression.R2();
         r2Adjusted =
         this.r = Math.sqrt(rSquared);
-        critical = linearRegression.getT0(0.95);
+        critical = linearRegression.getT0(0.05);
 
         String t_obs = "observacao";
         String decision = "decisao";
@@ -256,7 +271,7 @@ public class WriteReport implements CharSequence {
 
 
         StringBuilder stringToBuild = new StringBuilder("The regression model fitted using data from the interval\n" +
-                "^y = " + xa + "x " + intercept + "\n" +
+                "^y = " + xa + "x +" + intercept + "\n" +
                 "\n" +
                 "Other statistics\n" +
                 "R2 = " + rSquared + "\n" +
@@ -271,13 +286,13 @@ public class WriteReport implements CharSequence {
                 "\n" +
                 "Significance model with Anova\n" +
                 "H0: b=0  H1:b<>0\n" +
-                "\t\t            df\t       SS\t\t     MS\t\t     F\n" +
+                "\t\t            SS\t       df\t\t     MS\t\t     F\n" +
                 "Regression\t" + sqR + "\t" + "2" + "\t" + sqRAverage + "\t" + fTest + "\n" +  //simple /multi
-                "Residual\t" + sqE + "\t" + (degreesOfFreedom - 2) + "\t " + sqEAverage + "\n" +
+                "Residual\t" + sqE + "\t" + (degreesOfFreedom - 1 ) + "\t " + sqEAverage + "\n" +
                 "Total\t\t" + sqT + "\t" + degreesOfFreedom + "\n" +
                 "\n" +
                 "Decision: f  \n" +
-                "0 > f0.05,(2. " + (degreesOfFreedom - 2) + ")=" + critical + "\n");
+                "0 > f0.05,(1. " + (degreesOfFreedom - 1) + ")=" + critical + "\n");
         if (fTest > critical) {
             stringToBuild.append("Reject H0\n" +                                      //reject or not
                     "The regression model is significant.\n");
