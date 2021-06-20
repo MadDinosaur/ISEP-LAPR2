@@ -34,7 +34,7 @@
    <center>
       <VBox alignment="BOTTOM_CENTER" prefHeight="41.0" prefWidth="228.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="importCSVFileBtn" mnemonicParsing="false" onAction="#importCSVFileMenu" text="Importing a CSV File Menu">
+            <Button fx:id="importCSVFileBtn" mnemonicParsing="false" onAction="#importCSVFileMenu" text="Importing a CSV File">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
