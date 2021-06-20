@@ -57,7 +57,7 @@ public class DailyReportController extends TimerTask {
         Timer timer = new Timer();
 
         int period = 10000;//10 seconds
-        timer.schedule(new DailyReportController(), 3000, period );
+        timer.schedule(new DailyReportController(), 1000000, period );
 
         /*
         int period = 86400000; // 1 day in milliseconds
