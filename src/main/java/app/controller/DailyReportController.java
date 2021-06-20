@@ -33,8 +33,7 @@ public class DailyReportController extends TimerTask {
     private String initialDay;
     private String finalDay;
 
-
-    //private WriteReport writeReport = new WriteReport();
+    private WriteReport writeReport;
 
     /**
      * timer which will trigger the creating of a daily report
@@ -56,7 +55,7 @@ public class DailyReportController extends TimerTask {
         Timer timer = new Timer();
 
         int period = 10000;//10 seconds
-        timer.schedule(new DailyReportController(), 1000000, period );
+        timer.schedule(new DailyReportController(), 10000, period );
 
         /*
         int period = 86400000; // 1 day in milliseconds
@@ -73,10 +72,8 @@ public class DailyReportController extends TimerTask {
         Properties props = new Properties(System.getProperties());
         String intervalDates = props.getProperty("intervalDates");
         String historicalPointsString = props.getProperty("historicalPoints");
-        historicalPoints = Integer.parseInt(historicalPointsString);
-
-        //String report = writeReport.getReport();
-        String abc = "xD funny momement";
+        System.out.println(historicalPointsString);
+        historicalPoints = Integer.parseInt("5");
 
         CreateNhsReportController createNhsReportController = new CreateNhsReportController();
         createNhsReportController.setHistoricalPoints(historicalPoints);
@@ -84,6 +81,9 @@ public class DailyReportController extends TimerTask {
         createNhsReportController.setInitialDay(initialDay);
         createNhsReportController.setFinalDay(finalDay);
         createNhsReportController.setIndependentVariable(independentVariable);
+
+        String report = writeReport.getReport();
+        nhsReport.sendReport(report);
 
         System.out.println("NHS Daily Report sent");
     }
