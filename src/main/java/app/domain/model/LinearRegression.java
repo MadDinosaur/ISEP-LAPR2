@@ -24,12 +24,11 @@ public class LinearRegression {
     double rss = 0.0;      // residual sum of squares   //sqe
     double tss;                                         //sqt
     double svar;                                        //mqr
-    private double sxx, syy, sxy, meanX, meanY, variance, sr, se, student;
-    private int n, numTests;
-    double statisticF;
-    private double[] x;
-    private double[] y;
-    private int degreesOfFreedom;
+    private final double sxx, syy, sxy, meanX, meanY, variance, sr, se;
+    private final int n, numTests;
+    private final double[] x;
+    private final double[] y;
+    private final int degreesOfFreedom;
 
     /**
      * Performs a linear regression on the data points (y[i], x[i]).
