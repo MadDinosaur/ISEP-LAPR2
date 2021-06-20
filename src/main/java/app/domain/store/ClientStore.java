@@ -141,4 +141,12 @@ public class ClientStore {
 
         return sortingAlgorithm;
     }
+
+    public Client createClient(String name, long cardNumber, long nhsId, String dateBirth, long TIN, long phoneNumber, String address, String email) {
+        String[] data = dateBirth.split("/");
+        int ano = Integer.parseInt(data[0]);
+        int mes = Integer.parseInt(data[1]);
+        int dia = Integer.parseInt(data[2]);
+        return new Client(name, cardNumber, nhsId, new DateBirth(ano, mes, dia), TIN, phoneNumber, address, new Email(email));
+    }
 }

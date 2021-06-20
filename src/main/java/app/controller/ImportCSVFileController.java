@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class ImportCSVFileController {
 
 
+
     private RegisterTestController registerTestController = new RegisterTestController();
     private RegisterClientController registerClientController = new RegisterClientController();
     private RegisterNewLabController registerNewLabController = new RegisterNewLabController();
@@ -204,7 +205,7 @@ public class ImportCSVFileController {
 
     public void saveTest() {
         if (registerTestController.saveTest(this.test)){
-            System.out.println("Test was sucessfully imported!\n------------------------------\n\n");
+            System.out.println("Test was successfully imported!\n------------------------------\n\n");
         }
         this.registerTestController = new RegisterTestController();
     }

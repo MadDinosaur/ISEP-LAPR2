@@ -93,16 +93,19 @@ icfu -> icfc: createClient()
 
 icfc -> rcc: client = createClient(nhsID, cardNumber, tin, birthday, phoneNumber, name, email, address)
 activate rcc
+rcc -> Company: clientStore = getClientStore()
+activate Company
+deactivate Company
+rcc -> cs: createClient(nhsID, cardNumber, tin, birthday, phoneNumber, name, email, address)
+
 create client
-rcc -> client: create(nhsID, cardNumber, tin, birthday, phoneNumber, name, email, address)
+cs -> client: create(nhsID, cardNumber, tin, birthday, phoneNumber, name, email, address)
 client -> client: validate()
 
 
 icfu -> icfc: saveClient()
 icfc -> rcc: saveClientFromCSV(client)
-rcc -> Company: clientStore = getClientStore()
-activate Company
-deactivate Company
+
 rcc -> cs: validate(client)
 activate cs
 rcc -> cs: saveClient(client)

@@ -135,11 +135,7 @@ public class RegisterClientController {
     }
 
     public Client createClient(String name, long cardNumber, long nhsId, String dateBirth, long TIN, long phoneNumber, String address, String email) {
-        String[] data = dateBirth.split("/");
-        int ano = Integer.parseInt(data[0]);
-        int mes = Integer.parseInt(data[1]);
-        int dia = Integer.parseInt(data[2]);
-        return new Client(name, cardNumber, nhsId, new DateBirth(ano, mes, dia), TIN, phoneNumber, address, new Email(email));
+        return this.company.getClientStore().createClient(name, cardNumber, nhsId, dateBirth, TIN, phoneNumber, address, email);
     }
 
     public boolean saveClientFromCSV(Client client) {
