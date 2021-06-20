@@ -51,6 +51,7 @@ public class WriteReport implements CharSequence {
         Date dayOfTableToMakeRegression = finishRegression;
         int i;
         for (i = 0; i < daysOfRegression; i++) {
+            dayOfTableToMakeRegression = DateUtils.addDays(dayOfTableToMakeRegression, -1);
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(dayOfTableToMakeRegression);
             int dayOfCalendar = calendar.get(Calendar.DAY_OF_MONTH);
@@ -76,7 +77,6 @@ public class WriteReport implements CharSequence {
             x1[i] = testStore.getNumberOfTestsPerformed(dateInString);
             x2[i] = testStore.getAverageAgeOfClient(dateInString);
             y[i] = testStore.getNumberOfPositiveCasesPerDay(dateInString);
-            dayOfTableToMakeRegression = DateUtils.addDays(dayOfTableToMakeRegression, -1);
         }
 
 
