@@ -25,8 +25,8 @@ public class DailyReportTimer {
         Timer timer = new Timer();
         int period = 86400000; // 1 day in milliseconds
 
-        long delay = 3000;
+        //long delay = 3000;
 
-        timer.schedule(new DailyReportController(), delay, period);
+        timer.schedule(new DailyReportController(), date, period);
     }
 }
