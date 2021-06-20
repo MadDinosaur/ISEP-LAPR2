@@ -95,7 +95,7 @@ public class TestTest{
         String dateTimeResults = newTest.getDateTimeResults();
         String dateTimeReport = newTest.getDateTimeReport();
         String dateTimeValidation = newTest.getDateTimeValidation();
-
+        //
         Assert.assertEquals(client, client1);
         Assert.assertEquals(testCode, "123456789012");
         Assert.assertEquals(nhsCode, "123456789012");

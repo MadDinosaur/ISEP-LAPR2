@@ -2,12 +2,8 @@ package app.ui.console;
 
 import app.controller.App;
 import app.domain.model.Company;
-import app.ui.gui.ImportCSVFileUI;
-import app.ui.gui.MakeRegressionUI;
 
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CreateNhsReportUI implements Runnable{
 

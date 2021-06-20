@@ -4,7 +4,6 @@ import app.domain.model.ClinicalAnalysisLaboratory;
 import app.domain.model.Company;
 import app.domain.model.TestType;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterNewLabController {

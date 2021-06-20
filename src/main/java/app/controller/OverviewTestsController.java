@@ -4,7 +4,9 @@ import app.domain.adapter.BiggestContiguousSubSequenceAlgorithm;
 import app.domain.model.Company;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class OverviewTestsController {
