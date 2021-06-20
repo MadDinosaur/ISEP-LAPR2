@@ -20,6 +20,7 @@ class TestStore{
 +getPositiveCasesPerDay(day)
 +getNumberOfTestsPerformed(day)
 +getAverageAgeClient(day)
++getTestTypeOfTest()
 }
 
 class LinearRegression {
@@ -58,6 +59,26 @@ class ExternalModuleNhsReportAdapter {
 class Report2NHS {
 +writeUsingFileWriter(String data)
 }
+class TestParameterResult {
+-value
+
+}
+class Category {
+-code
+-description
++getParameterOfTest()
+}
+class TestType {
+-code
+-description
++getCateforyOfTestType()
+}
+class Parameter {
+-code
+-description
++getParameterResultValue()
+}
+
 
 CreateNhsReportController ..> ExternalModuleNhsReport
 CreateNhsReportUI .> CreateNhsReportController
@@ -70,5 +91,9 @@ ExternalModuleNhsReport <|.. ExternalModuleNhsReportAdapter
 ExternalModuleNhsReportAdapter --> Report2NHS
 WriteReport ..> LinearRegression
 WriteReport ..> MultiLinearRegression
+TestStore "*"-right-"1" "TestType"
+TestType "1"--"1..*" Category
+Parameter "*"--"1" Category
+TestParameterResult "1"--"1" Parameter
 
 @enduml

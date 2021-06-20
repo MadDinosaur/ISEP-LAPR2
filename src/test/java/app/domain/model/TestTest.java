@@ -89,13 +89,12 @@ public class TestTest{
         String nhsCode = newTest.getNhsCode();
         TestType testType = newTest.getTestType();
         List<Category> categoryList1 = newTest.getListOfCategories();
-        System.out.println(categoryList1);
         TestParamList parameterList = newTest.getTestParamList();
         String dateTimeRegister = newTest.getDateTimeRegister();
         String dateTimeResults = newTest.getDateTimeResults();
         String dateTimeReport = newTest.getDateTimeReport();
         String dateTimeValidation = newTest.getDateTimeValidation();
-        //
+        Assert.assertNull(newTest.getListOfCategories());
         Assert.assertEquals(client, client1);
         Assert.assertEquals(testCode, "123456789012");
         Assert.assertEquals(nhsCode, "123456789012");
