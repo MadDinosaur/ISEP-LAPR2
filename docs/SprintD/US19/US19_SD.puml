@@ -14,7 +14,7 @@ activate Clock
 activate controller
 create timer
 controller --> timer : create()
-controller -> timer : schedule(task, delay, interval)
+controller -> timer : schedule(task, delay, period)
 activate timer
 deactivate controller
 deactivate timer

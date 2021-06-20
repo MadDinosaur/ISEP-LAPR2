@@ -49,7 +49,7 @@ public class DailyReportController extends TimerTask {
 
         Timer timer = new Timer();
 
-        int period = 10000; //10 seconds
+        int period = 10000;//10 seconds
         timer.schedule(new DailyReportController(), 3000, period );
 
         /*
