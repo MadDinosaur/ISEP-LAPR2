@@ -1,6 +1,5 @@
 package app.ui.gui;
 
-import app.domain.model.Client;
 import javafx.fxml.Initializable;
 
 import java.net.URL;

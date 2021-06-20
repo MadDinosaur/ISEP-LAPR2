@@ -6,12 +6,8 @@ import app.domain.model.Company;
 import app.domain.store.ClientStore;
 import app.mappers.ClientMapper;
 import app.mappers.dto.ClientDTO;
-import javafx.fxml.Initializable;
 
-import java.lang.ref.Cleaner;
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class ShowClientListController {
 

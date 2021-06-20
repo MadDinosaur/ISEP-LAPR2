@@ -8,7 +8,6 @@ import app.domain.model.Exceptions.InvalidClientException;
 import app.domain.model.Exceptions.InvalidEmailException;
 import app.mappers.dto.ClientDTO;
 import auth.domain.model.Email;
-import org.apache.commons.lang3.ObjectUtils;
 
 import java.io.FileInputStream;
 import java.io.IOException;

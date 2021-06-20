@@ -1,13 +1,15 @@
 package app.controller;
 
-import app.domain.model.*;
+import app.domain.model.Client;
+import app.domain.model.Company;
+import app.domain.model.Test;
+import app.domain.model.TestParameter;
 import app.mappers.TestMapper;
 import app.mappers.TestParamMapper;
 import app.mappers.dto.TestDTO;
 import app.mappers.dto.TestParameterDTO;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ShowTestResultController {
     private Company company = App.getInstance().getCompany();

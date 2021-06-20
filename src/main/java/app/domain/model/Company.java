@@ -7,10 +7,13 @@ import app.domain.store.*;
 import auth.AuthFacade;
 import auth.domain.model.Email;
 import org.apache.commons.lang3.StringUtils;
-import static com.nhs.report.Report2NHS.writeUsingFileWriter;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
+
+import static com.nhs.report.Report2NHS.writeUsingFileWriter;
 
 /**
  *
