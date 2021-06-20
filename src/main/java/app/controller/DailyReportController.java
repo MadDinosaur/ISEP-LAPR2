@@ -27,6 +27,12 @@ public class DailyReportController extends TimerTask {
 
     private final Company company = App.getInstance().getCompany();
     private final ExternalModuleNhsReport nhsReport = new ExternalModuleNhsReportAdapter();
+    private int historicalPoints;
+    private String independentVariable;
+    private String currentDay;
+    private String initialDay;
+    private String finalDay;
+
 
     //private WriteReport writeReport = new WriteReport();
 
@@ -63,13 +69,22 @@ public class DailyReportController extends TimerTask {
      */
     public void run() {
 
+
         Properties props = new Properties(System.getProperties());
         String intervalDates = props.getProperty("intervalDates");
-        String historicalPoints = props.getProperty("historicalPoints");
+        String historicalPointsString = props.getProperty("historicalPoints");
+        historicalPoints = Integer.parseInt(historicalPointsString);
 
         //String report = writeReport.getReport();
         String abc = "xD funny momement";
-        nhsReport.sendReport(abc);
+
+        CreateNhsReportController createNhsReportController = new CreateNhsReportController();
+        createNhsReportController.setHistoricalPoints(historicalPoints);
+        createNhsReportController.setCurrentDay(currentDay);
+        createNhsReportController.setInitialDay(initialDay);
+        createNhsReportController.setFinalDay(finalDay);
+        createNhsReportController.setIndependentVariable(independentVariable);
+
         System.out.println("NHS Daily Report sent");
     }
 }

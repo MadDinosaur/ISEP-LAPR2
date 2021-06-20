@@ -223,7 +223,7 @@ public class WriteReport implements CharSequence {
         if(independentVariable.equalsIgnoreCase("mean age")){
              linearRegression = new LinearRegression(x2,y);
         }else{
-            if(independentVariable.equalsIgnoreCase("tests made")){
+            if(independentVariable.equalsIgnoreCase("total tests")){
                 linearRegression = new LinearRegression(x1,y);
             }else{
                 throw new Exception("Invalid variable");
@@ -318,7 +318,7 @@ public class WriteReport implements CharSequence {
                 if(independentVariable.equalsIgnoreCase("mean age")){
                     critical = linearRegression.getInterval(0.95,testStore.getAverageAgeOfClient(dateInString));
                 }else{
-                    if(independentVariable.equalsIgnoreCase("tests made")){
+                    if(independentVariable.equalsIgnoreCase("total tests")){
                         critical = linearRegression.getInterval(0.95,testStore.getNumberOfTestsPerformed(dateInString));
                     }else{
                         throw new Exception("Invalid variable");
@@ -330,7 +330,7 @@ public class WriteReport implements CharSequence {
                     stringToBuild.append(linearRegression.predict(testStore.getAverageAgeOfClient(dateInString)));
                     prevision = linearRegression.predict(testStore.getAverageAgeOfClient(dateInString));
                 }else{
-                    if(independentVariable.equalsIgnoreCase("tests made")){
+                    if(independentVariable.equalsIgnoreCase("total tests")){
                         stringToBuild.append(linearRegression.predict(testStore.getNumberOfTestsPerformed(dateInString)));
                         prevision = linearRegression.predict(testStore.getNumberOfTestsPerformed(dateInString));
                     }else{
