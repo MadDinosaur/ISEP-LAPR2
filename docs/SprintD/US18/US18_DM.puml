@@ -29,10 +29,19 @@ class Client {
 -email
 -password
 }
+class MultiLinearRegression{
+}
+class LinearRegression{
+}
+class WriteReport{
+}
 
-"NHS API" "1"-left-"*" NHSReportType : sent via <
+"NHS API" "1"-left-"*" WriteReport : sent via <
 "NHS API" -right- NHS : owned by >
-NHSReportType "*"--"1" Company : generates <
+MultiLinearRegression "*"--"1" Company : generates <
+LinearRegression "*"--"1" Company : generates <
+MultiLinearRegression "*"-up-"1" WriteReport : creates >
+LinearRegression "*"-up-"1" WriteReport : creates >
 Test "*"-up-"1" Company : performs <
 Test "*"--"1" Client : requested by >
 

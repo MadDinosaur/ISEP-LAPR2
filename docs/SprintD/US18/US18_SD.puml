@@ -1,0 +1,75 @@
+@startuml
+
+autonumber
+
+actor "Administrator" as admin
+participant ":CreateReportUI" as ui
+participant ":CreateReportController" as ctrl
+participant ":Company" as company
+participant "writeReport :WriteReport"
+participant "testStore :TestStore"
+participant "test :Test"
+participant "client :Client"
+participant "linearRegression :LinearRegression"
+participant "multiLinearRegression :MultiLinearRegression"
+
+
+activate admin
+admin -> ui : clicks create report menu
+activate ui
+ui --> admin : asks type and number of historical points,\n date intervals, current day, regression model and \n confidence and significance levels
+deactivate ui
+admin -> ui : selects and types requested data
+activate ui
+ui -> ctrl : setData(data)
+activate ctrl
+ctrl-> ctrl : validate(data)
+ctrl -> company : makeSimpleLinearRegression(data)
+activate company
+company -> "writeReport :WriteReport" : new WriteReport(data, testStore)
+activate "writeReport :WriteReport"
+loop for each day of the regression interval
+"writeReport :WriteReport" -> "testStore :TestStore" : y[i] = getNumberOfPositiveCasesPerDay(day)
+activate "testStore :TestStore"
+deactivate "testStore :TestStore"
+"writeReport :WriteReport" -> "testStore :TestStore" : x[i] = getNumberOfTestsPerformed(day)
+activate "testStore :TestStore"
+deactivate "testStore :TestStore"
+alt if independentVar = mean age
+"writeReport :WriteReport" -> "testStore :TestStore" : x[i] = getAverageAgeOfClient(day)
+activate "testStore :TestStore"
+"testStore :TestStore" -> "testStore :TestStore" : getValidatedTests()
+"testStore :TestStore" -> "test :Test" : client = test.getClient()
+"testStore :TestStore" -> "client :Client" : getAgeInYears()
+deactivate "testStore :TestStore"
+end
+end
+"writeReport :WriteReport" -> "linearRegression :LinearRegression" : linearRegression = new LinearRegression(x,y)
+loop for each historical point
+"writeReport :WriteReport" -> "linearRegression :LinearRegression" : getPrevision(x[i])
+deactivate "writeReport :WriteReport"
+end
+alt if regressionModel = "Multi Linear"
+ctrl -> company : makeMultiLinearRegression(data)
+company -> "writeReport :WriteReport" : new WriteReport(data,testStore)
+activate "writeReport :WriteReport"
+loop for each day of the regression interval
+"writeReport :WriteReport" -> "testStore :TestStore" : y[i] = getNumberOfPositiveCasesPerDay(day)
+activate "testStore :TestStore"
+deactivate "testStore :TestStore"
+"writeReport :WriteReport" -> "testStore :TestStore" : xa[i] = getNumberOfTestsPerformed(day)
+activate "testStore :TestStore"
+deactivate "testStore :TestStore"
+"writeReport :WriteReport" -> "testStore :TestStore" : xb[i] = getAverageAgeOfClient(day)
+activate "testStore :TestStore"
+deactivate "testStore :TestStore"
+end
+"writeReport :WriteReport" -> "multiLinearRegression :MultiLinearRegression" : multiLinearRegression  = new MultiLinearRegression(xa,xb,y)
+loop for each historical point
+"writeReport :WriteReport" -> "multiLinearRegression :MultiLinearRegression" : getPrevision(xa[i],xb[i])
+deactivate "writeReport :WriteReport"
+end
+end
+ui --> admin : success of the operation
+
+@enduml

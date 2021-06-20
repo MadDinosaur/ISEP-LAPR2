@@ -7,7 +7,7 @@ actor "Administrator" as admin
 participant ":System" as sys
 
 admin -> sys: starts new report
-sys -->admin :  asks initial and final date
+sys -->admin :  asks initial and final date and current day
 admin -> sys : types requested data
 sys --> admin : asks number and type of historical points
 admin -> sys : types requested data
@@ -17,8 +17,8 @@ alt regression model is simple linear regression
 sys --> admin : requests independent variable
 admin -> sys : chooses independent variable
 end
+sys --> admin : asks confidence and significance level
+admin -> sys : types requested data
 sys -> admin: informs operation success
-
-
 
 @enduml
