@@ -3,7 +3,6 @@
 skinparam classAttributeIconSize 0
 
 class DailyReportController {
-+dailyReportTimer()
 +run()
 }
 
@@ -42,6 +41,12 @@ class Company {
 +makeSimpleLinearRegressionReport(historicalPoints, dateCurrentDay, dateInitalDay, dateCurrentDayFinal, independentVar)
 }
 
+class TestStore{
++getPositiveCasesPerDay(day)
++getNumberOfTestsPerformed(day)
++getAverageAgeClient(day)
+}
+
 class WriteReport {
 +WriteReport(testStore, historicalPoints, currentDay, startRegression, finishRegression)
 +getReport()
@@ -61,15 +66,19 @@ class Report2NHS {
 +writeUsingFileWriter(String data)
 }
 
+
+
 DailyReportController ..> ExternalModuleNhsReport
 TimerTask ..|> Runnable
 DailyReportTimer ..> TimerTask
 DailyReportTimer .> DailyReportController
 DailyReportController .> CreateNhsReportController
 CreateNhsReportController .> Company
+Company ..> TestStore
 Company ..> WriteReport
+TestStore <. WriteReport
 ExternalModuleNhsReport <|.. ExternalModuleNhsReportAdapter
-ExternalModuleNhsReportAdapter --> Report2NHS
+ExternalModuleNhsReportAdapter -> Report2NHS
 WriteReport ..> LinearRegression
 WriteReport ..> MultiLinearRegression
 
