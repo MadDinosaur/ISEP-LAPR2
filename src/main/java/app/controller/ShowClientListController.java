@@ -6,13 +6,9 @@ import app.domain.model.Company;
 import app.domain.store.ClientStore;
 import app.mappers.ClientMapper;
 import app.mappers.dto.ClientDTO;
-
-<<<<<<< HEAD
 import java.lang.ref.Cleaner;
 import java.net.URL;
 import java.util.ArrayList;
-=======
->>>>>>> 258045ffac5b1b1e27309dcfc123a3a7887d40e1
 import java.util.List;
 
 public class ShowClientListController {
