@@ -307,23 +307,15 @@ public class Company {
         return nhsCodeGenerator();
     }
 
-    public void MakeLinearRegressionReport(){
-        String currentDay = "20/05/2021";
-        String[] dateComponents = currentDay.split("/");
-        int day = Integer.parseInt(dateComponents[0]);
-        int month = Integer.parseInt(dateComponents[1]);
-        int year = Integer.parseInt(dateComponents[2]);
-        String currentDayFinal = "28/05/2021";
-        String[] dateComponentsFinal = currentDayFinal.split("/");
-        int dayFinal = Integer.parseInt(dateComponentsFinal[0]);
-        int monthFinal = Integer.parseInt(dateComponentsFinal[1]);
-        int yearFinal = Integer.parseInt(dateComponentsFinal[2]);
-        Date dateCurrentDayFinal = new GregorianCalendar(yearFinal, monthFinal, dayFinal).getTime();
-        Date dateCurrentDay = new GregorianCalendar(year, month, day).getTime();
-        WriteReport writeReport = new WriteReport(testStore,15,"30/05/2021",dateCurrentDay,dateCurrentDayFinal);
+    public void makeMultiLinearRegressionReport(int historicalPoints, String dateCurrentDay, Date dateInitalDay,Date dateCurrentDayFinal){
+        WriteReport writeReport = new WriteReport(testStore,historicalPoints,dateCurrentDay,dateInitalDay,dateCurrentDayFinal);
         String stringToReport = writeReport.getReport();
         writeUsingFileWriter(stringToReport);
-
+    }
+    public void makeSimpleLinearRegressionReport(int historicalPoints, String dateCurrentDay, Date dateInitalDay,Date dateCurrentDayFinal, String independentVar) throws Exception {
+        WriteReport writeReport = new WriteReport(testStore,historicalPoints,dateCurrentDay,dateInitalDay,dateCurrentDayFinal,independentVar);
+        String stringToReport = writeReport.getReport();
+        writeUsingFileWriter(stringToReport);
     }
 
 
