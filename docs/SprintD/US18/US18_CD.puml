@@ -1,0 +1,74 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class CreateNhsReportUI {
++run()
+
+}
+
+class CreateNhsReportController {
++setHistoricalPoints(historicalPoints)
++setCurrentDay(currentDay)
++setInitialDay(initialDay)
++setFinalDay(finalDay)
++setIndependentVariable(independentVariable)
++makeRegression()
+}
+
+class TestStore{
++getPositiveCasesPerDay(day)
++getNumberOfTestsPerformed(day)
++getAverageAgeClient(day)
+}
+
+class LinearRegression {
++LinearRegression(x, y)
+}
+
+class MultiLinearRegression {
++MultiLinearRegression(x1, x2, y)
+}
+
+class Company {
++makeMultiLinearRegressionReport(historicalPoints, dateCurrentDay, dateInitalDay, dateDayFinal)
++makeSimpleLinearRegressionReport(historicalPoints, dateCurrentDay, dateInitalDay, dateCurrentDayFinal, independentVar)
+}
+
+class WriteReport {
++WriteReport(testStore, historicalPoints, currentDay, startRegression, finishRegression)
++getReport()
+}
+
+class Client{
+-dateBirth
++getAgeInYears()
+}
+
+interface ExternalModuleNhsReport {
++void sendReport(String string)
++void getDateAndTime()
+}
+
+class ExternalModuleNhsReportAdapter {
++sendReport(String string)
++getDateAndTime()
+}
+
+class Report2NHS {
++writeUsingFileWriter(String data)
+}
+
+CreateNhsReportController ..> ExternalModuleNhsReport
+CreateNhsReportUI .> CreateNhsReportController
+CreateNhsReportController .> Company
+Company --> WriteReport
+Company ..> TestStore
+TestStore ..> Client
+WriteReport ..> TestStore
+ExternalModuleNhsReport <|.. ExternalModuleNhsReportAdapter
+ExternalModuleNhsReportAdapter --> Report2NHS
+WriteReport ..> LinearRegression
+WriteReport ..> MultiLinearRegression
+
+@enduml
