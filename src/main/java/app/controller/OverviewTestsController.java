@@ -1,6 +1,6 @@
 package app.controller;
 
-import app.domain.adapter.BiggestContiguousSumAlgorithm;
+import app.domain.adapter.BiggestContiguousSubSequenceAlgorithm;
 import app.domain.model.Company;
 
 import java.time.LocalDate;
@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class OverviewTestsController {
 
     private Company company;
-    private BiggestContiguousSumAlgorithm algorithm;
+    private BiggestContiguousSubSequenceAlgorithm algorithm;
 
     public OverviewTestsController() {
         this.company = App.getInstance().getCompany();

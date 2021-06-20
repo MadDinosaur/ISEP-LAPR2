@@ -18,28 +18,62 @@ otUI -[dotted]> lc: requests the beginning and ending dates and the algorithm to
 deactivate otUI
 lc -> otUI: types in the requested data
 activate otUI
-otUI -> otC: dateInterval = getDatesBetweenDateInterval(begginingDate, endingDate)
+otUI -> otC: dateInterval = getDatesBetweenDateInterval(beginningDate, endingDate)
+activate otC
 otUI -> otC: getTotalNumberOfClients()
 otC -> company: clientStore = getClientStore()
+activate company
+deactivate company
 otC -> cs: getTotalNumberOfClients()
+activate cs
+deactivate cs
+deactivate otC
 otUI -> otC: getTotalNumberOfValidatedTests()
+activate otC
 otC -> company: testStore = getTestStore()
+activate company
+deactivate company
 otC -> ts: getTotalNumberOfValidatedTests()
+activate ts
+deactivate ts
+deactivate otC
 loop for each date in the date interval
 otUI -> otC: getNumberOfTestsWaitingForResultsInDate(date)
+activate otC
 otC -> ts: getNumberOfTestsWaitingForResultsInDate(date)
-otUI -> otC: getNumberOfTestsWaitingForReportInDateInterval(dateInterval)
-otC -> ts: getNumberOfTestsWaitingForReportInDateInterval(dateInterval)
-otUI -> otC: getNumberOfTestsValidatedInDateInterval(dateInterval)
-otC -> ts: getNumberOfTestsValidatedInDateInterval(dateInterval)
+activate ts
+deactivate ts
+deactivate otC
+otUI -> otC: getNumberOfTestsWaitingForReportInDate(date)
+activate otC
+otC -> ts: getNumberOfTestsWaitingForReportInDate(date)
+activate ts
+deactivate ts
+deactivate otC
+otUI -> otC: getNumberOfTestsValidatedInDate(date)
+activate otC
+otC -> ts: getNumberOfTestsValidatedInDate(date)
+activate ts
+deactivate ts
+deactivate otC
 end loop
 otUI -> otC: int[] sequence = getDifferenceOfNewAndValidatedTests(dateInterval)
+activate otC
 otC -> ts: getDifferenceOfNewAndValidatedTestsForEachHalfAnHour(dateInterval)
+activate ts
 otC -> ts: getNumberOfNewTestsForEachHalfAnHour(dateInterval)
 otC -> ts: getNumberOfValidatedTestsForEachHalfAnHour(dateInterval)
+deactivate ts
+deactivate otC
 otUI -> otC: getBiggestContiguousSubSequence(sequence, code)
+activate otC
 otC -> company: algorithm = getBiggestContiguousSubSequenceAlgorithm(code)
+activate company
+deactivate company
 otC -> "algorithm: BiggestContiguousSubSequenceAlgorithm": getBiggestContiguousSubSequence(sequence)
+activate "algorithm: BiggestContiguousSubSequenceAlgorithm"
+deactivate "algorithm: BiggestContiguousSubSequenceAlgorithm"
+deactivate otC
 otUI -[dotted]> lc: shows the statistics and graphs
 
 deactivate otUI
