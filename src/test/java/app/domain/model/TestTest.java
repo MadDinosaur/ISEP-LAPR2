@@ -89,6 +89,7 @@ public class TestTest{
         String nhsCode = newTest.getNhsCode();
         TestType testType = newTest.getTestType();
         List<Category> categoryList1 = newTest.getListOfCategories();
+        System.out.println(categoryList1);
         TestParamList parameterList = newTest.getTestParamList();
         String dateTimeRegister = newTest.getDateTimeRegister();
         String dateTimeResults = newTest.getDateTimeResults();
@@ -104,6 +105,7 @@ public class TestTest{
         Assert.assertEquals(dateTimeResults, "13h00");
         Assert.assertEquals(dateTimeReport, "13h01");
         Assert.assertEquals(dateTimeValidation, "13h49");
+        Assert.assertNull(categoryList1);
 
     }
 

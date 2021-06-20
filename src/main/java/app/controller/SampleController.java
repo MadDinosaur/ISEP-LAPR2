@@ -47,7 +47,7 @@ public class SampleController {
      * creates n samples and n barcodes and saves them as .jpg files
      * @param n number of samples requested by the medical lab technician
      * @return sampleList
-     * @throws Exception
+     * @throws Exception exception
      */
     public SampleList setSampleNumber(int n) throws Exception {
 
@@ -72,7 +72,7 @@ public class SampleController {
     /**
      * associates the list of samples to the selected test
      * @param n number of samples
-     * @throws Exception
+     * @throws Exception exception
      */
     public void createSampleList(int n) throws Exception {
         test.setSampleList(setSampleNumber(n));

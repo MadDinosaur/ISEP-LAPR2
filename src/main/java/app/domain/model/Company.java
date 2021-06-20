@@ -358,4 +358,5 @@ public class Company {
             throw new UnassignedExternalModuleException("Cannot access algorithm!");
         }
     }
+
 }
