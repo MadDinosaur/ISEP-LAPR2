@@ -98,7 +98,7 @@ public class WriteReport implements CharSequence {
         r2Adjusted = multiLinearRegression.getRSquaredAdjusted();
         r = multiLinearRegression.getR();
         critical = multiLinearRegression.getCritical();
-        String selectedCoefient = null;
+        String selectedCoefient = "intercept";
 
         double t_obs;
         if(selectedCoefient.equalsIgnoreCase("a")){
