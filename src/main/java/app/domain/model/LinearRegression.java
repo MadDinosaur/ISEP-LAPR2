@@ -24,12 +24,11 @@ public class LinearRegression {
     double rss = 0.0;      // residual sum of squares   //sqe
     double tss;                                         //sqt
     double svar;                                        //mqr
-    private double sxx, syy, sxy, meanX, meanY, variance, sr, se, student;
-    private int n, numTests;
-    double statisticF;
-    private double[] x;
-    private double[] y;
-    private int degreesOfFreedom;
+    private final double sxx, syy, sxy, meanX, meanY, variance, sr, se;
+    private final int n, numTests;
+    private final double[] x;
+    private final double[] y;
+    private final int degreesOfFreedom;
 
     /**
      * Performs a linear regression on the data points (y[i], x[i]).
@@ -168,8 +167,8 @@ public class LinearRegression {
     }
 
     public double getT0(double significance) {
-        FDistribution tDistribution = new FDistribution(1,numTests);
-        return tDistribution.inverseCumulativeProbability(1-significance);
+        FDistribution fDistribution = new FDistribution(1,numTests);
+        return fDistribution.inverseCumulativeProbability(1-significance);
     }
 
     public double getTa() { //ver se é maior que ts, se for rejeita h0

@@ -7,6 +7,7 @@ import app.domain.model.Exceptions.InvalidDescriptionException;
 import app.domain.model.Exceptions.UnassignedExternalModuleException;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -15,7 +16,7 @@ import java.util.Objects;
 /**
  * @author 1200985 Tomás Cancela
  */
-public class TestType {
+public class TestType implements Serializable {
 
 
     /**

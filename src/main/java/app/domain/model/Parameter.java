@@ -5,7 +5,9 @@ import app.domain.model.Exceptions.InvalidDescriptionException;
 import app.domain.model.Exceptions.InvalidNameException;
 import org.apache.commons.lang3.StringUtils;
 
-public class Parameter {
+import java.io.Serializable;
+
+public class Parameter implements Serializable {
 
     /**
      * Parameter's name

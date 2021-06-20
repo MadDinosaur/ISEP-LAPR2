@@ -35,6 +35,7 @@ public class MultiLinearRegression {
         double[][] xTransposeX = matrixMultiplication(xTranspose, x);
         xTransposeXInversed = invert(xTransposeX);
 
+
         double[][] yVertical = new double[y.length][1];
         for (int i = 0; i < yVertical.length; i++) {
             yVertical[i][0] = y[i];
@@ -46,7 +47,6 @@ public class MultiLinearRegression {
         intercept = vector[0][0];
         this.xa = vector[1][0];
         this.xb = vector[2][0];
-        System.out.println(xb);
 
         for (double yNumber: y
              ) {
@@ -136,6 +136,15 @@ public class MultiLinearRegression {
     public double getConfidenceRegressionIntercept(){
         TDistribution tDistribution = new TDistribution(degreesOfFreedom-2);
         return tDistribution.inverseCumulativeProbability(0.975)*Math.sqrt(sqEAverage*xTransposeXInversed[0][0]);
+    }
+    public double xTransposeX1(){
+        return xTransposeXInversed[1][1];
+    }
+    public double xTransposeX2(){
+        return xTransposeXInversed[2][2];
+    }
+    public double xTransposeX0(){
+        return xTransposeXInversed[0][0];
     }
 
 

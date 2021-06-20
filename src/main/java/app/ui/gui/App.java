@@ -1,6 +1,6 @@
 package app.ui.gui;
 
-import app.controller.DailyReportController;
+import app.domain.model.DailyReportTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,7 +28,7 @@ public class App extends Application {
         stage.setMinHeight(MINIMUM_WINDOW_HEIGHT);
         toMainScene();
         this.stage.show();
-        DailyReportController.dailyReportTimer();
+        DailyReportTimer.dailyReportTimer();
     }
 
     public Stage getStage() {

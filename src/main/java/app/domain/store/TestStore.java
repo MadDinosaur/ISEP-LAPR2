@@ -6,11 +6,12 @@ import app.domain.model.Exceptions.InvalidTestException;
 import app.domain.model.Exceptions.TestDoesntExistException;
 import app.domain.model.Exceptions.UnregisteredBarcodeException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class TestStore {
+public class TestStore implements Serializable {
     private final List<Test> tests = new ArrayList<>();
 
 

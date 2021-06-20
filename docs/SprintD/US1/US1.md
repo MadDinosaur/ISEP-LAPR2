@@ -50,7 +50,7 @@ As a client, I want to access the application to view the results of the tests I
 ## 2. OO Analysis
 
 ### 2.1. Relevant Domain Model Excerpt
-![US2_DM](US2_DM.svg)
+![US1_DM](US1_DM.svg)
 
 ### 2.2. Other Remarks
 
@@ -66,14 +66,22 @@ As a client, I want to access the application to view the results of the tests I
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
-|...|
-*Note: IE - Information Expert*
+|**2. displays client tests**| ...knowing the client? | AuthFacade<br>Company<br>ClientStore| IE: Auth knows the e-mail of the logged in client <br> IE: Company knows all clients <br> HCLC: All clients are stored in the Client Store.|
+| | ...knowing the client tests? | Company<br>TestStore | IE: Company knows all tests<br>HCLC: All tests are stored in the TestStore |
+| | ...displaying the client tests? | ShowTestResultsUI | PF: There is no reason to assign this responsibility to any existing class in the Domain Model |
+|**3. displays test results** | ...knowing the clients tests results? | TestParameter<br>TestParamList | IE: TestParameter knows its own result<br>HCLC: TestParamList stores all TestParameters in a test |
+| | ...displaying test results? | ShowTestResultsUI | PF: There is no reason to assign this responsibility to any existing class in the Domain Model |
+*Note: IE - Information Expert   HCLC - High Cohesion Low Coupling   PF: Pure Fabrication*
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * ...
+ * AuthFacade
+ * Company
+ * TestStore
+ * TestParameter
+ * TestParamList
 
 Other software classes identified: 
  * ShowTestResultUI (applying the Pure Fabrication pattern)  

@@ -72,14 +72,24 @@ As a client, I want to update my personal data.
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
-|...|
-*Note: IE - Information Expert*
+| **2. displays client data** |...knowing the client? | AuthFacade<br>Company<br>ClientStore| IE: Auth knows the e-mail of the logged in client. <br> IE: Company knows all clients. <br> HCLC: All clients are stored in the Client Store.|
+| | ...knowing which data to display? | Client | IE: Client knows its own data.
+| | ...displaying the client tests? | ShowTestResultsUI | PF: There is no reason to assign this responsibility to any existing class in the Domain Model. |
+| **5. types requested data**| ...storing the new data? | ClientDTO | PF:  There is no reason to assign this responsibility to any existing class in the Domain Model. |
+| **6. shows data and requests confirmation**| ...displaying the data? | ShowTestResultsUI | PF: There is no reason to assign this responsibility to any existing class in the Domain Model. |
+| **8. informs operation success**| ...validating the new data? | AuthFacade<br>ClientStore<br>Client | IE (Global validation): Auth knows all users' data<br> IE (Global validation): ClientStore know all other clients<br> IE (Local validation): Client knows its own attributes' acceptance rules.|
+| | ...saving the new data? | Client | IE: Client knows its own data. | 
+*Note: IE - Information Expert   HCLC - High Cohesion Low Coupling   PF: Pure Fabrication*
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * ...
+ * AuthFacade
+ * Company
+ * ClientStore
+ * Client
+ * ClientDTO
 
 Other software classes identified: 
  * UpdateClientDataUI (applying the Pure Fabrication pattern)  

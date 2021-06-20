@@ -3,12 +3,13 @@ package app.domain.model;
 import app.domain.shared.Constants;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Category {
+public class Category implements Serializable {
 
     /**
      * Parameter category's name
