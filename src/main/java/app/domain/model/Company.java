@@ -361,7 +361,6 @@ public class Company {
     }
 
     public String makeMultiLinearRegressionReport(int historicalPoints, String dateCurrentDay, Date dateInitalDay,Date dateDayFinal){
-        System.out.println("");
         WriteReport writeReport = new WriteReport(testStore,historicalPoints,dateCurrentDay,dateInitalDay,dateDayFinal);
         String stringToReport = writeReport.getReport();
         writeUsingFileWriter(stringToReport);

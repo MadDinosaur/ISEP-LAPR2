@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Properties;
 import java.util.Timer;
@@ -19,6 +21,7 @@ import java.util.TimerTask;
  */
 
 public class DailyReportController extends TimerTask {
+
     CreateNhsReportController createNhsReportController = new CreateNhsReportController();
     private final ExternalModuleNhsReport nhsReport = new ExternalModuleNhsReportAdapter();
 
@@ -30,22 +33,23 @@ public class DailyReportController extends TimerTask {
         Date date = null;
 
         try {
-            date = dateFormatter.parse("2021-06-18 6:00:00");
+            date = dateFormatter.parse("2021-06-20 19:30:00");
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-
         Timer timer = new Timer();
         int period = 86400000; // 1 day in milliseconds
-        timer.schedule(new DailyReportController(), date, period);
-
+        long delay = 3000;
+        timer.schedule(new DailyReportController(), delay, period);
     }
 
     /**
      * method triggered by the timer above
      */
     public void run() {
+
+        System.out.println("ola");
 
         Properties props = new Properties();
         try {
@@ -77,4 +81,5 @@ public class DailyReportController extends TimerTask {
         nhsReport.sendReport(report);
 
     }
+
 }
