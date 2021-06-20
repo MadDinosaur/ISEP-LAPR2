@@ -2,7 +2,9 @@ package app.domain.model;
 
 import app.domain.model.Exceptions.InvalidDateException;
 
-public class DateBirth {
+import java.io.Serializable;
+
+public class DateBirth implements Serializable {
     private int year;
     private int month;
     private int day;
