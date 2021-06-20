@@ -1,8 +1,6 @@
 package app.domain.model;
 
-import app.controller.App;
 import app.domain.adapter.BiggestContiguousSumAlgorithm;
-import app.domain.adapter.Sortable;
 import app.domain.model.Exceptions.InvalidLaboratoryIDException;
 import app.domain.model.Exceptions.UnassignedExternalModuleException;
 import app.domain.store.*;
@@ -12,7 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import static com.nhs.report.Report2NHS.writeUsingFileWriter;
 
 import java.io.*;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -69,7 +66,10 @@ public class Company {
         Parameter parameter2 = new Parameter("par2346", "HB001", "test f235");
         categoryTest.saveParameter(parameter);
         categoryTest.saveParameter(parameter2);
-        List<Category> categoryList1 = new ArrayList<>(Collections.singleton(categoryTest));
+        Category cholesterol = new Category("Cholesterol", "code", "description", "nhsid");
+        Parameter cholesterolParameter = new Parameter("HDL00", "HDL00", "description");
+        cholesterol.saveParameter(cholesterolParameter);
+        List<Category> categoryList1 = new ArrayList<>(List.of(categoryTest, cholesterol));
         TestType testTypeHardCoded = new TestType("Blood", "test Of Test", collectionMethodTest, categoryList1);
         testTypeStore.addTestType(testTypeHardCoded);
         Test testTestHardCoded = new Test(clientStore.getClientByCardNumber((long) 8765432187654321.0), testTypeHardCoded, testNumberGenerator(), nhsCodeGenerator());
@@ -85,8 +85,6 @@ public class Company {
         testStore.addTest(testTestHardCoded);
         //END OF HARDCODED THINGS FOR TESTS
 
-        ClinicalAnalysisLaboratory clinicalAnalysisLaboratory = new ClinicalAnalysisLaboratory();
-        clinicalAnalysisLaboratory.setLaboratoryID("001DO");
     }
 
 
@@ -309,23 +307,16 @@ public class Company {
         return nhsCodeGenerator();
     }
 
-    public void MakeLinearRegressionReport(){
-        String currentDay = "20/05/2021";
-        String[] dateComponents = currentDay.split("/");
-        int day = Integer.parseInt(dateComponents[0]);
-        int month = Integer.parseInt(dateComponents[1]);
-        int year = Integer.parseInt(dateComponents[2]);
-        String currentDayFinal = "28/05/2021";
-        String[] dateComponentsFinal = currentDayFinal.split("/");
-        int dayFinal = Integer.parseInt(dateComponentsFinal[0]);
-        int monthFinal = Integer.parseInt(dateComponentsFinal[1]);
-        int yearFinal = Integer.parseInt(dateComponentsFinal[2]);
-        Date dateCurrentDayFinal = new GregorianCalendar(yearFinal, monthFinal, dayFinal).getTime();
-        Date dateCurrentDay = new GregorianCalendar(year, month, day).getTime();
-        WriteReport writeReport = new WriteReport(testStore,15,"30/05/2021",dateCurrentDay,dateCurrentDayFinal);
+    public void makeMultiLinearRegressionReport(int historicalPoints, String dateCurrentDay, Date dateInitalDay,Date dateDayFinal){
+        System.out.println("");
+        WriteReport writeReport = new WriteReport(testStore,historicalPoints,dateCurrentDay,dateInitalDay,dateDayFinal);
         String stringToReport = writeReport.getReport();
         writeUsingFileWriter(stringToReport);
-
+    }
+    public void makeSimpleLinearRegressionReport(int historicalPoints, String dateCurrentDay, Date dateInitalDay,Date dateCurrentDayFinal, String independentVar) throws Exception {
+        WriteReport writeReport = new WriteReport(testStore,historicalPoints,dateCurrentDay,dateInitalDay,dateCurrentDayFinal,independentVar);
+        String stringToReport = writeReport.getReport();
+        writeUsingFileWriter(stringToReport);
     }
 
 

@@ -49,10 +49,11 @@ public class RegisterClientController {
     }
 
     public void setCardNumber(long cardNumber) {
-        if (cardNumber > 9999999999999999.0 || cardNumber < 1000000000000000.0) {
+        if (cardNumber > 9999 || cardNumber < 1000) {
             throw new InvalidCardNumberException("Card Number must have 16 digits");
+        } else {
+            this.cardNumber = cardNumber;
         }
-        this.cardNumber = cardNumber;
     }
 
     public void setNhsId(long nhsId) {
@@ -135,7 +136,14 @@ public class RegisterClientController {
     }
 
     public Client createClient(String name, long cardNumber, long nhsId, String dateBirth, long TIN, long phoneNumber, String address, String email) {
-        return this.company.getClientStore().createClient(name, cardNumber, nhsId, dateBirth, TIN, phoneNumber, address, email);
+        setNameClient(name);
+        setCardNumber(cardNumber);
+        setNhsId(nhsId);
+        setDate(dateBirth);
+        setTIN(TIN);
+        setPhoneNumber(phoneNumber);
+        setEmail(email);
+        return new Client(this.name, this.cardNumber, this.nhsId, this.dateBirth, this.TIN, this.phoneNumber, address, this.email);
     }
 
     public boolean saveClientFromCSV(Client client) {

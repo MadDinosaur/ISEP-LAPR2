@@ -31,7 +31,7 @@ public class Category {
     private final String categoryNhsId;
 
     /**
-     * Parameter cartegory's list of parameters
+     * Parameter category's list of parameters
      */
 
     private List<Parameter> parameterList = new ArrayList<>();

@@ -22,8 +22,11 @@ import java.util.logging.Logger;
 
 public class ShowTestResultsScene1UI implements Initializable {
     ShowTestResultController controller = new ShowTestResultController();
+
     app.ui.gui.App mainApp;
-    ClientMenuUI parent;
+
+    ClientMenuUI parentClient;
+    ShowClientListUI parentCliChem;
 
     @FXML
     private ListView<TestDTO> lstViewTests;
@@ -36,7 +39,10 @@ public class ShowTestResultsScene1UI implements Initializable {
 
     @FXML
     void btnBack(ActionEvent event) {
-        parent.toClientMenu();
+        if (parentClient == null)
+            parentCliChem.toShowClientList();
+        if (parentCliChem == null)
+            parentClient.toClientMenu();
     }
 
     @FXML
@@ -62,16 +68,18 @@ public class ShowTestResultsScene1UI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        displayTestList();
     }
 
-    public void setParent(ClientMenuUI parent) {
-        this.parent = parent;
+    public void setParent(Initializable parent) {
+        if (parent instanceof ClientMenuUI)
+            this.parentClient = (ClientMenuUI) parent;
+        if (parent instanceof ShowClientListUI)
+            this.parentCliChem = (ShowClientListUI) parent;
     }
 
-    private void displayTestList() {
+    public void displayTestList(String email) {
         List<TestDTO> tests = controller
-                .displayClientTests(App.getInstance().getCurrentUserSession().getUserId().toString());
+                .displayClientTests(email);
 
         Comparator<TestDTO> byRegDate = new Comparator<TestDTO>() {
             @Override
@@ -92,7 +100,7 @@ public class ShowTestResultsScene1UI implements Initializable {
         try {
             ShowTestResultsScene1UI showTestResultsScene1UI= (ShowTestResultsScene1UI) mainApp.replaceSceneContent("/fxml/ShowTestResultsScene1.fxml");
             showTestResultsScene1UI.setMainApp(this.mainApp);
-            showTestResultsScene1UI.setParent(this.parent);
+            showTestResultsScene1UI.setParent(this.parentCliChem == null ? parentClient : parentCliChem);
         } catch (Exception ex) {
             Logger.getLogger(app.ui.gui.App.class.getName()).log(Level.SEVERE, null, ex);
         }

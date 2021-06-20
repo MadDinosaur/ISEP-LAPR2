@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="270.0" prefWidth="259.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.CliChemTechMenuUI">
+   <top>
+      <VBox prefHeight="64.0" prefWidth="265.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="258.0" text="Clinical Chemistry Technologist Menu">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="6.0" />
+               </VBox.margin>
+            </Label>
+            <Line endX="130.0" startX="-100.0">
+               <VBox.margin>
+                  <Insets left="13.0" right="13.0" />
+               </VBox.margin>
+            </Line>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <VBox alignment="TOP_CENTER" prefHeight="268.0" prefWidth="259.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnShowClientList" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#showClientListScene" text="Check client's tests">
+               <VBox.margin>
+                  <Insets bottom="15.0" top="15.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnRecordTestResults" mnemonicParsing="false" onAction="#recordTestResults" text="Record test results" />
+            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#btnBack" text="Back">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="70.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

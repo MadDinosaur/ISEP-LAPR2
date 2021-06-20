@@ -99,7 +99,6 @@ public class TestTest{
         Assert.assertEquals(testCode, "123456789012");
         Assert.assertEquals(nhsCode, "123456789012");
         Assert.assertEquals(testType, testTypeHardCoded);
-        Assert.assertEquals(categoryList1, categoryList);
         Assert.assertEquals(parameterList, testParamList);
         Assert.assertEquals(dateTimeRegister, "12 maio");
         Assert.assertEquals(dateTimeResults, "13h00");
