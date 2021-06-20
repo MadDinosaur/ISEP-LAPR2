@@ -5,9 +5,55 @@ skinparam classAttributeIconSize 0
 class ImportCSVFileUI
 
 class ImportCSVFileController {
+-file
+-testTypeCode
+-categoryName
+-parameterCode
+-value
+-nhsID
+-cardNumber
+-tin
+-birthday
+-phoneNumber
+-name
+-email
+-address
+-client
+-labID
+-testCode
+-nhsCode
+-dateTimeRegister
+-dateTimeResults
+-dateTimeReport
+-dateTimeValidation
 -test
 
-+validateFile()
+
+
+file setFile(file)
++validateFile(file)
++createNewControllers()
++testTypeCode readTestTypeCode()
++categoryName readCategoryName()
++parameterCode readParameterCodeAndResult()
++value readParameterCodeAndResult()
++nhsID readNhsId()
++cardNumber readCardNumber()
++tin readTin()
++birthday readBirthday()
++phoneNumber readPhoneNumber()
++name readName()
++email readEmail()
++address readAddress()
++createClient()
++saveClient()
++labID readLabId()
++testCode readTestCode()
++nhsCode readNhsCode()
++dateTimeRegister readDateTimeRegister()
++dateTimeResults readDateTimeResults()
++dateTimeReport readDateTimeReport()
++dateTimeValidation readDateTimeValidation()
 +createTest()
 +saveTest()
 }
@@ -15,20 +61,32 @@ class ImportCSVFileController {
 class RegisterTestController {
 -testTypeStore
 -testType
+-category
+-parameter
 -clientStore
+-clinicalAnalysisLaboratory
 -testStore
 
-+getTestTypeByCode(testTypeCode)
-+getCategoryByName(categoryName)
-+getParameterByCode(parameterCode)
-+test createTestFromCSV(testCode, nhsCode, dateRegister, timeRegister, dateResults, timeResults,  dateReport, timeReport,  dateValidation, timeValidation)
++setTestTypeByCode(testTypeCode)
++setCategoryByName(categoryName)
++setTestParameterByParameterCodeAndResult(parameterCode, value)
++setLabById(labID)
++test createTestFromCSV(testCode, nhsCode, dateTimeRegister, dateTimeResults,  dateTimeReport,  dateTimeValidation)
++saveTest(test)
+}
 
+class RegisterClientController {
+-clientStore
+
++client createClient(nhsID, cardNumber, tin, birthday, phoneNumber, name, email, address)
++saveClientFromCSV(client)
 }
 
 class Company {
 +testTypeStore getTestTypeStore()
-+testStore getTestStore()
 +clientStore getClientStore()
++clinicalAnalysisLaboratory getLabById(labID)
++testStore getTestStore()
 }
 
 class TestTypeStore {
@@ -36,11 +94,13 @@ class TestTypeStore {
 }
 
 class TestStore {
++createTestFromCSV(client, testCode, nhsCode, testType, categories, testParamList, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation)
 +validate(test)
 +add(test)
 }
 
 class Test {
++create(client, testCode, nhsCode, testType, categories, testParamList, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation)
 +validate()
 }
 
@@ -51,25 +111,37 @@ class TestType {
 class TestParameterResult
 
 class TestParamList {
-+addTestParameterResult(parameter, result)
++testParamList create()
++addTestParameterResult(parameter, value)
 }
 
 class Category {
++categories create()
++add(category)
 +parameter getParameterByCode(parameterCode)
 }
 
 class TestParameter
 
 class ClientStore {
-+client getClientNyNhsID()
++createClient(nhsID, cardNumber, tin, birthday, phoneNumber, name, email, address)
++validate(client)
++saveClient(client)
+}
+
+class Client {
++create(nhsID, cardNumber, tin, birthday, phoneNumber, name, email, address)
++validate()
 }
 
 
 ImportCSVFileUI ..> ImportCSVFileController
 ImportCSVFileController ..> RegisterTestController
+ImportCSVFileController ..> RegisterClientController
 
 Company -down-> TestStore: uses >
 Company -down-> TestTypeStore: uses >
+Company -down-> ClientStore: uses >
 
 TestStore -down-> Test: contains >
 TestTypeStore -down-> TestType: contains >
@@ -89,5 +161,10 @@ RegisterTestController ..> Test
 RegisterTestController ..> Company
 RegisterTestController ..> TestType
 RegisterTestController ..> Category
+
+RegisterClientController ..> Company
+RegisterClientController ..> Client
+
+Test "*"--"1" Client : requested by >
 
 @enduml

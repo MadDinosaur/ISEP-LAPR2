@@ -115,8 +115,8 @@ deactivate cs
 deactivate rcc
 
 icfu -> icfc: labID = readLabId()
-icfc -> rtc: setLabById(laboratoryID)
-rtc -> Company: clinicalAnalysisLaboratory = getLabById(laboratoryID)
+icfc -> rtc: setLabById(labID)
+rtc -> Company: clinicalAnalysisLaboratory = getLabById(labID)
 activate Company
 deactivate Company
 
@@ -133,10 +133,11 @@ rtc -> Company: testStore = getTestStore()
 activate Company
 deactivate Company
 rtc -> ts: createTestFromCSV(client, testCode, nhsCode, testType, categories, testParamList, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation)
+activate ts
 
 create Test
 ts -> Test: create(client, testCode, nhsCode, testType, categories, testParamList, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation)
-
+deactivate ts
 
 
 Test -> Test: validate()
