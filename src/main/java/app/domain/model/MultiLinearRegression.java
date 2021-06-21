@@ -4,19 +4,103 @@ import org.apache.commons.math3.distribution.FDistribution;
 import org.apache.commons.math3.distribution.TDistribution;
 
 public class MultiLinearRegression {
+
+    /**
+     *  Array of values of the multiplication of the matrix X-Transposed with the matrix X-Inverted
+     */
     private final double[][] xTransposeXInversed;
+
+    /**
+     *  Array of values of the multiplication of the matrix Y-Transposed with the matrix Y
+     */
     private double yTransposeY;
+
+    /**
+     *  Array of values of the intercept and regressors of Regression
+     */
     private final double[][] vector;
+
+    /**
+     * Number of degrees of freedom of Regression
+     */
     int degreesOfFreedom;
+
+    /**
+     * Number of values in the array y
+     */
     int numberOfObservations;
-    private final double xa, xb, intercept;
-    private final double sqR, sqT, sqE;
-    private final double sqRAverage, sqEAverage;
+
+
+    /**
+     * Value of the first regressor
+     */
+    double xa;
+
+    /**
+     * Value of the second regressor (only needed in Multiple Linear Regression)
+     */
+    double xb;
+
+    /**
+     * Value of the intercept in x=0
+     */
+    double intercept;
+
+    /**
+     * Statistic value for square sum of Regression
+     */
+    private final double sqR;
+
+    /**
+     * Statistic value for square sum of Regression Error
+     */
+    private final double sqE;
+
+    /**
+     * Statistic value for the total square sum
+     */
+    private final double sqT;
+
+    /**
+     * Statistic value for the average square sum of Regression
+     */
+    private final double sqRAverage;
+
+    /**
+     * Statistic value for the average square sum of Regression Error
+     */
+    private final double sqEAverage;
+
+    /**
+     * Statistic value of F
+     */
     private final double fTest;
+
+
     private final double critical;
-    private final double rSquared, rSquaredAdjusted, r;
 
+    /**
+     * Statistic value for R^2
+     */
+    double rSquared;
 
+    /**
+     * Statistic value for R^2 Adjusted
+     */
+    double rSquaredAdjusted;
+
+    /**
+     * Statistic value for R
+     */
+    double r;
+
+    /**
+     * Write Report class constructor for Multiple Linear Regressions
+     *
+     * @param x1          First array of values for the regression
+     * @param x2          Second array of values for the regression
+     * @param y           Array of values of the dependent variable for the regression
+     */
     public MultiLinearRegression(double[] x1, double[] x2, double[] y) {
 
 
@@ -78,57 +162,160 @@ public class MultiLinearRegression {
         r= Math.sqrt(rSquared);
     }
 
+    /**
+     * Getter for the degrees of freedom
+     *
+     * @return number of degrees of freedom
+     */
     public int getDegreesOfFreedom(){ return degreesOfFreedom;}
+
+    /**
+     * Getter for the vector
+     *
+     * @return vector with the intercept and regressor
+     */
     public double[][] getVector() {
         return vector;
     }
+
+    /**
+     * Getter for the total square sum of Regression
+     *
+     * @return total square sum of Regression
+     */
     public double getSqT() {
         return sqT;
     }
+
+    /**
+     * Getter for the square sum of Regression Error
+     *
+     * @return square sum of Regression Error
+     */
     public double getSqE() {
         return sqE;
     }
+
+    /**
+     * Getter for the square sum of Regression
+     *
+     * @return square sum of Regression
+     */
     public double getSqR() {
         return sqR;
     }
+
+    /**
+     * Getter for the average square sum of Regression
+     *
+     * @return average square sum of Regression
+     */
     public double getSqRAverage() {
         return sqRAverage;
     }
+
+    /**
+     * Getter for the average square sum of Regression Error
+     *
+     * @return average square sum of Regression Error
+     */
     public double getSqEAverage() {
         return sqEAverage;
     }
+
+    /**
+     * Getter for the statistic value of F
+     *
+     * @return value of F
+     */
     public double getFTest() {
         return fTest;
     }
+
     public double getCritical() {
         return critical;
     }
+
+    /**
+     * Getter for the statistic value of R^2
+     *
+     * @return value of R^2
+     */
     public double getRSquared() {
         return rSquared;
     }
+
+    /**
+     * Getter for the statistic value of R^2 Adjusted
+     *
+     * @return value of R^2 Adjusted
+     */
     public double getRSquaredAdjusted() {
         return rSquaredAdjusted;
     }
+
+    /**
+     * Getter for the statistic value of R
+     *
+     * @return value of R
+     */
     public double getR() {
         return r;
     }
+
+    /**
+     * Getter for value of the first regressor
+     *
+     * @return value of the first regressor
+     */
     public double getX1() {
         return xa;
     }
+
+    /**
+     * Getter for value of the second regressor
+     *
+     * @return value of the second regressor
+     */
     public double getX2() {
         return xb;
     }
+
+    /**
+     * Getter for value of the intercept
+     *
+     * @return value of the intercept
+     */
     public double getIntercept() {
         return intercept;
     }
+
+    /**
+     * Getter for the prevision of y in the regression
+     *
+     * @param a1    value of x1
+     * @param a2    value of x2
+     * @return prevision of y value
+     */
     public double getPrevisionforY(double a1, double a2){
         return a1*xa + a2*xb + intercept;
     }
 
+    /**
+     * Getter for the hypothesis test with -first regressor
+     *
+     * @return the confidence value for the first regressor
+     */
     public double getConfidenceRegressionB1(){
         TDistribution tDistribution = new TDistribution(degreesOfFreedom-2);
         return tDistribution.inverseCumulativeProbability(0.975)*Math.sqrt(sqEAverage*xTransposeXInversed[1][1]);
     }
+
+    /**
+     * Getter for the hypothesis test with -second regressor
+     *
+     * @return the confidence value for the second regressor
+     */
     public double getConfidenceRegressionB2(){
         TDistribution tDistribution = new TDistribution(degreesOfFreedom-2);
         return tDistribution.inverseCumulativeProbability(0.975)*Math.sqrt(sqEAverage*xTransposeXInversed[2][2]);
@@ -137,6 +324,12 @@ public class MultiLinearRegression {
         TDistribution tDistribution = new TDistribution(degreesOfFreedom-2);
         return tDistribution.inverseCumulativeProbability(0.975)*Math.sqrt(sqEAverage*xTransposeXInversed[0][0]);
     }
+
+    /**
+     * Getter for the hypothesis test with -intercept
+     *
+     * @return the confidence value for the intercept
+     */
     public double xTransposeX1(){
         return xTransposeXInversed[1][1];
     }
@@ -147,7 +340,11 @@ public class MultiLinearRegression {
         return xTransposeXInversed[0][0];
     }
 
-
+    /**
+     * Getter for the critical value
+     *
+     * @return value of the intercept
+     */
     public double getCriticalValue(double a1, double a2){
         double[][] aValuesFirst = new double[3][3];
         aValuesFirst[0][0] = 1;
@@ -164,7 +361,12 @@ public class MultiLinearRegression {
         return Math.sqrt(criticalValues[0][0]*sqEAverage)*tStrudent;
     }
 
-
+    /**
+     * Method that transposes a matrix
+     *
+     * @param x  Matrix to be transposed
+     * @return Transposed Matrix
+     */
     private double[][] transposeMatrix(double[][] x) {
         int column = 3;
         int row = x.length;
@@ -177,7 +379,14 @@ public class MultiLinearRegression {
         return transpose;
     }
 
-    public static double[][] matrixMultiplication(double[][] firstMatrix, double[][] secondMatrix) {
+    /**
+     * Method that multiplies 2 matrix
+     *
+     * @param firstMatrix  Matrix to be multiplied
+     * @param secondMatrix  Second matrix to be multiplied
+     * @return Multiplied Matrix
+     */
+    private static double[][] matrixMultiplication(double[][] firstMatrix, double[][] secondMatrix) {
         double[][] product = new double[firstMatrix.length][secondMatrix[0].length];
         for (int i = 0; i < firstMatrix.length; i++) {
             for (int j = 0; j < secondMatrix[0].length; j++) {
@@ -189,8 +398,13 @@ public class MultiLinearRegression {
         return product;
     }
 
-
-    public double[][] invert(double[][] a) {
+    /**
+     * Method that inverts a matrix
+     *
+     * @param a Matrix to be multiplied
+     * @return inverted matrix
+     */
+    private double[][] invert(double[][] a) {
         int n = a.length;
         double[][] x = new double[n][n];
         double[][] b = new double[n][n];
@@ -198,17 +412,17 @@ public class MultiLinearRegression {
         for (int i = 0; i < n; ++i)
             b[i][i] = 1;
 
-        // Transform the matrix into an upper triangle
+
         gaussian(a, index);
 
-        // Update the matrix b[i][j] with the ratios stored
+
         for (int i = 0; i < n - 1; ++i)
             for (int j = i + 1; j < n; ++j)
                 for (int k = 0; k < n; ++k)
                     b[index[j]][k]
                             -= a[index[j]][i] * b[index[i]][k];
 
-        // Perform backward substitutions
+
         for (int i = 0; i < n; ++i) {
             x[n - 1][i] = b[index[n - 1]][i] / a[index[n - 1]][n - 1];
             for (int j = n - 2; j >= 0; --j) {
@@ -223,8 +437,6 @@ public class MultiLinearRegression {
         return x;
     }
 
-// Method to carry out the partial-pivoting Gaussian
-// elimination.  Here index[] stores pivoting order.
 
     public void gaussian(double[][] a, int[] index) {
         int n = index.length;
@@ -234,7 +446,7 @@ public class MultiLinearRegression {
         for (int i = 0; i < n; ++i)
             index[i] = i;
 
-        // Find the rescaling factors, one from each row
+
         for (int i = 0; i < n; ++i) {
             double c1 = 0;
             for (int j = 0; j < n; ++j) {
@@ -244,7 +456,7 @@ public class MultiLinearRegression {
             c[i] = c1;
         }
 
-        // Search the pivoting element from each column
+
         int k = 0;
         for (int j = 0; j < n - 1; ++j) {
             double pi1 = 0;
@@ -257,17 +469,17 @@ public class MultiLinearRegression {
                 }
             }
 
-            // Interchange rows according to the pivoting order
+
             int itmp = index[j];
             index[j] = index[k];
             index[k] = itmp;
             for (int i = j + 1; i < n; ++i) {
                 double pj = a[index[i]][j] / a[index[j]][j];
 
-                // Record pivoting ratios below the diagonal
+
                 a[index[i]][j] = pj;
 
-                // Modify other elements accordingly
+
                 for (int l = j + 1; l < n; ++l)
                     a[index[i]][l] -= pj * a[index[j]][l];
             }
