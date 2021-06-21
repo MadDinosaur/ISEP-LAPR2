@@ -20,6 +20,8 @@ As a clinical chemistry technologist, I intend to consult the historical tests p
 
 * **Q3**: "The client's tests, that we have to show on this US, need to have been validated by the lab coordinator or is it enough if they just have results and we can show them before being validated by the lab coordinator?" **A**: "The tests to be presented in US13 are tests that have **already been validated** by the lab coordinator."
 
+* **Q4**: "Should the user be the one selecting if the Clients are ordered by Name or TIN, or should it be defined through the configuration file? If it is the user, how should he be able to select it?" **A**: "When using the application, the clinical chemistry technologist should be able to sort the clients by name or TIN. The algorithm that will be used to sort the data should be defined through a configuration file."
+
 ### 1.3. Acceptance Criteria
 
 * AC1: The application must allow ordering the clients by TIN and by name to help the clinical chemistry technologist choose the target client. The ordering algorithm to be used by the application must be defined through a configuration file. At least two sorting algorithms should be available.

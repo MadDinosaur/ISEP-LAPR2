@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Properties;
 
 public class ClientStore implements Serializable {
@@ -32,6 +33,18 @@ public class ClientStore implements Serializable {
     public ArrayList<Client> getClientList(){
         if(this.clientList != null) {
             return this.clientList;
+        }else throw new IllegalArgumentException("Client list is currently empty.");
+    }
+
+    public List<Client> getClientsWithValidatedTestsList(){
+        if(this.clientList != null) {
+            List<Client> clientsWithValidatedTest = new ArrayList<>();
+            for(Client client : this.clientList){
+                if(client.checkValidatedTests()){
+                    clientsWithValidatedTest.add(client);
+                }
+            }
+            return clientsWithValidatedTest;
         }else throw new IllegalArgumentException("Client list is currently empty.");
     }
 
