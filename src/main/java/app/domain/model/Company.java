@@ -8,7 +8,9 @@ import auth.AuthFacade;
 import auth.domain.model.Email;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 import static com.nhs.report.Report2NHS.writeUsingFileWriter;
@@ -19,21 +21,76 @@ import static com.nhs.report.Report2NHS.writeUsingFileWriter;
  */
 public class Company {
 
-    private final List<ClinicalAnalysisLaboratory> clinicalAnalysisLaboratoryLst = new ArrayList<>();
+    /**
+     * Designation of the company
+     */
     private final String designation;
+
+    /**
+     * List of Clinical Analysis Laboratories in the company
+     */
+    private final List<ClinicalAnalysisLaboratory> clinicalAnalysisLaboratoryLst = new ArrayList<>();
+
+    /**
+     * AuthFacade of the System
+     */
     private final AuthFacade authFacade;
+
+    /**
+     * Store with company's employees
+     */
     private final EmployeeStore employeeStore;
+
+    /**
+     * Store with company's clients
+     */
     private final ClientStore clientStore;
+
+    /**
+     * Store with company's organization roles
+     */
     private final OrgRoleStore orgRoleStore;
+
+    /**
+     * Store with company's tests
+     */
     private final TestStore testStore;
+
+    /**
+     * Store with company's test types
+     */
     private final TestTypeStore testTypeStore = new TestTypeStore();
+
+    /**
+     * Store with company's test reports
+     */
     private final ReportStore reportStore = new ReportStore();
-    private final Random random = new Random();
-    private SampleList sampleList;
+
+    /**
+     * List with company's samples
+     */
+    private final SampleList sampleList;
+
+    /**
+     * Number of total tests in company
+     */
     private int testNumber;
+
+    /**
+     * List with company's categories
+     */
     private final List<Category> categoryList = new ArrayList<>(Collections.singleton(new Category("Hemograma", "pistola", "WBC", "toma")));
 
+    /**
+     * Random constructor
+     */
+    private final Random random = new Random();
 
+    /**
+     * Company class constructor
+     *
+     * @param designation Designation of the company
+     */
     public Company(String designation) {
         if (StringUtils.isBlank(designation))
             throw new IllegalArgumentException("Designation cannot be blank.");
@@ -81,27 +138,50 @@ public class Company {
         testTestHardCoded.setStateOfTestToSamplesAnalyzed();
         testTestHardCodedDiagnosed.setStateOfTestToSamplesAnalyzed();
         testTestHardCodedDiagnosed.addReport(new Report("diagnosis", "Report is complete"));
+        testTestHardCodedDiagnosed.validateTest();
         testStore.addTest(testTestHardCodedDiagnosed);
         testStore.addTest(testTestHardCodedRegistered);
         testStore.addTest(testTestHardCoded);
         testStore.addTest(testReport);
         //END OF HARDCODED THINGS FOR TESTS
-
     }
 
-
+    /**
+     * Getter for the company designation
+     *
+     * @return company designation
+     */
     public String getDesignation() {
         return designation;
     }
 
+    /**
+     * Getter for the company authFacade
+     *
+     * @return company authFacade
+     */
     public AuthFacade getAuthFacade() {
         return authFacade;
     }
 
+    /**
+     * Method to create a category
+     *
+     * @param name
+     * @param code
+     * @param description
+     * @return company authFacade
+     */
     public Category createCategory(String name, String code, String description) {
         return new Category(name, code, description );
     }
 
+    /**
+     * Method to validate a category
+     *
+     * @param pc
+     * @return boolean of validated
+     */
     public boolean validateCategory(Category pc) {
         if (pc == null)
             return false;
@@ -118,21 +198,38 @@ public class Company {
         return getTestTypeStore().getTestTypeList();
     }
 
+    /**
+     * Getter for the test type store
+     *
+     * @return employee test type
+     */
     public TestTypeStore getTestTypeStore() {
         return testTypeStore;
+    }
+
+    /**
+     * Getter for the employee store
+     *
+     * @return employee store
+     */
+    public EmployeeStore getEmployeeStore() {
+        return this.employeeStore;
+    }
+
+    /**
+     * Getter for the client store
+     *
+     * @return client store
+     */
+    public ClientStore getClientStore() {
+        return clientStore;
     }
 
     public List<Category> getCategoryList() {
         return this.categoryList;
     }
 
-    public EmployeeStore getEmployeeStore() {
-        return this.employeeStore;
-    }
 
-    public ClientStore getClientStore() {
-        return clientStore;
-    }
 
     /**
      * Returns the Company Org Role Store
@@ -196,6 +293,11 @@ public class Company {
         return false;
     }
 
+    /**
+     * Generates a user password
+     *
+     * @return String with password
+     */
     public String generateUserPassword() {
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'
@@ -211,6 +313,10 @@ public class Company {
         return generatedString;
     }
 
+    /**
+     * Sends a password to a user
+     *
+     */
     private void sendUserPassword(String email, String pwd) {
         File file = null;
         FileWriter myWriter = null;
@@ -256,6 +362,12 @@ public class Company {
         }
     }
 
+    /**
+     * Method that creates a test to a client
+     *
+     * @param client client to be Registered the test
+     * @param testType test type with categories and parameters of test
+     */
     public String[] createTestToClient(Client client, TestType testType) {
         String generatedTestCode = testNumberGenerator();
         boolean nhsCodeIsValidated;
@@ -274,6 +386,11 @@ public class Company {
         return codes;
     }
 
+    /**
+     * Method that generates a test number
+     *
+     * @return test number in a string
+     */
     private String testNumberGenerator() {
         StringBuilder generatedTestCode = new StringBuilder();
         String testCodeString = String.valueOf(testNumber);
@@ -286,6 +403,11 @@ public class Company {
         return generatedTestCode.toString();
     }
 
+    /**
+     * Method that generates a nhs code
+     *
+     * @return nhs code in a string
+     */
     private String nhsCodeGenerator() {
         StringBuilder generatedNhsCode = new StringBuilder();
         String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -297,30 +419,60 @@ public class Company {
         return generatedNhsCode.toString();
     }
 
+    /**
+     * Method that validates a nhs code
+     * @return boolean of validated
+     */
     private boolean validateNhsNumber(String nhsCode) {
         return testStore.validadeTestCode(nhsCode);
     }
 
+    /**
+     * Getter for a test number
+     *
+     * @return test number in string
+     */
     public String generateNumberTest() {
         return testNumberGenerator();
     }
 
+    /**
+     * Getter for a nhs code
+     *
+     * @return nhs code in string
+     */
     public String generateNhsCodeGenerator() {
         return nhsCodeGenerator();
     }
 
+    /**
+     * Method that creates a report for multi linear regression
+     *
+     * @return string with report
+     */
     public String makeMultiLinearRegressionReport(int historicalPoints, String dateCurrentDay, Date dateInitalDay,Date dateDayFinal){
         WriteReport writeReport = new WriteReport(testStore,historicalPoints,dateCurrentDay,dateInitalDay,dateDayFinal);
         String stringToReport = writeReport.getReport();
         writeUsingFileWriter(stringToReport);
         return stringToReport;
     }
+
+    /**
+     * Method that creates a report for simple linear regression
+     *
+     * @return string with report
+     */
     public void makeSimpleLinearRegressionReport(int historicalPoints, String dateCurrentDay, Date dateInitalDay,Date dateCurrentDayFinal, String independentVar) throws Exception {
         WriteReport writeReport = new WriteReport(testStore,historicalPoints,dateCurrentDay,dateInitalDay,dateCurrentDayFinal,independentVar);
         String stringToReport = writeReport.getReport();
         writeUsingFileWriter(stringToReport);
     }
 
+    /**
+     * Method that gets a laboratory by its ID
+     *
+     * @return clinical analysis laboratory
+     */
     public ClinicalAnalysisLaboratory getLabById(String laboratoryID) {
         for (ClinicalAnalysisLaboratory clinicalAnalysisLaboratory : clinicalAnalysisLaboratoryLst) {
             if (clinicalAnalysisLaboratory.getLaboratoryID().equals(laboratoryID)) {

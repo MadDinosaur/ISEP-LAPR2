@@ -5,14 +5,7 @@ import app.domain.adapter.ExternalModuleNhsReportAdapter;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Properties;
-import java.util.Timer;
 import java.util.TimerTask;
 
 /**

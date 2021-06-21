@@ -1,36 +1,100 @@
 package app.controller;
 
 import app.domain.model.Company;
+import app.domain.shared.Constants;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class CreateNhsReportController {
-    private final Company company = App.getInstance().getCompany();
+
+    /**
+     * Instance of company
+     */
+    private final Company company = Constants.company;
+
+    /**
+     * Number of days for the prevision table
+     */
     private int historicalPoints;
+
+    /**
+     * Independent variable for the regression
+     */
     private String independentVariable;
+
+    /**
+     * Starting day for the prevision table
+     */
     private String currentDay;
+
+    /**
+     * Starting day for the regression model
+     */
     private String initialDay;
+
+    /**
+     * Final day for the regression model
+     */
     private String finalDay;
 
+    /**
+     * Empty class constructor for the controller
+     *
+     */
     public CreateNhsReportController(){
     }
 
+    /**
+     * Setter for the historical points
+     *
+     * @param historicalPoints
+     */
     public void setHistoricalPoints(int historicalPoints) {
         this.historicalPoints = historicalPoints;
     }
+
+    /**
+     * Setter for the current day
+     *
+     * @param currentDay
+     */
     public void setCurrentDay(String currentDay) {
         this.currentDay = currentDay;
     }
+
+    /**
+     * Setter for the initial day of regression
+     *
+     * @param initialDay
+     */
     public void setInitialDay(String initialDay) {
         this.initialDay = initialDay;
     }
+
+    /**
+     * Setter for the final day of regression
+     *
+     * @param finalDay
+     */
     public void setFinalDay(String finalDay) {
         this.finalDay = finalDay;
     }
+
+    /**
+     * Setter for the independent variable
+     *
+     * @param independentVariable
+     */
     public void setIndependentVariable(String independentVariable) {
         this.independentVariable = independentVariable;
     }
+
+    /**
+     * Generates a regression with the data in the class
+     *
+     * @return String with report
+     */
     public String makeRegression(){
 
         String[] dateComponentsFinal = finalDay.split("/");

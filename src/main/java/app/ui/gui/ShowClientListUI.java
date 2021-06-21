@@ -45,6 +45,7 @@ public class ShowClientListUI implements Initializable{
     @FXML
     void btnSortByName(ActionEvent event){
         String sortMethod = "name";
+        lstViewClients.getItems().clear();
 
         try {
             lstViewClients.getItems().addAll(control.getSortedClientList(sortMethod));
@@ -55,12 +56,12 @@ public class ShowClientListUI implements Initializable{
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
     @FXML
     void btnSortByTin(ActionEvent event){
         String sortMethod = "tin";
+        lstViewClients.getItems().clear();
 
         try {
             lstViewClients.getItems().addAll(control.getSortedClientList(sortMethod));

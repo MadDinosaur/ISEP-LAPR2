@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class OverviewTestsController {
 
-    private Company company;
+    private final Company company;
     private BiggestContiguousSubSequenceAlgorithm algorithm;
 
     public OverviewTestsController() {

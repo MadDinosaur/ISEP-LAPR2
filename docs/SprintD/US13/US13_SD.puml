@@ -31,7 +31,7 @@ CTRL -> CMP: clientStore = getClientStore()
 activate CMP
 deactivate CMP
 
-CTRL -> CLTSTR: clientList = getClientList()
+CTRL -> CLTSTR: clientList = getClientsWithValTstList()
 activate CLTSTR
 
 CTRL -> CLTSTR: getSortingAlgorithm()
