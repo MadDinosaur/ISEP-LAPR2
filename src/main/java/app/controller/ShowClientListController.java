@@ -6,8 +6,7 @@ import app.domain.model.Company;
 import app.domain.store.ClientStore;
 import app.mappers.ClientMapper;
 import app.mappers.dto.ClientDTO;
-import java.lang.ref.Cleaner;
-import java.net.URL;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +53,7 @@ public class ShowClientListController {
      */
     public List<ClientDTO> getSortedClientList(String sortMethod) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
         this.clientStore = this.company.getClientStore();
-        this.clientList = this.clientStore.getClientList();
+        this.clientList = this.clientStore.getClientsWithValidatedTestsList();
         Sortable sortingAlgorithm = this.clientStore.getSortingAlgorithm();
         Client[] clientArr;
         if(this.clientList != null) {

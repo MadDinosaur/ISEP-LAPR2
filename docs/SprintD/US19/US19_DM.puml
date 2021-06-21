@@ -1,0 +1,46 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Company {
++makeMultiLinearRegressionReport(historicalPoints, dateCurrentDay, dateInitalDay, dateDayFinal)
++makeSimpleLinearRegressionReport(historicalPoints, dateCurrentDay, dateInitalDay, dateCurrentDayFinal, independentVar)
+}
+
+class TestStore{
++getPositiveCasesPerDay(day)
++getNumberOfTestsPerformed(day)
++getAverageAgeClient(day)
+}
+
+class Category {
+-code
+-description
++getParameterOfTest()
+}
+
+class TestType {
+-code
+-description
++getCateforyOfTestType()
+}
+
+class Parameter {
+-code
+-description
++getParameterResultValue()
+}
+
+class WriteReport {
++WriteReport(testStore, historicalPoints, currentDay, startRegression, finishRegression)
++getReport()
+}
+
+Company "1    "-->"1  " TestStore : > has
+Company "1"-->"*" WriteReport : > generates
+TestStore "1 "-->" * " TestType : > stores
+Category " 1..* "<-"  1 " TestType : < has
+Parameter " * "-->" 1 " Category : presented under >
+TestParameterResult " 1 "-->" 1 " Parameter : associated to >
+
+@enduml

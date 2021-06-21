@@ -47,6 +47,24 @@ class TestStore{
 +getAverageAgeClient(day)
 }
 
+class Category {
+-code
+-description
++getParameterOfTest()
+}
+
+class TestType {
+-code
+-description
++getCateforyOfTestType()
+}
+
+class Parameter {
+-code
+-description
++getParameterResultValue()
+}
+
 class WriteReport {
 +WriteReport(testStore, historicalPoints, currentDay, startRegression, finishRegression)
 +getReport()
@@ -74,12 +92,16 @@ DailyReportTimer ..> TimerTask
 DailyReportTimer .> DailyReportController
 DailyReportController .> CreateNhsReportController
 CreateNhsReportController .> Company
-Company ..> TestStore
-Company ..> WriteReport
+Company "1    "-->"1  " TestStore : > has
+Company "1"-->"*" WriteReport : > generates
 TestStore <. WriteReport
 ExternalModuleNhsReport <|.. ExternalModuleNhsReportAdapter
 ExternalModuleNhsReportAdapter -> Report2NHS
 WriteReport ..> LinearRegression
 WriteReport ..> MultiLinearRegression
+TestStore "1 "-->" * " TestType : > stores
+Category " 1..* "<-"  1 " TestType : < has
+Parameter " * "-->" 1 " Category : presented under >
+TestParameterResult " 1 "-->" 1 " Parameter : associated to >
 
 @enduml

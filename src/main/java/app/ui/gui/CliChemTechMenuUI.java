@@ -46,7 +46,7 @@ public class CliChemTechMenuUI implements Initializable {
     @FXML
     public void toCliChemTechMenu() {
         try {
-            CliChemTechMenuUI cliChemTechMenuUI = (CliChemTechMenuUI) mainApp.replaceSceneContent("/fxml/CliChemTechMenuScene.fxml");
+            CliChemTechMenuUI cliChemTechMenuUI= (CliChemTechMenuUI) mainApp.replaceSceneContent("/fxml/CliChemTechMenuScene.fxml");
             cliChemTechMenuUI.setMainApp(this.mainApp);
         } catch (Exception ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
@@ -55,6 +55,7 @@ public class CliChemTechMenuUI implements Initializable {
 
     @FXML
     public void recordTestResults(ActionEvent event){
+        mainApp.getStage().setIconified(true);
         new RecordTestResultUI().run();
     }
 

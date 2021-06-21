@@ -58,6 +58,7 @@ public class Test {
         getParametersFromCategoriesToStore();
         stateOfTest = StateOfTest.REGISTERED;
         dateTimeRegister = getDateTime();
+        addTestToClient();
     }
 
     public Test(ClinicalAnalysisLaboratory clinicalAnalysisLaboratory, Client client, String testCode, String nhsCode, TestType testType, List<Category> categoryList, TestParamList testParamList, String dateTimeRegister, String dateTimeResults, String dateTimeReport, String dateTimeValidation) {
@@ -93,6 +94,11 @@ public class Test {
         if (dateTimeResults != null && dateTimeReport != null && dateTimeValidation != null) {
             this.stateOfTest = StateOfTest.VALIDATED;
         }
+        addTestToClient();
+    }
+
+    private void addTestToClient(){
+        this.client.addTestToClient(this);
     }
 
     /**

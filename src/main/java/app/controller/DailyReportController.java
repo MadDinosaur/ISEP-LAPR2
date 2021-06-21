@@ -5,14 +5,7 @@ import app.domain.adapter.ExternalModuleNhsReportAdapter;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Properties;
-import java.util.Timer;
 import java.util.TimerTask;
 
 /**
@@ -21,12 +14,12 @@ import java.util.TimerTask;
  */
 
 public class DailyReportController extends TimerTask {
-
     CreateNhsReportController createNhsReportController = new CreateNhsReportController();
     private final ExternalModuleNhsReport nhsReport = new ExternalModuleNhsReportAdapter();
 
     /**
-     * method triggered by the timer above
+     * runnable which is triggered by the timer created at DailyReportTimer.java
+     * here a daily report will be created and sent to NHS
      */
     public void run() {
         Properties props = new Properties();
