@@ -34,7 +34,6 @@ public class Category implements Serializable {
     /**
      * Parameter category's list of parameters
      */
-
     private List<Parameter> parameterList = new ArrayList<>();
 
     /**
