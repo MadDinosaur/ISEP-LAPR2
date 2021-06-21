@@ -57,11 +57,6 @@ public class ShowTestResultsScene2UI implements Initializable {
         this.mainApp = mainApp;
     }
 
-    @FXML
-    void btnBack(ActionEvent event) {
-        this.parent.toScene1();
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }

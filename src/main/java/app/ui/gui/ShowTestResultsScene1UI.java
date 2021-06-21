@@ -47,7 +47,7 @@ public class ShowTestResultsScene1UI implements Initializable {
         try {
             ShowTestResultsScene2UI showTestResultsScene2UI =
                     (ShowTestResultsScene2UI) this.mainApp.
-                            replaceSceneContent("/fxml/ShowTestResultsScene2.fxml");
+                            openNewWindow("/fxml/ShowTestResultsScene2.fxml");
             showTestResultsScene2UI.setParent(this);
             showTestResultsScene2UI.setMainApp(this.mainApp);
             showTestResultsScene2UI.setTest(lstViewTests.getSelectionModel().getSelectedItem());
@@ -91,15 +91,5 @@ public class ShowTestResultsScene1UI implements Initializable {
         };
         tests.sort(byRegDate);
         lstViewTests.getItems().addAll(tests);
-    }
-
-    public void toScene1() {
-        try {
-            ShowTestResultsScene1UI showTestResultsScene1UI= (ShowTestResultsScene1UI) mainApp.replaceSceneContent("/fxml/ShowTestResultsScene1.fxml");
-            showTestResultsScene1UI.setMainApp(this.mainApp);
-            showTestResultsScene1UI.setParent(this.parentCliChem == null ? parentClient : parentCliChem);
-        } catch (Exception ex) {
-            Logger.getLogger(app.ui.gui.App.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 }

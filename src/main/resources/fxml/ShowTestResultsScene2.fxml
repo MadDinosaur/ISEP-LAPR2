@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+
 <BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.ShowTestResultsScene2UI">
    <top>
       <VBox BorderPane.alignment="CENTER">
@@ -35,13 +41,6 @@
    </top>
    <bottom>
       <FlowPane alignment="CENTER_LEFT" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#btnBack" text="Back">
-               <FlowPane.margin>
-                  <Insets left="20.0" />
-               </FlowPane.margin>
-            </Button>
-         </children>
          <BorderPane.margin>
             <Insets bottom="10.0" right="10.0" top="10.0" />
          </BorderPane.margin>
