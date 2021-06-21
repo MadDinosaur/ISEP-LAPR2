@@ -69,7 +69,7 @@ public class Company {
     /**
      * List with company's samples
      */
-    private SampleList sampleList;
+    private final SampleList sampleList;
 
     /**
      * Number of total tests in company

@@ -6,8 +6,7 @@ import app.domain.model.Company;
 import app.domain.store.ClientStore;
 import app.mappers.ClientMapper;
 import app.mappers.dto.ClientDTO;
-import java.lang.ref.Cleaner;
-import java.net.URL;
+
 import java.util.ArrayList;
 import java.util.List;
 
