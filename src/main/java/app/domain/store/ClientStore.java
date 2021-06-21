@@ -21,21 +21,44 @@ import java.util.Properties;
 public class ClientStore implements Serializable {
 
     Client client = new Client("Georgia PEDDIE", 3196, 6000003196L, new DateBirth(3, 11, 1946), 2100003196, 91200003196L, new Email("GeorgiaPEDDIE2155@gmail.com"), "Feminine");
+
+    /**
+     * List of clients in the system
+     */
     private ArrayList<Client> clientList = new ArrayList<>(Collections.singleton(client));
 
+    /**
+     * Method that adds a client to the client list
+     * @param client
+     * @return boolean
+     */
     private boolean addClient(Client client) {
         return this.clientList.add(client);
     }
+
+    /**
+     * Method that saves a client in the store
+     * @param client
+     * @return boolean
+     */
     public boolean saveClient(Client client) {
         return addClient(client);
     }
 
+    /**
+     * Method that gets the list of clients in the system
+     * @return list of clients in the system
+     */
     public ArrayList<Client> getClientList(){
         if(this.clientList != null) {
             return this.clientList;
         }else throw new IllegalArgumentException("Client list is currently empty.");
     }
 
+    /**
+     * Method that gets a list of clients that have validated tests in the system
+     * @return list of clients with validated tests in the system
+     */
     public List<Client> getClientsWithValidatedTestsList(){
         if(this.clientList != null) {
             List<Client> clientsWithValidatedTest = new ArrayList<>();
@@ -48,6 +71,11 @@ public class ClientStore implements Serializable {
         }else throw new IllegalArgumentException("Client list is currently empty.");
     }
 
+    /**
+     * Method that gets a client through their TIN(Tax identification number)
+     * @param taxNumber
+     * @return client
+     */
     public Client getClientByTINumber(long taxNumber){
         for (Client client : clientList) {
             if (client.getTIN() == taxNumber) {
@@ -58,6 +86,11 @@ public class ClientStore implements Serializable {
         return null;
     }
 
+    /**
+     * Method that gets a client by their email
+     * @param email
+     * @return client
+     */
     public Client getClientById(Email email){
         for (Client client : clientList) {
             if (client.getEmail().toString().equals(email.toString())) {
@@ -67,6 +100,11 @@ public class ClientStore implements Serializable {
         return null;
     }
 
+    /**
+     * Method that gets a client by their card number
+     * @param cardNumber
+     * @return client
+     */
     public Client getClientByCardNumber(long cardNumber){
         for (Client client : clientList) {
             if (client.getCardNumber() == cardNumber) {
@@ -77,7 +115,11 @@ public class ClientStore implements Serializable {
         return null;
     }
 
-
+    /**
+     * Method that gets a client through their email
+     * @param email
+     * @return client
+     */
     public Client getClientByEmail(String email) {
         for (Client client : clientList)
             if (client.getEmail().toString().equalsIgnoreCase(email))
@@ -85,11 +127,22 @@ public class ClientStore implements Serializable {
         throw new InvalidEmailException("Unable to find client with e-mail " + email);
     }
 
+    /**
+     * Method that updates a client's data
+     * @param client
+     * @param clientData
+     */
     public void updateClientData(Client client, ClientDTO clientData) {
         if (!validateData(client, clientData)) throw new InvalidClientException("Client already exists!");
         client.updateData(clientData);
     }
 
+    /**
+     * Method that validates a client's data
+     * @param client
+     * @param clientData
+     * @return boolean
+     */
     public boolean validateData(Client client, ClientDTO clientData) {
         Email newEmail = new Email(clientData.getEmail());
         long newCardNum = Long.parseLong(clientData.getCardNumber());
@@ -109,6 +162,11 @@ public class ClientStore implements Serializable {
         return true;
     }
 
+    /**
+     * Method that gets a client by their NHS Id
+     * @param nhsID
+     * @return client
+     */
     public Client getClientByNhsID(Long nhsID) {
         for (Client client : clientList) {
             if (client.getNhsId() == nhsID) {
@@ -118,6 +176,10 @@ public class ClientStore implements Serializable {
         throw new InvalidClientException();
     }
 
+    /**
+     * Method that gets the total number of clients in the store
+     * @return number of clients in the store
+     */
     public int getTotalNumberOfClients() {
         return this.clientList.size();
     }
@@ -168,6 +230,18 @@ public class ClientStore implements Serializable {
         return sortingAlgorithm;
     }
 
+    /**
+     * Method that creates and returns a new client
+     * @param name
+     * @param cardNumber
+     * @param nhsId
+     * @param dateBirth
+     * @param TIN
+     * @param phoneNumber
+     * @param address
+     * @param email
+     * @return client
+     */
     public Client createClient(String name, long cardNumber, long nhsId, String dateBirth, long TIN, long phoneNumber, String address, String email) {
         String[] data = dateBirth.split("/");
         int ano = Integer.parseInt(data[0]);
