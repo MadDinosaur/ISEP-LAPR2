@@ -54,7 +54,7 @@ public class ShowClientListController {
      */
     public List<ClientDTO> getSortedClientList(String sortMethod) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
         this.clientStore = this.company.getClientStore();
-        this.clientList = this.clientStore.getClientList();
+        this.clientList = this.clientStore.getClientsWithValidatedTestsList();
         Sortable sortingAlgorithm = this.clientStore.getSortingAlgorithm();
         Client[] clientArr;
         if(this.clientList != null) {
