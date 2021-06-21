@@ -81,6 +81,7 @@ public class Company {
         testTestHardCoded.setStateOfTestToSamplesAnalyzed();
         testTestHardCodedDiagnosed.setStateOfTestToSamplesAnalyzed();
         testTestHardCodedDiagnosed.addReport(new Report("diagnosis", "Report is complete"));
+        testTestHardCodedDiagnosed.validateTest();
         testStore.addTest(testTestHardCodedDiagnosed);
         testStore.addTest(testTestHardCodedRegistered);
         testStore.addTest(testTestHardCoded);

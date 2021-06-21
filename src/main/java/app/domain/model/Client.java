@@ -110,7 +110,7 @@ public class Client implements Serializable {
 
     public boolean checkValidatedTests(){
         for(Test test : clientTests){
-            if(test.getStateOfTest().equals("VALIDATED")){
+            if(test.isValidated()){
                 return true;
             }
         }
@@ -177,4 +177,5 @@ public class Client implements Serializable {
     public int compareToName(Client o){
         return this.getName().compareTo(o.getName());
     }
+
 }
