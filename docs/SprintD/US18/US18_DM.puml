@@ -6,28 +6,10 @@ class Company {
 -designation
 }
 class Test {
--testCode
--nhsCode
--designation
--dateRegister
--timeRegister
--dateAnalysis
--timeAnalysis
--dateReport
--timeReport
--dateValidation
--timeValidation
+-code
 }
 class Client {
--name
--cardNumber
 -birthDate
--sex
--nhsID
--TIF
--phoneNumber
--email
--password
 }
 class MultiLinearRegression{
 }
@@ -35,6 +17,22 @@ class LinearRegression{
 }
 class WriteReport{
 }
+class TestParameterResult {
+-value
+}
+class Category {
+-code
+-description
+}
+class TestType {
+-code
+-description
+}
+class Parameter {
+-code
+-description
+}
+
 
 "NHS API" "1"-left-"*" WriteReport : sent via <
 "NHS API" -right- NHS : owned by >
@@ -44,5 +42,9 @@ MultiLinearRegression "*"-up-"1" WriteReport : creates >
 LinearRegression "*"-up-"1" WriteReport : creates >
 Test "*"-up-"1" Company : performs <
 Test "*"--"1" Client : requested by >
+Test "*"-right-"1" "TestType" : is of >
+TestType "1"--"1..*" Category : has >
+Parameter "*"--"1" Category : presented under >
+TestParameterResult "1"--"1" Parameter : associated to >
 
 @enduml

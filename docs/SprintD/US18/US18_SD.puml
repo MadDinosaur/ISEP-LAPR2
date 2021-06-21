@@ -12,6 +12,9 @@ participant "test :Test"
 participant "client :Client"
 participant "linearRegression :LinearRegression"
 participant "multiLinearRegression :MultiLinearRegression"
+participant ExternalModuleNhsReport as interface
+participant ExternalModuleNhsReportAdapter as adapter
+
 
 
 activate admin
@@ -51,6 +54,7 @@ deactivate "writeReport :WriteReport"
 end
 alt if regressionModel = "Multi Linear"
 ctrl -> company : makeMultiLinearRegression(data)
+deactivate ctrl
 company -> "writeReport :WriteReport" : new WriteReport(data,testStore)
 activate "writeReport :WriteReport"
 loop for each day of the regression interval
@@ -70,6 +74,15 @@ loop for each historical point
 deactivate "writeReport :WriteReport"
 end
 end
+company -> "writeReport :WriteReport" : String report = writeReport.getReport()
+company -> interface : sendReport(report)
+activate interface
+interface -> adapter : sendReport(string)
+activate adapter
+deactivate interface
+deactivate adapter
+deactivate company
 ui --> admin : success of the operation
+deactivate ui
 
 @enduml
