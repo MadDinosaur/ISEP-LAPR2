@@ -8,9 +8,7 @@ import auth.AuthFacade;
 import auth.domain.model.Email;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 import static com.nhs.report.Report2NHS.writeUsingFileWriter;
@@ -39,37 +37,37 @@ public class Company {
     /**
      * Store with company's employees
      */
-    private final EmployeeStore employeeStore;
+    private EmployeeStore employeeStore;
 
     /**
      * Store with company's clients
      */
-    private final ClientStore clientStore;
+    private ClientStore clientStore;
 
     /**
      * Store with company's organization roles
      */
-    private final OrgRoleStore orgRoleStore;
+    private OrgRoleStore orgRoleStore;
 
     /**
      * Store with company's tests
      */
-    private final TestStore testStore;
+    private TestStore testStore;
 
     /**
      * Store with company's test types
      */
-    private final TestTypeStore testTypeStore = new TestTypeStore();
+    private TestTypeStore testTypeStore = new TestTypeStore();
 
     /**
      * Store with company's test reports
      */
-    private final ReportStore reportStore = new ReportStore();
+    private ReportStore reportStore = new ReportStore();
 
     /**
      * List with company's samples
      */
-    private final SampleList sampleList;
+    private SampleList sampleList;
 
     /**
      * Number of total tests in company
@@ -97,14 +95,24 @@ public class Company {
 
         this.designation = designation;
         this.authFacade = new AuthFacade();
-        this.employeeStore = new EmployeeStore();
-        this.clientStore = new ClientStore();
+
+        desSerialization();
+
+        if(employeeStore == null){
+            this.employeeStore = new EmployeeStore();
+        }
+        if(clientStore == null){
+            this.clientStore = new ClientStore();
+        }
+        if(testStore == null) {
+            this.testStore = new TestStore();
+        }
         this.orgRoleStore = new OrgRoleStore(authFacade);
-        this.testStore = new TestStore();
+        if(sampleList == null){
+            this.sampleList = new SampleList();
+        }
+
         this.testNumber = 1;
-        this.sampleList = new SampleList();
-
-
         //HARDCODED THINGS FOR TESTS
         Employee testEmployee = new Employee("testEmployee", orgRoleStore.getOrganizationRole("Receptionist"), "nameEmployee", "house", "testEmployee@gmail.com", "123456789", "1234");
         Client testClient = new Client("testClient", (long) 8765432187654321.0, 1234512347, new DateBirth(24, 12, 2002), 1234512345, (long) 12345123457.0, new Email("testClient@gmail.com"), "male");
@@ -191,6 +199,7 @@ public class Company {
     public boolean saveCategory(Category pc) {
         if (!validateCategory(pc))
             return false;
+        serialization();
         return this.categoryList.add(pc);
     }
 
@@ -271,6 +280,7 @@ public class Company {
         String pwd = generateUserPassword();
         if (authFacade.addUserWithRole(e.getName(), e.getEmail(), pwd, e.getRoleId())) {
             sendUserPassword(e.getEmail(), pwd);
+            serialization();
             return true;
         }
         return false;
@@ -287,6 +297,7 @@ public class Company {
             clientStore.saveClient(client);
             sendUserPassword(email, pwd);
             System.out.println("Client has been successfully registered");
+            serialization();
             return true;
         }
         System.out.println("An error has happened during the registration");
@@ -379,6 +390,7 @@ public class Company {
 
         Test testToClient = new Test(client, testType, generatedTestCode, generatedNhsCode);
         testStore.addTest(testToClient);
+        serialization();
         client.addTestToClient(testToClient);
         String[] codes = new String[2];
         codes[0] = generatedTestCode;
@@ -508,6 +520,61 @@ public class Company {
             throw new UnassignedExternalModuleException();
         } catch (Exception ex) {
             throw new UnassignedExternalModuleException("Cannot access algorithm!");
+        }
+    }
+    public void serialization(){
+        String filename = "dataSerialized.txt";
+
+        try {
+
+            FileOutputStream file = new FileOutputStream(filename);
+            ObjectOutputStream out = new ObjectOutputStream(file);
+
+            out.writeObject(employeeStore);
+            out.writeObject(clientStore);
+            out.writeObject(testStore);
+            out.writeObject(reportStore);
+            out.writeObject(sampleList);
+            out.writeObject(testTypeStore);
+            out.writeObject(testNumber);
+            out.close();
+            file.close();
+
+        }
+
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+    public void desSerialization(){
+        String filename = "dataSerialized.txt";
+        try {
+
+            // Reading the object from a file
+            FileInputStream file = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(file);
+
+            // Method for deserialization of object
+            employeeStore = (EmployeeStore)in.readObject();
+            clientStore = (ClientStore)in.readObject();
+            testStore = (TestStore)in.readObject();
+            reportStore = (ReportStore)in.readObject();
+            sampleList = (SampleList)in.readObject();
+            testTypeStore = (TestTypeStore)in.readObject();
+            testNumber = (int)in.readObject();
+
+            in.close();
+            file.close();
+        }
+
+        catch (IOException ex) {
+        ex.printStackTrace();
+        }
+
+        catch (ClassNotFoundException ex) {
+            System.out.println("ClassNotFoundException" +
+                    " is caught");
         }
     }
 

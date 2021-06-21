@@ -4,10 +4,11 @@ import app.domain.adapter.ExternalModule;
 import app.domain.model.Exceptions.UnregisteredParameterException;
 import app.domain.model.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestParamList {
+public class TestParamList implements Serializable {
     List<TestParameter> testParameters = new ArrayList<>();
 
     TestType testType;

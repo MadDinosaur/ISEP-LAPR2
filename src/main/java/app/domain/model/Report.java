@@ -3,12 +3,14 @@ package app.domain.model;
 import app.domain.model.Exceptions.InvalidTextReportException;
 import app.domain.shared.Constants;
 
+import java.io.Serializable;
+
 
 /**
  * @author 1200985 Tomás Cancela
  */
 
-public class Report {
+public class Report implements Serializable {
 
     /**
      * Report's diagnosis text

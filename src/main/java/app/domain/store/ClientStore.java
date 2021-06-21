@@ -1,6 +1,5 @@
 package app.domain.store;
 
-
 import app.domain.adapter.Sortable;
 import app.domain.model.Client;
 import app.domain.model.DateBirth;
