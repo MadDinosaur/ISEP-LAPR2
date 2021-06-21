@@ -9,12 +9,34 @@ import java.util.Scanner;
 
 public class CreateTestTypeUI implements Runnable {
 
+    /**
+     * Scanner to scan input from the user
+     */
     private static final Scanner sc = new Scanner(System.in);
+
+    /**
+     * Test Type Controller
+     */
     private final CreateTestTypeController cttc = new CreateTestTypeController();
+
+    /**
+     * Constant in order to avoid code duplication
+     */
     private final static String YESORNO = "Please insert either yes or no!";
+
+    /**
+     * Constant in order to avoid code duplication
+     */
     private final static String DESCRIPTIONINSERTED = "This is the description you inserted: \"%s\". Are you sure this is the description you want? (Yes/No)%n";
+
+    /**
+     * Constant in order to avoid code duplication
+     */
     private final static String CATEGORYINSERTED = "Are you sure this is the category you want? (Yes/No)%n";
 
+    /**
+     * Responsible for running the program
+     */
     public void run() {
         createTestType();
         createCollectionMethod();
@@ -28,6 +50,9 @@ public class CreateTestTypeUI implements Runnable {
         System.out.println("The test type you just created was saved!");
     }
 
+    /**
+     * Setter for the code
+     */
     public void setCode() {
         boolean valid = false;
         while (!valid) {
@@ -60,6 +85,9 @@ public class CreateTestTypeUI implements Runnable {
         }
     }
 
+    /**
+     * Setter for the description of the collection method
+     */
     public void setCollectionMethod() {
         boolean valid = false;
         while (!valid) {
@@ -92,6 +120,9 @@ public class CreateTestTypeUI implements Runnable {
         }
     }
 
+    /**
+     * Setter for the categories
+     */
     public void setCategories() {
         boolean noMore = false;
         int counter = 0;
@@ -145,6 +176,9 @@ public class CreateTestTypeUI implements Runnable {
         }
     }
 
+    /**
+     * Setter for the test type description
+     */
     public void setTestTypeDescription() {
         boolean valid = false;
         while (!valid) {
@@ -176,14 +210,23 @@ public class CreateTestTypeUI implements Runnable {
         }
     }
 
+    /**
+     * Saves the test type
+     */
     public void saveTestType() {
         cttc.saveTestType();
     }
 
+    /**
+     * Creates the test type
+     */
     public void createTestType() {
         cttc.createTestType();
     }
 
+    /**
+     * Creates the collection method
+     */
     public void createCollectionMethod() {
         cttc.createCollectionMethod();
     }

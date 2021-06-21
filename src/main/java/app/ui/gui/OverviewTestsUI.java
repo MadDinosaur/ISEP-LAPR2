@@ -22,70 +22,140 @@ import java.util.ResourceBundle;
 
 public class OverviewTestsUI implements Initializable {
 
+    /**
+     * Main application
+     */
     private App mainApp;
 
+    /**
+     * The parent from this scene
+     */
     private LabCoordMenuUI parent;
 
+    /**
+     * The controller for this scene
+     */
     private OverviewTestsController overviewTestsController = new OverviewTestsController();
 
+    /**
+     * Observable list containing both of the algorithms possible to use on the application
+     */
     ObservableList<String> choiceBoxList = FXCollections.observableArrayList("Benchmark", "BruteForce");
 
+    /**
+     * Chart for the tests waiting for results
+     */
     @FXML
     private LineChart<String, Integer> testsWaitingForResultsChart;
 
+    /**
+     * Y-Axis for the tests validated chart
+     */
     @FXML
     private NumberAxis testsValidated;
 
+    /**
+     * Title of the scene
+     */
     @FXML
     private Label titleLabel;
 
+    /**
+     * Chart for the tests waiting for report
+     */
     @FXML
     private LineChart<String, Integer> testsWaitingForReportChart;
 
+    /**
+     * Text field where the user inputs the beginning date
+     */
     @FXML
     private TextField beginningDateTF;
 
+    /**
+     * Text field where the user inputs the ending date
+     */
     @FXML
     private TextField endingDateTF;
 
+    /**
+     * Chart for the tests validated
+     */
     @FXML
     private LineChart<String, Integer> testsValidatedChart;
 
+    /**
+     * Text area where all the info shows up
+     */
     @FXML
     private TextArea outputTextArea;
 
+    /**
+     * Y-axis for the tests waiting for report chart
+     */
     @FXML
     private NumberAxis testsWaitingForReport;
 
+    /**
+     * Overview button
+     */
     @FXML
     private Button overviewBtn;
 
+    /**
+     * Back button
+     */
     @FXML
     private Button backBtn;
 
+    /**
+     * Choice box containing the observable list
+     */
     @FXML
     private ChoiceBox<String> choiceBox;
 
+    /**
+     * X-axis for all the charts
+     */
     @FXML
     private CategoryAxis days;
 
+    /**
+     * Y-axis for the tests waiting for results chart
+     */
     @FXML
     private NumberAxis testsWaitingForResults;
 
 
+    /**
+     * Setter for the main application
+     * @param mainApp main application
+     */
     public void setMainApp(App mainApp) {
         this.mainApp = mainApp;
     }
 
+    /**
+     * Setter for the parent of this scene
+     * @param parent parent
+     */
     public void setParent(LabCoordMenuUI parent) {
         this.parent = parent;
     }
 
+    /**
+     * Method that is activated when the back button is pressed
+     * @param event when the button is pressed with a left-click from the mouse
+     */
     @FXML
     void backScene(ActionEvent event) {
         parent.toLabCoordMenu();
     }
 
+    /**
+     * Method containing all the necessary things that show up on the menu
+     * @param event when the button is pressed with a left-click from the mouse
+     */
     @FXML
     void overviewTests(ActionEvent event) {
         LocalDate beginningDate = stringToLocalDate(beginningDateTF.getText());
@@ -125,7 +195,12 @@ public class OverviewTestsUI implements Initializable {
 
     }
 
-    LocalDate stringToLocalDate(String date) {
+    /**
+     * Transforms a date that is in string format into a LocalDate
+     * @param date date in string
+     * @return LocalDate
+     */
+    private LocalDate stringToLocalDate(String date) {
         String[] anoMesDia = date.split("/");
         int dia = Integer.parseInt(anoMesDia[0]);
         int mes = Integer.parseInt(anoMesDia[1]);

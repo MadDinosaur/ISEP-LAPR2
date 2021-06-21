@@ -8,12 +8,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LabCoordUI implements Initializable, Runnable{
+    /**
+     * Main application
+     */
     private App mainApp;
 
+    /**
+     * Constructor for this class
+     * @param app main application
+     */
     public LabCoordUI(App app) {
         this.mainApp = app;
     }
 
+    /**
+     * Runs the application
+     */
     @Override
     public void run() {
         try {

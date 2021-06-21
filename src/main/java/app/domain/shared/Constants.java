@@ -14,6 +14,9 @@ public class Constants {
     public static final String PARAMS_FILENAME = "config.properties";
     public static final String PARAMS_COMPANY_DESIGNATION = "Company.Designation";
 
+    /**
+     * Constant for the max words a report can have
+     */
     public static final int REPORT_MAX_WORDS = 400;
 
     public static final int CATEGORY_NAME_MAX_CHARS = 15;

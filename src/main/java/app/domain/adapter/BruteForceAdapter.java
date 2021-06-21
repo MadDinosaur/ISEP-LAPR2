@@ -6,6 +6,11 @@ import java.util.ArrayList;
 
 public class BruteForceAdapter implements BiggestContiguousSubSequenceAlgorithm {
 
+    /**
+     * Adapts the algorithm to fit into our standards
+     * @param sequence sequence
+     * @return sub sequence
+     */
     @Override
     public int[] getBiggestContiguousSubSequence(int[] sequence) {
         ArrayList<Integer> subSequenceTemp = BruteForceAlgorithm.biggestContiguousSubSequence(sequence);

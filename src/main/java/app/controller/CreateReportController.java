@@ -15,14 +15,40 @@ import java.util.List;
 
 public class CreateReportController {
 
+    /**
+     * Company
+     */
     private Company company;
+
+    /**
+     * Test
+     */
     private Test test;
+
+    /**
+     * Report
+     */
     private Report report;
+
+    /**
+     * Test store
+     */
     private TestStore testStore;
+
+    /**
+     * Test param list
+     */
     private TestParamList testParamList;
+
+    /**
+     * Report store
+     */
     private ReportStore reportStore;
 
 
+    /**
+     * Constructor for this controller
+     */
     public CreateReportController() {
         this.company = App.getInstance().getCompany();
         this.testStore = company.getTestStore();

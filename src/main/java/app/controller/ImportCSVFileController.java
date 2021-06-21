@@ -12,37 +12,134 @@ import java.util.Scanner;
 
 public class ImportCSVFileController {
 
-
+    /**
+     * Register test controller
+     */
     private RegisterTestController registerTestController;
+
+    /**
+     * Register client controller
+     */
     private RegisterClientController registerClientController;
+
+    /**
+     * Register lab controller
+     */
     private RegisterNewLabController registerNewLabController = new RegisterNewLabController();
 
+    /**
+     * Titles
+     */
     private String[] titulos;
+
+    /**
+     * Values
+     */
     private String[] valores;
+
+    /**
+     * Test Code
+     */
     private String testCode;
+
+    /**
+     * Nhs Code
+     */
     private String nhsCode;
+
+    /**
+     * Date and Time of register
+     */
     private String dateTimeRegister;
+
+    /**
+     * Date and time of results
+     */
     private String dateTimeResults;
+
+    /**
+     * Date and time of report
+     */
     private String dateTimeReport;
+
+    /**
+     * Date and time of validation
+     */
     private String dateTimeValidation;
+
+    /**
+     * Client's card number
+     */
     private Long cardNumber;
+
+    /**
+     * Client's nhs Id
+     */
     private Long nhsID;
+
+    /**
+     * Client's tin
+     */
     private Long tin;
+
+    /**
+     * Client's birthday
+     */
     private String birthday;
+
+    /**
+     * Client's phone number
+     */
     private Long phoneNumber;
+
+    /**
+     * Client's name
+     */
     private String name;
+
+    /**
+     * Client's e-mail
+     */
     private String email;
+
+    /**
+     * Client's address
+     */
     private String address;
+
+    /**
+     * Client
+     */
     private Client client;
+
+    /**
+     * Test
+     */
     private Test test;
+
+    /**
+     * File
+     */
     private File file;
 
+    /**
+     * Scanner
+     */
     private Scanner sc;
 
+    /**
+     * Getter for the CSV file
+     * @return file
+     */
     public File getFile() {
         return this.file;
     }
 
+    /**
+     * Setter for the CSV file
+     * @param file file
+     * @throws FileNotFoundException when the file isn't found
+     */
     public void setFile(File file) throws FileNotFoundException {
         validateFile(file);
         this.file = file;
@@ -50,16 +147,27 @@ public class ImportCSVFileController {
         this.titulos = sc.nextLine().split(";");
     }
 
+    /**
+     * Validates the file inputted
+     * @param file file
+     */
     private void validateFile(File file) {
         if (!file.getName().contains(".csv")) {
             throw new InvalidFileException();
         }
     }
 
+    /**
+     * Checks if the file has a next line
+     * @return true or false
+     */
     public boolean fileHasNextLine() {
        return (sc.hasNextLine());
     }
 
+    /**
+     * Reads the test type code
+     */
     public void readTestTypeCode() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("TestType")) {
@@ -69,6 +177,9 @@ public class ImportCSVFileController {
         }
     }
 
+    /**
+     * Reads the category name
+     */
     public void readCategoryName() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("Category")) {
@@ -80,6 +191,9 @@ public class ImportCSVFileController {
         }
     }
 
+    /**
+     * Reads the parameter code and result
+     */
     public void readParameterCodeAndResult() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("HB000")) {
@@ -127,6 +241,10 @@ public class ImportCSVFileController {
         }
     }
 
+    /**
+     * Goes one line forward
+     * @return true or false
+     */
     public boolean goOneLineForward() {
         if (fileHasNextLine()) {
             this.valores = sc.nextLine().split(";");
@@ -137,6 +255,9 @@ public class ImportCSVFileController {
     }
 
 
+    /**
+     * Reads the Lab ID
+     */
     public void readLabId() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("Lab_ID")) {
@@ -149,6 +270,9 @@ public class ImportCSVFileController {
     }
 
 
+    /**
+     * Reads the test code
+     */
     public void readTestCode() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("Test_Code")) {
@@ -157,6 +281,9 @@ public class ImportCSVFileController {
         }
     }
 
+    /**
+     * Reads the nhs code
+     */
     public void readNhsCode() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("Nhs_Code")) {
@@ -165,6 +292,9 @@ public class ImportCSVFileController {
         }
     }
 
+    /**
+     * Reads the date and time of register
+     */
     public void readDateTimeRegister() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("Test_Reg_DateHour")) {
@@ -173,6 +303,9 @@ public class ImportCSVFileController {
         }
     }
 
+    /**
+     * Reads the date and time of results
+     */
     public void readDateTimeResults() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("Test_Chemical_DateHour")) {
@@ -181,6 +314,9 @@ public class ImportCSVFileController {
         }
     }
 
+    /**
+     * Reads the date and time of report
+     */
     public void readDateTimeReport() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("Test_Doctor_DateHour")) {
@@ -189,6 +325,9 @@ public class ImportCSVFileController {
         }
     }
 
+    /**
+     * Reads the date and time of validation
+     */
     public void readDateTimeValidation() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("Test_Validation_DateHour")) {
@@ -197,12 +336,18 @@ public class ImportCSVFileController {
         }
     }
 
+    /**
+     * Creates a test with all the attributes read
+     */
     public void createTest() {
         this.test = registerTestController.createTestFromCSV(this.client, this.testCode, this.nhsCode, this.dateTimeRegister, this.dateTimeResults, this.dateTimeReport, this.dateTimeValidation);
         System.out.printf("-----Tests's info-----\nTest Code: %s\nNhs Code: %s\nDate and Time of Register: %s\nDate and Time of Results: %s\nDate and Time of Report: %s\nDate and Time of Validation: %s\n", testCode, nhsCode, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation);
 
     }
 
+    /**
+     * Saves the respective test
+     */
     public void saveTest() {
         if (registerTestController.saveTest(this.test)){
             System.out.println("Test was sucessfully imported!\n------------------------------\n\n");
@@ -211,6 +356,9 @@ public class ImportCSVFileController {
     }
 
 
+    /**
+     * Reads the nhs id
+     */
     public void readNhsId() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("NHS_Number")) {
@@ -225,6 +373,9 @@ public class ImportCSVFileController {
         }
     }
 
+    /**
+     * Reads the card number
+     */
     public void readCardNumber() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("CitizenCard_Number")) {
@@ -233,6 +384,9 @@ public class ImportCSVFileController {
         }
     }
 
+    /**
+     * Reads the tin
+     */
     public void readTin() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("TIN")) {
@@ -241,6 +395,9 @@ public class ImportCSVFileController {
         }
     }
 
+    /**
+     * Reads the birthday
+     */
     public void readbirthday() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("BirthDay")) {
@@ -249,6 +406,9 @@ public class ImportCSVFileController {
         }
     }
 
+    /**
+     * Reads the phone number
+     */
     public void readPhoneNumber() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("PhoneNumber")) {
@@ -261,6 +421,9 @@ public class ImportCSVFileController {
         }
     }
 
+    /**
+     * Reads the name
+     */
     public void readName() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("Name")) {
@@ -270,6 +433,9 @@ public class ImportCSVFileController {
         }
     }
 
+    /**
+     * Reads the e-mail
+     */
     public void readEmail() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].contains("mail")) {
@@ -279,6 +445,9 @@ public class ImportCSVFileController {
         }
     }
 
+    /**
+     * Reads the address
+     */
     public void readAddress() {
         for (int i = 0; i < valores.length; i++) {
             if (titulos[i].equalsIgnoreCase("Address")) {
@@ -287,12 +456,18 @@ public class ImportCSVFileController {
         }
     }
 
+    /**
+     * Creates a client with all the attributes read
+     */
     public void createClient() {
         this.client = registerClientController.createClient(name, cardNumber, nhsID, birthday, tin, phoneNumber, address, email);
         System.out.printf("-----Client's info-----\nName: %s\nCard Number: %s\nNhs Id: %s\nBirthday: %s\nTin: %s\nPhone Number: %s\nE-mail: %s\nAddress: %s\n", name, cardNumber, nhsID, birthday, tin, phoneNumber, email, address);
 
     }
 
+    /**
+     * Saves the respective client
+     */
     public void saveClient() {
         if (registerClientController.saveClientFromCSV(client)) {
             System.out.println("Client was successfully created!");
@@ -301,6 +476,9 @@ public class ImportCSVFileController {
         this.registerClientController = new RegisterClientController();
     }
 
+    /**
+     * Creates new controllers
+     */
     public void createNewControllers() {
         this.registerClientController = new RegisterClientController();
         this.registerTestController = new RegisterTestController();

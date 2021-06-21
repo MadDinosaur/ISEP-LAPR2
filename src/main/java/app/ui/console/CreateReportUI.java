@@ -12,9 +12,19 @@ import java.util.Scanner;
 
 public class CreateReportUI implements Runnable {
 
+    /**
+     * Scanner for the user input
+     */
     private static final Scanner sc = new Scanner(System.in);
+
+    /**
+     * Report controller
+     */
     private final CreateReportController createReportController = new CreateReportController();
 
+    /**
+     * Responsible for running the application
+     */
     public void run() {
         boolean loop = true;
         System.out.println("-----Create Report Menu-----");
@@ -47,6 +57,9 @@ public class CreateReportUI implements Runnable {
         }
     }
 
+    /**
+     * Displays a list of tests that are ready to get a report made for them
+     */
     private void displayTestsListReadyForReport() {
         List<TestDTO> testListReadyForReportDTO = createReportController.getTestsListReadyForReport();
         for (TestDTO testDTO : testListReadyForReportDTO) {
@@ -55,6 +68,9 @@ public class CreateReportUI implements Runnable {
         }
     }
 
+    /**
+     * Getter for the test parameter results and respective reference values
+     */
     private void getTestParameterResultsAndReferenceValues() {
         System.out.println("Please choose which test you want to see by its code:");
         boolean valid = false;
@@ -72,6 +88,9 @@ public class CreateReportUI implements Runnable {
         }
     }
 
+    /**
+     * Creates and saves the report with the diagnosis and report written by the user
+     */
     private void createAndSaveReport() {
         boolean valid = false;
         System.out.println("Please type in your diagnosis:");

@@ -105,6 +105,10 @@ public class ClientStore implements Serializable {
         throw new InvalidClientException();
     }
 
+    /**
+     * Getter for the total number of clients
+     * @return total number of clients
+     */
     public int getTotalNumberOfClients() {
         return this.clientList.size();
     }
@@ -155,6 +159,18 @@ public class ClientStore implements Serializable {
         return sortingAlgorithm;
     }
 
+    /**
+     * Creates a client
+     * @param name name
+     * @param cardNumber card number
+     * @param nhsId nhs id
+     * @param dateBirth date of birth
+     * @param TIN tin
+     * @param phoneNumber phone number
+     * @param address address
+     * @param email e-mail
+     * @return a new Client
+     */
     public Client createClient(String name, long cardNumber, long nhsId, String dateBirth, long TIN, long phoneNumber, String address, String email) {
         String[] data = dateBirth.split("/");
         int ano = Integer.parseInt(data[0]);

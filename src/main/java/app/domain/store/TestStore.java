@@ -185,7 +185,6 @@ public class TestStore implements Serializable {
 
     /**
      * Saves the report in the given test
-     *
      * @param test   Test
      * @param report Report
      */
@@ -236,11 +235,20 @@ public class TestStore implements Serializable {
     }
 
 
+    /**
+     * Getter for the total number of validated tests
+     * @return total number of validated tests
+     */
     public int getTotalNumberOfValidatedTests() {
         return getTestsValidated().size();
     }
 
 
+    /**
+     * Getter for the number of tests waiting for results in a specified date
+     * @param date date
+     * @return number of tests waiting for results
+     */
     public int getNumberOfTestsWaitingForResultsInDate(Date date) {
             int numberOfTests = 0;
             for (Test test : getRegisteredTests()) {
@@ -257,6 +265,11 @@ public class TestStore implements Serializable {
         return numberOfTests;
     }
 
+    /**
+     * Getter for the number of tests waiting for report in a specified date
+     * @param date date
+     * @return number of tests waiting for report
+     */
     public int getNumberOfTestsWaitingForReportInDate(Date date) {
             int numberOfTests = 0;
             for (Test test : getTestsListReadyForReport()) {
@@ -273,6 +286,11 @@ public class TestStore implements Serializable {
         return numberOfTests;
     }
 
+    /**
+     * Getter for the number of validated tests in a specified date
+     * @param date date
+     * @return number of validated tests
+     */
     public int getNumberOfTestsValidatedInDate(Date date) {
             int numberOfTests = 0;
             for (Test test : getTestsValidated()) {
@@ -290,6 +308,14 @@ public class TestStore implements Serializable {
     }
 
 
+    /**
+     * Sorts each test for each half an hour of a day
+     * @param hours hours
+     * @param minutes minutes
+     * @param size size
+     * @param i i
+     * @return array of integers
+     */
     public int[] sortTestsForEachHalfAnHour(int hours, int minutes, int size, int i) {
         int[] numberOfTestsForEachHalfAnHour = new int[size];
         if (hours == 8 && minutes < 30) {
@@ -346,6 +372,11 @@ public class TestStore implements Serializable {
         return numberOfTestsForEachHalfAnHour;
     }
 
+    /**
+     * Getter for the number of new tests for each half an hour
+     * @param dateInterval date interval
+     * @return array of numbers
+     */
     public int[] getNumberOfNewTestsForEachHalfAnHour(List<Date> dateInterval) {
         int size = 24 * dateInterval.size();
         int[] numberOfTestsForEachHalfAnHour = new int[size];
@@ -370,6 +401,11 @@ public class TestStore implements Serializable {
         return numberOfTestsForEachHalfAnHour;
     }
 
+    /**
+     * Getter for the validated tests for each half an hour
+     * @param dateInterval date interval
+     * @return array of numbers
+     */
     public int[] getNumberOfValidatedTestsForEachHalfAnHour(List<Date> dateInterval) {
         int size = 24 * dateInterval.size();
         int[] numberOfTestsForEachHalfAnHour = new int[24 * dateInterval.size()];
@@ -394,6 +430,11 @@ public class TestStore implements Serializable {
         return numberOfTestsForEachHalfAnHour;
     }
 
+    /**
+     * Getter for the difference of new and validated tests for each half an hour
+     * @param dateInterval date interval
+     * @return array of numbers
+     */
     public int[] getDifferenceOfNewAndValidatedTestsForEachHalfAnHour(List<Date> dateInterval) {
         int[] numberOfNewTests = getNumberOfNewTestsForEachHalfAnHour(dateInterval);
         int[] numberOfValidatedTests = getNumberOfValidatedTestsForEachHalfAnHour(dateInterval);
@@ -404,6 +445,21 @@ public class TestStore implements Serializable {
         return difference;
     }
 
+    /**
+     * Creates a test from a CSV file
+     * @param clinicalAnalysisLaboratory clinical analysis laboratory
+     * @param client client
+     * @param testCode test code
+     * @param nhsCode nhs code
+     * @param testTypeChosen the chosen test type
+     * @param listOfChosenCategories the chosen list of categories
+     * @param testParamList test param list
+     * @param dateTimeRegister date and time of register
+     * @param dateTimeResults date and time of results
+     * @param dateTimeReport date and time of report
+     * @param dateTimeValidation date and time of validation
+     * @return a new Test
+     */
     public Test createTestFromCSV(ClinicalAnalysisLaboratory clinicalAnalysisLaboratory, Client client, String testCode, String nhsCode, TestType testTypeChosen, List<Category> listOfChosenCategories, TestParamList testParamList, String dateTimeRegister, String dateTimeResults, String dateTimeReport, String dateTimeValidation) {
         Test test = new Test(clinicalAnalysisLaboratory, client, testCode, nhsCode, testTypeChosen, listOfChosenCategories, testParamList, dateTimeRegister, dateTimeResults, dateTimeReport, dateTimeValidation);
         return test;
