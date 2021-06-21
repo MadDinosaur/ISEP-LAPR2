@@ -34,7 +34,7 @@ interface Sortable{
 
 class ClientStore {
 + getClientByEmail(email)
-+ getClientList()
++ getClientsWithValTstList()
 }
 
 class ClientMapper{
