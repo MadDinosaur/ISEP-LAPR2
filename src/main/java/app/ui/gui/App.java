@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -59,6 +60,24 @@ public class App extends Application {
         scene.getStylesheets().add("/styles/Styles.css");
         this.stage.setScene(scene);
         this.stage.sizeToScene();
+        return (Initializable) loader.getController();
+    }
+
+    public Initializable openNewWindow(String fxml) {
+        FXMLLoader loader = new FXMLLoader();
+        try{
+            InputStream in = App.class.getResourceAsStream(fxml);
+            loader.setBuilderFactory(new JavaFXBuilderFactory());
+            loader.setLocation(App.class.getResource(fxml));
+            Scene scene = new Scene(loader.load(), 600, 400);
+            Stage stage = new Stage();
+            stage.setTitle("Many Labs Application");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }
         return (Initializable) loader.getController();
     }
 
