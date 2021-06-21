@@ -39,7 +39,7 @@ class WriteReport {
 Company "1    "-->"1  " TestStore : > has
 Company "1"-->"*" WriteReport : > generates
 TestStore "1 "-->" * " TestType : > stores
-Category " 1..* "->"  1 " TestType : > has
+Category " 1..* "<-"  1 " TestType : < has
 Parameter " * "-->" 1 " Category : presented under >
 TestParameterResult " 1 "-->" 1 " Parameter : associated to >
 

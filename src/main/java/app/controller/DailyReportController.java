@@ -14,12 +14,12 @@ import java.util.TimerTask;
  */
 
 public class DailyReportController extends TimerTask {
-
     CreateNhsReportController createNhsReportController = new CreateNhsReportController();
     private final ExternalModuleNhsReport nhsReport = new ExternalModuleNhsReportAdapter();
 
     /**
-     * method triggered by the timer above
+     * runnable which is triggered by the timer created at DailyReportTimer.java
+     * here a daily report will be created and sent to NHS
      */
     public void run() {
         Properties props = new Properties();

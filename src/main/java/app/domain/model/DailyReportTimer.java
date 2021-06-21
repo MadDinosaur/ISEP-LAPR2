@@ -10,7 +10,7 @@ import java.util.Timer;
 
 public class DailyReportTimer {
     /**
-     * timer which will trigger the creating of a daily report
+     * timer which will trigger the creation of a daily report
      */
     public static void dailyReportTimer()  {
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
