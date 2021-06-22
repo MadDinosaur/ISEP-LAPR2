@@ -270,7 +270,7 @@ public class TestStore implements Serializable {
                         numberOfTests++;
                     }
                 } catch (NullPointerException ignored) {
-                    
+
                 }
             }
         return numberOfTests;
@@ -465,7 +465,6 @@ public class TestStore implements Serializable {
         int[] numberOfValidatedTests = getNumberOfValidatedTestsForEachHalfAnHour(dateInterval);
         int[] difference = new int[numberOfNewTests.length];
         for (int i = 0; i < difference.length; i++) {
-            System.out.printf("New Tests: %s\nValidated tests: %s\n", numberOfNewTests[i], numberOfValidatedTests[i]);
             difference[i] = numberOfNewTests[i] - numberOfValidatedTests[i];
         }
         return difference;
