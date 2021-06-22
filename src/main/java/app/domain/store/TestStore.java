@@ -5,6 +5,7 @@ import app.domain.model.Exceptions.InvalidTestCodeException;
 import app.domain.model.Exceptions.InvalidTestException;
 import app.domain.model.Exceptions.TestDoesntExistException;
 import app.domain.model.Exceptions.UnregisteredBarcodeException;
+import org.apache.commons.lang3.ObjectUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -252,14 +253,24 @@ public class TestStore implements Serializable {
     public int getNumberOfTestsWaitingForResultsInDate(Date date) {
             int numberOfTests = 0;
             for (Test test : getTests()) {
-                String[] dateAndTimeOfRegister = test.getDateTimeRegister().split(" ");
-                String[] dayMonthYear = dateAndTimeOfRegister[0].split("/");
-                int day = Integer.parseInt(dayMonthYear[0]);
-                int month = Integer.parseInt(dayMonthYear[1]);
-                int year = Integer.parseInt(dayMonthYear[2]);
-                Date dateOfRegister = new Date(year - 1900, month - 1, day);
-                if (!dateOfRegister.after(date) && !dateOfRegister.before(date)) {
-                    numberOfTests++;
+                try {
+                    String[] dateAndTimeOfRegister = test.getDateTimeRegister().split(" ");
+                    String[] dayMonthYear = dateAndTimeOfRegister[0].split("/");
+                    int day = Integer.parseInt(dayMonthYear[0]);
+                    int month = Integer.parseInt(dayMonthYear[1]);
+                    int year = Integer.parseInt(dayMonthYear[2]);
+                    Date dateOfRegister = new Date(year - 1900, month - 1, day);
+                    String[] dateAndTimeOfResults = test.getDateTimeResults().split(" ");
+                    String[] diaMesAno = dateAndTimeOfResults[0].split("/");
+                    int dia = Integer.parseInt(diaMesAno[0]);
+                    int mes = Integer.parseInt(diaMesAno[1]);
+                    int ano = Integer.parseInt(diaMesAno[2]);
+                    Date dateOfResults = new Date(ano - 1900, mes - 1, dia);
+                    if (!dateOfRegister.after(date) && !dateOfRegister.before(date) && dateOfResults.after(date)) {
+                        numberOfTests++;
+                    }
+                } catch (NullPointerException ignored) {
+                    
                 }
             }
         return numberOfTests;
@@ -280,7 +291,13 @@ public class TestStore implements Serializable {
                     int month = Integer.parseInt(dayMonthYear[1]);
                     int year = Integer.parseInt(dayMonthYear[2]);
                     Date dateOfResults = new Date(year - 1900, month - 1, day);
-                    if (!dateOfResults.after(date) && !dateOfResults.before(date)) {
+                    String[] dateAndTimeOfReport = test.getDateTimeReport().split(" ");
+                    String[] diaMesAno = dateAndTimeOfReport[0].split("/");
+                    int dia = Integer.parseInt(diaMesAno[0]);
+                    int mes = Integer.parseInt(diaMesAno[1]);
+                    int ano = Integer.parseInt(diaMesAno[2]);
+                    Date dateOfReport = new Date(ano - 1900, mes - 1, dia);
+                    if (!dateOfResults.after(date) && !dateOfResults.before(date) && dateOfReport.after(date)) {
                         numberOfTests++;
                     }
                 } catch (NullPointerException ignored) {
