@@ -543,7 +543,7 @@ public class Company {
         }
 
         catch (IOException ex) {
-            ex.printStackTrace();
+            System.out.println("IO Exception caught");
         }
 
     }
