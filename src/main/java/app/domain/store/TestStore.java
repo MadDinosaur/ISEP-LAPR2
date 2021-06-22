@@ -103,13 +103,17 @@ public class TestStore implements Serializable {
         List<Test> listOfPositiveTests = getListPositiveCovid();
         int numberOfCases = 0;
         for (Test test : listOfPositiveTests) {
-            String date = test.getDateTimeValidation();
-            if(date != null) {
-                String[] dateComponents = date.split(" ");
-                date = dateComponents[0];
-                if (dayOfTest.equalsIgnoreCase(date)) {
-                    numberOfCases++;
+            try {
+                String date = test.getDateTimeValidation();
+                if (date != null) {
+                    String[] dateComponents = date.split(" ");
+                    date = dateComponents[0];
+                    if (dayOfTest.equalsIgnoreCase(date)) {
+                        numberOfCases++;
+                    }
                 }
+            } catch (NullPointerException ignored) {
+
             }
         }
         return numberOfCases;
@@ -118,13 +122,17 @@ public class TestStore implements Serializable {
     public double getNumberOfTestsPerformed(String dayOfTest) {
         double numberOfTestsMade = 0;
         for (Test test : tests) {
-            String date = test.getDateTimeValidation();
-            if(date != null) {
-                String[] dateComponents = date.split(" ");
-                date = dateComponents[0];
-                if (dayOfTest.equalsIgnoreCase(date)) {
-                    numberOfTestsMade++;
+            try {
+                String date = test.getDateTimeValidation();
+                if (date != null) {
+                    String[] dateComponents = date.split(" ");
+                    date = dateComponents[0];
+                    if (dayOfTest.equalsIgnoreCase(date)) {
+                        numberOfTestsMade++;
+                    }
                 }
+            } catch (NullPointerException ignored) {
+
             }
         }
         return numberOfTestsMade;
@@ -134,14 +142,18 @@ public class TestStore implements Serializable {
         double sumAge = 0;
         int numberOfClient = 0;
         for (Test test : tests) {
-            String date = test.getDateTimeValidation();
-            if(date != null) {
-                String[] dateComponents = date.split(" ");
-                date = dateComponents[0];
-                if (dayOfTest.equalsIgnoreCase(date)) {
-                    sumAge += test.getClient().getAgeInYears();
-                    numberOfClient++;
+            try {
+                String date = test.getDateTimeValidation();
+                if (date != null) {
+                    String[] dateComponents = date.split(" ");
+                    date = dateComponents[0];
+                    if (dayOfTest.equalsIgnoreCase(date)) {
+                        sumAge += test.getClient().getAgeInYears();
+                        numberOfClient++;
+                    }
                 }
+            } catch (NullPointerException ignored) {
+
             }
         }
         if (numberOfClient != 0) {
@@ -186,6 +198,7 @@ public class TestStore implements Serializable {
 
     /**
      * Saves the report in the given test
+     *
      * @param test   Test
      * @param report Report
      */
@@ -238,6 +251,7 @@ public class TestStore implements Serializable {
 
     /**
      * Getter for the total number of validated tests
+     *
      * @return total number of validated tests
      */
     public int getTotalNumberOfValidatedTests() {
@@ -247,96 +261,100 @@ public class TestStore implements Serializable {
 
     /**
      * Getter for the number of tests waiting for results in a specified date
+     *
      * @param date date
      * @return number of tests waiting for results
      */
     public int getNumberOfTestsWaitingForResultsInDate(Date date) {
-            int numberOfTests = 0;
-            for (Test test : getTests()) {
-                try {
-                    String[] dateAndTimeOfRegister = test.getDateTimeRegister().split(" ");
-                    String[] dayMonthYear = dateAndTimeOfRegister[0].split("/");
-                    int day = Integer.parseInt(dayMonthYear[0]);
-                    int month = Integer.parseInt(dayMonthYear[1]);
-                    int year = Integer.parseInt(dayMonthYear[2]);
-                    Date dateOfRegister = new Date(year - 1900, month - 1, day);
-                    String[] dateAndTimeOfResults = test.getDateTimeResults().split(" ");
-                    String[] diaMesAno = dateAndTimeOfResults[0].split("/");
-                    int dia = Integer.parseInt(diaMesAno[0]);
-                    int mes = Integer.parseInt(diaMesAno[1]);
-                    int ano = Integer.parseInt(diaMesAno[2]);
-                    Date dateOfResults = new Date(ano - 1900, mes - 1, dia);
-                    if (!dateOfRegister.after(date) && !dateOfRegister.before(date) && dateOfResults.after(date)) {
-                        numberOfTests++;
-                    }
-                } catch (NullPointerException ignored) {
-
+        int numberOfTests = 0;
+        for (Test test : getTests()) {
+            try {
+                String[] dateAndTimeOfRegister = test.getDateTimeRegister().split(" ");
+                String[] dayMonthYear = dateAndTimeOfRegister[0].split("/");
+                int day = Integer.parseInt(dayMonthYear[0]);
+                int month = Integer.parseInt(dayMonthYear[1]);
+                int year = Integer.parseInt(dayMonthYear[2]);
+                Date dateOfRegister = new Date(year - 1900, month - 1, day);
+                String[] dateAndTimeOfResults = test.getDateTimeResults().split(" ");
+                String[] diaMesAno = dateAndTimeOfResults[0].split("/");
+                int dia = Integer.parseInt(diaMesAno[0]);
+                int mes = Integer.parseInt(diaMesAno[1]);
+                int ano = Integer.parseInt(diaMesAno[2]);
+                Date dateOfResults = new Date(ano - 1900, mes - 1, dia);
+                if (!dateOfRegister.after(date) && !dateOfRegister.before(date) && dateOfResults.after(date)) {
+                    numberOfTests++;
                 }
+            } catch (NullPointerException ignored) {
+
             }
+        }
         return numberOfTests;
     }
 
     /**
      * Getter for the number of tests waiting for report in a specified date
+     *
      * @param date date
      * @return number of tests waiting for report
      */
     public int getNumberOfTestsWaitingForReportInDate(Date date) {
-            int numberOfTests = 0;
-            for (Test test : getTests()) {
-                try {
-                    String[] dateAndTimeOfResults = test.getDateTimeResults().split(" ");
-                    String[] dayMonthYear = dateAndTimeOfResults[0].split("/");
-                    int day = Integer.parseInt(dayMonthYear[0]);
-                    int month = Integer.parseInt(dayMonthYear[1]);
-                    int year = Integer.parseInt(dayMonthYear[2]);
-                    Date dateOfResults = new Date(year - 1900, month - 1, day);
-                    String[] dateAndTimeOfReport = test.getDateTimeReport().split(" ");
-                    String[] diaMesAno = dateAndTimeOfReport[0].split("/");
-                    int dia = Integer.parseInt(diaMesAno[0]);
-                    int mes = Integer.parseInt(diaMesAno[1]);
-                    int ano = Integer.parseInt(diaMesAno[2]);
-                    Date dateOfReport = new Date(ano - 1900, mes - 1, dia);
-                    if (!dateOfResults.after(date) && !dateOfResults.before(date) && dateOfReport.after(date)) {
-                        numberOfTests++;
-                    }
-                } catch (NullPointerException ignored) {
+        int numberOfTests = 0;
+        for (Test test : getTests()) {
+            try {
+                String[] dateAndTimeOfResults = test.getDateTimeResults().split(" ");
+                String[] dayMonthYear = dateAndTimeOfResults[0].split("/");
+                int day = Integer.parseInt(dayMonthYear[0]);
+                int month = Integer.parseInt(dayMonthYear[1]);
+                int year = Integer.parseInt(dayMonthYear[2]);
+                Date dateOfResults = new Date(year - 1900, month - 1, day);
+                String[] dateAndTimeOfReport = test.getDateTimeReport().split(" ");
+                String[] diaMesAno = dateAndTimeOfReport[0].split("/");
+                int dia = Integer.parseInt(diaMesAno[0]);
+                int mes = Integer.parseInt(diaMesAno[1]);
+                int ano = Integer.parseInt(diaMesAno[2]);
+                Date dateOfReport = new Date(ano - 1900, mes - 1, dia);
+                if (!dateOfResults.after(date) && !dateOfResults.before(date) && dateOfReport.after(date)) {
+                    numberOfTests++;
                 }
+            } catch (NullPointerException ignored) {
             }
+        }
         return numberOfTests;
     }
 
     /**
      * Getter for the number of validated tests in a specified date
+     *
      * @param date date
      * @return number of validated tests
      */
     public int getNumberOfTestsValidatedInDate(Date date) {
-            int numberOfTests = 0;
-            for (Test test : getTests()) {
-                try {
-                    String[] dateAndTimeOfValidation = test.getDateTimeValidation().split(" ");
-                    String[] dayMonthYear = dateAndTimeOfValidation[0].split("/");
-                    int day = Integer.parseInt(dayMonthYear[0]);
-                    int month = Integer.parseInt(dayMonthYear[1]);
-                    int year = Integer.parseInt(dayMonthYear[2]);
-                    Date dateOfValidation = new Date(year - 1900, month - 1, day);
-                    if (!dateOfValidation.after(date) && !dateOfValidation.before(date)) {
-                        numberOfTests++;
-                    }
-                } catch (NullPointerException ignored) {
+        int numberOfTests = 0;
+        for (Test test : getTests()) {
+            try {
+                String[] dateAndTimeOfValidation = test.getDateTimeValidation().split(" ");
+                String[] dayMonthYear = dateAndTimeOfValidation[0].split("/");
+                int day = Integer.parseInt(dayMonthYear[0]);
+                int month = Integer.parseInt(dayMonthYear[1]);
+                int year = Integer.parseInt(dayMonthYear[2]);
+                Date dateOfValidation = new Date(year - 1900, month - 1, day);
+                if (!dateOfValidation.after(date) && !dateOfValidation.before(date)) {
+                    numberOfTests++;
                 }
+            } catch (NullPointerException ignored) {
             }
+        }
         return numberOfTests;
     }
 
 
     /**
      * Sorts each test for each half an hour of a day
-     * @param hours hours
+     *
+     * @param hours   hours
      * @param minutes minutes
-     * @param size size
-     * @param i i
+     * @param size    size
+     * @param i       i
      * @return array of integers
      */
     public int[] sortTestsForEachHalfAnHour(int hours, int minutes, int size, int i, int[] numberOfTestsForEachHalfAnHour) {
@@ -396,6 +414,7 @@ public class TestStore implements Serializable {
 
     /**
      * Getter for the number of new tests for each half an hour
+     *
      * @param dateInterval date interval
      * @return array of numbers
      */
@@ -425,6 +444,7 @@ public class TestStore implements Serializable {
 
     /**
      * Getter for the validated tests for each half an hour
+     *
      * @param dateInterval date interval
      * @return array of numbers
      */
@@ -457,6 +477,7 @@ public class TestStore implements Serializable {
 
     /**
      * Getter for the difference of new and validated tests for each half an hour
+     *
      * @param dateInterval date interval
      * @return array of numbers
      */
@@ -472,17 +493,18 @@ public class TestStore implements Serializable {
 
     /**
      * Creates a test from a CSV file
+     *
      * @param clinicalAnalysisLaboratory clinical analysis laboratory
-     * @param client client
-     * @param testCode test code
-     * @param nhsCode nhs code
-     * @param testTypeChosen the chosen test type
-     * @param listOfChosenCategories the chosen list of categories
-     * @param testParamList test param list
-     * @param dateTimeRegister date and time of register
-     * @param dateTimeResults date and time of results
-     * @param dateTimeReport date and time of report
-     * @param dateTimeValidation date and time of validation
+     * @param client                     client
+     * @param testCode                   test code
+     * @param nhsCode                    nhs code
+     * @param testTypeChosen             the chosen test type
+     * @param listOfChosenCategories     the chosen list of categories
+     * @param testParamList              test param list
+     * @param dateTimeRegister           date and time of register
+     * @param dateTimeResults            date and time of results
+     * @param dateTimeReport             date and time of report
+     * @param dateTimeValidation         date and time of validation
      * @return a new Test
      */
     public Test createTestFromCSV(ClinicalAnalysisLaboratory clinicalAnalysisLaboratory, Client client, String testCode, String nhsCode, TestType testTypeChosen, List<Category> listOfChosenCategories, TestParamList testParamList, String dateTimeRegister, String dateTimeResults, String dateTimeReport, String dateTimeValidation) {
