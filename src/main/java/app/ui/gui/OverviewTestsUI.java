@@ -191,7 +191,7 @@ public class OverviewTestsUI implements Initializable {
         testsValidatedChart.getData().add(testsValidated);
         int[] sequence = overviewTestsController.getDifferenceOfNewAndValidatedTests(dateInterval);
         outputTextArea.appendText(String.format("Sequence: %s\n", Arrays.toString(sequence)));
-        outputTextArea.appendText(String.format("Sub Sequence: %s\n", Arrays.toString(overviewTestsController.getBiggestContiguousSubSequence(sequence, code))));
+        outputTextArea.appendText(String.format("Subsequence: %s\n", Arrays.toString(overviewTestsController.getBiggestContiguousSubSequence(sequence, code))));
 
     }
 

@@ -30,7 +30,7 @@ As a clinical chemistry technologist, I intend to consult the historical tests p
 
 ### 1.4. Found out Dependencies
 
-
+US15 - Validate the work done by the Clinical Chemistry Technologist and Specialist Doctor
 
 ### 1.5 Input and Output Data
 
@@ -63,21 +63,25 @@ As a clinical chemistry technologist, I intend to consult the historical tests p
 |:-------------  |:---------------------|:------------|:---------------------------- |
 | Step 1: Starts client's test verification function | N/A |  |  |
 | Step 2: Asks if the clients should be ordered by TIN or by name | N/A |  |  |
-| Step 3: Chooses which way to order the clients | ... sorting the clients by the selected parameter? | SortingAlgorithm |  |
-| Step 4: Shows the list of clients ordered in the specified manner and asks which they would like to pick  | ... showing the list of clients? | TestConsultationUI | Pure Fabrication |
+| Step 3: Chooses which way to order the clients | ... getting all the clients with validated tests in the system? <br>... sorting the clients by the selected parameter? | ClientStore <br> SortingAlgorithm | High Cohesion/Low Coupling; <br> Protected Variation |
+| Step 4: Shows the list of clients ordered in the specified manner and asks which they would like to pick  | ... showing the list of clients? | ShowClientListUI | Pure Fabrication |
 | Step 5: Picks the desired client | ... getting the client's test ? | TestStore | High cohesion/Low coupling |
-| Step 6: Displays the selected client's test history |  |  |  |
-| Step 7: Displays test results |  |  |  |
+| Step 6: Displays the selected client's test history | ...knowing the client tests? | Company<br>TestStore | Information Expert; <br> High Cohesion/Low Coupling |
+| Step 7: Displays test results | ...knowing the clients tests results? | TestParameter<br>TestParamList | Information Expert;<br> High Cohesion/Low Coupling |
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are:
 
-* 
+* ClientStore
+* SortingAlgorithm
+* TestStore
+* TestParameter
+* TestParamList
 
 Other software classes (i.e. Pure Fabrication) identified:
-* 
-* 
+* ShowClientListUI
+* ShowClientListController
 
 ## 3.2. Sequence Diagram (SD)
 

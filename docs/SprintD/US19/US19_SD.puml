@@ -25,6 +25,8 @@ note over drtimer, timer : Clock will trigger at 6.00 am, executing the daily re
 
 Clock -> timer : clock hits at 6.00 am
 activate timer
+create controller
+timer -> controller : create()
 timer -> controller : run()
 deactivate timer
 activate controller
