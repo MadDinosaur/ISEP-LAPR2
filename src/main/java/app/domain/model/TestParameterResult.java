@@ -4,9 +4,10 @@ import app.domain.model.Exceptions.InvalidMetricException;
 import app.domain.model.Exceptions.InvalidReferenceValueException;
 import app.domain.model.Exceptions.InvalidSampleValueException;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TestParameterResult {
+public class TestParameterResult implements Serializable {
     private Date createdAt;
     private Double value;
     private String metric;

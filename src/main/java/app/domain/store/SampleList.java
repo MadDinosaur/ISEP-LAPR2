@@ -2,9 +2,10 @@ package app.domain.store;
 
 import app.domain.model.Sample;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SampleList {
+public class SampleList implements Serializable {
 
     private ArrayList<Sample> sampleList = new ArrayList<>();
 

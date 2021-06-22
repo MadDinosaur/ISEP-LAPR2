@@ -2,7 +2,9 @@ package app.domain.model;
 
 import app.domain.model.Exceptions.InvalidTestResultException;
 
-public class TestParameter {
+import java.io.Serializable;
+
+public class TestParameter implements Serializable {
     private final Parameter param;
     private TestParameterResult result;
 
