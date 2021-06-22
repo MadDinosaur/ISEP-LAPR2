@@ -22,7 +22,7 @@ public class Test {
     private SampleList sampleList = new SampleList();
     private StateOfTest stateOfTest;
     private Report report;
-    private final String dateTimeRegister;
+    private String dateTimeRegister;
     private String dateTimeCollection;
     private String dateTimeReport;
     private String dateTimeResults;
@@ -196,6 +196,9 @@ public class Test {
     }
 
     public String getDateTimeValidation() {
+        if (this.dateTimeValidation == null) {
+            throw new NullPointerException();
+        }
         return dateTimeValidation;
     }
 
@@ -292,6 +295,11 @@ public class Test {
     public void setStateOfTestToSamplesAnalyzed() {
         this.stateOfTest = StateOfTest.SAMPLES_ANALYZED;
         this.dateTimeResults = getDateTime();
+    }
+
+    public void setStateOfTestToRegistered() {
+        this.stateOfTest = StateOfTest.REGISTERED;
+        this.dateTimeRegister = getDateTime();
     }
 
     public void setStateOfTestToSamplesCollected() {

@@ -192,7 +192,6 @@ public class OverviewTestsUI implements Initializable {
         int[] sequence = overviewTestsController.getDifferenceOfNewAndValidatedTests(dateInterval);
         outputTextArea.appendText(String.format("Sequence: %s\n", Arrays.toString(sequence)));
         outputTextArea.appendText(String.format("Sub Sequence: %s\n", Arrays.toString(overviewTestsController.getBiggestContiguousSubSequence(sequence, code))));
-
     }
 
     /**

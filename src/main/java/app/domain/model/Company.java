@@ -115,6 +115,7 @@ public class Company {
         clientStore.saveClient(new Client("Maria", (long) 1234567812345678.0, 1234512345, new DateBirth(24, 12, 2002), 1234512346, (long) 12345123456.0, new Email("teste@gmail.com"), "male"));
         clientStore.saveClient(new Client("João", (long) 8765432187654322.0, 1234512345, new DateBirth(24, 12, 2002), 1234512347, (long) 12345123456.0, new Email("teste2@gmail.com"), "male"));
         clientStore.saveClient(new Client("Pedro", (long) 8765432187654323.0, 1234512346, new DateBirth(11, 9, 2001), 1234512348, (long) 12345123457.0, new Email("teste3@gmail.com"), "male"));
+        clientStore.saveClient(new Client("Tomás", (long) 8765432187654324.0, 1234512346, new DateBirth(11, 9, 2001), 1234512349, (long) 12345123458.0, new Email("teste4@gmail.com"), "male"));
         CollectionMethod collectionMethodTest = new CollectionMethod("test Colection");
         Category categoryTest = new Category("Hemogram", "HEM00", "Hemogram Description", "toma");
         String hb000 = "HB000";
@@ -131,18 +132,17 @@ public class Company {
         Test testTestHardCoded = new Test(clientStore.getClientByCardNumber((long) 8765432187654321.0), testTypeHardCoded, testNumberGenerator(), nhsCodeGenerator());
         Test testTestHardCodedRegistered = new Test(clientStore.getClientByCardNumber((long) 8765432187654322.0), testTypeHardCoded, testNumberGenerator(), nhsCodeGenerator());
         Test testTestHardCodedDiagnosed = new Test(clientStore.getClientByCardNumber((long) 8765432187654323.0), testTypeHardCoded, testNumberGenerator(), nhsCodeGenerator());
-        Test testReport = new Test(clientStore.getClientByCardNumber((long) 8765432187654323.0), testTypeHardCoded, testNumberGenerator(), nhsCodeGenerator());
-        testReport.setStateOfTestToSamplesCollected();
+        //Test mdisc1 = new Test(clientStore.getClientByCardNumber((long) 8765432187654324.0), testTypeHardCoded, testNumberGenerator(), nhsCodeGenerator());
+        //mdisc1.setStateOfTestToRegistered();
         testTestHardCoded.saveTestParameterResult(parameter, testTestHardCoded.createTestParameterResult(hb000, "135", "mg"));
         testTestHardCodedDiagnosed.saveTestParameterResult(parameter, testTestHardCodedDiagnosed.createTestParameterResult(hb000, "135", "mg"));
         testTestHardCoded.setStateOfTestToSamplesAnalyzed();
         testTestHardCodedDiagnosed.setStateOfTestToSamplesAnalyzed();
         testTestHardCodedDiagnosed.addReport(new Report("diagnosis", "Report is complete"));
-        testTestHardCodedDiagnosed.validateTest();
+        //testTestHardCodedDiagnosed.validateTest();
         testStore.addTest(testTestHardCodedDiagnosed);
         testStore.addTest(testTestHardCodedRegistered);
         testStore.addTest(testTestHardCoded);
-        testStore.addTest(testReport);
         //END OF HARDCODED THINGS FOR TESTS
     }
 

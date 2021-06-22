@@ -251,14 +251,14 @@ public class TestStore implements Serializable {
      */
     public int getNumberOfTestsWaitingForResultsInDate(Date date) {
             int numberOfTests = 0;
-            for (Test test : getRegisteredTests()) {
+            for (Test test : getTests()) {
                 String[] dateAndTimeOfRegister = test.getDateTimeRegister().split(" ");
                 String[] dayMonthYear = dateAndTimeOfRegister[0].split("/");
                 int day = Integer.parseInt(dayMonthYear[0]);
                 int month = Integer.parseInt(dayMonthYear[1]);
                 int year = Integer.parseInt(dayMonthYear[2]);
                 Date dateOfRegister = new Date(year - 1900, month - 1, day);
-                if (!dateOfRegister.after(date)) {
+                if (!dateOfRegister.after(date) && !dateOfRegister.before(date)) {
                     numberOfTests++;
                 }
             }
@@ -272,15 +272,18 @@ public class TestStore implements Serializable {
      */
     public int getNumberOfTestsWaitingForReportInDate(Date date) {
             int numberOfTests = 0;
-            for (Test test : getTestsListReadyForReport()) {
-                String[] dateAndTimeOfResults = test.getDateTimeResults().split(" ");
-                String[] dayMonthYear = dateAndTimeOfResults[0].split("/");
-                int day = Integer.parseInt(dayMonthYear[0]);
-                int month = Integer.parseInt(dayMonthYear[1]);
-                int year = Integer.parseInt(dayMonthYear[2]);
-                Date dateOfResults = new Date(year - 1900, month - 1, day);
-                if (!dateOfResults.after(date)) {
-                    numberOfTests++;
+            for (Test test : getTests()) {
+                try {
+                    String[] dateAndTimeOfResults = test.getDateTimeResults().split(" ");
+                    String[] dayMonthYear = dateAndTimeOfResults[0].split("/");
+                    int day = Integer.parseInt(dayMonthYear[0]);
+                    int month = Integer.parseInt(dayMonthYear[1]);
+                    int year = Integer.parseInt(dayMonthYear[2]);
+                    Date dateOfResults = new Date(year - 1900, month - 1, day);
+                    if (!dateOfResults.after(date) && !dateOfResults.before(date)) {
+                        numberOfTests++;
+                    }
+                } catch (NullPointerException ignored) {
                 }
             }
         return numberOfTests;
@@ -293,15 +296,18 @@ public class TestStore implements Serializable {
      */
     public int getNumberOfTestsValidatedInDate(Date date) {
             int numberOfTests = 0;
-            for (Test test : getTestsValidated()) {
-                String[] dateAndTimeOfValidation = test.getDateTimeValidation().split(" ");
-                String[] dayMonthYear = dateAndTimeOfValidation[0].split("/");
-                int day = Integer.parseInt(dayMonthYear[0]);
-                int month = Integer.parseInt(dayMonthYear[1]);
-                int year = Integer.parseInt(dayMonthYear[2]);
-                Date dateOfValidation = new Date(year - 1900, month - 1, day);
-                if (!dateOfValidation.after(date) && !dateOfValidation.before(date)) {
-                    numberOfTests++;
+            for (Test test : getTests()) {
+                try {
+                    String[] dateAndTimeOfValidation = test.getDateTimeValidation().split(" ");
+                    String[] dayMonthYear = dateAndTimeOfValidation[0].split("/");
+                    int day = Integer.parseInt(dayMonthYear[0]);
+                    int month = Integer.parseInt(dayMonthYear[1]);
+                    int year = Integer.parseInt(dayMonthYear[2]);
+                    Date dateOfValidation = new Date(year - 1900, month - 1, day);
+                    if (!dateOfValidation.after(date) && !dateOfValidation.before(date)) {
+                        numberOfTests++;
+                    }
+                } catch (NullPointerException ignored) {
                 }
             }
         return numberOfTests;
@@ -316,8 +322,7 @@ public class TestStore implements Serializable {
      * @param i i
      * @return array of integers
      */
-    public int[] sortTestsForEachHalfAnHour(int hours, int minutes, int size, int i) {
-        int[] numberOfTestsForEachHalfAnHour = new int[size];
+    public int[] sortTestsForEachHalfAnHour(int hours, int minutes, int size, int i, int[] numberOfTestsForEachHalfAnHour) {
         if (hours == 8 && minutes < 30) {
             numberOfTestsForEachHalfAnHour[i]++;
         } else if (hours == 8 && minutes > 30) {
@@ -382,7 +387,7 @@ public class TestStore implements Serializable {
         int[] numberOfTestsForEachHalfAnHour = new int[size];
         int i = 1;
         for (Date date : dateInterval) {
-            for (Test test : getRegisteredTests()) {
+            for (Test test : getTests()) {
                 String[] dateAndTimeOfRegister = test.getDateTimeRegister().split(" ");
                 String[] hoursMinutes = dateAndTimeOfRegister[1].split(":");
                 int hours = Integer.parseInt(hoursMinutes[0]);
@@ -392,8 +397,8 @@ public class TestStore implements Serializable {
                 int month = Integer.parseInt(dayMonthYear[1]);
                 int year = Integer.parseInt(dayMonthYear[2]);
                 Date dateOfRegister = new Date(year - 1900, month - 1, day);
-                if (dateOfRegister.equals(date)) {
-                    numberOfTestsForEachHalfAnHour = sortTestsForEachHalfAnHour(hours, minutes, size, i);
+                if (!dateOfRegister.after(date) && !dateOfRegister.before(date)) {
+                    numberOfTestsForEachHalfAnHour = sortTestsForEachHalfAnHour(hours, minutes, size, i, numberOfTestsForEachHalfAnHour);
                 }
             }
             i = i + 24;
@@ -411,18 +416,21 @@ public class TestStore implements Serializable {
         int[] numberOfTestsForEachHalfAnHour = new int[24 * dateInterval.size()];
         int i = 1;
         for (Date date : dateInterval) {
-            for (Test test : getTestsValidated()) {
-                String[] dateAndTimeOfValidation = test.getDateTimeValidation().split(" ");
-                String[] hoursMinutes = dateAndTimeOfValidation[1].split(":");
-                int hours = Integer.parseInt(hoursMinutes[0]);
-                int minutes = Integer.parseInt(hoursMinutes[1]);
-                String[] dayMonthYear = dateAndTimeOfValidation[0].split("/");
-                int day = Integer.parseInt(dayMonthYear[0]);
-                int month = Integer.parseInt(dayMonthYear[1]);
-                int year = Integer.parseInt(dayMonthYear[2]);
-                Date dateOfValidation = new Date(year - 1900, month - 1, day);
-                if (dateOfValidation.equals(date)) {
-                    numberOfTestsForEachHalfAnHour = sortTestsForEachHalfAnHour(hours, minutes, size, i);
+            for (Test test : getTests()) {
+                try {
+                    String[] dateAndTimeOfValidation = test.getDateTimeValidation().split(" ");
+                    String[] hoursMinutes = dateAndTimeOfValidation[1].split(":");
+                    int hours = Integer.parseInt(hoursMinutes[0]);
+                    int minutes = Integer.parseInt(hoursMinutes[1]);
+                    String[] dayMonthYear = dateAndTimeOfValidation[0].split("/");
+                    int day = Integer.parseInt(dayMonthYear[0]);
+                    int month = Integer.parseInt(dayMonthYear[1]);
+                    int year = Integer.parseInt(dayMonthYear[2]);
+                    Date dateOfValidation = new Date(year - 1900, month - 1, day);
+                    if (dateOfValidation.equals(date)) {
+                        numberOfTestsForEachHalfAnHour = sortTestsForEachHalfAnHour(hours, minutes, size, i, numberOfTestsForEachHalfAnHour);
+                    }
+                } catch (NullPointerException ignored) {
                 }
             }
             i = i + 24;
@@ -440,6 +448,7 @@ public class TestStore implements Serializable {
         int[] numberOfValidatedTests = getNumberOfValidatedTestsForEachHalfAnHour(dateInterval);
         int[] difference = new int[numberOfNewTests.length];
         for (int i = 0; i < difference.length; i++) {
+            System.out.printf("New Tests: %s\nValidated tests: %s\n", numberOfNewTests[i], numberOfValidatedTests[i]);
             difference[i] = numberOfNewTests[i] - numberOfValidatedTests[i];
         }
         return difference;
@@ -465,4 +474,7 @@ public class TestStore implements Serializable {
         return test;
     }
 
+    public List<Test> getTests() {
+        return tests;
+    }
 }
