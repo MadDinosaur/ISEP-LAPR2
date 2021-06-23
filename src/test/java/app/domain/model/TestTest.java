@@ -71,12 +71,10 @@ public class TestTest{
         Report report = test1.getReport();
         String dateTimeReport = test1.getDateTimeReport();
         String dateTimeResults = test1.getDateTimeResults();
-        String dateTimeValidation = test1.getDateTimeValidation();
 
         Assert.assertEquals(stateOfTest, Test.StateOfTest.REGISTERED);
         Assert.assertNull(dateTimeReport);
         Assert.assertNull(dateTimeResults);
-        Assert.assertNull(dateTimeValidation);
         Assert.assertNull(report);
     }
 

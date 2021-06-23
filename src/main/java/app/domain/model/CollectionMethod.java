@@ -1,6 +1,6 @@
 package app.domain.model;
 
-import app.domain.model.Exceptions.InvalidDescriptionException;
+import app.domain.model.exceptions.InvalidDescriptionException;
 
 import java.io.Serializable;
 import java.util.Objects;

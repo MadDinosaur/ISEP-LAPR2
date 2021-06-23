@@ -1,7 +1,7 @@
 package app.ui.console;
 
 import app.controller.RegisterNewLabController;
-import app.domain.model.Exceptions.*;
+import app.domain.model.exceptions.*;
 import app.domain.model.TestType;
 
 import java.util.List;

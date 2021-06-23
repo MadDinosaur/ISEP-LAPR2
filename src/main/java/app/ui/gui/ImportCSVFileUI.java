@@ -1,7 +1,7 @@
 package app.ui.gui;
 
 import app.controller.ImportCSVFileController;
-import app.domain.model.Exceptions.*;
+import app.domain.model.exceptions.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

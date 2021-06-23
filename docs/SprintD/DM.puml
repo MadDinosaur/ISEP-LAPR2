@@ -17,7 +17,12 @@ class ChemicalLaboratory {
 -phoneNumber
 -TIN
 }
-
+class MultiLinearRegression{
+}
+class LinearRegression{
+}
+class WriteReport{
+}
 class CollectionMethod {
 -designation
 }
@@ -107,7 +112,6 @@ class Diagnosis
 
 
 
-"NHS API" "1"-left-"*" NHSReportType : sent via <
 (Test, Parameter) .. TestParameter
 Administrator "1"--"*" Category : created by <
 Administrator "1"--"*" Employee : registers >
@@ -126,8 +130,6 @@ Report "*"--"1" SpecialistDoctor : generates <
 Employee -- OrganizationRole : has >
 Employee <|-- SpecialistDoctor
 MedicalLabTechnician "1"--"*" Sample : collected by <
-"NHS API" -right- NHS : owned by >
-NHSReportType "*"--"1" Company : generates <
 OrganizationRole "0..*"--"1" Administrator : has <
 OrganizationRole "0..*"--"1" ClinicalChemistryTechnologist : has <
 OrganizationRole "0..*"--"1" LaboratoryCoordinator : has <
@@ -159,4 +161,10 @@ TestType "*"-right-"1" ReferenceValueModule : makes use of >
 TestType "1"--"1" CollectionMethod : has a  >
 TestType "1"--"1..*" Category : has >
 Report "1"--"1" Diagnosis: contains >
+"NHS API" "1"-left-"*" WriteReport : sent via <
+"NHS API" -right- NHS : owned by >
+MultiLinearRegression "*"--"1" Company : generates <
+LinearRegression "*"--"1" Company : generates <
+MultiLinearRegression "*"-up-"1" WriteReport : creates >
+LinearRegression "*"-up-"1" WriteReport : creates
 @enduml

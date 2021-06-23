@@ -1,7 +1,7 @@
 package app.domain.store;
 
 import app.domain.adapter.ExternalModule;
-import app.domain.model.Exceptions.UnregisteredParameterException;
+import app.domain.model.exceptions.UnregisteredParameterException;
 import app.domain.model.*;
 
 import java.io.Serializable;

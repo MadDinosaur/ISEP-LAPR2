@@ -1,8 +1,8 @@
 package app.domain.model;
 
-import app.domain.model.Exceptions.InvalidMetricException;
-import app.domain.model.Exceptions.InvalidReferenceValueException;
-import app.domain.model.Exceptions.InvalidSampleValueException;
+import app.domain.model.exceptions.InvalidMetricException;
+import app.domain.model.exceptions.InvalidReferenceValueException;
+import app.domain.model.exceptions.InvalidSampleValueException;
 
 import java.io.Serializable;
 import java.util.Date;

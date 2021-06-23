@@ -1,10 +1,10 @@
 package app.domain.model;
 
 import app.domain.adapter.ExternalModule;
-import app.domain.model.Exceptions.InvalidCategoryException;
-import app.domain.model.Exceptions.InvalidCodeException;
-import app.domain.model.Exceptions.InvalidDescriptionException;
-import app.domain.model.Exceptions.UnassignedExternalModuleException;
+import app.domain.model.exceptions.InvalidCategoryException;
+import app.domain.model.exceptions.InvalidCodeException;
+import app.domain.model.exceptions.InvalidDescriptionException;
+import app.domain.model.exceptions.UnassignedExternalModuleException;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;

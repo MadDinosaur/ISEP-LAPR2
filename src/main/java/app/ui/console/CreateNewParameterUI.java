@@ -2,9 +2,9 @@ package app.ui.console;
 
 import app.controller.CreateNewParameterController;
 import app.domain.model.Category;
-import app.domain.model.Exceptions.InvalidCodeException;
-import app.domain.model.Exceptions.InvalidDescriptionException;
-import app.domain.model.Exceptions.InvalidNameException;
+import app.domain.model.exceptions.InvalidCodeException;
+import app.domain.model.exceptions.InvalidDescriptionException;
+import app.domain.model.exceptions.InvalidNameException;
 
 import java.util.Iterator;
 import java.util.Scanner;

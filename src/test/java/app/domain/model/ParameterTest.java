@@ -1,8 +1,8 @@
 package app.domain.model;
 
-import app.domain.model.Exceptions.InvalidCodeException;
-import app.domain.model.Exceptions.InvalidDescriptionException;
-import app.domain.model.Exceptions.InvalidNameException;
+import app.domain.model.exceptions.InvalidCodeException;
+import app.domain.model.exceptions.InvalidDescriptionException;
+import app.domain.model.exceptions.InvalidNameException;
 import org.junit.Test;
 
 public class ParameterTest {

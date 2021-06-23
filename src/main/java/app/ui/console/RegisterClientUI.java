@@ -1,7 +1,7 @@
 package app.ui.console;
 
 import app.controller.RegisterClientController;
-import app.domain.model.Exceptions.*;
+import app.domain.model.exceptions.*;
 
 import java.io.IOException;
 import java.util.InputMismatchException;

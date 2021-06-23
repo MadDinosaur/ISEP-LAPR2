@@ -1,7 +1,7 @@
 package app.controller;
 
 import app.domain.model.Company;
-import app.domain.model.Exceptions.EmptyListException;
+import app.domain.model.exceptions.EmptyListException;
 import app.domain.model.Test;
 import app.domain.store.TestStore;
 import app.mappers.TestMapper;

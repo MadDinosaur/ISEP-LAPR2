@@ -1,7 +1,7 @@
 package app.ui.console;
 
 import app.controller.ValidateTestController;
-import app.domain.model.Exceptions.EmptyListException;
+import app.domain.model.exceptions.EmptyListException;
 import app.domain.model.Test;
 
 import java.io.IOException;

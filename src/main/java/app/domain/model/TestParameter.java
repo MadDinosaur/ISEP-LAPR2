@@ -1,6 +1,6 @@
 package app.domain.model;
 
-import app.domain.model.Exceptions.InvalidTestResultException;
+import app.domain.model.exceptions.InvalidTestResultException;
 
 import java.io.Serializable;
 
