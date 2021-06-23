@@ -38,6 +38,12 @@ public class CreateNhsReportController {
      */
     private String finalDay;
 
+    private double confidence;
+
+    private double significance;
+
+    private String varTest;
+
     /**
      * Empty class constructor for the controller
      *
@@ -90,6 +96,17 @@ public class CreateNhsReportController {
         this.independentVariable = independentVariable;
     }
 
+    public void setConfidence(int confidenceInt){
+        confidence = (double) confidenceInt / 100;
+    }
+    public void setSignificance(int significance){
+        this.significance = (double) significance / 100;
+    }
+
+    public void setVarTest(String varTest) {
+        this.varTest = varTest;
+    }
+
     /**
      * Generates a regression with the data in the class
      *
@@ -111,19 +128,20 @@ public class CreateNhsReportController {
 
         String report = "";
 
+
         if(independentVariable.equalsIgnoreCase("multilinear")){
-            report = company.makeMultiLinearRegressionReport(historicalPoints,currentDay,dateInitialDay,dateFinalDay);
+            report = company.makeMultiLinearRegressionReport(historicalPoints,currentDay,dateInitialDay,dateFinalDay, confidence, significance, varTest);
         } else {
             if(independentVariable.equalsIgnoreCase("mean age")){
                 try {
-                    company.makeSimpleLinearRegressionReport(historicalPoints,currentDay,dateInitialDay,dateFinalDay,independentVariable);
+                    company.makeSimpleLinearRegressionReport(historicalPoints,currentDay,dateInitialDay,dateFinalDay,independentVariable,confidence, significance,varTest);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }else{
                 if(independentVariable.equalsIgnoreCase("total tests")){
                     try {
-                        company.makeSimpleLinearRegressionReport(historicalPoints,currentDay,dateInitialDay,dateFinalDay,independentVariable);
+                        company.makeSimpleLinearRegressionReport(historicalPoints,currentDay,dateInitialDay,dateFinalDay,independentVariable,confidence, significance, varTest);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

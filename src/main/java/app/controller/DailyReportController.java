@@ -42,15 +42,35 @@ public class DailyReportController extends TimerTask {
         String finalDay = intervalDate[1];
         String independentVariable = props.getProperty("independentVariable");
 
+        int confidenceValue = Integer.parseInt(props.getProperty("confidence"));
+
+        int significance = Integer.parseInt(props.getProperty("significance"));
+
+        String testVariable = props.getProperty("testVariable");
+        String testVariableValue;
+        if(testVariable.equalsIgnoreCase("x1")){
+            testVariableValue = "1";
+        }else{
+            if(testVariable.equalsIgnoreCase("x2")){
+                testVariableValue = "2";
+            }else{
+                testVariableValue = "3";
+            }
+        }
+
         createNhsReportController.setHistoricalPoints(historicalPoints);
         createNhsReportController.setCurrentDay(currentDay);
         createNhsReportController.setInitialDay(initialDay);
         createNhsReportController.setFinalDay(finalDay);
         createNhsReportController.setIndependentVariable(independentVariable);
+        createNhsReportController.setConfidence(confidenceValue);
+        createNhsReportController.setSignificance(significance);
+        createNhsReportController.setVarTest(testVariableValue);
+
+
         String report = createNhsReportController.makeRegression();
 
         nhsReport.sendReport(report);
-
     }
 
 }

@@ -462,8 +462,8 @@ public class Company {
      *
      * @return string with report
      */
-    public String makeMultiLinearRegressionReport(int historicalPoints, String dateCurrentDay, Date dateInitalDay,Date dateDayFinal){
-        WriteReport writeReport = new WriteReport(testStore,historicalPoints,dateCurrentDay,dateInitalDay,dateDayFinal);
+    public String makeMultiLinearRegressionReport(int historicalPoints, String dateCurrentDay, Date dateInitalDay,Date dateDayFinal,double confidence, double significance, String varTest){
+        WriteReport writeReport = new WriteReport(testStore,historicalPoints,dateCurrentDay,dateInitalDay,dateDayFinal,confidence,significance,varTest);
         String stringToReport = writeReport.getReport();
         writeUsingFileWriter(stringToReport);
         return stringToReport;
@@ -474,8 +474,8 @@ public class Company {
      *
      * @return string with report
      */
-    public void makeSimpleLinearRegressionReport(int historicalPoints, String dateCurrentDay, Date dateInitalDay,Date dateCurrentDayFinal, String independentVar) throws Exception {
-        WriteReport writeReport = new WriteReport(testStore,historicalPoints,dateCurrentDay,dateInitalDay,dateCurrentDayFinal,independentVar);
+    public void makeSimpleLinearRegressionReport(int historicalPoints, String dateCurrentDay, Date dateInitalDay,Date dateCurrentDayFinal, String independentVar,double confidence, double significance,String varTest) throws Exception {
+        WriteReport writeReport = new WriteReport(testStore,historicalPoints,dateCurrentDay,dateInitalDay,dateCurrentDayFinal,independentVar, confidence, significance,varTest);
         String stringToReport = writeReport.getReport();
         writeUsingFileWriter(stringToReport);
     }

@@ -94,6 +94,10 @@ public class MultiLinearRegression {
      */
     double r;
 
+    double confidence;
+
+
+
     /**
      * Write Report class constructor for Multiple Linear Regressions
      *
@@ -154,12 +158,16 @@ public class MultiLinearRegression {
         sqRAverage = sqR/ 2;
         sqEAverage = sqE/ (degreesOfFreedom-2);
         fTest = sqRAverage / sqEAverage;
-        FDistribution fDistribution = new FDistribution(2, y.length - 3);
-        critical = fDistribution.inverseCumulativeProbability(1-0.05);
+        TDistribution fDistribution = new TDistribution(degreesOfFreedom-2);
+        critical = fDistribution.inverseCumulativeProbability((1+confidence)/2);
         rSquared = sqR/sqT;
         double lengthArray = y.length;
         rSquaredAdjusted = 1- (lengthArray -1)/(lengthArray-3)*(1-rSquared);
         r= Math.sqrt(rSquared);
+    }
+
+    public void setConfidence(double confidence) {
+        this.confidence = confidence;
     }
 
     /**
@@ -306,9 +314,9 @@ public class MultiLinearRegression {
      *
      * @return the confidence value for the first regressor
      */
-    public double getConfidenceRegressionB1(){
+    public double getConfidenceRegressionB1(double significance){
         TDistribution tDistribution = new TDistribution(degreesOfFreedom-2);
-        return tDistribution.inverseCumulativeProbability(0.975)*Math.sqrt(sqEAverage*xTransposeXInversed[1][1]);
+        return tDistribution.inverseCumulativeProbability(significance)*Math.sqrt(sqEAverage*xTransposeXInversed[1][1]);
     }
 
     /**
@@ -316,13 +324,14 @@ public class MultiLinearRegression {
      *
      * @return the confidence value for the second regressor
      */
-    public double getConfidenceRegressionB2(){
+    public double getConfidenceRegressionB2(double significance){
         TDistribution tDistribution = new TDistribution(degreesOfFreedom-2);
-        return tDistribution.inverseCumulativeProbability(0.975)*Math.sqrt(sqEAverage*xTransposeXInversed[2][2]);
+        return tDistribution.inverseCumulativeProbability(significance)*Math.sqrt(sqEAverage*xTransposeXInversed[2][2]);
     }
-    public double getConfidenceRegressionIntercept(){
+
+    public double getConfidenceRegressionIntercept(double significance){
         TDistribution tDistribution = new TDistribution(degreesOfFreedom-2);
-        return tDistribution.inverseCumulativeProbability(0.975)*Math.sqrt(sqEAverage*xTransposeXInversed[0][0]);
+        return tDistribution.inverseCumulativeProbability(significance)*Math.sqrt(sqEAverage*xTransposeXInversed[0][0]);
     }
 
     /**

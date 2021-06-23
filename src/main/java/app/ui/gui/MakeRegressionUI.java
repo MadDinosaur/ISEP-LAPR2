@@ -14,6 +14,12 @@ import java.util.ResourceBundle;
 
 public class MakeRegressionUI implements Initializable {
 
+    public MenuButton varForTest;
+    public MenuItem varX1;
+    public MenuItem varX2;
+    public MenuItem intercept;
+    public TextField signiLevel;
+    public TextField confLevel;
     private AdminMenuUI parent;
     private App mainApp;
     private CreateNhsReportController createNhsReportController = new CreateNhsReportController();
@@ -79,12 +85,33 @@ public class MakeRegressionUI implements Initializable {
         String intialDayString = this.initialDay.getText();
         String finalDay = this.finalDay.getText();
         String typeOfPoints = this.typeOfPoints.getText();
+        String confidenceLevel = this.confLevel.getText();
+        String significanceLevel = this.signiLevel.getText();
+        int significance = Integer.parseInt(significanceLevel);
+        int confidence = Integer.parseInt(confidenceLevel);
+
+        String varToTest = this.varForTest.getText();
+        String varForTesting = "0";
+        if(varToTest.equalsIgnoreCase(varX1.getText())){
+            varForTesting = "1";
+        }else{
+            if(varToTest.equalsIgnoreCase(varX2.getText())){
+                varForTesting = "2";
+            }else{
+                if(varToTest.equalsIgnoreCase(intercept.getText())){
+                    varForTesting = "3";
+                }
+            }
+        }
+
+
         if(typeOfPoints.equalsIgnoreCase("days")){
         }else{
             if(typeOfPoints.equalsIgnoreCase("weeks")){
                 historicalPointsInt = historicalPointsInt*7;
             }
         }
+
         String independentVariable = null;
         if(independentVar.getText().equalsIgnoreCase(meanAge.getText())){
             independentVariable = "mean age";
@@ -97,11 +124,23 @@ public class MakeRegressionUI implements Initializable {
                 }
             }
         }
+
+        if (varForTesting.equals("2") && !independentVariable.equals("multilinear")) {
+            System.out.println("Can't test var X2 in simple linear regression!");
+        }
+
+
+
         createNhsReportController.setHistoricalPoints(historicalPointsInt);
         createNhsReportController.setCurrentDay(currentDay);
         createNhsReportController.setInitialDay(intialDayString);
         createNhsReportController.setFinalDay(finalDay);
         createNhsReportController.setIndependentVariable(independentVariable);
+        createNhsReportController.setConfidence(confidence);
+        createNhsReportController.setSignificance(significance);
+        createNhsReportController.setVarTest(varForTesting);
+
+
         createNhsReportController.makeRegression();
 
 
@@ -126,5 +165,17 @@ public class MakeRegressionUI implements Initializable {
     }
 
     public void finalDay(ActionEvent actionEvent) {
+    }
+
+    public void varX1Btn(ActionEvent actionEvent) {
+        varForTest.setText(varX1.getText());
+    }
+
+    public void varX2Btn(ActionEvent actionEvent) {
+        varForTest.setText(varX2.getText());
+    }
+
+    public void interceptBtn(ActionEvent actionEvent) {
+        varForTest.setText(intercept.getText());
     }
 }

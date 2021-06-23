@@ -103,6 +103,8 @@ public class WriteReport implements CharSequence {
      */
     String stringToReport;
 
+    double confidence;
+
 
 
     /**
@@ -114,7 +116,7 @@ public class WriteReport implements CharSequence {
      * @param startRegression   Day start of the regression model
      * @param finishRegression  Day finish of the regression model
      */
-    public WriteReport(TestStore testStore, int historicalPoints, String currentDay, Date startRegression, Date finishRegression) {
+    public WriteReport(TestStore testStore, int historicalPoints, String currentDay, Date startRegression, Date finishRegression, double confidence, double significance, String varTest) {
 
         long diffInDays =  (finishRegression.getTime() - startRegression .getTime());
         int daysOfRegression = (int) TimeUnit.DAYS.convert(diffInDays, TimeUnit.MILLISECONDS);
@@ -137,6 +139,7 @@ public class WriteReport implements CharSequence {
             int dayOfCalendar = calendar.get(Calendar.DAY_OF_MONTH);
             int monthOfCalendar = calendar.get(Calendar.MONTH);
             int yearOfCalendar = calendar.get(Calendar.YEAR);
+            Date newDate = new Date(dayOfCalendar,monthOfCalendar,yearOfCalendar);
             String dateInString;
             if(dayOfCalendar>9){
                 dateInString = ""+dayOfCalendar;
@@ -150,7 +153,7 @@ public class WriteReport implements CharSequence {
             }
             dateInString = dateInString+ "/" + yearOfCalendar;
 
-            if (dayOfTableToMakeRegression.getDay() == 0) {
+            if (newDate.getDay() == 0) {
                 i--;
                 continue;
             }
@@ -161,7 +164,7 @@ public class WriteReport implements CharSequence {
 
 
         MultiLinearRegression multiLinearRegression = new MultiLinearRegression(x1, x2, y);
-
+        multiLinearRegression.setConfidence((1+confidence)/2);
         xa = multiLinearRegression.getX1();
 
         xb = multiLinearRegression.getX2();
@@ -169,7 +172,7 @@ public class WriteReport implements CharSequence {
         degreesOfFreedom = multiLinearRegression.getDegreesOfFreedom() +1;
         sqR = multiLinearRegression.getSqR();
         sqE = multiLinearRegression.getSqE();
-        sqT = multiLinearRegression.getSqT();
+        sqT = sqE + sqR;
         sqEAverage = multiLinearRegression.getSqEAverage();
         sqRAverage = multiLinearRegression.getSqRAverage();
         fTest = multiLinearRegression.getFTest();
@@ -177,13 +180,12 @@ public class WriteReport implements CharSequence {
         r2Adjusted = multiLinearRegression.getRSquaredAdjusted();
         r = multiLinearRegression.getR();
         critical = multiLinearRegression.getCritical();
-        String selectedCoefient = "intercept";
 
         double t_obs;
-        if(selectedCoefient.equalsIgnoreCase("a")){
+        if(varTest.equalsIgnoreCase("1")){
             t_obs = xa / Math.sqrt(sqEAverage*multiLinearRegression.xTransposeX1());
         }else{
-            if(selectedCoefient.equalsIgnoreCase("b")){
+            if(varTest.equalsIgnoreCase("2")){
                 t_obs = xb / Math.sqrt(sqEAverage*multiLinearRegression.xTransposeX2());
             }else{
                 t_obs = intercept / Math.sqrt(sqEAverage*multiLinearRegression.xTransposeX0());
@@ -192,12 +194,13 @@ public class WriteReport implements CharSequence {
 
         String rejection;
         TDistribution tDistribution = new TDistribution(degreesOfFreedom-2);
-        double coefientCritical = tDistribution.cumulativeProbability(0.975);
+        double coefientCritical = tDistribution.cumulativeProbability((1+significance)/2);
         if(t_obs > coefientCritical){
             rejection = "Reject H0";
         }else{
             rejection = "No reject H0";
         }
+        int confidence100 = (int) (confidence *100);
 
 
         StringBuilder stringToBuild = new StringBuilder("The regression model fitted using data from the interval\n" +
@@ -234,7 +237,7 @@ public class WriteReport implements CharSequence {
         stringToBuild.append("\n" +
                 "// Prediction values\n" +
                 "\n" +
-                "Date                Number of OBSERVED positive cases           Number of ESTIMATED/EXPECTED positive cases \t\t95% intervals\n");
+                "Date                Number of OBSERVED positive cases           Number of ESTIMATED/EXPECTED positive cases \t\t"+confidence100+ "% intervals\n");
         Date dayOfTable = dateCurrentDay;
         int index;
         for (index = 1; index <= historicalPoints; index++) {
@@ -244,6 +247,7 @@ public class WriteReport implements CharSequence {
             int dayOfCalendar = calendar.get(Calendar.DAY_OF_MONTH);
             int monthOfCalendar = calendar.get(Calendar.MONTH);
             int yearOfCalendar = calendar.get(Calendar.YEAR);
+            Date newDate = new Date(dayOfCalendar,monthOfCalendar,yearOfCalendar);
             String dateInString;
             if(dayOfCalendar>9){
                 dateInString = ""+dayOfCalendar;
@@ -257,16 +261,16 @@ public class WriteReport implements CharSequence {
             }
             dateInString = dateInString+ "/" + yearOfCalendar;
 
-            String pattern = "dd/MM/yyyy";
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-            String dayOfTableInString = simpleDateFormat.format(dayOfTable);
+            //String pattern = "dd/MM/yyyy";
+            //SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+           //String dayOfTableInString = simpleDateFormat.format(dayOfTable);
 
-            if (dayOfTable.getDay() == 0) {
+            if (newDate.getDay() == 0) {
                 index--;
 
             } else {
                 double critical = multiLinearRegression.getPrevisionforY(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString));
-                stringToBuild.append((dayOfTableInString + "                    " + testStore.getNumberOfPositiveCasesPerDay(dateInString) + "                                      " + multiLinearRegression.getPrevisionforY(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString)) + "                                      " + (critical - multiLinearRegression.getCriticalValue(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString))) + "-" + (critical + multiLinearRegression.getCriticalValue(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString)))) + "\n");
+                stringToBuild.append((dateInString + "                    " + testStore.getNumberOfPositiveCasesPerDay(dateInString) + "                                      " + multiLinearRegression.getPrevisionforY(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString)) + "                                      " + (critical - multiLinearRegression.getCriticalValue(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString))) + "-" + (critical + multiLinearRegression.getCriticalValue(testStore.getNumberOfTestsPerformed(dateInString), testStore.getAverageAgeOfClient(dateInString)))) + "\n");
             }
         }
         stringToReport = stringToBuild.toString();
@@ -282,8 +286,8 @@ public class WriteReport implements CharSequence {
      * @param finishRegression      Day finish of the regression model
      * @param independentVariable   Independent variable for the regression model
      */
-    public WriteReport(TestStore testStore, int historicalPoints, String currentDay, Date startRegression, Date finishRegression, String independentVariable) throws Exception {
-
+    public WriteReport(TestStore testStore, int historicalPoints, String currentDay, Date startRegression, Date finishRegression, String independentVariable, double confidence, double significance, String varTest) throws Exception {
+        this.confidence = confidence;
         long diffInDays =  (finishRegression.getTime() - startRegression .getTime());
         int daysOfRegression = (int) TimeUnit.DAYS.convert(diffInDays, TimeUnit.MILLISECONDS);
 
@@ -305,6 +309,8 @@ public class WriteReport implements CharSequence {
             int dayOfCalendar = calendar.get(Calendar.DAY_OF_MONTH);
             int monthOfCalendar = calendar.get(Calendar.MONTH);
             int yearOfCalendar = calendar.get(Calendar.YEAR);
+
+            Date newDate = new Date(dayOfCalendar,monthOfCalendar,yearOfCalendar);
             String dateInString;
             if(dayOfCalendar>9){
                 dateInString = ""+dayOfCalendar;
@@ -318,7 +324,7 @@ public class WriteReport implements CharSequence {
             }
             dateInString = dateInString+ "/" + yearOfCalendar;
 
-            if (dayOfTableToMakeRegression.getDay() == 0) {
+            if (newDate.getDay() == 0) {
                 i--;
                 continue;
             }
@@ -326,7 +332,6 @@ public class WriteReport implements CharSequence {
             x2[i] = testStore.getAverageAgeOfClient(dateInString);
             y[i] = testStore.getNumberOfPositiveCasesPerDay(dateInString);
         }
-
 
         LinearRegression linearRegression;
         if(independentVariable.equalsIgnoreCase("mean age")){
@@ -351,17 +356,24 @@ public class WriteReport implements CharSequence {
         rSquared = linearRegression.R2();
         r2Adjusted =
         this.r = Math.sqrt(rSquared);
-        critical = linearRegression.getT0(0.05);
+        critical = linearRegression.getT0(1-confidence);
 
         double t_obs;
         String rejection;
-        t_obs = linearRegression.getTs(0.99);
-        double tCritical = linearRegression.getTa();
+        t_obs = linearRegression.getTs((1+significance)/2);
+        double tCritical;
+        if(varTest.equalsIgnoreCase("1")){
+            tCritical= linearRegression.getTa();
+        }else{
+            tCritical=linearRegression.getTb();
+        }
         if (tCritical > t_obs){
             rejection = "Reject H0";
         }else{
             rejection = "No reject H0";
         }
+
+        int confidence100 = (int) (confidence *100);
 
         StringBuilder stringToBuild = new StringBuilder("The regression model fitted using data from the interval\n" +
                 "^y = " + xa + "x +" + intercept + "\n" +
@@ -396,7 +408,7 @@ public class WriteReport implements CharSequence {
         stringToBuild.append("\n" +
                 "// Prediction values\n" +
                 "\n" +
-                "Date                Number of OBSERVED positive cases           Number of ESTIMATED/EXPECTED positive cases \t\t95% intervals\n");
+                "Date                Number of OBSERVED positive cases           Number of ESTIMATED/EXPECTED positive cases \t\t" + confidence100 +"% intervals\n");
         Date dayOfTable = dateCurrentDay;
         int index;
         for (index = 1; index <= historicalPoints; index++) {
@@ -406,6 +418,8 @@ public class WriteReport implements CharSequence {
             int dayOfCalendar = calendar.get(Calendar.DAY_OF_MONTH);
             int monthOfCalendar = calendar.get(Calendar.MONTH);
             int yearOfCalendar = calendar.get(Calendar.YEAR);
+
+            Date newDate = new Date(dayOfCalendar,monthOfCalendar,yearOfCalendar);
             String dateInString;
             if(dayOfCalendar>9){
                 dateInString = ""+dayOfCalendar;
@@ -421,23 +435,23 @@ public class WriteReport implements CharSequence {
 
             String pattern = "dd/MM/yyyy";
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-            String dayOfTableInString = simpleDateFormat.format(dayOfTable);
+            //String dayOfTableInString = simpleDateFormat.format(newDate);
 
-            if (dayOfTable.getDay() == 0) {
+            if (newDate.getDay() == 0) {
                 index--;
 
             } else {
                 double critical;
                 if(independentVariable.equalsIgnoreCase("mean age")){
-                    critical = linearRegression.getInterval(0.95,testStore.getAverageAgeOfClient(dateInString));
+                    critical = linearRegression.getInterval((1+confidence)/2,testStore.getAverageAgeOfClient(dateInString));
                 }else{
                     if(independentVariable.equalsIgnoreCase("total tests")){
-                        critical = linearRegression.getInterval(0.95,testStore.getNumberOfTestsPerformed(dateInString));
+                        critical = linearRegression.getInterval((1+confidence)/2,testStore.getNumberOfTestsPerformed(dateInString));
                     }else{
                         throw new Exception("Invalid variable");
                     }
                 }
-                stringToBuild.append((dayOfTableInString + "                    " + testStore.getNumberOfPositiveCasesPerDay(dateInString) + "                                      "));
+                stringToBuild.append((dateInString + "                    " + testStore.getNumberOfPositiveCasesPerDay(dateInString) + "                                      "));
                 double prevision;
                 if(independentVariable.equalsIgnoreCase("mean age")){
                     stringToBuild.append(linearRegression.predict(testStore.getAverageAgeOfClient(dateInString)));
