@@ -142,10 +142,12 @@ public class Company {
         Test testTestHardCodedDiagnosed = new Test(clientStore.getClientByCardNumber((long) 8765432187654323.0), testTypeHardCoded, testNumberGenerator(), nhsCodeGenerator());
         //Test mdisc1 = new Test(clientStore.getClientByCardNumber((long) 8765432187654324.0), testTypeHardCoded, testNumberGenerator(), nhsCodeGenerator());
         //mdisc1.setStateOfTestToRegistered();
-        testTestHardCoded.saveTestParameterResult(parameter, testTestHardCoded.createTestParameterResult(hb000, "135", "mg"));
-        testTestHardCodedDiagnosed.saveTestParameterResult(parameter, testTestHardCodedDiagnosed.createTestParameterResult(hb000, "135", "mg"));
+        testTestHardCoded.saveTestParameterResult(parameter, testTestHardCoded.createTestParameterResult("HB000", "135", "mg"));
+        testTestHardCodedDiagnosed.saveTestParameterResult(parameter, testTestHardCodedDiagnosed.createTestParameterResult("HB000", "135", "mg"));
         testTestHardCoded.setStateOfTestToSamplesAnalyzed();
         testTestHardCodedDiagnosed.setStateOfTestToSamplesAnalyzed();
+        testTestHardCoded.addReport(new Report("diagnosis", "Report is complete"));
+        testTestHardCoded.validateTest();
         testTestHardCodedDiagnosed.addReport(new Report("diagnosis", "Report is complete"));
         //testTestHardCodedDiagnosed.validateTest();
         testStore.addTest(testTestHardCodedDiagnosed);
