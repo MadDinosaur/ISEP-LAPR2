@@ -1,7 +1,6 @@
 package app.ui.console;
 
 import app.controller.RegisterClientController;
-import app.domain.model.exceptions.*;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -28,11 +27,11 @@ public class RegisterClientUI implements Runnable {
                 }
                 clientController.setNameClient(name);
                 verifier = true;
-            } catch (InvalidNameException e) {
+            } catch (app.domain.model.exceptions.InvalidNameException e) {
                 System.out.println(e);
             }
         }
-
+        registerClient();
     }
     private void registerClient(){
         System.out.println("Now introduce Client Card Number");
@@ -47,7 +46,7 @@ public class RegisterClientUI implements Runnable {
                 long cardNumber = Long.parseLong(clientCard);
                 clientController.setCardNumber(cardNumber);
                 verifier = true;
-            } catch (InvalidCardNumberException e) {
+            } catch (app.domain.model.exceptions.InvalidCardNumberException e) {
                 System.out.println(e);
             } catch (InputMismatchException e) {
                 System.out.println("Card Number must only contain numbers");
@@ -65,7 +64,7 @@ public class RegisterClientUI implements Runnable {
                 long nhsId = Long.parseLong(nshId);
                 clientController.setNhsId(nhsId);
                 verifier = true;
-            } catch (InvalidNhsIdException e) {
+            } catch (app.domain.model.exceptions.InvalidNhsIdException e) {
                 System.out.println(e);
             } catch (InputMismatchException e) {
                 System.out.println("NHS Id must only contain numbers");
@@ -82,7 +81,7 @@ public class RegisterClientUI implements Runnable {
                 }
                 clientController.setDate(date);
                 verifier = true;
-            } catch (InvalidDateException e) {
+            } catch (app.domain.model.exceptions.InvalidDateException e) {
                 System.out.println(e);
             } catch (InputMismatchException e) {
                 System.out.println("Birthdate must be in the format DD/MM/YYYY");
@@ -100,7 +99,7 @@ public class RegisterClientUI implements Runnable {
                 long taxID2 = Long.parseLong(taxID);
                 clientController.setTIN(taxID2);
                 verifier = true;
-            } catch (InvalidTINException e) {
+            } catch (app.domain.model.exceptions.InvalidTINException e) {
                 System.out.println(e);
             } catch (InputMismatchException e) {
                 System.out.println("TIN must only contain numbers");
@@ -118,7 +117,7 @@ public class RegisterClientUI implements Runnable {
                 long phoneNumber = Long.parseLong(phone);
                 clientController.setPhoneNumber(phoneNumber);
                 verifier = true;
-            } catch (InvalidPhoneNumberException e) {
+            } catch (app.domain.model.exceptions.InvalidPhoneNumberException e) {
                 System.out.println(e);
             } catch (InputMismatchException e) {
                 System.out.println("Phone Number must only contain numbers");
@@ -135,7 +134,7 @@ public class RegisterClientUI implements Runnable {
                 }
                 clientController.setEmail(email);
                 verifier = true;
-            } catch (InvalidEmailException e) {
+            } catch (app.domain.model.exceptions.InvalidEmailException e) {
                 System.out.println(e);
             } catch (Exception a) {
                 System.out.println(a);
