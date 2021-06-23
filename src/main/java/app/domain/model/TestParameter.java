@@ -31,6 +31,7 @@ public class TestParameter implements Serializable {
     }
 
     public ReferenceValue getReferenceValue() {
+        if (result == null) throw new InvalidTestResultException("No reference value available");
         return result.getRefValue();
     }
 

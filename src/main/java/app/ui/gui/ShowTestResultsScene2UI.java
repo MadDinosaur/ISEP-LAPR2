@@ -71,20 +71,21 @@ public class ShowTestResultsScene2UI implements Initializable {
     }
 
     public void displayTestResultInfo() {
-        Label lbParam = new Label(), lbValue = new Label(), lbRefValue = new Label();
+
         int line = 1;
 
         List<TestParameterDTO> testParams = showTestResultController.displayTestResults(testDto.getTestCode());
 
         for(TestParameterDTO tp: testParams) {
+            Label lbParam = new Label(), lbValue = new Label(), lbRefValue = new Label();
             lbParam.setText(tp.getParameter());
             lbValue.setText(tp.getResultValue() + tp.getResultMetric());
             lbRefValue.setText(tp.getRefValueMin() + tp.getRefValueMetric()
                     + " - " + tp.getRefValueMax() + tp.getRefValueMetric());
 
-            gridTests.add(lbParam, 0, line);
-            gridTests.add(lbValue, 1, line);
-            gridTests.add(lbRefValue, 2, line);
+            gridTests.add(lbParam, 0, line, 1, 1);
+            gridTests.add(lbValue, 1, line, 1, 1);
+            gridTests.add(lbRefValue, 2, line, 1, 1);
 
             line++;
         }
