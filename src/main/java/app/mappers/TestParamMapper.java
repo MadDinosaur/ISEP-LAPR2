@@ -1,6 +1,6 @@
 package app.mappers;
 
-import app.domain.model.Exceptions.InvalidTestResultException;
+import app.domain.model.exceptions.InvalidTestResultException;
 import app.domain.model.TestParameter;
 import app.mappers.dto.TestParameterDTO;
 

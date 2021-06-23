@@ -1,7 +1,7 @@
 package app.domain.store;
 
 import app.domain.model.Employee;
-import app.domain.model.Exceptions.InvalidEmployeeException;
+import app.domain.model.exceptions.InvalidEmployeeException;
 import app.domain.model.OrganizationRole;
 import org.junit.Assert;
 import org.junit.Test;

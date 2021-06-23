@@ -1,6 +1,6 @@
 package app.domain.model;
 
-import app.domain.model.Exceptions.*;
+import app.domain.model.exceptions.*;
 
 public class Employee {
     private final String id;

@@ -1,8 +1,8 @@
 package app.ui.console;
 
 import app.controller.CreateReportController;
-import app.domain.model.Exceptions.InvalidTestCodeException;
-import app.domain.model.Exceptions.InvalidTextReportException;
+import app.domain.model.exceptions.InvalidTestCodeException;
+import app.domain.model.exceptions.InvalidTextReportException;
 import app.domain.model.TestParameter;
 import app.mappers.dto.ReportDTO;
 import app.mappers.dto.TestDTO;

@@ -3,7 +3,7 @@ package app.ui.console;
 import app.controller.App;
 import app.controller.RecordTestResultController;
 import app.domain.model.*;
-import app.domain.model.Exceptions.UnregisteredBarcodeException;
+import app.domain.model.exceptions.UnregisteredBarcodeException;
 import app.mappers.dto.ParamDTO;
 import auth.domain.model.Email;
 

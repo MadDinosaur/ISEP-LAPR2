@@ -1,8 +1,8 @@
 package app.domain.model;
 
 import app.domain.adapter.BiggestContiguousSubSequenceAlgorithm;
-import app.domain.model.Exceptions.InvalidLaboratoryIDException;
-import app.domain.model.Exceptions.UnassignedExternalModuleException;
+import app.domain.model.exceptions.InvalidLaboratoryIDException;
+import app.domain.model.exceptions.UnassignedExternalModuleException;
 import app.domain.store.*;
 import auth.AuthFacade;
 import auth.domain.model.Email;

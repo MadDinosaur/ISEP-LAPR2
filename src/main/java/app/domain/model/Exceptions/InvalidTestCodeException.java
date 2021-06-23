@@ -1,4 +1,4 @@
-package app.domain.model.Exceptions;
+package app.domain.model.exceptions;
 
 public class InvalidTestCodeException extends IllegalArgumentException {
 

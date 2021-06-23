@@ -3,8 +3,8 @@ package app.domain.store;
 import app.domain.adapter.Sortable;
 import app.domain.model.Client;
 import app.domain.model.DateBirth;
-import app.domain.model.Exceptions.InvalidClientException;
-import app.domain.model.Exceptions.InvalidEmailException;
+import app.domain.model.exceptions.InvalidClientException;
+import app.domain.model.exceptions.InvalidEmailException;
 import app.mappers.dto.ClientDTO;
 import auth.domain.model.Email;
 

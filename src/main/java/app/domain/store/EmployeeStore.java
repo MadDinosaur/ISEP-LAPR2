@@ -1,8 +1,8 @@
 package app.domain.store;
 
 import app.domain.model.Employee;
-import app.domain.model.Exceptions.InvalidEmployeeException;
-import app.domain.model.Exceptions.InvalidNameException;
+import app.domain.model.exceptions.InvalidEmployeeException;
+import app.domain.model.exceptions.InvalidNameException;
 
 import java.io.Serializable;
 import java.util.ArrayList;

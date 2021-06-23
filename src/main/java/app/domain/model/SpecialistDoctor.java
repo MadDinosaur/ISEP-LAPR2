@@ -1,6 +1,6 @@
 package app.domain.model;
 
-import app.domain.model.Exceptions.InvalidDINException;
+import app.domain.model.exceptions.InvalidDINException;
 
 public class SpecialistDoctor extends Employee {
     int doctorIndexNumber;

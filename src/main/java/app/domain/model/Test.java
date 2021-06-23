@@ -1,7 +1,7 @@
 package app.domain.model;
 
 
-import app.domain.model.Exceptions.TestAlreadyValidatedException;
+import app.domain.model.exceptions.TestAlreadyValidatedException;
 import app.domain.store.SampleList;
 import app.domain.store.TestParamList;
 

@@ -1,9 +1,9 @@
 package app.ui.console;
 
 import app.controller.CreateTestTypeController;
-import app.domain.model.Exceptions.InvalidCategoryException;
-import app.domain.model.Exceptions.InvalidCodeException;
-import app.domain.model.Exceptions.InvalidDescriptionException;
+import app.domain.model.exceptions.InvalidCategoryException;
+import app.domain.model.exceptions.InvalidCodeException;
+import app.domain.model.exceptions.InvalidDescriptionException;
 
 import java.util.Scanner;
 

@@ -1,6 +1,6 @@
 package app.domain.model;
 
-import app.domain.model.Exceptions.InvalidDateException;
+import app.domain.model.exceptions.InvalidDateException;
 
 import java.io.Serializable;
 

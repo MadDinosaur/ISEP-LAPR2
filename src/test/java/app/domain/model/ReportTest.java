@@ -1,6 +1,6 @@
 package app.domain.model;
 
-import app.domain.model.Exceptions.InvalidTextReportException;
+import app.domain.model.exceptions.InvalidTextReportException;
 import org.junit.Test;
 
 public class ReportTest {

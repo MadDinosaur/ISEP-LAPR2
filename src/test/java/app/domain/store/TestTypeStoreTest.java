@@ -2,7 +2,7 @@ package app.domain.store;
 
 import app.domain.model.Category;
 import app.domain.model.CollectionMethod;
-import app.domain.model.Exceptions.InvalidTestType;
+import app.domain.model.exceptions.InvalidTestType;
 import app.domain.model.TestType;
 import org.junit.Test;
 

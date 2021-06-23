@@ -1,11 +1,10 @@
 package app.domain.store;
 
 import app.domain.model.*;
-import app.domain.model.Exceptions.InvalidTestCodeException;
-import app.domain.model.Exceptions.InvalidTestException;
-import app.domain.model.Exceptions.TestDoesntExistException;
-import app.domain.model.Exceptions.UnregisteredBarcodeException;
-import org.apache.commons.lang3.ObjectUtils;
+import app.domain.model.exceptions.InvalidTestCodeException;
+import app.domain.model.exceptions.InvalidTestException;
+import app.domain.model.exceptions.TestDoesntExistException;
+import app.domain.model.exceptions.UnregisteredBarcodeException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
