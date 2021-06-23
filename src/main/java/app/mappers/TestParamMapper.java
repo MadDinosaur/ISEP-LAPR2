@@ -1,5 +1,6 @@
 package app.mappers;
 
+import app.domain.model.Exceptions.InvalidTestResultException;
 import app.domain.model.TestParameter;
 import app.mappers.dto.TestParameterDTO;
 
@@ -19,16 +20,19 @@ public class TestParamMapper {
         if (testParameter.getParameter() != null)
         parameter = testParameter.getParameter().getParameterName();
 
-        if (testParameter.getResult() != null) {
+        try {
             resultValue = ""+ testParameter.getResult().getValue();
             resultMetric = testParameter.getResult().getMetric();
+        } catch (InvalidTestResultException e) {
+            resultValue = e.getMessage();
+            resultMetric = "";
         }
 
-        if (testParameter.getReferenceValue() != null) {
+        try {
             refValueMin = testParameter.getReferenceValue().getMinValue().toString();
             refValueMetric = testParameter.getReferenceValue().getMetric();
             refValueMax = testParameter.getReferenceValue().getMaxValue().toString();
-        }
+        } catch (InvalidTestResultException e) {}
 
         return new TestParameterDTO(parameter, resultValue, resultMetric, refValueMin, resultMetric, refValueMax);
     }
