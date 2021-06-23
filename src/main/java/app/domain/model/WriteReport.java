@@ -121,9 +121,9 @@ public class WriteReport implements CharSequence {
         long diffInDays =  (finishRegression.getTime() - startRegression .getTime());
         int daysOfRegression = (int) TimeUnit.DAYS.convert(diffInDays, TimeUnit.MILLISECONDS);
 
-        x1 = new double[daysOfRegression];
-        x2 = new double[daysOfRegression];
-        y = new double[daysOfRegression];
+        x1 = new double[daysOfRegression+1];
+        x2 = new double[daysOfRegression+1];
+        y = new double[daysOfRegression+1];
         String[] dateComponents = currentDay.split("/");
         int day = Integer.parseInt(dateComponents[0]);
         int month = Integer.parseInt(dateComponents[1]);
@@ -131,8 +131,9 @@ public class WriteReport implements CharSequence {
         Date dateCurrentDay = new GregorianCalendar(year, month, day).getTime();
 
         Date dayOfTableToMakeRegression = finishRegression;
+        dayOfTableToMakeRegression = DateUtils.addDays(dayOfTableToMakeRegression, 1);
         int i;
-        for (i = 0; i < daysOfRegression; i++) {
+        for (i = 0; i <= daysOfRegression; i++) {
             dayOfTableToMakeRegression = DateUtils.addDays(dayOfTableToMakeRegression, -1);
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(dayOfTableToMakeRegression);
@@ -169,7 +170,7 @@ public class WriteReport implements CharSequence {
 
         xb = multiLinearRegression.getX2();
         intercept = multiLinearRegression.getIntercept();
-        degreesOfFreedom = multiLinearRegression.getDegreesOfFreedom() +1;
+        degreesOfFreedom = multiLinearRegression.getDegreesOfFreedom();
         sqR = multiLinearRegression.getSqR();
         sqE = multiLinearRegression.getSqE();
         sqT = sqE + sqR;
@@ -179,7 +180,7 @@ public class WriteReport implements CharSequence {
         rSquared = multiLinearRegression.getRSquared();
         r2Adjusted = multiLinearRegression.getRSquaredAdjusted();
         r = multiLinearRegression.getR();
-        critical = multiLinearRegression.getCritical();
+
 
         double t_obs;
         if(varTest.equalsIgnoreCase("1")){
@@ -202,6 +203,7 @@ public class WriteReport implements CharSequence {
         }
         int confidence100 = (int) (confidence *100);
 
+        critical = multiLinearRegression.getCritical();
 
         StringBuilder stringToBuild = new StringBuilder("The regression model fitted using data from the interval\n" +
                 "^y = " + xa + "x1 + " + xb + "x2 +" + intercept + "\n" +
@@ -237,7 +239,7 @@ public class WriteReport implements CharSequence {
         stringToBuild.append("\n" +
                 "// Prediction values\n" +
                 "\n" +
-                "Date                Number of OBSERVED positive cases           Number of ESTIMATED/EXPECTED positive cases \t\t"+confidence100+ "% intervals\n");
+                "Date                Number of OBSERVED positive cases           Number of ESTIMATED/EXPECTED positive cases         \t\t"+confidence100+ "% intervals\n");
         Date dayOfTable = dateCurrentDay;
         int index;
         for (index = 1; index <= historicalPoints; index++) {
@@ -291,9 +293,9 @@ public class WriteReport implements CharSequence {
         long diffInDays =  (finishRegression.getTime() - startRegression .getTime());
         int daysOfRegression = (int) TimeUnit.DAYS.convert(diffInDays, TimeUnit.MILLISECONDS);
 
-        x1 = new double[daysOfRegression];
-        x2 = new double[daysOfRegression];
-        y = new double[daysOfRegression];
+        x1 = new double[daysOfRegression+1];
+        x2 = new double[daysOfRegression+1];
+        y = new double[daysOfRegression+1];
         String[] dateComponents = currentDay.split("/");
         int day = Integer.parseInt(dateComponents[0]);
         int month = Integer.parseInt(dateComponents[1]);
@@ -301,8 +303,9 @@ public class WriteReport implements CharSequence {
         Date dateCurrentDay = new GregorianCalendar(year, month, day).getTime();
 
         Date dayOfTableToMakeRegression = finishRegression;
+        dayOfTableToMakeRegression = DateUtils.addDays(dayOfTableToMakeRegression, 1);
         int i;
-        for (i = 0; i < daysOfRegression; i++) {
+        for (i = 0; i <= daysOfRegression; i++) {
             dayOfTableToMakeRegression = DateUtils.addDays(dayOfTableToMakeRegression, -1);
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(dayOfTableToMakeRegression);
@@ -346,7 +349,7 @@ public class WriteReport implements CharSequence {
 
         xa = linearRegression.slope();
         intercept = linearRegression.intercept();
-        degreesOfFreedom = linearRegression.getDegreesOfFreedom() +1;
+        degreesOfFreedom = linearRegression.getDegreesOfFreedom();
         sqR = linearRegression.getSr();
         sqE = linearRegression.getSe();
         sqT = sqE +sqR;
@@ -356,7 +359,6 @@ public class WriteReport implements CharSequence {
         rSquared = linearRegression.R2();
         r2Adjusted =
         this.r = Math.sqrt(rSquared);
-        critical = linearRegression.getT0(1-confidence);
 
         double t_obs;
         String rejection;
@@ -372,6 +374,8 @@ public class WriteReport implements CharSequence {
         }else{
             rejection = "No reject H0";
         }
+        critical = linearRegression.getT0(1-confidence);
+
 
         int confidence100 = (int) (confidence *100);
 
@@ -384,8 +388,8 @@ public class WriteReport implements CharSequence {
                 "\n" +
                 "Hypothesis tests for regression coefficients\n" +
                 "HO:b=0 (a=0) H1: b<>0 (a<>0)\n" +
-                "t_obs = " + tCritical + "\n" +
-                "Decision: " + t_obs + "\n" +
+                "t_obs = " + t_obs + "\n" +
+                "Decision: \n"+
                 rejection + "\n" +
                 "\n" +
                 "\n" +
@@ -408,7 +412,7 @@ public class WriteReport implements CharSequence {
         stringToBuild.append("\n" +
                 "// Prediction values\n" +
                 "\n" +
-                "Date                Number of OBSERVED positive cases           Number of ESTIMATED/EXPECTED positive cases \t\t" + confidence100 +"% intervals\n");
+                "Date                Number of OBSERVED positive cases           Number of ESTIMATED/EXPECTED positive cases         \t\t" + confidence100 +"% intervals\n");
         Date dayOfTable = dateCurrentDay;
         int index;
         for (index = 1; index <= historicalPoints; index++) {
